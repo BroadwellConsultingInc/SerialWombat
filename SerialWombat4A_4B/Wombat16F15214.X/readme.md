@@ -1,0 +1,1 @@
+This Directory, along with ../SerialWombatCommon contain the files necessary to build the Serial Wombat 4A and Serial Wombat 4B.  The most recent versions were created using MPLAB X 5.45 and XC8 Pro version 2.31 .
