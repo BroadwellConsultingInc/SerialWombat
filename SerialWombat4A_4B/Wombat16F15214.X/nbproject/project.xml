@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>com.microchip.mplab.nbide.embedded.makeproject</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/make-project/1">
+            <name>Wombat16F15214</name>
+            <creation-uuid>cdb875e1-1e16-4f65-836c-f74bcb888f20</creation-uuid>
+            <make-project-type>0</make-project-type>
+            <c-extensions>c</c-extensions>
+            <cpp-extensions/>
+            <header-extensions>h</header-extensions>
+            <asminc-extensions/>
+            <sourceEncoding>ISO-8859-1</sourceEncoding>
+            <make-dep-projects>
+                <make-dep-project>../../../../PIC16F15214Bootloader/BootloaderPIC16F15214/BootloaderPIC16F15214.X</make-dep-project>
+            </make-dep-projects>
+            <sourceRootList>
+                <sourceRootElem>.</sourceRootElem>
+                <sourceRootElem>../../SerialWombatCommon</sourceRootElem>
+            </sourceRootList>
+            <confList>
+                <confElem>
+                    <name>UART15214</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>I2C15214</name>
+                    <type>2</type>
+                </confElem>
+                <confElem>
+                    <name>Debug16F15224</name>
+                    <type>2</type>
+                </confElem>
+            </confList>
+            <formatting>
+                <project-formatting-style>false</project-formatting-style>
+            </formatting>
+        </data>
+    </configuration>
+</project>
