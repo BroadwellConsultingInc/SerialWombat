@@ -131,13 +131,13 @@ void ProcessPins()
                 void updatePulseTimer(void);
                 updatePulseTimer();
             }
-            
+            break;
             case PIN_MODE_PROTECTEDOUTPUT:
             {
                 void updateProtectedOutput(void);
                 updateProtectedOutput();
             }
-
+            break;
 		}    
 		CopyFromPinBufferToArray();
 	}

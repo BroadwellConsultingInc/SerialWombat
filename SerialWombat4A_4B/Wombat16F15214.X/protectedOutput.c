@@ -24,8 +24,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #include "serialWombat.h"
 
 #define PO_METHOD_EQUAL 0
-#define PO_METHOD_GREATER 2
-#define PO_METHOD_LESS 3
+#define PO_METHOD_GREATER 1
+#define PO_METHOD_LESS 2
 
 typedef struct protectedOutput_n{
 	uint16_t expectedValue;
