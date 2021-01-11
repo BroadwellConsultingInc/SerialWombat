@@ -560,6 +560,10 @@ Examples:
 
 		case COMMAND_BINARY_SET_PIN_BUFFFER:
 		{
+            uint16_t temp = GetBuffer(Rxbuffer[1]);
+			TXBUFFER16(2,temp);		
+			temp = GetBuffer(Rxbuffer[4] );
+			TXBUFFER16(5,temp);		
 			SetBuffer(Rxbuffer[1],RXBUFFER16(2));
 			SetBuffer(Rxbuffer[4],RXBUFFER16(5));
 		}
@@ -694,7 +698,6 @@ extern volatile uint8_t TX_ClockStretching;
 	}
 	if (UartRxbufferCounter >= RXBUFFER_LENGTH)
 	{
-		int i;
 		ProcessRxbuffer();
 		UartRxbufferCounter = 0;
             #ifdef I2CWOMBAT

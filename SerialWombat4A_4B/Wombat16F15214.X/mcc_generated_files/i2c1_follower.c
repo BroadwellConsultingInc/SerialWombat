@@ -47,7 +47,7 @@
 #include "i2c1_follower.h"
 #include <xc.h>
 #include "serialWombat.h"
-#define I2C1_FOLLOWER_ADDRESS      0x6C
+const __at(0x1FFC / 2) uint8_t  I2C1_FOLLOWER_ADDRESS =  0x6C;
 #define I2C1_FOLLOWER_MASK         127
 
 typedef enum
@@ -243,8 +243,8 @@ void I2C1_Isr()
 	if (SSP1CON3bits.ACKTIM)
 	{
 		       i2c1FollowerAddr = SSP1BUF; //I2C1_FollowerAddrInterruptHandler();
-         SSP1CON2bits.ACKDT = 0; //12262020
-			    SSP1CON2bits.ACKEN = 1; //12262020
+                SSP1CON2bits.ACKDT = 0; //12262020
+			    SSP1CON2bits.ACKEN = 1; //12262020                           
 	}
 	else
 	{
@@ -296,11 +296,15 @@ void I2C1_Isr()
                 {
                     SSP1BUF = Txbuffer[8- i2cTxBufferCounter];
                    --i2cTxBufferCounter;
+                    ResponseAvailable = 0;  // We sent the response.
                 }
                 else
                 {
                     SSP1BUF = 0x55;
                 }
+                
+                   
+                
             }
             break;
         case I2C1_DATA_RX:

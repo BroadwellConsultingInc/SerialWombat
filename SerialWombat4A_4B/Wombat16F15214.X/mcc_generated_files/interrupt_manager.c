@@ -97,6 +97,7 @@ void __interrupt() INTERRUPT_InterruptManager (void)
         *((uint8_t*)&IOC_TimeBuffer[7]) = TMR1L; 
         *(((uint8_t*)&IOC_TimeBuffer[7]) + 1) = TMR1H; 
         }
+        return;
     }
     if (PIE1bits.CCP1IE == 1 && PIR1bits.CCP1IF == 1)
     {
@@ -104,17 +105,20 @@ void __interrupt() INTERRUPT_InterruptManager (void)
         WP_LAT &= CCP1SetLowMask;
         CCP1SetLowMask = 0xFF;
         PIE1bits.CCP1IE = 0;
+        return;
     }
     #ifdef I2CWOMBAT
 		 if(PIE1bits.BCL1IE == 1 && PIR1bits.BCL1IF == 1)
         {
              void I2C1_Isr(void);
             I2C1_Isr();
+            return;
         } 
         else if(PIE1bits.SSP1IE == 1 && PIR1bits.SSP1IF == 1)
         {
              void I2C1_Isr(void);
             I2C1_Isr();
+            return;
         } 
         else
         {
@@ -124,17 +128,19 @@ void __interrupt() INTERRUPT_InterruptManager (void)
     
     
    
-
+        if(PIE1bits.RC1IE == 1 && PIR1bits.RC1IF == 1)
+        {
+            void EUSART1_Receive_ISR(void);
+            EUSART1_Receive_ISR();
+            return;
+        } 
         if(PIE1bits.TX1IE == 1 && PIR1bits.TX1IF == 1)
         {
             void EUSART1_Transmit_ISR(void);
             EUSART1_Transmit_ISR();
+            return;
         } 
-        else if(PIE1bits.RC1IE == 1 && PIR1bits.RC1IF == 1)
-        {
-            void EUSART1_Receive_ISR(void);
-            EUSART1_Receive_ISR();
-        } 
+        
 
       
     if(PIE0bits.TMR0IE == 1 && PIR0bits.TMR0IF == 1)

@@ -3,13 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat4A_4B/Wombat16F15214.X/mcc_generated_files/interrupt_manager.c</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat4A_4B/Wombat16F15214.X/UART.c</file>
+            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat4A_4B/Wombat16F15214.X/analogInput.c</file>
             <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat4A_4B/Wombat16F15214.X/mcc_generated_files/i2c1_follower.c</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat4A_4B/Wombat16F15214.X/main.c</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat4A_4B/Wombat16F15214.X/watchdog.c</file>
             <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat4A_4B/Wombat16F15214.X/protocol.c</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat4A_4B/Wombat16F15214.X/servo.c</file>
+            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat4A_4B/Wombat16F15214.X/quadEnc.c</file>
         </group>
     </open-files>
 </project-private>
