@@ -5,6 +5,7 @@
         <group>
             <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat4A_4B/Wombat16F15214.X/analogInput.c</file>
             <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat4A_4B/Wombat16F15214.X/mcc_generated_files/i2c1_follower.c</file>
+            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat4A_4B/Wombat16F15214.X/mcc_generated_files/adc.c</file>
             <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat4A_4B/Wombat16F15214.X/protocol.c</file>
             <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat4A_4B/Wombat16F15214.X/quadEnc.c</file>
         </group>

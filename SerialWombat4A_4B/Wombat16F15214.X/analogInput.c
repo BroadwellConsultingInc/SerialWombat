@@ -79,7 +79,7 @@ void initAnalogInput (void)
 				analogInput->dataSourcePin = CurrentPin;
 #endif
 				analogInput->average =
-					analogInput->filteredValue = 0;
+					analogInput->filteredValue = GetADCConversion(CurrentPin);
                 
 					analogInput->minimum = 65535;
 					analogInput->maximum = 0;
@@ -135,7 +135,7 @@ void updateAnalogInput()
         if (analogInput->averageCount == 64)
         {
             analogInput->average = analogInput->averageSum;
-            analogInput->averageTotalSamples = 0;
+            analogInput->averageCount = 0;
 			analogInput->averageSum = 0;
         }
 	}
@@ -148,7 +148,11 @@ void updateAnalogInput()
 	        analogInput->filteredValue = temp >> 16;
 	}
 	
-
+    if (CurrentPinRegister->generic.buffer >= 0xFFC0)
+    {
+        CurrentPinRegister->generic.buffer = 0xFFFF;
+    }
+    
     if (CurrentPinRegister->generic.buffer < analogInput->minimum)
 	{
 		analogInput->minimum = CurrentPinRegister->generic.buffer;
@@ -157,6 +161,8 @@ void updateAnalogInput()
 	{
 		analogInput->maximum = CurrentPinRegister->generic.buffer;
 	}	
+    
+   
 
 }
 

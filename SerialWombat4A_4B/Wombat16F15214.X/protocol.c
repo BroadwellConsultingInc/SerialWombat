@@ -504,7 +504,7 @@ Examples:
 			Txbuffer[4] = SERIAL_WOMBAT_HARDWARE_IDENTIFIER;	     
 			Txbuffer[5] = '2';	     
 			Txbuffer[6] = '0';	     
-			Txbuffer[7] = '1';	     
+			Txbuffer[7] = '2';	     
 
 			break;
 #if 0
