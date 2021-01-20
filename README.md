@@ -7,7 +7,7 @@ The Serial Wombat project is a line of microcontroller firmwares designed to ext
 
 The Serial Wombat is an open-source, MIT Licensed project developed by Broadwell Consulting Inc. to showcase and promote the embedded systems capabilities of the company.  
 
-This page explains the inner workings of the Serial Wombat firmware.  If you just want to access it with the Arduino Library or Raspberry Pi Python Package (avaialble soon) read the next few paragraphs then go to that area and read about the API.
+This page explains the inner workings of the Serial Wombat firmware.  If you just want to access it with the Arduino Library or Raspberry Pi Python Package (available soon) read the next few paragraphs then go to that area and read about the API.
 
 A Serial Wombat is not programmed for a given application by the end user.  It is pre-programmed with general-purpose firmware, and configured at run time to make the hardware resources of the microcontroller available for command by the host in ways that solve common embedded systems problems.
 
@@ -15,7 +15,7 @@ Why would I use a Serial Wombat?
 --------------------------------
 
 * Because you need more I/O
-* Because you need more A/D Conversion
+* Because you need more A/D Conversion channels
 * Because trying to do multiple things at once is making your software hard to write
 * Because you don't want to try to figure out how to merge multiple existing low-level/interrupt based Arduino libraries to make them work together
 * Because your system doesn't have enough specialized pins like PWM or Interrupts
@@ -34,7 +34,7 @@ The Serial Wombat is also a potential replacement for the MCP23017.  Like the MC
 Pins on the Serial Wombat can be assigned tasks fairly independently.  A single Serial Wombat 4A could have 4 A/D pins, or 2 A/D pins and a quadrature encoder, or an A/D, a button, and two servo drivers or any other combination.  All your program has to do is configure the pins at startup, then only check in with the Serial Wombat when you want a status update on an input or need to change an output.  All the while, the Serial Wombat is doing what it takes to drive the output or process the input.  
 
 
-What Serial Wombats are Avaiable?
+What Serial Wombats are Available?
 ---------------------------------
 
 | Model                        | SW4A                                                                            | SW4B                                                                            | SW19A                                                   | SW19B                                                   |
@@ -59,7 +59,7 @@ Resources
 
 Check out the Serial Wombat Playlist on Broadwell Consulting Inc's YouTube Channel.
 
-https://www.youtube.com/watch?v=UZOnq2FdrvU&list=PL9_vji2WbJGjNSjp9rnOrdrNzMCQIjaj_
+https://www.youtube.com/watch?list=PL9_vji2WbJGjNSjp9rnOrdrNzMCQIjaj_
 
 **Integration with common platforms is easy with pre-written libraries.**
 
@@ -105,7 +105,7 @@ Public Data
 -----------
 The public data is typically a pin mode's input or output value that is most interesting to the host, or to other pin modes, expressed as a 16-bit value.  Some pin modes, such as Protected Output, can be configured to read and react to the public data of another pin.  For instance, for a PWM pin, the public data is its Duty Cycle.  Changing that Pin's public data will change its duty cycle.   For a Pulse Measurement pin, the high time of the last pulse is its public data.   For an A/D converter pin, the latest Raw A/D conversion is its public data.  For a Servo, the servo's position is its public data.  
 
-The SW4A and SW4B are limited in their configuration of public data options due to limited flash space for programming logic.  The forthcoming SW19 series will be more configurable.  In that case, the public data for an A/D can be configured to be a raw, averaged, or filtered value.  More sophisticated pin modes will be avaialble, such as a hystersis mode which turns an ouput on and off based on another pin such as an A/D, or a PID controller which can control a proportional output such as a servo, or PWM output based on specified constants.
+The SW4A and SW4B are limited in their configuration of public data options due to limited flash space for programming logic.  The forthcoming SW19 series will be more configurable.  In that case, the public data for an A/D can be configured to be a raw, averaged, or filtered value.  More sophisticated pin modes will be available, such as a hystersis mode which turns an ouput on and off based on another pin such as an A/D, or a PID controller which can control a proportional output such as a servo, or PWM output based on specified constants.
 
 For digital values, Public data typically use 0 and 1 for False and True, or for Low and High.
 
