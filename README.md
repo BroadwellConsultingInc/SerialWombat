@@ -1,5 +1,8 @@
 # Serial Wombat
 
+What is a Serial Wombat?
+------------------------
+
 The Serial Wombat project is a line of microcontrollers with firmware designed to extend the capabilities of single board computers such as Arduino boards and the Raspberry Pi or a PC or other device.
 
 The Serial Wombat is an open-source, MIT Licensed project developed by Broadwell Consulting Inc. to showcase and promote the embedded systems capabilities of the company.  
@@ -8,32 +11,70 @@ This page explains the inner workings of the Serial Wombat firmware.  If you jus
 
 A Serial Wombat is not programmed for a given application by the end user.  It is pre-programmed with general-purpose firmware, and configured at run time to make the hardware resources of the microcontroller available for command by the host in ways that solve common embedded systems problems.
 
-For example, a Serial Wombat could be used for many of the same tasks as an MCP3008 ADC converter, such as adding Analog to Digital Conversion to a Raspberry Pi.  Both have 10-Bit ADC capability.  However, only the Serial Wombat is capable of taking many sequential measurements and averaging or performing first-order filtering without additional effort by the host.
+Why would I use a Serial Wombat?
+--------------------------------
+
+* Because you need more I/O
+* Because you need more A/D Conversion
+* Because trying to do multiple things at once is making your software hard to write
+* Because you don't want to try to figure out how to merge multiple existing low-level/interrupt based Arduino libraries to make them work together
+* Because your system doesn't have enough specialized pins like PWM or Interrupts
+* Because you want to mimize the number of wires running somewhere like a front control panel to just power, ground and communications
+* Because you want your hardware design to be easily portable between Arduino variants, Raspberry Pi, or any other platform with an I2C or UART interface
+
+**The Serial Wombat does what other expansion chips do, but smarter**
+
+A Serial Wombat could be used for many of the same tasks as an MCP3008 ADC converter, such as adding Analog to Digital Conversion to a Raspberry Pi.  Both have 10-Bit ADC capability.  However, only the Serial Wombat is capable of taking many sequential measurements and averaging or performing first-order filtering without additional effort by the host.
 
 The Serial Wombat is also a potential replacement for the MCP23017.  Like the MCP23017, the Serial Wombat 4A and 4B (SW4A and SW4B) provide operation up to 5.5V with the ability to talk to a 3.0 or 3.3V host over I2C.  Both provide 25mA of sink and source current per pin, with open drain and weak pull up options available.  However, the Serial Wombat uses onboard firmware to allow functions like Quadrature Encoder reading, Servo driving, PWM output, and pulse width / duty cycle measurement without additional help from the host.  Serial Wombat 4A and 4B allow 4 pins to be added with each chip, with multiple chips possible on the same bus in the case of the I2C based SW4B.  The forthcoming Serial Wombat 19 (SW19) series will provide 19 pins, 10 of which will be A/D capable.
 
 Pins on the Serial Wombat can be assigned tasks fairly independently.  A single Serial Wombat 4A could have 4 A/D pins, or 2 A/D pins and a quadrature encoder, or an A/D, a button, and two servo drivers.
 
-Integration with common platforms is easy with pre-written libraries.  
 
-Many tutorial and cookbook videos are available on YouTube that demonstrate how to use the Serial Wombat family.
+What Serial Wombats are Avaiable?
+---------------------------------
+
+| Model                        | SW4A                                                                            | SW4B                                                                            | SW19A                                                   | SW19B                                                   |
+|------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------|---------------------------------------------------------|
+| Availability                 | Q1 2021                                                                         | Now                                                                             | Q4 2021                                                 | Q3 2021                                                 |
+| Interface                    | UART                                                                            | I2C                                                                             | UART                                                    | I2C                                                     |
+| Package                      | DIP 8                                                                           | DIP 8                                                                           | DIP 28 (300 mil)                                        | DIP 28 (300 mil)                                        |
+| I/O Pins                     | 4 I/O                                                                           | 3 I/O, 1 input                                                                  | 19 I/0                                                  | 19 I/0                                                  |
+| A/D Pins                     | 4  (10-bit)                                                                     | 3 (10-bit)                                                                      | 10  (12-bit)                                            | 10 (12-bit)                                             |
+| D/A Pins                     | 0                                                                               | 0                                                                               | 1 (5-bit)                                               | 1 (5-bit)                                               |
+| Operating Voltage            | 2.5-5.5V                                                                        | 2.5-5.5V                                                                        | 2.5-3.6                                                 | 2.5-3.6V                                                |
+| Current Per pin              | 25mA                                                                            | 25mA                                                                            | 25mA  (200 mA max per chip)                             | 25 mA (200 mA max per chip)                             |
+| Required External Components | 1x 100nF Capacitor                                                              | 1x 100nF Capacitor                                                              | 2x 100nF Capacitor, 1x 10uF Capacitor, 1x 10k Resistor, | 2x 100nF Capacitor, 1x 10uF Capacitor, 1x 10k Resistor, |
+| Operating Current            | < 4mA                                                                           | < 4mA                                                                           | TBD                                                     | TBD                                                     |
+| Sleep Current                | < 750 uA                                                                        | < 750 uA                                                                        | TBD                                                     | TBD                                                     |
+| Internal Temperature Sensor  | No                                                                              | No                                                                              | Yes                                                     | Yes                                                     |
+| Pin Modes                    | Digital I/O, ADC, Debounce, Protected Output, Pulse Timer, PWM, Servo, Watchdog | Digital I/O, ADC, Debounce, Protected Output, Pulse Timer, PWM, Servo, Watchdog | TBD                                                     | TBD                                                     |
+  
+Resources
+---------
+**Many tutorial and cookbook videos are available on YouTube that demonstrate how to use the Serial Wombat family.**
+
+Check out the Serial Wombat Playlist on Broadwell Consulting Inc's YouTube Channel.
 
 https://www.youtube.com/watch?v=UZOnq2FdrvU&list=PL9_vji2WbJGjNSjp9rnOrdrNzMCQIjaj_
 
-An Arduino library is available now:
+**Integration with common platforms is easy with pre-written libraries.**
 
-https://broadwellconsultinginc.github.io/SerialWombatArdLib/
+A full-featured Arduino library with multiple examples and tutorial videos is available now:
 
-And a Raspberry Pi Python package is in development.
+at https://broadwellconsultinginc.github.io/SerialWombatArdLib/
+or download it from the Library Manager in the Arduino IDE .
+
+A Raspberry Pi Python package is in development.
 
 A C# library is also nearly finished and will be released soon.
 
-The Serial Wombat 4A and 4B firmware runs on the PIC16F15214 microcontroller.  It is designed for the PRO version of the XC8 compiler, and the MPLAB X development environment.
-
-You can compile the firmware yourself and program chips using a PICKIT or similar programming device, or you can buy preprogrammed kits from Broadwell Consulting Inc on Amazon.
 
 FIRMWARE ARCHITECTURE
 =====================
+The Serial Wombat 4A and 4B firmware runs on the PIC16F15214 microcontroller.  It is designed for the PRO version of the XC8 compiler, and the MPLAB X development environment.
+
+You can compile the firmware yourself and program chips using a PICKIT or similar programming device, or you can buy preprogrammed kits from Broadwell Consulting Inc on Amazon.
 
 The Serial Wombat binary image / Hex File is made up of two separate projects: A bootloader project and a Serial Wombat firmware project.
 
@@ -49,7 +90,7 @@ The main job of the foreground subroutine is to service state machines for the S
 Pin State Machines
 ------------------
 
-Each pin has a limited amount of memory allocated to it.  This memory is used to store the current pin mode choice, 16 bits of public data, and some private data used to configure or operate the state machine.
+Each pin has a limited, pre-allocated amount of memory allocated to it.  This memory is used to store the current pin mode choice, 16 bits of public data, and some private data used to configure or operate the state machine.
 
 A pin is configured to a state machine by CONFIGURE_CHANNEL_MODE command.  This command includes the pin number to be configured, the mode that the pin is being commanded to, and an index indicating the meaning of bytes in the configuration packet.  Many pin modes can be configured with a single CONFIGURE_CHANNEL_MODE packet.  More complicated modes may require multiple packets, sent in a specific order.
 
