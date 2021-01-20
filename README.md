@@ -57,9 +57,7 @@ Resources
 ---------
 **Many tutorial and cookbook videos are available on YouTube that demonstrate how to use the Serial Wombat family.**
 
-Check out the Serial Wombat Playlist on Broadwell Consulting Inc's YouTube Channel.
-
-https://www.youtube.com/watch?list=PL9_vji2WbJGjNSjp9rnOrdrNzMCQIjaj_
+[Check out the Serial Wombat Playlist on Broadwell Consulting Inc's YouTube Channel.](https://www.youtube.com/playlist?list=PL9_vji2WbJGjNSjp9rnOrdrNzMCQIjaj_)
 
 **Integration with common platforms is easy with pre-written libraries.**
 
