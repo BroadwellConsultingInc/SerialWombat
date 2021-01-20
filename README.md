@@ -48,7 +48,7 @@ What Serial Wombats are Avaiable?
 | Operating Current            | < 4mA                                                                           | < 4mA                                                                           | TBD                                                     | TBD                                                     |
 | Sleep Current                | < 750 uA                                                                        | < 750 uA                                                                        | TBD                                                     | TBD                                                     |
 | Internal Temperature Sensor  | No                                                                              | No                                                                              | Yes                                                     | Yes                                                     |
-| Pin Modes                    | Digital I/O, ADC, Debounce, Protected Output, Pulse Timer, PWM, Servo, Watchdog | Digital I/O, ADC, Debounce, Protected Output, Pulse Timer, PWM, Servo, Watchdog | TBD                                                     | TBD                                                     |
+| Pin Modes                    | Digital I/O<BR> ADC<BR> Debounce<BR> Protected Output<BR> Pulse Timer<BR> PWM<BR> Servo<BR> Watchdog | Digital I/O<BR> ADC<BR> Debounce<BR> Protected Output<BR> Pulse Timer<BR> PWM<BR> Servo<BR> Watchdog | TBD                                                     | TBD                                                     |
   
 Resources
 ---------
