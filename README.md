@@ -99,6 +99,25 @@ For pin modes that take data from the host (Such as I2C -> UART TX on the SW4B) 
 
 For pin modes that generate data for the host (Such as the Pulse Width timer mode) the CONFIGURE_CHANNEL_MODE commands can be used to retreive the various different data made available by that mode.
 
+Each Pin State machine has an init function, a process function, and a structure type which defines the state machine's data organization.  The init function is called whenever a CONFIGURE_CHANNEL_MODE command is sent by the host.  The init function processes the command, configures the state machine or Serial Wombat hardware as required, and generates a response as required.  Some init responses simply leave the echo default response unchanged.
+
+Once a pin has been set to a mode, the process function is called every 1mS by the executive.  This is where real-time processing of the pin's state machine happens.
+
+Each pin has a fixed amount of memory allocated to it.  There is an array of pin_register_t unions declared with at least as many elements as there are avaialble state machine pins on the Serial Wombat.
+
+The size of pin_register_t varies by model to allow more powerful chips to allocate more ram to each state machine.  The pin_register_t.generic member is a structure that contains some number of general-purpose bytes that is consistent for all pin modes on that family of models, followed by the 16-bit public data for that statemachine, followed by an 8-bit mode byte.
+
+On models with strong indexed addressing capability such as the PIC24FJ256GA702 based Serial Wombat 19 series, iteration through the pins is achieved by a single pointer, CurrentPinRegister, which is incremented prior to each process call to point to the pin currently being serviced.  The variable CurrentPin is updated to be the pin number currently being serviced.  Similarly, the pointer and index are updated prior to init calls.
+
+On models with weak indexed addressing capability such as the PIC16F15214 based Serial Wombat 4 series, the array element is copied to a buffer of type pin_register_t prior to pin process execution.  The pin mode then executes against the fixed addresses of the buffered values.  After processing is complete, the buffer is copied back to the array.  This has processing time cost to do the copies, but greatly reduces the code space required for each pin mode, allowing much more functionality within the limited flash space of the chip.  For these chips, CurrentPinRegister becomes a #define  which defines CurrentPinRegister as the address of the buffer.
+
+When a pin state machine needs to access data which is defined the same way across all state machines such as the 16-bit public data or pin mode value it accesses it using the pin_register_t defintion:
+
+> switch( `CurrentPinRegister->generic.mode` )
+
+When accessing the pin-mode specific area of the pin_register_t element the CurrentPinRegister is recast as a pointer to the structure type defined in the pin mode.  It is important that the structure not define variables that take up more space than is alloted for pin-mode specific data.
+
+
 Public Data
 -----------
 The public data is typically a pin mode's input or output value that is most interesting to the host, or to other pin modes, expressed as a 16-bit value.  Some pin modes, such as Protected Output, can be configured to read and react to the public data of another pin.  For instance, for a PWM pin, the public data is its Duty Cycle.  Changing that Pin's public data will change its duty cycle.   For a Pulse Measurement pin, the high time of the last pulse is its public data.   For an A/D converter pin, the latest Raw A/D conversion is its public data.  For a Servo, the servo's position is its public data.  
@@ -149,7 +168,7 @@ The UART protocol has no inherent framing.  It relies on synchronization between
 
 Loss of synchronization typically becomes evident when the Serial Wombat does not return a packet or returns a packet which is incorrect.  Every response packet begins with the same first byte as the command packet from the host.  This should be checked for maximum reliability.  In the event of a suspected synchronization loss, the user should consider resetting the Serial Wombat in case unexpected configuration changes resulted.
 
-When synchronization is lost, it can be regained by sending eight or more 0x55 ('U') or 0x20 (' ') bytes. These values are discarded if received as the first byte of a packet.  When sending a packet, unused bytes should be filled with 0x55 so that they will be discarded if accidentally received as the beginning of a new packet rather than the end of the prior packet.
+When synchronization is lost, it can be regained by sending eight or more 0x55 ('U') bytes. These values are discarded if received as the first byte of a packet.  When sending a packet, unused bytes should be filled with 0x55 so that they will be discarded if accidentally received as the beginning of a new packet rather than the end of the prior packet.
 
 Serial Wombats based on a UART interface allow both binary and ASCII communication.  This allows a user to experiment by manually typing commands into a serial terminal connected to the Serial Wombat.  A simplified subset of the binary commands available can be accessed through ASCII commands.  These commands are still 8 byte packets.  The Serial Wombat can optionally be configured to echo back incoming bytes and add newlines between packets.  Enabling echos and newlines will break compatability with binary operations until they are turned off or the Serial Wombat is reset.
 

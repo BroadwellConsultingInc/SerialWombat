@@ -50,26 +50,40 @@ void SetBuffer(uint8_t pin, uint16_t value)
         PinUpdateRegisters[pin].generic.buffer = value;
    }
 }
-
+uint16_t incrementingValue = 0;
 uint16_t GetBuffer(uint8_t pin)
 {
 	if (pin < NUMBER_OF_TOTAL_PINS)
 	{
 		return(PinUpdateRegisters[pin].generic.buffer);
 	}
-	else if (pin == 64)
+	 else if (pin == 65)
     {
-        extern uint16_t FramesRun;
-        return (FramesRun);
-    }
-    else if (pin == 65)
-    {
-        extern uint16_t OverflowCount;
-        return (OverflowCount);
+        return(incrementingValue++);
     }
     else if (pin == 66)
     {
         return GetADCConversion(0x1E);
+    }
+    
+    else if (pin == 67)
+    {
+        extern uint32_t FramesRun;
+        return ((uint16_t)FramesRun);
+    }
+    else if (pin == 68)
+    {
+        extern uint32_t FramesRun;
+        return (FramesRun>>16);
+    }
+    else if (pin == 69)
+    {
+        extern uint16_t OverflowCount;
+        return (OverflowCount);
+    }
+    else if (pin == 85) //0x55
+    {
+        return (0x5555);
     }
     else
 	{

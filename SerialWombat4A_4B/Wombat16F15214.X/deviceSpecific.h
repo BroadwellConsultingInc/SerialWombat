@@ -87,6 +87,10 @@ void SetLowMaskCurrentPin();
 #define WP1_PPS RC2PPS
 #define WP2_PPS RC1PPS
 #define WP3_PPS RC0PPS
+#define WP0_PORTPINNUM 3
+#define WP1_PORTPINNUM 2
+#define WP2_PORTPINNUM 1
+#define WP3_PORTPINNUM 0
 #endif
 #define WP_IOCN IOCCN
 #define WP_IOCP IOCCP
