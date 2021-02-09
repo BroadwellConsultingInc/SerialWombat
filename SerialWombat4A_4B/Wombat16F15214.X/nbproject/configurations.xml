@@ -522,7 +522,7 @@
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="0-fff"/>
         <property key="memories.rww" value="true"/>
-        <property key="poweroptions.powerenable" value="false"/>
+        <property key="poweroptions.powerenable" value="true"/>
         <property key="programmerToGoImageName" value="Wombat16F15214_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
@@ -553,7 +553,7 @@
         <property key="voltagevalue" value="3.3"/>
       </pk4hybrid>
     </conf>
-    <conf name="Debug16F15224" type="2">
+    <conf name="DEBUG_I2C_15224" type="2">
       <toolsSet>
         <developmentServer>localhost</developmentServer>
         <targetDevice>PIC16F15224</targetDevice>
@@ -561,7 +561,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>pk4hybrid</platformTool>
         <languageToolchain>XC8</languageToolchain>
-        <languageToolchainVersion>2.31</languageToolchainVersion>
+        <languageToolchainVersion>2.30</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
@@ -615,7 +615,7 @@
         <property key="call-prologues" value="false"/>
         <property key="default-bitfield-type" value="true"/>
         <property key="default-char-type" value="true"/>
-        <property key="define-macros" value="UARTWOMBAT"/>
+        <property key="define-macros" value="I2CWOMBAT"/>
         <property key="disable-optimizations" value="false"/>
         <property key="extra-include-directories" value=".;..\..\SerialWombatCommon"/>
         <property key="favor-optimization-for" value="-speed,+space"/>
@@ -688,18 +688,7 @@
         <property key="opt-xc8-linker-serial" value=""/>
         <property key="program-the-device-with-default-config-words" value="true"/>
         <property key="remove-unused-sections" value="true"/>
-        <appendMe value="--msgdisable=520"/>
       </HI-TECH-LINK>
-      <item path="UART.c" ex="true" overriding="false">
-        <HI-TECH-COMP>
-        </HI-TECH-COMP>
-        <HI-TECH-LINK>
-        </HI-TECH-LINK>
-        <XC8-CO>
-        </XC8-CO>
-        <XC8-config-global>
-        </XC8-config-global>
-      </item>
       <XC8-CO>
         <property key="coverage-enable" value=""/>
       </XC8-CO>
@@ -718,17 +707,7 @@
         <property key="user-pack-device-support" value=""/>
         <property key="wpo-lto" value="false"/>
       </XC8-config-global>
-      <item path="mcc_generated_files/eusart1.c" ex="false" overriding="false">
-        <HI-TECH-COMP>
-        </HI-TECH-COMP>
-        <HI-TECH-LINK>
-        </HI-TECH-LINK>
-        <XC8-CO>
-        </XC8-CO>
-        <XC8-config-global>
-        </XC8-config-global>
-      </item>
-      <item path="mcc_generated_files/i2c1_follower.c" ex="true" overriding="false">
+      <item path="mcc_generated_files/eusart1.c" ex="true" overriding="false">
         <HI-TECH-COMP>
         </HI-TECH-COMP>
         <HI-TECH-LINK>

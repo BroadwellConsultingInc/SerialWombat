@@ -77,7 +77,14 @@ void ProcessPins()
 		{
 			case PIN_MODE_DIGITAL_IO:
 				{
-					CurrentPinRegister->generic.buffer = CurrentPinRead();
+                    if (WP_TRIS & CurrentPinMask)
+                    {
+                        CurrentPinRegister->generic.buffer = CurrentPinRead();
+                    }
+                    else
+                    {
+                        SetCurrentPin( CurrentPinRegister->generic.buffer > 0);
+                    }
 				}
 				break;
 

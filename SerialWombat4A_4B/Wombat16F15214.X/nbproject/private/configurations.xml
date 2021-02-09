@@ -39,9 +39,9 @@
         </environment>
       </runprofile>
     </conf>
-    <conf name="Debug16F15224" type="2">
+    <conf name="DEBUG_I2C_15224" type="2">
       <platformToolSN>:=MPLABComm-USB-Microchip:=&lt;vid>04D8:=&lt;pid>9012:=&lt;rev>0100:=&lt;man>Microchip Technology Incorporated:=&lt;prod>MPLAB PICkit 4:=&lt;sn>BUR191316376:=&lt;drv>x:=&lt;xpt>b:=end</platformToolSN>
-      <languageToolchainDir>C:\Program Files\Microchip\xc8\v2.31\bin</languageToolchainDir>
+      <languageToolchainDir>C:\Program Files\Microchip\xc8\v2.30\bin</languageToolchainDir>
       <mdbdebugger version="1">
         <placeholder1>place holder 1</placeholder1>
         <placeholder2>place holder 2</placeholder2>

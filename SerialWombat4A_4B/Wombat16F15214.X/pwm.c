@@ -20,11 +20,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * OTHER DEALINGS IN THE SOFTWARE.
 */
 
+/* Serial Wombat is a trademark of Broadwell Consulting Inc. */
+
 #include "serialWombat.h"
 #include <stdint.h>
 
 typedef struct pulseTimer_n{
-	uint8_t invert:1;
+	uint8_t invert:1;  ///< Inverts the duty cycle %, not the signal.
 }pwm_t;
 
 void updatePWM(void);
@@ -32,93 +34,93 @@ void updatePWM(void);
 #define pwm  ((pwm_t*) CurrentPinRegister)
 void initPWM (void)
 {
-	
+
 	switch (Rxbuffer[0])
 	{
 		case CONFIGURE_CHANNEL_MODE_0:
-		{
-            CurrentPinRegister->generic.mode = PIN_MODE_PWM;
-			CurrentPinRegister->generic.buffer = RXBUFFER16(4);
-            pwm->invert = Rxbuffer[6];
-          
-            switch (CurrentPin)
-            {
-                case 0:
+			{
+				CurrentPinRegister->generic.mode = PIN_MODE_PWM;
+				CurrentPinRegister->generic.buffer = RXBUFFER16(4);
+				pwm->invert = Rxbuffer[6];
+
+				switch (CurrentPin)
+				{
+					case 0:
 #ifdef UARTWOMBAT
-                    WP0_PPS = 1; // CCP1CON
-                    CCP1CON= 0x9F; // PWM on                
+						WP0_PPS = 1; // CCP1CON
+						CCP1CON= 0x9F; // PWM on                
 #endif
-                    break;
-                case 1:
-                    WP1_PPS = 2; // CCP2CON
-                    CCP2CON= 0x9F; // PWM on
-                    break;
-                    
-                    case 2:
-                    WP2_PPS = 3; // PWM 3
-                    PWM3CON= 0x80; // PWM on    
-                    break;
-                    
-                    case 3:
-                    WP3_PPS = 4; // PWM4
-                    PWM4CON= 0x80; // PWM on
-                    break;
-            }
-            updatePWM();
-            	CurrentPinOutput();
-                
-			
-		}
-		break;
-        
-        case CONFIGURE_CHANNEL_MODE_DISABLE:
-        {
-            switch (CurrentPin)
-            {
-                case 0:
-                {
+						break;
+					case 1:
+						WP1_PPS = 2; // CCP2CON
+						CCP2CON= 0x9F; // PWM on
+						break;
+
+					case 2:
+						WP2_PPS = 3; // PWM 3
+						PWM3CON= 0x80; // PWM on    
+						break;
+
+					case 3:
+						WP3_PPS = 4; // PWM4
+						PWM4CON= 0x80; // PWM on
+						break;
+				}
+				updatePWM();
+				CurrentPinOutput();
+
+
+			}
+			break;
+
+		case CONFIGURE_CHANNEL_MODE_DISABLE:
+			{
+				switch (CurrentPin)
+				{
+					case 0:
+						{
 #ifdef UARTWOMBAT
-                    WP0_PPS = 0;
-                    CCP1CON = 0;
+							WP0_PPS = 0;
+							CCP1CON = 0;
 #endif
-                }
-                break;
-                
-                case 1:
-                {
-                    WP1_PPS = 0;
-                    CCP2CON = 0;
-                }
-                break;
-                
-                 case 2:
-                {
-                    WP2_PPS = 0;
-                    PWM3CON = 0;
-                }
-                break;
-                
-                case 3:
-                {
-                    WP3_PPS = 0;
-                    PWM4CON = 0;
-                }
-                break;
-            }
-                
-         
-            
-         
-            
-        }
-   break;
-        case 	CONFIGURE_CHANNEL_MODE_HW_0:
-        {
-            
-            T2CON = (Rxbuffer[3] & 0x70) | 0x80;
-            T2CLKCON = (Rxbuffer[3] & 0x07);
-        }
-        break;
+						}
+						break;
+
+					case 1:
+						{
+							WP1_PPS = 0;
+							CCP2CON = 0;
+						}
+						break;
+
+					case 2:
+						{
+							WP2_PPS = 0;
+							PWM3CON = 0;
+						}
+						break;
+
+					case 3:
+						{
+							WP3_PPS = 0;
+							PWM4CON = 0;
+						}
+						break;
+				}
+
+
+
+
+
+			}
+			break;
+		case 	CONFIGURE_CHANNEL_MODE_HW_0:
+			{
+
+				T2CON = (Rxbuffer[3] & 0x70) | 0x80;
+				T2CLKCON = (Rxbuffer[3] & 0x07);
+			}
+			break;
 
 	}
 }

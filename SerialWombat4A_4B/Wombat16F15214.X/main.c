@@ -48,7 +48,8 @@ Driver Version    :  2.00
 #include "serialWombat.h"
 volatile bool RunForeground = false;
 volatile bool Sleep = false;
-uint16_t FramesRun = 0;
+__bit I2C_Recovery; 
+uint32_t FramesRun = 0;
 
 void reset ()
 {
@@ -60,7 +61,9 @@ void reset ()
 
 pinRegister_t pinRegisterBuffer;
 
-
+/// \brief Serial Wombat main function
+///
+/// This function initializes the Serial Wombat hardware then enters a forever loop that services pins and processes communications.
 void main(void)
 {
 	// initialize the device
@@ -77,78 +80,78 @@ void main(void)
 	WP1_PPS = 0;
 	WP2_PPS = 0;
 	WP3_PPS = 0;
+ 
 	INTERRUPT_PeripheralInterruptEnable();
 	INTERRUPT_GlobalInterruptEnable();
+    I2C_Recovery = 0;
 #ifdef I2CWOMBAT
 	I2C1_Open();
 #endif
-    
-    PinUpdateRegisters[0].generic.mode = 0;
+
+	PinUpdateRegisters[0].generic.mode = 0;
 	PinUpdateRegisters[1].generic.mode = 0;
-    PinUpdateRegisters[2].generic.mode = 0;
-    PinUpdateRegisters[3].generic.mode = 0;
-    while (1)
+	PinUpdateRegisters[2].generic.mode = 0;
+	PinUpdateRegisters[3].generic.mode = 0;
+	while (1)
 	{
 		ProcessRx();
 		if (Sleep)
 		{
-			
+
 #ifdef I2CWOMBAT
-            extern volatile uint8_t i2cTxBufferCounter;
+			extern volatile uint8_t i2cTxBufferCounter;
 			while (i2cTxBufferCounter > 0);
 #endif
 #ifdef UARTWOMBAT
-            uint8_t IOCNtemp, IOCPtemp;
-            IOCNtemp = WP_IOCN;
-            IOCPtemp = WP_IOCP;
-            __delay_ms(15);
-            WP_IOCN = 0x08; // Turn on IOC for RX Pin to wake us up.
-            WP_IOCP = 0;
-             WP_IOCF = 0;
-            PIE0bits.IOCIE = 1;
+			uint8_t IOCNtemp, IOCPtemp;
+			IOCNtemp = WP_IOCN;
+			IOCPtemp = WP_IOCP;
+			__delay_ms(15);
+			WP_IOCN = 0x08; // Turn on IOC for RX Pin to wake us up.
+			WP_IOCP = 0;
+			WP_IOCF = 0;
+			PIE0bits.IOCIE = 1;
 #endif
 			FVRCONbits.FVREN = 0;
 			ADCON0bits.ON = 0;
 			CPCONbits.CPON = 0;
-            
+
 			__delay_ms(5);
 			SLEEP();
-            
+
 			FVRCONbits.FVREN = 1;
 			ADCON0bits.ON = 1;
 			CPCONbits.CPON = 1;
 			Sleep = false;
 #ifdef UARTWOMBAT
-            WP_IOCN = IOCNtemp;  //Turn off IOC.
-            WP_IOCP = IOCPtemp;
-            __delay_ms(15);  //Wait a while for the rest of the packet to complete
-            while (EUSART1_is_rx_ready()) // And throw away the data
-        {
-            EUSART1_Read();
-		}
-            extern uint8_t UartRxbufferCounter;
-            UartRxbufferCounter = 0;
+			WP_IOCN = IOCNtemp;  //Turn off IOC.
+			WP_IOCP = IOCPtemp;
+			__delay_ms(15);  //Wait a while for the rest of the packet to complete
+			while (EUSART1_is_rx_ready()) // And throw away the data
+			{
+				EUSART1_Read();
+			}
+			extern uint8_t UartRxbufferCounter;
+			UartRxbufferCounter = 0;
 #endif
-        }
+		}
 
 		if (RunForeground)
 		{
-			FRAME_TIMING_HIGH();
+			FRAME_TIMING_HIGH();  // When running in debug mode on the 16F15224, set a pin high for CPU load evaluation.
 			RunForeground = false;
-            ++FramesRun;
+			++FramesRun;
 			{
 				void ProcessPins(void);
 				ProcessPins();
 			}
-            void protocol_1ms();
-            protocol_1ms();
-			FRAME_TIMING_LOW();
+#ifdef I2CWOMBAT
+			void protocol_1ms(void);
+			protocol_1ms();
+#endif
+			FRAME_TIMING_LOW(); // When running in debug mode on the 16F15224, set a pin high for CPU load evaluation.
 		}
 	}
 
 }
 
-
-/**
- End of File
-*/
