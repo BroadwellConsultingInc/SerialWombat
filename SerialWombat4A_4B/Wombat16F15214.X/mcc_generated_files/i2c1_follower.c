@@ -47,7 +47,7 @@
 #include "i2c1_follower.h"
 #include <xc.h>
 #include "serialWombat.h"
-const __at(0x1FFC / 2) uint8_t  I2C1_FOLLOWER_ADDRESS =  0x6C;
+const __at(0x1FFC / 2) uint8_t  I2C1_FOLLOWER_ADDRESS =  0x6F;
 #define I2C1_FOLLOWER_MASK         127
 
 typedef enum

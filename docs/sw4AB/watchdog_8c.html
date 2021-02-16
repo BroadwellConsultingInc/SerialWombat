@@ -96,7 +96,7 @@ Typedefs</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a85d2f9ed84d8f76e89ebb88efd259aef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="watchdog_8c.html#a85d2f9ed84d8f76e89ebb88efd259aef">initWatchdog</a> ()</td></tr>
-<tr class="memdesc:a85d2f9ed84d8f76e89ebb88efd259aef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization routine for Quadrature Encoder pin mode.  <a href="watchdog_8c.html#a85d2f9ed84d8f76e89ebb88efd259aef">More...</a><br /></td></tr>
+<tr class="memdesc:a85d2f9ed84d8f76e89ebb88efd259aef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization routine for Watchdog pin mode.  <a href="watchdog_8c.html#a85d2f9ed84d8f76e89ebb88efd259aef">More...</a><br /></td></tr>
 <tr class="separator:a85d2f9ed84d8f76e89ebb88efd259aef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c38ae281a8a132599b5619660e7d306"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="watchdog_8c.html#a1c38ae281a8a132599b5619660e7d306">updateWatchdog</a> ()</td></tr>
 <tr class="memdesc:a1c38ae281a8a132599b5619660e7d306"><td class="mdescLeft">&#160;</td><td class="mdescRight">Periodic call to service the Analog Input State Machine for a pin.  <a href="watchdog_8c.html#a1c38ae281a8a132599b5619660e7d306">More...</a><br /></td></tr>
@@ -148,18 +148,18 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Initialization routine for Quadrature Encoder pin mode. </p>
+<p>Initialization routine for Watchdog pin mode. </p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md56"></a>
+<h2><a class="anchor" id="autotoc_md62"></a>
 Retrevial of Time remaining until timeout</h2>
 <p>Configure the Watchdog pin mode using the CONFIGURE_CHANNEL_MODE_0 command before reading values. <br  />
  The Watchdog time remaining value is stored in the Pin's 16-bit Public data area. Use the Read Pin Buffer command to retreive it. Units are mS.</p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md58"></a>
+<h2><a class="anchor" id="autotoc_md64"></a>
 Resetting the Watchdog Time</h2>
 <p>Either reconfigure the Watchdog using CONFIGURE_CHANNEL_MODE_0 and CONFIGURE_CHANNEL_MODE_1 before it times out, or write a new value to its public data representing mS until timeout.</p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md60"></a>
+<h2><a class="anchor" id="autotoc_md66"></a>
 CONFIGURE_CHANNEL_MODE_0:</h2>
 <p>Initialize Watchdog. This command needs to be followed by CONFIGURE_CHANNEL_MODE_1 for reliable operation.</p>
 <table class="markdownTable">
@@ -177,7 +177,7 @@ CONFIGURE_CHANNEL_MODE_0:</h2>
 <p><code>0xC0 0x01 0x07 0x02 0x00 0x30 0x75 0x01</code> </p>
 </blockquote>
 <hr  />
-<h2><a class="anchor" id="autotoc_md62"></a>
+<h2><a class="anchor" id="autotoc_md68"></a>
 CONFIGURE_CHANNEL_MODE_1:</h2>
 <p>Determine if Watchdog sets all pins to default states, or just the pin assigned the Watchdog State Machine. <br  />
  Set time in mS that the Wombat stays in timeout state before self-resetting, if enabled. This pin will be returned to the non-timeout state at the end of this period. Set this time to 0xFFFF to stay in timeout state forever after a timeout until commanded differently by the host.</p>

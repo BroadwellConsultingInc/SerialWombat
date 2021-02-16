@@ -67,6 +67,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
@@ -78,6 +79,11 @@ $(function() {
 <code>#include &quot;<a class="el" href="serial_wombat_8h_source.html">serialWombat.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ascii_conversion_8h_source.html">asciiConversion.h</a>&quot;</code><br />
 </div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a1c58f34157a8b273d7c0834496b90205"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a1c58f34157a8b273d7c0834496b90205">I2C_REINIT_TIME</a>&#160;&#160;&#160;30000</td></tr>
+<tr class="separator:a1c58f34157a8b273d7c0834496b90205"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ac7e31e02a6e2b3d01496067dbca42e40"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#ac7e31e02a6e2b3d01496067dbca42e40">ProcessSetPin</a> ()</td></tr>
@@ -108,16 +114,37 @@ Variables</h2></td></tr>
 <tr class="memitem:a221b63b4bf17e5c7d2df2056c59cc711"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a221b63b4bf17e5c7d2df2056c59cc711">Txbuffer</a> [<a class="el" href="serial_wombat_8h.html#adacdf40a0c312a6521597507378d80a6">TXBUFFER_LENGTH</a>]</td></tr>
 <tr class="memdesc:a221b63b4bf17e5c7d2df2056c59cc711"><td class="mdescLeft">&#160;</td><td class="mdescRight">A buffer for outgoing commands to the host.  <a href="protocol_8c.html#a221b63b4bf17e5c7d2df2056c59cc711">More...</a><br /></td></tr>
 <tr class="separator:a221b63b4bf17e5c7d2df2056c59cc711"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a944f91cc98279562854598567c89d78d"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a944f91cc98279562854598567c89d78d">I2C_Reinit_Countdown</a> = <a class="el" href="protocol_8c.html#a1c58f34157a8b273d7c0834496b90205">I2C_REINIT_TIME</a></td></tr>
+<tr class="separator:a944f91cc98279562854598567c89d78d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add0a2b9f485253e6b4fc6873ac15437d"><td class="memItemLeft" align="right" valign="top">__bit&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#add0a2b9f485253e6b4fc6873ac15437d">I2C_Recovery</a></td></tr>
+<tr class="separator:add0a2b9f485253e6b4fc6873ac15437d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d498087a0c5820bf9025b16f1b503a2"><td class="memItemLeft" align="right" valign="top">volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a7d498087a0c5820bf9025b16f1b503a2">i2cTxBufferCounter</a></td></tr>
 <tr class="memdesc:a7d498087a0c5820bf9025b16f1b503a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">When using I2C, the number of bytes remaining to send.  <a href="protocol_8c.html#a7d498087a0c5820bf9025b16f1b503a2">More...</a><br /></td></tr>
 <tr class="separator:a7d498087a0c5820bf9025b16f1b503a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e5580aa2bee0f8eb9f3513b84d95773"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a9e5580aa2bee0f8eb9f3513b84d95773">LineBreaksAndEcho</a> = false</td></tr>
 <tr class="memdesc:a9e5580aa2bee0f8eb9f3513b84d95773"><td class="mdescLeft">&#160;</td><td class="mdescRight">When true, add line breaks to each command and echo bytes back to the host. Used for manual command entry over terminal.  <a href="protocol_8c.html#a9e5580aa2bee0f8eb9f3513b84d95773">More...</a><br /></td></tr>
 <tr class="separator:a9e5580aa2bee0f8eb9f3513b84d95773"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f036bbc36ebe0326bca825cb52f6f29"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a6f036bbc36ebe0326bca825cb52f6f29">i2c_sda_low_counter</a> = 0</td></tr>
+<tr class="separator:a6f036bbc36ebe0326bca825cb52f6f29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This file contains the functions which process incoming data from the host and generate response packets. </p>
-</div><h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a1c58f34157a8b273d7c0834496b90205"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c58f34157a8b273d7c0834496b90205">&#9670;&nbsp;</a></span>I2C_REINIT_TIME</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define I2C_REINIT_TIME&#160;&#160;&#160;30000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
 <a id="a9bbbfa5ff3b2110f3d8c3f6dc12111c8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9bbbfa5ff3b2110f3d8c3f6dc12111c8">&#9670;&nbsp;</a></span>ProcessRx()</h2>
 
@@ -153,7 +180,7 @@ Variables</h2></td></tr>
 
 <p>Processes a pin mode configuration packet. </p>
 <p>This subroutine processes all Pin Configuration requests based on 8 bytes stored in Rxbuffer. Pins set in Digital I/O pin mode are handled directly in this function. Other pin modes are handled by initailization functions that exist in the .c file that defines that pin mode.</p>
-<h2><a class="anchor" id="autotoc_md45"></a>
+<h2><a class="anchor" id="autotoc_md51"></a>
 Digital I/O pin configuration:</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -267,6 +294,48 @@ Digital I/O pin configuration:</h2>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a id="add0a2b9f485253e6b4fc6873ac15437d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add0a2b9f485253e6b4fc6873ac15437d">&#9670;&nbsp;</a></span>I2C_Recovery</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">__bit I2C_Recovery</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a944f91cc98279562854598567c89d78d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a944f91cc98279562854598567c89d78d">&#9670;&nbsp;</a></span>I2C_Reinit_Countdown</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t I2C_Reinit_Countdown = <a class="el" href="protocol_8c.html#a1c58f34157a8b273d7c0834496b90205">I2C_REINIT_TIME</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6f036bbc36ebe0326bca825cb52f6f29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f036bbc36ebe0326bca825cb52f6f29">&#9670;&nbsp;</a></span>i2c_sda_low_counter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t i2c_sda_low_counter = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a7d498087a0c5820bf9025b16f1b503a2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7d498087a0c5820bf9025b16f1b503a2">&#9670;&nbsp;</a></span>i2cTxBufferCounter</h2>
 

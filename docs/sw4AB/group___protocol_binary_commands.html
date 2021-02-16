@@ -87,7 +87,7 @@ Pin Modes Defined for the SerialWombat 4A and 4B (Mode numbers in decimal)</h2>
 <p>PIN_MODE_ANALOGINPUT = 2 (See <a class="el" href="analog_input_8c.html#a4bd673f592ce7e7ee1c4d209c65830d6">initAnalogInput()</a> )</p>
 <p>PIN_MODE_SERVO = 3 (See <a class="el" href="servo_8c.html#a59ccc79e9905285bef3bf2e2d8990e3b">initServo()</a> )</p>
 <p>PIN_MODE_QUADRATURE_ENC = 5 (See <a class="el" href="quad_enc_8c.html#aec23a06fd2f1d9a94642d7b6a802d8d3">initQuadEnc()</a> )</p>
-<p>PIN_MODE_WATCHDOG = 7 (See <a class="el" href="watchdog_8c.html#a85d2f9ed84d8f76e89ebb88efd259aef" title="Initialization routine for Quadrature Encoder pin mode.">initWatchdog()</a> )</p>
+<p>PIN_MODE_WATCHDOG = 7 (See <a class="el" href="watchdog_8c.html#a85d2f9ed84d8f76e89ebb88efd259aef" title="Initialization routine for Watchdog pin mode.">initWatchdog()</a> )</p>
 <p>PIN_MODE_PROTECTEDOUTPUT = 8 (See <a class="el" href="protected_output_8c.html#aadb8d74b571040a03cd4bbe488e8cff8">initProtectedOutput()</a> )</p>
 <p>PIN_MODE_DEBOUNCE = 10 (See <a class="el" href="debounce_8c.html#a5d35deded3b86b5c653e7e669d043011">initDebounce()</a> )</p>
 <p>PIN_MODE_PWM = 16 (See <a class="el" href="pwm_8c.html#a428d429e060d60c0b086eeb8310ed4b6">initPWM()</a> )</p>
@@ -149,6 +149,24 @@ Binary Set Pin Public Data Buffer Command</h2>
 </blockquote>
 <hr  />
 <h2><a class="anchor" id="autotoc_md38"></a>
+Configure Serial Wombat parameter</h2>
+<p>Set a configurable parameter in the Serial Wombat firmware</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">0x9F </td><td class="markdownTableBodyLeft">Least Significant byte of 16-bit parameter </td><td class="markdownTableBodyLeft">Most Significant byte of 16-bit parameter </td><td class="markdownTableBodyLeft">Parameter value low byte </td><td class="markdownTableBodyLeft">Parameter Value byte or 0x55* </td><td class="markdownTableBodyLeft">Parameter Value byte or 0x55* </td><td class="markdownTableBodyLeft">Parameter Value byte or 0x55* </td><td class="markdownTableBodyLeft">0x55*  </td></tr>
+</table>
+<p>0x55 is recommended, but any byte is acceptable</p>
+<p>Response:</p>
+<p>Echoed Back</p>
+<p>Examples:</p>
+<p>Set Parameter 1 (one byte) to 1. (Enables I2C recovery and 30 second watchdog on successful receive packet)</p>
+<blockquote class="doxtable">
+<p><code>0x9F 0x01 0x00 0x01 0x55 0x55 0x55 0x55</code> </p>
+</blockquote>
+<hr  />
+<h2><a class="anchor" id="autotoc_md40"></a>
 Binary Read RAM, 16 Bit address</h2>
 <p>Reads a byte from an address in Microcontroller RAM. The SW4A and SW4B use 16 bit addresses. <br  />
 </p>
@@ -177,7 +195,36 @@ Binary Read RAM, 16 Bit address</h2>
 <p><code>0xA0 0x47 0x02 0xAC 0x55 0x55 0x55 0x55</code> </p>
 </blockquote>
 <hr  />
-<h2><a class="anchor" id="autotoc_md40"></a>
+<h2><a class="anchor" id="autotoc_md42"></a>
+Binary Read RAM, 16 Bit address</h2>
+<p>Reads a byte from an address in Microcontroller RAM. The SW4A and SW4B use 16 bit addresses. <br  />
+</p>
+<p>Note that the PIC16F15214 is a Microchip Enhanced Mid-Range chip with both a banked RAM area and a Linear RAM area at an offset address. <br  />
+ See the datasheet for details.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">0xA0 </td><td class="markdownTableBodyLeft">Least Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">Most Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55*  </td></tr>
+</table>
+<p>0x55 is recommended, but any byte is acceptable</p>
+<p>Response:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">0xA0 </td><td class="markdownTableBodyLeft">Least Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">Most Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">Byte Read From Ram </td><td class="markdownTableBodyLeft">Echoed </td><td class="markdownTableBodyLeft">Echoed </td><td class="markdownTableBodyLeft">Echoed </td><td class="markdownTableBodyLeft">Echoed  </td></tr>
+</table>
+<p>Examples:</p>
+<p>Read the byte at RAM address 0x0247.</p>
+<blockquote class="doxtable">
+<p><code>0xA0 0x47 0x02 0x55 0x55 0x55 0x55 0x55</code> </p>
+</blockquote>
+<p>Assuming address 0x0247 held the value 0xAC , Response: </p><blockquote class="doxtable">
+<p><code>0xA0 0x47 0x02 0xAC 0x55 0x55 0x55 0x55</code> </p>
+</blockquote>
+<hr  />
+<h2><a class="anchor" id="autotoc_md44"></a>
 Binary Read Flash, 16 Bit address</h2>
 <p>Reads a byte from an address in Microcontroller RAM. The SW4A and SW4B use 16 bit addresses. <br  />
 </p>
@@ -205,7 +252,28 @@ Binary Read Flash, 16 Bit address</h2>
 <p><code>0xA1 0x47 0x08 0xEF 0x55 0x55 0x55 0x55</code> </p>
 </blockquote>
 <hr  />
-<h2><a class="anchor" id="autotoc_md42"></a>
+<h2><a class="anchor" id="autotoc_md46"></a>
+Binary Write RAM, 16 Bit address (</h2>
+<p>Reads a byte from an address in Microcontroller RAM. The SW4A and SW4B use 16 bit addresses. <br  />
+</p>
+<p>Note that the PIC16F15214 is a Microchip Enhanced Mid-Range chip with both a banked RAM area and a Linear RAM area at an offset address. <br  />
+ See the datasheet for details.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">0xA0 </td><td class="markdownTableBodyLeft">Least Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">Most Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">0 (for 32-bit compatability) </td><td class="markdownTableBodyLeft">0 (for 32-bit compatability) </td><td class="markdownTableBodyLeft">Byte To write </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55*  </td></tr>
+</table>
+<p>0x55 is recommended, but any byte is acceptable</p>
+<p>Response:</p>
+<p>Echoed Back.</p>
+<p>Examples:</p>
+<p>Write 0x32 the byte at RAM address 0x0247.</p>
+<blockquote class="doxtable">
+<p><code>0xA3 0x47 0x02 0x00 0x00 0x32 0x55 0x55</code> </p>
+</blockquote>
+<hr  />
+<h2><a class="anchor" id="autotoc_md48"></a>
 Binary Send 7 bytes out first UART</h2>
 <p>Queues 7 bytes to be sent out of the first avaialble Hardware UART. Assumes a UART pin mode has already been set up. The host should query avaialble space before using this command.</p>
 <table class="markdownTable">
@@ -222,7 +290,7 @@ Binary Send 7 bytes out first UART</h2>
 <p><code>0xB0 0x57 0x4F 0x4D 0x42 0x41 0x54 0x21</code> </p>
 </blockquote>
 <hr  />
-<h2><a class="anchor" id="autotoc_md44"></a>
+<h2><a class="anchor" id="autotoc_md50"></a>
 Binary Read 7 bytes from first UART</h2>
 <p>Read 7 bytes from the queue of the first avaialble Hardware UART. Assumes a UART pin mode has already been set up. The host should query avaialble bytes to determine the nubmer of bytes avaiable before using this command. This command should only be called if at least 7 bytes are available.</p>
 <table class="markdownTable">
