@@ -49,11 +49,13 @@ typedef enum
             COMMAND_BINARY_READ_FLASH = 0xA1,
             COMMAND_BINARY_READ_EEPROM = 0xA2,
             COMMAND_BINARY_WRITE_RAM = 0xA3,
+            COMMAND_BINARY_WRITE_FLASH = 0xA4,
             COMMAND_UART0_TX_7BYTES = 0xB0,
             COMMAND_UART0_RX_7BYTES = 0xB1,
             COMMAND_UART1_TX_7BYTES = 0xB2,
             COMMAND_UART1_RX_7BYTES = 0xB3,
-	CONFIGURE_CHANNEL_MODE_0 = 200,
+            COMMAND_BINARY_TEST_SEQUENCE = 0xB4,
+	CONFIGURE_CHANNEL_MODE_0 = 200, // 0xC8
 	CONFIGURE_CHANNEL_MODE_1 = 201,
 	CONFIGURE_CHANNEL_MODE_2 = 202,
 	CONFIGURE_CHANNEL_MODE_3 = 203,
@@ -81,4 +83,5 @@ typedef enum
 
 #define RXBUFFER16(_a) ((uint16_t)Rxbuffer[_a] + (((uint16_t)Rxbuffer[_a+1]) <<8))
 #define TXBUFFER16(_index, _value) {Txbuffer[_index] = (uint8_t)(_value & 0xFF);  Txbuffer[_index + 1] = (uint8_t)(_value >>8);}
+#define RXBUFFER32(_a) ((uint32_t)Rxbuffer[_a] + (((uint32_t)Rxbuffer[_a+1]) <<8)+ (((uint32_t)Rxbuffer[_a+2]) <<16)+ (((uint32_t)Rxbuffer[_a+3]) <<24))
 #endif

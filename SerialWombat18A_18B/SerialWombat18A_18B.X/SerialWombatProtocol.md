@@ -1,0 +1,190 @@
+Ascii Commands
+
+
+<h1>Serial Wombat Communication Protocol</h1>
+
+<h2><a name="Basics">Basics</a></h2>
+
+<p>Wombat commands are all eight bytes long, and Wombat responses
+are eight bytes long. The first byte is a command byte. The
+meaning of following bytes varies depending on the command byte.
+In some cases padding bytes are added to the end of simple
+messages to achieve eight bytes. Padding bytes are set to 0x55
+(see resyncing, below). Some functionality may require multiple
+messages to invoke. Multi-byte values are transmitted
+most-significant byte first.</p>
+
+<h2><a name="LoosingSync">Loosing Sync</a></h2>
+
+<p>The most important compromise of the Wombat serial protocol is
+its susceptability to loss of synchronization with the host. This
+can occur if the host sends a partial message or if environmental
+conditions cause communication problems or a Wombat reset. If the
+Wombat interprets the second or later byte of a message to be the
+command (first) byte, then it will act on that byte when eight
+total bytes have been received.</p>
+
+<h2><a name="ResyncCharacter">Resync Character</a></h2>
+
+<p>When a loss of synchronization is suspected the host should
+send 0x55 (ASCII 'U' ) eight times. 0x55 is a special value which
+is discarded when received as a command byte. After this sequence
+is received the Wombat will always be ready to receive a command.</p>
+
+<h2>Preventing loss of synchronization</h2>
+
+<p>There are a number of steps the user can take to detect and
+prevent loss of synchronization:</p>
+
+<ul>
+    <li>After sending a command to the Wombat wait for the Wombat
+        to begin its response before sending more commands. The
+        Wombat will begin sending a response within two frame
+        times. If no response is sent the host and the Wombat are
+        likely out of sync. It is recommended that a command not
+        be sent until the first two bytes of the previous
+        response have been received.</li>
+    <li>Enable message checksums. This can be done with the Set
+        System Status command. When checksums are enabled each
+        eight byte message is followed by a ninth checksum byte.
+        The value of this byte is the logical inversion (NOT) of
+        the sum of the first eight bytes. The Wombat will send no
+        response to a message with a bad checksum. Using
+        checksums greatly reduces the chance that an out-of-sync
+        message will be acted upon. This functionality is present
+        in the firmware starting with version 1.1.0, but has not
+        yet been documented.</li>
+    <li>Enable Wombat addressing, even if only one Wombat is
+        connected to the host. When addressing is enabled an
+        address byte preceeds the eight byte Wombat command. When
+        using addressing to increase the robustness of the Wombat
+        protocol it is recommended that the address 0xFE be used.
+        This value is far less frequently used in command packets
+        than values such as 0x00 or 0x01. This reduces the chance
+        that a byte of an out-of-sync message will be interpreted
+        as the address byte. The address byte is included in the
+        checksum (if enabled). Since the Wombat thinks that
+        messages with a different address than its own are meant
+        for another chip no response will be sent. This
+        functionality is present in the firmware starting with
+        version 1.1.0, but has not yet been documented.</li>
+    <li>Enable intra-message timeout. The Wombat allows the host
+        to define a timeout between received bytes within a
+        message. If the timeout expires then the message up to
+        that point will be discarded, and no response will be
+        sent. This is particularly useful when checksums are
+        enabled. This functionality is present in the firmware
+        starting with version 1.1.0, but has not yet been
+        documented.</li>
+</ul>
+
+<p>&nbsp;</p>
+
+<table border="0">
+    <tr>
+        <td>For example, suppose the host intends to send two
+        commands. After four bytes of the first message are sent
+        an electrostatic event causes the Wombat to reset. The
+        fifth byte is missed all together during the reset. The
+        Wombat comes out of reset and receives the 6th, 7th, and
+        8th byte of the first message, which it interprets as the
+        command, 2nd and 3rd byte of a new message. The host
+        waits for a response, which never comes. The Wombat
+        recieve timeout occurs because a 4th byte never comes,
+        and the message is discarded. The Wombat is now ready to
+        receive a new message, and the host is prepared to send
+        one because no response came. In following the resyncing
+        recommendations above, the host will send 0x55 eight
+        times, then send a new message. Note that in the above
+        example the Wombat must be configured to enable receive
+        timeout when coming up from reset. See the section on
+        EEPROM for more information.</td>
+        <td><!--webbot bot="HTMLMarkup" startspan --><!--INCLUDE <object width="355" height="300"><param name="movie" value="http://togo.ebay.com/togo/togo.swf?2008013100" /><param name="flashvars" value="base=http://togo.ebay.com/togo/&lang=en-us&mode=search&query=(serial%2Crs232%2Crs-232)%20usb&pid=2840151" /><embed src="http://togo.ebay.com/togo/togo.swf?2008013100" type="application/x-shockwave-flash" width="355" height="300" flashvars="base=http://togo.ebay.com/togo/&lang=en-us&mode=search&query=(serial%2Crs232%2Crs-232)%20usb&pid=2840151"></embed></object> --><!--webbot
+        bot="HTMLMarkup" endspan --></td>
+    </tr>
+</table>
+
+<h2><a name="Multiple">Addressing and Multiple Wombats</a></h2>
+
+<p>The Serial Wombat has the ability to add an additional 9th
+byte to the beginning of each command packet. This allows more
+than one Wombat to share a serial connection. This is achieved by
+connecting all of the RX pins on the various Wombats together and
+to the TX from the host or RS232 voltage converter chip logic
+output. The Wombats' TX pins are connected to the input of a
+&quot;logic AND&quot; chip. The output of the &quot;logic
+AND&quot; is fed to the host, or to the RS232 voltage converter
+chip logic input.</p>
+
+<p>This scheme is possible in the PC to Wombat direction because
+the transmissions from the PC go to all Wombats. However, if the
+8 byte packet is not preceeded by the proper 8-bit address, then
+the Wombat will ignore the message. Note that one can enable
+addressing with only one Wombat in order to improve the
+reliability of communication. If the host and Wombat get out of
+sync then any packet which appears to start with the wrong
+address will be ignored.</p>
+
+<p>This scheme is possible in the Wombat to PC direction because
+a Wombat will only speak immediately after spoken to. This
+prevents the possibility of a bus collision, assuming that only
+one Wombat assumes it's being spoken to at a time (due to
+addressing). In order to prevent a physical voltage conflict, the
+transmit outputs of all Wombats are fed into a logical AND chip.
+The output of the AND is fed to the host, usually by means of a
+voltage converter. An AND chip is used because the natural idle
+state of a logic-level UART is high. Therefore, a
+&quot;speaking&quot; Wombat will occasionally pull the line low,
+while idle Wombats will remain high. Therefore, the desired
+output from the &quot;speaking&quot; Wombat will propogate
+through the AND chip. Should more than one Wombat attempt to
+speak at a time, the result will likely be garbled.</p>
+
+<p>In order to talk to multiple Wombats in an addressed manner it
+is necessary for each Wombat to have a different address, and for
+the host to know that address. A Wombat can be assigned an
+address in a number of ways.  </p>
+
+
+<p>Sometimes it may be desirable to send one command to all of
+the Wombats on a bus. Any packet sent with an address of 0xFF
+will be processed by all Wombats, but no Wombat will send a
+response (because simultaneous responses would cause conflict on
+the bus). </p>
+
+<p>The character 'U' (0x55) will be discarded if received as the
+address byte.</p>
+
+<h2><a name="CommandTypes">Command Types</a></h2>
+
+<p>Serial Wombat commands fall into two broad categories:</p>
+
+<ul>
+    <li>ASCII commands. These commands are designed to be typed
+        into a terminal program such as Windows Hyperterminal.
+        ASCII commands start with a command byte which
+        corresponds to a typeable character. Numerical parameters
+        are expressed as ASCII strings, rather than as packed
+        binary numbers. Commands are case-sensitive in order to
+        maximize the number of possible commands within the ASCII
+        range. The command byte for ASCII commands is chosen to
+        make the command as easy to remember as possible.</li>
+    <li>Binary commands. These commands are designed to be sent
+        by a program running on the host computer. The command
+        byte numbers are 128 to 253. These correspond to
+        non-ASCII characters. Binary commands typically take some
+        number of 1 to 4 byte long parameters. Multi-byte
+        parameters are sent most-significant byte first. Note
+        that programs can use the ASCII commands as well as
+        Binary commands. Binary commands are allocated command
+        byte numbers in groups. For instance, queue related
+        commands currently use commands 128 through 132.
+        Additional commands will be left unassigned following
+        number 132 in order to support future queue commands.</li>
+</ul>
+
+
+
+
+<h2>Protocol Commands</h2>
+

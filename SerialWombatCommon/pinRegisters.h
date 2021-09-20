@@ -60,6 +60,13 @@ typedef union _pin_register_t{
 		uint16_t buffer;
 		uint16_t mode;
 	} pulse_output;
+    
+    struct pulse_input_n
+    {
+        uint8_t bytes[27];
+        uint8_t lastDMA;
+    }pulse_input;
+    
 #endif
 } pinRegister_t;
 

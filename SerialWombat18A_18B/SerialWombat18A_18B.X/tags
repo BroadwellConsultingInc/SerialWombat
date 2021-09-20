@@ -1,0 +1,1916 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ADC1_CHANNEL	pic24fj256ga702/mcc_generated_files/adc1.h	/^} ADC1_CHANNEL;$/;"	t	typeref:enum:__anon4
+ADC1_CHANNEL_AVDD	pic24fj256ga702/mcc_generated_files/adc1.h	/^    ADC1_CHANNEL_AVDD =  0x1E,$/;"	e	enum:__anon4
+ADC1_CHANNEL_AVSS	pic24fj256ga702/mcc_generated_files/adc1.h	/^    ADC1_CHANNEL_AVSS =  0x1D,$/;"	e	enum:__anon4
+ADC1_CHANNEL_CTMU	pic24fj256ga702/mcc_generated_files/adc1.h	/^    ADC1_CHANNEL_CTMU =  0xF,$/;"	e	enum:__anon4
+ADC1_CHANNEL_CTMU_TEMPERATURE_SENSOR_INPUT	pic24fj256ga702/mcc_generated_files/adc1.h	/^    ADC1_CHANNEL_CTMU_TEMPERATURE_SENSOR_INPUT =  0xE,$/;"	e	enum:__anon4
+ADC1_CHANNEL_VBG	pic24fj256ga702/mcc_generated_files/adc1.h	/^    ADC1_CHANNEL_VBG =  0x1C,$/;"	e	enum:__anon4
+ADC1_Initialize	pic24fj256ga702/mcc_generated_files/adc1.c	/^void ADC1_Initialize (void)$/;"	f
+ADC1_MAX_CHANNEL_COUNT	pic24fj256ga702/mcc_generated_files/adc1.h	/^    ADC1_MAX_CHANNEL_COUNT = 5$/;"	e	enum:__anon4
+ADC_MAX_COUNTS	pic24fj256ga702/deviceSpecific.h	11;"	d
+ALLCONFS	nbproject/Makefile-impl.mk	/^ALLCONFS=default Optimized $/;"	m
+ASCII_CONVERSION_H	asciiConversion.h	2;"	d
+ASFLAGS	nbproject/Makefile-Optimized.mk	/^ASFLAGS=$/;"	m
+ASFLAGS	nbproject/Makefile-default.mk	/^ASFLAGS=$/;"	m
+ASSIGN_RXBUFFER16	utilities.h	125;"	d
+BROADCAST_ADDRESS	utilities.h	265;"	d
+BUFFER_CLOCK_DAYS	utilities.h	273;"	d
+BUFFER_CLOCK_HOURS	utilities.h	272;"	d
+BUFFER_CLOCK_MINUTES	utilities.h	271;"	d
+BUFFER_CLOCK_SECONDS	utilities.h	270;"	d
+BUFFER_FREE_RUNNING_TIMER	utilities.h	288;"	d
+BUFFER_INCREMENTING_NUMBER	utilities.h	281;"	d
+BUFFER_INTERRUPT_OCCURRED	utilities.h	289;"	d
+BUFFER_LAST_QUEUE_OVERFLOW	utilities.h	283;"	d
+BUFFER_LAST_QUEUE_UNDERFLOW	utilities.h	282;"	d
+BUFFER_NUM_OF_DROPPED_FRAMES	utilities.h	290;"	d
+BUFFER_PINS1516171823242526	utilities.h	285;"	d
+BUFFER_PINS1920212227282930	utilities.h	286;"	d
+BUFFER_PINS2345671413	utilities.h	284;"	d
+BUFFER_PINS3334353637383940	utilities.h	287;"	d
+BUFFER_RANDOM_NUMBER	utilities.h	267;"	d
+BUFFER_RX_INTERRUPTS	utilities.h	274;"	d
+BUFFER_SINE_1	utilities.h	280;"	d
+BUFFER_SINE_2	utilities.h	279;"	d
+BUFFER_SINE_3	utilities.h	278;"	d
+BUFFER_SINE_SUM_2	utilities.h	277;"	d
+BUFFER_SINE_SUM_3	utilities.h	276;"	d
+BUFFER_TO_USER_RAM	utilities.h	291;"	d
+BUFFER_TO_USER_RAM_MAX	utilities.h	292;"	d
+BUFFER_TX_INTERRUPTS	utilities.h	275;"	d
+BUFFER_UART_RX_OVERFLOWS	utilities.h	269;"	d
+BUFFER_ZERO_VALUE	utilities.h	268;"	d
+BUILD_SUBPROJECTS	nbproject/Makefile-impl.mk	/^BUILD_SUBPROJECTS=${BUILD_SUBPROJECTS_${SUBPROJECTS}}$/;"	m
+BUILD_SUBPROJECTS_	nbproject/Makefile-impl.mk	/^BUILD_SUBPROJECTS_=.build-subprojects$/;"	m
+BUILD_SUBPROJECTS_NO	nbproject/Makefile-impl.mk	/^BUILD_SUBPROJECTS_NO=$/;"	m
+CCADMIN	Makefile	/^CCADMIN=CCadmin$/;"	m
+CFLAGS	nbproject/Makefile-Optimized.mk	/^CFLAGS=$/;"	m
+CFLAGS	nbproject/Makefile-default.mk	/^CFLAGS=$/;"	m
+CLEAN_SUBPROJECTS	nbproject/Makefile-impl.mk	/^CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}$/;"	m
+CLEAN_SUBPROJECTS_	nbproject/Makefile-impl.mk	/^CLEAN_SUBPROJECTS_=.clean-subprojects$/;"	m
+CLEAN_SUBPROJECTS_NO	nbproject/Makefile-impl.mk	/^CLEAN_SUBPROJECTS_NO=$/;"	m
+CLOCK_H	pic24fj256ga702/mcc_generated_files/clock.h	46;"	d
+CLOCK_Initialize	pic24fj256ga702/mcc_generated_files/clock.c	/^void CLOCK_Initialize(void)$/;"	f
+CLOCK_InstructionFrequencyGet	pic24fj256ga702/mcc_generated_files/clock.h	55;"	d
+CLOCK_PeripheralFrequencyGet	pic24fj256ga702/mcc_generated_files/clock.h	53;"	d
+CLOCK_SystemFrequencyGet	pic24fj256ga702/mcc_generated_files/clock.h	51;"	d
+CND_ARTIFACT_DIR_Optimized	nbproject/Makefile-variables.mk	/^CND_ARTIFACT_DIR_Optimized=dist\/Optimized\/production$/;"	m
+CND_ARTIFACT_DIR_default	nbproject/Makefile-variables.mk	/^CND_ARTIFACT_DIR_default=dist\/default\/production$/;"	m
+CND_ARTIFACT_NAME_Optimized	nbproject/Makefile-variables.mk	/^CND_ARTIFACT_NAME_Optimized=SerialWombat2.X.production.hex$/;"	m
+CND_ARTIFACT_NAME_default	nbproject/Makefile-variables.mk	/^CND_ARTIFACT_NAME_default=SerialWombat2.X.production.hex$/;"	m
+CND_ARTIFACT_PATH_Optimized	nbproject/Makefile-variables.mk	/^CND_ARTIFACT_PATH_Optimized=dist\/Optimized\/production\/SerialWombat2.X.production.hex$/;"	m
+CND_ARTIFACT_PATH_default	nbproject/Makefile-variables.mk	/^CND_ARTIFACT_PATH_default=dist\/default\/production\/SerialWombat2.X.production.hex$/;"	m
+CND_BASEDIR	nbproject/Makefile-variables.mk	/^CND_BASEDIR=`pwd`$/;"	m
+CND_CONF	nbproject/Makefile-Optimized.mk	/^CND_CONF=Optimized$/;"	m
+CND_CONF	nbproject/Makefile-default.mk	/^CND_CONF=default$/;"	m
+CND_PACKAGE_DIR_Optimized	nbproject/Makefile-variables.mk	/^CND_PACKAGE_DIR_Optimized=${CND_DISTDIR}\/Optimized\/package$/;"	m
+CND_PACKAGE_DIR_default	nbproject/Makefile-variables.mk	/^CND_PACKAGE_DIR_default=${CND_DISTDIR}\/default\/package$/;"	m
+CND_PACKAGE_NAME_Optimized	nbproject/Makefile-variables.mk	/^CND_PACKAGE_NAME_Optimized=serialwombat2.x.tar$/;"	m
+CND_PACKAGE_NAME_default	nbproject/Makefile-variables.mk	/^CND_PACKAGE_NAME_default=serialwombat2.x.tar$/;"	m
+CND_PACKAGE_PATH_Optimized	nbproject/Makefile-variables.mk	/^CND_PACKAGE_PATH_Optimized=${CND_DISTDIR}\/Optimized\/package\/serialwombat2.x.tar$/;"	m
+CND_PACKAGE_PATH_default	nbproject/Makefile-variables.mk	/^CND_PACKAGE_PATH_default=${CND_DISTDIR}\/default\/package\/serialwombat2.x.tar$/;"	m
+COMMAND_ASCII_ECHO	protocol.h	/^	COMMAND_ASCII_ECHO = '!', \/\/33$/;"	e	enum:__anon34
+COMMAND_ASCII_GET_PUBLIC_DATA	protocol.h	/^	COMMAND_ASCII_GET_PUBLIC_DATA = 'G',$/;"	e	enum:__anon34
+COMMAND_ASCII_LINEFEED	protocol.h	/^	COMMAND_ASCII_LINEFEED = '^',$/;"	e	enum:__anon34
+COMMAND_ASCII_PWM	protocol.h	/^	COMMAND_ASCII_PWM = 'W',$/;"	e	enum:__anon34
+COMMAND_ASCII_RESET	protocol.h	/^	COMMAND_ASCII_RESET = 'R',$/;"	e	enum:__anon34
+COMMAND_ASCII_SET_PIN	protocol.h	/^	COMMAND_ASCII_SET_PIN = 'P',$/;"	e	enum:__anon34
+COMMAND_ASCII_SET_PUBLIC_DATA	protocol.h	/^	COMMAND_ASCII_SET_PUBLIC_DATA = 'D',$/;"	e	enum:__anon34
+COMMAND_ASCII_VERSION	protocol.h	/^	COMMAND_ASCII_VERSION = 'V',$/;"	e	enum:__anon34
+COMMAND_BINARY_QUEUE_ADD_7BYTES	protocol.h	/^	COMMAND_BINARY_QUEUE_ADD_7BYTES= 0x92,$/;"	e	enum:__anon34
+COMMAND_BINARY_QUEUE_ADD_BYTES	protocol.h	/^	COMMAND_BINARY_QUEUE_ADD_BYTES= 0x91,$/;"	e	enum:__anon34
+COMMAND_BINARY_QUEUE_INITIALIZE	protocol.h	/^	COMMAND_BINARY_QUEUE_INITIALIZE= 0x90,$/;"	e	enum:__anon34
+COMMAND_BINARY_QUEUE_READ_BYTES	protocol.h	/^	COMMAND_BINARY_QUEUE_READ_BYTES= 0x93,$/;"	e	enum:__anon34
+COMMAND_BINARY_READ_PIN_BUFFFER	protocol.h	/^	COMMAND_BINARY_READ_PIN_BUFFFER = 0x81,$/;"	e	enum:__anon34
+COMMAND_BINARY_READ_USER_BUFFER	protocol.h	/^	COMMAND_BINARY_READ_USER_BUFFER = 0x83,$/;"	e	enum:__anon34
+COMMAND_BINARY_SET_PIN_BUFFFER	protocol.h	/^	COMMAND_BINARY_SET_PIN_BUFFFER = 0x82,$/;"	e	enum:__anon34
+COMMAND_BINARY_WRITE_USER_BUFFER	protocol.h	/^	COMMAND_BINARY_WRITE_USER_BUFFER = 0x84,$/;"	e	enum:__anon34
+COMMAND_BINARY_WRITE_USER_BUFFER_CONTINUE	protocol.h	/^	COMMAND_BINARY_WRITE_USER_BUFFER_CONTINUE = 0x85,$/;"	e	enum:__anon34
+COMPARISON_BUILD	nbproject/Makefile-Optimized.mk	/^COMPARISON_BUILD=$/;"	m
+COMPARISON_BUILD	nbproject/Makefile-Optimized.mk	/^COMPARISON_BUILD=-mafrlcsj$/;"	m
+COMPARISON_BUILD	nbproject/Makefile-default.mk	/^COMPARISON_BUILD=$/;"	m
+COMPARISON_BUILD	nbproject/Makefile-default.mk	/^COMPARISON_BUILD=-mafrlcsj$/;"	m
+COMPILING_FIRMWARE	types.h	45;"	d
+COMPILING_FIRMWARE	utilities.h	5;"	d
+COMPILING_UTILITIES	utilities.c	9;"	d	file:
+CONF	nbproject/Makefile-impl.mk	/^CONF=${DEFAULTCONF}$/;"	m
+CONFIGURE_CHANNEL_MODE_0	protocol.h	/^	CONFIGURE_CHANNEL_MODE_0 = 200,$/;"	e	enum:__anon34
+CONFIGURE_CHANNEL_MODE_0	utilities.h	252;"	d
+CONFIGURE_CHANNEL_MODE_1	protocol.h	/^	CONFIGURE_CHANNEL_MODE_1 = 201,$/;"	e	enum:__anon34
+CONFIGURE_CHANNEL_MODE_1	utilities.h	253;"	d
+CONFIGURE_CHANNEL_MODE_10	protocol.h	/^	CONFIGURE_CHANNEL_MODE_10 = 210,$/;"	e	enum:__anon34
+CONFIGURE_CHANNEL_MODE_11	protocol.h	/^	CONFIGURE_CHANNEL_MODE_11 = 211,$/;"	e	enum:__anon34
+CONFIGURE_CHANNEL_MODE_12	protocol.h	/^	CONFIGURE_CHANNEL_MODE_12 = 212,$/;"	e	enum:__anon34
+CONFIGURE_CHANNEL_MODE_13	protocol.h	/^	CONFIGURE_CHANNEL_MODE_13 = 213,$/;"	e	enum:__anon34
+CONFIGURE_CHANNEL_MODE_14	protocol.h	/^	CONFIGURE_CHANNEL_MODE_14 = 214,$/;"	e	enum:__anon34
+CONFIGURE_CHANNEL_MODE_15	protocol.h	/^	CONFIGURE_CHANNEL_MODE_15 = 215,$/;"	e	enum:__anon34
+CONFIGURE_CHANNEL_MODE_16	protocol.h	/^	CONFIGURE_CHANNEL_MODE_16 = 216,$/;"	e	enum:__anon34
+CONFIGURE_CHANNEL_MODE_17	protocol.h	/^	CONFIGURE_CHANNEL_MODE_17 = 217,$/;"	e	enum:__anon34
+CONFIGURE_CHANNEL_MODE_18	protocol.h	/^	CONFIGURE_CHANNEL_MODE_18 = 218,$/;"	e	enum:__anon34
+CONFIGURE_CHANNEL_MODE_19	protocol.h	/^	CONFIGURE_CHANNEL_MODE_19 = 219,$/;"	e	enum:__anon34
+CONFIGURE_CHANNEL_MODE_2	protocol.h	/^	CONFIGURE_CHANNEL_MODE_2 = 202,$/;"	e	enum:__anon34
+CONFIGURE_CHANNEL_MODE_2	utilities.h	254;"	d
+CONFIGURE_CHANNEL_MODE_3	protocol.h	/^	CONFIGURE_CHANNEL_MODE_3 = 203,$/;"	e	enum:__anon34
+CONFIGURE_CHANNEL_MODE_3	utilities.h	255;"	d
+CONFIGURE_CHANNEL_MODE_4	protocol.h	/^	CONFIGURE_CHANNEL_MODE_4 = 204,$/;"	e	enum:__anon34
+CONFIGURE_CHANNEL_MODE_4	utilities.h	256;"	d
+CONFIGURE_CHANNEL_MODE_5	protocol.h	/^	CONFIGURE_CHANNEL_MODE_5 = 205,$/;"	e	enum:__anon34
+CONFIGURE_CHANNEL_MODE_5	utilities.h	257;"	d
+CONFIGURE_CHANNEL_MODE_6	protocol.h	/^	CONFIGURE_CHANNEL_MODE_6 = 206,$/;"	e	enum:__anon34
+CONFIGURE_CHANNEL_MODE_7	protocol.h	/^	CONFIGURE_CHANNEL_MODE_7 = 207,$/;"	e	enum:__anon34
+CONFIGURE_CHANNEL_MODE_8	protocol.h	/^	CONFIGURE_CHANNEL_MODE_8 = 208,$/;"	e	enum:__anon34
+CONFIGURE_CHANNEL_MODE_9	protocol.h	/^	CONFIGURE_CHANNEL_MODE_9 = 209,$/;"	e	enum:__anon34
+CONFIGURE_CHANNEL_MODE_t	protocol.h	/^}CONFIGURE_CHANNEL_MODE_t;$/;"	t	typeref:enum:__anon34
+CP	Makefile	/^CP=cp$/;"	m
+CP	nbproject/Makefile-Optimized.mk	/^CP=cp $/;"	m
+CP	nbproject/Makefile-default.mk	/^CP=cp $/;"	m
+CRC_BufferTask	pic24fj256ga702/mcc_generated_files/crc.c	/^static bool CRC_BufferTask(void)$/;"	f	file:
+CRC_CalculateBufferStart	pic24fj256ga702/mcc_generated_files/crc.c	/^void CRC_CalculateBufferStart(void *buffer, uint32_t sizeBytes)$/;"	f
+CRC_CalculateProgramStart	pic24fj256ga702/mcc_generated_files/crc.c	/^void CRC_CalculateProgramStart(uint32_t startAddr, uint32_t sizeBytes)$/;"	f
+CRC_CalculationIsDone	pic24fj256ga702/mcc_generated_files/crc.c	/^bool CRC_CalculationIsDone(void)$/;"	f
+CRC_CalculationResultGet	pic24fj256ga702/mcc_generated_files/crc.c	/^uint32_t CRC_CalculationResultGet(bool reverse, uint32_t xorValue)$/;"	f
+CRC_CalculationResultRawGet	pic24fj256ga702/mcc_generated_files/crc.c	/^uint32_t CRC_CalculationResultRawGet(void)$/;"	f
+CRC_CalculationResultReverseGet	pic24fj256ga702/mcc_generated_files/crc.c	/^uint32_t CRC_CalculationResultReverseGet(void)$/;"	f
+CRC_CalculationResultXORGet	pic24fj256ga702/mcc_generated_files/crc.c	/^uint32_t CRC_CalculationResultXORGet(uint32_t xorValue)$/;"	f
+CRC_CallBack	pic24fj256ga702/mcc_generated_files/crc.c	/^void __attribute__ ((weak)) CRC_CallBack(void)$/;"	f
+CRC_CleanUpTask	pic24fj256ga702/mcc_generated_files/crc.c	/^static bool CRC_CleanUpTask(void)$/;"	f	file:
+CRC_FlushTask	pic24fj256ga702/mcc_generated_files/crc.c	/^static bool CRC_FlushTask(void)$/;"	f	file:
+CRC_Initialize	pic24fj256ga702/mcc_generated_files/crc.c	/^void CRC_Initialize(void)$/;"	f
+CRC_OBJ	pic24fj256ga702/mcc_generated_files/crc.c	/^}CRC_OBJ;$/;"	t	typeref:struct:__anon6	file:
+CRC_PolynomialMask	pic24fj256ga702/mcc_generated_files/crc.c	/^static uint32_t CRC_PolynomialMask(void)$/;"	f	file:
+CRC_ProgramTask	pic24fj256ga702/mcc_generated_files/crc.c	/^static bool CRC_ProgramTask(void)$/;"	f	file:
+CRC_ReverseValue	pic24fj256ga702/mcc_generated_files/crc.c	/^static uint32_t CRC_ReverseValue(uint32_t crc)$/;"	f	file:
+CRC_SEED_DIRECTION	pic24fj256ga702/mcc_generated_files/crc.h	/^}CRC_SEED_DIRECTION;$/;"	t	typeref:enum:__anon9
+CRC_SEED_DIRECTION_Lsb	pic24fj256ga702/mcc_generated_files/crc.h	/^    CRC_SEED_DIRECTION_Lsb,$/;"	e	enum:__anon9
+CRC_SEED_DIRECTION_Msb	pic24fj256ga702/mcc_generated_files/crc.h	/^    CRC_SEED_DIRECTION_Msb,$/;"	e	enum:__anon9
+CRC_SEED_METHOD	pic24fj256ga702/mcc_generated_files/crc.h	/^}CRC_SEED_METHOD;$/;"	t	typeref:enum:__anon8
+CRC_SEED_METHOD_DIRECT	pic24fj256ga702/mcc_generated_files/crc.h	/^    CRC_SEED_METHOD_DIRECT,$/;"	e	enum:__anon8
+CRC_SEED_METHOD_INDIRECT	pic24fj256ga702/mcc_generated_files/crc.h	/^    CRC_SEED_METHOD_INDIRECT$/;"	e	enum:__anon8
+CRC_STATE	pic24fj256ga702/mcc_generated_files/crc.c	/^}CRC_STATE;$/;"	t	typeref:enum:__anon5	file:
+CRC_STATE_CALCULATE	pic24fj256ga702/mcc_generated_files/crc.c	/^    CRC_STATE_CALCULATE,$/;"	e	enum:__anon5	file:
+CRC_STATE_CLEANUP	pic24fj256ga702/mcc_generated_files/crc.c	/^    CRC_STATE_CLEANUP,$/;"	e	enum:__anon5	file:
+CRC_STATE_DONE	pic24fj256ga702/mcc_generated_files/crc.c	/^    CRC_STATE_DONE$/;"	e	enum:__anon5	file:
+CRC_STATE_FLUSH	pic24fj256ga702/mcc_generated_files/crc.c	/^    CRC_STATE_FLUSH,$/;"	e	enum:__anon5	file:
+CRC_SeedSet	pic24fj256ga702/mcc_generated_files/crc.c	/^void CRC_SeedSet(uint32_t seed, CRC_SEED_METHOD seedMethod, CRC_SEED_DIRECTION seedDirection)$/;"	f
+CRC_Task	pic24fj256ga702/mcc_generated_files/crc.c	/^void CRC_Task(void)$/;"	f
+CVR_Initialize	pic24fj256ga702/mcc_generated_files/cvr.c	/^void CVR_Initialize(void)$/;"	f
+ConfigurePinAnalog	pic24fj256ga702/pinDigitalHwSpecific.c	/^void ConfigurePinAnalog(uint8_t pin, bool makeAnalog)$/;"	f
+CurrentPin	main.c	/^uint8_t CurrentPin;$/;"	v
+CurrentPinBitmap	pic24fj256ga702/pinDigitalHwSpecific.c	/^uint16_t CurrentPinBitmap(void)$/;"	f
+CurrentPinPort	pic24fj256ga702/pinDigitalHwSpecific.c	/^uint8_t CurrentPinPort(void)$/;"	f
+CurrentPinRead	pic24fj256ga702/pinDigitalHwSpecific.c	/^uint8_t CurrentPinRead()$/;"	f
+CurrentPinRegister	pinRegisters.c	/^pinRegister_t* CurrentPinRegister;$/;"	v
+D4pin	types.h	/^	      uint8 D4pin;$/;"	m	struct:_pin_register_t::hd44780_n
+D5pin	types.h	/^	      uint8 D5pin;$/;"	m	struct:_pin_register_t::hd44780_n
+D6pin	types.h	/^	      uint8 D6pin;$/;"	m	struct:_pin_register_t::hd44780_n
+D7pin	types.h	/^	      uint8 D7pin;$/;"	m	struct:_pin_register_t::hd44780_n
+DEBUGGABLE_SUFFIX	nbproject/Makefile-Optimized.mk	/^DEBUGGABLE_SUFFIX=elf$/;"	m
+DEBUGGABLE_SUFFIX	nbproject/Makefile-default.mk	/^DEBUGGABLE_SUFFIX=elf$/;"	m
+DEFAULTCONF	nbproject/Makefile-impl.mk	/^DEFAULTCONF=default$/;"	m
+DELAY_1MS	utilities.h	82;"	d
+DELAY_CYCLES	utilities.h	81;"	d
+DEPFILES	nbproject/Makefile-Optimized.mk	/^DEPFILES=$(shell mplabwildcard ${POSSIBLE_DEPFILES})$/;"	m
+DEPFILES	nbproject/Makefile-default.mk	/^DEPFILES=$(shell mplabwildcard ${POSSIBLE_DEPFILES})$/;"	m
+DEP_GEN	nbproject/Makefile-local-Optimized.mk	/^DEP_GEN=${MP_JAVA_PATH}java -jar "C:\/Program Files (x86)\/Microchip\/MPLABX\/v5.15\/mplab_platform\/platform\/..\/mplab_ide\/modules\/..\/..\/bin\/extractobjectdependencies.jar"$/;"	m
+DEP_GEN	nbproject/Makefile-local-default.mk	/^DEP_GEN=${MP_JAVA_PATH}java -jar "C:\/Program Files (x86)\/Microchip\/MPLABX\/v5.15\/mplab_platform\/platform\/..\/mplab_ide\/modules\/..\/..\/bin\/extractobjectdependencies.jar"$/;"	m
+DEVICE_SPECIFIC_H	pic24fj256ga702/deviceSpecific.h	2;"	d
+DIGITAL_HIGH	pic24fj256ga702/pinDigitalHwSpecific.h	11;"	d
+DIGITAL_INPUT	pic24fj256ga702/pinDigitalHwSpecific.h	12;"	d
+DIGITAL_LOW	pic24fj256ga702/pinDigitalHwSpecific.h	10;"	d
+DISABLE_ALL_INTERRUPTS	utilities.h	149;"	d
+DISABLE_ALL_INTERRUPTS	utilities.h	154;"	d
+DISABLE_CCP1_CAPTURE	utilities.h	115;"	d
+DISABLE_CCP2_CAPTURE	utilities.h	117;"	d
+DISABLE_INT0_CAPTURE	utilities.h	119;"	d
+DISABLE_INT1_CAPTURE	utilities.h	121;"	d
+DISABLE_INT2_CAPTURE	utilities.h	123;"	d
+DISTDIR	nbproject/Makefile-Optimized.mk	/^DISTDIR=dist\/${CND_CONF}\/${IMAGE_TYPE}$/;"	m
+DISTDIR	nbproject/Makefile-default.mk	/^DISTDIR=dist\/${CND_CONF}\/${IMAGE_TYPE}$/;"	m
+DMA_CHANNEL	pic24fj256ga702/mcc_generated_files/dma.h	/^} DMA_CHANNEL;$/;"	t	typeref:enum:__anon10
+DMA_CHANNEL_0	pic24fj256ga702/mcc_generated_files/dma.h	/^    DMA_CHANNEL_0 =  0,       $/;"	e	enum:__anon10
+DMA_CHANNEL_1	pic24fj256ga702/mcc_generated_files/dma.h	/^    DMA_CHANNEL_1 =  1,       $/;"	e	enum:__anon10
+DMA_CHANNEL_2	pic24fj256ga702/mcc_generated_files/dma.h	/^    DMA_CHANNEL_2 =  2,       $/;"	e	enum:__anon10
+DMA_CHANNEL_3	pic24fj256ga702/mcc_generated_files/dma.h	/^    DMA_CHANNEL_3 =  3,       $/;"	e	enum:__anon10
+DMA_CHANNEL_4	pic24fj256ga702/mcc_generated_files/dma.h	/^    DMA_CHANNEL_4 =  4,       $/;"	e	enum:__anon10
+DMA_CHANNEL_5	pic24fj256ga702/mcc_generated_files/dma.h	/^    DMA_CHANNEL_5 =  5,       $/;"	e	enum:__anon10
+DMA_Channel0_CallBack	pic24fj256ga702/mcc_generated_files/dma.c	/^void __attribute__ ((weak)) DMA_Channel0_CallBack(void)$/;"	f
+DMA_Channel1_CallBack	pic24fj256ga702/mcc_generated_files/dma.c	/^void __attribute__ ((weak)) DMA_Channel1_CallBack(void)$/;"	f
+DMA_Channel2_CallBack	pic24fj256ga702/mcc_generated_files/dma.c	/^void __attribute__ ((weak)) DMA_Channel2_CallBack(void)$/;"	f
+DMA_Channel3_CallBack	pic24fj256ga702/mcc_generated_files/dma.c	/^void __attribute__ ((weak)) DMA_Channel3_CallBack(void)$/;"	f
+DMA_Channel4_CallBack	pic24fj256ga702/mcc_generated_files/dma.c	/^void __attribute__ ((weak)) DMA_Channel4_CallBack(void)$/;"	f
+DMA_Channel5_CallBack	pic24fj256ga702/mcc_generated_files/dma.c	/^void __attribute__ ((weak)) DMA_Channel5_CallBack(void)$/;"	f
+DMA_ChannelDisable	pic24fj256ga702/mcc_generated_files/dma.c	/^void DMA_ChannelDisable(DMA_CHANNEL  channel)$/;"	f
+DMA_ChannelEnable	pic24fj256ga702/mcc_generated_files/dma.c	/^void DMA_ChannelEnable(DMA_CHANNEL  channel)$/;"	f
+DMA_DestinationAddressSet	pic24fj256ga702/mcc_generated_files/dma.c	/^void DMA_DestinationAddressSet(DMA_CHANNEL  channel, uint16_t address) {$/;"	f
+DMA_FREQUENCY	pic24fj256ga702/deviceSpecific.h	10;"	d
+DMA_H	pic24fj256ga702/mcc_generated_files/dma.h	46;"	d
+DMA_Initialize	pic24fj256ga702/mcc_generated_files/dma.c	/^void DMA_Initialize(void) $/;"	f
+DMA_IsBufferedWriteComplete	pic24fj256ga702/mcc_generated_files/dma.c	/^bool DMA_IsBufferedWriteComplete(DMA_CHANNEL channel )$/;"	f
+DMA_IsHighAddressLimitFlagSet	pic24fj256ga702/mcc_generated_files/dma.c	/^bool DMA_IsHighAddressLimitFlagSet(DMA_CHANNEL channel )$/;"	f
+DMA_IsLowAddressLimitFlagSet	pic24fj256ga702/mcc_generated_files/dma.c	/^bool DMA_IsLowAddressLimitFlagSet(DMA_CHANNEL channel)$/;"	f
+DMA_IsOperationDone	pic24fj256ga702/mcc_generated_files/dma.c	/^bool DMA_IsOperationDone(DMA_CHANNEL channel)$/;"	f
+DMA_IsOperationHalfComplete	pic24fj256ga702/mcc_generated_files/dma.c	/^bool DMA_IsOperationHalfComplete(DMA_CHANNEL channel)$/;"	f
+DMA_IsOverrunFlagSet	pic24fj256ga702/mcc_generated_files/dma.c	/^bool DMA_IsOverrunFlagSet(DMA_CHANNEL channel )$/;"	f
+DMA_IsSoftwareRequestPending	pic24fj256ga702/mcc_generated_files/dma.c	/^bool DMA_IsSoftwareRequestPending(DMA_CHANNEL  channel)$/;"	f
+DMA_NUMBER_OF_CHANNELS	pic24fj256ga702/mcc_generated_files/dma.h	/^    DMA_NUMBER_OF_CHANNELS = 6$/;"	e	enum:__anon10
+DMA_SoftwareTriggerEnable	pic24fj256ga702/mcc_generated_files/dma.c	/^void DMA_SoftwareTriggerEnable(DMA_CHANNEL channel )$/;"	f
+DMA_SourceAddressSet	pic24fj256ga702/mcc_generated_files/dma.c	/^void DMA_SourceAddressSet(DMA_CHANNEL  channel, uint16_t address) {$/;"	f
+DMA_TransferCountGet	pic24fj256ga702/mcc_generated_files/dma.c	/^uint16_t DMA_TransferCountGet(DMA_CHANNEL channel)$/;"	f
+DMA_TransferCountSet	pic24fj256ga702/mcc_generated_files/dma.c	/^void DMA_TransferCountSet(DMA_CHANNEL channel, uint16_t transferCount)$/;"	f
+DMA__Channel1_Tasks	pic24fj256ga702/mcc_generated_files/dma.c	/^void DMA__Channel1_Tasks( void )$/;"	f
+DMA__Channel2_Tasks	pic24fj256ga702/mcc_generated_files/dma.c	/^void DMA__Channel2_Tasks( void )$/;"	f
+DMA__Channel3_Tasks	pic24fj256ga702/mcc_generated_files/dma.c	/^void DMA__Channel3_Tasks( void )$/;"	f
+DMA__Channel4_Tasks	pic24fj256ga702/mcc_generated_files/dma.c	/^void DMA__Channel4_Tasks( void )$/;"	f
+DMA__Channel5_Tasks	pic24fj256ga702/mcc_generated_files/dma.c	/^void DMA__Channel5_Tasks( void )$/;"	f
+EEPROM_WRITE	utilities.c	/^void EEPROM_WRITE(uint16_t address, uint8_t value) $/;"	f
+EMULATE_EEPROM_SIZE	pic24fj256ga702/mcc_generated_files/i2c2.c	97;"	d	file:
+ENABLE_ALL_INTERRUPTS	utilities.h	150;"	d
+ENABLE_ALL_INTERRUPTS	utilities.h	155;"	d
+ENABLE_CCP1_CAPTURE	utilities.h	114;"	d
+ENABLE_CCP2_CAPTURE	utilities.h	116;"	d
+ENABLE_INT0_CAPTURE	utilities.h	118;"	d
+ENABLE_INT1_CAPTURE	utilities.h	120;"	d
+ENABLE_INT2_CAPTURE	utilities.h	122;"	d
+ERROR_HANDLER	pic24fj256ga702/mcc_generated_files/traps.c	51;"	d	file:
+ERROR_HANDLER_NORETURN	pic24fj256ga702/mcc_generated_files/traps.c	52;"	d	file:
+FAILSAFE_STACK_GUARDSIZE	pic24fj256ga702/mcc_generated_files/traps.c	53;"	d	file:
+FINAL_IMAGE	nbproject/Makefile-Optimized.mk	/^FINAL_IMAGE=dist\/${CND_CONF}\/${IMAGE_TYPE}\/SerialWombat2.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}$/;"	m
+FINAL_IMAGE	nbproject/Makefile-default.mk	/^FINAL_IMAGE=dist\/${CND_CONF}\/${IMAGE_TYPE}\/SerialWombat2.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}$/;"	m
+FIXDEPS	nbproject/Makefile-Optimized.mk	/^FIXDEPS=fixDeps$/;"	m
+FIXDEPS	nbproject/Makefile-default.mk	/^FIXDEPS=fixDeps$/;"	m
+FLASH_ERASE_PAGE_SIZE_IN_INSTRUCTIONS	pic24fj256ga702/mcc_generated_files/memory/flash.h	32;"	d
+FLASH_ERASE_PAGE_SIZE_IN_PC_UNITS	pic24fj256ga702/mcc_generated_files/memory/flash.h	34;"	d
+FLASH_H	pic24fj256ga702/mcc_generated_files/memory/flash.h	25;"	d
+FLASH_HAS_ECC	pic24fj256ga702/mcc_generated_files/memory/flash.h	36;"	d
+FLASH_MIN_WRITE_SIZE	pic24fj256ga702/mcc_generated_files/memory/flash.h	38;"	d
+FLASH_UNLOCK_KEY	pic24fj256ga702/mcc_generated_files/memory/flash.h	40;"	d
+FLASH_WRITE_ROW_SIZE_IN_INSTRUCTIONS	pic24fj256ga702/mcc_generated_files/memory/flash.h	31;"	d
+FLASH_WRITE_ROW_SIZE_IN_PC_UNITS	pic24fj256ga702/mcc_generated_files/memory/flash.h	35;"	d
+FlashDemo	pic24fj256ga702/mcc_generated_files/memory/flash_demo.c	/^void FlashDemo()$/;"	f
+GetADCConversion	pic24fj256ga702/mcc_generated_files/adc1.c	/^uint16_t GetADCConversion(uint8_t pin)$/;"	f
+GetBuffer	pinRegisters.c	/^uint16_t GetBuffer(uint8_t pin)$/;"	f
+GetMode	pinRegisters.c	/^uint8_t GetMode(uint8_t pin)$/;"	f
+HIGH	utilities.h	93;"	d
+HIGH_BYTE_16	utilities.h	96;"	d
+HIGH_BYTE_32	utilities.h	99;"	d
+I2C1_ACKNOWLEDGE_DATA_BIT	pic24fj256ga702/mcc_generated_files/i2c1.c	170;"	d	file:
+I2C1_ACKNOWLEDGE_ENABLE_BIT	pic24fj256ga702/mcc_generated_files/i2c1.c	169;"	d	file:
+I2C1_ACKNOWLEDGE_STATUS_BIT	pic24fj256ga702/mcc_generated_files/i2c1.c	163;"	d	file:
+I2C1_CONFIG_TR_QUEUE_LENGTH	pic24fj256ga702/mcc_generated_files/i2c1.c	154;"	d	file:
+I2C1_DATA_NO_ACK	pic24fj256ga702/mcc_generated_files/i2c1.h	/^    I2C1_DATA_NO_ACK,$/;"	e	enum:__anon16
+I2C1_ErrorCountGet	pic24fj256ga702/mcc_generated_files/i2c1.c	/^uint8_t I2C1_ErrorCountGet(void)$/;"	f
+I2C1_FunctionComplete	pic24fj256ga702/mcc_generated_files/i2c1.c	/^static void I2C1_FunctionComplete(void)$/;"	f	file:
+I2C1_Initialize	pic24fj256ga702/mcc_generated_files/i2c1.c	/^void I2C1_Initialize(void)$/;"	f
+I2C1_LOST_STATE	pic24fj256ga702/mcc_generated_files/i2c1.h	/^    I2C1_LOST_STATE$/;"	e	enum:__anon16
+I2C1_MESSAGE_ADDRESS_NO_ACK	pic24fj256ga702/mcc_generated_files/i2c1.h	/^    I2C1_MESSAGE_ADDRESS_NO_ACK,$/;"	e	enum:__anon16
+I2C1_MESSAGE_COMPLETE	pic24fj256ga702/mcc_generated_files/i2c1.h	/^    I2C1_MESSAGE_COMPLETE,$/;"	e	enum:__anon16
+I2C1_MESSAGE_FAIL	pic24fj256ga702/mcc_generated_files/i2c1.h	/^    I2C1_MESSAGE_FAIL,$/;"	e	enum:__anon16
+I2C1_MESSAGE_PENDING	pic24fj256ga702/mcc_generated_files/i2c1.h	/^    I2C1_MESSAGE_PENDING,$/;"	e	enum:__anon16
+I2C1_MESSAGE_STATUS	pic24fj256ga702/mcc_generated_files/i2c1.h	/^} I2C1_MESSAGE_STATUS;$/;"	t	typeref:enum:__anon16
+I2C1_MasterQueueIsEmpty	pic24fj256ga702/mcc_generated_files/i2c1.c	/^bool I2C1_MasterQueueIsEmpty(void)$/;"	f
+I2C1_MasterQueueIsFull	pic24fj256ga702/mcc_generated_files/i2c1.c	/^bool I2C1_MasterQueueIsFull(void)$/;"	f
+I2C1_MasterRead	pic24fj256ga702/mcc_generated_files/i2c1.c	/^void I2C1_MasterRead($/;"	f
+I2C1_MasterReadTRBBuild	pic24fj256ga702/mcc_generated_files/i2c1.c	/^void I2C1_MasterReadTRBBuild($/;"	f
+I2C1_MasterTRBInsert	pic24fj256ga702/mcc_generated_files/i2c1.c	/^void I2C1_MasterTRBInsert($/;"	f
+I2C1_MasterWrite	pic24fj256ga702/mcc_generated_files/i2c1.c	/^void I2C1_MasterWrite($/;"	f
+I2C1_MasterWriteTRBBuild	pic24fj256ga702/mcc_generated_files/i2c1.c	/^void I2C1_MasterWriteTRBBuild($/;"	f
+I2C1_RECEIVE_ENABLE_BIT	pic24fj256ga702/mcc_generated_files/i2c1.c	167;"	d	file:
+I2C1_RECEIVE_REG	pic24fj256ga702/mcc_generated_files/i2c1.c	158;"	d	file:
+I2C1_REPEAT_START_CONDITION_ENABLE_BIT	pic24fj256ga702/mcc_generated_files/i2c1.c	166;"	d	file:
+I2C1_SLAVE_10BIT_RECEIVE_REQUEST_DETECTED	pic24fj256ga702/mcc_generated_files/i2c1Slave.h	/^    I2C1_SLAVE_10BIT_RECEIVE_REQUEST_DETECTED,$/;"	e	enum:__anon18
+I2C1_SLAVE_DEFAULT_ADDRESS	pic24fj256ga702/mcc_generated_files/i2c1Slave.h	118;"	d
+I2C1_SLAVE_DRIVER_STATUS	pic24fj256ga702/mcc_generated_files/i2c1Slave.h	/^} I2C1_SLAVE_DRIVER_STATUS;$/;"	t	typeref:enum:__anon18
+I2C1_SLAVE_RECEIVED_DATA_DETECTED	pic24fj256ga702/mcc_generated_files/i2c1Slave.h	/^    I2C1_SLAVE_RECEIVED_DATA_DETECTED,$/;"	e	enum:__anon18
+I2C1_SLAVE_RECEIVE_REQUEST_DETECTED	pic24fj256ga702/mcc_generated_files/i2c1Slave.h	/^    I2C1_SLAVE_RECEIVE_REQUEST_DETECTED,$/;"	e	enum:__anon18
+I2C1_SLAVE_TRANSMIT_REQUEST_DETECTED	pic24fj256ga702/mcc_generated_files/i2c1Slave.h	/^    I2C1_SLAVE_TRANSMIT_REQUEST_DETECTED,$/;"	e	enum:__anon18
+I2C1_START_CONDITION_ENABLE_BIT	pic24fj256ga702/mcc_generated_files/i2c1.c	165;"	d	file:
+I2C1_STOP_CONDITION_ENABLE_BIT	pic24fj256ga702/mcc_generated_files/i2c1.c	168;"	d	file:
+I2C1_STUCK_START	pic24fj256ga702/mcc_generated_files/i2c1.h	/^    I2C1_STUCK_START,$/;"	e	enum:__anon16
+I2C1_Stop	pic24fj256ga702/mcc_generated_files/i2c1.c	/^static void I2C1_Stop(I2C1_MESSAGE_STATUS completion_code)$/;"	f	file:
+I2C1_TRANSACTION_REQUEST_BLOCK	pic24fj256ga702/mcc_generated_files/i2c1.h	/^} I2C1_TRANSACTION_REQUEST_BLOCK;$/;"	t	typeref:struct:__anon17
+I2C1_TRANSMIT_REG	pic24fj256ga702/mcc_generated_files/i2c1.c	157;"	d	file:
+I2C1_WRITE_COLLISION_STATUS_BIT	pic24fj256ga702/mcc_generated_files/i2c1.c	162;"	d	file:
+I2C2_10_BIT_ADDRESS_ENABLE_BIT	pic24fj256ga702/mcc_generated_files/i2c2.c	85;"	d	file:
+I2C2_ACKNOWLEDGE_DATA_BIT	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	170;"	d	file:
+I2C2_ACKNOWLEDGE_ENABLE_BIT	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	169;"	d	file:
+I2C2_ACKNOWLEDGE_STATUS_BIT	pic24fj256ga702/mcc_generated_files/i2c2.c	95;"	d	file:
+I2C2_ACKNOWLEDGE_STATUS_BIT	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	163;"	d	file:
+I2C2_ADDRESS_REG	pic24fj256ga702/mcc_generated_files/i2c2.c	80;"	d	file:
+I2C2_CONFIG_TR_QUEUE_LENGTH	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	154;"	d	file:
+I2C2_DATA_NOT_ADDRESS_STATUS_BIT	pic24fj256ga702/mcc_generated_files/i2c2.c	92;"	d	file:
+I2C2_ErrorCountGet	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^uint8_t I2C2_ErrorCountGet(void)$/;"	f
+I2C2_FunctionComplete	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^static void I2C2_FunctionComplete(void)$/;"	f	file:
+I2C2_GENERAL_CALL_ADDRESS_STATUS_BIT	pic24fj256ga702/mcc_generated_files/i2c2.c	94;"	d	file:
+I2C2_GENERAL_CALL_ENABLE_BIT	pic24fj256ga702/mcc_generated_files/i2c2.c	84;"	d	file:
+I2C2_Initialize	pic24fj256ga702/mcc_generated_files/i2c2.c	/^void I2C2_Initialize(void)$/;"	f
+I2C2_Initialize	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^void I2C2_Initialize(void)$/;"	f
+I2C2_MASK_REG	pic24fj256ga702/mcc_generated_files/i2c2.c	79;"	d	file:
+I2C2_MasterQueueIsEmpty	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^bool I2C2_MasterQueueIsEmpty(void)$/;"	f
+I2C2_MasterQueueIsFull	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^bool I2C2_MasterQueueIsFull(void)$/;"	f
+I2C2_MasterRead	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^void I2C2_MasterRead($/;"	f
+I2C2_MasterReadTRBBuild	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^void I2C2_MasterReadTRBBuild($/;"	f
+I2C2_MasterTRBInsert	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^void I2C2_MasterTRBInsert($/;"	f
+I2C2_MasterWrite	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^void I2C2_MasterWrite($/;"	f
+I2C2_MasterWriteTRBBuild	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^void I2C2_MasterWriteTRBBuild($/;"	f
+I2C2_READ_NOT_WRITE_STATUS_BIT	pic24fj256ga702/mcc_generated_files/i2c2.c	91;"	d	file:
+I2C2_RECEIVE_ENABLE_BIT	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	167;"	d	file:
+I2C2_RECEIVE_OVERFLOW_STATUS_BIT	pic24fj256ga702/mcc_generated_files/i2c2.c	93;"	d	file:
+I2C2_RECEIVE_REG	pic24fj256ga702/mcc_generated_files/i2c2.c	77;"	d	file:
+I2C2_RECEIVE_REG	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	158;"	d	file:
+I2C2_RELEASE_SCL_CLOCK_CONTROL_BIT	pic24fj256ga702/mcc_generated_files/i2c2.c	86;"	d	file:
+I2C2_REPEAT_START_CONDITION_ENABLE_BIT	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	166;"	d	file:
+I2C2_ReadPointerGet	pic24fj256ga702/mcc_generated_files/i2c2.c	/^uint8_t *I2C2_ReadPointerGet(void)$/;"	f
+I2C2_ReadPointerSet	pic24fj256ga702/mcc_generated_files/i2c2.c	/^void I2C2_ReadPointerSet(uint8_t *p)$/;"	f
+I2C2_ReceiveProcess	pic24fj256ga702/mcc_generated_files/i2c2.c	/^inline void __attribute__ ((always_inline)) I2C2_ReceiveProcess(void)$/;"	f
+I2C2_SLAVE_10BIT_RECEIVE_REQUEST_DETECTED	pic24fj256ga702/mcc_generated_files/i2c2.h	/^    I2C2_SLAVE_10BIT_RECEIVE_REQUEST_DETECTED,$/;"	e	enum:__anon20
+I2C2_SLAVE_DEFAULT_ADDRESS	pic24fj256ga702/mcc_generated_files/i2c2.h	118;"	d
+I2C2_SLAVE_DRIVER_STATUS	pic24fj256ga702/mcc_generated_files/i2c2.h	/^} I2C2_SLAVE_DRIVER_STATUS;$/;"	t	typeref:enum:__anon20
+I2C2_SLAVE_RECEIVED_DATA_DETECTED	pic24fj256ga702/mcc_generated_files/i2c2.h	/^    I2C2_SLAVE_RECEIVED_DATA_DETECTED,$/;"	e	enum:__anon20
+I2C2_SLAVE_RECEIVE_REQUEST_DETECTED	pic24fj256ga702/mcc_generated_files/i2c2.h	/^    I2C2_SLAVE_RECEIVE_REQUEST_DETECTED,$/;"	e	enum:__anon20
+I2C2_SLAVE_TRANSMIT_REQUEST_DETECTED	pic24fj256ga702/mcc_generated_files/i2c2.h	/^    I2C2_SLAVE_TRANSMIT_REQUEST_DETECTED,$/;"	e	enum:__anon20
+I2C2_START_CONDITION_ENABLE_BIT	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	165;"	d	file:
+I2C2_STOP_CONDITION_ENABLE_BIT	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	168;"	d	file:
+I2C2_SlaveAddressMaskSet	pic24fj256ga702/mcc_generated_files/i2c2.c	/^void I2C2_SlaveAddressMaskSet($/;"	f
+I2C2_SlaveAddressSet	pic24fj256ga702/mcc_generated_files/i2c2.c	/^void I2C2_SlaveAddressSet($/;"	f
+I2C2_StatusCallback	pic24fj256ga702/mcc_generated_files/i2c2.c	/^bool I2C2_StatusCallback(I2C2_SLAVE_DRIVER_STATUS status)$/;"	f
+I2C2_Stop	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^static void I2C2_Stop(I2C2_MESSAGE_STATUS completion_code)$/;"	f	file:
+I2C2_TRANSMIT_REG	pic24fj256ga702/mcc_generated_files/i2c2.c	76;"	d	file:
+I2C2_TRANSMIT_REG	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	157;"	d	file:
+I2C2_TransmitProcess	pic24fj256ga702/mcc_generated_files/i2c2.c	/^inline void __attribute__ ((always_inline)) I2C2_TransmitProcess(void)$/;"	f
+I2C2_WRITE_COLLISION_STATUS_BIT	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	162;"	d	file:
+I2C2_WritePointerGet	pic24fj256ga702/mcc_generated_files/i2c2.c	/^uint8_t *I2C2_WritePointerGet(void)$/;"	f
+I2C2_WritePointerSet	pic24fj256ga702/mcc_generated_files/i2c2.c	/^void I2C2_WritePointerSet(uint8_t *p)$/;"	f
+I2C_MASTER_STATES	pic24fj256ga702/mcc_generated_files/i2c1.c	/^} I2C_MASTER_STATES;$/;"	t	typeref:enum:__anon15	file:
+I2C_MASTER_STATES	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^} I2C_MASTER_STATES;$/;"	t	typeref:enum:__anon25	file:
+I2C_OBJECT	pic24fj256ga702/mcc_generated_files/i2c1.c	/^} I2C_OBJECT ;$/;"	t	typeref:struct:__anon14	file:
+I2C_OBJECT	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^} I2C_OBJECT ;$/;"	t	typeref:struct:__anon24	file:
+I2C_SLAVE_STATES	pic24fj256ga702/mcc_generated_files/i2c2.c	/^} I2C_SLAVE_STATES;$/;"	t	typeref:enum:__anon19	file:
+I2C_TR_QUEUE_ENTRY	pic24fj256ga702/mcc_generated_files/i2c1.c	/^} I2C_TR_QUEUE_ENTRY;$/;"	t	typeref:struct:__anon13	file:
+I2C_TR_QUEUE_ENTRY	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^} I2C_TR_QUEUE_ENTRY;$/;"	t	typeref:struct:__anon23	file:
+I2C_TR_QUEUE_STATUS	pic24fj256ga702/mcc_generated_files/i2c1.c	/^} I2C_TR_QUEUE_STATUS;$/;"	t	typeref:union:__anon11	file:
+I2C_TR_QUEUE_STATUS	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^} I2C_TR_QUEUE_STATUS;$/;"	t	typeref:union:__anon21	file:
+IMAGE_TYPE	nbproject/Makefile-Optimized.mk	/^IMAGE_TYPE=debug$/;"	m
+IMAGE_TYPE	nbproject/Makefile-Optimized.mk	/^IMAGE_TYPE=production$/;"	m
+IMAGE_TYPE	nbproject/Makefile-default.mk	/^IMAGE_TYPE=debug$/;"	m
+IMAGE_TYPE	nbproject/Makefile-default.mk	/^IMAGE_TYPE=production$/;"	m
+INPUT	utilities.h	94;"	d
+INPUT_ARRAY_A_DMA_INDEX	utilities.h	261;"	d
+INPUT_ARRAY_B_DMA_INDEX	utilities.h	262;"	d
+INTERRUPT_GlobalDisable	pic24fj256ga702/mcc_generated_files/interrupt_manager.h	/^inline static void INTERRUPT_GlobalDisable(void)$/;"	f
+INTERRUPT_GlobalEnable	pic24fj256ga702/mcc_generated_files/interrupt_manager.h	/^inline static void INTERRUPT_GlobalEnable(void)$/;"	f
+INTERRUPT_Initialize	pic24fj256ga702/mcc_generated_files/interrupt_manager.c	/^void INTERRUPT_Initialize (void)$/;"	f
+IO_RA0_GetValue	pic24fj256ga702/mcc_generated_files/pin_manager.h	154;"	d
+IO_RA0_SetDigitalInput	pic24fj256ga702/mcc_generated_files/pin_manager.h	178;"	d
+IO_RA0_SetDigitalOutput	pic24fj256ga702/mcc_generated_files/pin_manager.h	202;"	d
+IO_RA0_SetHigh	pic24fj256ga702/mcc_generated_files/pin_manager.h	80;"	d
+IO_RA0_SetLow	pic24fj256ga702/mcc_generated_files/pin_manager.h	104;"	d
+IO_RA0_Toggle	pic24fj256ga702/mcc_generated_files/pin_manager.h	128;"	d
+IO_RA1_GetValue	pic24fj256ga702/mcc_generated_files/pin_manager.h	300;"	d
+IO_RA1_SetDigitalInput	pic24fj256ga702/mcc_generated_files/pin_manager.h	324;"	d
+IO_RA1_SetDigitalOutput	pic24fj256ga702/mcc_generated_files/pin_manager.h	348;"	d
+IO_RA1_SetHigh	pic24fj256ga702/mcc_generated_files/pin_manager.h	226;"	d
+IO_RA1_SetLow	pic24fj256ga702/mcc_generated_files/pin_manager.h	250;"	d
+IO_RA1_Toggle	pic24fj256ga702/mcc_generated_files/pin_manager.h	274;"	d
+IO_RA2_GetValue	pic24fj256ga702/mcc_generated_files/pin_manager.h	446;"	d
+IO_RA2_SetDigitalInput	pic24fj256ga702/mcc_generated_files/pin_manager.h	470;"	d
+IO_RA2_SetDigitalOutput	pic24fj256ga702/mcc_generated_files/pin_manager.h	494;"	d
+IO_RA2_SetHigh	pic24fj256ga702/mcc_generated_files/pin_manager.h	372;"	d
+IO_RA2_SetLow	pic24fj256ga702/mcc_generated_files/pin_manager.h	396;"	d
+IO_RA2_Toggle	pic24fj256ga702/mcc_generated_files/pin_manager.h	420;"	d
+IO_RA3_GetValue	pic24fj256ga702/mcc_generated_files/pin_manager.h	592;"	d
+IO_RA3_SetDigitalInput	pic24fj256ga702/mcc_generated_files/pin_manager.h	616;"	d
+IO_RA3_SetDigitalOutput	pic24fj256ga702/mcc_generated_files/pin_manager.h	640;"	d
+IO_RA3_SetHigh	pic24fj256ga702/mcc_generated_files/pin_manager.h	518;"	d
+IO_RA3_SetLow	pic24fj256ga702/mcc_generated_files/pin_manager.h	542;"	d
+IO_RA3_Toggle	pic24fj256ga702/mcc_generated_files/pin_manager.h	566;"	d
+IO_RA4_GetValue	pic24fj256ga702/mcc_generated_files/pin_manager.h	738;"	d
+IO_RA4_SetDigitalInput	pic24fj256ga702/mcc_generated_files/pin_manager.h	762;"	d
+IO_RA4_SetDigitalOutput	pic24fj256ga702/mcc_generated_files/pin_manager.h	786;"	d
+IO_RA4_SetHigh	pic24fj256ga702/mcc_generated_files/pin_manager.h	664;"	d
+IO_RA4_SetLow	pic24fj256ga702/mcc_generated_files/pin_manager.h	688;"	d
+IO_RA4_Toggle	pic24fj256ga702/mcc_generated_files/pin_manager.h	712;"	d
+IO_RB0_GetValue	pic24fj256ga702/mcc_generated_files/pin_manager.h	884;"	d
+IO_RB0_SetDigitalInput	pic24fj256ga702/mcc_generated_files/pin_manager.h	908;"	d
+IO_RB0_SetDigitalOutput	pic24fj256ga702/mcc_generated_files/pin_manager.h	932;"	d
+IO_RB0_SetHigh	pic24fj256ga702/mcc_generated_files/pin_manager.h	810;"	d
+IO_RB0_SetLow	pic24fj256ga702/mcc_generated_files/pin_manager.h	834;"	d
+IO_RB0_Toggle	pic24fj256ga702/mcc_generated_files/pin_manager.h	858;"	d
+IO_RB10_GetValue	pic24fj256ga702/mcc_generated_files/pin_manager.h	1176;"	d
+IO_RB10_SetDigitalInput	pic24fj256ga702/mcc_generated_files/pin_manager.h	1200;"	d
+IO_RB10_SetDigitalOutput	pic24fj256ga702/mcc_generated_files/pin_manager.h	1224;"	d
+IO_RB10_SetHigh	pic24fj256ga702/mcc_generated_files/pin_manager.h	1102;"	d
+IO_RB10_SetLow	pic24fj256ga702/mcc_generated_files/pin_manager.h	1126;"	d
+IO_RB10_Toggle	pic24fj256ga702/mcc_generated_files/pin_manager.h	1150;"	d
+IO_RB11_GetValue	pic24fj256ga702/mcc_generated_files/pin_manager.h	1322;"	d
+IO_RB11_SetDigitalInput	pic24fj256ga702/mcc_generated_files/pin_manager.h	1346;"	d
+IO_RB11_SetDigitalOutput	pic24fj256ga702/mcc_generated_files/pin_manager.h	1370;"	d
+IO_RB11_SetHigh	pic24fj256ga702/mcc_generated_files/pin_manager.h	1248;"	d
+IO_RB11_SetLow	pic24fj256ga702/mcc_generated_files/pin_manager.h	1272;"	d
+IO_RB11_Toggle	pic24fj256ga702/mcc_generated_files/pin_manager.h	1296;"	d
+IO_RB12_GetValue	pic24fj256ga702/mcc_generated_files/pin_manager.h	1468;"	d
+IO_RB12_SetDigitalInput	pic24fj256ga702/mcc_generated_files/pin_manager.h	1492;"	d
+IO_RB12_SetDigitalOutput	pic24fj256ga702/mcc_generated_files/pin_manager.h	1516;"	d
+IO_RB12_SetHigh	pic24fj256ga702/mcc_generated_files/pin_manager.h	1394;"	d
+IO_RB12_SetLow	pic24fj256ga702/mcc_generated_files/pin_manager.h	1418;"	d
+IO_RB12_Toggle	pic24fj256ga702/mcc_generated_files/pin_manager.h	1442;"	d
+IO_RB13_GetValue	pic24fj256ga702/mcc_generated_files/pin_manager.h	1614;"	d
+IO_RB13_SetDigitalInput	pic24fj256ga702/mcc_generated_files/pin_manager.h	1638;"	d
+IO_RB13_SetDigitalOutput	pic24fj256ga702/mcc_generated_files/pin_manager.h	1662;"	d
+IO_RB13_SetHigh	pic24fj256ga702/mcc_generated_files/pin_manager.h	1540;"	d
+IO_RB13_SetLow	pic24fj256ga702/mcc_generated_files/pin_manager.h	1564;"	d
+IO_RB13_Toggle	pic24fj256ga702/mcc_generated_files/pin_manager.h	1588;"	d
+IO_RB14_GetValue	pic24fj256ga702/mcc_generated_files/pin_manager.h	1760;"	d
+IO_RB14_SetDigitalInput	pic24fj256ga702/mcc_generated_files/pin_manager.h	1784;"	d
+IO_RB14_SetDigitalOutput	pic24fj256ga702/mcc_generated_files/pin_manager.h	1808;"	d
+IO_RB14_SetHigh	pic24fj256ga702/mcc_generated_files/pin_manager.h	1686;"	d
+IO_RB14_SetLow	pic24fj256ga702/mcc_generated_files/pin_manager.h	1710;"	d
+IO_RB14_Toggle	pic24fj256ga702/mcc_generated_files/pin_manager.h	1734;"	d
+IO_RB15_GetValue	pic24fj256ga702/mcc_generated_files/pin_manager.h	1906;"	d
+IO_RB15_SetDigitalInput	pic24fj256ga702/mcc_generated_files/pin_manager.h	1930;"	d
+IO_RB15_SetDigitalOutput	pic24fj256ga702/mcc_generated_files/pin_manager.h	1954;"	d
+IO_RB15_SetHigh	pic24fj256ga702/mcc_generated_files/pin_manager.h	1832;"	d
+IO_RB15_SetLow	pic24fj256ga702/mcc_generated_files/pin_manager.h	1856;"	d
+IO_RB15_Toggle	pic24fj256ga702/mcc_generated_files/pin_manager.h	1880;"	d
+IO_RB1_GetValue	pic24fj256ga702/mcc_generated_files/pin_manager.h	1030;"	d
+IO_RB1_SetDigitalInput	pic24fj256ga702/mcc_generated_files/pin_manager.h	1054;"	d
+IO_RB1_SetDigitalOutput	pic24fj256ga702/mcc_generated_files/pin_manager.h	1078;"	d
+IO_RB1_SetHigh	pic24fj256ga702/mcc_generated_files/pin_manager.h	956;"	d
+IO_RB1_SetLow	pic24fj256ga702/mcc_generated_files/pin_manager.h	980;"	d
+IO_RB1_Toggle	pic24fj256ga702/mcc_generated_files/pin_manager.h	1004;"	d
+IO_RB2_GetValue	pic24fj256ga702/mcc_generated_files/pin_manager.h	2052;"	d
+IO_RB2_SetDigitalInput	pic24fj256ga702/mcc_generated_files/pin_manager.h	2076;"	d
+IO_RB2_SetDigitalOutput	pic24fj256ga702/mcc_generated_files/pin_manager.h	2100;"	d
+IO_RB2_SetHigh	pic24fj256ga702/mcc_generated_files/pin_manager.h	1978;"	d
+IO_RB2_SetLow	pic24fj256ga702/mcc_generated_files/pin_manager.h	2002;"	d
+IO_RB2_Toggle	pic24fj256ga702/mcc_generated_files/pin_manager.h	2026;"	d
+IO_RB3_GetValue	pic24fj256ga702/mcc_generated_files/pin_manager.h	2198;"	d
+IO_RB3_SetDigitalInput	pic24fj256ga702/mcc_generated_files/pin_manager.h	2222;"	d
+IO_RB3_SetDigitalOutput	pic24fj256ga702/mcc_generated_files/pin_manager.h	2246;"	d
+IO_RB3_SetHigh	pic24fj256ga702/mcc_generated_files/pin_manager.h	2124;"	d
+IO_RB3_SetLow	pic24fj256ga702/mcc_generated_files/pin_manager.h	2148;"	d
+IO_RB3_Toggle	pic24fj256ga702/mcc_generated_files/pin_manager.h	2172;"	d
+IO_RB6_GetValue	pic24fj256ga702/mcc_generated_files/pin_manager.h	2344;"	d
+IO_RB6_SetDigitalInput	pic24fj256ga702/mcc_generated_files/pin_manager.h	2368;"	d
+IO_RB6_SetDigitalOutput	pic24fj256ga702/mcc_generated_files/pin_manager.h	2392;"	d
+IO_RB6_SetHigh	pic24fj256ga702/mcc_generated_files/pin_manager.h	2270;"	d
+IO_RB6_SetLow	pic24fj256ga702/mcc_generated_files/pin_manager.h	2294;"	d
+IO_RB6_Toggle	pic24fj256ga702/mcc_generated_files/pin_manager.h	2318;"	d
+IO_RB7_GetValue	pic24fj256ga702/mcc_generated_files/pin_manager.h	2490;"	d
+IO_RB7_SetDigitalInput	pic24fj256ga702/mcc_generated_files/pin_manager.h	2514;"	d
+IO_RB7_SetDigitalOutput	pic24fj256ga702/mcc_generated_files/pin_manager.h	2538;"	d
+IO_RB7_SetHigh	pic24fj256ga702/mcc_generated_files/pin_manager.h	2416;"	d
+IO_RB7_SetLow	pic24fj256ga702/mcc_generated_files/pin_manager.h	2440;"	d
+IO_RB7_Toggle	pic24fj256ga702/mcc_generated_files/pin_manager.h	2464;"	d
+IO_RB8_GetValue	pic24fj256ga702/mcc_generated_files/pin_manager.h	2636;"	d
+IO_RB8_SetDigitalInput	pic24fj256ga702/mcc_generated_files/pin_manager.h	2660;"	d
+IO_RB8_SetDigitalOutput	pic24fj256ga702/mcc_generated_files/pin_manager.h	2684;"	d
+IO_RB8_SetHigh	pic24fj256ga702/mcc_generated_files/pin_manager.h	2562;"	d
+IO_RB8_SetLow	pic24fj256ga702/mcc_generated_files/pin_manager.h	2586;"	d
+IO_RB8_Toggle	pic24fj256ga702/mcc_generated_files/pin_manager.h	2610;"	d
+IO_RB9_GetValue	pic24fj256ga702/mcc_generated_files/pin_manager.h	2782;"	d
+IO_RB9_SetDigitalInput	pic24fj256ga702/mcc_generated_files/pin_manager.h	2806;"	d
+IO_RB9_SetDigitalOutput	pic24fj256ga702/mcc_generated_files/pin_manager.h	2830;"	d
+IO_RB9_SetHigh	pic24fj256ga702/mcc_generated_files/pin_manager.h	2708;"	d
+IO_RB9_SetLow	pic24fj256ga702/mcc_generated_files/pin_manager.h	2732;"	d
+IO_RB9_Toggle	pic24fj256ga702/mcc_generated_files/pin_manager.h	2756;"	d
+InputArrayA	pic24fj256ga702/pinDigitalHwSpecific.c	/^uint16_t InputArrayA[SIZE_OF_DMA_ARRAY];$/;"	v
+InputArrayB	pic24fj256ga702/pinDigitalHwSpecific.c	/^uint16_t InputArrayB[SIZE_OF_DMA_ARRAY];$/;"	v
+InvalidCommand	protocol.c	/^void InvalidCommand()$/;"	f
+LDLIBSOPTIONS	nbproject/Makefile-Optimized.mk	/^LDLIBSOPTIONS=$/;"	m
+LDLIBSOPTIONS	nbproject/Makefile-default.mk	/^LDLIBSOPTIONS=$/;"	m
+LOW	utilities.h	92;"	d
+LOW_BYTE_16	utilities.h	97;"	d
+LOW_BYTE_32	utilities.h	102;"	d
+LineBreaksAndEcho	protocol.c	/^bool LineBreaksAndEcho = false;$/;"	v
+MASK	utilities.c	956;"	d	file:
+MCC_H	pic24fj256ga702/mcc_generated_files/mcc.h	46;"	d
+MH_BYTE_32	utilities.h	100;"	d
+MKDIR	Makefile	/^MKDIR=mkdir$/;"	m
+MKDIR	nbproject/Makefile-Optimized.mk	/^MKDIR=gnumkdir -p$/;"	m
+MKDIR	nbproject/Makefile-default.mk	/^MKDIR=gnumkdir -p$/;"	m
+ML_BYTE_32	utilities.h	101;"	d
+MP_AR	nbproject/Makefile-local-Optimized.mk	/^MP_AR="C:\\Program Files (x86)\\Microchip\\xc16\\v1.36\\bin\\xc16-ar.exe"$/;"	m
+MP_AR	nbproject/Makefile-local-default.mk	/^MP_AR="C:\\Program Files (x86)\\Microchip\\xc16\\v1.36\\bin\\xc16-ar.exe"$/;"	m
+MP_AR_DIR	nbproject/Makefile-local-Optimized.mk	/^MP_AR_DIR="C:\\Program Files (x86)\\Microchip\\xc16\\v1.36\\bin"$/;"	m
+MP_AR_DIR	nbproject/Makefile-local-default.mk	/^MP_AR_DIR="C:\\Program Files (x86)\\Microchip\\xc16\\v1.36\\bin"$/;"	m
+MP_AS	nbproject/Makefile-local-Optimized.mk	/^MP_AS="C:\\Program Files (x86)\\Microchip\\xc16\\v1.36\\bin\\xc16-as.exe"$/;"	m
+MP_AS	nbproject/Makefile-local-default.mk	/^MP_AS="C:\\Program Files (x86)\\Microchip\\xc16\\v1.36\\bin\\xc16-as.exe"$/;"	m
+MP_AS_DIR	nbproject/Makefile-local-Optimized.mk	/^MP_AS_DIR="C:\\Program Files (x86)\\Microchip\\xc16\\v1.36\\bin"$/;"	m
+MP_AS_DIR	nbproject/Makefile-local-default.mk	/^MP_AS_DIR="C:\\Program Files (x86)\\Microchip\\xc16\\v1.36\\bin"$/;"	m
+MP_CC	nbproject/Makefile-local-Optimized.mk	/^MP_CC="C:\\Program Files (x86)\\Microchip\\xc16\\v1.36\\bin\\xc16-gcc.exe"$/;"	m
+MP_CC	nbproject/Makefile-local-default.mk	/^MP_CC="C:\\Program Files (x86)\\Microchip\\xc16\\v1.36\\bin\\xc16-gcc.exe"$/;"	m
+MP_CC_DIR	nbproject/Makefile-local-Optimized.mk	/^MP_CC_DIR="C:\\Program Files (x86)\\Microchip\\xc16\\v1.36\\bin"$/;"	m
+MP_CC_DIR	nbproject/Makefile-local-default.mk	/^MP_CC_DIR="C:\\Program Files (x86)\\Microchip\\xc16\\v1.36\\bin"$/;"	m
+MP_JAVA_PATH	nbproject/Makefile-local-Optimized.mk	/^MP_JAVA_PATH="C:\\Program Files (x86)\\Microchip\\MPLABX\\v5.15\\sys\\java\\jre1.8.0_181\/bin\/"$/;"	m
+MP_JAVA_PATH	nbproject/Makefile-local-default.mk	/^MP_JAVA_PATH="C:\\Program Files (x86)\\Microchip\\MPLABX\\v5.15\\sys\\java\\jre1.8.0_181\/bin\/"$/;"	m
+MP_LD	nbproject/Makefile-local-Optimized.mk	/^MP_LD="C:\\Program Files (x86)\\Microchip\\xc16\\v1.36\\bin\\xc16-ld.exe"$/;"	m
+MP_LD	nbproject/Makefile-local-default.mk	/^MP_LD="C:\\Program Files (x86)\\Microchip\\xc16\\v1.36\\bin\\xc16-ld.exe"$/;"	m
+MP_LD_DIR	nbproject/Makefile-local-Optimized.mk	/^MP_LD_DIR="C:\\Program Files (x86)\\Microchip\\xc16\\v1.36\\bin"$/;"	m
+MP_LD_DIR	nbproject/Makefile-local-default.mk	/^MP_LD_DIR="C:\\Program Files (x86)\\Microchip\\xc16\\v1.36\\bin"$/;"	m
+MP_LINKER_FILE_OPTION	nbproject/Makefile-Optimized.mk	/^MP_LINKER_FILE_OPTION=,--script=p24FJ256GA702.gld$/;"	m
+MP_LINKER_FILE_OPTION	nbproject/Makefile-default.mk	/^MP_LINKER_FILE_OPTION=,--script=p24FJ256GA702.gld$/;"	m
+MP_PROCESSOR_OPTION	nbproject/Makefile-Optimized.mk	/^MP_PROCESSOR_OPTION=24FJ256GA702$/;"	m
+MP_PROCESSOR_OPTION	nbproject/Makefile-default.mk	/^MP_PROCESSOR_OPTION=24FJ256GA702$/;"	m
+MV	nbproject/Makefile-Optimized.mk	/^MV=mv $/;"	m
+MV	nbproject/Makefile-default.mk	/^MV=mv $/;"	m
+NUMBER_OF_PHYSICAL_PINS	pic24fj256ga702/deviceSpecific.h	6;"	d
+NUMBER_OF_PHYSICAL_PINS	utilities.h	3;"	d
+NUMBER_OF_TESTS	counter.c	367;"	d	file:
+NUMBER_OF_TESTS	quadEnc.c	542;"	d	file:
+NUMBER_OF_TOTAL_PINS	pic24fj256ga702/deviceSpecific.h	8;"	d
+NUMBER_OF_VIRTUAL_PINS	pic24fj256ga702/deviceSpecific.h	7;"	d
+NUMBER_OF_VIRTUAL_PINS	utilities.h	4;"	d
+NUM_OF_DATA_INDEX	counter.c	222;"	d	file:
+NUM_OF_DATA_INDEX	quadEnc.c	397;"	d	file:
+OBJECTDIR	nbproject/Makefile-Optimized.mk	/^OBJECTDIR=build\/${CND_CONF}\/${IMAGE_TYPE}$/;"	m
+OBJECTDIR	nbproject/Makefile-default.mk	/^OBJECTDIR=build\/${CND_CONF}\/${IMAGE_TYPE}$/;"	m
+OBJECTFILES	nbproject/Makefile-Optimized.mk	/^OBJECTFILES=${OBJECTDIR}\/mcc_generated_files\/memory\/flash.o ${OBJECTDIR}\/mcc_generated_files\/memory\/flash_demo.o ${OBJECTDIR}\/mcc_generated_files\/system.o ${OBJECTDIR}\/mcc_generated_files\/cvr.o ${OBJECTDIR}\/mcc_generated_files\/clock.o ${OBJECTDIR}\/mcc_generated_files\/adc1.o ${OBJECTDIR}\/mcc_generated_files\/interrupt_manager.o ${OBJECTDIR}\/mcc_generated_files\/mcc.o ${OBJECTDIR}\/mcc_generated_files\/pin_manager.o ${OBJECTDIR}\/mcc_generated_files\/crc.o ${OBJECTDIR}\/mcc_generated_files\/tmr1.o ${OBJECTDIR}\/mcc_generated_files\/tmr2.o ${OBJECTDIR}\/mcc_generated_files\/traps.o ${OBJECTDIR}\/mcc_generated_files\/tmr3.o ${OBJECTDIR}\/mcc_generated_files\/dma.o ${OBJECTDIR}\/mcc_generated_files\/uart1.o ${OBJECTDIR}\/mcc_generated_files\/uart2.o ${OBJECTDIR}\/main.o ${OBJECTDIR}\/utilities.o ${OBJECTDIR}\/uarttx.o ${OBJECTDIR}\/counter.o ${OBJECTDIR}\/wombatasm.o ${OBJECTDIR}\/quadEnc.o ${OBJECTDIR}\/pwm_follow_direct.o ${OBJECTDIR}\/servo.o$/;"	m
+OBJECTFILES	nbproject/Makefile-default.mk	/^OBJECTFILES=${OBJECTDIR}\/pic24fj256ga702\/wombatasm.o ${OBJECTDIR}\/pic24fj256ga702\/pinDigitalHwSpecific.o ${OBJECTDIR}\/pic24fj256ga702\/updatePulse.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/memory\/flash.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/memory\/flash_demo.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/adc1.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/clock.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/crc.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/cvr.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/dma.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/interrupt_manager.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/mcc.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/pin_manager.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/system.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/tmr1.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/tmr2.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/tmr3.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/traps.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/uart1.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/uart2.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/i2c1.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/i2c2.o ${OBJECTDIR}\/quadEnc.o ${OBJECTDIR}\/analogOutput.o ${OBJECTDIR}\/main.o ${OBJECTDIR}\/protocol.o ${OBJECTDIR}\/asciiConversion.o ${OBJECTDIR}\/pinRegisters.o ${OBJECTDIR}\/queue.o$/;"	m
+OBJECTFILES_QUOTED_IF_SPACED	nbproject/Makefile-Optimized.mk	/^OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}\/mcc_generated_files\/memory\/flash.o ${OBJECTDIR}\/mcc_generated_files\/memory\/flash_demo.o ${OBJECTDIR}\/mcc_generated_files\/system.o ${OBJECTDIR}\/mcc_generated_files\/cvr.o ${OBJECTDIR}\/mcc_generated_files\/clock.o ${OBJECTDIR}\/mcc_generated_files\/adc1.o ${OBJECTDIR}\/mcc_generated_files\/interrupt_manager.o ${OBJECTDIR}\/mcc_generated_files\/mcc.o ${OBJECTDIR}\/mcc_generated_files\/pin_manager.o ${OBJECTDIR}\/mcc_generated_files\/crc.o ${OBJECTDIR}\/mcc_generated_files\/tmr1.o ${OBJECTDIR}\/mcc_generated_files\/tmr2.o ${OBJECTDIR}\/mcc_generated_files\/traps.o ${OBJECTDIR}\/mcc_generated_files\/tmr3.o ${OBJECTDIR}\/mcc_generated_files\/dma.o ${OBJECTDIR}\/mcc_generated_files\/uart1.o ${OBJECTDIR}\/mcc_generated_files\/uart2.o ${OBJECTDIR}\/main.o ${OBJECTDIR}\/utilities.o ${OBJECTDIR}\/uarttx.o ${OBJECTDIR}\/counter.o ${OBJECTDIR}\/wombatasm.o ${OBJECTDIR}\/quadEnc.o ${OBJECTDIR}\/pwm_follow_direct.o ${OBJECTDIR}\/servo.o$/;"	m
+OBJECTFILES_QUOTED_IF_SPACED	nbproject/Makefile-default.mk	/^OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}\/pic24fj256ga702\/wombatasm.o ${OBJECTDIR}\/pic24fj256ga702\/pinDigitalHwSpecific.o ${OBJECTDIR}\/pic24fj256ga702\/updatePulse.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/memory\/flash.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/memory\/flash_demo.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/adc1.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/clock.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/crc.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/cvr.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/dma.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/interrupt_manager.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/mcc.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/pin_manager.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/system.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/tmr1.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/tmr2.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/tmr3.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/traps.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/uart1.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/uart2.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/i2c1.o ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/i2c2.o ${OBJECTDIR}\/quadEnc.o ${OBJECTDIR}\/analogOutput.o ${OBJECTDIR}\/main.o ${OBJECTDIR}\/protocol.o ${OBJECTDIR}\/asciiConversion.o ${OBJECTDIR}\/pinRegisters.o ${OBJECTDIR}\/queue.o$/;"	m
+OSCILLATOR_Initialize	pic24fj256ga702/mcc_generated_files/mcc.c	/^void OSCILLATOR_Initialize(void)$/;"	f
+OS_CURRENT	nbproject/Makefile-local-Optimized.mk	/^OS_CURRENT="$(shell uname -s)"$/;"	m
+OS_CURRENT	nbproject/Makefile-local-default.mk	/^OS_CURRENT="$(shell uname -s)"$/;"	m
+OUTPUT_ARRAY_A_DMA_INDEX	utilities.h	259;"	d
+OUTPUT_ARRAY_B_DMA_INDEX	utilities.h	260;"	d
+OUTPUT_CHARACTER	uarttx.c	47;"	d	file:
+OUTPUT_SUFFIX	nbproject/Makefile-Optimized.mk	/^OUTPUT_SUFFIX=elf$/;"	m
+OUTPUT_SUFFIX	nbproject/Makefile-Optimized.mk	/^OUTPUT_SUFFIX=hex$/;"	m
+OUTPUT_SUFFIX	nbproject/Makefile-default.mk	/^OUTPUT_SUFFIX=elf$/;"	m
+OUTPUT_SUFFIX	nbproject/Makefile-default.mk	/^OUTPUT_SUFFIX=hex$/;"	m
+OutputArrayA	pic24fj256ga702/pinDigitalHwSpecific.c	/^uint16_t OutputArrayA[SIZE_OF_DMA_ARRAY] = { 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF}  ;$/;"	v
+OutputArrayB	pic24fj256ga702/pinDigitalHwSpecific.c	/^uint16_t OutputArrayB[SIZE_OF_DMA_ARRAY] = { 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF}  ;$/;"	v
+PAGE_MASK	pic24fj256ga702/mcc_generated_files/memory/flash.h	42;"	d
+PATH	nbproject/Makefile-local-Optimized.mk	/^PATH:=C:\/Program Files (x86)\/Microchip\/MPLABX\/v5.15\/mplab_platform\/platform\/..\/mplab_ide\/modules\/..\/..\/bin\/:$(PATH)$/;"	m
+PATH	nbproject/Makefile-local-default.mk	/^PATH:=C:\/Program Files (x86)\/Microchip\/MPLABX\/v5.15\/mplab_platform\/platform\/..\/mplab_ide\/modules\/..\/..\/bin\/:$(PATH)$/;"	m
+PATH_TO_IDE_BIN	nbproject/Makefile-local-Optimized.mk	/^PATH_TO_IDE_BIN=C:\/Program Files (x86)\/Microchip\/MPLABX\/v5.15\/mplab_platform\/platform\/..\/mplab_ide\/modules\/..\/..\/bin\/$/;"	m
+PATH_TO_IDE_BIN	nbproject/Makefile-local-default.mk	/^PATH_TO_IDE_BIN=C:\/Program Files (x86)\/Microchip\/MPLABX\/v5.15\/mplab_platform\/platform\/..\/mplab_ide\/modules\/..\/..\/bin\/$/;"	m
+PHYSICALEQUALSVIRTUALPIN	utilities.h	11;"	d
+PHYSICALEQUALSVIRTUALPIN	utilities.h	16;"	d
+PINMODES_H	pinModes.h	2;"	d
+PIN_DIGITAL_HW_SPECIFIC_H	pic24fj256ga702/pinDigitalHwSpecific.h	2;"	d
+PIN_MANAGER_Initialize	pic24fj256ga702/mcc_generated_files/pin_manager.c	/^void PIN_MANAGER_Initialize (void)$/;"	f
+PIN_MODE_AD_DIRECT	pinModes.h	/^	PIN_MODE_AD_DIRECT = 2,$/;"	e	enum:__anon33
+PIN_MODE_AD_DIRECT_ENABLE	utilities.h	20;"	d
+PIN_MODE_CONTROLLED	pinModes.h	/^	PIN_MODE_CONTROLLED = 1,$/;"	e	enum:__anon33
+PIN_MODE_COUNTER	pinModes.h	/^	PIN_MODE_COUNTER = 9,$/;"	e	enum:__anon33
+PIN_MODE_COUNTER_ENABLE	utilities.h	22;"	d
+PIN_MODE_DEBOUNCE	pinModes.h	/^	PIN_MODE_DEBOUNCE = 10,$/;"	e	enum:__anon33
+PIN_MODE_DIAGNOSTIC	pinModes.h	/^	PIN_MODE_DIAGNOSTIC = 8,$/;"	e	enum:__anon33
+PIN_MODE_DIGITAL_IO	pinModes.h	/^	PIN_MODE_DIGITAL_IO = 0,$/;"	e	enum:__anon33
+PIN_MODE_DMA_WIGGLE	pinModes.h	/^	PIN_MODE_DMA_WIGGLE = 4,$/;"	e	enum:__anon33
+PIN_MODE_HYSTERESIS	pinModes.h	/^	PIN_MODE_HYSTERESIS = 6,$/;"	e	enum:__anon33
+PIN_MODE_KEYPAD_SCAN_ROW	pinModes.h	/^	PIN_MODE_KEYPAD_SCAN_ROW = 15,$/;"	e	enum:__anon33
+PIN_MODE_LOOKUP_2D	pinModes.h	/^	PIN_MODE_LOOKUP_2D = 12,$/;"	e	enum:__anon33
+PIN_MODE_PIN_THROUGHPUT_ENABLE	utilities.h	23;"	d
+PIN_MODE_PROPORTIONAL_OUTPUT	pinModes.h	/^	PIN_MODE_PROPORTIONAL_OUTPUT = 11,$/;"	e	enum:__anon33
+PIN_MODE_PWM	pinModes.h	/^	PIN_MODE_PWM = 16$/;"	e	enum:__anon33
+PIN_MODE_PWM_DIRECT_ENABLE	utilities.h	21;"	d
+PIN_MODE_QUADRATURE_ENC	pinModes.h	/^	PIN_MODE_QUADRATURE_ENC = 5,$/;"	e	enum:__anon33
+PIN_MODE_SERVO	pinModes.h	/^	PIN_MODE_SERVO = 3,$/;"	e	enum:__anon33
+PIN_MODE_UART_RX	pinModes.h	/^	PIN_MODE_UART_RX = 13,$/;"	e	enum:__anon33
+PIN_MODE_UART_TX	pinModes.h	/^	PIN_MODE_UART_TX = 14,$/;"	e	enum:__anon33
+PIN_MODE_WATCHDOG	pinModes.h	/^	PIN_MODE_WATCHDOG = 7,$/;"	e	enum:__anon33
+PIN_TYPES_H	pinRegisters.h	2;"	d
+POSSIBLE_DEPFILES	nbproject/Makefile-Optimized.mk	/^POSSIBLE_DEPFILES=${OBJECTDIR}\/mcc_generated_files\/memory\/flash.o.d ${OBJECTDIR}\/mcc_generated_files\/memory\/flash_demo.o.d ${OBJECTDIR}\/mcc_generated_files\/system.o.d ${OBJECTDIR}\/mcc_generated_files\/cvr.o.d ${OBJECTDIR}\/mcc_generated_files\/clock.o.d ${OBJECTDIR}\/mcc_generated_files\/adc1.o.d ${OBJECTDIR}\/mcc_generated_files\/interrupt_manager.o.d ${OBJECTDIR}\/mcc_generated_files\/mcc.o.d ${OBJECTDIR}\/mcc_generated_files\/pin_manager.o.d ${OBJECTDIR}\/mcc_generated_files\/crc.o.d ${OBJECTDIR}\/mcc_generated_files\/tmr1.o.d ${OBJECTDIR}\/mcc_generated_files\/tmr2.o.d ${OBJECTDIR}\/mcc_generated_files\/traps.o.d ${OBJECTDIR}\/mcc_generated_files\/tmr3.o.d ${OBJECTDIR}\/mcc_generated_files\/dma.o.d ${OBJECTDIR}\/mcc_generated_files\/uart1.o.d ${OBJECTDIR}\/mcc_generated_files\/uart2.o.d ${OBJECTDIR}\/main.o.d ${OBJECTDIR}\/utilities.o.d ${OBJECTDIR}\/uarttx.o.d ${OBJECTDIR}\/counter.o.d ${OBJECTDIR}\/wombatasm.o.d ${OBJECTDIR}\/quadEnc.o.d ${OBJECTDIR}\/pwm_follow_direct.o.d ${OBJECTDIR}\/servo.o.d$/;"	m
+POSSIBLE_DEPFILES	nbproject/Makefile-default.mk	/^POSSIBLE_DEPFILES=${OBJECTDIR}\/pic24fj256ga702\/wombatasm.o.d ${OBJECTDIR}\/pic24fj256ga702\/pinDigitalHwSpecific.o.d ${OBJECTDIR}\/pic24fj256ga702\/updatePulse.o.d ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/memory\/flash.o.d ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/memory\/flash_demo.o.d ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/adc1.o.d ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/clock.o.d ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/crc.o.d ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/cvr.o.d ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/dma.o.d ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/interrupt_manager.o.d ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/mcc.o.d ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/pin_manager.o.d ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/system.o.d ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/tmr1.o.d ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/tmr2.o.d ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/tmr3.o.d ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/traps.o.d ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/uart1.o.d ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/uart2.o.d ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/i2c1.o.d ${OBJECTDIR}\/pic24fj256ga702\/mcc_generated_files\/i2c2.o.d ${OBJECTDIR}\/quadEnc.o.d ${OBJECTDIR}\/analogOutput.o.d ${OBJECTDIR}\/main.o.d ${OBJECTDIR}\/protocol.o.d ${OBJECTDIR}\/asciiConversion.o.d ${OBJECTDIR}\/pinRegisters.o.d ${OBJECTDIR}\/queue.o.d$/;"	m
+PPSOutputVal_t	utilities.h	/^}PPSOutputVal_t;$/;"	t	typeref:enum:__anon46
+PPS_OUTPUT_C1OUT	utilities.h	/^	PPS_OUTPUT_C1OUT = 1, \/\/Comparator 1 Output$/;"	e	enum:__anon46
+PPS_OUTPUT_C2OUT	utilities.h	/^	PPS_OUTPUT_C2OUT = 2, \/\/Comparator 2 Output$/;"	e	enum:__anon46
+PPS_OUTPUT_C3OUT	utilities.h	/^	PPS_OUTPUT_C3OUT = 26, \/\/Comparator 3 Output$/;"	e	enum:__anon46
+PPS_OUTPUT_CLC1OUT	utilities.h	/^	PPS_OUTPUT_CLC1OUT = 29, \/\/CLC1 Output$/;"	e	enum:__anon46
+PPS_OUTPUT_CLC2OUT	utilities.h	/^	PPS_OUTPUT_CLC2OUT = 30, \/\/CLC2 Output$/;"	e	enum:__anon46
+PPS_OUTPUT_None	utilities.h	/^	PPS_OUTPUT_None = 0, \/\/(Pin Disabled) —$/;"	e	enum:__anon46
+PPS_OUTPUT_OC1	utilities.h	/^	PPS_OUTPUT_OC1 = 13, \/\/Output Compare 1$/;"	e	enum:__anon46
+PPS_OUTPUT_OC2	utilities.h	/^	PPS_OUTPUT_OC2 = 14, \/\/Output Compare 2$/;"	e	enum:__anon46
+PPS_OUTPUT_OC3	utilities.h	/^	PPS_OUTPUT_OC3 = 15, \/\/Output Compare 3$/;"	e	enum:__anon46
+PPS_OUTPUT_OCM2A	utilities.h	/^	PPS_OUTPUT_OCM2A = 16, \/\/CCP2A Output Compare$/;"	e	enum:__anon46
+PPS_OUTPUT_OCM2B	utilities.h	/^	PPS_OUTPUT_OCM2B = 17, \/\/CCP2B Output Compare$/;"	e	enum:__anon46
+PPS_OUTPUT_OCM3A	utilities.h	/^	PPS_OUTPUT_OCM3A = 18, \/\/CCP3A Output Compare$/;"	e	enum:__anon46
+PPS_OUTPUT_OCM3B	utilities.h	/^	PPS_OUTPUT_OCM3B = 19, \/\/CCP3B Output Compare$/;"	e	enum:__anon46
+PPS_OUTPUT_OCM4A	utilities.h	/^	PPS_OUTPUT_OCM4A = 20, \/\/CCP4A Output Compare$/;"	e	enum:__anon46
+PPS_OUTPUT_OCM4B	utilities.h	/^	PPS_OUTPUT_OCM4B = 21, \/\/CCP4B Output Compare$/;"	e	enum:__anon46
+PPS_OUTPUT_PWRGT	utilities.h	/^	PPS_OUTPUT_PWRGT = 27, \/\/RTCC Power Control$/;"	e	enum:__anon46
+PPS_OUTPUT_REFO	utilities.h	/^	PPS_OUTPUT_REFO = 28, \/\/Reference Clock Output$/;"	e	enum:__anon46
+PPS_OUTPUT_RTCC	utilities.h	/^	PPS_OUTPUT_RTCC = 31, \/\/RTCC Clock Output$/;"	e	enum:__anon46
+PPS_OUTPUT_Reserved	utilities.h	/^	PPS_OUTPUT_Reserved = 22, \/\/—$/;"	e	enum:__anon46
+PPS_OUTPUT_SCK1OUT	utilities.h	/^	PPS_OUTPUT_SCK1OUT = 8, \/\/SPI1 Clock Output$/;"	e	enum:__anon46
+PPS_OUTPUT_SCK2OUT	utilities.h	/^	PPS_OUTPUT_SCK2OUT = 11, \/\/SPI2 Clock Output$/;"	e	enum:__anon46
+PPS_OUTPUT_SCK3OUT	utilities.h	/^	PPS_OUTPUT_SCK3OUT = 24, \/\/SPI3 Clock Output$/;"	e	enum:__anon46
+PPS_OUTPUT_SDO1	utilities.h	/^	PPS_OUTPUT_SDO1 = 7, \/\/SPI1 Data Output$/;"	e	enum:__anon46
+PPS_OUTPUT_SDO2	utilities.h	/^	PPS_OUTPUT_SDO2 = 10, \/\/SPI2 Data Output$/;"	e	enum:__anon46
+PPS_OUTPUT_SDO3	utilities.h	/^	PPS_OUTPUT_SDO3 = 23, \/\/SPI3 Data Output$/;"	e	enum:__anon46
+PPS_OUTPUT_SS1OUT	utilities.h	/^	PPS_OUTPUT_SS1OUT = 9, \/\/SPI1 Slave Select Output$/;"	e	enum:__anon46
+PPS_OUTPUT_SS2OUT	utilities.h	/^	PPS_OUTPUT_SS2OUT = 12, \/\/SPI2 Slave Select Output$/;"	e	enum:__anon46
+PPS_OUTPUT_SS3OUT	utilities.h	/^	PPS_OUTPUT_SS3OUT = 25, \/\/SPI3 Slave Select Output$/;"	e	enum:__anon46
+PPS_OUTPUT_U1RTS	utilities.h	/^	PPS_OUTPUT_U1RTS = 4, \/\/UART1 Request-to-Send$/;"	e	enum:__anon46
+PPS_OUTPUT_U1TX	utilities.h	/^	PPS_OUTPUT_U1TX = 3, \/\/UART1 Transmit$/;"	e	enum:__anon46
+PPS_OUTPUT_U2RTS	utilities.h	/^	PPS_OUTPUT_U2RTS = 6, \/\/UART2 Request-to-Send$/;"	e	enum:__anon46
+PPS_OUTPUT_U2TX	utilities.h	/^	PPS_OUTPUT_U2TX = 5, \/\/UART2 Transmit$/;"	e	enum:__anon46
+PROJECTNAME	nbproject/Makefile-impl.mk	/^PROJECTNAME=SerialWombat2.X$/;"	m
+PROTOCOL_H	protocol.h	2;"	d
+PinBitmapA	pic24fj256ga702/pinDigitalHwSpecific.c	/^const uint16_t PinBitmapA[NUMBER_OF_PHYSICAL_PINS] = $/;"	v
+PinBitmapB	pic24fj256ga702/pinDigitalHwSpecific.c	/^const uint16_t PinBitmapB[NUMBER_OF_PHYSICAL_PINS] = $/;"	v
+PinHigh	pic24fj256ga702/pinDigitalHwSpecific.c	/^void PinHigh(uint8_t pin)$/;"	f
+PinInput	pic24fj256ga702/pinDigitalHwSpecific.c	/^void PinInput(uint8_t pin)$/;"	f
+PinIsAnalogCapable	pic24fj256ga702/pinDigitalHwSpecific.c	/^bool PinIsAnalogCapable(uint8_t pin)$/;"	f
+PinLow	pic24fj256ga702/pinDigitalHwSpecific.c	/^void PinLow(uint8_t pin)$/;"	f
+PinOutput	pic24fj256ga702/pinDigitalHwSpecific.c	/^void PinOutput(uint8_t pin)$/;"	f
+PinToAdBuffer	utilities.c	/^uint8_t PinToAdBuffer[NUMBER_OF_PHYSICAL_PINS] =$/;"	v
+PinUpdateRegisters	pinRegisters.c	/^pinRegister_t PinUpdateRegisters[NUMBER_OF_TOTAL_PINS];$/;"	v
+ProcessPins	main.c	/^void ProcessPins()$/;"	f
+ProcessRx	protocol.c	/^void ProcessRx(void)$/;"	f
+ProcessRxbuffer	protocol.c	/^void ProcessRxbuffer( void )$/;"	f
+ProcessSetPin	protocol.c	/^void ProcessSetPin()$/;"	f
+QUEUE_ADDRESS	utilities.c	1560;"	d	file:
+QUEUE_FULL_INDEX	queue.c	40;"	d	file:
+QUEUE_MARKER_QUEUE_BYTE	queue.c	17;"	d	file:
+QUEUE_RESULT_EMPTY	queue.h	/^	QUEUE_RESULT_EMPTY = 5,$/;"	e	enum:__anon36
+QUEUE_RESULT_FULL	queue.h	/^	QUEUE_RESULT_FULL = 4,$/;"	e	enum:__anon36
+QUEUE_RESULT_INSUFFICIENT_USER_SPACE	queue.h	/^	QUEUE_RESULT_INSUFFICIENT_USER_SPACE = 1,$/;"	e	enum:__anon36
+QUEUE_RESULT_INVALID_QUEUE	queue.h	/^	QUEUE_RESULT_INVALID_QUEUE = 3,$/;"	e	enum:__anon36
+QUEUE_RESULT_SUCCESS	queue.h	/^	QUEUE_RESULT_SUCCESS = 0,$/;"	e	enum:__anon36
+QUEUE_RESULT_UNALIGNED_ADDRESS	queue.h	/^	QUEUE_RESULT_UNALIGNED_ADDRESS = 2,$/;"	e	enum:__anon36
+QUEUE_RESULT_t	queue.h	/^}QUEUE_RESULT_t;$/;"	t	typeref:enum:__anon36
+QUEUE_SIZE	utilities.c	1561;"	d	file:
+QueueAddByte	queue.c	/^QUEUE_RESULT_t QueueAddByte(uint16_t address, uint8_t data)$/;"	f
+QueueByteAddByte	queue.c	/^static QUEUE_RESULT_t QueueByteAddByte(uint16_t address, uint8_t data)$/;"	f	file:
+QueueByteInitialize	queue.c	/^QUEUE_RESULT_t QueueByteInitialize(uint16_t address, uint16_t capacity)$/;"	f
+QueueByteReadByte	queue.c	/^static QUEUE_RESULT_t QueueByteReadByte(uint16_t address, uint8_t* data)$/;"	f	file:
+QueueBytesInByteQueue	queue.c	/^static uint16_t QueueBytesInByteQueue(address)$/;"	f	file:
+QueueBytesInQueue	queue.c	/^QUEUE_RESULT_t QueueBytesInQueue(uint16_t address,uint16_t* bytesInQueue )$/;"	f
+QueueOverflowCounter	queue.c	/^uint16_t QueueOverflowCounter = 0;$/;"	v
+QueueReadByte	queue.c	/^QUEUE_RESULT_t QueueReadByte(uint16_t address, uint8_t* data)$/;"	f
+QueueUnderflowCounter	queue.c	/^uint16_t QueueUnderflowCounter = 0;$/;"	v
+RANDOM_ENABLE	utilities.h	12;"	d
+RANLIB	Makefile	/^RANLIB=ranlib$/;"	m
+RM	nbproject/Makefile-Optimized.mk	/^RM=rm -f $/;"	m
+RM	nbproject/Makefile-default.mk	/^RM=rm -f $/;"	m
+RSpin	types.h	/^	      uint8 RSpin;$/;"	m	struct:_pin_register_t::hd44780_n
+RXBUFFER16	protocol.h	45;"	d
+RXBUFFER16	utilities.h	124;"	d
+RXBUFFER_LENGTH	serialWombat.h	14;"	d
+ReadPin	pic24fj256ga702/pinDigitalHwSpecific.c	/^uint8_t ReadPin(uint8_t pin)$/;"	f
+RunForeground	main.c	/^ bool RunForeground = false;$/;"	v
+Rxbuffer	protocol.c	/^uint8_t Rxbuffer[RXBUFFER_LENGTH];$/;"	v
+SERIALWOMBAT_H	serialWombat.h	2;"	d
+SET_BAUD_RATE	utilities.h	160;"	d
+SET_BAUD_RATE	utilities.h	162;"	d
+SHELL	nbproject/Makefile-local-Optimized.mk	/^SHELL=cmd.exe$/;"	m
+SHELL	nbproject/Makefile-local-default.mk	/^SHELL=cmd.exe$/;"	m
+SIZE_OF_DMA_ARRAY	pic24fj256ga702/pinDigitalHwSpecific.h	4;"	d
+SIZE_OF_DMA_ARRAY	utilities.h	6;"	d
+SIZE_OF_USER_BUFFER	pic24fj256ga702/deviceSpecific.h	13;"	d
+SIZE_OF_USER_BUFFER	utilities.h	18;"	d
+SOURCEFILES	nbproject/Makefile-Optimized.mk	/^SOURCEFILES=mcc_generated_files\/memory\/flash.s mcc_generated_files\/memory\/flash_demo.c mcc_generated_files\/system.c mcc_generated_files\/cvr.c mcc_generated_files\/clock.c mcc_generated_files\/adc1.c mcc_generated_files\/interrupt_manager.c mcc_generated_files\/mcc.c mcc_generated_files\/pin_manager.c mcc_generated_files\/crc.c mcc_generated_files\/tmr1.c mcc_generated_files\/tmr2.c mcc_generated_files\/traps.c mcc_generated_files\/tmr3.c mcc_generated_files\/dma.c mcc_generated_files\/uart1.c mcc_generated_files\/uart2.c main.c utilities.c uarttx.c counter.c wombatasm.s quadEnc.c pwm_follow_direct.c servo.c$/;"	m
+SOURCEFILES	nbproject/Makefile-default.mk	/^SOURCEFILES=pic24fj256ga702\/wombatasm.s pic24fj256ga702\/pinDigitalHwSpecific.c pic24fj256ga702\/updatePulse.c pic24fj256ga702\/mcc_generated_files\/memory\/flash.s pic24fj256ga702\/mcc_generated_files\/memory\/flash_demo.c pic24fj256ga702\/mcc_generated_files\/adc1.c pic24fj256ga702\/mcc_generated_files\/clock.c pic24fj256ga702\/mcc_generated_files\/crc.c pic24fj256ga702\/mcc_generated_files\/cvr.c pic24fj256ga702\/mcc_generated_files\/dma.c pic24fj256ga702\/mcc_generated_files\/interrupt_manager.c pic24fj256ga702\/mcc_generated_files\/mcc.c pic24fj256ga702\/mcc_generated_files\/pin_manager.c pic24fj256ga702\/mcc_generated_files\/system.c pic24fj256ga702\/mcc_generated_files\/tmr1.c pic24fj256ga702\/mcc_generated_files\/tmr2.c pic24fj256ga702\/mcc_generated_files\/tmr3.c pic24fj256ga702\/mcc_generated_files\/traps.c pic24fj256ga702\/mcc_generated_files\/uart1.c pic24fj256ga702\/mcc_generated_files\/uart2.c pic24fj256ga702\/mcc_generated_files\/i2c1.c pic24fj256ga702\/mcc_generated_files\/i2c2.c quadEnc.c analogOutput.c main.c protocol.c asciiConversion.c pinRegisters.c queue.c$/;"	m
+SOURCEFILES_QUOTED_IF_SPACED	nbproject/Makefile-Optimized.mk	/^SOURCEFILES_QUOTED_IF_SPACED=mcc_generated_files\/memory\/flash.s mcc_generated_files\/memory\/flash_demo.c mcc_generated_files\/system.c mcc_generated_files\/cvr.c mcc_generated_files\/clock.c mcc_generated_files\/adc1.c mcc_generated_files\/interrupt_manager.c mcc_generated_files\/mcc.c mcc_generated_files\/pin_manager.c mcc_generated_files\/crc.c mcc_generated_files\/tmr1.c mcc_generated_files\/tmr2.c mcc_generated_files\/traps.c mcc_generated_files\/tmr3.c mcc_generated_files\/dma.c mcc_generated_files\/uart1.c mcc_generated_files\/uart2.c main.c utilities.c uarttx.c counter.c wombatasm.s quadEnc.c pwm_follow_direct.c servo.c$/;"	m
+SOURCEFILES_QUOTED_IF_SPACED	nbproject/Makefile-default.mk	/^SOURCEFILES_QUOTED_IF_SPACED=pic24fj256ga702\/wombatasm.s pic24fj256ga702\/pinDigitalHwSpecific.c pic24fj256ga702\/updatePulse.c pic24fj256ga702\/mcc_generated_files\/memory\/flash.s pic24fj256ga702\/mcc_generated_files\/memory\/flash_demo.c pic24fj256ga702\/mcc_generated_files\/adc1.c pic24fj256ga702\/mcc_generated_files\/clock.c pic24fj256ga702\/mcc_generated_files\/crc.c pic24fj256ga702\/mcc_generated_files\/cvr.c pic24fj256ga702\/mcc_generated_files\/dma.c pic24fj256ga702\/mcc_generated_files\/interrupt_manager.c pic24fj256ga702\/mcc_generated_files\/mcc.c pic24fj256ga702\/mcc_generated_files\/pin_manager.c pic24fj256ga702\/mcc_generated_files\/system.c pic24fj256ga702\/mcc_generated_files\/tmr1.c pic24fj256ga702\/mcc_generated_files\/tmr2.c pic24fj256ga702\/mcc_generated_files\/tmr3.c pic24fj256ga702\/mcc_generated_files\/traps.c pic24fj256ga702\/mcc_generated_files\/uart1.c pic24fj256ga702\/mcc_generated_files\/uart2.c pic24fj256ga702\/mcc_generated_files\/i2c1.c pic24fj256ga702\/mcc_generated_files\/i2c2.c quadEnc.c analogOutput.c main.c protocol.c asciiConversion.c pinRegisters.c queue.c$/;"	m
+START_BIT_VALUE	uarttx.c	43;"	d	file:
+STATE_DATA	uarttx.c	40;"	d	file:
+STATE_IDLE	uarttx.c	38;"	d	file:
+STATE_START_BIT	uarttx.c	39;"	d	file:
+STATE_STOP_BIT	uarttx.c	41;"	d	file:
+STOP_BIT_VALUE	uarttx.c	45;"	d	file:
+STRING_QUEUE_SIZE	utilities.c	1944;"	d	file:
+SUBPROJECTS	nbproject/Makefile-impl.mk	/^SUBPROJECTS=${SUB_${SUB}}$/;"	m
+SUB_IMAGE_ADDRESS_COMMAND	nbproject/Makefile-Optimized.mk	/^SUB_IMAGE_ADDRESS_COMMAND=$/;"	m
+SUB_IMAGE_ADDRESS_COMMAND	nbproject/Makefile-Optimized.mk	/^SUB_IMAGE_ADDRESS_COMMAND=--image-address $(SUB_IMAGE_ADDRESS)$/;"	m
+SUB_IMAGE_ADDRESS_COMMAND	nbproject/Makefile-default.mk	/^SUB_IMAGE_ADDRESS_COMMAND=$/;"	m
+SUB_IMAGE_ADDRESS_COMMAND	nbproject/Makefile-default.mk	/^SUB_IMAGE_ADDRESS_COMMAND=--image-address $(SUB_IMAGE_ADDRESS)$/;"	m
+SUB_no	nbproject/Makefile-impl.mk	/^SUB_no=NO$/;"	m
+SYSINFO_AD_INTERRUPTS	utilities.h	301;"	d
+SYSINFO_BAUD_RATE	utilities.h	306;"	d
+SYSINFO_CHIP_ID	utilities.h	304;"	d
+SYSINFO_CONFIG_BITS_1	utilities.h	295;"	d
+SYSINFO_CONFIG_BITS_2	utilities.h	296;"	d
+SYSINFO_CONFIG_BITS_3	utilities.h	297;"	d
+SYSINFO_FRAME_COUNTER	utilities.h	298;"	d
+SYSINFO_FRAME_DATA	utilities.h	305;"	d
+SYSINFO_FREE_RUNNING_TIMER	utilities.h	303;"	d
+SYSINFO_RESET_REGISTER	utilities.h	307;"	d
+SYSINFO_RX_INTERRUPTS	utilities.h	299;"	d
+SYSINFO_THROUGHPUT_INFO	utilities.h	302;"	d
+SYSINFO_TX_INTERRUPTS	utilities.h	300;"	d
+SYSINFO_USER_RAM_SIZE	utilities.h	308;"	d
+SYSINFO_VERSION	utilities.h	294;"	d
+SYSTEM_H	pic24fj256ga702/mcc_generated_files/system.h	49;"	d
+SYSTEM_Initialize	pic24fj256ga702/mcc_generated_files/system.c	/^void SYSTEM_Initialize(void)$/;"	f
+S_MASTER_10BIT_RESTART	pic24fj256ga702/mcc_generated_files/i2c1.c	/^    S_MASTER_10BIT_RESTART,$/;"	e	enum:__anon15	file:
+S_MASTER_10BIT_RESTART	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^    S_MASTER_10BIT_RESTART,$/;"	e	enum:__anon25	file:
+S_MASTER_ACK_ADDR	pic24fj256ga702/mcc_generated_files/i2c1.c	/^    S_MASTER_ACK_ADDR,$/;"	e	enum:__anon15	file:
+S_MASTER_ACK_ADDR	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^    S_MASTER_ACK_ADDR,$/;"	e	enum:__anon25	file:
+S_MASTER_ACK_RCV_DATA	pic24fj256ga702/mcc_generated_files/i2c1.c	/^    S_MASTER_ACK_RCV_DATA,$/;"	e	enum:__anon15	file:
+S_MASTER_ACK_RCV_DATA	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^    S_MASTER_ACK_RCV_DATA,$/;"	e	enum:__anon25	file:
+S_MASTER_IDLE	pic24fj256ga702/mcc_generated_files/i2c1.c	/^    S_MASTER_IDLE,$/;"	e	enum:__anon15	file:
+S_MASTER_IDLE	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^    S_MASTER_IDLE,$/;"	e	enum:__anon25	file:
+S_MASTER_NOACK_STOP	pic24fj256ga702/mcc_generated_files/i2c1.c	/^    S_MASTER_NOACK_STOP,$/;"	e	enum:__anon15	file:
+S_MASTER_NOACK_STOP	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^    S_MASTER_NOACK_STOP,$/;"	e	enum:__anon25	file:
+S_MASTER_RCV_DATA	pic24fj256ga702/mcc_generated_files/i2c1.c	/^    S_MASTER_RCV_DATA,$/;"	e	enum:__anon15	file:
+S_MASTER_RCV_DATA	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^    S_MASTER_RCV_DATA,$/;"	e	enum:__anon25	file:
+S_MASTER_RCV_STOP	pic24fj256ga702/mcc_generated_files/i2c1.c	/^    S_MASTER_RCV_STOP,$/;"	e	enum:__anon15	file:
+S_MASTER_RCV_STOP	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^    S_MASTER_RCV_STOP,$/;"	e	enum:__anon25	file:
+S_MASTER_RESTART	pic24fj256ga702/mcc_generated_files/i2c1.c	/^    S_MASTER_RESTART,$/;"	e	enum:__anon15	file:
+S_MASTER_RESTART	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^    S_MASTER_RESTART,$/;"	e	enum:__anon25	file:
+S_MASTER_SEND_ADDR	pic24fj256ga702/mcc_generated_files/i2c1.c	/^    S_MASTER_SEND_ADDR,$/;"	e	enum:__anon15	file:
+S_MASTER_SEND_ADDR	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^    S_MASTER_SEND_ADDR,$/;"	e	enum:__anon25	file:
+S_MASTER_SEND_ADDR_10BIT_LSB	pic24fj256ga702/mcc_generated_files/i2c1.c	/^    S_MASTER_SEND_ADDR_10BIT_LSB,$/;"	e	enum:__anon15	file:
+S_MASTER_SEND_ADDR_10BIT_LSB	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^    S_MASTER_SEND_ADDR_10BIT_LSB,$/;"	e	enum:__anon25	file:
+S_MASTER_SEND_DATA	pic24fj256ga702/mcc_generated_files/i2c1.c	/^    S_MASTER_SEND_DATA,$/;"	e	enum:__anon15	file:
+S_MASTER_SEND_DATA	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^    S_MASTER_SEND_DATA,$/;"	e	enum:__anon25	file:
+S_MASTER_SEND_STOP	pic24fj256ga702/mcc_generated_files/i2c1.c	/^    S_MASTER_SEND_STOP,$/;"	e	enum:__anon15	file:
+S_MASTER_SEND_STOP	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^    S_MASTER_SEND_STOP,$/;"	e	enum:__anon25	file:
+S_SLAVE_IDLE	pic24fj256ga702/mcc_generated_files/i2c2.c	/^    S_SLAVE_IDLE,$/;"	e	enum:__anon19	file:
+S_SLAVE_LOW_BYTE_ADDRESS_DETECT	pic24fj256ga702/mcc_generated_files/i2c2.c	/^    S_SLAVE_LOW_BYTE_ADDRESS_DETECT,$/;"	e	enum:__anon19	file:
+S_SLAVE_RECEIVE_MODE	pic24fj256ga702/mcc_generated_files/i2c2.c	/^    S_SLAVE_RECEIVE_MODE,$/;"	e	enum:__anon19	file:
+S_SLAVE_TRANSMIT_MODE	pic24fj256ga702/mcc_generated_files/i2c2.c	/^    S_SLAVE_TRANSMIT_MODE,$/;"	e	enum:__anon19	file:
+SetBuffer	pinRegisters.c	/^void SetBuffer(uint8_t pin, uint16_t value)$/;"	f
+SetMode	pinRegisters.c	/^void SetMode(uint8_t pin, uint8_t mode)$/;"	f
+SetPin	pic24fj256ga702/pinDigitalHwSpecific.c	/^void SetPin(uint8_t pin, uint8_t pinState)$/;"	f
+System1msCount	pic24fj256ga702/mcc_generated_files/tmr2.c	/^volatile uint32_t System1msCount = 0;$/;"	v
+TEST_UTILITIES	utilities.c	1538;"	d	file:
+TMR1_Counter16BitGet	pic24fj256ga702/mcc_generated_files/tmr1.c	/^uint16_t TMR1_Counter16BitGet( void )$/;"	f
+TMR1_Counter16BitSet	pic24fj256ga702/mcc_generated_files/tmr1.c	/^void TMR1_Counter16BitSet ( uint16_t value )$/;"	f
+TMR1_GetElapsedThenClear	pic24fj256ga702/mcc_generated_files/tmr1.c	/^bool TMR1_GetElapsedThenClear(void)$/;"	f
+TMR1_Initialize	pic24fj256ga702/mcc_generated_files/tmr1.c	/^void TMR1_Initialize (void)$/;"	f
+TMR1_InterruptHandler	pic24fj256ga702/mcc_generated_files/tmr1.c	/^void (*TMR1_InterruptHandler)(void) = NULL;$/;"	v
+TMR1_Period16BitGet	pic24fj256ga702/mcc_generated_files/tmr1.c	/^uint16_t TMR1_Period16BitGet( void )$/;"	f
+TMR1_Period16BitSet	pic24fj256ga702/mcc_generated_files/tmr1.c	/^void TMR1_Period16BitSet( uint16_t value )$/;"	f
+TMR1_SoftwareCounterClear	pic24fj256ga702/mcc_generated_files/tmr1.c	/^void TMR1_SoftwareCounterClear(void)$/;"	f
+TMR1_SoftwareCounterGet	pic24fj256ga702/mcc_generated_files/tmr1.c	/^int TMR1_SoftwareCounterGet(void)$/;"	f
+TMR1_Start	pic24fj256ga702/mcc_generated_files/tmr1.c	/^void TMR1_Start( void )$/;"	f
+TMR1_Stop	pic24fj256ga702/mcc_generated_files/tmr1.c	/^void TMR1_Stop( void )$/;"	f
+TMR1_Tasks_16BitOperation	pic24fj256ga702/mcc_generated_files/tmr1.c	/^void TMR1_Tasks_16BitOperation( void )$/;"	f
+TMR2_CallBack	pic24fj256ga702/mcc_generated_files/tmr2.c	/^void __attribute__ ((weak)) TMR2_CallBack(void)$/;"	f
+TMR2_Counter16BitGet	pic24fj256ga702/mcc_generated_files/tmr2.c	/^uint16_t TMR2_Counter16BitGet( void )$/;"	f
+TMR2_Counter16BitSet	pic24fj256ga702/mcc_generated_files/tmr2.c	/^void TMR2_Counter16BitSet ( uint16_t value )$/;"	f
+TMR2_GetElapsedThenClear	pic24fj256ga702/mcc_generated_files/tmr2.c	/^bool TMR2_GetElapsedThenClear(void)$/;"	f
+TMR2_INTERRUPT_TICKER_FACTOR	pic24fj256ga702/mcc_generated_files/tmr2.h	62;"	d
+TMR2_Initialize	pic24fj256ga702/mcc_generated_files/tmr2.c	/^void TMR2_Initialize (void)$/;"	f
+TMR2_InterruptHandler	pic24fj256ga702/mcc_generated_files/tmr2.c	/^void (*TMR2_InterruptHandler)(void) = NULL;$/;"	v
+TMR2_Period16BitGet	pic24fj256ga702/mcc_generated_files/tmr2.c	/^uint16_t TMR2_Period16BitGet( void )$/;"	f
+TMR2_Period16BitSet	pic24fj256ga702/mcc_generated_files/tmr2.c	/^void TMR2_Period16BitSet( uint16_t value )$/;"	f
+TMR2_SetInterruptHandler	pic24fj256ga702/mcc_generated_files/tmr2.c	/^void  TMR2_SetInterruptHandler(void (* InterruptHandler)(void))$/;"	f
+TMR2_SoftwareCounterClear	pic24fj256ga702/mcc_generated_files/tmr2.c	/^void TMR2_SoftwareCounterClear(void)$/;"	f
+TMR2_SoftwareCounterGet	pic24fj256ga702/mcc_generated_files/tmr2.c	/^int TMR2_SoftwareCounterGet(void)$/;"	f
+TMR2_Start	pic24fj256ga702/mcc_generated_files/tmr2.c	/^void TMR2_Start( void )$/;"	f
+TMR2_Stop	pic24fj256ga702/mcc_generated_files/tmr2.c	/^void TMR2_Stop( void )$/;"	f
+TMR3_Counter16BitGet	pic24fj256ga702/mcc_generated_files/tmr3.c	/^uint16_t TMR3_Counter16BitGet( void )$/;"	f
+TMR3_Counter16BitSet	pic24fj256ga702/mcc_generated_files/tmr3.c	/^void TMR3_Counter16BitSet ( uint16_t value )$/;"	f
+TMR3_GetElapsedThenClear	pic24fj256ga702/mcc_generated_files/tmr3.c	/^bool TMR3_GetElapsedThenClear(void)$/;"	f
+TMR3_Initialize	pic24fj256ga702/mcc_generated_files/tmr3.c	/^void TMR3_Initialize (void)$/;"	f
+TMR3_InterruptHandler	pic24fj256ga702/mcc_generated_files/tmr3.c	/^void (*TMR3_InterruptHandler)(void) = NULL;$/;"	v
+TMR3_Period16BitGet	pic24fj256ga702/mcc_generated_files/tmr3.c	/^uint16_t TMR3_Period16BitGet( void )$/;"	f
+TMR3_Period16BitSet	pic24fj256ga702/mcc_generated_files/tmr3.c	/^void TMR3_Period16BitSet( uint16_t value )$/;"	f
+TMR3_SoftwareCounterClear	pic24fj256ga702/mcc_generated_files/tmr3.c	/^void TMR3_SoftwareCounterClear(void)$/;"	f
+TMR3_SoftwareCounterGet	pic24fj256ga702/mcc_generated_files/tmr3.c	/^int TMR3_SoftwareCounterGet(void)$/;"	f
+TMR3_Start	pic24fj256ga702/mcc_generated_files/tmr3.c	/^void TMR3_Start( void )$/;"	f
+TMR3_Stop	pic24fj256ga702/mcc_generated_files/tmr3.c	/^void TMR3_Stop( void )$/;"	f
+TMR3_Tasks_16BitOperation	pic24fj256ga702/mcc_generated_files/tmr3.c	/^void TMR3_Tasks_16BitOperation( void )$/;"	f
+TMR_OBJ	pic24fj256ga702/mcc_generated_files/tmr1.c	/^} TMR_OBJ;$/;"	t	typeref:struct:_TMR_OBJ_STRUCT	file:
+TMR_OBJ	pic24fj256ga702/mcc_generated_files/tmr2.c	/^} TMR_OBJ;$/;"	t	typeref:struct:_TMR_OBJ_STRUCT	file:
+TMR_OBJ	pic24fj256ga702/mcc_generated_files/tmr3.c	/^} TMR_OBJ;$/;"	t	typeref:struct:_TMR_OBJ_STRUCT	file:
+TRANSFORM_TYPE_DIRECT	analogOutput.c	/^ TRANSFORM_TYPE_DIRECT = 0,$/;"	e	enum:__anon1	file:
+TRANSFORM_TYPE_LINEAR	analogOutput.c	/^ TRANSFORM_TYPE_LINEAR = 1,$/;"	e	enum:__anon1	file:
+TRAPS_ADDRESS_ERR	pic24fj256ga702/mcc_generated_files/traps.h	/^    TRAPS_ADDRESS_ERR = 2, \/** Address Error Trap Vector *\/$/;"	e	enum:__anon26
+TRAPS_ERROR_CODE	pic24fj256ga702/mcc_generated_files/traps.h	/^} TRAPS_ERROR_CODE;$/;"	t	typeref:enum:__anon26
+TRAPS_MATH_ERR	pic24fj256ga702/mcc_generated_files/traps.h	/^    TRAPS_MATH_ERR = 3, \/** Math Error Trap Vector *\/$/;"	e	enum:__anon26
+TRAPS_NVM_ERR	pic24fj256ga702/mcc_generated_files/traps.h	/^    TRAPS_NVM_ERR = 7, \/** NVM Error Trap Vector *\/$/;"	e	enum:__anon26
+TRAPS_OSC_FAIL	pic24fj256ga702/mcc_generated_files/traps.h	/^    TRAPS_OSC_FAIL = 0, \/** Oscillator Fail Trap vector *\/$/;"	e	enum:__anon26
+TRAPS_STACK_ERR	pic24fj256ga702/mcc_generated_files/traps.h	/^    TRAPS_STACK_ERR = 1, \/** Stack Error Trap Vector *\/$/;"	e	enum:__anon26
+TRAPS_error_code	pic24fj256ga702/mcc_generated_files/traps.c	/^static uint16_t TRAPS_error_code = -1;$/;"	v	file:
+TRAPS_halt_on_error	pic24fj256ga702/mcc_generated_files/traps.c	/^void __attribute__((weak)) TRAPS_halt_on_error(uint16_t code)$/;"	f
+TXBUFFER16	protocol.h	46;"	d
+TXBUFFER_LENGTH	serialWombat.h	17;"	d
+TotalRxBytes	pic24fj256ga702/mcc_generated_files/uart1.c	/^uint32_t TotalRxBytes = 0;$/;"	v
+Txbuffer	protocol.c	/^uint8_t Txbuffer[TXBUFFER_LENGTH];$/;"	v
+UART1_CONFIG_RX_BYTEQ_LENGTH	pic24fj256ga702/mcc_generated_files/uart1.c	109;"	d	file:
+UART1_CONFIG_TX_BYTEQ_LENGTH	pic24fj256ga702/mcc_generated_files/uart1.c	108;"	d	file:
+UART1_Disable	pic24fj256ga702/mcc_generated_files/uart1.c	/^void UART1_Disable(void)$/;"	f
+UART1_Enable	pic24fj256ga702/mcc_generated_files/uart1.c	/^void UART1_Enable(void)$/;"	f
+UART1_FRAMING_ERROR	pic24fj256ga702/mcc_generated_files/uart1.h	/^    UART1_FRAMING_ERROR$/;"	e	enum:__anon30
+UART1_H	pic24fj256ga702/mcc_generated_files/uart1.h	46;"	d
+UART1_Initialize	pic24fj256ga702/mcc_generated_files/uart1.c	/^void UART1_Initialize(void)$/;"	f
+UART1_PARITY_ERROR	pic24fj256ga702/mcc_generated_files/uart1.h	/^    UART1_PARITY_ERROR$/;"	e	enum:__anon30
+UART1_Peek	pic24fj256ga702/mcc_generated_files/uart1.c	/^uint8_t UART1_Peek(uint16_t offset)$/;"	f
+UART1_PeekSafe	pic24fj256ga702/mcc_generated_files/uart1.c	/^bool UART1_PeekSafe(uint8_t *dataByte, uint16_t offset)$/;"	f
+UART1_RECEIVER_IDLE	pic24fj256ga702/mcc_generated_files/uart1.h	/^    UART1_RECEIVER_IDLE$/;"	e	enum:__anon30
+UART1_RX_DATA_AVAILABLE	pic24fj256ga702/mcc_generated_files/uart1.h	/^    UART1_RX_DATA_AVAILABLE$/;"	e	enum:__anon30
+UART1_RX_OVERRUN_ERROR	pic24fj256ga702/mcc_generated_files/uart1.h	/^    UART1_RX_OVERRUN_ERROR$/;"	e	enum:__anon30
+UART1_Read	pic24fj256ga702/mcc_generated_files/uart1.c	/^uint8_t UART1_Read( void)$/;"	f
+UART1_ReadBuffer	pic24fj256ga702/mcc_generated_files/uart1.c	/^unsigned int UART1_ReadBuffer( uint8_t *buffer, const unsigned int bufLen)$/;"	f
+UART1_ReceiveBufferIsEmpty	pic24fj256ga702/mcc_generated_files/uart1.c	/^bool UART1_ReceiveBufferIsEmpty (void)$/;"	f
+UART1_ReceiveBufferSizeGet	pic24fj256ga702/mcc_generated_files/uart1.c	/^unsigned int UART1_ReceiveBufferSizeGet(void)$/;"	f
+UART1_STATUS	pic24fj256ga702/mcc_generated_files/uart1.h	/^} UART1_STATUS;$/;"	t	typeref:enum:__anon30
+UART1_StatusGet	pic24fj256ga702/mcc_generated_files/uart1.c	/^uint16_t UART1_StatusGet (void)$/;"	f
+UART1_TRANSFER_STATUS	pic24fj256ga702/mcc_generated_files/uart1.h	/^} UART1_TRANSFER_STATUS;$/;"	t	typeref:enum:__anon31
+UART1_TRANSFER_STATUS_RX_DATA_PRESENT	pic24fj256ga702/mcc_generated_files/uart1.h	/^    UART1_TRANSFER_STATUS_RX_DATA_PRESENT$/;"	e	enum:__anon31
+UART1_TRANSFER_STATUS_RX_EMPTY	pic24fj256ga702/mcc_generated_files/uart1.h	/^    UART1_TRANSFER_STATUS_RX_EMPTY$/;"	e	enum:__anon31
+UART1_TRANSFER_STATUS_RX_FULL	pic24fj256ga702/mcc_generated_files/uart1.h	/^    UART1_TRANSFER_STATUS_RX_FULL$/;"	e	enum:__anon31
+UART1_TRANSFER_STATUS_TX_EMPTY	pic24fj256ga702/mcc_generated_files/uart1.h	/^    UART1_TRANSFER_STATUS_TX_EMPTY$/;"	e	enum:__anon31
+UART1_TRANSFER_STATUS_TX_FULL	pic24fj256ga702/mcc_generated_files/uart1.h	/^    UART1_TRANSFER_STATUS_TX_FULL$/;"	e	enum:__anon31
+UART1_TX_COMPLETE	pic24fj256ga702/mcc_generated_files/uart1.h	/^    UART1_TX_COMPLETE$/;"	e	enum:__anon30
+UART1_TX_FULL	pic24fj256ga702/mcc_generated_files/uart1.h	/^    UART1_TX_FULL$/;"	e	enum:__anon30
+UART1_TransferStatusGet	pic24fj256ga702/mcc_generated_files/uart1.c	/^UART1_TRANSFER_STATUS UART1_TransferStatusGet (void )$/;"	f
+UART1_TransmitBufferIsFull	pic24fj256ga702/mcc_generated_files/uart1.c	/^bool UART1_TransmitBufferIsFull(void)$/;"	f
+UART1_TransmitBufferSizeGet	pic24fj256ga702/mcc_generated_files/uart1.c	/^unsigned int UART1_TransmitBufferSizeGet(void)$/;"	f
+UART1_Write	pic24fj256ga702/mcc_generated_files/uart1.c	/^void UART1_Write( const uint8_t byte)$/;"	f
+UART1_WriteBuffer	pic24fj256ga702/mcc_generated_files/uart1.c	/^unsigned int UART1_WriteBuffer( const uint8_t *buffer , const unsigned int bufLen )$/;"	f
+UART2_DataReady	pic24fj256ga702/mcc_generated_files/uart2.h	113;"	d
+UART2_Disable	pic24fj256ga702/mcc_generated_files/uart2.c	/^void UART2_Disable(void)$/;"	f
+UART2_Enable	pic24fj256ga702/mcc_generated_files/uart2.c	/^void UART2_Enable(void)$/;"	f
+UART2_FRAMING_ERROR	pic24fj256ga702/mcc_generated_files/uart2.h	/^    UART2_FRAMING_ERROR$/;"	e	enum:__anon32
+UART2_H	pic24fj256ga702/mcc_generated_files/uart2.h	46;"	d
+UART2_Initialize	pic24fj256ga702/mcc_generated_files/uart2.c	/^void UART2_Initialize(void)$/;"	f
+UART2_PARITY_ERROR	pic24fj256ga702/mcc_generated_files/uart2.h	/^    UART2_PARITY_ERROR$/;"	e	enum:__anon32
+UART2_RECEIVER_IDLE	pic24fj256ga702/mcc_generated_files/uart2.h	/^    UART2_RECEIVER_IDLE$/;"	e	enum:__anon32
+UART2_RX_DATA_AVAILABLE	pic24fj256ga702/mcc_generated_files/uart2.h	/^    UART2_RX_DATA_AVAILABLE$/;"	e	enum:__anon32
+UART2_RX_OVERRUN_ERROR	pic24fj256ga702/mcc_generated_files/uart2.h	/^    UART2_RX_OVERRUN_ERROR$/;"	e	enum:__anon32
+UART2_Read	pic24fj256ga702/mcc_generated_files/uart2.c	/^uint8_t UART2_Read(void)$/;"	f
+UART2_STATUS	pic24fj256ga702/mcc_generated_files/uart2.h	/^} UART2_STATUS;$/;"	t	typeref:enum:__anon32
+UART2_StatusGet	pic24fj256ga702/mcc_generated_files/uart2.c	/^uint16_t UART2_StatusGet (void)$/;"	f
+UART2_TX_COMPLETE	pic24fj256ga702/mcc_generated_files/uart2.h	/^    UART2_TX_COMPLETE$/;"	e	enum:__anon32
+UART2_TX_FULL	pic24fj256ga702/mcc_generated_files/uart2.h	/^    UART2_TX_FULL$/;"	e	enum:__anon32
+UART2_Write	pic24fj256ga702/mcc_generated_files/uart2.c	/^void UART2_Write(uint8_t txData)$/;"	f
+UART_ACTIVE	uarttx.c	12;"	d	file:
+UART_BYTEQ_STATUS	pic24fj256ga702/mcc_generated_files/uart1.c	/^UART_BYTEQ_STATUS;$/;"	t	typeref:union:__anon27	file:
+UART_INACTIVE	uarttx.c	13;"	d	file:
+UART_OBJECT	pic24fj256ga702/mcc_generated_files/uart1.c	/^} UART_OBJECT ;$/;"	t	typeref:struct:__anon29	file:
+USER_MEMORY_ENABLE	utilities.h	19;"	d
+UartRxbufferCounter	protocol.c	/^uint8_t UartRxbufferCounter = 0;$/;"	v
+UartTxbufferCounter	protocol.c	/^uint8_t UartTxbufferCounter = 0;$/;"	v
+_ADC1Interrupt	pic24fj256ga702/mcc_generated_files/adc1.c	/^void __attribute__ ( ( __interrupt__ , auto_psv ) ) _ADC1Interrupt ( void )$/;"	f
+_ADC1_H	pic24fj256ga702/mcc_generated_files/adc1.h	46;"	d
+_AddressError	pic24fj256ga702/mcc_generated_files/traps.c	/^void ERROR_HANDLER _AddressError(void)$/;"	f
+_CRC_H	pic24fj256ga702/mcc_generated_files/crc.h	46;"	d
+_CVR_H	pic24fj256ga702/mcc_generated_files/cvr.h	47;"	d
+_DMA0Interrupt	pic24fj256ga702/mcc_generated_files/dma.c	/^void __attribute__ ( ( interrupt, no_auto_psv ) ) _DMA0Interrupt( void )$/;"	f
+_FLASH_ErasePage	pic24fj256ga702/mcc_generated_files/memory/flash.s	/^_FLASH_ErasePage:$/;"	l
+_FLASH_GetErasePageAddress	pic24fj256ga702/mcc_generated_files/memory/flash.s	/^_FLASH_GetErasePageAddress:$/;"	l
+_FLASH_GetErasePageOffset	pic24fj256ga702/mcc_generated_files/memory/flash.s	/^_FLASH_GetErasePageOffset:$/;"	l
+_FLASH_Lock	pic24fj256ga702/mcc_generated_files/memory/flash.s	/^ _FLASH_Lock:$/;"	l
+_FLASH_ReadWord16	pic24fj256ga702/mcc_generated_files/memory/flash.s	/^   _FLASH_ReadWord16:$/;"	l
+_FLASH_ReadWord24	pic24fj256ga702/mcc_generated_files/memory/flash.s	/^   _FLASH_ReadWord24:$/;"	l
+_FLASH_SendNvmKey	pic24fj256ga702/mcc_generated_files/memory/flash.s	/^_FLASH_SendNvmKey:$/;"	l
+_FLASH_Unlock	pic24fj256ga702/mcc_generated_files/memory/flash.s	/^ _FLASH_Unlock:$/;"	l
+_FLASH_WriteDoubleWord16	pic24fj256ga702/mcc_generated_files/memory/flash.s	/^ _FLASH_WriteDoubleWord16:$/;"	l
+_FLASH_WriteDoubleWord24	pic24fj256ga702/mcc_generated_files/memory/flash.s	/^_FLASH_WriteDoubleWord24:$/;"	l
+_FLASH_WriteRow16	pic24fj256ga702/mcc_generated_files/memory/flash.s	/^    _FLASH_WriteRow16:$/;"	l
+_FLASH_WriteRow24	pic24fj256ga702/mcc_generated_files/memory/flash.s	/^    _FLASH_WriteRow24:$/;"	l
+_FlashKey	pic24fj256ga702/mcc_generated_files/memory/flash.s	/^_FlashKey: .long 0xFFFFFFFF$/;"	l
+_I2C1_H	pic24fj256ga702/mcc_generated_files/i2c1.h	48;"	d
+_I2C1_H	pic24fj256ga702/mcc_generated_files/i2c1Slave.h	48;"	d
+_I2C2_H	pic24fj256ga702/mcc_generated_files/i2c2.h	48;"	d
+_INTERRUPT_MANAGER_H	pic24fj256ga702/mcc_generated_files/interrupt_manager.h	46;"	d
+_MI2C1Interrupt	pic24fj256ga702/mcc_generated_files/i2c1.c	/^void __attribute__ ( ( interrupt, no_auto_psv ) ) _MI2C1Interrupt ( void )$/;"	f
+_MI2C2Interrupt	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^void __attribute__ ( ( interrupt, no_auto_psv ) ) _MI2C2Interrupt ( void )$/;"	f
+_MathError	pic24fj256ga702/mcc_generated_files/traps.c	/^void ERROR_HANDLER_NORETURN _MathError(void)$/;"	f
+_NVMError	pic24fj256ga702/mcc_generated_files/traps.c	/^void ERROR_HANDLER_NORETURN _NVMError(void)$/;"	f
+_OscillatorFail	pic24fj256ga702/mcc_generated_files/traps.c	/^void ERROR_HANDLER_NORETURN _OscillatorFail(void)$/;"	f
+_PIN_MANAGER_H	pic24fj256ga702/mcc_generated_files/pin_manager.h	48;"	d
+_QUEUE_H_	queue.h	2;"	d
+_SI2C2Interrupt	pic24fj256ga702/mcc_generated_files/i2c2.c	/^void __attribute__ ( ( interrupt, no_auto_psv ) ) _SI2C2Interrupt ( void )$/;"	f
+_StackError	pic24fj256ga702/mcc_generated_files/traps.c	/^void ERROR_HANDLER_NORETURN _StackError(void)$/;"	f
+_T2Interrupt	pic24fj256ga702/mcc_generated_files/tmr2.c	/^void __attribute__ ( ( interrupt, no_auto_psv ) ) _T2Interrupt (  )$/;"	f
+_TMR1_H	pic24fj256ga702/mcc_generated_files/tmr1.h	46;"	d
+_TMR2_H	pic24fj256ga702/mcc_generated_files/tmr2.h	46;"	d
+_TMR3_H	pic24fj256ga702/mcc_generated_files/tmr3.h	46;"	d
+_TMR_OBJ_STRUCT	pic24fj256ga702/mcc_generated_files/tmr1.c	/^typedef struct _TMR_OBJ_STRUCT$/;"	s	file:
+_TMR_OBJ_STRUCT	pic24fj256ga702/mcc_generated_files/tmr2.c	/^typedef struct _TMR_OBJ_STRUCT$/;"	s	file:
+_TMR_OBJ_STRUCT	pic24fj256ga702/mcc_generated_files/tmr3.c	/^typedef struct _TMR_OBJ_STRUCT$/;"	s	file:
+_TRAPS_H	pic24fj256ga702/mcc_generated_files/traps.h	46;"	d
+_TYPES_H_	types.h	2;"	d
+_U1ErrInterrupt	pic24fj256ga702/mcc_generated_files/uart1.c	/^void __attribute__ ( ( interrupt, no_auto_psv ) ) _U1ErrInterrupt( void )$/;"	f
+_U1RXInterrupt	pic24fj256ga702/mcc_generated_files/uart1.c	/^void __attribute__ ( ( interrupt, no_auto_psv ) ) _U1RXInterrupt( void )$/;"	f
+_U1TXInterrupt	pic24fj256ga702/mcc_generated_files/uart1.c	/^void __attribute__ ( ( interrupt, no_auto_psv ) ) _U1TXInterrupt ( void )$/;"	f
+_XTAL_FREQ	pic24fj256ga702/mcc_generated_files/clock.h	49;"	d
+_XTAL_FREQ	pic24fj256ga702/mcc_generated_files/mcc.h	70;"	d
+_and128	pic24fj256ga702/wombatasm.s	/^_and128:$/;"	l
+_and128	wombatasm.s	/^_and128:$/;"	l
+_andCount	pic24fj256ga702/wombatasm.s	/^_andCount:  $/;"	l
+_andCount	wombatasm.s	/^_andCount:  $/;"	l
+_or128	pic24fj256ga702/wombatasm.s	/^_or128:$/;"	l
+_or128	wombatasm.s	/^_or128:$/;"	l
+_orCount	pic24fj256ga702/wombatasm.s	/^_orCount:  $/;"	l
+_orCount	wombatasm.s	/^_orCount:  $/;"	l
+_pin_register2_t	types.h	/^typedef union _pin_register2_t{$/;"	u
+_pin_register_t	pinRegisters.h	/^typedef union _pin_register_t{ $/;"	u
+_pin_register_t	types.h	/^typedef union _pin_register_t{ $/;"	u
+_utilities_h	utilities.h	2;"	d
+accel	main.c	/^uint16_t accel[1];$/;"	v
+action	types.h	/^	      uint8 action;$/;"	m	struct:_pin_register2_t::rotary_enc_n
+action	types.h	/^         uint8 action;$/;"	m	struct:_pin_register2_t::un4step_2n
+active	types.h	/^	      uint8 active:2;$/;"	m	struct:_pin_register_t::datalogger_n
+active	types.h	/^	 uint8 active:2;$/;"	m	struct:_pin_register2_t::parallel_82n
+active	types.h	/^         uint8 active:2; $/;"	m	struct:_pin_register_t::un4step_n
+active_state	types.h	/^	      uint8 active_state:1;$/;"	m	struct:_pin_register_t::button_counter_n
+activemode	types.h	/^	      uint8 activemode:2; \/\/0 = none, 1 = digital, 2 = pwm$/;"	m	struct:_pin_register_t::debounce_n
+activepolarity	types.h	/^	      uint8 activepolarity:1;$/;"	m	struct:_pin_register_t::remote_n
+activestate	types.h	/^	 uint8 activestate:2;$/;"	m	struct:_pin_register_t::slowpwm_n
+activestate	types.h	/^           uint8 activestate:2;$/;"	m	struct:_pin_register_t::pulse_n
+activetime	types.h	/^           uint8 activetime;$/;"	m	struct:_pin_register_t::pulse_n
+ad_average	types.h	/^       }ad_average;$/;"	m	union:_pin_register2_t	typeref:struct:_pin_register2_t::ad_average_temp_n
+ad_average	types.h	/^       }ad_average;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::ad_average_n
+ad_average_n	types.h	/^       struct ad_average_n{$/;"	s	union:_pin_register_t
+ad_average_temp_n	types.h	/^       struct ad_average_temp_n{$/;"	s	union:_pin_register2_t
+ad_filter_1st_order	types.h	/^       }ad_filter_1st_order;$/;"	m	union:_pin_register2_t	typeref:struct:_pin_register2_t::ad_filter_1st_order_n2
+ad_filter_1st_order	types.h	/^       }ad_filter_1st_order;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::ad_filter_1st_order_n
+ad_filter_1st_order_n	types.h	/^       struct ad_filter_1st_order_n{$/;"	s	union:_pin_register_t
+ad_filter_1st_order_n2	types.h	/^       struct ad_filter_1st_order_n2{$/;"	s	union:_pin_register2_t
+address	pic24fj256ga702/mcc_generated_files/i2c1.h	/^    uint16_t  address;          \/\/ Bits <10:1> are the 10 bit address.$/;"	m	struct:__anon17
+address	types.h	/^		uint16_t address;$/;"	m	struct:_pin_register_t::max7219_n
+addressh	types.h	/^        uint8 addressh;$/;"	m	struct:generic_queue_n::flash_queue_n
+addressh	types.h	/^        uint8 addressh;$/;"	m	struct:generic_queue_n::ram_queue_n
+addressh	types.h	/^        uint8 addressh;$/;"	m	struct:generic_queue_n::ram_rle_byte_queue_n
+addressh	types.h	/^        uint8 addressh;$/;"	m	struct:generic_queue_n::ram_rle_word_queue_n
+addressh	types.h	/^        uint8 addressh;$/;"	m	struct:generic_queue_n::ram_string_queue_n
+addressl	types.h	/^        uint8 addressl;$/;"	m	struct:generic_queue_n::flash_queue_n
+addressl	types.h	/^        uint8 addressl;$/;"	m	struct:generic_queue_n::ram_queue_n
+addressl	types.h	/^        uint8 addressl;$/;"	m	struct:generic_queue_n::ram_rle_byte_queue_n
+addressl	types.h	/^        uint8 addressl;$/;"	m	struct:generic_queue_n::ram_rle_word_queue_n
+addressl	types.h	/^        uint8 addressl;$/;"	m	struct:generic_queue_n::ram_string_queue_n
+analogInput_n	analogInput.c	/^typedef struct analogInput_n{$/;"	s	file:
+analogInput_t	analogInput.c	/^}analogInput_t;$/;"	t	typeref:struct:analogInput_n	file:
+analogOut_n	analogOutput.c	/^typedef struct analogOut_n{$/;"	s	file:
+analogOut_t	analogOutput.c	/^}analogOut_t;$/;"	t	typeref:struct:analogOut_n	file:
+ascii_to_val	asciiConversion.c	/^uint8_t ascii_to_val(uint8_t a)$/;"	f
+ascii_to_val	utilities.c	/^uint8_t ascii_to_val(uint8_t a)$/;"	f
+average	analogInput.c	/^	uint16_t average;$/;"	m	struct:analogInput_n	file:
+averageSum	analogInput.c	/^	uint32_t averageSum;$/;"	m	struct:analogInput_n	file:
+badinc	types.h	/^	   uint8 badinc;$/;"	m	struct:_pin_register_t::diagnostics_n
+bitaccess	types.h	/^	uint8 bitaccess;$/;"	m	struct:generic_queue_n::flash_queue_n
+bitaccess	types.h	/^	uint8 bitaccess;$/;"	m	struct:generic_queue_n::ram_queue_n
+bitfield	types.h	/^	      uint8 bitfield;$/;"	m	struct:_pin_register2_t::remote_2n
+bitfield	types.h	/^	      uint8 bitfield;$/;"	m	struct:_pin_register2_t::uart_rx_2n
+bitfield	types.h	/^	      uint8 bitfield;$/;"	m	struct:_pin_register2_t::uart_tx_2n
+bits	types.h	/^	 queue_flags_bits_t bits;$/;"	m	union:queue_flags_union_n
+bits_left	types.h	/^           uint8 bits_left;$/;"	m	struct:_pin_register_t::morse_n
+bitstoskip	types.h	/^	      uint8 bitstoskip;$/;"	m	struct:_pin_register_t::uart_rx_n
+bitstowrite	types.h	/^	      uint8 bitstowrite;$/;"	m	struct:_pin_register_t::uart_tx_n
+bittime	types.h	/^	      uint8  bittime;$/;"	m	struct:_pin_register_t::remote_n
+buffer	pinRegisters.h	/^		uint16_t buffer;$/;"	m	struct:_pin_register_t::generic_n
+buffer	pinRegisters.h	/^		uint16_t buffer;$/;"	m	struct:_pin_register_t::pulse_output_n
+buffer	queue.c	/^uint8_t buffer[1];$/;"	m	struct:__anon35	file:
+buffer	types.h	/^	     uint16_t buffer;$/;"	m	struct:_pin_register_t::generic_n
+buffer	types.h	/^	   uint8 buffer;$/;"	m	struct:mixed24_n::__anon38
+buffer	types.h	/^	   uint8 buffer;$/;"	m	struct:mixed24_n::__anon41
+buffer	types.h	/^	uint16_t buffer;$/;"	m	struct:_pin_register_t::pulse_output_n
+buffer	types.h	/^             uint16 buffer;$/;"	m	struct:_pin_register2_t::generic2_n
+buffer1	types.h	/^	 uint16 buffer1;$/;"	m	struct:_pin_register2_t::pin_logic2_n
+buffer2	types.h	/^	 uint16 buffer2;$/;"	m	struct:_pin_register2_t::pin_logic2_n
+buffer_dirty	types.h	/^	uint8 buffer_dirty:1;$/;"	m	struct:executive_settings_n
+buffer_mode	types.h	/^	uint8 buffer_mode:3;$/;"	m	struct:_pin_register2_t::keypad16_2n
+bufferoutput	types.h	/^	       uint8 bufferoutput ; \/\/ 0 - value 1-counter$/;"	m	struct:_pin_register_t::pwm_queue_variable_period_n
+bufferoutput	types.h	/^	       uint8 bufferoutput:1 ; \/\/ 0 - value 1-counter$/;"	m	struct:_pin_register_t::pwm_queue_fixed_period_n
+bufferval	types.h	/^	      uint16 bufferval;$/;"	m	struct:_pin_register2_t::pulse_n2
+button_counter	types.h	/^      }button_counter;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::button_counter_n
+button_counter_n	types.h	/^      struct button_counter_n{$/;"	s	union:_pin_register_t
+bytes	pinRegisters.h	/^		uint8_t bytes[27];$/;"	m	struct:_pin_register_t::pulse_output_n
+bytes	pinRegisters.h	/^	uint8_t bytes[40];$/;"	m	union:_pin_register_t
+bytes	types.h	/^		       uint8 bytes[4];$/;"	m	union:_pin_register2_t::ad_filter_1st_order_n2::__anon45
+bytes	types.h	/^	     uint8 bytes[8];$/;"	m	struct:_pin_register2_t::generic2_n
+bytes	types.h	/^	}bytes;$/;"	m	union:mixed16_n	typeref:struct:mixed16_n::__anon39
+bytes	types.h	/^	}bytes;$/;"	m	union:mixed16_n	typeref:struct:mixed16_n::__anon42
+bytes	types.h	/^	}bytes;$/;"	m	union:mixed24_n	typeref:struct:mixed24_n::__anon38
+bytes	types.h	/^	}bytes;$/;"	m	union:mixed24_n	typeref:struct:mixed24_n::__anon41
+bytes	types.h	/^	}bytes;$/;"	m	union:mixed32_n	typeref:struct:mixed32_n::__anon37
+bytes	types.h	/^	}bytes;$/;"	m	union:mixed32_n	typeref:struct:mixed32_n::__anon40
+bytes	types.h	/^        uint8_t bytes[19];$/;"	m	struct:_pin_register_t::pulse_output_n
+bytes	types.h	/^      uint8 bytes[16];$/;"	m	union:_pin_register2_t
+bytes	types.h	/^      uint8_t bytes[32];$/;"	m	union:_pin_register_t
+bytesperframe	types.h	/^	 uint8 bytesperframe;$/;"	m	struct:_pin_register_t::parallel_8n
+capacity	queue.c	/^uint16_t capacity;$/;"	m	struct:__anon35	file:
+checkReturnCode	nbproject/Package-Optimized.bash	/^function checkReturnCode$/;"	f
+checkReturnCode	nbproject/Package-default.bash	/^function checkReturnCode$/;"	f
+ckebit	types.h	/^	      uint8 ckebit:1;$/;"	m	struct:_pin_register_t::spi_master_n
+ckpbit	types.h	/^	      uint8 ckpbit:1;$/;"	m	struct:_pin_register_t::spi_master_n
+clk	types.h	/^		uint8_t clk;$/;"	m	struct:_pin_register_t::max7219_n
+clkpin	types.h	/^	      uint8 clkpin;$/;"	m	struct:_pin_register_t::spi_master_n
+clock	types.h	/^	      uint8 clock;$/;"	m	struct:_pin_register_t::spi_master_n
+clock	types.h	/^	 uint8 clock;$/;"	m	struct:_pin_register2_t::parallel_82n
+clockchangedata	types.h	/^	 uint8 clockchangedata:2;$/;"	m	struct:_pin_register2_t::parallel_82n
+clockchangedatadone	types.h	/^	 uint8 clockchangedatadone:2;$/;"	m	struct:_pin_register2_t::parallel_82n
+clockidle	types.h	/^         uint8 clockidle:2;$/;"	m	struct:_pin_register2_t::parallel_82n
+clockpin	types.h	/^	 uint8 clockpin;$/;"	m	struct:_pin_register_t::parallel_8n
+column_pin	types.h	/^       uint8 column_pin;$/;"	m	struct:_pin_register_t::keypad16_n
+columns	types.h	/^		uint8_t columns;$/;"	m	struct:_pin_register_t::max7219_n
+columns	types.h	/^	uint8 columns:4;$/;"	m	struct:_pin_register2_t::keypad16_2n
+comm_settings_t	types.h	/^}comm_settings_t;$/;"	t	typeref:struct:communication_settings_n
+commandPin	analogInput.c	/^	uint8_t commandPin;$/;"	m	struct:analogInput_n	file:
+commandPin	analogOutput.c	/^	uint8_t commandPin;$/;"	m	struct:analogOut_n	file:
+commandPin	servo.c	/^	uint8_t commandPin;$/;"	m	struct:servo_n	file:
+commandpin	types.h	/^	       uint8 commandpin;$/;"	m	struct:_pin_register_t::hysteresis_n
+commandpin	types.h	/^	       uint8 commandpin;$/;"	m	struct:_pin_register_t::servo_n
+commandpin	types.h	/^	       uint8_t  commandpin; $/;"	m	struct:_pin_register_t::pwm_follow_direct_n
+commandpin	types.h	/^	   uint8 commandpin;$/;"	m	struct:_pin_register_t::pulse_n
+commandpin	types.h	/^           uint8 commandpin;$/;"	m	struct:_pin_register_t::diagnostics_n
+communication_settings_n	types.h	/^typedef struct communication_settings_n{$/;"	s
+compressing	types.h	/^        uint8 compressing:1;$/;"	m	struct:queue_flags_bits_n
+copyFileToTmpDir	nbproject/Package-Optimized.bash	/^function copyFileToTmpDir$/;"	f
+copyFileToTmpDir	nbproject/Package-default.bash	/^function copyFileToTmpDir$/;"	f
+count	pic24fj256ga702/mcc_generated_files/i2c1.c	/^    uint8_t                         count;          \/\/ a count of trb's in the trb list$/;"	m	struct:__anon13	file:
+count	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^    uint8_t                         count;          \/\/ a count of trb's in the trb list$/;"	m	struct:__anon23	file:
+count	pic24fj256ga702/mcc_generated_files/tmr1.c	/^    uint8_t                                                 count;$/;"	m	struct:_TMR_OBJ_STRUCT	file:
+count	pic24fj256ga702/mcc_generated_files/tmr2.c	/^    uint8_t                                                 count;$/;"	m	struct:_TMR_OBJ_STRUCT	file:
+count	pic24fj256ga702/mcc_generated_files/tmr3.c	/^    uint8_t                                                 count;$/;"	m	struct:_TMR_OBJ_STRUCT	file:
+count	types.h	/^	       mixed16_t count;$/;"	m	struct:_pin_register2_t::hw_pulse_width2_n
+count	types.h	/^	       uint16 count;$/;"	m	struct:_pin_register_t::ad_average_n
+count	types.h	/^	       uint8 count;$/;"	m	struct:_pin_register_t::lookup2d_n
+count	types.h	/^	      uint16  count;$/;"	m	struct:_pin_register_t::remote_n
+count	types.h	/^           uint8 count;  $/;"	m	struct:_pin_register_t::diagnostics_n
+counter	types.h	/^	       uint16 counter;$/;"	m	struct:_pin_register_t::pwm_queue_variable_period_n
+counter	types.h	/^	       uint16 counter;$/;"	m	struct:_pin_register_t::pwm_sine_n
+counter	types.h	/^	       uint8 counter;$/;"	m	struct:_pin_register_t::ad_filter_1st_order_n
+counter	types.h	/^	       uint8 counter;$/;"	m	struct:_pin_register_t::pid_n
+counter	types.h	/^	       uint8 counter;$/;"	m	struct:_pin_register_t::pwm_queue_fixed_period_n
+counter	types.h	/^	       uint8 counter;$/;"	m	struct:_pin_register_t::servo_n
+counter	types.h	/^	      uint16 counter;$/;"	m	struct:_pin_register_t::button_counter_n
+counter	types.h	/^	      uint8 counter;$/;"	m	struct:_pin_register_t::datalogger_n
+counter	types.h	/^	   uint8 counter;$/;"	m	struct:_pin_register_t::pulse_n
+counter	types.h	/^	  uint8 counter;$/;"	m	struct:_pin_register_t::ping_n
+counter	types.h	/^	 mixed16_t counter;$/;"	m	struct:_pin_register_t::slowpwm_n
+counter	types.h	/^           }counter;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::counter_n
+counter	types.h	/^         uint8 counter;$/;"	m	struct:_pin_register_t::un4step_n
+counter_n	types.h	/^       struct counter_n{$/;"	s	union:_pin_register_t
+crcObj	pic24fj256ga702/mcc_generated_files/crc.c	/^static CRC_OBJ crcObj;$/;"	v	file:
+cspol	types.h	/^	      uint8 cspol:1;$/;"	m	struct:_pin_register_t::spi_master_n
+currentState	quadEnc.c	/^           uint8_t currentState;$/;"	m	struct:quadEnc_n	file:
+currentState	types.h	/^	       uint8_t currentState;$/;"	m	struct:_pin_register_t::counter_n
+currentState	types.h	/^	       uint8_t currentState;$/;"	m	struct:_pin_register_t::quadEnc_n
+current_button	types.h	/^	uint8 current_button;$/;"	m	struct:_pin_register2_t::keypad16_2n
+current_output	types.h	/^	      uint8 current_output:1;$/;"	m	struct:_pin_register_t::uart_tx_n
+current_physical_pin	types.h	/^	uint8 current_physical_pin;$/;"	m	struct:test_data_n
+current_reading	types.h	/^       uint16 current_reading;$/;"	m	struct:_pin_register_t::keypad16_n
+current_row	types.h	/^	uint8 current_row;$/;"	m	struct:_pin_register2_t::keypad16_2n
+currentstate	types.h	/^	       uint8 currentstate:1;$/;"	m	struct:_pin_register_t::hysteresis_n
+currentstate	types.h	/^	 uint8 currentstate:1;$/;"	m	struct:_pin_register_t::slowpwm_n
+currentstep	types.h	/^         uint8 currentstep;  $/;"	m	struct:_pin_register2_t::un4step_2n
+currentvalue	types.h	/^	      uint8 currentvalue:1;$/;"	m	struct:_pin_register2_t::remote_2n
+data	pic24fj256ga702/mcc_generated_files/crc.c	/^        void *data;$/;"	m	union:__anon6::__anon7	file:
+data	types.h	/^	      uint16 data;$/;"	m	struct:_pin_register_t::remote_n
+data	types.h	/^	      uint8 data;$/;"	m	struct:_pin_register_t::uart_rx_n
+data	types.h	/^	      uint8 data;$/;"	m	struct:_pin_register_t::uart_tx_n
+data1	types.h	/^    int16 data1;$/;"	m	struct:sin_data_n
+data16bit	pic24fj256ga702/mcc_generated_files/crc.c	/^        uint16_t *data16bit;$/;"	m	union:__anon6::__anon7	file:
+data2	types.h	/^	        } data2;$/;"	m	struct:_pin_register_t::pwm_sine_n	typeref:union:_pin_register_t::pwm_sine_n::__anon44
+data2	types.h	/^    int16 data2;$/;"	m	struct:sin_data_n
+data2_signed	types.h	/^		       int16  data2_signed;$/;"	m	union:_pin_register_t::pwm_sine_n::__anon44
+data2_unsigned	types.h	/^		       uint16  data2_unsigned;$/;"	m	union:_pin_register_t::pwm_sine_n::__anon44
+data32bit	pic24fj256ga702/mcc_generated_files/crc.c	/^        uint32_t *data32bit;$/;"	m	union:__anon6::__anon7	file:
+data8bit	pic24fj256ga702/mcc_generated_files/crc.c	/^        uint8_t *data8bit;$/;"	m	union:__anon6::__anon7	file:
+dataWidth	pic24fj256ga702/mcc_generated_files/crc.c	/^    uint8_t dataWidth;$/;"	m	struct:__anon6	file:
+data_point	counter.c	/^   int data_point;$/;"	v
+data_point	quadEnc.c	/^   int data_point;$/;"	v
+datacounter	types.h	/^	      uint8 datacounter;$/;"	m	struct:_pin_register2_t::uart_rx_2n
+datacounter	types.h	/^	      uint8 datacounter;$/;"	m	struct:_pin_register2_t::uart_tx_2n
+datalogger	types.h	/^      }datalogger;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::datalogger_n
+datalogger_n	types.h	/^      struct datalogger_n{$/;"	s	union:_pin_register_t
+dataprocessed	types.h	/^	      uint8 dataprocessed:1;$/;"	m	struct:_pin_register2_t::pwm_queue_variable_period2_n
+debounce	types.h	/^      }debounce;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::debounce_n
+debounce_n	types.h	/^      struct debounce_n{$/;"	s	union:_pin_register_t
+debouncecounter	quadEnc.c	/^               uint16_t debouncecounter;$/;"	m	struct:quadEnc_n	file:
+debouncecounter	types.h	/^	      uint16 debouncecounter;$/;"	m	struct:_pin_register_t::debounce_n
+debouncecounter	types.h	/^               uint16_t debouncecounter;$/;"	m	struct:_pin_register_t::counter_n
+debouncecounter	types.h	/^               uint16_t debouncecounter;$/;"	m	struct:_pin_register_t::quadEnc_n
+debounceframes	types.h	/^	      uint16 debounceframes;$/;"	m	struct:_pin_register_t::debounce_n
+debounceframes	types.h	/^	      uint8 debounceframes;$/;"	m	struct:_pin_register_t::button_counter_n
+debouncesamples	quadEnc.c	/^               uint16_t debouncesamples;$/;"	m	struct:quadEnc_n	file:
+debouncesamples	types.h	/^               uint16_t debouncesamples;$/;"	m	struct:_pin_register_t::counter_n
+debouncesamples	types.h	/^               uint16_t debouncesamples;$/;"	m	struct:_pin_register_t::quadEnc_n
+debug_discarded_bytes	protocol.c	/^uint32_t debug_discarded_bytes = 0;$/;"	v
+dec_ascii_to_val32	utilities.c	/^uint32_t dec_ascii_to_val32(uint8_t* a,uint8_t count)$/;"	f
+dec_ascii_to_val8	utilities.c	/^uint8_t dec_ascii_to_val8(uint8_t* a,uint8_t count)$/;"	f
+defaultaction	types.h	/^	       uint8 defaultaction:1;$/;"	m	struct:_pin_register_t::hysteresis_n
+delay	types.h	/^	      uint8 delay;$/;"	m	struct:_pin_register_t::datalogger_n
+delay	types.h	/^	 uint16 delay;$/;"	m	struct:_pin_register_t::parallel_8n
+delay_cycles16	utilities.c	/^void delay_cycles16(uint16_t cyclestodelay)$/;"	f
+delay_time	types.h	/^	      uint16 delay_time;$/;"	m	struct:_pin_register2_t::ping2_n
+delay_timer3_ticks	utilities.c	/^void delay_timer3_ticks(uint16_t ticks)$/;"	f
+desiredpos	types.h	/^         uint16 desiredpos;$/;"	m	struct:_pin_register2_t::un4step_2n
+diagnostics	types.h	/^       }diagnostics;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::diagnostics_n
+diagnostics	types.h	/^      }diagnostics;$/;"	m	union:_pin_register2_t	typeref:struct:_pin_register2_t::diagnostics2_n
+diagnostics2_n	types.h	/^      struct diagnostics2_n{$/;"	s	union:_pin_register2_t
+diagnostics_n	types.h	/^       struct diagnostics_n{$/;"	s	union:_pin_register_t
+digit	types.h	/^		uint8_t digit;$/;"	m	struct:_pin_register_t::max7219_n
+direction	types.h	/^	uint8 direction:1;  \/\/ 0 = left (to lower address)$/;"	m	struct:generic_queue_n::ram_string_queue_n
+divisor	types.h	/^	      uint8 divisor:3;$/;"	m	struct:_pin_register_t::button_counter_n
+divisor	types.h	/^	      uint8 divisor;$/;"	m	struct:_pin_register2_t::uart_rx_2n
+divisor	types.h	/^	      uint8 divisor;$/;"	m	struct:_pin_register2_t::uart_tx_2n
+dot_time	types.h	/^           uint16 dot_time;$/;"	m	struct:_pin_register_t::morse_n
+dout	types.h	/^		uint8_t dout;$/;"	m	struct:_pin_register_t::max7219_n
+dummy1	types.h	/^		uint8 dummy1 ;$/;"	m	struct:mixed32_n::mixed32_midword_n
+dummy2	types.h	/^		uint8 dummy2;$/;"	m	struct:mixed32_n::mixed32_midword_n
+eightbit	types.h	/^	       uint8 eightbit; \/\/ 0 - 16bit values 1- 8 bit values$/;"	m	struct:_pin_register_t::pwm_queue_variable_period_n
+empty	pic24fj256ga702/mcc_generated_files/i2c1.c	/^            uint8_t empty:1;$/;"	m	struct:__anon11::__anon12	file:
+empty	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^            uint8_t empty:1;$/;"	m	struct:__anon21::__anon22	file:
+empty	pic24fj256ga702/mcc_generated_files/uart1.c	/^            uint8_t empty:1;$/;"	m	struct:__anon27::__anon28	file:
+emptyaction	types.h	/^	       uint8 emptyaction ; \/\/ 0-off 1-on 2-input 3-leave alone$/;"	m	struct:_pin_register_t::pwm_queue_variable_period_n
+emptyaction	types.h	/^	       uint8 emptyaction:2 ; \/\/ 0-off 1-on 2-HighZ 3-leave alone$/;"	m	struct:_pin_register_t::pwm_queue_fixed_period_n
+enabled	types.h	/^	   uint8 enabled:1;$/;"	m	struct:_pin_register_t::hw_pulse_width_n
+error	protocol.c	/^void error()$/;"	f
+error	types.h	/^	      uint8 error:1;$/;"	m	struct:_pin_register2_t::ping2_n
+error	utilities.c	/^void error (void)$/;"	f
+escapeval	types.h	/^	uint8 escapeval;$/;"	m	struct:generic_queue_n::ram_rle_byte_queue_n
+escapeval	types.h	/^	uint8 escapeval;$/;"	m	struct:generic_queue_n::ram_rle_word_queue_n
+executive_settings_n	types.h	/^typedef struct executive_settings_n{$/;"	s
+executive_settings_t	types.h	/^}   executive_settings_t;$/;"	t	typeref:struct:executive_settings_n
+expectedhigh	types.h	/^           uint8 expectedhigh:2;$/;"	m	struct:_pin_register_t::diagnostics_n
+expectedlow	types.h	/^           uint8 expectedlow:2;$/;"	m	struct:_pin_register_t::diagnostics_n
+failures	main.c	/^uint16_t failures = 0;$/;"	v
+far	types.h	59;"	d
+fast_frame_rate	types.h	/^	      uint8 fast_frame_rate; $/;"	m	struct:_pin_register_t::button_counter_n
+filterConstant	analogInput.c	/^	uint16_t filterConstant;$/;"	m	struct:analogInput_n	file:
+filteredValue	analogInput.c	/^	uint16_t filteredValue;$/;"	m	struct:analogInput_n	file:
+final_value	types.h	/^	      uint16 final_value;$/;"	m	struct:_pin_register2_t::rotary_enc_n
+fixed	types.h	/^	       uint16 fixed;$/;"	m	struct:_pin_register_t::servo_n
+fixedPeriod	analogOutput.c	/^	uint16_t fixedPeriod;$/;"	m	struct:servo_n	file:
+fixedPeriod	servo.c	/^	uint16_t fixedPeriod;$/;"	m	struct:servo_n	file:
+fixedvalue	types.h	/^	   uint8 fixedvalue:1;$/;"	m	struct:_pin_register_t::pulse_n
+flags	types.h	/^	queue_flags_t flags;$/;"	m	struct:generic_queue_n::flash_queue_n
+flags	types.h	/^	queue_flags_t flags;$/;"	m	struct:generic_queue_n::ram_queue_n
+flags	types.h	/^	queue_flags_t flags;$/;"	m	struct:generic_queue_n::ram_rle_byte_queue_n
+flags	types.h	/^	queue_flags_t flags;$/;"	m	struct:generic_queue_n::ram_rle_word_queue_n
+flags	types.h	/^	queue_flags_t flags;$/;"	m	struct:generic_queue_n::ram_string_queue_n
+flagsuint8	types.h	/^         uint8 flagsuint8;$/;"	m	union:queue_flags_union_n
+flash	types.h	/^	} __attribute__ ((packed)) flash;$/;"	m	union:generic_queue_n	typeref:struct:generic_queue_n::flash_queue_n
+flash_queue_n	types.h	/^	struct flash_queue_n{$/;"	s	union:generic_queue_n
+flashaddr	types.h	/^        uint16 flashaddr; $/;"	m	struct:generic_queue_n::flash_queue_n
+fourbitslow	types.h	/^	       uint8 fourbitslow;$/;"	m	struct:_pin_register_t::pwm_queue_fixed_period_n
+full	pic24fj256ga702/mcc_generated_files/i2c1.c	/^            uint8_t full:1;$/;"	m	struct:__anon11::__anon12	file:
+full	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^            uint8_t full:1;$/;"	m	struct:__anon21::__anon22	file:
+full	pic24fj256ga702/mcc_generated_files/uart1.c	/^            uint8_t full:1;$/;"	m	struct:__anon27::__anon28	file:
+fullaction	types.h	/^	      uint8 fullaction:1;$/;"	m	struct:_pin_register_t::datalogger_n
+gen_sin_wave	utilities.c	/^uint16_t gen_sin_wave (uint8_t wavenum)$/;"	f
+generic	pinRegisters.h	/^	} generic;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::generic_n
+generic	types.h	/^	     } generic;$/;"	m	union:_pin_register2_t	typeref:struct:_pin_register2_t::generic2_n
+generic	types.h	/^	     } generic;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::generic_n
+generic2_n	types.h	/^      struct generic2_n {$/;"	s	union:_pin_register2_t
+generic_n	pinRegisters.h	/^	struct generic_n {$/;"	s	union:_pin_register_t
+generic_n	types.h	/^      struct generic_n {$/;"	s	union:_pin_register_t
+generic_queue_n	types.h	/^typedef	union generic_queue_n{$/;"	u
+getDMAInputSample	pic24fj256ga702/pinDigitalHwSpecific.c	/^uint8_t getDMAInputSample(uint8_t pin, uint8_t sample)$/;"	f
+getDMAInputSample	utilities.c	/^uint8_t getDMAInputSample(uint8_t pin, uint8_t sample)$/;"	f
+get_buffer	utilities.c	/^uint16_t get_buffer(uint8_t id)$/;"	f
+get_hw_option	utilities.h	111;"	d
+get_mode	utilities.h	108;"	d
+get_register_memory	utilities.h	105;"	d
+get_register_memory2	utilities.h	106;"	d
+get_tp2	utilities.h	83;"	d
+get_tp2_asm	utilities.c	/^void get_tp2_asm(uint8_t pin)$/;"	f
+get_user_buffer	utilities.c	/^uint8_t get_user_buffer(uint16_t offset)$/;"	f
+get_user_buffer_block	utilities.c	/^void get_user_buffer_block(uint16_t offset, uint16_t length, uint8_t* dest)$/;"	f
+get_user_buffer_block_calls	utilities.c	/^uint32_t get_user_buffer_block_calls = 0;$/;"	v
+good16	pic24fj256ga702/mcc_generated_files/memory/flash.s	/^good16:$/;"	l
+good24	pic24fj256ga702/mcc_generated_files/memory/flash.s	/^good24:$/;"	l
+gooddec	types.h	/^	   uint8 gooddec;$/;"	m	struct:_pin_register_t::diagnostics_n
+goodresult	types.h	/^	   uint8 goodresult:1;$/;"	m	struct:_pin_register_t::diagnostics_n
+h	types.h	/^		uint16 h;$/;"	m	struct:mixed32_n::mixed32_uwords_n
+h	types.h	/^		uint16_t h;$/;"	m	struct:mixed32_n::mixed32_uwords_n
+h	types.h	/^	   uint8 h;$/;"	m	struct:mixed24_n::__anon38
+h	types.h	/^	   uint8 h;$/;"	m	struct:mixed24_n::__anon41
+h	types.h	/^	   uint8 h;$/;"	m	struct:mixed32_n::__anon37
+h	types.h	/^	   uint8_t h;$/;"	m	struct:mixed32_n::__anon40
+halfbit	types.h	/^	      uint8 halfbit;$/;"	m	struct:_pin_register2_t::remote_2n
+hardwareInit	pic24fj256ga702/hwInit.c	/^void hardwareInit()$/;"	f
+hd44780	types.h	/^      }hd44780;$/;"	m	union:_pin_register2_t	typeref:struct:_pin_register2_t::hd44780_n2
+hd44780	types.h	/^      }hd44780;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::hd44780_n
+hd44780_n	types.h	/^      struct hd44780_n {$/;"	s	union:_pin_register_t
+hd44780_n2	types.h	/^      struct hd44780_n2{$/;"	s	union:_pin_register2_t
+head	types.h	/^	uint16 head;$/;"	m	struct:generic_queue_n::ram_string_queue_n
+head	types.h	/^        uint16 head;$/;"	m	struct:generic_queue_n::flash_queue_n
+head	types.h	/^        uint16 head;$/;"	m	struct:generic_queue_n::ram_queue_n
+head	types.h	/^        uint16 head;$/;"	m	struct:generic_queue_n::ram_rle_byte_queue_n
+head	types.h	/^        uint16 head;$/;"	m	struct:generic_queue_n::ram_rle_word_queue_n
+headIndex	queue.c	/^uint16_t headIndex; \/\/First byte to come out.$/;"	m	struct:__anon35	file:
+hex_ascii_to_val16	utilities.c	/^uint16_t hex_ascii_to_val16(uint8_t* a, uint8_t count)$/;"	f
+hex_ascii_to_val32	utilities.c	/^uint32_t hex_ascii_to_val32(uint8_t* a, uint8_t count)$/;"	f
+high	types.h	/^	       mixed24_t high;$/;"	m	struct:_pin_register2_t::hw_pulse_width2_n
+highReload	pinRegisters.h	/^		uint16_t highReload;$/;"	m	struct:_pin_register_t::pulse_output_n
+highReload	types.h	/^	uint16_t highReload;$/;"	m	struct:_pin_register_t::pulse_output_n
+highRemaining	pinRegisters.h	/^		uint16_t highRemaining;$/;"	m	struct:_pin_register_t::pulse_output_n
+highRemaining	types.h	/^	uint16_t highRemaining;$/;"	m	struct:_pin_register_t::pulse_output_n
+high_time	types.h	/^	      mixed16_t high_time;$/;"	m	struct:_pin_register2_t::ping2_n
+highaction	types.h	/^	       uint8 highaction:2;$/;"	m	struct:_pin_register_t::hysteresis_n
+highbyte	types.h	/^	   uint8 highbyte;$/;"	m	struct:mixed16_n::__anon39
+highbyte	types.h	/^	   uint8 highbyte;$/;"	m	struct:mixed16_n::__anon42
+highcommandpin	types.h	/^	       uint8 highcommandpin;$/;"	m	struct:_pin_register_t::hysteresis_n
+highlimit	types.h	/^	       uint16 highlimit;$/;"	m	struct:_pin_register2_t::hysteresis
+highlimit	types.h	/^	       uint16 highlimit;$/;"	m	struct:_pin_register_t::hysteresis_n
+highstate	types.h	/^           uint8 highstate:2;$/;"	m	struct:_pin_register_t::morse_n
+hw_pulse_width	types.h	/^	}hw_pulse_width;$/;"	m	union:_pin_register2_t	typeref:struct:_pin_register2_t::hw_pulse_width2_n
+hw_pulse_width	types.h	/^       }hw_pulse_width;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::hw_pulse_width_n
+hw_pulse_width2_n	types.h	/^        struct hw_pulse_width2_n{$/;"	s	union:_pin_register2_t
+hw_pulse_width_n	types.h	/^       struct hw_pulse_width_n{$/;"	s	union:_pin_register_t
+hysteresis	types.h	/^       struct hysteresis{$/;"	s	union:_pin_register2_t
+hysteresis	types.h	/^       }hysteresis;$/;"	m	union:_pin_register2_t	typeref:struct:_pin_register2_t::hysteresis
+hysteresis	types.h	/^       }hysteresis;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::hysteresis_n
+hysteresis_n	types.h	/^       struct hysteresis_n{$/;"	s	union:_pin_register_t
+i2c1_object	pic24fj256ga702/mcc_generated_files/i2c1.c	/^static I2C_OBJECT                    i2c1_object;$/;"	v	file:
+i2c1_state	pic24fj256ga702/mcc_generated_files/i2c1.c	/^static I2C_MASTER_STATES             i2c1_state = S_MASTER_IDLE;$/;"	v	file:
+i2c1_tr_queue	pic24fj256ga702/mcc_generated_files/i2c1.c	/^static I2C_TR_QUEUE_ENTRY            i2c1_tr_queue[I2C1_CONFIG_TR_QUEUE_LENGTH];$/;"	v	file:
+i2c1_trb_count	pic24fj256ga702/mcc_generated_files/i2c1.c	/^static uint8_t                       i2c1_trb_count;$/;"	v	file:
+i2c2_object	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^static I2C_OBJECT                    i2c2_object;$/;"	v	file:
+i2c2_slaveWriteData	pic24fj256ga702/mcc_generated_files/i2c2.c	/^static uint8_t i2c2_slaveWriteData = 0xAA;$/;"	v	file:
+i2c2_slave_state	pic24fj256ga702/mcc_generated_files/i2c2.c	/^static I2C_SLAVE_STATES   i2c2_slave_state;$/;"	v	file:
+i2c2_state	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^static I2C_MASTER_STATES             i2c2_state = S_MASTER_IDLE;$/;"	v	file:
+i2c2_tr_queue	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^static I2C_TR_QUEUE_ENTRY            i2c2_tr_queue[I2C2_CONFIG_TR_QUEUE_LENGTH];$/;"	v	file:
+i2c2_trb_count	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^static uint8_t                       i2c2_trb_count;$/;"	v	file:
+i2cDebugTest	main.c	/^int i2cDebugTest()$/;"	f
+i2cDoneFlag	pic24fj256ga702/mcc_generated_files/i2c1.c	/^    uint8_t                     i2cDoneFlag;    \/\/ flag to indicate the current$/;"	m	struct:__anon14	file:
+i2cDoneFlag	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^    uint8_t                     i2cDoneFlag;    \/\/ flag to indicate the current$/;"	m	struct:__anon24	file:
+i2cErrors	pic24fj256ga702/mcc_generated_files/i2c1.c	/^    uint8_t                     i2cErrors;      \/\/ keeps track of errors$/;"	m	struct:__anon14	file:
+i2cErrors	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^    uint8_t                     i2cErrors;      \/\/ keeps track of errors$/;"	m	struct:__anon24	file:
+idle	types.h	/^	      uint8 idle:1;$/;"	m	struct:_pin_register_t::remote_n
+idle_enabled	types.h	/^	uint8 idle_enabled:1;$/;"	m	struct:executive_settings_n
+inactive	types.h	/^	      uint8 inactive:2;$/;"	m	struct:_pin_register_t::datalogger_n
+inactive	types.h	/^	 uint8 inactive:2;$/;"	m	struct:_pin_register2_t::parallel_82n
+inactive	types.h	/^         uint8 inactive:2; $/;"	m	struct:_pin_register_t::un4step_n
+inactivePeriod	analogOutput.c	/^	uint16_t inactivePeriod;$/;"	m	struct:servo_n	file:
+inactivePeriod	servo.c	/^	uint16_t inactivePeriod;$/;"	m	struct:servo_n	file:
+inactivemode	types.h	/^	      uint8 inactivemode:2; $/;"	m	struct:_pin_register_t::debounce_n
+inactivestate	types.h	/^	   uint8 inactivestate:2;$/;"	m	struct:_pin_register_t::pulse_n
+inactivestate	types.h	/^	 uint8 inactivestate:2;$/;"	m	struct:_pin_register_t::slowpwm_n
+inactivetime	types.h	/^           uint8 inactivetime;$/;"	m	struct:_pin_register_t::pulse_n
+increment	quadEnc.c	/^           uint16_t increment;$/;"	m	struct:quadEnc_n	file:
+increment	types.h	/^	       uint16_t increment;$/;"	m	struct:_pin_register_t::counter_n
+increment	types.h	/^	       uint16_t increment;$/;"	m	struct:_pin_register_t::quadEnc_n
+increment	types.h	/^              uint16 increment;$/;"	m	struct:_pin_register_t::rotary_encn
+initAnalogOut	analogOutput.c	/^void initAnalogOut (void)$/;"	f
+initPWMSimple	analogOutput.c	/^void initPWMSimple(uint8_t pin)$/;"	f
+initServoSimple	analogOutput.c	/^void initServoSimple(uint8_t pin)$/;"	f
+init_call_count	types.h	/^	int init_call_count;$/;"	m	struct:test_data_n
+init_counter	counter.c	/^void init_counter(void)$/;"	f
+init_quadEnc	quadEnc.c	/^void init_quadEnc(void)$/;"	f
+init_servo	analogInput.c	/^void init_servo (void)$/;"	f
+init_servo	servo.c	/^void init_servo (void)$/;"	f
+init_uart_tx	uarttx.c	/^void init_uart_tx(void)$/;"	f
+initstate	types.h	/^         uint8 initstate:2;$/;"	m	struct:_pin_register_t::watchdog_n
+input	types.h	/^	       uint16 input;$/;"	m	struct:_pin_register2_t::hysteresis
+int16	types.h	24;"	d
+int16	types.h	52;"	d
+int24	types.h	43;"	d
+int24	types.h	56;"	d
+int32	types.h	33;"	d
+int32	types.h	54;"	d
+int8	types.h	16;"	d
+int8	types.h	50;"	d
+integrator	types.h	/^	       uint16 integrator;$/;"	m	struct:_pin_register_t::pid_n
+interpolate	types.h	/^	       uint8 interpolate:1;$/;"	m	struct:_pin_register_t::lookup2d_n
+inverseFIFO	types.h	/^		uint8_t inverseFIFO;$/;"	m	struct:_pin_register_t::max7219_n
+invert	types.h	/^	      uint8 invert:1;$/;"	m	struct:_pin_register_t::uart_rx_n
+invert	types.h	/^	      uint8 invert:1;$/;"	m	struct:_pin_register_t::uart_tx_n
+invertPolarity	analogOutput.c	/^	uint8_t invertPolarity; $/;"	m	struct:servo_n	file:
+invertPolarity	servo.c	/^	uint8_t invertPolarity; $/;"	m	struct:servo_n	file:
+istrue	types.h	/^         uint8 istrue:1;$/;"	m	struct:_pin_register2_t::pin_logic2_n
+iteration	counter.c	/^   int iteration = 0;$/;"	v
+iteration	quadEnc.c	/^   int iteration = 0;$/;"	v
+k	types.h	/^	        } k;$/;"	m	struct:_pin_register_t::pwm_sine_n	typeref:union:_pin_register_t::pwm_sine_n::__anon43
+k	types.h	/^	       uint16 k;$/;"	m	struct:_pin_register_t::ad_filter_1st_order_n
+k	types.h	/^    int16 k;$/;"	m	struct:sin_data_n
+k_signed	types.h	/^		       int16  k_signed;$/;"	m	union:_pin_register_t::pwm_sine_n::__anon43
+k_unsigned	types.h	/^		       uint16  k_unsigned;$/;"	m	union:_pin_register_t::pwm_sine_n::__anon43
+keypad16	types.h	/^       } keypad16;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::keypad16_n
+keypad16	types.h	/^      }keypad16;$/;"	m	union:_pin_register2_t	typeref:struct:_pin_register2_t::keypad16_2n
+keypad16_2n	types.h	/^       struct keypad16_2n{$/;"	s	union:_pin_register2_t
+keypad16_n	types.h	/^      struct keypad16_n{$/;"	s	union:_pin_register_t
+kinv	types.h	/^	       uint16 kinv;$/;"	m	struct:_pin_register_t::ad_filter_1st_order_n
+l	types.h	/^		uint16 l;$/;"	m	struct:mixed32_n::mixed32_uwords_n
+l	types.h	/^		uint16_t l;$/;"	m	struct:mixed32_n::mixed32_uwords_n
+l	types.h	/^	   uint8 l;$/;"	m	struct:mixed24_n::__anon38
+l	types.h	/^	   uint8 l;$/;"	m	struct:mixed24_n::__anon41
+l	types.h	/^	   uint8 l;$/;"	m	struct:mixed32_n::__anon37
+l	types.h	/^	   uint8_t l;$/;"	m	struct:mixed32_n::__anon40
+last	types.h	/^	   uint8 last:1;$/;"	m	struct:_pin_register_t::hw_pulse_width_n
+lastDMA	pinRegisters.h	/^		uint8_t lastDMA;$/;"	m	struct:_pin_register_t::pulse_output_n
+lastDMA	types.h	/^	uint8_t lastDMA;$/;"	m	struct:_pin_register_t::pulse_output_n
+lastNextDMA	quadEnc.c	/^           uint8_t lastNextDMA;$/;"	m	struct:quadEnc_n	file:
+lastNextDMA	types.h	/^	       uint8_t lastNextDMA;$/;"	m	struct:_pin_register_t::counter_n
+lastNextDMA	types.h	/^	       uint8_t lastNextDMA;$/;"	m	struct:_pin_register_t::quadEnc_n
+lastQueueIndex	protocol.c	/^uint16_t lastQueueIndex = 0xFFFF;$/;"	v
+lastRXInterruptByte	pic24fj256ga702/mcc_generated_files/uart1.c	/^uint8_t lastRXInterruptByte = 0x00;$/;"	v
+lastUserBufferIndex	protocol.c	/^uint16_t lastUserBufferIndex = 0xFFFF;$/;"	v
+last_value	types.h	/^              uint8 last_value;$/;"	m	struct:_pin_register_t::rotary_encn
+lastentry	types.h	/^	uint16 lastentry;$/;"	m	struct:generic_queue_n::ram_rle_byte_queue_n
+lastentry	types.h	/^	uint16 lastentry;$/;"	m	struct:generic_queue_n::ram_rle_word_queue_n
+lastlastval	types.h	/^	uint16 lastlastval;$/;"	m	struct:generic_queue_n::ram_rle_word_queue_n
+lastlastval	types.h	/^	uint8 lastlastval;$/;"	m	struct:generic_queue_n::ram_rle_byte_queue_n
+lastportbcounter	types.h	/^	      uint8 lastportbcounter;$/;"	m	struct:_pin_register_t::remote_n
+lastportbcounter	types.h	/^	      uint8 lastportbcounter;$/;"	m	struct:_pin_register_t::uart_rx_n
+lastportbcounter	types.h	/^	      uint8 lastportbcounter;$/;"	m	struct:_pin_register_t::uart_tx_n
+lastportbcounter	types.h	/^	 uint8 lastportbcounter;$/;"	m	struct:_pin_register_t::slowpwm_n
+lastval	types.h	/^	   uint16 lastval;$/;"	m	struct:_pin_register_t::pulse_n
+lastval	types.h	/^	uint16 lastval;$/;"	m	struct:generic_queue_n::ram_rle_word_queue_n
+lastval	types.h	/^	uint8 lastval;$/;"	m	struct:generic_queue_n::ram_rle_byte_queue_n
+lastvalue	types.h	/^	      uint8 lastvalue:1;$/;"	m	struct:_pin_register_t::remote_n
+leading1	types.h	/^	uint8 leading1;$/;"	m	struct:generic_queue_n::ram_string_queue_n
+leading2	types.h	/^	uint8 leading2;$/;"	m	struct:generic_queue_n::ram_string_queue_n
+leading_space	types.h	/^	uint8 leading_space:1;$/;"	m	struct:generic_queue_n::ram_string_queue_n
+leading_zero	types.h	/^	uint8 leading_zero:1;$/;"	m	struct:generic_queue_n::ram_string_queue_n
+led1	types.h	/^	      uint8 led1:1;$/;"	m	struct:_pin_register_t::sevenseg_n
+led10	types.h	/^	      uint8 led10:1;$/;"	m	struct:_pin_register_t::sevenseg_n
+led100	types.h	/^	      uint8 led100:1;$/;"	m	struct:_pin_register_t::sevenseg_n
+led10k	types.h	/^	      uint8 led10k:1;$/;"	m	struct:_pin_register_t::sevenseg_n
+led1k	types.h	/^	      uint8 led1k:1;$/;"	m	struct:_pin_register_t::sevenseg_n
+length	pic24fj256ga702/mcc_generated_files/i2c1.h	/^    uint8_t   length;           \/\/ the # of bytes in the buffer$/;"	m	struct:__anon17
+length	types.h	/^	      uint16 length;$/;"	m	struct:_pin_register2_t::pwm_queue_variable_period2_n
+linear	analogOutput.c	/^		linear_t linear;$/;"	m	union:analogOut_n::__anon2	file:
+linear_n	analogOutput.c	/^typedef struct linear_n$/;"	s	file:
+linear_t	analogOutput.c	/^}linear_t;$/;"	t	typeref:struct:linear_n	file:
+local_temp32_2	types.h	/^	       mixed32_t local_temp32_2;$/;"	m	struct:_pin_register2_t::hw_pulse_width2_n
+location	types.h	/^	       uint8 location:2;$/;"	m	struct:_pin_register_t::lookup2d_n
+lookup2D_n	analogOutput.c	/^typedef struct lookup2D_n$/;"	s	file:
+lookup2D_t	analogOutput.c	/^		lookup2D_t;$/;"	m	union:analogOut_n::__anon2	file:
+lookup2D_t	analogOutput.c	/^}lookup2D_t;$/;"	t	typeref:struct:lookup2D_n	file:
+lookup2d	types.h	/^       }lookup2d;$/;"	m	union:_pin_register2_t	typeref:struct:_pin_register2_t::lookup2d_2n
+lookup2d	types.h	/^       }lookup2d;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::lookup2d_n
+lookup2d_2n	types.h	/^       struct lookup2d_2n{$/;"	s	union:_pin_register2_t
+lookup2d_n	types.h	/^       struct lookup2d_n{$/;"	s	union:_pin_register_t
+low	types.h	/^               mixed24_t low;$/;"	m	struct:_pin_register2_t::hw_pulse_width2_n
+lowPeriod	types.h	/^	       uint16 lowPeriod;$/;"	m	struct:_pin_register_t::servo_n
+lowReload	pinRegisters.h	/^		uint16_t lowReload;$/;"	m	struct:_pin_register_t::pulse_output_n
+lowReload	types.h	/^	uint16_t lowReload;$/;"	m	struct:_pin_register_t::pulse_output_n
+lowRemaining	pinRegisters.h	/^		uint16_t lowRemaining;$/;"	m	struct:_pin_register_t::pulse_output_n
+lowRemaining	types.h	/^	uint16_t lowRemaining;$/;"	m	struct:_pin_register_t::pulse_output_n
+low_time	types.h	/^	  mixed16_t low_time; $/;"	m	struct:_pin_register_t::ping_n
+lowaction	types.h	/^	       uint8 lowaction:2;$/;"	m	struct:_pin_register_t::hysteresis_n
+lowbyte	types.h	/^	   uint8 lowbyte;$/;"	m	struct:mixed16_n::__anon39
+lowbyte	types.h	/^	   uint8 lowbyte;$/;"	m	struct:mixed16_n::__anon42
+lowcommandpin	types.h	/^	       uint8 lowcommandpin;$/;"	m	struct:_pin_register_t::hysteresis_n
+lowlimit	types.h	/^	       uint16 lowlimit;$/;"	m	struct:_pin_register2_t::hysteresis
+lowlimit	types.h	/^	       uint16 lowlimit;$/;"	m	struct:_pin_register_t::hysteresis_n
+lowstate	types.h	/^	   uint8 lowstate:2;$/;"	m	struct:_pin_register_t::morse_n
+m	types.h	/^	   uint8 m;$/;"	m	struct:mixed24_n::__anon38
+m	types.h	/^	   uint8 m;$/;"	m	struct:mixed24_n::__anon41
+main	counter.c	/^int main(void)$/;"	f
+main	main.c	/^int main(void)$/;"	f
+main	quadEnc.c	/^int main(void)$/;"	f
+main	uarttx.c	/^int main(void)$/;"	f
+makeDirectory	nbproject/Package-Optimized.bash	/^function makeDirectory$/;"	f
+makeDirectory	nbproject/Package-default.bash	/^function makeDirectory$/;"	f
+map_next_physical_pin	utilities.c	/^rom const uint8_t map_next_physical_pin[NUMBER_OF_PHYSICAL_PINS + 1] =$/;"	v
+map_physical_pin_ad	utilities.c	/^uint8_t map_physical_pin_ad(uint8_t pin)$/;"	f
+map_physical_pin_ad_table	utilities.c	/^rom const uint8_t map_physical_pin_ad_table[NUMBER_OF_PHYSICAL_PINS + 1]=$/;"	v
+map_pin	utilities.h	141;"	d
+map_pin	utilities.h	144;"	d
+marker	queue.c	/^uint16_t marker;$/;"	m	struct:__anon35	file:
+max	quadEnc.c	/^               uint16_t max;$/;"	m	struct:quadEnc_n	file:
+max	types.h	/^	       mixed16_t max;$/;"	m	struct:_pin_register_t::min_max_n
+max	types.h	/^               uint16_t max;$/;"	m	struct:_pin_register_t::counter_n
+max	types.h	/^               uint16_t max;$/;"	m	struct:_pin_register_t::quadEnc_n
+max	types.h	/^              uint16 max;$/;"	m	struct:_pin_register_t::rotary_encn
+max7219	types.h	/^	}max7219;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::max7219_n
+max7219_n	types.h	/^	struct max7219_n {$/;"	s	union:_pin_register_t
+maximum	analogInput.c	/^	uint16_t maximum;$/;"	m	struct:analogInput_n	file:
+mh	types.h	/^	   uint8 mh;$/;"	m	struct:mixed32_n::__anon37
+mh	types.h	/^	   uint8_t mh;$/;"	m	struct:mixed32_n::__anon40
+midword	types.h	/^        }midword;$/;"	m	union:mixed32_n	typeref:struct:mixed32_n::mixed32_midword_n
+min	quadEnc.c	/^               uint16_t min;$/;"	m	struct:quadEnc_n	file:
+min	types.h	/^	       mixed16_t min;$/;"	m	struct:_pin_register_t::min_max_n
+min	types.h	/^               uint16_t min;$/;"	m	struct:_pin_register_t::quadEnc_n
+min	types.h	/^              uint16 min;$/;"	m	struct:_pin_register_t::rotary_encn
+min_max	types.h	/^       }min_max;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::min_max_n
+min_max_n	types.h	/^       struct min_max_n{$/;"	s	union:_pin_register_t
+minimum	analogInput.c	/^	uint16_t minimum;$/;"	m	struct:analogInput_n	file:
+mismatchmax	types.h	/^           uint8 mismatchmax;$/;"	m	struct:_pin_register_t::diagnostics_n
+mixed16_n	types.h	/^typedef union mixed16_n{$/;"	u
+mixed16_t	types.h	/^}mixed16_t;$/;"	t	typeref:union:mixed16_n
+mixed24_n	types.h	/^typedef union mixed24_n{$/;"	u
+mixed24_t	types.h	/^}mixed24_t;$/;"	t	typeref:union:mixed24_n
+mixed32_midword_n	types.h	/^	struct mixed32_midword_n{ $/;"	s	union:mixed32_n
+mixed32_n	types.h	/^typedef union mixed32_n{$/;"	u
+mixed32_t	types.h	/^}mixed32_t;$/;"	t	typeref:union:mixed32_n
+mixed32_uwords_n	types.h	/^	struct mixed32_uwords_n{ $/;"	s	union:mixed32_n
+ml	types.h	/^	   uint8 ml;$/;"	m	struct:mixed32_n::__anon37
+ml	types.h	/^	   uint8_t ml;$/;"	m	struct:mixed32_n::__anon40
+mode	pinRegisters.h	/^		uint16_t mode;     \/\/ Do not move$/;"	m	struct:_pin_register_t::generic_n
+mode	pinRegisters.h	/^		uint16_t mode;$/;"	m	struct:_pin_register_t::pulse_output_n
+mode	types.h	/^	       uint8 mode:2;$/;"	m	struct:_pin_register_t::hysteresis_n
+mode	types.h	/^	       uint8 mode; \/\/ 0 idle, 1  8 bit, 2, 16 bit, 3: 4 bit high, 4: 4 bit low$/;"	m	struct:_pin_register_t::pwm_queue_fixed_period_n
+mode	types.h	/^	       uint8_t mode;$/;"	m	struct:_pin_register_t::counter_n
+mode	types.h	/^	     uint16_t mode;     \/\/ Do not move$/;"	m	struct:_pin_register_t::generic_n
+mode	types.h	/^	     uint8 mode;$/;"	m	struct:_pin_register2_t::generic2_n
+mode	types.h	/^	   uint8 mode ;$/;"	m	struct:_pin_register_t::hw_pulse_width_n
+mode	types.h	/^	  uint8 mode;$/;"	m	struct:_pin_register_t::ping_n
+mode	types.h	/^	uint16_t mode;$/;"	m	struct:_pin_register_t::pulse_output_n
+mode	types.h	/^	uint8 mode;$/;"	m	struct:generic_queue_n::ram_string_queue_n
+mode	types.h	/^         uint8 mode;$/;"	m	struct:_pin_register_t::parallel_8n
+mode	types.h	/^         uint8 mode;$/;"	m	struct:_pin_register_t::un4step_n
+modeSpecific	analogOutput.c	/^	}modeSpecific;$/;"	m	struct:analogOut_n	typeref:union:analogOut_n::__anon3	file:
+morse	types.h	/^	}morse;$/;"	m	union:_pin_register2_t	typeref:struct:_pin_register2_t::morse_temp_n
+morse	types.h	/^      }morse;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::morse_n
+morse_n	types.h	/^      struct morse_n {$/;"	s	union:_pin_register_t
+morse_temp_n	types.h	/^        struct morse_temp_n{$/;"	s	union:_pin_register2_t
+mreserve	nbproject/Makefile-Optimized.mk	/^	${MP_CC} $(MP_EXTRA_LD_PRE)  -o dist\/${CND_CONF}\/${IMAGE_TYPE}\/SerialWombat2.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}      -mcpu=$(MP_PROCESSOR_OPTION)        -D__DEBUG=__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -omf=elf -DXPRJ_Optimized=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)   -mreserve=data@0x800:0x81B -mreserve=data@0x81C:0x81D -mreserve=data@0x81E:0x81F -mreserve=data@0x820:0x821 -mreserve=data@0x822:0x823 -mreserve=data@0x824:0x827 -mreserve=data@0x82A:0x84F   -Wl,--local-stack,,--defsym=__MPLAB_BUILD=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,-D__DEBUG=__DEBUG,--defsym=__MPLAB_DEBUGGER_PK3=1,$(MP_LINKER_FILE_OPTION),--stack=16,--check-sections,--data-init,--pack-data,--handles,--isr,--no-gc-sections,--fill-upper=0,--stackguard=16,--no-force-link,--smart-io,-Map="${DISTDIR}\/${PROJECTNAME}.${IMAGE_TYPE}.map",--report-mem,--memorysummary,dist\/${CND_CONF}\/${IMAGE_TYPE}\/memoryfile.xml$(MP_EXTRA_LD_POST) $/;"	m
+mreserve	nbproject/Makefile-default.mk	/^	${MP_CC} $(MP_EXTRA_LD_PRE)  -o dist\/${CND_CONF}\/${IMAGE_TYPE}\/SerialWombat2.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}      -mcpu=$(MP_PROCESSOR_OPTION)        -D__DEBUG=__DEBUG   -omf=elf -DXPRJ_default=$(CND_CONF)  -legacy-libc  $(COMPARISON_BUILD)   -mreserve=data@0x800:0x81B -mreserve=data@0x81C:0x81D -mreserve=data@0x81E:0x81F -mreserve=data@0x820:0x821 -mreserve=data@0x822:0x823 -mreserve=data@0x824:0x827 -mreserve=data@0x82A:0x84F   -Wl,--local-stack,,--defsym=__MPLAB_BUILD=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,-D__DEBUG=__DEBUG,,$(MP_LINKER_FILE_OPTION),--stack=16,--check-sections,--data-init,--pack-data,--handles,--isr,--no-gc-sections,--fill-upper=0,--stackguard=16,--no-force-link,--smart-io,-Map="${DISTDIR}\/${PROJECTNAME}.${IMAGE_TYPE}.map",--report-mem,--memorysummary,dist\/${CND_CONF}\/${IMAGE_TYPE}\/memoryfile.xml$(MP_EXTRA_LD_POST) $/;"	m
+near	types.h	58;"	d
+new_val	types.h	/^		uint8 new_val;$/;"	m	struct:_pin_register2_t::morse_temp_n
+new_value	types.h	/^              uint16 new_value;$/;"	m	struct:_pin_register2_t::rotary_enc_n
+newdata	types.h	/^	      uint8 newdata:1;$/;"	m	struct:_pin_register_t::remote_n
+numofsegments	types.h	/^		uint8_t numofsegments;$/;"	m	struct:_pin_register_t::max7219_n
+offset	analogOutput.c	/^	int32_t offset;$/;"	m	struct:linear_n	file:
+offset	types.h	/^	       int16_t offset;$/;"	m	struct:_pin_register_t::pwm_follow_direct_n
+offset	types.h	/^	      uint16 offset;$/;"	m	struct:_pin_register2_t::hd44780_n2
+old_buffer	types.h	/^	 uint16 old_buffer;$/;"	m	struct:_pin_register_t::slowpwm_n
+old_value	types.h	/^              uint16 old_value;$/;"	m	struct:_pin_register2_t::rotary_enc_n
+oldhigh	types.h	/^	   mixed24_t oldhigh;$/;"	m	struct:_pin_register_t::hw_pulse_width_n
+oldlow	types.h	/^	   mixed24_t oldlow;$/;"	m	struct:_pin_register_t::hw_pulse_width_n
+output	types.h	/^	      uint8 output:1; $/;"	m	struct:_pin_register_t::uart_rx_n
+output	types.h	/^	      uint8 output:1;$/;"	m	struct:_pin_register_t::uart_tx_n
+outputmode	types.h	/^	      uint8 outputmode:2; \/\/0 = none, 1 = digital, 2 = pwm$/;"	m	struct:_pin_register_t::debounce_n
+outputpin	types.h	/^	       uint8 outputpin:1;$/;"	m	struct:_pin_register_t::lookup2d_n
+overall_result	utilities.c	/^uint8_t overall_result = 0;$/;"	v
+pTrFlag	pic24fj256ga702/mcc_generated_files/i2c1.c	/^    I2C1_MESSAGE_STATUS             *pTrFlag;       \/\/ set with the error of the last trb sent.$/;"	m	struct:__anon13	file:
+pTrFlag	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^    I2C2_MESSAGE_STATUS             *pTrFlag;       \/\/ set with the error of the last trb sent.$/;"	m	struct:__anon23	file:
+pTrHead	pic24fj256ga702/mcc_generated_files/i2c1.c	/^    I2C_TR_QUEUE_ENTRY          *pTrHead;       \/\/ head of the queue$/;"	m	struct:__anon14	file:
+pTrHead	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^    I2C_TR_QUEUE_ENTRY          *pTrHead;       \/\/ head of the queue$/;"	m	struct:__anon24	file:
+pTrTail	pic24fj256ga702/mcc_generated_files/i2c1.c	/^    I2C_TR_QUEUE_ENTRY          *pTrTail;       \/\/ tail of the queue$/;"	m	struct:__anon14	file:
+pTrTail	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^    I2C_TR_QUEUE_ENTRY          *pTrTail;       \/\/ tail of the queue$/;"	m	struct:__anon24	file:
+p_i2c1_current	pic24fj256ga702/mcc_generated_files/i2c1.c	/^static I2C_TR_QUEUE_ENTRY            *p_i2c1_current = NULL;$/;"	v	file:
+p_i2c1_trb_current	pic24fj256ga702/mcc_generated_files/i2c1.c	/^static I2C1_TRANSACTION_REQUEST_BLOCK *p_i2c1_trb_current;$/;"	v	file:
+p_i2c2_current	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^static I2C_TR_QUEUE_ENTRY            *p_i2c2_current = NULL;$/;"	v	file:
+p_i2c2_read_pointer	pic24fj256ga702/mcc_generated_files/i2c2.c	/^static uint8_t            *p_i2c2_read_pointer;$/;"	v	file:
+p_i2c2_trb_current	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^static I2C2_TRANSACTION_REQUEST_BLOCK *p_i2c2_trb_current;$/;"	v	file:
+p_i2c2_write_pointer	pic24fj256ga702/mcc_generated_files/i2c2.c	/^static uint8_t            *p_i2c2_write_pointer;$/;"	v	file:
+pad	types.h	/^        uint8 pad;$/;"	m	struct:generic_queue_n::flash_queue_n
+pad	types.h	/^        uint8 pad;$/;"	m	struct:generic_queue_n::ram_queue_n
+parallel8	types.h	/^       }parallel8;$/;"	m	union:_pin_register2_t	typeref:struct:_pin_register2_t::parallel_82n
+parallel8	types.h	/^       }parallel8;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::parallel_8n
+parallel_82n	types.h	/^      struct parallel_82n{$/;"	s	union:_pin_register2_t
+parallel_8n	types.h	/^      struct parallel_8n{$/;"	s	union:_pin_register_t
+pattern	types.h	/^           uint8 pattern;$/;"	m	struct:_pin_register_t::morse_n
+pbuffer	pic24fj256ga702/mcc_generated_files/i2c1.h	/^    uint8_t   *pbuffer;         \/\/ a pointer to a buffer of length bytes$/;"	m	struct:__anon17
+peek	types.h	/^	   uint8 peek:1;$/;"	m	struct:_pin_register_t::morse_n
+period	types.h	/^	  uint8 period;$/;"	m	struct:_pin_register_t::ping_n
+period	types.h	/^	 mixed16_t period;$/;"	m	struct:_pin_register_t::slowpwm_n
+persistentdatacounter	types.h	/^	      uint8 persistentdatacounter:3;$/;"	m	struct:_pin_register_t::uart_rx_n
+persistentdatacounter	types.h	/^	      uint8 persistentdatacounter:4;$/;"	m	struct:_pin_register_t::uart_tx_n
+persistentdivisor	types.h	/^	      uint8 persistentdivisor:4;$/;"	m	struct:_pin_register_t::uart_rx_n
+persistentdivisor	types.h	/^	      uint8 persistentdivisor:4;$/;"	m	struct:_pin_register_t::uart_tx_n
+persistentstate	types.h	/^	      uint8 persistentstate:3;$/;"	m	struct:_pin_register_t::uart_rx_n
+pid	types.h	/^       }pid;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::pid_n
+pid_n	types.h	/^       struct pid_n{$/;"	s	union:_pin_register_t
+pin10	types.h	/^	      uint8 pin10;$/;"	m	struct:_pin_register_t::sevenseg_n
+pin100	types.h	/^	      uint8 pin100;$/;"	m	struct:_pin_register_t::sevenseg_n
+pin10k	types.h	/^	      uint8 pin10k;$/;"	m	struct:_pin_register_t::sevenseg_n
+pin1k	types.h	/^	      uint8 pin1k;$/;"	m	struct:_pin_register_t::sevenseg_n
+pin2	types.h	/^	 uint8 pin2;$/;"	m	struct:_pin_register_t::parallel_8n
+pin2	types.h	/^         uint8 pin2;$/;"	m	struct:_pin_register_t::un4step_n
+pin3	types.h	/^         uint8 pin3;$/;"	m	struct:_pin_register_t::un4step_n
+pin3uparray	types.h	/^	 uint8 pin3uparray[6];$/;"	m	struct:_pin_register2_t::parallel_82n
+pin4	types.h	/^         uint8 pin4;$/;"	m	struct:_pin_register_t::un4step_n
+pinBitmap	pic24fj256ga702/pinDigitalHwSpecific.c	/^const uint16_t pinBitmap[] =$/;"	v
+pinBitmap	utilities.c	/^const uint16_t pinBitmap[] =$/;"	v
+pinIsPPSCapable	pic24fj256ga702/pinDigitalHwSpecific.c	/^uint8_t pinIsPPSCapable(uint8_t pin)$/;"	f
+pinMode_t	pinModes.h	/^pinMode_t;$/;"	t	typeref:enum:__anon33
+pinPort	pic24fj256ga702/pinDigitalHwSpecific.c	/^const uint8_t pinPort[] =$/;"	v
+pinPort	utilities.c	/^const uint8_t pinPort[] =$/;"	v
+pinRegister_t	pinRegisters.h	/^} pinRegister_t;$/;"	t	typeref:union:_pin_register_t
+pinUwords	pinRegisters.h	/^		uint16_t pinUwords[18];$/;"	m	struct:_pin_register_t::generic_n
+pin_high	utilities.c	/^void pin_high(uint8_t pin)$/;"	f
+pin_input	utilities.c	/^void pin_input(uint8_t pin)$/;"	f
+pin_logic	types.h	/^      }pin_logic;$/;"	m	union:_pin_register2_t	typeref:struct:_pin_register2_t::pin_logic2_n
+pin_logic2_n	types.h	/^      struct pin_logic2_n{$/;"	s	union:_pin_register2_t
+pin_low	utilities.c	/^void pin_low(uint8_t pin)$/;"	f
+pin_register2_t	types.h	/^} pin_register2_t;$/;"	t	typeref:union:_pin_register2_t
+pin_register_t	types.h	/^} pin_register_t;$/;"	t	typeref:union:_pin_register_t
+pin_uwords	types.h	/^	     uint16_t pin_uwords[14];$/;"	m	struct:_pin_register_t::generic_n
+ping	types.h	/^       }ping;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::ping_n
+ping	types.h	/^      }ping;$/;"	m	union:_pin_register2_t	typeref:struct:_pin_register2_t::ping2_n
+ping2_n	types.h	/^      struct ping2_n{$/;"	s	union:_pin_register2_t
+ping_n	types.h	/^       struct ping_n{$/;"	s	union:_pin_register_t
+pinmode	types.h	/^	      uint8 pinmode:2;$/;"	m	struct:_pin_register_t::datalogger_n
+pintomodify	types.h	/^	      uint8 pintomodify;$/;"	m	struct:_pin_register2_t::rotary_enc_n
+polarity	types.h	/^	       uint8 polarity:1;$/;"	m	struct:_pin_register_t::servo_n
+polyWidth	pic24fj256ga702/mcc_generated_files/crc.c	/^    uint8_t polyWidth;$/;"	m	struct:__anon6	file:
+position	types.h	/^	      uint24 position;$/;"	m	struct:_pin_register2_t::servo2_n
+previous	types.h	/^	      uint16 previous;$/;"	m	struct:_pin_register_t::debounce_n
+previous_button	types.h	/^	uint8 previous_button;$/;"	m	struct:_pin_register2_t::keypad16_2n
+previous_reading	types.h	/^       uint16 previous_reading;$/;"	m	struct:_pin_register_t::keypad16_n
+previousinput	types.h	/^	       uint16 previousinput;$/;"	m	struct:_pin_register_t::pid_n
+print_pin	utilities.c	/^void print_pin(int pin,unsigned char high,unsigned char low)$/;"	f
+print_pin_block	utilities.c	/^void print_pin_block(int pin)$/;"	f
+processrxbeforeevenpins	types.h	/^	uint8 processrxbeforeevenpins:1;$/;"	m	struct:communication_settings_n
+processrxbeforeoddpins	types.h	/^	uint8 processrxbeforeoddpins:1;$/;"	m	struct:communication_settings_n
+program	pic24fj256ga702/mcc_generated_files/crc.c	/^        uint32_t program;$/;"	m	union:__anon6::__anon7	file:
+program	pic24fj256ga702/mcc_generated_files/crc.c	/^    bool program;$/;"	m	struct:__anon6	file:
+ptr	pic24fj256ga702/mcc_generated_files/crc.c	/^    }ptr;$/;"	m	struct:__anon6	typeref:union:__anon6::__anon7	file:
+ptrb_list	pic24fj256ga702/mcc_generated_files/i2c1.c	/^    I2C1_TRANSACTION_REQUEST_BLOCK  *ptrb_list;     \/\/ pointer to the trb list$/;"	m	struct:__anon13	file:
+ptrb_list	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^    I2C2_TRANSACTION_REQUEST_BLOCK  *ptrb_list;     \/\/ pointer to the trb list$/;"	m	struct:__anon23	file:
+publicdata	types.h	/^	       uint8 publicdata; \/\/ 0 = min, 1 = max 2= current$/;"	m	struct:_pin_register_t::min_max_n
+pulse	types.h	/^      }pulse;$/;"	m	union:_pin_register2_t	typeref:struct:_pin_register2_t::pulse_n2
+pulse	types.h	/^      }pulse;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::pulse_n
+pulse_n	types.h	/^      struct pulse_n {$/;"	s	union:_pin_register_t
+pulse_n2	types.h	/^      struct pulse_n2 {$/;"	s	union:_pin_register2_t
+pulse_output	pinRegisters.h	/^	} pulse_output;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::pulse_output_n
+pulse_output	types.h	/^      } pulse_output;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::pulse_output_n
+pulse_output_n	pinRegisters.h	/^	struct pulse_output_n$/;"	s	union:_pin_register_t
+pulse_output_n	types.h	/^      struct pulse_output_n$/;"	s	union:_pin_register_t
+pulsetimeout	types.h	/^	  uint8 pulsetimeout;$/;"	m	struct:_pin_register_t::ping_n
+put_buffer	utilities.c	/^void put_buffer(uint8_t id,uint16_t value)$/;"	f
+put_tp2	utilities.h	84;"	d
+put_tp2_asm	utilities.c	/^void put_tp2_asm(uint8_t pin)$/;"	f
+put_user_buffer	utilities.c	/^void put_user_buffer(uint16_t offset, uint8_t data)$/;"	f
+put_user_buffer_block	utilities.c	/^void put_user_buffer_block(uint16_t offset, uint16_t length, uint8_t* source)$/;"	f
+put_user_buffer_block_calls	utilities.c	/^uint32_t put_user_buffer_block_calls = 0;$/;"	v
+pwmPeriod	types.h	/^	       uint16_t pwmPeriod;$/;"	m	struct:_pin_register_t::pwm_follow_direct_n
+pwm_follow_direct	types.h	/^       }pwm_follow_direct;$/;"	m	union:_pin_register2_t	typeref:struct:_pin_register2_t::pwm_follow_direct_n2
+pwm_follow_direct	types.h	/^       }pwm_follow_direct;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::pwm_follow_direct_n
+pwm_follow_direct_n	types.h	/^       struct pwm_follow_direct_n{$/;"	s	union:_pin_register_t
+pwm_follow_direct_n2	types.h	/^       struct pwm_follow_direct_n2{$/;"	s	union:_pin_register2_t
+pwm_queue_fixed_period	types.h	/^       }pwm_queue_fixed_period;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::pwm_queue_fixed_period_n
+pwm_queue_fixed_period_n	types.h	/^       struct pwm_queue_fixed_period_n{$/;"	s	union:_pin_register_t
+pwm_queue_variable_period	types.h	/^       }pwm_queue_variable_period;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::pwm_queue_variable_period_n
+pwm_queue_variable_period	types.h	/^      }pwm_queue_variable_period ;$/;"	m	union:_pin_register2_t	typeref:struct:_pin_register2_t::pwm_queue_variable_period2_n
+pwm_queue_variable_period2_n	types.h	/^      struct pwm_queue_variable_period2_n{$/;"	s	union:_pin_register2_t
+pwm_queue_variable_period_n	types.h	/^       struct pwm_queue_variable_period_n{$/;"	s	union:_pin_register_t
+pwm_sine	types.h	/^       }pwm_sine;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::pwm_sine_n
+pwm_sine_n	types.h	/^       struct pwm_sine_n{$/;"	s	union:_pin_register_t
+quadEnc	types.h	/^           }quadEnc;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::quadEnc_n
+quadEnc_n	quadEnc.c	/^typedef struct quadEnc_n{$/;"	s	file:
+quadEnc_n	types.h	/^       struct quadEnc_n{$/;"	s	union:_pin_register_t
+quadEnc_t	quadEnc.c	/^}quadEnc_t;$/;"	t	typeref:struct:quadEnc_n	file:
+queue	types.h	/^	       uint16 queue;$/;"	m	struct:_pin_register_t::pwm_queue_fixed_period_n
+queue	types.h	/^	       uint16 queue;$/;"	m	struct:_pin_register_t::pwm_queue_variable_period_n
+queue	types.h	/^	      uint16 queue;$/;"	m	struct:_pin_register_t::uart_rx_n
+queue	types.h	/^	      uint16 queue;$/;"	m	struct:_pin_register_t::uart_tx_n
+queue	types.h	/^           uint16 queue;$/;"	m	struct:_pin_register_t::morse_n
+queue	types.h	/^       uint16 queue;$/;"	m	struct:_pin_register_t::keypad16_n
+queueByte_t	queue.c	/^}queueByte_t;$/;"	t	typeref:struct:__anon35	file:
+queue_flags_bits_n	types.h	/^typedef struct queue_flags_bits_n{$/;"	s
+queue_flags_bits_t	types.h	/^}queue_flags_bits_t;$/;"	t	typeref:struct:queue_flags_bits_n
+queue_flags_t	types.h	/^}queue_flags_t;$/;"	t	typeref:union:queue_flags_union_n
+queue_flags_union_n	types.h	/^typedef union queue_flags_union_n{$/;"	u
+queue_header_t	types.h	/^}__attribute__ ((packed))  queue_header_t;$/;"	t	typeref:union:generic_queue_n
+queue_mode	types.h	/^	uint8 queue_mode:3;$/;"	m	struct:_pin_register2_t::keypad16_2n
+queueaction	types.h	/^	       uint8 queueaction:1 ; \/\/ 0 - shift 1-read$/;"	m	struct:_pin_register_t::pwm_queue_fixed_period_n
+queueaction	types.h	/^               uint8 queueaction;$/;"	m	struct:_pin_register_t::pwm_queue_variable_period_n
+queueall	types.h	/^	      uint8 queueall:1;$/;"	m	struct:_pin_register_t::remote_n
+queuedata	types.h	/^	      uint8 queuedata:1;$/;"	m	struct:_pin_register_t::remote_n
+queuelength	types.h	/^        uint16 queuelength; $/;"	m	struct:generic_queue_n::ram_queue_n
+queuelength	types.h	/^        uint16 queuelength; $/;"	m	struct:generic_queue_n::ram_rle_byte_queue_n
+queuelength	types.h	/^        uint16 queuelength; $/;"	m	struct:generic_queue_n::ram_rle_word_queue_n
+queuesize	types.h	/^        uint16 queuesize;$/;"	m	struct:generic_queue_n::flash_queue_n
+queuesize	types.h	/^        uint16 queuesize;$/;"	m	struct:generic_queue_n::ram_queue_n
+queuesize	types.h	/^        uint16 queuesize;$/;"	m	struct:generic_queue_n::ram_rle_byte_queue_n
+queuesize	types.h	/^        uint16 queuesize;$/;"	m	struct:generic_queue_n::ram_rle_word_queue_n
+queuesize	types.h	/^        uint16 queuesize;$/;"	m	struct:generic_queue_n::ram_string_queue_n
+ram_queue_n	types.h	/^	struct ram_queue_n{$/;"	s	union:generic_queue_n
+ram_rle_byte	types.h	/^	} __attribute__ ((packed)) ram_rle_byte;$/;"	m	union:generic_queue_n	typeref:struct:generic_queue_n::ram_rle_byte_queue_n
+ram_rle_byte_queue_n	types.h	/^	struct ram_rle_byte_queue_n{$/;"	s	union:generic_queue_n
+ram_rle_word	types.h	/^	}__attribute__ ((packed))  ram_rle_word;$/;"	m	union:generic_queue_n	typeref:struct:generic_queue_n::ram_rle_word_queue_n
+ram_rle_word_queue_n	types.h	/^	struct ram_rle_word_queue_n{$/;"	s	union:generic_queue_n
+ram_string	types.h	/^	}__attribute__ ((packed))  ram_string;$/;"	m	union:generic_queue_n	typeref:struct:generic_queue_n::ram_string_queue_n
+ram_string_queue_n	types.h	/^	struct ram_string_queue_n{$/;"	s	union:generic_queue_n
+ramaddr	types.h	/^               uint16 ramaddr;$/;"	m	struct:_pin_register_t::pid_n
+ramq	types.h	/^	}__attribute__ ((packed)) ramq;$/;"	m	union:generic_queue_n	typeref:struct:generic_queue_n::ram_queue_n
+random	utilities.c	/^uint16_t random(void)$/;"	f
+random_number	utilities.c	/^mixed32_t random_number;$/;"	v
+random_seed	utilities.c	/^void random_seed(uint32_t seed)$/;"	f
+readState	quadEnc.c	/^           uint8_t readState;$/;"	m	struct:quadEnc_n	file:
+readState	types.h	/^	       uint8_t readState;$/;"	m	struct:_pin_register_t::quadEnc_n
+read_ad	utilities.c	/^uint16_t read_ad(uint8_t vpin)$/;"	f
+read_ad	utilities.h	49;"	d
+read_free_running_timer	utilities.c	/^uint32_t read_free_running_timer()$/;"	f
+read_pin	utilities.c	/^uint8_t read_pin(uint8_t pin_to_read)$/;"	f
+receivedbit	types.h	/^	      uint8 receivedbit:1;$/;"	m	struct:_pin_register2_t::uart_rx_2n
+receivedbit	types.h	/^	      uint8 receivedbit:1;$/;"	m	struct:_pin_register2_t::uart_tx_2n
+refresh	types.h	/^		uint8_t refresh;$/;"	m	struct:_pin_register_t::max7219_n
+remainingSize	pic24fj256ga702/mcc_generated_files/crc.c	/^    uint32_t remainingSize;$/;"	m	struct:__anon6	file:
+remote	types.h	/^      }remote;$/;"	m	union:_pin_register2_t	typeref:struct:_pin_register2_t::remote_2n
+remote	types.h	/^      }remote;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::remote_n
+remote_2n	types.h	/^      struct remote_2n{$/;"	s	union:_pin_register2_t
+remote_n	types.h	/^      struct remote_n{$/;"	s	union:_pin_register_t
+reserved	pic24fj256ga702/mcc_generated_files/i2c1.c	/^            uint8_t reserved:6;$/;"	m	struct:__anon11::__anon12	file:
+reserved	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^            uint8_t reserved:6;$/;"	m	struct:__anon21::__anon22	file:
+reserved	pic24fj256ga702/mcc_generated_files/uart1.c	/^            uint8_t reserved:6;$/;"	m	struct:__anon27::__anon28	file:
+reserved	types.h	/^	uint8 reserved[2];$/;"	m	struct:generic_queue_n::ram_rle_byte_queue_n
+reserved	types.h	/^	uint8 reserved[5];$/;"	m	struct:generic_queue_n::ram_queue_n
+reserved	types.h	/^	uint8 reserved[5];$/;"	m	struct:generic_queue_n::ram_string_queue_n
+reserved	types.h	/^        uint8 reserved[5];$/;"	m	struct:generic_queue_n::flash_queue_n
+reset	main.c	/^void reset ()$/;"	f
+resetarrayaddress	types.h	/^         uint16 resetarrayaddress;$/;"	m	struct:_pin_register_t::watchdog_n
+resolution	types.h	/^	      uint8 resolution:2;$/;"	m	struct:_pin_register_t::datalogger_n
+returntoinit	types.h	/^	 uint8 returntoinit:1;$/;"	m	struct:_pin_register_t::watchdog_n
+reverse	analogOutput.c	/^	uint8_t reverse;$/;"	m	struct:servo_n	file:
+reverse	servo.c	/^	uint8_t reverse;$/;"	m	struct:servo_n	file:
+reverse	types.h	/^	       uint8 reverse:1;$/;"	m	struct:_pin_register_t::servo_n
+rollover	types.h	/^	      uint8 rollover:1;$/;"	m	struct:_pin_register2_t::ping2_n
+rom	types.h	60;"	d
+rotary_enc	types.h	/^      }rotary_enc;$/;"	m	union:_pin_register2_t	typeref:struct:_pin_register2_t::rotary_enc_n
+rotary_enc	types.h	/^      }rotary_enc;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::rotary_encn
+rotary_enc_n	types.h	/^      struct rotary_enc_n{$/;"	s	union:_pin_register2_t
+rotary_encn	types.h	/^      struct rotary_encn{$/;"	s	union:_pin_register_t
+rows	types.h	/^		uint8_t rows;$/;"	m	struct:_pin_register_t::max7219_n
+rows	types.h	/^	uint8 rows:4;$/;"	m	struct:_pin_register2_t::keypad16_2n
+run_foreground	types.h	/^	uint8 run_foreground:1;$/;"	m	struct:executive_settings_n
+rxHead	pic24fj256ga702/mcc_generated_files/uart1.c	/^    uint8_t                                      *rxHead ;$/;"	m	struct:__anon29	file:
+rxStatus	pic24fj256ga702/mcc_generated_files/uart1.c	/^    UART_BYTEQ_STATUS                        rxStatus ;$/;"	m	struct:__anon29	file:
+rxTail	pic24fj256ga702/mcc_generated_files/uart1.c	/^    uint8_t                                      *rxTail ;$/;"	m	struct:__anon29	file:
+rx_dec_ascii_to_val16	utilities.c	/^uint16_t rx_dec_ascii_to_val16(uint8_t rxbuffer_index, uint8_t count)$/;"	f
+rxbuffer	types.h	/^	uint8 rxbuffer[8];$/;"	m	struct:test_data_n
+rxqueue	types.h	/^	      uint16 rxqueue;$/;"	m	struct:_pin_register_t::spi_master_n
+s	pic24fj256ga702/mcc_generated_files/i2c1.c	/^    }s;$/;"	m	union:__anon11	typeref:struct:__anon11::__anon12	file:
+s	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^    }s;$/;"	m	union:__anon21	typeref:struct:__anon21::__anon22	file:
+s	pic24fj256ga702/mcc_generated_files/uart1.c	/^    }s;$/;"	m	union:__anon27	typeref:struct:__anon27::__anon28	file:
+s	types.h	/^	int16 s;$/;"	m	union:mixed16_n
+s	types.h	/^	int24 s;$/;"	m	union:mixed24_n
+s	types.h	/^	int32 s;$/;"	m	union:mixed32_n
+s	types.h	/^	int32_t s;$/;"	m	union:mixed32_n
+safestate	types.h	/^           uint8 safestate;$/;"	m	struct:_pin_register_t::diagnostics_n
+sample	types.h	/^	      mixed16_t sample;$/;"	m	struct:_pin_register_t::sevenseg_n
+sampleCounter	analogOutput.c	/^	uint16_t sampleCounter;$/;"	m	struct:analogOut_n	file:
+sampleTime	analogOutput.c	/^	uint16_t sampleTime;$/;"	m	struct:analogOut_n	file:
+samplebit	types.h	/^	      uint8 samplebit:1;$/;"	m	struct:_pin_register_t::spi_master_n
+samplecounter	types.h	/^	       uint16_t samplecounter;$/;"	m	struct:_pin_register_t::pwm_follow_direct_n
+samples	types.h	/^	       uint8 samples;$/;"	m	struct:_pin_register_t::ad_average_n
+sampletime	types.h	/^	       uint16 sampletime;$/;"	m	struct:_pin_register_t::pwm_sine_n
+sampletime	types.h	/^	       uint16_t sampletime;$/;"	m	struct:_pin_register_t::pwm_follow_direct_n
+sampletime	types.h	/^	       uint8 sampletime;$/;"	m	struct:_pin_register_t::ad_filter_1st_order_n
+sampletime	types.h	/^	       uint8 sampletime;$/;"	m	struct:_pin_register_t::pid_n
+sampletime	types.h	/^	       uint8 sampletime;$/;"	m	struct:_pin_register_t::pwm_queue_fixed_period_n
+scalar	analogOutput.c	/^	int32_t scalar;$/;"	m	struct:linear_n	file:
+scalar	types.h	/^	       uint16_t scalar;$/;"	m	struct:_pin_register_t::pwm_follow_direct_n
+sdipin	types.h	/^	      uint8 sdipin;$/;"	m	struct:_pin_register_t::spi_master_n
+sdopin	types.h	/^	      uint8 sdopin;$/;"	m	struct:_pin_register_t::spi_master_n
+secondPin	quadEnc.c	/^           uint8_t secondPin; $/;"	m	struct:quadEnc_n	file:
+secondPin	types.h	/^	       uint8_t secondPin; $/;"	m	struct:_pin_register_t::quadEnc_n
+second_vpin	types.h	/^              uint8 second_vpin;$/;"	m	struct:_pin_register_t::rotary_encn
+servo	analogOutput.c	/^	servo_t servo;$/;"	m	union:analogOut_n::__anon3	file:
+servo	types.h	/^       } servo;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::servo_n
+servo	types.h	/^      }servo;$/;"	m	union:_pin_register2_t	typeref:struct:_pin_register2_t::servo2_n
+servo2_n	types.h	/^      struct servo2_n{$/;"	s	union:_pin_register2_t
+servoPin_t	servo.c	/^}servoPin_t;$/;"	t	typeref:struct:servo_n	file:
+servo_n	analogOutput.c	/^typedef struct servo_n$/;"	s	file:
+servo_n	servo.c	/^typedef struct servo_n{$/;"	s	file:
+servo_n	types.h	/^       struct servo_n{$/;"	s	union:_pin_register_t
+servo_t	analogOutput.c	/^}servo_t;$/;"	t	typeref:struct:servo_n	file:
+set_MCP41XXX	utilities.c	/^void set_MCP41XXX(uint8_t pin, uint8_t width)$/;"	f
+set_MCP4821	utilities.c	/^void set_MCP4821(uint8_t pin,uint16_t width)$/;"	f
+set_buffer	utilities.h	112;"	d
+set_hw_mode	utilities.h	109;"	d
+set_hw_option	utilities.h	110;"	d
+set_mode	utilities.h	107;"	d
+set_pin	utilities.c	/^void set_pin(uint8_t pin, uint8_t mode)$/;"	f
+set_pwm	utilities.c	/^void set_pwm(uint8_t pin, uint16_t width)$/;"	f
+set_register_memory	utilities.h	103;"	d
+set_register_memory2	utilities.h	104;"	d
+sevenseg	types.h	/^      }sevenseg;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::sevenseg_n
+sevenseg_n	types.h	/^      struct sevenseg_n {$/;"	s	union:_pin_register_t
+showdevid	types.h	/^	      uint8 showdevid:1; $/;"	m	struct:_pin_register_t::remote_n
+sin_data	utilities.c	/^sin_data_t sin_data[3];$/;"	v
+sin_data_n	types.h	/^typedef struct sin_data_n$/;"	s
+sin_data_t	types.h	/^} sin_data_t;$/;"	t	typeref:struct:sin_data_n
+slow_SPI00_send	utilities.c	/^uint8_t slow_SPI00_send(uint8_t data,uint8_t delay, uint8_t clkpin, uint8_t sdipin, uint8_t sdopin)$/;"	f
+slow_counter	types.h	/^	      uint8 slow_counter;$/;"	m	struct:_pin_register_t::button_counter_n
+slow_frame_rate	types.h	/^	      uint8 slow_frame_rate;$/;"	m	struct:_pin_register_t::button_counter_n
+slowpwm	types.h	/^      }slowpwm;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::slowpwm_n
+slowpwm_n	types.h	/^      struct slowpwm_n {  \/\/ Active time stored in buffer$/;"	s	union:_pin_register_t
+source	types.h	/^	       uint8 source;$/;"	m	struct:_pin_register_t::ad_average_n
+source	types.h	/^	       uint8 source;$/;"	m	struct:_pin_register_t::lookup2d_n
+source	types.h	/^	       uint8 source;$/;"	m	struct:_pin_register_t::min_max_n
+source	types.h	/^	      uint8 source;$/;"	m	struct:_pin_register_t::debounce_n
+source	types.h	/^	      uint8 source;$/;"	m	struct:_pin_register_t::sevenseg_n
+source	types.h	/^	 uint16 source;$/;"	m	struct:_pin_register_t::parallel_8n
+sourceisvpin	types.h	/^	      uint8 sourceisvpin:1;$/;"	m	struct:_pin_register_t::debounce_n
+sourcepins	types.h	/^	      uint8 sourcepins[4];$/;"	m	struct:_pin_register_t::datalogger_n
+spi_enable	types.h	/^	uint8 spi_enable:1;$/;"	m	struct:communication_settings_n
+spi_inprogress	types.h	/^	uint8 spi_inprogress:1;$/;"	m	struct:communication_settings_n
+spi_master	types.h	/^      }spi_master;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::spi_master_n
+spi_master_n	types.h	/^      struct spi_master_n{$/;"	s	union:_pin_register_t
+start	types.h	/^	      uint8 start;$/;"	m	struct:_pin_register2_t::remote_2n
+state	pic24fj256ga702/mcc_generated_files/crc.c	/^    CRC_STATE state;$/;"	m	struct:__anon6	file:
+state	types.h	/^	      uint8 state:2;$/;"	m	struct:_pin_register_t::datalogger_n
+state	types.h	/^	      uint8 state:3; $/;"	m	struct:_pin_register_t::button_counter_n
+state	types.h	/^	      uint8 state:3;$/;"	m	struct:_pin_register_t::sevenseg_n
+state	types.h	/^	      uint8 state;$/;"	m	struct:_pin_register2_t::uart_rx_2n
+state	types.h	/^	      uint8 state;$/;"	m	struct:_pin_register2_t::uart_tx_2n
+state	types.h	/^	      uint8 state;$/;"	m	struct:_pin_register_t::hd44780_n
+state	types.h	/^	 uint8 state;$/;"	m	struct:_pin_register_t::watchdog_n
+state	types.h	/^           uint8 state:2;$/;"	m	struct:_pin_register_t::pulse_n
+state	types.h	/^           uint8 state;$/;"	m	struct:_pin_register_t::morse_n
+state	types.h	/^       uint8 state;$/;"	m	struct:_pin_register_t::keypad16_n
+status	pic24fj256ga702/mcc_generated_files/i2c1.c	/^    uint8_t status;$/;"	m	union:__anon11	file:
+status	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^    uint8_t status;$/;"	m	union:__anon21	file:
+status	pic24fj256ga702/mcc_generated_files/uart1.c	/^    uint8_t status;$/;"	m	union:__anon27	file:
+stemp32	types.h	/^           int32 stemp32 ;$/;"	m	struct:_pin_register2_t::pwm_follow_direct_n2
+stepmode	types.h	/^         uint8 stepmode;$/;"	m	struct:_pin_register2_t::un4step_2n
+steptime	types.h	/^         uint8 steptime;$/;"	m	struct:_pin_register_t::un4step_n
+sum	types.h	/^	       uint32 sum;$/;"	m	struct:_pin_register_t::ad_average_n
+swpwmPeriod	analogOutput.c	/^	uint16_t swpwmPeriod;$/;"	m	union:analogOut_n::__anon3	file:
+tableAddress	analogOutput.c	/^	uint16_t tableAddress;$/;"	m	struct:lookup2D_n	file:
+tableaddress	types.h	/^	       uint16 tableaddress;$/;"	m	struct:_pin_register_t::lookup2d_n
+tailIndex	queue.c	/^uint16_t tailIndex; \/\/Where to place next byte that comes in.$/;"	m	struct:__anon35	file:
+temp	types.h	/^		uint8 temp;$/;"	m	struct:_pin_register2_t::morse_temp_n
+temp16	types.h	/^	       uint16 temp16;$/;"	m	struct:_pin_register2_t::ad_average_temp_n
+temp16	types.h	/^	       uint16 temp16;$/;"	m	struct:_pin_register2_t::hysteresis
+temp16	types.h	/^	      mixed16_t temp16;$/;"	m	struct:_pin_register2_t::pwm_queue_variable_period2_n
+temp16	types.h	/^	 uint16 temp16;$/;"	m	struct:_pin_register2_t::diagnostics2_n
+temp2	types.h	/^		       uint32 temp2;$/;"	m	union:_pin_register2_t::ad_filter_1st_order_n2::__anon45
+temp24	types.h	/^	       uint24 temp24;$/;"	m	struct:_pin_register2_t::lookup2d_2n
+temp32	types.h	/^	       uint32 temp32;$/;"	m	struct:_pin_register2_t::ad_average_temp_n
+temp32	types.h	/^	      mixed32_t temp32;$/;"	m	struct:_pin_register2_t::servo2_n
+temp32	types.h	/^               mixed32_t temp32;$/;"	m	struct:_pin_register2_t::lookup2d_2n
+temp32	types.h	/^           mixed32_t temp32 ;$/;"	m	struct:_pin_register2_t::pwm_follow_direct_n2
+temp32_1	types.h	/^	       uint32 temp32_1;$/;"	m	struct:_pin_register2_t::ad_filter_1st_order_n2
+temp32_2	types.h	/^		      }temp32_2;$/;"	m	struct:_pin_register2_t::ad_filter_1st_order_n2	typeref:union:_pin_register2_t::ad_filter_1st_order_n2::__anon45
+temp8	types.h	/^	       uint8 temp8;$/;"	m	struct:_pin_register2_t::lookup2d_2n
+temp8	types.h	/^	      uint8 temp8;$/;"	m	struct:_pin_register2_t::pwm_queue_variable_period2_n
+temp8	types.h	/^	      uint8 temp8;$/;"	m	struct:_pin_register2_t::servo2_n
+temp_time	types.h	/^	      mixed16_t temp_time;$/;"	m	struct:_pin_register2_t::ping2_n
+test	counter.c	/^   int test = 0;$/;"	v
+test	quadEnc.c	/^   int test = 0;$/;"	v
+test0_data	counter.c	/^int const test0_data[] = {0,100,$/;"	v
+test0_data	quadEnc.c	/^int const test0_data[] = {0,100,$/;"	v
+test0_init	counter.c	/^int const test0_init[] = {0,2,0,65535,0,2,sizeof(test0_data) \/ 8 };$/;"	v
+test0_init	quadEnc.c	/^int const test0_init[] = {0,2,0,65535,0,2,sizeof(test0_data) \/ 8 };$/;"	v
+test1_data	counter.c	/^int const test1_data[] = {0,100,$/;"	v
+test1_data	quadEnc.c	/^int const test1_data[] = {0,100,$/;"	v
+test1_init	counter.c	/^int const test1_init[] = {0,1,0,65535,0,1,sizeof(test1_data) \/ 8 };$/;"	v
+test1_init	quadEnc.c	/^int const test1_init[] = {0,1,0,65535,0,1,sizeof(test1_data) \/ 8 };$/;"	v
+test2_data	counter.c	/^int const test2_data[] = {0,100,$/;"	v
+test2_data	quadEnc.c	/^int const test2_data[] = {0,100,$/;"	v
+test2_init	counter.c	/^int const test2_init[] = {10, \/\/Debounce frames$/;"	v
+test2_init	quadEnc.c	/^int const test2_init[] = {10, \/\/Debounce frames$/;"	v
+test3_data	counter.c	/^int const test3_data[] = {0,100,$/;"	v
+test3_data	quadEnc.c	/^int const test3_data[] = {0,100,$/;"	v
+test3_init	counter.c	/^int const test3_init[] = {10, \/\/Debounce frames$/;"	v
+test3_init	quadEnc.c	/^int const test3_init[] = {10, \/\/Debounce frames$/;"	v
+test4_data	counter.c	/^int const test4_data[] = {0,100,$/;"	v
+test4_data	quadEnc.c	/^int const test4_data[] = {0,100,$/;"	v
+test4_init	counter.c	/^int const test4_init[] = {10, \/\/Debounce frames$/;"	v
+test4_init	quadEnc.c	/^int const test4_init[] = {10, \/\/Debounce frames$/;"	v
+test5_data	counter.c	/^int const test5_data[] = {0,1,$/;"	v
+test5_data	quadEnc.c	/^int const test5_data[] = {0,1,$/;"	v
+test5_init	counter.c	/^int const test5_init[] = {0, \/\/Debounce frames$/;"	v
+test5_init	quadEnc.c	/^int const test5_init[] = {0, \/\/Debounce frames$/;"	v
+test6_data	counter.c	/^int const test6_data[] = {0,1,$/;"	v
+test6_data	quadEnc.c	/^int const test6_data[] = {0,1,$/;"	v
+test6_init	counter.c	/^int const test6_init[] = {0, \/\/Debounce frames$/;"	v
+test6_init	quadEnc.c	/^int const test6_init[] = {0, \/\/Debounce frames$/;"	v
+test7_data	counter.c	/^int const test7_data[] = {0,1,$/;"	v
+test7_data	quadEnc.c	/^int const test7_data[] = {0,1,$/;"	v
+test7_init	counter.c	/^int const test7_init[] = {0, \/\/Debounce frames$/;"	v
+test7_init	quadEnc.c	/^int const test7_init[] = {0, \/\/Debounce frames$/;"	v
+test8_data	counter.c	/^int const test8_data[] = {0,1,$/;"	v
+test8_data	quadEnc.c	/^int const test8_data[] = {0,1,$/;"	v
+test8_init	counter.c	/^int const test8_init[] = {0, \/\/Debounce frames$/;"	v
+test8_init	quadEnc.c	/^int const test8_init[] = {0, \/\/Debounce frames$/;"	v
+test9_data	counter.c	/^int const test9_data[] = {0,1,$/;"	v
+test9_data	quadEnc.c	/^int const test9_data[] = {0,1,$/;"	v
+test9_init	counter.c	/^int const test9_init[] = {0, \/\/Debounce frames$/;"	v
+test9_init	quadEnc.c	/^int const test9_init[] = {0, \/\/Debounce frames$/;"	v
+test_data_n	types.h	/^typedef struct test_data_n{$/;"	s
+test_data_t	types.h	/^} test_data_t;$/;"	t	typeref:struct:test_data_n
+test_pin	counter.c	/^   uint8 test_pin;$/;"	v
+test_pin	quadEnc.c	/^   uint8 test_pin;$/;"	v
+test_stage	utilities.c	/^volatile uint8_t test_stage = 0;$/;"	v
+test_vectors	counter.c	/^int const*  test_vectors[]= {test0_init,test0_data,$/;"	v
+test_vectors	quadEnc.c	/^int const*  test_vectors[]= {test0_init,test0_data,$/;"	v
+testing_button	types.h	/^	uint8 testing_button;$/;"	m	struct:_pin_register2_t::keypad16_2n
+threshold	types.h	/^	      uint8 threshold;$/;"	m	struct:_pin_register2_t::remote_2n
+throughput	types.h	/^	uint8 throughput:1;$/;"	m	struct:executive_settings_n
+time	types.h	/^         uint8 time;$/;"	m	struct:_pin_register2_t::un4step_2n
+timeoutperiod	types.h	/^         mixed16_t timeoutperiod;$/;"	m	struct:_pin_register_t::watchdog_n
+timeoutstate	types.h	/^         uint8 timeoutstate:2;$/;"	m	struct:_pin_register_t::watchdog_n
+timerElapsed	pic24fj256ga702/mcc_generated_files/tmr1.c	/^    bool                                                    timerElapsed;$/;"	m	struct:_TMR_OBJ_STRUCT	file:
+timerElapsed	pic24fj256ga702/mcc_generated_files/tmr2.c	/^    bool                                                    timerElapsed;$/;"	m	struct:_TMR_OBJ_STRUCT	file:
+timerElapsed	pic24fj256ga702/mcc_generated_files/tmr3.c	/^    bool                                                    timerElapsed;$/;"	m	struct:_TMR_OBJ_STRUCT	file:
+tmr1_obj	pic24fj256ga702/mcc_generated_files/tmr1.c	/^static TMR_OBJ tmr1_obj;$/;"	v	file:
+tmr2_obj	pic24fj256ga702/mcc_generated_files/tmr2.c	/^static TMR_OBJ tmr2_obj;$/;"	v	file:
+tmr3_obj	pic24fj256ga702/mcc_generated_files/tmr3.c	/^static TMR_OBJ tmr3_obj;$/;"	v	file:
+toggle	types.h	/^	   uint8 toggle:1;$/;"	m	struct:_pin_register_t::morse_n
+toggle	types.h	/^	   uint8 toggle:1;$/;"	m	struct:_pin_register_t::pulse_n
+toggle_pin	utilities.h	30;"	d
+togglestate	types.h	/^	   uint8 togglestate:1;$/;"	m	struct:_pin_register_t::morse_n
+total_slow_frames	types.h	/^	      uint8 total_slow_frames;$/;"	m	struct:_pin_register_t::button_counter_n
+tp	types.h	/^	pin_register_t tp;$/;"	m	struct:test_data_n
+tp2	types.h	/^	pin_register2_t tp2;$/;"	m	struct:test_data_n
+trStatus	pic24fj256ga702/mcc_generated_files/i2c1.c	/^    I2C_TR_QUEUE_STATUS         trStatus;       \/\/ status of the last transaction$/;"	m	struct:__anon14	file:
+trStatus	pic24fj256ga702/mcc_generated_files/i2c2Master.c.c	/^    I2C_TR_QUEUE_STATUS         trStatus;       \/\/ status of the last transaction$/;"	m	struct:__anon24	file:
+trailing1	types.h	/^	uint8 trailing1;$/;"	m	struct:generic_queue_n::ram_string_queue_n
+trailing2	types.h	/^	uint8 trailing2;$/;"	m	struct:generic_queue_n::ram_string_queue_n
+transformData	analogOutput.c	/^	}transformData;$/;"	m	struct:analogOut_n	typeref:union:analogOut_n::__anon2	file:
+transformDataBytes	analogOutput.c	/^		uint8_t transformDataBytes[8];$/;"	m	union:analogOut_n::__anon2	file:
+transformType	analogOutput.c	/^	uint8_t transformType;$/;"	m	struct:analogOut_n	file:
+transformType_t	analogOutput.c	/^}transformType_t;$/;"	t	typeref:enum:__anon1	file:
+trigger	types.h	/^	      uint8 trigger:1;$/;"	m	struct:_pin_register_t::spi_master_n
+trigger	types.h	/^           uint8 trigger:3;$/;"	m	struct:_pin_register_t::pulse_n
+txHead	pic24fj256ga702/mcc_generated_files/uart1.c	/^    uint8_t                                      *txHead ;$/;"	m	struct:__anon29	file:
+txStatus	pic24fj256ga702/mcc_generated_files/uart1.c	/^    UART_BYTEQ_STATUS                        txStatus ;$/;"	m	struct:__anon29	file:
+txTail	pic24fj256ga702/mcc_generated_files/uart1.c	/^    uint8_t                                      *txTail ;$/;"	m	struct:__anon29	file:
+txbuffer	types.h	/^	uint8 txbuffer[8];$/;"	m	struct:test_data_n
+type	types.h	/^        uint8 type;$/;"	m	struct:generic_queue_n::flash_queue_n
+type	types.h	/^        uint8 type;$/;"	m	struct:generic_queue_n::ram_queue_n
+type	types.h	/^        uint8 type;$/;"	m	struct:generic_queue_n::ram_rle_byte_queue_n
+type	types.h	/^        uint8 type;$/;"	m	struct:generic_queue_n::ram_rle_word_queue_n
+type	types.h	/^        uint8 type;$/;"	m	struct:generic_queue_n::ram_string_queue_n
+u	types.h	/^		uint16 u;$/;"	m	struct:mixed32_n::mixed32_midword_n
+u	types.h	/^	uint16 u;$/;"	m	union:mixed16_n
+u	types.h	/^	uint24 u;$/;"	m	union:mixed24_n
+u	types.h	/^	uint32 u;$/;"	m	union:mixed32_n
+u	types.h	/^	uint32_t u;$/;"	m	union:mixed32_n
+u16ptr	types.h	/^	uint16 *u16ptr;$/;"	m	union:mixed16_n
+u8ptr	types.h	/^	uint8 *u8ptr;$/;"	m	union:mixed16_n
+u8romptr	types.h	/^	rom uint8 *u8romptr;$/;"	m	union:mixed16_n
+uart1_obj	pic24fj256ga702/mcc_generated_files/uart1.c	/^static volatile UART_OBJECT uart1_obj ;$/;"	v	file:
+uart1_rxByteQ	pic24fj256ga702/mcc_generated_files/uart1.c	/^static uint8_t uart1_rxByteQ[UART1_CONFIG_RX_BYTEQ_LENGTH] ;$/;"	v	file:
+uart1_txByteQ	pic24fj256ga702/mcc_generated_files/uart1.c	/^static uint8_t uart1_txByteQ[UART1_CONFIG_TX_BYTEQ_LENGTH] ;$/;"	v	file:
+uartStartTX	protocol.c	/^void uartStartTX()$/;"	f
+uart_address_received	types.h	/^	uint8 uart_address_received:1;$/;"	m	struct:communication_settings_n
+uart_checksum_received	types.h	/^	uint8 uart_checksum_received:1;$/;"	m	struct:communication_settings_n
+uart_rx	types.h	/^      }uart_rx;$/;"	m	union:_pin_register2_t	typeref:struct:_pin_register2_t::uart_rx_2n
+uart_rx	types.h	/^      }uart_rx;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::uart_rx_n
+uart_rx_2n	types.h	/^      struct uart_rx_2n{$/;"	s	union:_pin_register2_t
+uart_rx_n	types.h	/^      struct uart_rx_n{$/;"	s	union:_pin_register_t
+uart_tx	types.h	/^      }uart_tx;$/;"	m	union:_pin_register2_t	typeref:struct:_pin_register2_t::uart_tx_2n
+uart_tx	types.h	/^      }uart_tx;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::uart_tx_n
+uart_tx_2n	types.h	/^      struct uart_tx_2n{$/;"	s	union:_pin_register2_t
+uart_tx_n	types.h	/^      struct uart_tx_n{$/;"	s	union:_pin_register_t
+uart_use_checksum	types.h	/^	uint8 uart_use_checksum:1;$/;"	m	struct:communication_settings_n
+uart_use_cts	types.h	/^	uint8 uart_use_cts:1;$/;"	m	struct:communication_settings_n
+uint16	types.h	20;"	d
+uint16	types.h	51;"	d
+uint16ToAscii5	asciiConversion.c	/^void uint16ToAscii5(uint16_t val, uint8_t* buffer)$/;"	f
+uint16_bitfield	utilities.c	/^rom const uint16_t uint16_bitfield[16] = {$/;"	v
+uint24	types.h	38;"	d
+uint24	types.h	55;"	d
+uint32	types.h	29;"	d
+uint32	types.h	53;"	d
+uint8	types.h	12;"	d
+uint8	types.h	49;"	d
+uint8_bitfield	utilities.c	/^rom const uint8_t uint8_bitfield[8] = {$/;"	v
+uint8_bitfield_invert	utilities.c	/^rom const uint8_t uint8_bitfield_invert[8] = {$/;"	v
+uint8_bitlowermask	utilities.c	/^rom const uint8_t uint8_bitlowermask[8] = {$/;"	v
+un4step	types.h	/^      }un4step;$/;"	m	union:_pin_register2_t	typeref:struct:_pin_register2_t::un4step_2n
+un4step	types.h	/^      }un4step;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::un4step_n
+un4step_2n	types.h	/^      struct un4step_2n{$/;"	s	union:_pin_register2_t
+un4step_n	types.h	/^      struct un4step_n {$/;"	s	union:_pin_register_t
+unit_test_main	utilities.c	/^int unit_test_main (void)$/;"	f
+unmap_pin	utilities.h	142;"	d
+updateAnalogOut	analogOutput.c	/^void updateAnalogOut(void)$/;"	f
+updatePulse	pic24fj256ga702/updatePulse.c	/^void updatePulse(uint8_t pin)$/;"	f
+updatePulse	utilities.c	/^void updatePulse(uint8_t pin)$/;"	f
+update_call_count	types.h	/^	int update_call_count;$/;"	m	struct:test_data_n
+update_counter	counter.c	/^void update_counter(void)$/;"	f
+update_pwm	utilities.c	/^void update_pwm(void)$/;"	f
+update_quadEnc	quadEnc.c	/^void update_quadEnc(void)$/;"	f
+update_servo	analogInput.c	/^void update_servo()$/;"	f
+update_servo	servo.c	/^void update_servo()$/;"	f
+update_uart_tx	uarttx.c	/^void update_uart_tx(void)$/;"	f
+updateframes	types.h	/^	       uint8 updateframes;$/;"	m	struct:_pin_register_t::servo_n
+updatenow	types.h	/^	       uint8 updatenow:1;$/;"	m	struct:_pin_register_t::pwm_queue_fixed_period_n
+updatesPerCall	types.h	/^		uint8_t updatesPerCall;$/;"	m	struct:_pin_register_t::max7219_n
+use_failsafe_stack	pic24fj256ga702/mcc_generated_files/traps.c	/^inline static void use_failsafe_stack(void)$/;"	f	file:
+use_hw	types.h	/^	 uint8 use_hw:1;$/;"	m	struct:_pin_register_t::slowpwm_n
+use_leading1	types.h	/^	uint8 use_leading1:1;$/;"	m	struct:generic_queue_n::ram_string_queue_n
+use_leading2	types.h	/^	uint8 use_leading2:1;$/;"	m	struct:generic_queue_n::ram_string_queue_n
+use_trailing1	types.h	/^	uint8 use_trailing1:1;$/;"	m	struct:generic_queue_n::ram_string_queue_n
+use_trailing2	types.h	/^	uint8 use_trailing2:1;$/;"	m	struct:generic_queue_n::ram_string_queue_n
+usepublic	types.h	/^	      uint8 usepublic:1; \/\/0 = read pin, 1 = use public$/;"	m	struct:_pin_register_t::debounce_n
+user_buffer	main.c	/^uint8_t user_buffer[SIZE_OF_USER_BUFFER];$/;"	v
+user_buffer	utilities.c	/^uint8_t user_buffer[SIZE_OF_USER_BUFFER];$/;"	v
+useresetarray	types.h	/^	 uint8 useresetarray:1;$/;"	m	struct:_pin_register_t::watchdog_n
+util_local_i	utilities.c	/^uint8_t util_local_i, util_local_j, util_local_k;$/;"	v
+util_local_j	utilities.c	/^uint8_t util_local_i, util_local_j, util_local_k;$/;"	v
+util_local_k	utilities.c	/^uint8_t util_local_i, util_local_j, util_local_k;$/;"	v
+util_local_temp16_1	utilities.c	/^uint16_t util_local_temp16_1;$/;"	v
+util_local_temp16_2	utilities.c	/^mixed16_t util_local_temp16_2;$/;"	v
+util_local_temp32_1	utilities.c	/^mixed32_t util_local_temp32_1;$/;"	v
+utility_incrementing_number	utilities.c	/^uint16_t utility_incrementing_number;$/;"	v
+uwords	pinRegisters.h	/^	uint16_t uwords[20];$/;"	m	union:_pin_register_t
+uwords	types.h	/^        }uwords;$/;"	m	union:mixed32_n	typeref:struct:mixed32_n::mixed32_uwords_n
+uwords	types.h	/^      uint16_t uwords[16];$/;"	m	union:_pin_register_t
+val16_to_hex	utilities.c	/^void val16_to_hex(mixed16_t val, uint8_t* string)$/;"	f
+val_to_ascii	utilities.c	/^uint8_t val_to_ascii(uint8_t a)$/;"	f
+variable	types.h	/^	       uint16 variable;$/;"	m	struct:_pin_register_t::servo_n
+variablePeriod	analogOutput.c	/^	uint16_t variablePeriod;$/;"	m	struct:servo_n	file:
+variablePeriod	servo.c	/^	uint16_t variablePeriod;$/;"	m	struct:servo_n	file:
+virtual_pin	types.h	/^	uint8 virtual_pin;$/;"	m	struct:test_data_n
+vpinBitmap	utilities.c	/^uint16_t vpinBitmap(void)$/;"	f
+vpinPort	utilities.c	/^uint8_t vpinPort(void)$/;"	f
+vpin_data_counter	counter.c	/^   int vpin_data_counter = 0;$/;"	v
+vpin_data_quadEnc	quadEnc.c	/^   int vpin_data_quadEnc = 0;$/;"	v
+vpin_data_vector	counter.c	/^   int const* vpin_data_vector;$/;"	v
+vpin_data_vector	quadEnc.c	/^   int const* vpin_data_vector;$/;"	v
+vpin_high	utilities.c	/^void vpin_high(void)$/;"	f
+vpin_input	utilities.c	/^void vpin_input(void)$/;"	f
+vpin_low	utilities.c	/^void vpin_low(void)$/;"	f
+vpin_read	utilities.c	/^uint8_t vpin_read(void)$/;"	f
+vread_ad	utilities.c	/^uint16_t vread_ad(void)$/;"	f
+vset_pwm	utilities.c	/^void vset_pwm( uint16_t width)$/;"	f
+wasempty	types.h	/^        uint8 wasempty:1;$/;"	m	struct:queue_flags_bits_n
+wasfull	types.h	/^        uint8 wasfull:1;$/;"	m	struct:queue_flags_bits_n
+watchdog	types.h	/^      }watchdog;$/;"	m	union:_pin_register_t	typeref:struct:_pin_register_t::watchdog_n
+watchdog_n	types.h	/^      struct watchdog_n {$/;"	s	union:_pin_register_t
+words	types.h	/^		       uint16 words[2];$/;"	m	union:_pin_register2_t::ad_filter_1st_order_n2::__anon45
+x1	types.h	/^	       uint16 x1;$/;"	m	struct:_pin_register2_t::lookup2d_2n
+x2	types.h	/^	       uint16 x2;$/;"	m	struct:_pin_register2_t::lookup2d_2n
+y1	types.h	/^	       uint16 y1;$/;"	m	struct:_pin_register2_t::lookup2d_2n
+y2	types.h	/^	       uint16 y2;$/;"	m	struct:_pin_register2_t::lookup2d_2n
+zeropin	types.h	/^	 uint8 zeropin;$/;"	m	struct:_pin_register2_t::un4step_2n
+zerostate	types.h	/^	 uint8 zerostate;$/;"	m	struct:_pin_register2_t::un4step_2n

@@ -80,5 +80,23 @@ void ProcessRx(void);
 void ProcessPins(void);
 void reset(void);
 
+
+typedef enum {
+    SW_ERROR_UNNUMBERED_ERROR = 0,
+    SW_ERROR_PINS_MUST_BE_ON_SAME_PORT = 1, ///< Pins must be on the same microcontroller part (e.g. PORTA, PORTB, etc.).  See datasheet of micro for port assignments.
+    SW_ERROR_ASCII_NUMBER_TOO_BIG_16 = 2, ///<A number bigger than 65535 was provided to convert to a 16 bit value
+            SW_ERROR_UNKNOWN_PIN_MODE = 3, ///< A Pin mode was indicated that is not avaialble on this model of Serial Wombat chip
+            SW_ERROR_RESET_STRING_INCORRECT = 4, ///<A Packet starting with 'R' was received but didn't have the correct following bytes to cause a reset
+            SW_ERROR_INVALID_COMMAND = 5, ///< The first byte of a received packet does not correspond with a command supported by this model of Serial Wombat chip
+            SW_ERROR_INSUFFICIENT_SPACE = 6,  ///< There was not sufficient space in the queue or user area to complete the command.
+            SW_ERROR_WUB_COUNT_GT_4 = 7, ///< A count greater than 4 was provided as a number of bytes to write to count user buffer
+            SW_ERROR_WUB_INVALID_ADDRESS = 8, ///<An attempt to write to a user buffer address outside the user buffer was attempted.
+            SW_ERROR_WUB_CONTINUE_OUTOFBOUNDS = 9, ///<  A call to Write User Buffer Continue would have written out of bounds.
+            
+            
+            
+}SW_ERROR_t;
+
+void error (SW_ERROR_t errorCode);
 #endif
 

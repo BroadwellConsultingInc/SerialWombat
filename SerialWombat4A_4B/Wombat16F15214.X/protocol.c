@@ -840,44 +840,7 @@ Response:
 
 \}
 **/
-/** \addtogroup ProtocolBinaryCommands
-\{
-
-----
-
-Binary Read RAM, 16 Bit address
----------------------
-
-Reads a byte from an address in Microcontroller RAM.  The SW4A and SW4B use 16 bit addresses.  
-
-Note that the PIC16F15214 is a Microchip Enhanced Mid-Range chip with both a banked RAM area and a Linear RAM area at an offset address.  
-See the datasheet for details.
-
-
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xA0|Least Significant byte of 16-bit address |Most Significant byte of 16-bit address | 0x55* | 0x55* | 0x55* |  0x55* | 0x55* |
- *0x55 is recommended, but any byte is acceptable
-
-Response:
-
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xA0|Least Significant byte of 16-bit address |Most Significant byte of 16-bit address | Byte Read From Ram| Echoed | Echoed |  Echoed | Echoed |
-
-Examples:
-
-Read the byte at RAM address 0x0247.
-
-> `0xA0 0x47 0x02 0x55 0x55 0x55 0x55 0x55`
-
-Assuming address 0x0247 held the value 0xAC ,
-Response:
-> `0xA0 0x47 0x02 0xAC 0x55 0x55 0x55 0x55`
-
-\}
-**/
-		uint16_t addr = RXBUFFER16(1);
+	uint16_t addr = RXBUFFER16(1);
     Txbuffer[3] = *(uint8_t*)addr;
             
         }
@@ -890,37 +853,37 @@ Response:
 
 ----
 
-Binary Read Flash, 16 Bit address
+Binary Read Flash, 16 Bit address, 16 Bit result
 ---------------------
 
-Reads a byte from an address in Microcontroller RAM.  The SW4A and SW4B use 16 bit addresses.  
+Reads two bytes from an address in Microcontroller Flash.  The SW4A and SW4B use 16 bit addresses.  
 
 See the Datasheet for the microchip PIC16F15214 for information on organization
 
 |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xA0|Least Significant byte of 16-bit address |Most Significant byte of 16-bit address | 0x55* | 0x55* | 0x55* |  0x55* | 0x55* |
+|0xA1|Least Significant byte of 16-bit address |Most Significant byte of 16-bit address | 0x00 | 0x00 | 0x55* |  0x55* | 0x55* |
  *0x55 is recommended, but any byte is acceptable
 
 Response:
 
 |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xA0|Least Significant byte of 16-bit address |Most Significant byte of 16-bit address | Byte Read From Ram| Echoed | Echoed |  Echoed | Echoed |
+|0xA1|Least Significant byte of 16-bit address |Most Significant byte of 16-bit address |Echoed|Echoed| Low Byte Read From Flash| High Byte Read From Flash |  Echoed |
 
 Examples:
 
-Read the byte at FLASH address 0x0847.
+Read the word at FLASH address 0x0846.
 
-> `0xA1 0x47 0x08 0x55 0x55 0x55 0x55 0x55`
+> `0xA1 0x46 0x08 0x55 0x55 0x55 0x55 0x55`
 
-Assuming address 0x0847 held the value 0xEF ,
+Assuming address 0x0846 held the value 0x07EF ,
 Response:
-> `0xA1 0x47 0x08 0xEF 0x55 0x55 0x55 0x55`
+> `0xA1 0x46 0x08 0xEF 0x07 0x55 0x55 0x55`
 
 \}
 **/
-            NVMCON1bits.NVMREGS = 0x01;
+    NVMCON1bits.NVMREGS = 0x01;
     NVMADRH = Rxbuffer[2];
     NVMADRL = Rxbuffer[1];
     NVMCON1bits.RD = 0x01;
@@ -952,7 +915,7 @@ See the datasheet for details.
 
 |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xA0|Least Significant byte of 16-bit address |Most Significant byte of 16-bit address | 0 (for 32-bit compatability) | 0 (for 32-bit compatability) | Byte To write |  0x55* | 0x55* |
+|0xA3|Least Significant byte of 16-bit address |Most Significant byte of 16-bit address | 0 (for 32-bit compatability) | 0 (for 32-bit compatability) | Byte To write |  0x55* | 0x55* |
  *0x55 is recommended, but any byte is acceptable
 
 Response:
