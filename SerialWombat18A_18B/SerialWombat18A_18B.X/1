@@ -1,0 +1,186 @@
+#include <stdint.h>
+#include <stdbool.h>
+#include "SerialWombat.h"
+#include "asciiConversion.h"
+uint32_t debug_discarded_bytes = 0;
+
+uint8_t UartRxbufferCounter = 0;
+uint8_t UartTxbufferCounter = 0;
+uint8_t Rxbuffer[RXBUFFER_LENGTH];
+uint8_t Txbuffer[TXBUFFER_LENGTH];
+
+void uartStartTX()
+{
+	UART1_WriteBuffer(Txbuffer,TXBUFFER_LENGTH); //TODO put in right spot.
+	UartTxbufferCounter = 0;
+}
+
+void ProcessRxbuffer( void )
+{
+	Txbuffer[0] = Rxbuffer[0];
+	Txbuffer[1] = Rxbuffer[1];
+	Txbuffer[2] = Rxbuffer[2];
+	Txbuffer[3] = Rxbuffer[3];
+	Txbuffer[4] = Rxbuffer[4];
+	Txbuffer[5] = Rxbuffer[5];
+	Txbuffer[6] = Rxbuffer[6];
+	Txbuffer[7] = Rxbuffer[7];
+	switch (Rxbuffer[0])
+	{
+		case 33:
+			//    ECHO Message Back
+#ifdef TEST_COMM_VERBOSE
+			printf("Echo Command received\n");
+#endif
+
+			break;
+        case 'D': // Set Public Data
+			{
+				uint8_t pin =  ascii_to_val(Rxbuffer[1]);
+				pin *= 10;
+				pin += ascii_to_val(Rxbuffer[2]);
+				uint16_t value = ascii_to_val(Rxbuffer[3]);
+				value *= 10;
+				value += ascii_to_val(Rxbuffer[4]);
+				value *= 10;
+				value += ascii_to_val(Rxbuffer[5]);
+				value *= 10;
+				value += ascii_to_val(Rxbuffer[6]);
+				value *= 10;
+				value += ascii_to_val(Rxbuffer[7]);
+
+				SetBuffer(pin,value);
+			}
+			break;
+		case 80: //Ascii 'P'
+
+			//ASCII_SET_PIN
+			// ASCII command P : Set pin
+			// BYTE 0 : Command
+			// BYTE 1 : Pin # high, Ascii
+			// BYTE 2 : Pin # low, ASCII
+			// BYTE 3 : Pin state: I = Input, 0 = Low, 1 = High
+			// BYTE 4 : Pin state (# + 1) 
+			// BYTE 5 : PIN state (# + 2)
+			// BYTE 6 : Pin State (# + 3)
+			// BYTE 7 : Pin State (# + 4)
+			{
+				uint8_t local_i, local_j;
+				local_i = ascii_to_val(Rxbuffer[1]);
+				local_i  *= 10;
+				local_i  += ascii_to_val(Rxbuffer[2]); 
+				for ( local_j = 3; local_j < 8 ; ++local_j)
+				{
+					if ( Rxbuffer[local_j] == 'I')
+					{
+						PinInput(local_i);
+						  SetMode(local_i,PIN_MODE_DIRECT) ;
+					}
+					else if (Rxbuffer[local_j] == '0')
+					{
+						PinLow(local_i);
+						SetMode(local_i,PIN_MODE_DIRECT) ;
+					}
+					else if (Rxbuffer[local_j] == '1')
+					{
+						PinHigh(local_i);
+						SetMode(local_i,PIN_MODE_DIRECT) ;
+					}
+					++local_i;
+				}
+			}
+			break;
+		case 82: // 'R'
+			{
+				if (Rxbuffer[1] == 'e' && 
+						Rxbuffer[2] == 'S' && Rxbuffer[3] == 'e' && 
+						Rxbuffer[4] == 'T' && Rxbuffer[5] == '!' &&
+						Rxbuffer[6] == '@' &&  Rxbuffer[7] == '#')
+				{
+					reset();
+				}
+				else
+				{
+					error();
+				} 
+			}
+			break;
+		case 86: //Ascii 'V'  Version String
+			Txbuffer[1] = 'S';   //Serial
+			Txbuffer[2] = 'W';   //Wombat
+			Txbuffer[3] = '2';
+			Txbuffer[4] = '0';	     
+			Txbuffer[5] = '0';	     
+			Txbuffer[6] = '0';	     
+			Txbuffer[7] = '1';	     
+
+			break;
+		case 200:
+		case 201:
+		case 202:
+		case 203:
+		case 204:
+		case 205:
+		case 206:
+		case 207:
+		case 208:
+		case 209:
+		case 210:
+		case 211:
+		case 212:
+		case 213:
+		case 214:
+		case 215:
+		case 216:
+		case 217:
+		case 218:
+		case 219:
+//TODO			ProcessSetPin();
+			break;
+		default:
+			InvalidCommand();
+#ifdef TEST_COMM_VERBOSE
+			printf("Invalid command received. Using default handler in ProcessRxbuffer()\n");
+#endif
+			break;
+	}
+} // end ProcessRxbuffer
+
+void ProcessRx(void)
+{
+	if ( UartRxbufferCounter < RXBUFFER_LENGTH)
+	{
+		uint8_t numberOfBytesRead = 0;
+		numberOfBytesRead = UART1_ReadBuffer(&Rxbuffer[UartRxbufferCounter], RXBUFFER_LENGTH - UartRxbufferCounter);
+		UartRxbufferCounter += numberOfBytesRead;
+		while (UartRxbufferCounter > 0  && Rxbuffer[0] == 0x55 )
+		{
+			uint8_t i;
+			for (i = 0; i < RXBUFFER_LENGTH - 1; ++i)
+			{
+				Rxbuffer[i] = Rxbuffer[i+1];
+
+			}
+			-- UartRxbufferCounter;
+			++debug_discarded_bytes;
+		}
+	}
+	if (UartRxbufferCounter >= RXBUFFER_LENGTH)
+	{
+		int i;
+		ProcessRxbuffer();
+		UartRxbufferCounter = 0;
+		for (i = 0; i < RXBUFFER_LENGTH; ++i)
+		{
+			Rxbuffer[i] = 0xFE;
+		}	
+		uartStartTX();
+	}
+}
+
+void error()
+{
+
+}
+
+void InvalidCommand();

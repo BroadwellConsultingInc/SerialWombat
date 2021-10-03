@@ -60,7 +60,7 @@ void reset ()
 #pragma config TMPRPIN = OFF    //Tamper Pin Enable bit->TMPRN pin function is disabled
 #pragma config SOSCHP = ON    //SOSC High Power Enable bit (valid only when SOSCSEL = 1->Enable SOSC high power mode (default)
 #pragma config ALTI2C1 = ALTI2CEN    //Alternate I2C pin Location->SDA1 and SCL1 on RB9 and RB8
-
+void (*voidvoidPtr)();
 int main(void)
 {
  
@@ -71,7 +71,17 @@ int main(void)
      
      
      INTCON2 |= 0x100; // Set Alternate vector table.  Bits in .h file are wrong in INTCON2bits so use bit or
-     asm("goto 0x4000");  // Jump to App
+// Get the address from the reset vector and jump to the reset routine.
+      // Jumping directly into the AVT causes an address trap.
+      
+      uint32_t high = 0;
+      uint16_t low = 0;
+       low = __builtin_tblrdl(0x4000);
+      voidvoidPtr = low;
+      high = __builtin_tblrdl(0x4002);
+      high <<= 16;
+      voidvoidPtr += high;
+      voidvoidPtr();
   
 	return 1;
 }

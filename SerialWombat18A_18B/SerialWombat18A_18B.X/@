@@ -1,0 +1,127 @@
+#include "SerialWombat.h"
+#include <stdint.h>
+
+typedef enum
+{
+ TRANSFORM_TYPE_DIRECT = 0,
+ TRANSFORM_TYPE_LINEAR = 1,
+}transformType_t;
+
+typedef struct linear_n
+{
+	int32_t offset;
+	int32_t scalar;
+}linear_t;
+
+typedef struct lookup2D_n
+{
+	uint16_t tableAddress;
+}lookup2D_t;
+
+typedef struct analogOut_n{
+	union{
+		uint8_t transformDataBytes[8];
+		linear_t linear;
+		lookup2D_t;
+	}transformData;
+	uint16_t sampleTime;
+	uint16_t sampleCounter;
+	uint16_t pwmPeriod;
+	uint8_t commandPin;
+	uint8_t transformType;
+}analogOut_t;
+
+
+
+void initAnalogOut (void)
+{
+	analogOut_t* analog = (analogOut_t*) CurrentPinRegister;
+	switch (Rxbuffer[0])
+	{
+		case CONFIGURE_CHANNEL_MODE_0:
+		{
+			analog->commandPin = Rxbuffer[3];
+			CurrentPinRegister->generic.buffer = RXBUFFER16(4);
+			analog->transformType = TRANSFORM_TYPE_DIRECT;
+			uint16_t sampleCounter = 0;
+
+			CurrentPinRegister->generic.mode = Rxbuffer[2];
+
+			if (CurrentPinRegister->generic.mode == PIN_MODE_PWM)
+			{
+				analog->pwmPeriod = RXBUFFER16(6);
+				CurrentPinRegister->pulse_output.highReload = (((uint32_t) CurrentPinRegister->generic.buffer * analog->pwmPeriod) >> 16);
+				CurrentPinRegister->pulse_output.lowReload = analog->pwmPeriod - CurrentPinRegister->pulse_output.highReload;
+				PinLow(CurrentPin); //TODO make generic output, place after updatePulse
+				updatePulse(CurrentPin);
+			
+			}
+
+		}
+	}
+}
+
+void updateAnalogOut(void)
+{
+	analogOut_t* analog = (analogOut_t*) CurrentPinRegister;
+	if (analog->commandPin == 255)
+	{
+		return;
+	}
+	if (analog->sampleCounter < analog->sampleTime)
+	{
+		++analog->sampleCounter;
+	}
+	else
+	{
+		uint32_t temp32;
+		analog->sampleCounter = 0;
+		temp32 = GetBuffer(analog->commandPin);
+/*		temp32 *= tp->pwm_follow_direct.scalar;
+		temp32 >>=8;
+		int32_t stemp32 = temp32;
+		stemp32 += tp->pwm_follow_direct.offset;
+		if (stemp32 > 65535)
+		{
+			stemp32 = 65535;
+		}
+		else if (stemp32 < 0)
+		{
+			stemp32 = 0;
+		}
+		*/
+		if (CurrentPinRegister->generic.mode == PIN_MODE_PWM)
+		{
+			CurrentPinRegister->pulse_output.highReload = (((uint32_t) temp32 * analog->pwmPeriod) >> 16);
+			CurrentPinRegister->pulse_output.lowReload = analog->pwmPeriod - CurrentPinRegister->pulse_output.highReload;
+		}
+//		else if (tp->generic.mode == PIN_MODE_ANALOG_OUT_FOLLOW)
+//		{
+//			CVRCON = 0x00C0 | (((uint16_t)stemp32) >> 11);
+//		}
+
+	}
+	if (CurrentPinRegister->generic.mode == PIN_MODE_PWM)
+	{
+		updatePulse(CurrentPin);
+	}
+}
+
+void initPWMSimple(uint8_t pin)
+{
+			pinRegister_t* pr = &PinUpdateRegisters[pin];
+			analogOut_t* analog = (analogOut_t*) pr;
+			analog->commandPin = pin;
+			analog->transformType = TRANSFORM_TYPE_DIRECT;
+
+			pr->generic.mode = PIN_MODE_PWM;
+
+				analog->pwmPeriod = 256;
+				pr->pulse_output.highReload = (((uint32_t) pr->generic.buffer * analog->pwmPeriod) >> 16);
+				pr->pulse_output.lowReload = analog->pwmPeriod - pr->pulse_output.highReload;
+				PinLow(pin); //TODO make generic output, place after updatePulse
+				updatePulse(pin);
+			
+			}
+
+}

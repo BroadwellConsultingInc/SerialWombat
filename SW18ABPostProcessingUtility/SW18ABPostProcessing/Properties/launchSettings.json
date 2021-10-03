@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SW18ABPostProcessing": {
+      "commandName": "Project",
+      "commandLineArgs": "\"F:\\keep\\GitHub\\broadwellconsultinginc\\SerialWombat\\SerialWombat18A_18B\\SerialWombat18A_18B_Bootloader.X\\dist\\default\\production\\SerialWombat18A_18B_Bootloader.X.production.unified.hex\""
+    }
+  }
+}

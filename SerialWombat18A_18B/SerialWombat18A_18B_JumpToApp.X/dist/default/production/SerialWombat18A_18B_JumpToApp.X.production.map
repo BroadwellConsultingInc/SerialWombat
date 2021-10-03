@@ -4,17 +4,10 @@ Tool Name:
   c:\program files\microchip\xc16\v1.70\bin\bin\..\bin/elf-ld.exe
 
 Command:
-  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00005d84.00 \
-  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00005d84.01 \
-  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00005d84.02 \
-  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00005d84.03 \
-  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00005d84.04 \
-  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00005d84.05 \
-  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00005d84.06 \
   -p24FJ256GA702 \
   --mdfp=C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC24F-GA-GB_DFP/1.4.141/xc16 \
   -o \
-  dist/default/debug/SerialWombat18A_18B_Bootloader.X.debug.elf \
+  dist/default/production/SerialWombat18A_18B_JumpToApp.X.production.elf \
   -Lc:/program files/microchip/xc16/v1.70/bin/bin/.. \
   -LC:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC24F-GA-GB_DFP/1.4.141/xc16/bin/../support/PIC24F/gld \
   -Lc:/program files/microchip/xc16/v1.70/bin/bin/../../lib \
@@ -25,33 +18,10 @@ Command:
   -Lc:/program files/microchip/xc16/v1.70/bin/bin/../../support/dsPIC33C/gld \
   -Lc:/program files/microchip/xc16/v1.70/bin/bin/../../support/dsPIC33E/gld \
   -Lc:/program files/microchip/xc16/v1.70/bin/bin/../../support/dsPIC33F/gld \
-  build/default/debug/_ext/275911920/adc1.o \
-  build/default/debug/_ext/275911920/clock.o \
-  build/default/debug/_ext/275911920/crc.o \
-  build/default/debug/_ext/275911920/cvr.o \
-  build/default/debug/_ext/275911920/dma.o \
-  build/default/debug/_ext/275911920/i2c1.o \
-  build/default/debug/_ext/275911920/i2c2.o \
-  build/default/debug/_ext/275911920/interrupt_manager.o \
-  build/default/debug/_ext/275911920/mcc.o \
-  build/default/debug/_ext/275911920/pin_manager.o \
-  build/default/debug/_ext/275911920/system.o \
-  build/default/debug/_ext/275911920/tmr1.o \
-  build/default/debug/_ext/275911920/tmr2.o \
-  build/default/debug/_ext/275911920/tmr3.o \
-  build/default/debug/_ext/275911920/traps.o \
-  build/default/debug/_ext/275911920/uart1.o \
-  build/default/debug/_ext/275911920/uart2.o \
-  build/default/debug/main_boot.o \
-  build/default/debug/protocol_boot.o \
-  build/default/debug/_ext/1497480854/pinDigitalHwSpecific.o \
-  build/default/debug/_ext/1497480854/wombatasm.o \
-  build/default/debug/_ext/998979777/asciiConversion.o \
+  build/default/production/main_boot.o \
   --local-stack \
   --defsym=__MPLAB_BUILD=1 \
-  --defsym=__MPLAB_DEBUG=1 \
-  --defsym=__DEBUG=1 \
-  -Tp24FJ256GA702_boot.gld.07 \
+  -Tp24FJ256GA702_boot.gld.00 \
   --stack=16 \
   --check-sections \
   --data-init \
@@ -63,10 +33,10 @@ Command:
   --stackguard=16 \
   --no-force-link \
   --smart-io \
-  -Map=dist/default/debug/SerialWombat18A_18B_Bootloader.X.debug.map \
+  -Map=dist/default/production/SerialWombat18A_18B_JumpToApp.X.production.map \
   --report-mem \
   --memorysummary \
-  dist/default/debug/memoryfile.xml \
+  dist/default/production/memoryfile.xml \
   -start-group \
   --library=lega-pic30-elf \
   --library=m-elf \
@@ -83,12 +53,6 @@ c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(data
                               c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(crt0_extended24.o) (__data_init_da)
 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(crt_start_mode_normalda.Leo)
                               (__crt_start_mode_normal)
-c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(divsi3.daeo)
-                              build/default/debug/_ext/275911920/adc1.o (___divsi3)
-c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(udivsi3.daeo)
-                              build/default/debug/_ext/275911920/adc1.o (___udivsi3)
-c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-c-elf.a(memcpy.DA_eo)
-                              build/default/debug/protocol_boot.o (_memcpy)
 
 
 Selected CodeGuard Options:
@@ -122,40 +86,18 @@ Default Scalar Model: Small
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
-.text                        0x100               0x84c           0xc72  (3186)
-.const                       0x94c                0x8c            0xd2  (210)
-.text                        0x9d8              0x1c32          0x2a4b  (10827)
-.dinit                      0x260a               0x22a           0x33f  (831)
-.text                       0x2834               0x958           0xe04  (3588)
+.text                        0x100               0x10a           0x18f  (399)
+.text                        0x20a                0x1a            0x27  (39)
 
-                 Total "pgm" memory used (bytes):         0x48d2  (18642) 77%
+                 Total "pgm" memory used (bytes):          0x1b6  (438) 1%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x4000]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
-reserve_data_0x800           0x800                0x1c            0x1c  (28)
-reserve_data_0x81c           0x81c                 0x2             0x2  (2)
-reserve_data_0x81e           0x81e                 0x2             0x2  (2)
-reserve_data_0x820           0x820                 0x2             0x2  (2)
-reserve_data_0x822           0x822                 0x2             0x2  (2)
-reserve_data_0x824           0x824                 0x4             0x4  (4)
-.nbss                        0x828                   0             0x2  (2)
-reserve_data_0x82a           0x82a                0x26            0x26  (38)
-.nbss                        0x850                   0            0x42  (66)
-.ndata                       0x892                   0             0xa  (10)
-.nbss                        0x89c                   0             0x4  (4)
-.nbss                        0x8a0                   0             0x2  (2)
-.ndata                       0x8a2                   0             0x2  (2)
-.nbss                        0x8a4                   0             0x2  (2)
-.bss                         0x8a6                   0          0x2000  (8192)
-.data                       0x28a6                   0           0x200  (512)
-.bss                        0x2aa6                   0           0x24a  (586)
-.data                       0x2cf0                   0            0x40  (64)
-.bss                        0x2d30                   0            0x6c  (108)
 
-                 Total "data" memory used (bytes):         0x259c  (9628) 58%
+                 Total "data" memory used (bytes):              0  (0) 
 
 
 Dynamic Memory Usage
@@ -163,452 +105,34 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                       0x2d9c                              0x1a64  (6756)
+stack                        0x800                              0x4000  (16384)
 
-                 Maximum dynamic memory (bytes):         0x1a64  (6756)
+                 Maximum dynamic memory (bytes):         0x4000  (16384)
 
+Info: Project is using a large data memory model when small data memory model is sufficient.
 
-External Symbols in Data Memory (by address):
-
-                    0x0828                  _TMR1_InterruptHandler
-                    0x0868                  _i2c2_slave_state
-                    0x086e                  _DebugLastPoint
-                    0x086f                  _wombatI2CRxDataCount
-                    0x0870                  _wombatI2CTxDataCount
-                    0x0871                  _nextInterruptAddress
-                    0x0872                  _discardI2CData
-                    0x087a                  _debug_discarded_bytes
-                    0x087e                  _UartRxbufferCounter
-                    0x087f                  _UartTxbufferCounter
-                    0x0880                  _LineBreaksAndEcho
-                    0x0881                  _ResponsePending
-                    0x0882                  _ResponseAvailable
-                    0x0883                  _TX_ClockStretching
-                    0x0884                  _RX_ClockStretching
-                    0x0886                  _TMR2_InterruptHandler
-                    0x0888                  _System1msCount
-                    0x088c                  _lastRXInterruptByte
-                    0x088e                  _TotalRxBytes
-                    0x0892                  _SW_I2CAddress
-                    0x0894                  _lastUserBufferIndex
-                    0x0896                  _lastQueueIndex
-                    0x089c                  _CurrentPin
-                    0x089d                  _RunForeground
-                    0x089e                  _StayInBoot
-                    0x08a0                  _TMR3_InterruptHandler
-                    0x08a4                  _asciiVal
-                    0x08a6                  _user_buffer
-                    0x28a6                  _OutputArrayA
-                    0x29a6                  _OutputArrayB
-                    0x2aa6                  _InputArrayA
-                    0x2ba6                  _InputArrayB
-                    0x2d62                  _wombatI2CRxData
-                    0x2d6a                  _wombatI2CTxData
-                    0x2d72                  _Rxbuffer
-                    0x2d7a                  _Txbuffer
-                    0x2d90                  _asciiChar
-
-External Symbols in Data Memory (by name):
-
-                    0x089c                  _CurrentPin
-                    0x086e                  _DebugLastPoint
-                    0x2aa6                  _InputArrayA
-                    0x2ba6                  _InputArrayB
-                    0x0880                  _LineBreaksAndEcho
-                    0x28a6                  _OutputArrayA
-                    0x29a6                  _OutputArrayB
-                    0x0884                  _RX_ClockStretching
-                    0x0882                  _ResponseAvailable
-                    0x0881                  _ResponsePending
-                    0x089d                  _RunForeground
-                    0x2d72                  _Rxbuffer
-                    0x0892                  _SW_I2CAddress
-                    0x089e                  _StayInBoot
-                    0x0888                  _System1msCount
-                    0x0828                  _TMR1_InterruptHandler
-                    0x0886                  _TMR2_InterruptHandler
-                    0x08a0                  _TMR3_InterruptHandler
-                    0x0883                  _TX_ClockStretching
-                    0x088e                  _TotalRxBytes
-                    0x2d7a                  _Txbuffer
-                    0x087e                  _UartRxbufferCounter
-                    0x087f                  _UartTxbufferCounter
-                    0x2d90                  _asciiChar
-                    0x08a4                  _asciiVal
-                    0x087a                  _debug_discarded_bytes
-                    0x0872                  _discardI2CData
-                    0x0868                  _i2c2_slave_state
-                    0x0896                  _lastQueueIndex
-                    0x088c                  _lastRXInterruptByte
-                    0x0894                  _lastUserBufferIndex
-                    0x0871                  _nextInterruptAddress
-                    0x08a6                  _user_buffer
-                    0x2d62                  _wombatI2CRxData
-                    0x086f                  _wombatI2CRxDataCount
-                    0x2d6a                  _wombatI2CTxData
-                    0x0870                  _wombatI2CTxDataCount
 
 External Symbols in Program Memory (by address):
 
                   0x000100                  __resetPRI
                   0x00013c                  __psv_init
-                  0x000152                  __data_init_da
                   0x000152                  __data_init
-                  0x000208                  __ADC1Interrupt
-                  0x00022e                  __DMA0Interrupt
-                  0x00024e                  __MI2C1Interrupt
-                  0x0004ae                  __SI2C2Interrupt
-                  0x00073c                  __T2Interrupt
-                  0x000772                  __OscillatorFail
-                  0x000794                  __StackError
-                  0x0007ba                  __AddressError
-                  0x0007dc                  __MathError
-                  0x0007fe                  __NVMError
-                  0x000820                  __U1TXInterrupt
-                  0x00088c                  __U1RXInterrupt
-                  0x0008e4                  __U1ErrInterrupt
-                  0x0008fa                  __DefaultInterrupt
-                  0x000900                  ___divsi3
-                  0x00091e                  ___udivsi3
-                  0x00093e                  _memcpy
-                  0x00094c                  _PinBitmapB
-                  0x000974                  _PinBitmapA
-                  0x00099c                  _pinPort
-                  0x0009b0                  _pinBitmap
-                  0x0009d8                  _DMA_Initialize
-                  0x000a72                  _DMA__Channel1_Tasks
-                  0x000a8e                  _DMA__Channel2_Tasks
-                  0x000aaa                  _DMA__Channel3_Tasks
-                  0x000ac4                  _DMA__Channel4_Tasks
-                  0x000ae0                  _DMA__Channel5_Tasks
-                  0x000af6                  _DMA_ChannelEnable
-                  0x000b38                  _DMA_ChannelDisable
-                  0x000b7a                  _DMA_TransferCountSet
-                  0x000bca                  _DMA_TransferCountGet
-                  0x000c0e                  _DMA_SoftwareTriggerEnable
-                  0x000c50                  _DMA_SourceAddressSet
-                  0x000ca0                  _DMA_DestinationAddressSet
-                  0x000cf0                  _DMA_IsSoftwareRequestPending
-                  0x000d94                  _DMA_IsBufferedWriteComplete
-                  0x000e38                  _DMA_IsHighAddressLimitFlagSet
-                  0x000edc                  _DMA_IsLowAddressLimitFlagSet
-                  0x000f80                  _DMA_IsOperationDone
-                  0x001024                  _DMA_IsOverrunFlagSet
-                  0x0010c8                  _DMA_IsOperationHalfComplete
-                  0x00116c                  _CRC_Initialize
-                  0x001426                  _CRC_SeedSet
-                  0x0014ea                  _CRC_CalculateBufferStart
-                  0x001526                  _CRC_CalculateProgramStart
-                  0x001572                  _CRC_Task
-                  0x0015e8                  _CRC_CalculationIsDone
-                  0x0015fc                  _CRC_CalculationResultRawGet
-                  0x001656                  _CRC_CalculationResultReverseGet
-                  0x001664                  _CRC_CalculationResultXORGet
-                  0x00169e                  _CRC_CalculationResultGet
-                  0x0016ea                  _CurrentPinBitmap
-                  0x001706                  _ConfigurePinAnalog
-                  0x001786                  _PinIsAnalogCapable
-                  0x0017a4                  _CurrentPinPort
-                  0x0017bc                  _ReadPin
-                  0x001818                  _PinOutput
-                  0x001856                  _PinInput
-                  0x00189e                  _CurrentPinRead
-                  0x0018a8                  _pinIsPPSCapable
-                  0x0018cc                  _SetPin
-                  0x00199c                  _CurrentPinInput
-                  0x0019a6                  _CurrentPinAnalog
-                  0x0019da                  _SetCurrentPin
-                  0x0019e8                  _PinLow
-                  0x0019f6                  _PinHigh
-                  0x001a04                  _SetPinPullUp
-                  0x001a80                  _SetPinPullDown
-                  0x001afc                  _PinPullUp
-                  0x001b10                  _PinPullDown
-                  0x001b24                  _CurrentPinPullUp
-                  0x001b2e                  _CurrentPinNoPullUp
-                  0x001b3a                  _CurrentPinPullDown
-                  0x001b44                  _CurrentPinNoPullDown
-                  0x001b68                  _uartStartTX
-                  0x001ba4                  _error
-                  0x001bc6                  _ProcessRxbuffer
-                  0x001e64                  _ProcessRx
-                  0x001ebe                  _UART1_Initialize
-                  0x001efc                  _UART1_Read
-                  0x001f32                  _UART1_ReadBuffer
-                  0x001f6a                  _UART1_Write
-                  0x001fa0                  _UART1_WriteBuffer
-                  0x001fd2                  _UART1_TransferStatusGet
-                  0x00200e                  _UART1_Peek
-                  0x002036                  _UART1_PeekSafe
-                  0x0020c4                  _UART1_ReceiveBufferSizeGet
-                  0x0020f2                  _UART1_TransmitBufferSizeGet
-                  0x002122                  _UART1_ReceiveBufferIsEmpty
-                  0x00213a                  _UART1_TransmitBufferIsFull
-                  0x002152                  _UART1_StatusGet
-                  0x00215a                  _UART1_Enable
-                  0x002164                  _UART1_Disable
-                  0x00216e                  _ascii_to_val
-                  0x0021be                  _uint16ToAscii5
-                  0x002292                  _uint16ToAscii5NoHWMath
-                  0x00235a                  _uint16ToAscii5NoHWMathNoIndex
-                  0x0023d6                  _ADC1_Initialize
-                  0x002402                  _GetADCConversion
-                  0x00246a                  _GetAddressPinVoltage_mV
-                  0x002538                  _GetTemperature_degC100ths
-                  0x0025dc                  _GetSourceVoltage_mV
-                  0x002602                  _GetSourceVoltageADC
-                  0x002834                  _orCount
-                  0x00283a                  _or128
-                  0x00293c                  _andCount
-                  0x002942                  _and128
-                  0x002a44                  _I2C1_Initialize
-                  0x002a7a                  _I2C1_ErrorCountGet
-                  0x002ac4                  _I2C1_MasterWrite
-                  0x002af6                  _I2C1_MasterRead
-                  0x002b28                  _I2C1_MasterTRBInsert
-                  0x002ba0                  _I2C1_MasterReadTRBBuild
-                  0x002bd0                  _I2C1_MasterWriteTRBBuild
-                  0x002bf4                  _I2C1_MasterQueueIsEmpty
-                  0x002c0a                  _I2C1_MasterQueueIsFull
-                  0x002c20                  _I2C2_Initialize
-                  0x002c46                  _I2C2_ReadPointerSet
-                  0x002c52                  _I2C2_WritePointerSet
-                  0x002c5e                  _I2C2_ReadPointerGet
-                  0x002c66                  _I2C2_WritePointerGet
-                  0x002c6e                  _I2C2_SlaveAddressMaskSet
-                  0x002c7a                  _I2C2_SlaveAddressSet
-                  0x002c96                  _I2C2_TransmitProcess
-                  0x002cba                  _I2C2_ReceiveProcess
-                  0x002cf8                  _I2C2_StatusCallback
-                  0x002d9a                  _TMR2_Initialize
-                  0x002dbe                  _TMR2_Period16BitSet
-                  0x002dd0                  _TMR2_Period16BitGet
-                  0x002dd8                  _TMR2_Counter16BitSet
-                  0x002dea                  _TMR2_Counter16BitGet
-                  0x002e08                  _TMR2_SetInterruptHandler
-                  0x002e18                  _TMR2_Start
-                  0x002e28                  _TMR2_Stop
-                  0x002e32                  _TMR2_GetElapsedThenClear
-                  0x002e4a                  _TMR2_SoftwareCounterGet
-                  0x002e56                  _TMR2_SoftwareCounterClear
-                  0x002e62                  _TMR1_Initialize
-                  0x002e78                  _TMR1_Tasks_16BitOperation
-                  0x002e98                  _TMR1_Period16BitSet
-                  0x002eaa                  _TMR1_Period16BitGet
-                  0x002eb2                  _TMR1_Counter16BitSet
-                  0x002ec4                  _TMR1_Counter16BitGet
-                  0x002ecc                  _TMR1_Start
-                  0x002eda                  _TMR1_Stop
-                  0x002ee2                  _TMR1_GetElapsedThenClear
-                  0x002efa                  _TMR1_SoftwareCounterGet
-                  0x002f06                  _TMR1_SoftwareCounterClear
-                  0x002f12                  _TMR3_Initialize
-                  0x002f26                  _TMR3_Tasks_16BitOperation
-                  0x002f48                  _TMR3_Period16BitSet
-                  0x002f5a                  _TMR3_Period16BitGet
-                  0x002f62                  _TMR3_Counter16BitSet
-                  0x002f74                  _TMR3_Counter16BitGet
-                  0x002f7c                  _TMR3_Start
-                  0x002f8a                  _TMR3_Stop
-                  0x002f92                  _TMR3_GetElapsedThenClear
-                  0x002faa                  _TMR3_SoftwareCounterGet
-                  0x002fb6                  _TMR3_SoftwareCounterClear
-                  0x002fc2                  _UART2_Initialize
-                  0x002fd6                  _UART2_Read
-                  0x002ff4                  _UART2_Write
-                  0x00300c                  _UART2_StatusGet
-                  0x003014                  _UART2_Enable
-                  0x00301e                  _UART2_Disable
-                  0x003040                  _reset
-                  0x003046                  _main
-                  0x003088                  _CLOCK_Initialize
-                  0x0030e4                  _PIN_MANAGER_Initialize
-                  0x00311a                  _SYSTEM_Initialize
-                  0x00316c                  _CVR_Initialize
-                  0x00317c                  _OSCILLATOR_Initialize
-                  0x003186                  _INTERRUPT_Initialize
+                  0x000152                  __data_init_da
+                  0x000204                  __DefaultInterrupt
+                  0x00020a                  _reset
+                  0x000210                  _main
                   0x02af00                  __FSEC.sec
 
 External Symbols in Program Memory (by name):
 
-                  0x0023d6                  _ADC1_Initialize
-                  0x003088                  _CLOCK_Initialize
-                  0x0014ea                  _CRC_CalculateBufferStart
-                  0x001526                  _CRC_CalculateProgramStart
-                  0x0015e8                  _CRC_CalculationIsDone
-                  0x00169e                  _CRC_CalculationResultGet
-                  0x0015fc                  _CRC_CalculationResultRawGet
-                  0x001656                  _CRC_CalculationResultReverseGet
-                  0x001664                  _CRC_CalculationResultXORGet
-                  0x00116c                  _CRC_Initialize
-                  0x001426                  _CRC_SeedSet
-                  0x001572                  _CRC_Task
-                  0x00316c                  _CVR_Initialize
-                  0x001706                  _ConfigurePinAnalog
-                  0x0019a6                  _CurrentPinAnalog
-                  0x0016ea                  _CurrentPinBitmap
-                  0x00199c                  _CurrentPinInput
-                  0x001b44                  _CurrentPinNoPullDown
-                  0x001b2e                  _CurrentPinNoPullUp
-                  0x0017a4                  _CurrentPinPort
-                  0x001b3a                  _CurrentPinPullDown
-                  0x001b24                  _CurrentPinPullUp
-                  0x00189e                  _CurrentPinRead
-                  0x000b38                  _DMA_ChannelDisable
-                  0x000af6                  _DMA_ChannelEnable
-                  0x000ca0                  _DMA_DestinationAddressSet
-                  0x0009d8                  _DMA_Initialize
-                  0x000d94                  _DMA_IsBufferedWriteComplete
-                  0x000e38                  _DMA_IsHighAddressLimitFlagSet
-                  0x000edc                  _DMA_IsLowAddressLimitFlagSet
-                  0x000f80                  _DMA_IsOperationDone
-                  0x0010c8                  _DMA_IsOperationHalfComplete
-                  0x001024                  _DMA_IsOverrunFlagSet
-                  0x000cf0                  _DMA_IsSoftwareRequestPending
-                  0x000c0e                  _DMA_SoftwareTriggerEnable
-                  0x000c50                  _DMA_SourceAddressSet
-                  0x000bca                  _DMA_TransferCountGet
-                  0x000b7a                  _DMA_TransferCountSet
-                  0x000a72                  _DMA__Channel1_Tasks
-                  0x000a8e                  _DMA__Channel2_Tasks
-                  0x000aaa                  _DMA__Channel3_Tasks
-                  0x000ac4                  _DMA__Channel4_Tasks
-                  0x000ae0                  _DMA__Channel5_Tasks
-                  0x002402                  _GetADCConversion
-                  0x00246a                  _GetAddressPinVoltage_mV
-                  0x002602                  _GetSourceVoltageADC
-                  0x0025dc                  _GetSourceVoltage_mV
-                  0x002538                  _GetTemperature_degC100ths
-                  0x002a7a                  _I2C1_ErrorCountGet
-                  0x002a44                  _I2C1_Initialize
-                  0x002bf4                  _I2C1_MasterQueueIsEmpty
-                  0x002c0a                  _I2C1_MasterQueueIsFull
-                  0x002af6                  _I2C1_MasterRead
-                  0x002ba0                  _I2C1_MasterReadTRBBuild
-                  0x002b28                  _I2C1_MasterTRBInsert
-                  0x002ac4                  _I2C1_MasterWrite
-                  0x002bd0                  _I2C1_MasterWriteTRBBuild
-                  0x002c20                  _I2C2_Initialize
-                  0x002c5e                  _I2C2_ReadPointerGet
-                  0x002c46                  _I2C2_ReadPointerSet
-                  0x002cba                  _I2C2_ReceiveProcess
-                  0x002c6e                  _I2C2_SlaveAddressMaskSet
-                  0x002c7a                  _I2C2_SlaveAddressSet
-                  0x002cf8                  _I2C2_StatusCallback
-                  0x002c96                  _I2C2_TransmitProcess
-                  0x002c66                  _I2C2_WritePointerGet
-                  0x002c52                  _I2C2_WritePointerSet
-                  0x003186                  _INTERRUPT_Initialize
-                  0x00317c                  _OSCILLATOR_Initialize
-                  0x0030e4                  _PIN_MANAGER_Initialize
-                  0x000974                  _PinBitmapA
-                  0x00094c                  _PinBitmapB
-                  0x0019f6                  _PinHigh
-                  0x001856                  _PinInput
-                  0x001786                  _PinIsAnalogCapable
-                  0x0019e8                  _PinLow
-                  0x001818                  _PinOutput
-                  0x001b10                  _PinPullDown
-                  0x001afc                  _PinPullUp
-                  0x001e64                  _ProcessRx
-                  0x001bc6                  _ProcessRxbuffer
-                  0x0017bc                  _ReadPin
-                  0x00311a                  _SYSTEM_Initialize
-                  0x0019da                  _SetCurrentPin
-                  0x0018cc                  _SetPin
-                  0x001a80                  _SetPinPullDown
-                  0x001a04                  _SetPinPullUp
-                  0x002ec4                  _TMR1_Counter16BitGet
-                  0x002eb2                  _TMR1_Counter16BitSet
-                  0x002ee2                  _TMR1_GetElapsedThenClear
-                  0x002e62                  _TMR1_Initialize
-                  0x002eaa                  _TMR1_Period16BitGet
-                  0x002e98                  _TMR1_Period16BitSet
-                  0x002f06                  _TMR1_SoftwareCounterClear
-                  0x002efa                  _TMR1_SoftwareCounterGet
-                  0x002ecc                  _TMR1_Start
-                  0x002eda                  _TMR1_Stop
-                  0x002e78                  _TMR1_Tasks_16BitOperation
-                  0x002dea                  _TMR2_Counter16BitGet
-                  0x002dd8                  _TMR2_Counter16BitSet
-                  0x002e32                  _TMR2_GetElapsedThenClear
-                  0x002d9a                  _TMR2_Initialize
-                  0x002dd0                  _TMR2_Period16BitGet
-                  0x002dbe                  _TMR2_Period16BitSet
-                  0x002e08                  _TMR2_SetInterruptHandler
-                  0x002e56                  _TMR2_SoftwareCounterClear
-                  0x002e4a                  _TMR2_SoftwareCounterGet
-                  0x002e18                  _TMR2_Start
-                  0x002e28                  _TMR2_Stop
-                  0x002f74                  _TMR3_Counter16BitGet
-                  0x002f62                  _TMR3_Counter16BitSet
-                  0x002f92                  _TMR3_GetElapsedThenClear
-                  0x002f12                  _TMR3_Initialize
-                  0x002f5a                  _TMR3_Period16BitGet
-                  0x002f48                  _TMR3_Period16BitSet
-                  0x002fb6                  _TMR3_SoftwareCounterClear
-                  0x002faa                  _TMR3_SoftwareCounterGet
-                  0x002f7c                  _TMR3_Start
-                  0x002f8a                  _TMR3_Stop
-                  0x002f26                  _TMR3_Tasks_16BitOperation
-                  0x002164                  _UART1_Disable
-                  0x00215a                  _UART1_Enable
-                  0x001ebe                  _UART1_Initialize
-                  0x00200e                  _UART1_Peek
-                  0x002036                  _UART1_PeekSafe
-                  0x001efc                  _UART1_Read
-                  0x001f32                  _UART1_ReadBuffer
-                  0x002122                  _UART1_ReceiveBufferIsEmpty
-                  0x0020c4                  _UART1_ReceiveBufferSizeGet
-                  0x002152                  _UART1_StatusGet
-                  0x001fd2                  _UART1_TransferStatusGet
-                  0x00213a                  _UART1_TransmitBufferIsFull
-                  0x0020f2                  _UART1_TransmitBufferSizeGet
-                  0x001f6a                  _UART1_Write
-                  0x001fa0                  _UART1_WriteBuffer
-                  0x00301e                  _UART2_Disable
-                  0x003014                  _UART2_Enable
-                  0x002fc2                  _UART2_Initialize
-                  0x002fd6                  _UART2_Read
-                  0x00300c                  _UART2_StatusGet
-                  0x002ff4                  _UART2_Write
-                  0x000208                  __ADC1Interrupt
-                  0x0007ba                  __AddressError
-                  0x00022e                  __DMA0Interrupt
-                  0x0008fa                  __DefaultInterrupt
+                  0x000204                  __DefaultInterrupt
                   0x02af00                  __FSEC.sec
-                  0x00024e                  __MI2C1Interrupt
-                  0x0007dc                  __MathError
-                  0x0007fe                  __NVMError
-                  0x000772                  __OscillatorFail
-                  0x0004ae                  __SI2C2Interrupt
-                  0x000794                  __StackError
-                  0x00073c                  __T2Interrupt
-                  0x0008e4                  __U1ErrInterrupt
-                  0x00088c                  __U1RXInterrupt
-                  0x000820                  __U1TXInterrupt
-                  0x000900                  ___divsi3
-                  0x00091e                  ___udivsi3
                   0x000152                  __data_init
                   0x000152                  __data_init_da
                   0x00013c                  __psv_init
                   0x000100                  __resetPRI
-                  0x002942                  _and128
-                  0x00293c                  _andCount
-                  0x00216e                  _ascii_to_val
-                  0x001ba4                  _error
-                  0x003046                  _main
-                  0x00093e                  _memcpy
-                  0x00283a                  _or128
-                  0x002834                  _orCount
-                  0x0009b0                  _pinBitmap
-                  0x0018a8                  _pinIsPPSCapable
-                  0x00099c                  _pinPort
-                  0x003040                  _reset
-                  0x001b68                  _uartStartTX
-                  0x0021be                  _uint16ToAscii5
-                  0x002292                  _uint16ToAscii5NoHWMath
-                  0x00235a                  _uint16ToAscii5NoHWMathNoIndex
+                  0x000210                  _main
+                  0x00020a                  _reset
 
 Memory Configuration
 
@@ -631,66 +155,8 @@ program          0x000100           0x03ff00
 
 Linker script and memory map
 
-
-reserve_data_0x800
-                    0x0800         0x1c
-                    0x081c                  . = 0x1c
- *fill*             0x0800         0x1c00
-
-reserve_data_0x81c
-                    0x081c          0x2
-                    0x081e                  . = 0x2
- *fill*             0x081c          0x200
-
-reserve_data_0x81e
-                    0x081e          0x2
-                    0x0820                  . = 0x2
- *fill*             0x081e          0x200
-
-reserve_data_0x820
-                    0x0820          0x2
-                    0x0822                  . = 0x2
- *fill*             0x0820          0x200
-
-reserve_data_0x822
-                    0x0822          0x2
-                    0x0824                  . = 0x2
- *fill*             0x0822          0x200
-
-reserve_data_0x824
-                    0x0824          0x4
-                    0x0828                  . = 0x4
- *fill*             0x0824          0x400
-
-reserve_data_0x82a
-                    0x082a         0x26
-                    0x0850                  . = 0x26
- *fill*             0x082a         0x2600
-LOAD build/default/debug/_ext/275911920/adc1.o
-LOAD build/default/debug/_ext/275911920/clock.o
-LOAD build/default/debug/_ext/275911920/crc.o
-LOAD build/default/debug/_ext/275911920/cvr.o
-LOAD build/default/debug/_ext/275911920/dma.o
-LOAD build/default/debug/_ext/275911920/i2c1.o
-LOAD build/default/debug/_ext/275911920/i2c2.o
-LOAD build/default/debug/_ext/275911920/interrupt_manager.o
-LOAD build/default/debug/_ext/275911920/mcc.o
-LOAD build/default/debug/_ext/275911920/pin_manager.o
-LOAD build/default/debug/_ext/275911920/system.o
-LOAD build/default/debug/_ext/275911920/tmr1.o
-LOAD build/default/debug/_ext/275911920/tmr2.o
-LOAD build/default/debug/_ext/275911920/tmr3.o
-LOAD build/default/debug/_ext/275911920/traps.o
-LOAD build/default/debug/_ext/275911920/uart1.o
-LOAD build/default/debug/_ext/275911920/uart2.o
-LOAD build/default/debug/main_boot.o
-LOAD build/default/debug/protocol_boot.o
-LOAD build/default/debug/_ext/1497480854/pinDigitalHwSpecific.o
-LOAD build/default/debug/_ext/1497480854/wombatasm.o
-LOAD build/default/debug/_ext/998979777/asciiConversion.o
+LOAD build/default/production/main_boot.o
                     0x0001                  __MPLAB_BUILD = 0x1
-                    0x0001                  __MPLAB_DEBUG = 0x1
-                    0x0001                  __DEBUG = 0x1
 LOAD pPIC24Fxxx
 LOAD c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libfx-elf.a
                     0x2af00                  __FSEC = 0x2af00
@@ -714,7 +180,7 @@ LOAD c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libfx-elf.a
                   0x000002          0x2 SHORT 0x0 ((ABSOLUTE (__reset) >> 0x10) & 0x7f)
                   0x000003          0x2 SHORT 0x0
 
-.text             0x000100        0x84c
+.text             0x000100        0x10a
  *(.init)
  .init            0x000100         0x4c c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(crt0_extended24.o)
                   0x000100                  __resetPRI
@@ -725,44 +191,17 @@ LOAD c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libfx-elf.a
                   0x000152                  __data_init_da
  *(.user_init)
  *(.handle)
- .handle          0x000204          0x4 jump_table
  *(.isr*)
- .isr.text        0x000208         0x26 build/default/debug/_ext/275911920/adc1.o
-                  0x000208                  __ADC1Interrupt
- .isr.text        0x00022e         0x20 build/default/debug/_ext/275911920/dma.o
-                  0x00022e                  __DMA0Interrupt
- .isr.text        0x00024e        0x260 build/default/debug/_ext/275911920/i2c1.o
-                  0x00024e                  __MI2C1Interrupt
- .isr.text        0x0004ae        0x28e build/default/debug/_ext/275911920/i2c2.o
-                  0x0004ae                  __SI2C2Interrupt
- .isr.text        0x00073c         0x36 build/default/debug/_ext/275911920/tmr2.o
-                  0x00073c                  __T2Interrupt
- .isr.text        0x000772         0xae build/default/debug/_ext/275911920/traps.o
-                  0x000772                  __OscillatorFail
-                  0x000794                  __StackError
-                  0x0007ba                  __AddressError
-                  0x0007dc                  __MathError
-                  0x0007fe                  __NVMError
- .isr.text        0x000820         0xda build/default/debug/_ext/275911920/uart1.o
-                  0x000820                  __U1TXInterrupt
-                  0x00088c                  __U1RXInterrupt
-                  0x0008e4                  __U1ErrInterrupt
- .isr             0x0008fa          0x4 default_isr
-                  0x0008fa                  __DefaultInterrupt
+ .isr             0x000204          0x4 default_isr
+                  0x000204                  __DefaultInterrupt
  *(.libc)
  *(.libm)
  *(.libdsp)
  *(.lib*)
  .libpic30_crt_start_mode
-                  0x0008fe          0x2 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(crt_start_mode_normalda.Leo)
-                  0x0008fe                  __crt_start_mode
-                  0x0008fe                  __crt_start_mode_normal
- .libm.divsi3     0x000900         0x1e c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(divsi3.daeo)
-                  0x000900                  ___divsi3
- .libm.udivsi3    0x00091e         0x20 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(udivsi3.daeo)
-                  0x00091e                  ___udivsi3
- .libc.memcpy     0x00093e          0xe c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-c-elf.a(memcpy.DA_eo)
-                  0x00093e                  _memcpy
+                  0x000208          0x2 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(crt_start_mode_normalda.Leo)
+                  0x000208                  __crt_start_mode
+                  0x000208                  __crt_start_mode_normal
 
 usercode
  *(usercode)
@@ -799,124 +238,21 @@ __FDEVOPT1
 .comment
  *(.comment)
 
-.debug_info       0x000000       0xc8c8
+.debug_info
  *(.debug_info)
- .debug_info      0x000000       0x1041 build/default/debug/_ext/275911920/adc1.o
- .debug_info      0x001041        0x56b build/default/debug/_ext/275911920/clock.o
- .debug_info      0x0015ac        0xd2a build/default/debug/_ext/275911920/crc.o
- .debug_info      0x0022d6        0x213 build/default/debug/_ext/275911920/cvr.o
- .debug_info      0x0024e9       0x2468 build/default/debug/_ext/275911920/dma.o
- .debug_info      0x004951       0x105d build/default/debug/_ext/275911920/i2c1.o
- .debug_info      0x0059ae        0xffa build/default/debug/_ext/275911920/i2c2.o
- .debug_info      0x0069a8        0x1ba build/default/debug/_ext/275911920/interrupt_manager.o
- .debug_info      0x006b62        0x1c3 build/default/debug/_ext/275911920/mcc.o
- .debug_info      0x006d25        0x387 build/default/debug/_ext/275911920/pin_manager.o
- .debug_info      0x0070ac        0x21b build/default/debug/_ext/275911920/system.o
- .debug_info      0x0072c7        0x815 build/default/debug/_ext/275911920/tmr1.o
- .debug_info      0x007adc        0xa0b build/default/debug/_ext/275911920/tmr2.o
- .debug_info      0x0084e7        0x7a5 build/default/debug/_ext/275911920/tmr3.o
- .debug_info      0x008c8c        0x47f build/default/debug/_ext/275911920/traps.o
- .debug_info      0x00910b       0x1051 build/default/debug/_ext/275911920/uart1.o
- .debug_info      0x00a15c        0x6ed build/default/debug/_ext/275911920/uart2.o
- .debug_info      0x00a849        0x457 build/default/debug/main_boot.o
- .debug_info      0x00aca0        0xed7 build/default/debug/protocol_boot.o
- .debug_info      0x00bb77        0x97f build/default/debug/_ext/1497480854/pinDigitalHwSpecific.o
- .debug_info      0x00c4f6         0xea build/default/debug/_ext/1497480854/wombatasm.o
- .debug_info      0x00c5e0        0x2e8 build/default/debug/_ext/998979777/asciiConversion.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000       0x1a23
+.debug_abbrev
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x15f build/default/debug/_ext/275911920/adc1.o
- .debug_abbrev    0x00015f         0xc5 build/default/debug/_ext/275911920/clock.o
- .debug_abbrev    0x000224        0x240 build/default/debug/_ext/275911920/crc.o
- .debug_abbrev    0x000464         0x59 build/default/debug/_ext/275911920/cvr.o
- .debug_abbrev    0x0004bd        0x185 build/default/debug/_ext/275911920/dma.o
- .debug_abbrev    0x000642        0x232 build/default/debug/_ext/275911920/i2c1.o
- .debug_abbrev    0x000874        0x22e build/default/debug/_ext/275911920/i2c2.o
- .debug_abbrev    0x000aa2         0x34 build/default/debug/_ext/275911920/interrupt_manager.o
- .debug_abbrev    0x000ad6         0x34 build/default/debug/_ext/275911920/mcc.o
- .debug_abbrev    0x000b0a         0x59 build/default/debug/_ext/275911920/pin_manager.o
- .debug_abbrev    0x000b63         0x59 build/default/debug/_ext/275911920/system.o
- .debug_abbrev    0x000bbc        0x18f build/default/debug/_ext/275911920/tmr1.o
- .debug_abbrev    0x000d4b        0x1a2 build/default/debug/_ext/275911920/tmr2.o
- .debug_abbrev    0x000eed        0x18f build/default/debug/_ext/275911920/tmr3.o
- .debug_abbrev    0x00107c        0x100 build/default/debug/_ext/275911920/traps.o
- .debug_abbrev    0x00117c        0x237 build/default/debug/_ext/275911920/uart1.o
- .debug_abbrev    0x0013b3        0x102 build/default/debug/_ext/275911920/uart2.o
- .debug_abbrev    0x0014b5        0x134 build/default/debug/main_boot.o
- .debug_abbrev    0x0015e9        0x19a build/default/debug/protocol_boot.o
- .debug_abbrev    0x001783        0x1c0 build/default/debug/_ext/1497480854/pinDigitalHwSpecific.o
- .debug_abbrev    0x001943         0x14 build/default/debug/_ext/1497480854/wombatasm.o
- .debug_abbrev    0x001957         0xcc build/default/debug/_ext/998979777/asciiConversion.o
 
-.debug_line       0x000000       0x23c6
+.debug_line
  *(.debug_line)
- .debug_line      0x000000        0x1c1 build/default/debug/_ext/275911920/adc1.o
- .debug_line      0x0001c1        0x156 build/default/debug/_ext/275911920/clock.o
- .debug_line      0x000317        0x236 build/default/debug/_ext/275911920/crc.o
- .debug_line      0x00054d        0x142 build/default/debug/_ext/275911920/cvr.o
- .debug_line      0x00068f        0x316 build/default/debug/_ext/275911920/dma.o
- .debug_line      0x0009a5        0x22d build/default/debug/_ext/275911920/i2c1.o
- .debug_line      0x000bd2        0x2a3 build/default/debug/_ext/275911920/i2c2.o
- .debug_line      0x000e75         0x80 build/default/debug/_ext/275911920/interrupt_manager.o
- .debug_line      0x000ef5         0x72 build/default/debug/_ext/275911920/mcc.o
- .debug_line      0x000f67        0x156 build/default/debug/_ext/275911920/pin_manager.o
- .debug_line      0x0010bd        0x150 build/default/debug/_ext/275911920/system.o
- .debug_line      0x00120d        0x16d build/default/debug/_ext/275911920/tmr1.o
- .debug_line      0x00137a        0x18e build/default/debug/_ext/275911920/tmr2.o
- .debug_line      0x001508        0x16d build/default/debug/_ext/275911920/tmr3.o
- .debug_line      0x001675        0x177 build/default/debug/_ext/275911920/traps.o
- .debug_line      0x0017ec        0x210 build/default/debug/_ext/275911920/uart1.o
- .debug_line      0x0019fc        0x15c build/default/debug/_ext/275911920/uart2.o
- .debug_line      0x001b58        0x17a build/default/debug/main_boot.o
- .debug_line      0x001cd2        0x248 build/default/debug/protocol_boot.o
- .debug_line      0x001f1a        0x24b build/default/debug/_ext/1497480854/pinDigitalHwSpecific.o
- .debug_line      0x002165        0x168 build/default/debug/_ext/1497480854/wombatasm.o
- .debug_line      0x0022cd         0xf9 build/default/debug/_ext/998979777/asciiConversion.o
 
-.debug_frame      0x000000       0x15ce
+.debug_frame
  *(.debug_frame)
- .debug_frame     0x000000         0xda build/default/debug/_ext/275911920/adc1.o
- .debug_frame     0x0000da         0x2e build/default/debug/_ext/275911920/clock.o
- .debug_frame     0x000108        0x1ce build/default/debug/_ext/275911920/crc.o
- .debug_frame     0x0002d6         0x2e build/default/debug/_ext/275911920/cvr.o
- .debug_frame     0x000304        0x2f6 build/default/debug/_ext/275911920/dma.o
- .debug_frame     0x0005fa        0x170 build/default/debug/_ext/275911920/i2c1.o
- .debug_frame     0x00076a        0x156 build/default/debug/_ext/275911920/i2c2.o
- .debug_frame     0x0008c0         0x2e build/default/debug/_ext/275911920/interrupt_manager.o
- .debug_frame     0x0008ee         0x2e build/default/debug/_ext/275911920/mcc.o
- .debug_frame     0x00091c         0x2e build/default/debug/_ext/275911920/pin_manager.o
- .debug_frame     0x00094a         0x2e build/default/debug/_ext/275911920/system.o
- .debug_frame     0x000978        0x132 build/default/debug/_ext/275911920/tmr1.o
- .debug_frame     0x000aaa        0x18a build/default/debug/_ext/275911920/tmr2.o
- .debug_frame     0x000c34        0x132 build/default/debug/_ext/275911920/tmr3.o
- .debug_frame     0x000d66        0x17e build/default/debug/_ext/275911920/traps.o
- .debug_frame     0x000ee4        0x20e build/default/debug/_ext/275911920/uart1.o
- .debug_frame     0x0010f2         0xb0 build/default/debug/_ext/275911920/uart2.o
- .debug_frame     0x0011a2         0x7c build/default/debug/main_boot.o
- .debug_frame     0x00121e         0xb0 build/default/debug/protocol_boot.o
- .debug_frame     0x0012ce        0x26a build/default/debug/_ext/1497480854/pinDigitalHwSpecific.o
- .debug_frame     0x001538         0x96 build/default/debug/_ext/998979777/asciiConversion.o
 
-.debug_str        0x000000        0x70f
+.debug_str
  *(.debug_str)
- .debug_str       0x000000         0xbf build/default/debug/_ext/275911920/adc1.o
- .debug_str       0x0000bf         0x1d build/default/debug/_ext/275911920/clock.o
- .debug_str       0x0000dc         0x57 build/default/debug/_ext/275911920/crc.o
- .debug_str       0x000133        0x1bd build/default/debug/_ext/275911920/dma.o
- .debug_str       0x0002f0         0x5d build/default/debug/_ext/275911920/i2c1.o
- .debug_str       0x00034d        0x12f build/default/debug/_ext/275911920/i2c2.o
- .debug_str       0x00047c         0x13 build/default/debug/_ext/275911920/tmr1.o
- .debug_str       0x00048f         0x4f build/default/debug/_ext/275911920/tmr2.o
- .debug_str       0x0004de         0x13 build/default/debug/_ext/275911920/tmr3.o
- .debug_str       0x0004f1         0x18 build/default/debug/_ext/275911920/traps.o
- .debug_str       0x000509         0x58 build/default/debug/_ext/275911920/uart1.o
- .debug_str       0x000561         0x15 build/default/debug/_ext/275911920/uart2.o
- .debug_str       0x000576         0x2f build/default/debug/main_boot.o
- .debug_str       0x0005a5        0x102 build/default/debug/protocol_boot.o
- .debug_str       0x0006a7         0x55 build/default/debug/_ext/1497480854/pinDigitalHwSpecific.o
- .debug_str       0x0006fc         0x13 build/default/debug/_ext/998979777/asciiConversion.o
 
 .debug_loc
  *(.debug_loc)
@@ -925,100 +261,13 @@ __FDEVOPT1
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000       0x1386
  *(.debug_pubnames)
- .debug_pubnames
-                  0x000000         0xb8 build/default/debug/_ext/275911920/adc1.o
- .debug_pubnames
-                  0x0000b8         0x27 build/default/debug/_ext/275911920/clock.o
- .debug_pubnames
-                  0x0000df        0x129 build/default/debug/_ext/275911920/crc.o
- .debug_pubnames
-                  0x000208         0x25 build/default/debug/_ext/275911920/cvr.o
- .debug_pubnames
-                  0x00022d        0x2d5 build/default/debug/_ext/275911920/dma.o
- .debug_pubnames
-                  0x000502        0x103 build/default/debug/_ext/275911920/i2c1.o
- .debug_pubnames
-                  0x000605        0x1c9 build/default/debug/_ext/275911920/i2c2.o
- .debug_pubnames
-                  0x0007ce         0x2b build/default/debug/_ext/275911920/interrupt_manager.o
- .debug_pubnames
-                  0x0007f9         0x2c build/default/debug/_ext/275911920/mcc.o
- .debug_pubnames
-                  0x000825         0x2d build/default/debug/_ext/275911920/pin_manager.o
- .debug_pubnames
-                  0x000852         0x28 build/default/debug/_ext/275911920/system.o
- .debug_pubnames
-                  0x00087a        0x134 build/default/debug/_ext/275911920/tmr1.o
- .debug_pubnames
-                  0x0009ae        0x169 build/default/debug/_ext/275911920/tmr2.o
- .debug_pubnames
-                  0x000b17        0x134 build/default/debug/_ext/275911920/tmr3.o
- .debug_pubnames
-                  0x000c4b         0x7d build/default/debug/_ext/275911920/traps.o
- .debug_pubnames
-                  0x000cc8        0x1c6 build/default/debug/_ext/275911920/uart1.o
- .debug_pubnames
-                  0x000e8e         0x7d build/default/debug/_ext/275911920/uart2.o
- .debug_pubnames
-                  0x000f0b         0x65 build/default/debug/main_boot.o
- .debug_pubnames
-                  0x000f70        0x15d build/default/debug/protocol_boot.o
- .debug_pubnames
-                  0x0010cd        0x22b build/default/debug/_ext/1497480854/pinDigitalHwSpecific.o
- .debug_pubnames
-                  0x0012f8         0x8e build/default/debug/_ext/998979777/asciiConversion.o
 
 .debug_ranges
  *(.debug_ranges)
 
-.debug_aranges    0x000000        0x210
+.debug_aranges
  *(.debug_aranges)
- .debug_aranges
-                  0x000000         0x18 build/default/debug/_ext/275911920/adc1.o
- .debug_aranges
-                  0x000018         0x18 build/default/debug/_ext/275911920/clock.o
- .debug_aranges
-                  0x000030         0x18 build/default/debug/_ext/275911920/crc.o
- .debug_aranges
-                  0x000048         0x18 build/default/debug/_ext/275911920/cvr.o
- .debug_aranges
-                  0x000060         0x18 build/default/debug/_ext/275911920/dma.o
- .debug_aranges
-                  0x000078         0x18 build/default/debug/_ext/275911920/i2c1.o
- .debug_aranges
-                  0x000090         0x18 build/default/debug/_ext/275911920/i2c2.o
- .debug_aranges
-                  0x0000a8         0x18 build/default/debug/_ext/275911920/interrupt_manager.o
- .debug_aranges
-                  0x0000c0         0x18 build/default/debug/_ext/275911920/mcc.o
- .debug_aranges
-                  0x0000d8         0x18 build/default/debug/_ext/275911920/pin_manager.o
- .debug_aranges
-                  0x0000f0         0x18 build/default/debug/_ext/275911920/system.o
- .debug_aranges
-                  0x000108         0x18 build/default/debug/_ext/275911920/tmr1.o
- .debug_aranges
-                  0x000120         0x18 build/default/debug/_ext/275911920/tmr2.o
- .debug_aranges
-                  0x000138         0x18 build/default/debug/_ext/275911920/tmr3.o
- .debug_aranges
-                  0x000150         0x18 build/default/debug/_ext/275911920/traps.o
- .debug_aranges
-                  0x000168         0x18 build/default/debug/_ext/275911920/uart1.o
- .debug_aranges
-                  0x000180         0x18 build/default/debug/_ext/275911920/uart2.o
- .debug_aranges
-                  0x000198         0x18 build/default/debug/main_boot.o
- .debug_aranges
-                  0x0001b0         0x18 build/default/debug/protocol_boot.o
- .debug_aranges
-                  0x0001c8         0x18 build/default/debug/_ext/1497480854/pinDigitalHwSpecific.o
- .debug_aranges
-                  0x0001e0         0x18 build/default/debug/_ext/1497480854/wombatasm.o
- .debug_aranges
-                  0x0001f8         0x18 build/default/debug/_ext/998979777/asciiConversion.o
                     0x0000                  WREG0 = 0x0
                     0x0000                  _WREG0 = 0x0
                     0x0002                  WREG1 = 0x2
@@ -2355,482 +1604,46 @@ LOAD c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a
 LOAD c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a
 LOAD c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-c-elf.a
 END GROUP
-OUTPUT(dist/default/debug/SerialWombat18A_18B_Bootloader.X.debug.elf elf32-pic30)
+OUTPUT(dist/default/production/SerialWombat18A_18B_JumpToApp.X.production.elf elf32-pic30)
 LOAD /CW/_FSEC
-LOAD jump_table
 LOAD default_isr
-LOAD data_init
-
-.debug_pubtypes
-                  0x000210        0xc32
- .debug_pubtypes
-                  0x000210        0x11e build/default/debug/_ext/275911920/adc1.o
- .debug_pubtypes
-                  0x00032e         0x4c build/default/debug/_ext/275911920/clock.o
- .debug_pubtypes
-                  0x00037a         0xe0 build/default/debug/_ext/275911920/crc.o
- .debug_pubtypes
-                  0x00045a         0x1f build/default/debug/_ext/275911920/cvr.o
- .debug_pubtypes
-                  0x000479        0x25c build/default/debug/_ext/275911920/dma.o
- .debug_pubtypes
-                  0x0006d5        0x13e build/default/debug/_ext/275911920/i2c1.o
- .debug_pubtypes
-                  0x000813        0x106 build/default/debug/_ext/275911920/i2c2.o
- .debug_pubtypes
-                  0x000919         0x12 build/default/debug/_ext/275911920/interrupt_manager.o
- .debug_pubtypes
-                  0x00092b         0x12 build/default/debug/_ext/275911920/mcc.o
- .debug_pubtypes
-                  0x00093d         0x1f build/default/debug/_ext/275911920/pin_manager.o
- .debug_pubtypes
-                  0x00095c         0x1f build/default/debug/_ext/275911920/system.o
- .debug_pubtypes
-                  0x00097b         0x87 build/default/debug/_ext/275911920/tmr1.o
- .debug_pubtypes
-                  0x000a02         0xb1 build/default/debug/_ext/275911920/tmr2.o
- .debug_pubtypes
-                  0x000ab3         0x87 build/default/debug/_ext/275911920/tmr3.o
- .debug_pubtypes
-                  0x000b3a         0x71 build/default/debug/_ext/275911920/traps.o
- .debug_pubtypes
-                  0x000bab        0x10f build/default/debug/_ext/275911920/uart1.o
- .debug_pubtypes
-                  0x000cba         0x6b build/default/debug/_ext/275911920/uart2.o
- .debug_pubtypes
-                  0x000d25         0x5b build/default/debug/main_boot.o
- .debug_pubtypes
-                  0x000d80         0x6c build/default/debug/protocol_boot.o
- .debug_pubtypes
-                  0x000dec         0x2b build/default/debug/_ext/1497480854/pinDigitalHwSpecific.o
- .debug_pubtypes
-                  0x000e17         0x2b build/default/debug/_ext/998979777/asciiConversion.o
 
 __c30_signature
-                  0x000e42         0x9c
+                  0x000000         0x12
  __c30_signature
-                  0x000e42          0x6 build/default/debug/_ext/275911920/adc1.o
+                  0x000000          0x6 build/default/production/main_boot.o
  __c30_signature
-                  0x000e48          0x6 build/default/debug/_ext/275911920/clock.o
+                  0x000006          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(crt0_extended24.o)
  __c30_signature
-                  0x000e4e          0x6 build/default/debug/_ext/275911920/crc.o
- __c30_signature
-                  0x000e54          0x6 build/default/debug/_ext/275911920/cvr.o
- __c30_signature
-                  0x000e5a          0x6 build/default/debug/_ext/275911920/dma.o
- __c30_signature
-                  0x000e60          0x6 build/default/debug/_ext/275911920/i2c1.o
- __c30_signature
-                  0x000e66          0x6 build/default/debug/_ext/275911920/i2c2.o
- __c30_signature
-                  0x000e6c          0x6 build/default/debug/_ext/275911920/interrupt_manager.o
- __c30_signature
-                  0x000e72          0x6 build/default/debug/_ext/275911920/mcc.o
- __c30_signature
-                  0x000e78          0x6 build/default/debug/_ext/275911920/pin_manager.o
- __c30_signature
-                  0x000e7e          0x6 build/default/debug/_ext/275911920/system.o
- __c30_signature
-                  0x000e84          0x6 build/default/debug/_ext/275911920/tmr1.o
- __c30_signature
-                  0x000e8a          0x6 build/default/debug/_ext/275911920/tmr2.o
- __c30_signature
-                  0x000e90          0x6 build/default/debug/_ext/275911920/tmr3.o
- __c30_signature
-                  0x000e96          0x6 build/default/debug/_ext/275911920/traps.o
- __c30_signature
-                  0x000e9c          0x6 build/default/debug/_ext/275911920/uart1.o
- __c30_signature
-                  0x000ea2          0x6 build/default/debug/_ext/275911920/uart2.o
- __c30_signature
-                  0x000ea8          0x6 build/default/debug/main_boot.o
- __c30_signature
-                  0x000eae          0x6 build/default/debug/protocol_boot.o
- __c30_signature
-                  0x000eb4          0x6 build/default/debug/_ext/1497480854/pinDigitalHwSpecific.o
- __c30_signature
-                  0x000eba          0x6 build/default/debug/_ext/998979777/asciiConversion.o
- __c30_signature
-                  0x000ec0          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(crt0_extended24.o)
- __c30_signature
-                  0x000ec6          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(data_init_24.o)
- __c30_signature
-                  0x000ecc          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(divsi3.daeo)
- __c30_signature
-                  0x000ed2          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(udivsi3.daeo)
- __c30_signature
-                  0x000ed8          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-c-elf.a(memcpy.DA_eo)
-
-.nbss               0x0850         0x42
- .nbss              0x0850         0x18 build/default/debug/_ext/275911920/i2c1.o
- .nbss              0x0868         0x12 build/default/debug/_ext/275911920/i2c2.o
-                    0x0868                  _i2c2_slave_state
-                    0x086e                  _DebugLastPoint
-                    0x086f                  _wombatI2CRxDataCount
-                    0x0870                  _wombatI2CTxDataCount
-                    0x0871                  _nextInterruptAddress
-                    0x0872                  _discardI2CData
- .nbss              0x087a          0xc build/default/debug/protocol_boot.o
-                    0x087a                  _debug_discarded_bytes
-                    0x087e                  _UartRxbufferCounter
-                    0x087f                  _UartTxbufferCounter
-                    0x0880                  _LineBreaksAndEcho
-                    0x0881                  _ResponsePending
-                    0x0882                  _ResponseAvailable
-                    0x0883                  _TX_ClockStretching
-                    0x0884                  _RX_ClockStretching
- .nbss              0x0886          0x6 build/default/debug/_ext/275911920/tmr2.o
-                    0x0886                  _TMR2_InterruptHandler
-                    0x0888                  _System1msCount
- .nbss              0x088c          0x6 build/default/debug/_ext/275911920/uart1.o
-                    0x088c                  _lastRXInterruptByte
-                    0x088e                  _TotalRxBytes
-
-.ndata              0x0892          0xa
- .ndata             0x0892          0x6 build/default/debug/protocol_boot.o
-                    0x0892                  _SW_I2CAddress
-                    0x0894                  _lastUserBufferIndex
-                    0x0896                  _lastQueueIndex
- .ndata             0x0898          0x4 build/default/debug/_ext/275911920/i2c2.o
-
-.nbss               0x089c          0x4
- .nbss              0x089c          0x4 build/default/debug/main_boot.o
-                    0x089c                  _CurrentPin
-                    0x089d                  _RunForeground
-                    0x089e                  _StayInBoot
-
-.nbss               0x0828          0x2
- .nbss              0x0828          0x2 build/default/debug/_ext/275911920/tmr1.o
-                    0x0828                  _TMR1_InterruptHandler
-
-.nbss               0x08a0          0x2
- .nbss              0x08a0          0x2 build/default/debug/_ext/275911920/tmr3.o
-                    0x08a0                  _TMR3_InterruptHandler
-
-.ndata              0x08a2          0x2
- .ndata             0x08a2          0x2 build/default/debug/_ext/275911920/traps.o
-
-.nbss               0x08a4          0x2
- .nbss              0x08a4          0x2 build/default/debug/_ext/998979777/asciiConversion.o
-                    0x08a4                  _asciiVal
-
-.bss                0x08a6       0x2000
- .bss               0x08a6       0x2000 build/default/debug/main_boot.o
-                    0x08a6                  _user_buffer
-
-.data               0x28a6        0x200
- .data              0x28a6        0x200 build/default/debug/_ext/1497480854/pinDigitalHwSpecific.o
-                    0x28a6                  _OutputArrayA
-                    0x29a6                  _OutputArrayB
-
-.bss                0x2aa6        0x24a
- .bss               0x2aa6        0x200 build/default/debug/_ext/1497480854/pinDigitalHwSpecific.o
-                    0x2aa6                  _InputArrayA
-                    0x2ba6                  _InputArrayB
- .bss               0x2ca6         0x4a build/default/debug/_ext/275911920/uart1.o
-
-.data               0x2cf0         0x40
- .data              0x2cf0         0x40 build/default/debug/_ext/275911920/i2c2.o
-
-.bss                0x2d30         0x6c
- .bss               0x2d30         0x20 build/default/debug/_ext/275911920/traps.o
- .bss               0x2d50         0x12 build/default/debug/_ext/275911920/i2c1.o
- .bss               0x2d62         0x10 build/default/debug/_ext/275911920/i2c2.o
-                    0x2d62                  _wombatI2CRxData
-                    0x2d6a                  _wombatI2CTxData
- .bss               0x2d72         0x10 build/default/debug/protocol_boot.o
-                    0x2d72                  _Rxbuffer
-                    0x2d7a                  _Txbuffer
- .bss               0x2d82          0xe build/default/debug/_ext/275911920/crc.o
- .bss               0x2d90          0x6 build/default/debug/_ext/998979777/asciiConversion.o
-                    0x2d90                  _asciiChar
- .bss               0x2d96          0x2 build/default/debug/_ext/275911920/tmr1.o
- .bss               0x2d98          0x2 build/default/debug/_ext/275911920/tmr2.o
- .bss               0x2d9a          0x2 build/default/debug/_ext/275911920/tmr3.o
-
-.ivt._ADC1Interrupt
-                  0x00002e          0x2
- .ivt._ADC1Interrupt
-                  0x00002e          0x2 build/default/debug/_ext/275911920/adc1.o
-
-.ivt._DMA0Interrupt
-                  0x00001c          0x2
- .ivt._DMA0Interrupt
-                  0x00001c          0x2 build/default/debug/_ext/275911920/dma.o
-
-.ivt._MI2C1Interrupt
-                  0x000036          0x2
- .ivt._MI2C1Interrupt
-                  0x000036          0x2 build/default/debug/_ext/275911920/i2c1.o
-
-.ivt._SI2C2Interrupt
-                  0x000076          0x2
- .ivt._SI2C2Interrupt
-                  0x000076          0x2 build/default/debug/_ext/275911920/i2c2.o
+                  0x00000c          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(data_init_24.o)
 
 .config_ALTI2C1
                   0x02af2c          0x2
  .config_ALTI2C1
-                  0x02af2c          0x2 build/default/debug/_ext/275911920/mcc.o
+                  0x02af2c          0x2 build/default/production/main_boot.o
 
 .config_JTAGEN    0x02af28          0x2
  .config_JTAGEN
-                  0x02af28          0x2 build/default/debug/_ext/275911920/mcc.o
+                  0x02af28          0x2 build/default/production/main_boot.o
 
 .config_DNVPEN    0x02af24          0x2
  .config_DNVPEN
-                  0x02af24          0x2 build/default/debug/_ext/275911920/mcc.o
+                  0x02af24          0x2 build/default/production/main_boot.o
 
 .config_WDTCLK    0x02af20          0x2
  .config_WDTCLK
-                  0x02af20          0x2 build/default/debug/_ext/275911920/mcc.o
+                  0x02af20          0x2 build/default/production/main_boot.o
 
 .config_FCKSM     0x02af1c          0x2
- .config_FCKSM    0x02af1c          0x2 build/default/debug/_ext/275911920/mcc.o
+ .config_FCKSM    0x02af1c          0x2 build/default/production/main_boot.o
 
 .config_IESO      0x02af18          0x2
- .config_IESO     0x02af18          0x2 build/default/debug/_ext/275911920/mcc.o
+ .config_IESO     0x02af18          0x2 build/default/production/main_boot.o
 
 .config_BSLIM     0x02af10          0x2
- .config_BSLIM    0x02af10          0x2 build/default/debug/_ext/275911920/mcc.o
+ .config_BSLIM    0x02af10          0x2 build/default/production/main_boot.o
 
-.ivt._T2Interrupt
-                  0x000022          0x2
- .ivt._T2Interrupt
-                  0x000022          0x2 build/default/debug/_ext/275911920/tmr2.o
-
-.ivt._OscillatorFail
-                  0x000004          0x2
- .ivt._OscillatorFail
-                  0x000004          0x2 build/default/debug/_ext/275911920/traps.o
-
-.ivt._StackError
-                  0x00000a          0x2
- .ivt._StackError
-                  0x00000a          0x2 build/default/debug/_ext/275911920/traps.o
-
-.ivt._AddressError
-                  0x000006          0x2
- .ivt._AddressError
-                  0x000006          0x2 build/default/debug/_ext/275911920/traps.o
-
-.ivt._MathError
-                  0x00000c          0x2
- .ivt._MathError
-                  0x00000c          0x2 build/default/debug/_ext/275911920/traps.o
-
-.ivt._NVMError    0x000008          0x2
- .ivt._NVMError
-                  0x000008          0x2 build/default/debug/_ext/275911920/traps.o
-
-.ivt._U1TXInterrupt
-                  0x00002c          0x2
- .ivt._U1TXInterrupt
-                  0x00002c          0x2 build/default/debug/_ext/275911920/uart1.o
-
-.ivt._U1RXInterrupt
-                  0x00002a          0x2
- .ivt._U1RXInterrupt
-                  0x00002a          0x2 build/default/debug/_ext/275911920/uart1.o
-
-.ivt._U1ErrInterrupt
-                  0x000096          0x2
- .ivt._U1ErrInterrupt
-                  0x000096          0x2 build/default/debug/_ext/275911920/uart1.o
-
-.const              0x894c         0x8c load address 0x00094c  
- .const             0x894c         0x8c build/default/debug/_ext/1497480854/pinDigitalHwSpecific.o
-                    0x894c                  _PinBitmapB
-                    0x8974                  _PinBitmapA
-                    0x899c                  _pinPort
-                    0x89b0                  _pinBitmap
-
-.text             0x0009d8       0x1c32
- .text            0x0009d8        0x794 build/default/debug/_ext/275911920/dma.o
-                  0x0009d8                  _DMA_Initialize
-                  0x000a66                  _DMA_Channel0_CallBack
-                  0x000a6c                  _DMA_Channel1_CallBack
-                  0x000a72                  _DMA__Channel1_Tasks
-                  0x000a88                  _DMA_Channel2_CallBack
-                  0x000a8e                  _DMA__Channel2_Tasks
-                  0x000aa4                  _DMA_Channel3_CallBack
-                  0x000aaa                  _DMA__Channel3_Tasks
-                  0x000abe                  _DMA_Channel4_CallBack
-                  0x000ac4                  _DMA__Channel4_Tasks
-                  0x000ada                  _DMA_Channel5_CallBack
-                  0x000ae0                  _DMA__Channel5_Tasks
-                  0x000af6                  _DMA_ChannelEnable
-                  0x000b38                  _DMA_ChannelDisable
-                  0x000b7a                  _DMA_TransferCountSet
-                  0x000bca                  _DMA_TransferCountGet
-                  0x000c0e                  _DMA_SoftwareTriggerEnable
-                  0x000c50                  _DMA_SourceAddressSet
-                  0x000ca0                  _DMA_DestinationAddressSet
-                  0x000cf0                  _DMA_IsSoftwareRequestPending
-                  0x000d94                  _DMA_IsBufferedWriteComplete
-                  0x000e38                  _DMA_IsHighAddressLimitFlagSet
-                  0x000edc                  _DMA_IsLowAddressLimitFlagSet
-                  0x000f80                  _DMA_IsOperationDone
-                  0x001024                  _DMA_IsOverrunFlagSet
-                  0x0010c8                  _DMA_IsOperationHalfComplete
- .text            0x00116c        0x57e build/default/debug/_ext/275911920/crc.o
-                  0x00116c                  _CRC_Initialize
-                  0x001426                  _CRC_SeedSet
-                  0x0014ea                  _CRC_CalculateBufferStart
-                  0x001526                  _CRC_CalculateProgramStart
-                  0x00156c                  _CRC_CallBack
-                  0x001572                  _CRC_Task
-                  0x0015e8                  _CRC_CalculationIsDone
-                  0x0015fc                  _CRC_CalculationResultRawGet
-                  0x001656                  _CRC_CalculationResultReverseGet
-                  0x001664                  _CRC_CalculationResultXORGet
-                  0x00169e                  _CRC_CalculationResultGet
- .text            0x0016ea        0x466 build/default/debug/_ext/1497480854/pinDigitalHwSpecific.o
-                  0x0016ea                  _CurrentPinBitmap
-                  0x001706                  _ConfigurePinAnalog
-                  0x001786                  _PinIsAnalogCapable
-                  0x0017a4                  _CurrentPinPort
-                  0x0017bc                  _ReadPin
-                  0x001818                  _PinOutput
-                  0x001856                  _PinInput
-                  0x00189e                  _CurrentPinRead
-                  0x0018a8                  _pinIsPPSCapable
-                  0x0018cc                  _SetPin
-                  0x00199c                  _CurrentPinInput
-                  0x0019a6                  _CurrentPinAnalog
-                  0x0019da                  _SetCurrentPin
-                  0x0019e8                  _PinLow
-                  0x0019f6                  _PinHigh
-                  0x001a04                  _SetPinPullUp
-                  0x001a80                  _SetPinPullDown
-                  0x001afc                  _PinPullUp
-                  0x001b10                  _PinPullDown
-                  0x001b24                  _CurrentPinPullUp
-                  0x001b2e                  _CurrentPinNoPullUp
-                  0x001b3a                  _CurrentPinPullDown
-                  0x001b44                  _CurrentPinNoPullDown
- .text            0x001b50        0x36e build/default/debug/protocol_boot.o
-                  0x001b68                  _uartStartTX
-                  0x001ba4                  _error
-                  0x001bc6                  _ProcessRxbuffer
-                  0x001e64                  _ProcessRx
- .text            0x001ebe        0x2b0 build/default/debug/_ext/275911920/uart1.o
-                  0x001ebe                  _UART1_Initialize
-                  0x001efc                  _UART1_Read
-                  0x001f32                  _UART1_ReadBuffer
-                  0x001f6a                  _UART1_Write
-                  0x001fa0                  _UART1_WriteBuffer
-                  0x001fd2                  _UART1_TransferStatusGet
-                  0x00200e                  _UART1_Peek
-                  0x002036                  _UART1_PeekSafe
-                  0x0020c4                  _UART1_ReceiveBufferSizeGet
-                  0x0020f2                  _UART1_TransmitBufferSizeGet
-                  0x002122                  _UART1_ReceiveBufferIsEmpty
-                  0x00213a                  _UART1_TransmitBufferIsFull
-                  0x002152                  _UART1_StatusGet
-                  0x00215a                  _UART1_Enable
-                  0x002164                  _UART1_Disable
- .text            0x00216e        0x268 build/default/debug/_ext/998979777/asciiConversion.o
-                  0x00216e                  _ascii_to_val
-                  0x0021be                  _uint16ToAscii5
-                  0x002292                  _uint16ToAscii5NoHWMath
-                  0x00235a                  _uint16ToAscii5NoHWMathNoIndex
- .text            0x0023d6        0x234 build/default/debug/_ext/275911920/adc1.o
-                  0x0023d6                  _ADC1_Initialize
-                  0x002402                  _GetADCConversion
-                  0x00246a                  _GetAddressPinVoltage_mV
-                  0x002538                  _GetTemperature_degC100ths
-                  0x0025dc                  _GetSourceVoltage_mV
-                  0x002602                  _GetSourceVoltageADC
-
-.dinit            0x00260a        0x22a
- .dinit           0x00260a        0x22a data_init
-
-.text             0x002834        0x958
- .text            0x002834        0x210 build/default/debug/_ext/1497480854/wombatasm.o
-                  0x002834                  _orCount
-                  0x00283a                  _or128
-                  0x00293c                  _andCount
-                  0x002942                  _and128
- .text            0x002a44        0x1dc build/default/debug/_ext/275911920/i2c1.o
-                  0x002a44                  _I2C1_Initialize
-                  0x002a7a                  _I2C1_ErrorCountGet
-                  0x002ac4                  _I2C1_MasterWrite
-                  0x002af6                  _I2C1_MasterRead
-                  0x002b28                  _I2C1_MasterTRBInsert
-                  0x002ba0                  _I2C1_MasterReadTRBBuild
-                  0x002bd0                  _I2C1_MasterWriteTRBBuild
-                  0x002bf4                  _I2C1_MasterQueueIsEmpty
-                  0x002c0a                  _I2C1_MasterQueueIsFull
- .text            0x002c20        0x17a build/default/debug/_ext/275911920/i2c2.o
-                  0x002c20                  _I2C2_Initialize
-                  0x002c46                  _I2C2_ReadPointerSet
-                  0x002c52                  _I2C2_WritePointerSet
-                  0x002c5e                  _I2C2_ReadPointerGet
-                  0x002c66                  _I2C2_WritePointerGet
-                  0x002c6e                  _I2C2_SlaveAddressMaskSet
-                  0x002c7a                  _I2C2_SlaveAddressSet
-                  0x002c96                  _I2C2_TransmitProcess
-                  0x002cba                  _I2C2_ReceiveProcess
-                  0x002cf8                  _I2C2_StatusCallback
- .text            0x002d9a         0xc8 build/default/debug/_ext/275911920/tmr2.o
-                  0x002d9a                  _TMR2_Initialize
-                  0x002dbe                  _TMR2_Period16BitSet
-                  0x002dd0                  _TMR2_Period16BitGet
-                  0x002dd8                  _TMR2_Counter16BitSet
-                  0x002dea                  _TMR2_Counter16BitGet
-                  0x002df2                  _TMR2_CallBack
-                  0x002e08                  _TMR2_SetInterruptHandler
-                  0x002e18                  _TMR2_Start
-                  0x002e28                  _TMR2_Stop
-                  0x002e32                  _TMR2_GetElapsedThenClear
-                  0x002e4a                  _TMR2_SoftwareCounterGet
-                  0x002e56                  _TMR2_SoftwareCounterClear
- .text            0x002e62         0xb0 build/default/debug/_ext/275911920/tmr1.o
-                  0x002e62                  _TMR1_Initialize
-                  0x002e78                  _TMR1_Tasks_16BitOperation
-                  0x002e98                  _TMR1_Period16BitSet
-                  0x002eaa                  _TMR1_Period16BitGet
-                  0x002eb2                  _TMR1_Counter16BitSet
-                  0x002ec4                  _TMR1_Counter16BitGet
-                  0x002ecc                  _TMR1_Start
-                  0x002eda                  _TMR1_Stop
-                  0x002ee2                  _TMR1_GetElapsedThenClear
-                  0x002efa                  _TMR1_SoftwareCounterGet
-                  0x002f06                  _TMR1_SoftwareCounterClear
- .text            0x002f12         0xb0 build/default/debug/_ext/275911920/tmr3.o
-                  0x002f12                  _TMR3_Initialize
-                  0x002f26                  _TMR3_Tasks_16BitOperation
-                  0x002f48                  _TMR3_Period16BitSet
-                  0x002f5a                  _TMR3_Period16BitGet
-                  0x002f62                  _TMR3_Counter16BitSet
-                  0x002f74                  _TMR3_Counter16BitGet
-                  0x002f7c                  _TMR3_Start
-                  0x002f8a                  _TMR3_Stop
-                  0x002f92                  _TMR3_GetElapsedThenClear
-                  0x002faa                  _TMR3_SoftwareCounterGet
-                  0x002fb6                  _TMR3_SoftwareCounterClear
- .text            0x002fc2         0x66 build/default/debug/_ext/275911920/uart2.o
-                  0x002fc2                  _UART2_Initialize
-                  0x002fd6                  _UART2_Read
-                  0x002ff4                  _UART2_Write
-                  0x00300c                  _UART2_StatusGet
-                  0x003014                  _UART2_Enable
-                  0x00301e                  _UART2_Disable
- .text            0x003028         0x60 build/default/debug/main_boot.o
-                  0x003040                  _reset
-                  0x003046                  _main
- .text            0x003088         0x5c build/default/debug/_ext/275911920/clock.o
-                  0x003088                  _CLOCK_Initialize
- .text            0x0030e4         0x36 build/default/debug/_ext/275911920/pin_manager.o
-                  0x0030e4                  _PIN_MANAGER_Initialize
- .text            0x00311a         0x36 build/default/debug/_ext/275911920/system.o
-                  0x00311a                  _SYSTEM_Initialize
- .text            0x003150         0x1c build/default/debug/_ext/275911920/traps.o
-                  0x003150                  _TRAPS_halt_on_error
- .text            0x00316c         0x10 build/default/debug/_ext/275911920/cvr.o
-                  0x00316c                  _CVR_Initialize
- .text            0x00317c          0xa build/default/debug/_ext/275911920/mcc.o
-                  0x00317c                  _OSCILLATOR_Initialize
- .text            0x003186          0x6 build/default/debug/_ext/275911920/interrupt_manager.o
-                  0x003186                  _INTERRUPT_Initialize
+.text             0x00020a         0x1a
+ .text            0x00020a         0x1a build/default/production/main_boot.o
+                  0x00020a                  _reset
+                  0x000210                  _main

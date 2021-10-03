@@ -25,6 +25,7 @@ uint8_t testSequenceNumber = 0;
 bool testSequenceArmed = 0;
 void ProcessSetPin(void);
 
+//#define I2C_DEBUG_OUTPUT
 #ifdef I2C_DEBUG_OUTPUT
 #define OUTPUT_I2C_DEBUG(_value) {LATB = (_value <<11);  LATBbits.LATB10= 1;Nop();Nop();Nop();Nop(); LATBbits.LATB10 = 0;}
 #warning I2C_DEBUG_OUTPUT ENABLED!   PORT B DMA Disabled!
@@ -603,7 +604,151 @@ Two bytes were available in the queue.  0x34, and 0x35
 
 		}
 		break;
+       case COMMAND_BINARY_READ_RAM:
+        {
+            /** \addtogroup ProtocolBinaryCommands
+\{
 
+----
+
+Binary Read RAM, 16 Bit address
+---------------------
+
+Reads a byte from an address in Microcontroller RAM.  The SW4A and SW4B use 16 bit addresses.  
+
+Note that the PIC16F15214 is a Microchip Enhanced Mid-Range chip with both a banked RAM area and a Linear RAM area at an offset address.  
+See the datasheet for details.
+
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xA0|Least Significant byte of 16-bit address |Most Significant byte of 16-bit address | 0x55* | 0x55* | 0x55* |  0x55* | 0x55* |
+ *0x55 is recommended, but any byte is acceptable
+
+Response:
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xA0|Least Significant byte of 16-bit address |Most Significant byte of 16-bit address | Byte Read From Ram| Echoed | Echoed |  Echoed | Echoed |
+
+Examples:
+
+Read the byte at RAM address 0x0247.
+
+> `0xA0 0x47 0x02 0x55 0x55 0x55 0x55 0x55`
+
+Assuming address 0x0247 held the value 0xAC ,
+Response:
+> `0xA0 0x47 0x02 0xAC 0x55 0x55 0x55 0x55`
+
+\}
+**/
+	uint16_t addr = RXBUFFER16(1);
+    Txbuffer[3] = *(uint8_t*)addr;
+            
+        }
+        break;
+        
+        case COMMAND_BINARY_READ_FLASH:
+        {
+/** \addtogroup ProtocolBinaryCommands
+\{
+
+----
+
+Binary Read Flash, 32 Bit address, 32 Bit result
+---------------------
+
+Reads two bytes from an address in Microcontroller Flash.  The SW18AB  uses 32 bit addresses.  Due to 24 bit architecture the high byte of a 32 bit word is 0.
+Multiply the Word Address by 2 to get the byte address.  
+
+See the Datasheet for the microchip PIC16F15214 for information on organization
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xA1|Least Significant byte of 32-bit byte address (must be multiple of 4) |Middle low byte of 32-bit byte address  | Middle High byte of 32-bit byte address | Most Significant byte of 32-bit byte address | 0x55* |  0x55* | 0x55* |
+
+
+Response:
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xA1|Least Significant byte of 16-bit address |Most Significant byte of 16-bit address |Echoed|Echoed| Low Byte Read From Flash| High Byte Read From Flash |  Echoed |
+
+Examples:
+
+Read the word at FLASH address 0x010846.
+
+> `0xA1 0x46 0x08 0x01 0x00 0x55 0x55 0x55`
+
+Assuming address 0x0846 held the value 0x07EF ,
+Response:
+> `0xA1 0x46 0x08 0x01 0x00 0xEF 0x07 0x55`
+
+\}
+**/
+            uint32_t address = RXBUFFER32(1);
+            uint16_t result = 0;
+            if (address & 0x01)
+            {
+                error(SW_ERROR_RF_ODD_ADDRESS);
+            }
+            else
+            {
+                INTERRUPT_GlobalDisable();  // While we're messing with TBLPAG
+                uint8_t tblpag = TBLPAG;
+                TBLPAG = address >>16;
+                    result = __builtin_tblrdl(address );
+                    TXBUFFER16(4,result);          
+                    result = __builtin_tblrdh(address );
+                    TBLPAG = tblpag;
+                    INTERRUPT_GlobalEnable();
+                     TXBUFFER16(6,result);
+                     
+            }
+
+        }
+        break;
+        
+        case COMMAND_BINARY_WRITE_RAM:
+        {
+       /** \addtogroup ProtocolBinaryCommands
+\{
+
+----
+
+Binary Write RAM, 16 Bit address (
+---------------------
+
+Reads a byte from an address in Microcontroller RAM.  The SW4A and SW4B use 16 bit addresses.  
+
+Note that the PIC16F15214 is a Microchip Enhanced Mid-Range chip with both a banked RAM area and a Linear RAM area at an offset address.  
+See the datasheet for details.
+
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xA3|Least Significant byte of 16-bit address |Most Significant byte of 16-bit address | 0 (for 32-bit compatability) | 0 (for 32-bit compatability) | Byte To write |  0x55* | 0x55* |
+ *0x55 is recommended, but any byte is acceptable
+
+Response:
+
+Echoed Back.
+        * 
+Examples:
+
+Write 0x32 the byte at RAM address 0x0247.
+
+> `0xA3 0x47 0x02 0x00 0x00 0x32 0x55 0x55`
+
+
+
+\}
+**/
+		uint16_t addr = RXBUFFER16(1);
+        *(uint8_t*)addr = Rxbuffer[5];            
+        }
+        break;
         
         case COMMAND_BINARY_TEST_SEQUENCE:
         {
@@ -712,13 +857,16 @@ void ProcessRx(void)
 		uartStartTX();
 	}
      */
-    extern uint8_t wombatI2CRxData[8];
-    extern uint8_t wombatI2CTxData[8];
-    extern uint8_t wombatI2CRxDataCount;
+    extern volatile uint8_t wombatI2CRxData[8];
+    extern volatile uint8_t wombatI2CTxData[8];
+    extern volatile uint8_t wombatI2CRxDataCount;
     
     if (wombatI2CRxDataCount >= 8)
     {
-        OUTPUT_I2C_DEBUG(31);
+        OUTPUT_I2C_DEBUG(0x11);
+        OUTPUT_I2C_DEBUG(0x11);
+       
+        
         ResponseAvailable = false;
         
         memcpy(Rxbuffer,wombatI2CRxData,8);
@@ -772,6 +920,8 @@ OUTPUT_I2C_DEBUG(29);
 		
 	}
         INTERRUPT_GlobalEnable();
+         OUTPUT_I2C_DEBUG(0x11);
+        OUTPUT_I2C_DEBUG(0x11);
     }
 }
 

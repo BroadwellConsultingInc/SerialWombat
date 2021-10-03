@@ -1,0 +1,13 @@
+F:\keep\GitHub\broadwellconsultinginc\SerialWombat\SW18ABPostProcessingUtility\HexToLines\bin\Debug\netcoreapp3.1\HexToLines.exe
+F:\keep\GitHub\broadwellconsultinginc\SerialWombat\SW18ABPostProcessingUtility\HexToLines\bin\Debug\netcoreapp3.1\HexToLines.deps.json
+F:\keep\GitHub\broadwellconsultinginc\SerialWombat\SW18ABPostProcessingUtility\HexToLines\bin\Debug\netcoreapp3.1\HexToLines.runtimeconfig.json
+F:\keep\GitHub\broadwellconsultinginc\SerialWombat\SW18ABPostProcessingUtility\HexToLines\bin\Debug\netcoreapp3.1\HexToLines.runtimeconfig.dev.json
+F:\keep\GitHub\broadwellconsultinginc\SerialWombat\SW18ABPostProcessingUtility\HexToLines\bin\Debug\netcoreapp3.1\HexToLines.dll
+F:\keep\GitHub\broadwellconsultinginc\SerialWombat\SW18ABPostProcessingUtility\HexToLines\bin\Debug\netcoreapp3.1\HexToLines.pdb
+F:\keep\GitHub\broadwellconsultinginc\SerialWombat\SW18ABPostProcessingUtility\HexToLines\obj\Debug\netcoreapp3.1\HexToLines.csproj.AssemblyReference.cache
+F:\keep\GitHub\broadwellconsultinginc\SerialWombat\SW18ABPostProcessingUtility\HexToLines\obj\Debug\netcoreapp3.1\HexToLines.AssemblyInfoInputs.cache
+F:\keep\GitHub\broadwellconsultinginc\SerialWombat\SW18ABPostProcessingUtility\HexToLines\obj\Debug\netcoreapp3.1\HexToLines.AssemblyInfo.cs
+F:\keep\GitHub\broadwellconsultinginc\SerialWombat\SW18ABPostProcessingUtility\HexToLines\obj\Debug\netcoreapp3.1\HexToLines.csproj.CoreCompileInputs.cache
+F:\keep\GitHub\broadwellconsultinginc\SerialWombat\SW18ABPostProcessingUtility\HexToLines\obj\Debug\netcoreapp3.1\HexToLines.dll
+F:\keep\GitHub\broadwellconsultinginc\SerialWombat\SW18ABPostProcessingUtility\HexToLines\obj\Debug\netcoreapp3.1\HexToLines.pdb
+F:\keep\GitHub\broadwellconsultinginc\SerialWombat\SW18ABPostProcessingUtility\HexToLines\obj\Debug\netcoreapp3.1\HexToLines.genruntimeconfig.cache

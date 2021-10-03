@@ -92,6 +92,9 @@ typedef enum {
             SW_ERROR_WUB_COUNT_GT_4 = 7, ///< A count greater than 4 was provided as a number of bytes to write to count user buffer
             SW_ERROR_WUB_INVALID_ADDRESS = 8, ///<An attempt to write to a user buffer address outside the user buffer was attempted.
             SW_ERROR_WUB_CONTINUE_OUTOFBOUNDS = 9, ///<  A call to Write User Buffer Continue would have written out of bounds.
+            SW_ERROR_RF_ODD_ADDRESS = 10, ///< Addresses Read From Flash must be even.
+            SW_ERROR_FLASH_WRITE_INVALID_ADDRESS = 11, ///<An attempt to write or erase flash was made to a protected or non-existant area
+	    SW_ERROR_INVALID_PIN_COMMAND = 12, ///< The pin command 0xC1, 0xC2, etc is not suported by this pin mode (May vary by model)
             
             
             

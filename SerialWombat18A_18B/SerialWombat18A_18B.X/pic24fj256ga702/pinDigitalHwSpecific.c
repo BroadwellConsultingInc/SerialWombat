@@ -458,6 +458,15 @@ void PinPullDown(uint8_t pin)
     SetPinPullDown(pin,true);    
 }
 
+void CurrentPinHigh()
+{
+    PinHigh(CurrentPin);
+}
+
+void CurrentPinLow()
+{
+    PinLow(CurrentPin);
+}
 void CurrentPinPullUp()
 {
     PinPullUp(CurrentPin);

@@ -19,6 +19,8 @@ volatile uint8_t RX_ClockStretching = 0;
 
 uint16_t lastUserBufferIndex = 0xFFFF;
 uint16_t lastQueueIndex = 0xFFFF;
+
+uint16_t debugFlashWrites = 0;
 void uartStartTX()
 {
 	uint8_t crlf[] = {'\r','\n'};
@@ -190,6 +192,18 @@ Examples:
 			break;
 		
 
+			case COMMAND_BINARY_READ_PIN_BUFFFER:
+		{
+			uint16_t temp = GetBuffer(Rxbuffer[1]);
+			TXBUFFER16(2,temp);		
+			temp = GetBuffer(Rxbuffer[1] + 1);
+			TXBUFFER16(4,temp);		
+			temp = GetBuffer(Rxbuffer[1] + 2);
+			TXBUFFER16(6,temp);		
+
+		}
+		break;
+
 		case COMMAND_BINARY_READ_USER_BUFFER:
 		{
 			 uint16_t address = RXBUFFER16(1);
@@ -251,7 +265,67 @@ Examples:
 
 		}
 		break;
+        
+ case COMMAND_BINARY_READ_FLASH:
+        {
+/** \addtogroup ProtocolBinaryCommands
+\{
 
+----
+
+Binary Read Flash, 32 Bit address, 32 Bit result
+---------------------
+
+Reads two bytes from an address in Microcontroller Flash.  The SW18AB  uses 32 bit addresses.  Due to 24 bit architecture the high byte of a 32 bit word is 0.
+Multiply the Word Address by 2 to get the byte address.  
+
+See the Datasheet for the microchip PIC16F15214 for information on organization
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xA1|Least Significant byte of 32-bit byte address (must be multiple of 4) |Middle low byte of 32-bit byte address  | Middle High byte of 32-bit byte address | Most Significant byte of 32-bit byte address | 0x55* |  0x55* | 0x55* |
+
+
+Response:
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xA1|Least Significant byte of 16-bit address |Most Significant byte of 16-bit address |Echoed|Echoed| Low Byte Read From Flash| High Byte Read From Flash |  Echoed |
+
+Examples:
+
+Read the word at FLASH address 0x010846.
+
+> `0xA1 0x46 0x08 0x01 0x00 0x55 0x55 0x55`
+
+Assuming address 0x0846 held the value 0x07EF ,
+Response:
+> `0xA1 0x46 0x08 0x01 0x00 0xEF 0x07 0x55`
+
+\}
+**/
+            uint32_t address = RXBUFFER32(1);
+            uint16_t result = 0;
+            if (address & 0x01)
+            {
+                error(SW_ERROR_RF_ODD_ADDRESS);
+            }
+            else
+            {
+                INTERRUPT_GlobalDisable();  // While we're messing with TBLPAG
+                uint8_t tblpag = TBLPAG;
+                TBLPAG = address >>16;
+                    result = __builtin_tblrdl(address );
+                    TXBUFFER16(4,result);          
+                    result = __builtin_tblrdh(address );
+                    TBLPAG = tblpag;
+                    INTERRUPT_GlobalEnable();
+                     TXBUFFER16(6,result);
+                     
+            }
+
+        }
+        break;
 		case COMMAND_BINARY_WRITE_FLASH:
 		{
 			switch (Rxbuffer[1])
@@ -263,6 +337,20 @@ Examples:
                     // Called once per block.
 					// Address is in bytes not words to match hex file
                     // User should delay appropriate time to allow erase completion before requesting response over I2C
+                   
+                    uint32_t address = RXBUFFER32(2)/2;
+                    if (address < 0x4000)  // Beginning of Application
+                    {
+                        error(SW_ERROR_FLASH_WRITE_INVALID_ADDRESS);
+                    }
+                    else
+                    {
+                    NVMADRU = (uint16_t)(address >>16);
+                    NVMADR = (uint16_t)(address & 0xFFFF);
+                            NVMCON = 0x4003;
+                    __builtin_disi(6);
+                    __builtin_write_NVM();
+                    }
 				}
 				break;
 
@@ -274,11 +362,51 @@ Examples:
 					// Address is in bytes not words to match hex file
                     // Called once per block.
                     // User should delay appropriate time to allow erase completion before requesting response over I2C
-					uint32_t address32 = RXBUFFER32(2);
+                    uint32_t address = RXBUFFER32(2)/2;
+                    if (address < 0x4000)  // Beginning of Application
+                    {
+                        error(SW_ERROR_FLASH_WRITE_INVALID_ADDRESS);
+                    }
+                    else
+                    {
+                        FLASH_Unlock(FLASH_UNLOCK_KEY);
 
+                    FLASH_WriteRow24(address, (uint32_t*)user_buffer);
+                    ++debugFlashWrites;
+                    }
+                   
 				}
 				break;
                 
+                case 2:
+                {
+                    extern volatile unsigned short crcResultCRCCCITT ;
+                    void crcAppSpace(uint32_t address_w, uint32_t length_w);
+                    crcAppSpace(0x4000,0x1F800 - 0x4000);
+                    TXBUFFER16(2,crcResultCRCCCITT);
+                    
+                    
+                }
+                break;
+                 case 3:
+                {
+                    extern volatile unsigned short crcResultCRCCCITT ;
+                  
+                    TXBUFFER16(2,crcResultCRCCCITT);
+                    uint32_t address = 0x1FC04;
+            uint16_t result = 0;
+           
+                INTERRUPT_GlobalDisable();  // While we're messing with TBLPAG
+                uint8_t tblpag = TBLPAG;
+                TBLPAG = 1;
+                    result = __builtin_tblrdl(0xF804);      
+                    TBLPAG = tblpag;
+                    INTERRUPT_GlobalEnable();
+                    TXBUFFER16(4,result);
+                    TXBUFFER16(6,debugFlashWrites);
+                    
+                }
+                break;
                
                     
             }
@@ -385,5 +513,32 @@ void ProcessRx(void)
 	}
         INTERRUPT_GlobalEnable();
     }
+}
+
+uint16_t GetBuffer(uint8_t pin)
+{
+	
+	if (pin == 66)
+    {
+        uint32_t result = GetSourceVoltageADC();
+        result *= 1024;  //Convert to 1.2  V reference to 1.024 v reference for compatibility with SW4B
+        result /=1200;
+        return ((uint16_t) result); 
+    }
+    
+    else if (pin == 70)
+    {
+         
+        return ( GetTemperature_degC100ths());    
+    }
+    else if (pin == 85) //0x55
+    {
+        return (0x5555);
+    }
+    else
+	{
+		return(0);
+	}
+    return(0);
 }
 

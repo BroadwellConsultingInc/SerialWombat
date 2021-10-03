@@ -64,6 +64,7 @@
         <itemPath>../SerialWombat18A_18B.X/pic24fj256ga702/mcc_generated_files/traps.c</itemPath>
         <itemPath>../SerialWombat18A_18B.X/pic24fj256ga702/mcc_generated_files/uart1.c</itemPath>
         <itemPath>../SerialWombat18A_18B.X/pic24fj256ga702/mcc_generated_files/uart2.c</itemPath>
+        <itemPath>../SerialWombat18A_18B.X/pic24fj256ga702/mcc_generated_files/memory/flash.s</itemPath>
       </logicalFolder>
       <itemPath>main_boot.c</itemPath>
       <itemPath>protocol_boot.c</itemPath>
@@ -135,7 +136,7 @@
         <makeUseCleanTarget>false</makeUseCleanTarget>
         <makeCustomizationPreStep></makeCustomizationPreStep>
         <makeCustomizationPostStepEnabled>false</makeCustomizationPostStepEnabled>
-        <makeCustomizationPostStep></makeCustomizationPostStep>
+        <makeCustomizationPostStep>hexmate -ck=0x8000-0x8000@0x40000+FFFFw-2g5p0x1021 -OF:\keep\GitHub\broadwellconsultinginc\SerialWombat\SerialWombat18A_18B\SerialWombat18A_18B_Bootloader.X/dist/default/production/SerialWombat18A_18B_Bootloader.X.production.unified.hex F:\keep\GitHub\broadwellconsultinginc\SerialWombat\SerialWombat18A_18B\SerialWombat18A_18B_Bootloader.X/dist/default/production/SerialWombat18A_18B_Bootloader.X.production.unified.hex</makeCustomizationPostStep>
         <makeCustomizationPutChecksumInUserID>false</makeCustomizationPutChecksumInUserID>
         <makeCustomizationEnableLongLines>false</makeCustomizationEnableLongLines>
         <makeCustomizationNormalizeHexFile>false</makeCustomizationNormalizeHexFile>
@@ -462,8 +463,6 @@
         <property key="memories.programmemory.ranges" value="0-2aeff"/>
         <property key="memories.rww" value="true"/>
         <property key="poweroptions.powerenable" value="false"/>
-        <property key="programmerToGoFilePath"
-                  value="F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B_Bootloader.X/debug/default/SerialWombat18A_18B_Bootloader_ptg"/>
         <property key="programmerToGoImageName"
                   value="SerialWombat18A_18B_Bootloader_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>

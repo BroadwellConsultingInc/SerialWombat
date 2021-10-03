@@ -57,8 +57,9 @@
 #pragma config CWRP = OFF    //Configuration Segment Write-Protect bit->Configuration Segment may be written
 #pragma config CSS = DISABLED    //Configuration Segment Code-Protect Level bits->No Protection (other than CWRP)
 #pragma config AIVTDIS = ON    //Alternate Interrupt Vector Table bit->Disabled AIVT
-#pragma config BSLIM =  0x1FEF  //Boot Segment Flash Page Address Limit bits
-//#pragma config BSLIM = 0x1FFF
+
+//#pragma config BSLIM =  0x1FEF  //Boot Segment Flash Page Address Limit bits  Address 0x8000, AVT 0x7804
+#pragma config BSLIM = 0x1FF6 //Boot Segment Flash Page Address Limit bits  Address 0x4800, AVT 0x4004
 
 // FOSCSEL
 #pragma config FNOSC = FRC    //Oscillator Source Selection->FRC

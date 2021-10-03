@@ -64,8 +64,11 @@ MEMORY
 {
   data  (a!xr)   : ORIGIN = 0x800,         LENGTH = 0x4000
   reset          : ORIGIN = 0x4000,           LENGTH = 0x4
-  ivtjon            : ORIGIN = 0x7804,           LENGTH = 0xFC
-  program (xr)   : ORIGIN = 0x7900,         LENGTH = 0x23500
+ /* ivtjon            : ORIGIN = 0x7804,           LENGTH = 0xFC */
+  ivtjon            : ORIGIN = 0x4004,           LENGTH = 0xFC 
+  /*program (xr)   : ORIGIN = 0x7900,         LENGTH = 0x23500 */
+  program (xr)   : ORIGIN = 0x4100,         LENGTH = 0x1FC00 - 0x4100 
+  userSpace(xr)  : ORIGIN = 0x20000,       LENGTH = 0xA000
   FSEC           : ORIGIN = 0x2AF00,       LENGTH = 0x2
   FBSLIM         : ORIGIN = 0x2AF10,       LENGTH = 0x2
   FSIGN          : ORIGIN = 0x2AF14,       LENGTH = 0x2
@@ -86,9 +89,11 @@ __FWDT = 0x2AF20;
 __FPOR = 0x2AF24;
 __FICD = 0x2AF28;
 __FDEVOPT1 = 0x2AF2C;
-__CODE_BASE = 0x7900;
+/*__CODE_BASE = 0x7900; */
+__CODE_BASE = 0x4100;
 __CODE_LENGTH = 0x2AE00;
-__IVT_BASE  = 0x7804;
+/*__IVT_BASE  = 0x7804;*/
+__IVT_BASE  = 0x4004;
 
 __DATA_BASE = 0x800;
 __DATA_LENGTH = 0x4000;

@@ -77,6 +77,32 @@ void SYSTEM_Initialize(void)
 
     DMA_Initialize();
     TMR1_Initialize();
+    
+    {
+    uint16_t addressVoltage =   GetAddressPinVoltage_mV();
+       extern uint8_t SW_I2CAddress;
+    if (addressVoltage < 275)
+    {
+        //TODO initialize serial
+        SW_I2CAddress = 0;
+    }
+    else if (addressVoltage < 825) // 10k
+    {
+        SW_I2CAddress = 0x68;
+    }
+    else if (addressVoltage < 1375) //20 k
+    {
+        SW_I2CAddress = 0x69;
+    }
+     else if (addressVoltage < 1925)  //30 k
+    {
+        SW_I2CAddress = 0x6A;
+    }
+     else
+     {
+         SW_I2CAddress = 0x6B;
+     }
+    }
 	   I2C2_Initialize();
 	   //    I2C1_Initialize();
 }
