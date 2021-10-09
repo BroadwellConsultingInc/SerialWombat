@@ -22,81 +22,47 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #include "serialWombat.h"
 #include <stdint.h>
 
-const uint8_t seven_seg_table[]={
-        //a  b  c  d  e  f  g
-0x7E,   //1  1  1  1  1  1  0   0              a
-0x30,   //0  1  1  0  0  0  0   1             f b 
-0x6D,   //1  1  0  1  1  0  1   2              g 
-0x79,   //1  1  1  1  0  0  1   3             e c 
-0x33,   //0  1  1  0  0  1  1   4              d 
-0x5B,   //1  0  1  1  0  1  1   5 
-0x5F,   //1  0  1  1  1  1  1   6 
-0x70,   //1  1  1  0  0  0  0   7 
-0x7F,   //1  1  1  1  1  1  1   8 
-0x7B,   //1  1  1  1  0  1  1   9 
-0x37,   //1  1  1  0  1  1  1   A
-0x1F,   //0  0  1  1  1  1  1   B
-0x0D,   //0  0  0  1  1  0  1   C
-0x3D,   //0  1  1  1  1  0  1   D
-0x4F,   //1  0  0  1  1  1  1   E
-0x47    //1  0  0  0  1  1  1   F
-};
 
-typedef enum {
-	TM1637_MODE_BUFFER_DEC = 0,
-	TM1637_MODE_BUFFER_HEX = 1,
-	TM1637_MODE_STRING = 2, 
-	TM1637_MODE_ANIMATION = 3,
-}TM1637_MODE_t;
 typedef struct tm1637_n{
-	uint16_t* dmaPtr;
-	uint16_t animationAddress;
-	uint16_t animationDelay;
-	uint16_t lastValue;
-	uint8_t outputString[6];
-	uint8_t dioPin;
-	uint8_t sourcePin;
-	uint8_t firstDigit;
-	uint8_t lastDigit;
-	uint8_t animationCurrentFrame;
-	uint8_t animationFrames;
-	uint8_t mode;
-	uint8_t outputState;
+	uint8_t outputBuffer[6];  ///< Used to hold user data for output.  Can be raw data, characters, pin to draw data from, or animation parameters based on mode
+	uint8_t displayOrder[6];  ///< Used to reorder rendered bytes into displayArray
+	uint8_t displayArray[6];  ///< Final rendered, ordered bitmap that is sent to the TM1637
+	uint8_t lastDisplay [6];  ///< Compared with displayArray to see which bytes need updated
+    uint16_t idleCounter;     ///< Counter that is counted down to delay between updates.
+	uint8_t outputState;      ///< Used for the byte-by-byte transfer state machine.
+	uint8_t dioPin;           ///< The second pin used by this pin mode
 	uint8_t decimalPointBitmap; ///< Least significant is first digit's decimal
+	uint8_t lastDigit:4;        ///< The last digit to send
+    uint8_t brightness:4;
+    uint8_t lastBrightness:4;
+	uint8_t mode:4;  ///< See type TM1637_MODE_t 
 }tm1637_t;
 
 
 #define tm1637 ((tm1637_t*) CurrentPinRegister)
-#define DIO_LOW() { PinLow(tm1637->dioPin);}
-#define DIO_HIGH() { PinHigh(tm1637->dioPin);}
-#define CLK_LOW() { CurrentPinLow();}
-#define CLK_HIGH() { CurrentPinHigh();}
-#define SET_DIO(_value) { SetPin(tm1637->dioPin, _value);}
+#define DIO_LOW() {PinLow(tm1637->dioPin);}
+#define   DIO_HIGH() {PinHigh(tm1637->dioPin);}
+#define  CLK_LOW() {  CurrentPinLow();}
+#define CLK_HIGH() {     CurrentPinHigh();}
+#define SET_DIO(_value) {    SetPin(tm1637->dioPin, _value);}
 
 
-void tm1637Start()
-{
-	DIO_LOW();
-}
+void tm1637Start(){	DIO_LOW();}
 
-void tm1637End()
-{
-	CLK_HIGH();
-	DIO_HIGH();
-}
+void tm1637Stop() { SetPinQuick(CurrentPin,0); SetPinQuick(tm1637->dioPin,0); CLK_HIGH();	DIO_HIGH();}
 
 void tm1637ClockByte(uint8_t data)
 {
     uint8_t i;
 	for (i = 0; i < 8; ++i)
 	{
-		CLK_LOW();
-		SET_DIO((data & 0x80) > 0);
-		CLK_HIGH();
-		data <<= 1;
+		SetPinQuick(CurrentPin,0);
+		SetPinQuick(tm1637->dioPin,(data & 0x01) > 0);
+		SetPinQuick(CurrentPin,1);
+		data >>=1;
 	}
+    SetPinQuick(CurrentPin,0);
 	DIO_LOW();
-	CLK_LOW();
 	CLK_HIGH();
 }
 
@@ -109,27 +75,43 @@ void tm1637_hwinit()
 }
 
 
-void tm1637SendMemoryWrite()
+#define tm1637SendMemoryWrite() {	tm1637ClockByte(0x40);  /*Write data, Increment address, normal mode*/}
+
+uint8_t tm1637SendInitialAddress()
 {
-	tm1637ClockByte(0x40);  //Write data, Increment address, normal mode
+    uint8_t i;
+    for (i = 0; i < 6; ++i)
+    {
+        if (tm1637->lastDisplay[i] == tm1637->displayArray[i])
+        {
+           //Do nothing
+        }
+        else
+        {
+            break;
+        }
+    }
+
+	tm1637ClockByte(0xC0 + i); // Address command, CH0H	
+    return (i);
 }
 
-void tm1637SendInitialAddress()
-{
-	tm1637ClockByte(0xC0); // Address command, CH0H	
-}
-
-void tm1637SendData(uint8_t data)
-{
-	tm1637ClockByte(data);
-}
 
 void tm1637SendDisplayControlCommand(uint8_t command)
 {
-	tm1637SendDisplayControlCommand(0x88 | (command & 0x07));  //Set display control, on, + brightness
+	tm1637ClockByte(0x88 | (command & 0x07));  //Set display control, on, + brightness
 }
 
+typedef enum {
+    
+    TM1637_OUTPUT_STATE_SETUP = 0xF0,
+    TM1637_OUTPUT_STATE_SET_ADDR = 0xF1,
+    TM1637_OUTPUT_STATE_DISPLAY_CONTROL_COMMAND = 0xF2,
+    TM1637_OUTPUT_STATE_SKIP_DISPLAY_CONTROL = 0xF3,
+    TM1637_OUTPUT_STATE_IDLE = 0xF4
+}TM1637_OUTPUT_STATE_t;
 
+//TODO update documentation
 /*!
     \brief Initialization routine for Analog Input
 
@@ -139,12 +121,90 @@ void tm1637SendDisplayControlCommand(uint8_t command)
 CONFIGURE_CHANNEL_MODE_0:
 ---------------------
 
-Initialize Analog Input.  Disables averaged and filtered values.
+Initialize TM1637 Output
 
 
 |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xC0|Pin To Set|0x0A (TM1637 ) | Second Pin |Number of digits | Mode |Public Data | 0x55* |
+|0xC0|Pin To Set (TO TM1637 Clock)|0x0A (TM1637 ) | Second Pin (TO TM1637 Data) |Digits | Mode |Public Data Source pin | Brightness (0-7) |
+
+
+Modes:
+
+- 16 bit Decimal output from Pin Public Data = 0,
+- 16 bit Hex output from Pin public Data = 1,
+- Char Array provided with 0xC4, 0xC5 commands  = 2, 
+- Raw 7 segment provided with 0xC4, 0xC5 commands  = 3,
+- Animation = 4,
+
+Response:
+
+Command is echoed back.
+
+Examples:
+
+Set pin 19 to TM1637 Clock, 18 to TM1637 Data,  4 digit display, Hex output of pin 19, Brightness 5
+
+> `0xC0 0x13 0x0A 0x12 0x04 0x02 0x13 0x05 `
+
+----
+
+
+CONFIGURE_CHANNEL_MODE_1:
+---------------------
+
+Change Display order of Digits 0-4.   If "012345" is displayed on the display after the 0xC0 command is sent and the digits appear in the
+wrong order, then use this command and CONFIGURE_CHANNEL_MODE_2 to change the display order.
+
+This command is also useful to map the bottom 4 digits of a 5 digit (16 bit) decimal display to the 4 digits of a 4-place display.
+
+
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xC1|Pin To Set (TO TM1637 Clock)|0x0A (TM1637 ) |Mapping for 0 digit |Mapping for 1 digit | Mapping for 2 digit |Mapping for 3 digit | Mapping for 4 digit |
+
+
+
+Response:
+
+Command is echoed back.
+
+Examples:
+
+
+Upon displaying "012345" on a six digit display "210543" is displayed.  This can be corrected by sending the commands:
+
+> `0xC1 0x13 0x0A 0x02 0x01 0x00 0x15 0x04 `
+
+> `0xC2 0x13 0x0A 0x03 0x55 0x55 0x55 0x55 `
+
+
+----
+
+CONFIGURE_CHANNEL_MODE_2:
+---------------------
+
+Change Display order of Digit 5.    See CONFIGURE_CHANNEL_MODE_1
+
+
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xC2|Pin To Set (TO TM1637 Clock)|0x0A (TM1637 ) |Mapping for 5 digit |Unused/0x55* |Unused/0x55* |Unused/0x55* |Unused/0x55* |
+
+\*0x55 is recommended, but any byte is acceptable
+
+
+CONFIGURE_CHANNEL_MODE_3:
+---------------------
+
+Set TM1637 Brightness
+
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xC3|Pin To Set (TO TM1637 Clock)|0x0A (TM1637 ) |Brightness (0-7) |Unused/0x55* |Unused/0x55* |Unused/0x55* |Unused/0x55* | 
 
 \*0x55 is recommended, but any byte is acceptable
 
@@ -154,55 +214,235 @@ Command is echoed back.
 
 Examples:
 
-Set pin 3 to Analog Input. //TODO
+Set pin 19  TM1637 Brightness to level 3
 
-> `0xC0 0x03 0x02 0x55 0x55 0x55 0x55 0x55 `
+> `0xC3 0x13 0x0A 0x03 0x55 0x55 0x55 0x55  `
 
-----
+
+CONFIGURE_CHANNEL_MODE_4:
+---------------------
+
+Set output values for TM1637.     0xC4 and 0xC5 are used to set 6 output bytes when in the Char array (2), Raw Segment (3), and animation (4) modes.  
+
+For Char array, ASCII characters are loaded into output values 0-5.  These are translated within the pin mode to Seven Segment displays.  Bytes above ASCII range (0x7F) in char mode are anded with 0x7F and transferred as is, allowing raw display in addition to characters.
+
+In Raw Segment Mode the 8 bit data (7 segments (Seg A in LSB)  and decimal point (MSB)) are transferred directly to the display.
+
+In animation mode output values specify a 16 bit index into the User Memory buffer where a series of 6 byte Raw Segment arrays are stored, a 16 bit delay time between arrays, and an 8 bit count of the number of arrays to display.  The final output value byte is used internally by the firmware and should be set to 0.
+
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xC4|Pin To Set (TO TM1637 Clock)|0x0A (TM1637 ) |OutputValue[0] |OutputValue[1]|OutputValue[2]|OutputValue[3]|OutputValue[4]| 
+
+
+Response:
+
+Command is echoed back.
+
+Examples:
+
+Display "Hello" on the display:
+
+Initialize the display in character array mode (mode 2) (assume pin 19 clk and 18 dio as above), brightness 5.   The source
+pin value in the 0xC0 command isn't used in this mode so we'll set it to 0x55.
+
+> `0xC0 0x13 0x0A 0x12 0x02 0x02 0x55 0x05 `
+
+At this point0xC1 and 0xC2 commands would be sent if necessary to define the order in which the display's digits are ordered.
+
+Send the "Hello " to the output:
+
+> `0xC4 0x13 0x0A ` '`H`' '`E`' '`L`' '`L`' '`O`'  
+
+> `0xC5 0x13 0x0A ` '` ` ' `0x55 0x55 0x55 0x55 ` 
+
+
+Display a set of 12 raw arrays of segment data on the display with 1000ms delays in between.  Data is stored in the user buffer
+at index 0x180 .
+
+
+Start by sending the array of data to the user buffer starting at index 0x180 using the 0x84 WRITE USER BUFFER and 0x85 WRITE USER BUFFER CONTINUE COMMANDS 
+
+
+Initialize the display in character Animation mode (mode 4) (assume pin 19 clk and 18 dio as above), brightness 5.   The source
+pin value in the 0xC0 command isn't used in this mode so we'll set it to 0x55.
+
+> `0xC0 0x13 0x0A 0x12 0x04 0x02 0x55 0x05 `
+
+At this point 0xC1 and 0xC2 commands would send the important data - Index (0x180) in Little Endian format, delay (0x1E8) in little endian format, and frame count (0x0C) 
+
+and set the final byte to 0 with the 0xC5 command
+
+Send the animation setup to the output array:
+
+> `0xC4 0x13 0x0A 0x80 0x01 0xE8 0x03 0xC `
+
+> `0xC5 0x13 0x0A 0x00 0x55 0x55 0x55 0x55 ` 
+
+
+CONFIGURE_CHANNEL_MODE_5:
+---------------------
+
+Set TM1637 Decimal Points
+
+The bottom 6 LSB are used as decimal points for digits 0-5 (before location translation)
+
+Note that the way TM1637 displays are wired varies a lot from display to display, so this command may not work as expected.
+Consult the TM1637 and LED module datasheets.
+
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xC3|Pin To Set (TO TM1637 Clock)|0x0A (TM1637 ) | Decimal Point Bitmap |Unused/0x55* |Unused/0x55* |Unused/0x55* |Unused/0x55* | 
+
+\*0x55 is recommended, but any byte is acceptable
+
+Response:
+
+Command is echoed back.
+
+Examples:
+
+Set pin 19  TM1637 Decimal Point third digit decimal on
+
+> `0xC6 0x13 0x0A 0x04 0x55 0x55 0x55 0x55  `
+
 */
 
 void initTM1637 (void)
 {
-	
+
 	switch(Rxbuffer[0])
 	{
 		case CONFIGURE_CHANNEL_MODE_0:
 			{
-			if (pinPort[Rxbuffer[3]] != CurrentPinPort())
-			{
-				//Pins must be on same port
-				CurrentPinRegister->generic.mode = PIN_MODE_CONTROLLED;
-				error(SW_ERROR_PINS_MUST_BE_ON_SAME_PORT);
-				return;
-			}
-     		        CurrentPinRegister->generic.mode =PIN_MODE_TM1637;
-			SetMode(tm1637->dioPin, PIN_MODE_CONTROLLED);
-			tm1637->lastDigit  = Rxbuffer[4];
-			tm1637->firstDigit = 0;
-			tm1637->mode = Rxbuffer[5];
-			tm1637->sourcePin = Rxbuffer[6];
-			tm1637_hwinit();
-			//tm1637Update();
+                uint8_t i;
+				if (pinPort[Rxbuffer[3]] != CurrentPinPort())
+				{
+					//Pins must be on same port
+					CurrentPinRegister->generic.mode = PIN_MODE_CONTROLLED;
+					error(SW_ERROR_PINS_MUST_BE_ON_SAME_PORT);
+					return;
+				}
+				
+				tm1637->dioPin = Rxbuffer[3];
+				SetMode(tm1637->dioPin, PIN_MODE_CONTROLLED);
+				tm1637->lastDigit  = Rxbuffer[4] - 1;
+				tm1637->mode = Rxbuffer[5];
+                if (tm1637->mode == TM1637_MODE_BUFFER_DEC ||
+                        tm1637->mode == TM1637_MODE_BUFFER_HEX)
+                {
+                    tm1637->outputBuffer[0] = Rxbuffer[6];
+                }
+                else
+                {
+                    tm1637->outputBuffer[0]= 0;
+                    tm1637->outputBuffer[1]= 0;
+                    tm1637->outputBuffer[2]= 0;
+                    tm1637->outputBuffer[3]= 0;
+                    tm1637->outputBuffer[4]= 0;
+                    tm1637->outputBuffer[5]= 0;
+                }
+				tm1637->outputState = TM1637_OUTPUT_STATE_SETUP;
+				tm1637->brightness = Rxbuffer[7];
+                tm1637->lastBrightness = 0xF;
+                tm1637->decimalPointBitmap = 0;
+				tm1637->idleCounter = 0;
+				for (i = 0; i < 6; ++ i)
+				{
+					tm1637->displayOrder[i] = i;
+					tm1637->lastDisplay [i] = 0;
+				}
+                CurrentPinRegister->generic.mode =PIN_MODE_TM1637;
+				tm1637_hwinit();
 			}
 			break;
-/*
+
 		case CONFIGURE_CHANNEL_MODE_1:
 			{
+				if (CurrentPinRegister->generic.mode == PIN_MODE_TM1637)
+				{
+					tm1637->displayOrder[0] = Rxbuffer[3];
+					tm1637->displayOrder[1] = Rxbuffer[4];
+					tm1637->displayOrder[2] = Rxbuffer[5];
+					tm1637->displayOrder[3] = Rxbuffer[6];
+					tm1637->displayOrder[4] = Rxbuffer[7];
+				}
+				else
+				{
+					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+				}
 			}
 			break;
+
 		case CONFIGURE_CHANNEL_MODE_2:
 			{
+				if (CurrentPinRegister->generic.mode == PIN_MODE_TM1637)
+				{
+					tm1637->displayOrder[5] = Rxbuffer[3];
+				}
+				else
+				{
+					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+				}
 			}
 			break;
+
 		case CONFIGURE_CHANNEL_MODE_3: 
 			{
+				if (CurrentPinRegister->generic.mode == PIN_MODE_TM1637)
+				{
+					tm1637->brightness = Rxbuffer[3] & 0x07;
+				}
+				else
+				{
+					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+				}
 			}
 			break;
+
 		case CONFIGURE_CHANNEL_MODE_4: 
 			{
+				if (CurrentPinRegister->generic.mode == PIN_MODE_TM1637)
+				{
+					tm1637->outputBuffer[0] = Rxbuffer[3];
+					tm1637->outputBuffer[1] = Rxbuffer[4];
+					tm1637->outputBuffer[2] = Rxbuffer[5];
+					tm1637->outputBuffer[3] = Rxbuffer[6];
+					tm1637->outputBuffer[4] = Rxbuffer[7];
+				}
+				else
+				{
+					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+				}
 			}
 			break;
-			*/
+		case CONFIGURE_CHANNEL_MODE_5: 
+			{
+				if (CurrentPinRegister->generic.mode == PIN_MODE_TM1637)
+				{
+					tm1637->outputBuffer[5] = Rxbuffer[3];
+				}
+				else
+				{
+					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+				}
+			}
+			break;
+            case CONFIGURE_CHANNEL_MODE_6: 
+			{
+				if (CurrentPinRegister->generic.mode == PIN_MODE_TM1637)
+				{
+					tm1637->decimalPointBitmap = Rxbuffer[3];
+				}
+				else
+				{
+					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+				}
+			}
+			break;
+
 		default:
 			{
 				error(SW_ERROR_INVALID_PIN_COMMAND);
@@ -211,25 +451,280 @@ void initTM1637 (void)
 	}
 }
 
-void tm1637Update()
-{ 
-	uint8_t displayArray[6];
-	uint16ToAscii5(CurrentPinRegister->generic.buffer ,displayArray);  //TODO genericise
-	tm1637Start();
-	tm1637SendMemoryWrite();
-	tm1637SendInitialAddress();
-	uint8_t start = tm1637->firstDigit;
-	uint8_t end = tm1637->lastDigit;
-
-	//TODO if start > end, flip and reverse string
-    uint8_t i;
-	for (i = start; i <= end; ++i)
-	{
-		tm1637SendData( displayArray[i]);
-	}
-	tm1637SendDisplayControlCommand(1);
-	tm1637End();
+/// \brief Create a TM1637 bitmap in the displayArray
+///
+/// This function renders a number or string into an array of LED segments
+/// or copies segements from the outputBuffer or User Buffer area based
+/// on the mode.   
+/// 
+/// The decimal point is then ORed in if required.
+/// 
+/// The rendered array is then rearranged to the proper order in the displayArray
+/// to correspond to the way that the TM1637 GRID lines are wired to the digit
+/// common anode lines (The leftmost digit doesn't always go to grid 1, depending on
+/// the display PCB layout).
+void tm1637UpdateRender()
+{
+    uint8_t renderArray[6]; 
 	
+	if (tm1637->mode == TM1637_MODE_BUFFER_DEC)
+	{
+		renderArray[0] = '0';
+		uint16ToAscii5(GetBuffer(tm1637->outputBuffer[0]) ,&renderArray[1]);  
+	}
+	else if (tm1637->mode == TM1637_MODE_BUFFER_HEX)
+	{
+		renderArray[0] = '0';
+		renderArray[1] = '0';
+		 uint16ToAsciiHex4(GetBuffer(tm1637->outputBuffer[0]), &renderArray[2]) ;
+	}
+	else if (tm1637->mode == TM1637_MODE_RAW)
+	{
+		renderArray[0] = tm1637->outputBuffer[0];
+		renderArray[1] = tm1637->outputBuffer[1];
+		renderArray[2] = tm1637->outputBuffer[2];
+		renderArray[3] = tm1637->outputBuffer[3];
+		renderArray[4] = tm1637->outputBuffer[4];
+		renderArray[5] = tm1637->outputBuffer[5];
+	}
+	
+	else if (tm1637->mode == TM1637_MODE_STRING)
+	{
+		uint8_t i;
+		for (i = 0; i < 6; ++i)
+		{
+			uint8_t value = tm1637->outputBuffer[i];
+			if (value < 0x80)
+			{
+			    	value = seven_seg_table[value];
+			}
+			else
+			{
+				value &= 0x7F;
+			}
+			renderArray[i] =  value;
+		}
+	}
+    else if (tm1637->mode == TM1637_MODE_ANIMATION)
+	{
+        uint16_t index = tm1637->outputBuffer[5] * 6 + tm1637->outputBuffer[0] + (((uint16_t)tm1637->outputBuffer[1]) << 8);
+		renderArray[0] = UserBuffer[index++];
+		renderArray[1] = UserBuffer[index++];
+		renderArray[2] = UserBuffer[index++];
+		renderArray[3] = UserBuffer[index++];
+		renderArray[4] = UserBuffer[index++];
+		renderArray[5] = UserBuffer[index];
+        ++tm1637->outputBuffer[5];
+        if (tm1637->outputBuffer[5] >= tm1637->outputBuffer[4] )
+        {
+            tm1637->outputBuffer[5] = 0;
+        }
+	}
+
+
+    if (tm1637->decimalPointBitmap)
+    {
+        uint8_t i;
+	for (i = 0; i < 6; ++i)
+	{
+        if (tm1637->decimalPointBitmap & (1 << i))
+        {
+            renderArray[ i] |= 0x80;
+        }
+    }
+    }
+
+    {
+        uint8_t i;
+	for (i = 0; i < 6; ++i)
+	{
+		tm1637->displayArray[i] = renderArray[tm1637->displayOrder[i]];
+	}
+    }
+}
+
+
+/// \brief update the TM1637 pin state machine
+///
+/// This state machine is used to update the TM1637 display.
+///
+/// It progresses through the following states after initialization:
+///
+/// Setup:  The segments to be displayed are rendered and put in digit order by 
+/// tm1637UpdateRender().
+/// The displayArray is then compared with lastDisplay to see if anything has changed
+/// since the display is last written.  If not, then the update gets skipped to save
+/// Serial Wombat chip CPU cycles.
+/// 
+/// If an update is required, then the MEMORY WRITE TM1637 command is sent followed by the
+/// Initial address.  A digit by digit comparison from position 0 to 5 is then performed
+/// to determine if one or more digits can be skipped due to being identical to the last write,
+/// and the TM1637 address is set accordingly.
+///
+/// Data bytes from the first changed location to the last are clocked out.
+///
+/// If the brightness has changed, then the brightness command is clocked out.
+///
+/// The system then stays in idle mode for a number of calls.  20 for decimal, hex,
+/// string, and raw modes, and a user-defined period for animation.
+void updateTM1637()
+{ 
+
+
+
+	switch (tm1637->outputState)
+	{
+		case TM1637_OUTPUT_STATE_SETUP:
+			{
+				tm1637UpdateRender();
+
+				if (
+						tm1637->lastDisplay[0] == tm1637->displayArray[0] &&
+						tm1637->lastDisplay[1] == tm1637->displayArray[1] &&
+						tm1637->lastDisplay[2] == tm1637->displayArray[2] &&
+						tm1637->lastDisplay[3] == tm1637->displayArray[3] &&
+						tm1637->lastDisplay[4] == tm1637->displayArray[4] &&
+						tm1637->lastDisplay[5] == tm1637->displayArray[5]
+				   )
+				{
+					//Nothing changed.  Go to idle
+					if (tm1637->mode == TM1637_MODE_ANIMATION)
+					{
+						//Load custom animation delay
+						*((uint8_t*)(&tm1637->idleCounter)) = tm1637->outputBuffer[2];   
+						*(((uint8_t*)(&tm1637->idleCounter)) +1) = tm1637->outputBuffer[3];   
+
+					}
+					else
+					{
+						//Use standard delay
+						tm1637->idleCounter = 20;
+					}
+					tm1637->outputState = TM1637_OUTPUT_STATE_IDLE;
+				}
+				else
+				{
+
+					tm1637Start();
+
+					tm1637SendMemoryWrite();
+					tm1637Stop();
+					tm1637->outputState = TM1637_OUTPUT_STATE_SET_ADDR;
+				}
+			}
+			break;
+
+		case TM1637_OUTPUT_STATE_SET_ADDR:
+			{
+				tm1637Start();
+				tm1637->outputState = tm1637SendInitialAddress();
+				
+				if (tm1637->outputState == 6)
+				{
+					//Nothing to do
+					tm1637Stop();
+					if (tm1637->mode == TM1637_MODE_ANIMATION)
+					{
+						*((uint8_t*)(&tm1637->idleCounter)) = tm1637->outputBuffer[2];   
+						*(((uint8_t*)(&tm1637->idleCounter)) +1) = tm1637->outputBuffer[3];   
+
+					}
+					else
+					{
+						tm1637->idleCounter = 20;
+					}
+					tm1637->outputState = TM1637_OUTPUT_STATE_IDLE;
+
+				}
+			}
+			break;
+
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		case 4:
+		case 5:
+			{
+
+				uint8_t value = 0;
+
+				if (tm1637->mode == TM1637_MODE_RAW  || tm1637->mode == TM1637_MODE_STRING  || tm1637->mode == TM1637_MODE_ANIMATION)
+				{
+					value = tm1637->displayArray[tm1637->outputState];
+
+				}
+				else
+				{
+					value = seven_seg_table[(tm1637->displayArray[tm1637->outputState])];
+				}
+				tm1637ClockByte(value);
+				tm1637->lastDisplay[tm1637->outputState] = value;
+				++ tm1637->outputState;
+                 uint8_t i;
+                 bool done = true;
+                for (i = tm1637->outputState; i <= tm1637->lastDigit; ++ i)
+                {
+                    if(tm1637->lastDisplay[i] != tm1637->displayArray[i])
+                    {
+                        done = false;
+                        break;
+                    }
+                }
+                
+				if (tm1637->outputState > tm1637->lastDigit || done )
+				{
+					tm1637Stop();
+					if (tm1637->mode == TM1637_MODE_ANIMATION)
+					{
+						*((uint8_t*)(&tm1637->idleCounter)) = tm1637->outputBuffer[2];   
+						*(((uint8_t*)(&tm1637->idleCounter)) +1) = tm1637->outputBuffer[3];   
+
+					}
+					else
+					{
+						tm1637->idleCounter = 20;
+					}
+					if (tm1637->lastBrightness != tm1637->brightness)
+					{
+						tm1637->outputState = TM1637_OUTPUT_STATE_DISPLAY_CONTROL_COMMAND;
+					}
+					else
+					{
+						tm1637->outputState = TM1637_OUTPUT_STATE_IDLE;                        
+					}
+				}
+			}
+
+			break;
+
+		case TM1637_OUTPUT_STATE_DISPLAY_CONTROL_COMMAND:
+			{
+
+				tm1637Start();
+				tm1637SendDisplayControlCommand(tm1637->brightness);
+				tm1637Stop();
+				tm1637->outputState = TM1637_OUTPUT_STATE_IDLE;
+
+			}
+			break;
+
+		case TM1637_OUTPUT_STATE_IDLE:
+			{
+				if (tm1637->idleCounter > 0)
+				{
+					--tm1637->idleCounter;
+				}
+				else 
+				{
+					tm1637->outputState = TM1637_OUTPUT_STATE_SETUP;
+				}
+
+
+			}
+			break;
+	}
+
 }
 
 

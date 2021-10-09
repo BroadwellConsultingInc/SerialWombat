@@ -60,8 +60,10 @@
 #include "cvr.h"
 #include "memory/flash.h"
 
+
 void SYSTEM_Initialize(void)
 {
+       
     PIN_MANAGER_Initialize();
     INTERRUPT_Initialize();
     CLOCK_Initialize();
@@ -70,14 +72,14 @@ void SYSTEM_Initialize(void)
     CRC_Initialize();
   //  UART1_Initialize();
     ADC1_Initialize();
+       
       ANSELB = 0;  // No analogs to start
    ANSELA = 0;
+    
     TMR3_Initialize();
     TMR2_Initialize();
-
     DMA_Initialize();
-    TMR1_Initialize();
-    
+    TMR1_Initialize();  
     {
     uint16_t addressVoltage =   GetAddressPinVoltage_mV();
        extern uint8_t SW_I2CAddress;

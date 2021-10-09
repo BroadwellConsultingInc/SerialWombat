@@ -21,7 +21,6 @@ void CopyFromPinBufferToArray()
 pinRegister_t* CurrentPinRegister;
 #endif
 
-int16_t debug_Temperature = 0; //TODO
 
 void SetBuffer(uint8_t pin, uint16_t value)
 {
@@ -45,53 +44,52 @@ uint16_t GetBuffer(uint8_t pin)
     }
     else if (pin == 66)
     {
-        return (0x5000); //TODO fix FVR conversion
+uint32_t result = GetSourceVoltageADC();
+        result *= 1024;  //Convert to 1.2  V reference to 1.024 v reference for compatibility with SW4B
+        result /=1200;
+        return ((uint16_t) result); 
+
     }
     
     else if (pin == 67)
     {
-     //TODO   extern uint32_t FramesRun;
-     //TODO   return ((uint16_t)FramesRun);
+       extern uint32_t FramesRun;
+       return ((uint16_t)FramesRun);
     }
     else if (pin == 68)
     {
-      //TODO  extern uint32_t FramesRun;
-      //TODO  return (FramesRun>>16);
+        extern uint32_t FramesRun;
+        return (FramesRun>>16);
     }
     else if (pin == 69)
     {
-     //TODO   extern uint16_t OverflowCount;
-     //TODO   return (OverflowCount);
+     extern uint16_t OverflowFrames;
+     return (OverflowFrames);
     }
     else if (pin == 70)
     {
-        
-        AD1CON1 = 0;
-        AD1CON2 = 0;
-        AD1CON3 = 0;
-        AD1CON4 = 0;
-        AD1CON5 = 0; 
-        
-        CTMUCON1L = 0x8003;  //CTMU ON, 55uA
-        AD1CON5bits.CTMREQ = 1;
-        AD1CHS = 14; // Die Temperature Conversion
-        AD1CON3 = 0x1FFF; // Sample time = 15Tad, Tad = Tcy
-        AD1CON1bits.MODE12 = 1;  // Turn on 12 bit
-        AD1CON1bits.FORM = 2; // Left Justified
-        AD1CON1bits.SSRC = 7;  // Auto Convert
-        AD1CON1bits.ADON = 1; // Turn on A/D
-        AD1CON1bits.SAMP = 1; //Start conversion.
-        while(AD1CON1bits.DONE == 0);
-        CTMUCON1L = 0 ;  //CTMU OFF
-        int32_t result = ADC1BUF0;      
-        result *= 3300; //TODO base on FVR instead of fixed value
-        result = ((int32_t)760 * 65536) - result;
-        result /= ((int32_t)(.0155 * 65535));
-        ADC1_Initialize();  // Put things back where we found them.
-         debug_Temperature = GetTemperature_degC100ths();
-       
-        return ( (uint16_t) result);    
+        return ( GetTemperature_degC100ths());    
     }
+     else if (pin == 71)
+    {
+         extern uint16_t PacketsProcessed;
+        return (PacketsProcessed );    
+    }
+     else if (pin == 72)
+     {
+         extern uint16_t Errors;
+         return(Errors);
+     }
+     else if (pin == 73)
+     {
+         extern volatile uint16_t FramesDropped;
+         return (FramesDropped);
+     }
+     else if (pin == 74)
+     {
+         extern uint16_t SystemUtilizationAverage;
+         return (SystemUtilizationAverage);
+     }
     else if (pin == 85) //0x55
     {
         return (0x5555);

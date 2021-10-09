@@ -9,6 +9,7 @@ uint16_t OutputArrayB[SIZE_OF_DMA_ARRAY] = { 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0,
 uint16_t InputArrayA[SIZE_OF_DMA_ARRAY];
 uint16_t InputArrayB[SIZE_OF_DMA_ARRAY];
 
+#define PIN_QUICK_SET_DMA_COUNTS 15  //How many DMA counts into the future to set the current state.   This has to last until the pin gets set again. 
 const uint16_t PinBitmapB[NUMBER_OF_PHYSICAL_PINS] = 
 {
     //Skip RA0, it's address pin, not WP.
@@ -365,6 +366,68 @@ void CurrentPinAnalog()
 		ANSELB |= bitmap;
 	}
 }
+
+
+void SetPinQuick(uint8_t pin, uint8_t pinState)
+{
+	uint16_t pinMask = 0;
+	uint8_t inB = 1;
+	if (pin < NUMBER_OF_PHYSICAL_PINS)
+	{
+		pinMask = PinBitmapB[pin];
+		if (pinMask == 0)
+		{
+			pinMask = PinBitmapA[pin];
+			inB = 0;
+		}
+	}
+
+	if (pinState == DIGITAL_LOW)
+	{
+		
+		pinMask = ~pinMask;
+		if (inB)
+		{
+			andCount(&OutputArrayB[OUTPUT_ARRAY_B_DMA_INDEX],pinMask, PIN_QUICK_SET_DMA_COUNTS);
+			LATB &= pinMask;
+			TRISB &= pinMask;
+		}
+		else
+		{
+			andCount(&OutputArrayA[OUTPUT_ARRAY_A_DMA_INDEX],pinMask, PIN_QUICK_SET_DMA_COUNTS);
+			LATA &= pinMask;
+			TRISA &= pinMask;
+		}
+	}
+	else if (pinState == DIGITAL_HIGH)
+	{
+	
+		if (inB)
+		{
+			orCount(&OutputArrayB[OUTPUT_ARRAY_B_DMA_INDEX],pinMask, PIN_QUICK_SET_DMA_COUNTS);
+			LATB |= pinMask;
+			TRISB &= ~pinMask;
+		}
+		else
+		{
+			orCount(&OutputArrayA[OUTPUT_ARRAY_A_DMA_INDEX],pinMask, PIN_QUICK_SET_DMA_COUNTS);
+			LATA |= pinMask;
+			TRISA &= ~pinMask;
+		}
+	}
+	else if (pinState == DIGITAL_INPUT)
+	{
+		if (inB)
+		{
+			TRISB |= pinMask;
+		}
+		else
+		{
+			TRISA |= pinMask;
+		}
+	}
+}
+
 void SetCurrentPin(uint8_t pinState)
 {
     SetPin(CurrentPin,pinState);

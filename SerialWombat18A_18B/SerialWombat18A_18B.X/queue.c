@@ -29,7 +29,7 @@ QUEUE_RESULT_t QueueByteInitialize(uint16_t address, uint16_t capacity)
 		return (QUEUE_RESULT_UNALIGNED_ADDRESS);
 	}
 
-	queueByte_t* queue = (queueByte_t*) &user_buffer[address];
+	queueByte_t* queue = (queueByte_t*) &UserBuffer[address];
 	queue->marker = QUEUE_MARKER_QUEUE_BYTE;
 
 	queue->headIndex = 0;
@@ -41,7 +41,7 @@ QUEUE_RESULT_t QueueByteInitialize(uint16_t address, uint16_t capacity)
 #define QUEUE_FULL_INDEX 0xFFFF
 static uint16_t QueueBytesInByteQueue(address)
 {
-	queueByte_t* queue = (queueByte_t*)&user_buffer[address];
+	queueByte_t* queue = (queueByte_t*)&UserBuffer[address];
 	if (queue->headIndex == queue->tailIndex)
 	{
 		return (0);
@@ -66,7 +66,7 @@ QUEUE_RESULT_t QueueBytesInQueue(uint16_t address,uint16_t* bytesInQueue )
 	{
 		return (QUEUE_RESULT_INVALID_QUEUE);
 	}
-	uint16_t queueMarker = *((uint16_t*)&user_buffer[address]);
+	uint16_t queueMarker = *((uint16_t*)&UserBuffer[address]);
 	switch (queueMarker)
 	{
 		case QUEUE_MARKER_QUEUE_BYTE:
@@ -83,13 +83,13 @@ QUEUE_RESULT_t QueueBytesInQueue(uint16_t address,uint16_t* bytesInQueue )
 
 static QUEUE_RESULT_t QueueByteAddByte(uint16_t address, uint8_t data)
 {
-	queueByte_t* queue =(queueByte_t*) &user_buffer[address];
+	queueByte_t* queue =(queueByte_t*) &UserBuffer[address];
 	if (queue->tailIndex == QUEUE_FULL_INDEX)
 	{
 		++QueueOverflowCounter;
 		return (QUEUE_RESULT_FULL);
 	}
-	user_buffer[queue->tailIndex] = data;
+	UserBuffer[queue->tailIndex] = data;
 	++ queue->tailIndex;
 	if (queue->tailIndex == queue->capacity)
 	{
@@ -110,7 +110,7 @@ QUEUE_RESULT_t QueueAddByte(uint16_t address, uint8_t data)
 		return (QUEUE_RESULT_INVALID_QUEUE);
 	}
     //TODO add check on address range
-	uint16_t queueMarker = *((uint16_t*)&user_buffer[address]);
+	uint16_t queueMarker = *((uint16_t*)&UserBuffer[address]);
 	switch (queueMarker)
 	{
 		case QUEUE_MARKER_QUEUE_BYTE:
@@ -124,7 +124,7 @@ QUEUE_RESULT_t QueueAddByte(uint16_t address, uint8_t data)
 
 static QUEUE_RESULT_t QueueByteReadByte(uint16_t address, uint8_t* data)
 {
-	queueByte_t* queue =(queueByte_t*) &user_buffer[address];
+	queueByte_t* queue =(queueByte_t*) &UserBuffer[address];
 	if (queue->tailIndex == queue->headIndex)
 	{
 		*data = 0;
@@ -135,7 +135,7 @@ static QUEUE_RESULT_t QueueByteReadByte(uint16_t address, uint8_t* data)
 	{
 		queue->tailIndex = queue->headIndex;
 	}
-	*data = user_buffer[queue->headIndex];
+	*data = UserBuffer[queue->headIndex];
 	++ queue->headIndex;
 	if (queue->headIndex == queue->capacity)
 	{
@@ -150,7 +150,7 @@ QUEUE_RESULT_t QueueReadByte(uint16_t address, uint8_t* data)
 	{
 		return (QUEUE_RESULT_INVALID_QUEUE);
 	}
-	uint16_t queueMarker = *((uint16_t*)&user_buffer[address]);
+	uint16_t queueMarker = *((uint16_t*)&UserBuffer[address]);
 	switch (queueMarker)
 	{
 		case QUEUE_MARKER_QUEUE_BYTE:

@@ -30,6 +30,7 @@ void uint16ToAscii5NoHWMathTx(uint16_t val, uint8_t index);
 void uint16ToAscii5NoHWMathNoIndex(void);
 extern uint16_t asciiVal;
 extern uint8_t asciiChar[5];
+void uint16ToAsciiHex4(uint16_t val, uint8_t* buffer);
 
 
 

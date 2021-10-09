@@ -372,6 +372,7 @@ uint16_t GetAddressPinVoltage(void);
 int16_t GetTemperature_degC100ths(void);
 uint16_t GetSourceVoltage_mV(void);
 uint16_t GetSourceVoltageADC(void);
+uint16_t GetAddressPinVoltage_mV(void);
 #ifdef __cplusplus  // Provide C++ Compatibility
 
     }

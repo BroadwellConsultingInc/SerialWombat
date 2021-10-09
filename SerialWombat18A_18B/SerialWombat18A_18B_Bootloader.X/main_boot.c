@@ -9,7 +9,7 @@ uint8_t CurrentPin;
  bool RunForeground = false;
 
 
-uint8_t user_buffer[SIZE_OF_USER_BUFFER];
+uint8_t UserBufferBoot[SIZE_OF_USER_BUFFER];
 
 void reset ()
 {
@@ -161,9 +161,10 @@ int main(void)
    
 
      
-#warning STAY IN BOOT FOREVER!
-        while (1)
-        //while (System1msCount <= 60 || StayInBoot) //Stay in boot for 60 mS
+//#warning STAY IN BOOT FOREVER!
+       // while (1)
+        //TODO add check for final word write
+    while (System1msCount <= 60 || StayInBoot) //Stay in boot for 60 mS  
 	{
             if (time == 0)
             {

@@ -202,7 +202,7 @@ SECTIONS
   /*
   ** Configuration Words
   */
-/*
+
   __FSEC :
   { KEEP (*(__FSEC.sec*))    } >FSEC
   __FBSLIM :
@@ -222,7 +222,7 @@ SECTIONS
   __FDEVOPT1 :
   { KEEP (*(__FDEVOPT1.sec*))    } >FDEVOPT1
 
-*/
+
 
 
 

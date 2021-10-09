@@ -41,7 +41,7 @@ extern uint8_t Rxbuffer[RXBUFFER_LENGTH];
 extern uint8_t Txbuffer[TXBUFFER_LENGTH];
 
 #if SIZE_OF_USER_BUFFER > 0
-extern uint8_t user_buffer[SIZE_OF_USER_BUFFER];
+extern uint8_t UserBuffer[SIZE_OF_USER_BUFFER];
 #endif
 
 #define CLOCK_STRETCHING_MAX 10
@@ -85,7 +85,7 @@ typedef enum {
     SW_ERROR_UNNUMBERED_ERROR = 0,
     SW_ERROR_PINS_MUST_BE_ON_SAME_PORT = 1, ///< Pins must be on the same microcontroller part (e.g. PORTA, PORTB, etc.).  See datasheet of micro for port assignments.
     SW_ERROR_ASCII_NUMBER_TOO_BIG_16 = 2, ///<A number bigger than 65535 was provided to convert to a 16 bit value
-            SW_ERROR_UNKNOWN_PIN_MODE = 3, ///< A Pin mode was indicated that is not avaialble on this model of Serial Wombat chip
+            SW_ERROR_UNKNOWN_PIN_MODE = 3, ///< A Pin mode was indicated that is not avaialble on this model or version of Serial Wombat chip
             SW_ERROR_RESET_STRING_INCORRECT = 4, ///<A Packet starting with 'R' was received but didn't have the correct following bytes to cause a reset
             SW_ERROR_INVALID_COMMAND = 5, ///< The first byte of a received packet does not correspond with a command supported by this model of Serial Wombat chip
             SW_ERROR_INSUFFICIENT_SPACE = 6,  ///< There was not sufficient space in the queue or user area to complete the command.
@@ -95,6 +95,7 @@ typedef enum {
             SW_ERROR_RF_ODD_ADDRESS = 10, ///< Addresses Read From Flash must be even.
             SW_ERROR_FLASH_WRITE_INVALID_ADDRESS = 11, ///<An attempt to write or erase flash was made to a protected or non-existant area
 	    SW_ERROR_INVALID_PIN_COMMAND = 12, ///< The pin command 0xC1, 0xC2, etc is not suported by this pin mode (May vary by model)
+            SW_ERROR_PIN_CONFIG_WRONG_ORDER = 13, ///<The called pin command 0xC1, 0xC2 was called before other required prior commands (e.g. 0xC0)
             
             
             

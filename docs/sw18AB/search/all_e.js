@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['off_5f_5f_484',['OFF__',['../_t_m1637_8c.html#a80714ee76f0094210e51a5cb192ca5e0',1,'TM1637.c']]],
+  ['offset_485',['offset',['../structlinear__n.html#a6ce3f696b272714787d4176e0d61196a',1,'linear_n::offset()'],['../struct__pin__register__t_1_1pwm__follow__direct__n.html#a4bf2ee424ebdc36431cf82256bced1b7',1,'_pin_register_t::pwm_follow_direct_n::offset()'],['../struct__pin__register2__t_1_1hd44780__n2.html#ad4e8baaf07a49326ddc2268bb7e5d106',1,'_pin_register2_t::hd44780_n2::offset()']]],
+  ['old_5fbuffer_486',['old_buffer',['../struct__pin__register__t_1_1slowpwm__n.html#ac15b4a9fe5dd64b1443847dbf2a17164',1,'_pin_register_t::slowpwm_n']]],
+  ['old_5fvalue_487',['old_value',['../struct__pin__register2__t_1_1rotary__enc__n.html#ad1d538f8d8a681ca64336ef958334958',1,'_pin_register2_t::rotary_enc_n']]],
+  ['oldhigh_488',['oldhigh',['../struct__pin__register__t_1_1hw__pulse__width__n.html#ad494880a3e5705b97ce0ab28a0d6aec3',1,'_pin_register_t::hw_pulse_width_n']]],
+  ['oldlow_489',['oldlow',['../struct__pin__register__t_1_1hw__pulse__width__n.html#a5d30e5f571f56170ab90a49864be4f67',1,'_pin_register_t::hw_pulse_width_n']]],
+  ['orcount_490',['orCount',['../utilities_8c.html#a4b4ed2026f25a27b821997ac5cc391f6',1,'utilities.c']]],
+  ['output_491',['output',['../struct__pin__register__t_1_1uart__rx__n.html#ae17ddc17f20d4c9287ca6e20bf646764',1,'_pin_register_t::uart_rx_n::output()'],['../struct__pin__register__t_1_1uart__tx__n.html#a5d84f58fbf9a54dc6eb6cb5515cb74e6',1,'_pin_register_t::uart_tx_n::output()']]],
+  ['output_5farray_5fa_5fdma_5findex_492',['OUTPUT_ARRAY_A_DMA_INDEX',['../utilities_8h.html#a10b9044413b4b78204493947b1ed513b',1,'utilities.h']]],
+  ['output_5farray_5fb_5fdma_5findex_493',['OUTPUT_ARRAY_B_DMA_INDEX',['../utilities_8h.html#ad3f38b2bf04593979edc821cf0875e91',1,'utilities.h']]],
+  ['output_5fcharacter_494',['OUTPUT_CHARACTER',['../uarttx_8c.html#a1bb3302ae08c1ceb8bcae750bc9c0a15',1,'uarttx.c']]],
+  ['output_5fi2c_5fdebug_495',['OUTPUT_I2C_DEBUG',['../protocol_8c.html#a5469d175c557b6519337a0f370486d7c',1,'protocol.c']]],
+  ['outputarraya_496',['OutputArrayA',['../utilities_8h.html#a6ccc98d51ea5cafa68813070402d3bec',1,'utilities.h']]],
+  ['outputarrayb_497',['OutputArrayB',['../utilities_8h.html#a19dfc66bdf6a52e964d84af584c7d10a',1,'utilities.h']]],
+  ['outputbuffer_498',['outputBuffer',['../structtm1637__n.html#a9d4fae9077549a2f96c00848dee676f5',1,'tm1637_n']]],
+  ['outputmode_499',['outputmode',['../struct__pin__register__t_1_1debounce__n.html#a0639aa147dfbe19c91dbeca2422eaf01',1,'_pin_register_t::debounce_n']]],
+  ['outputpin_500',['outputpin',['../struct__pin__register__t_1_1lookup2d__n.html#aae5ceec62f5d6e3f2e844f5cdc02b914',1,'_pin_register_t::lookup2d_n']]],
+  ['outputstate_501',['outputState',['../structtm1637__n.html#ae58ba5a6047fecc681aae036791a5ad2',1,'tm1637_n']]],
+  ['overall_5fresult_502',['overall_result',['../utilities_8c.html#a80fb5e88ab89f1b9728ffe03103a4496',1,'utilities.c']]],
+  ['overflowframes_503',['OverflowFrames',['../main_8c.html#a108f40d45779940e61ae40349097ea17',1,'main.c']]]
+];

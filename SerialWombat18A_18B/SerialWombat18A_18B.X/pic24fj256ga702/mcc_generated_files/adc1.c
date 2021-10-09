@@ -109,7 +109,7 @@ uint16_t GetADCConversion(uint8_t pin)
 	}
 
 }
-
+volatile int32_t adc_i=0;
 uint16_t GetAddressPinVoltage_mV()
 {
     AD1CON1 = 0;
@@ -118,6 +118,8 @@ uint16_t GetAddressPinVoltage_mV()
         AD1CON4 = 0;
         AD1CON5 = 0; 
         
+        
+        
     CTMUCON1Lbits.CTMUEN = 1;
     CTMUCON1Lbits.EDGEN = 0;
     CTMUCON1Lbits.IRNG = 3;
@@ -125,14 +127,16 @@ uint16_t GetAddressPinVoltage_mV()
     CTMUCON1Hbits.EDG1STAT = 1;
     CTMUCON1Hbits.EDG2STAT = 0;
     AD1CON5bits.CTMREQ =1;
-        volatile int32_t i=0;
+        
 
         AD1CHS = 0; // Channel 0
         CTMUCON1Lbits.IDISSEN = 1;
-        for (i = 0; i < 10000; ++i)
+        volatile uint32_t i;
+        for (adc_i = 0; adc_i < 10000; ++adc_i)
         {
             
         }
+        
         CTMUCON1Lbits.IDISSEN = 0;
         CTMUCON1Hbits.EDG2STAT = 0;
 
@@ -143,6 +147,7 @@ uint16_t GetAddressPinVoltage_mV()
         AD1CON1bits.ADON = 1; // Turn on A/D
         AD1CON1bits.SAMP = 1; //Start conversion.
           //Provide Delay
+     
         for(i=0;i <10000;i++)
         {
         }

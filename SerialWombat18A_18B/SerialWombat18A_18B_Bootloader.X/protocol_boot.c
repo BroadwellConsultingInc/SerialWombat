@@ -21,6 +21,7 @@ uint16_t lastUserBufferIndex = 0xFFFF;
 uint16_t lastQueueIndex = 0xFFFF;
 
 uint16_t debugFlashWrites = 0;
+extern uint8_t* UserBufferBoot;
 void uartStartTX()
 {
 	uint8_t crlf[] = {'\r','\n'};
@@ -214,7 +215,7 @@ Examples:
 				{
 					count = 7;
 				}
-				 memcpy(&Txbuffer[1],&user_buffer[address],count);
+				 memcpy(&Txbuffer[1],&UserBufferBoot[address],count);
 			 }
 			 //TODO:  Error on bad address
 		}
@@ -234,7 +235,7 @@ Examples:
              
                  if (lastUserBufferIndex + count < SIZE_OF_USER_BUFFER)
                  {
-                     memcpy(&user_buffer[lastUserBufferIndex],&Rxbuffer[4],count);
+                     memcpy(&UserBufferBoot[lastUserBufferIndex],&Rxbuffer[4],count);
                      lastUserBufferIndex += count;
                  }
                  else
@@ -253,7 +254,7 @@ Examples:
 				if (count >= 7)
 				{
 					count = 7;
-                     memcpy(&user_buffer[lastUserBufferIndex],&Rxbuffer[1],count);
+                     memcpy(&UserBufferBoot[lastUserBufferIndex],&Rxbuffer[1],count);
                      lastUserBufferIndex += count;
 				}
                 else
@@ -371,7 +372,7 @@ Response:
                     {
                         FLASH_Unlock(FLASH_UNLOCK_KEY);
 
-                    FLASH_WriteRow24(address, (uint32_t*)user_buffer);
+                    FLASH_WriteRow24(address, (uint32_t*)UserBufferBoot);
                     ++debugFlashWrites;
                     }
                    
@@ -393,7 +394,6 @@ Response:
                     extern volatile unsigned short crcResultCRCCCITT ;
                   
                     TXBUFFER16(2,crcResultCRCCCITT);
-                    uint32_t address = 0x1FC04;
             uint16_t result = 0;
            
                 INTERRUPT_GlobalDisable();  // While we're messing with TBLPAG
@@ -403,7 +403,7 @@ Response:
                     TBLPAG = tblpag;
                     INTERRUPT_GlobalEnable();
                     TXBUFFER16(4,result);
-                    TXBUFFER16(6,debugFlashWrites);
+                    TXBUFFER16(6,debugFlashWrites);//TODO
                     
                 }
                 break;

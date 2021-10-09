@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['ramaddr_1618',['ramaddr',['../struct__pin__register__t_1_1pid__n.html#af6deaacbbb0849047a7b725904a98fb5',1,'_pin_register_t::pid_n']]],
+  ['random_5fnumber_1619',['random_number',['../utilities_8c.html#ae203baf3ab8a36bd6e07ff41d6d5e8ac',1,'utilities.c']]],
+  ['readstate_1620',['readState',['../structpulse_timer__n.html#add0e57326a8120ac1dee6b5d0be62456',1,'pulseTimer_n::readState()'],['../structquad_enc__n.html#a89abc62c955ae27431d923e6816e3477',1,'quadEnc_n::readState()'],['../struct__pin__register__t_1_1quad_enc__n.html#a81f48f23ae47accfc3be326ab79f53cc',1,'_pin_register_t::quadEnc_n::readState()']]],
+  ['receivedbit_1621',['receivedbit',['../struct__pin__register2__t_1_1uart__rx__2n.html#a54b3dc2a44d3901b191f43aecde8db67',1,'_pin_register2_t::uart_rx_2n::receivedbit()'],['../struct__pin__register2__t_1_1uart__tx__2n.html#afaccbd6c8a1586c234457fdc40e8fad3',1,'_pin_register2_t::uart_tx_2n::receivedbit()']]],
+  ['refresh_1622',['refresh',['../struct__pin__register__t_1_1max7219__n.html#a961f5ae952becaaa90a761d77d6b9173',1,'_pin_register_t::max7219_n']]],
+  ['remote_1623',['remote',['../union__pin__register__t.html#af81dbbd4b66fa746d687fefecf8aaf58',1,'_pin_register_t::remote()'],['../union__pin__register2__t.html#a456be8c82ab259bcc34e8ddf8f7787e8',1,'_pin_register2_t::remote()']]],
+  ['reserved_1624',['reserved',['../structgeneric__queue__n_1_1ram__queue__n.html#a50d8ed323d29e16ab7312db05a9d30df',1,'generic_queue_n::ram_queue_n::reserved()'],['../structgeneric__queue__n_1_1flash__queue__n.html#a5ffe23209330c3b30b4ba52247bfce86',1,'generic_queue_n::flash_queue_n::reserved()'],['../structgeneric__queue__n_1_1ram__rle__byte__queue__n.html#a67034eda28b7b9f263eac5c3f3f751c7',1,'generic_queue_n::ram_rle_byte_queue_n::reserved()'],['../structgeneric__queue__n_1_1ram__string__queue__n.html#a0cd5fb336ecf680673c9cf72931dcddd',1,'generic_queue_n::ram_string_queue_n::reserved()'],['../structram__queue__n.html#af8dafab65eeca3faff645b1bcf78d482',1,'ram_queue_n::reserved()'],['../structflash__queue__n.html#ada9ea2d3174fcb5937ca31726fe3ab75',1,'flash_queue_n::reserved()'],['../structram__rle__byte__queue__n.html#ae3808a1716434384f643fc6c096371ac',1,'ram_rle_byte_queue_n::reserved()'],['../structram__string__queue__n.html#a8215291295775d9c6a716e3027a9284f',1,'ram_string_queue_n::reserved()'],['../types_8h.html#ab461e57db4167a7c695f526f44fba820',1,'reserved():&#160;types.h']]],
+  ['resetaftertimeout_1625',['resetAfterTimeout',['../structwatchdog__n.html#abd5a542030e9ddd12b4b398601b50aef',1,'watchdog_n']]],
+  ['resetarrayaddress_1626',['resetarrayaddress',['../struct__pin__register__t_1_1watchdog__n.html#a4316c549c5ee9cfef4ce2ed2ba11f614',1,'_pin_register_t::watchdog_n']]],
+  ['resolution_1627',['resolution',['../struct__pin__register__t_1_1datalogger__n.html#ae3a073796aeaab6671a8437f98d4d41a',1,'_pin_register_t::datalogger_n']]],
+  ['responseavailable_1628',['ResponseAvailable',['../protocol_8c.html#a75481b561230d73eed1b2eaac7c56246',1,'protocol.c']]],
+  ['responsepending_1629',['ResponsePending',['../protocol_8c.html#a26764c593cc1ec9e7edeff37f10da0d1',1,'protocol.c']]],
+  ['returntoinit_1630',['returntoinit',['../struct__pin__register__t_1_1watchdog__n.html#a89acbb9c52f2746cebb2e7b5c053ee34',1,'_pin_register_t::watchdog_n']]],
+  ['reverse_1631',['reverse',['../structservo__n.html#a7d69e2448ee9484d9907b46e4abdd17e',1,'servo_n::reverse()'],['../struct__pin__register__t_1_1servo__n.html#a00e977bd4d7db02597d11427080134f5',1,'_pin_register_t::servo_n::reverse()']]],
+  ['rollover_1632',['rollover',['../struct__pin__register2__t_1_1ping2__n.html#a7cd071686c3bae2002a6cf3751e3f78a',1,'_pin_register2_t::ping2_n']]],
+  ['rotary_5fenc_1633',['rotary_enc',['../union__pin__register__t.html#aa33af90205eb3868f06cad5f892da54e',1,'_pin_register_t::rotary_enc()'],['../union__pin__register2__t.html#a8dcda52038589879c39df6f29eb1ae97',1,'_pin_register2_t::rotary_enc()']]],
+  ['rows_1634',['rows',['../struct__pin__register__t_1_1max7219__n.html#a46e8bc2c76a07d38a1e25b61d5a6c258',1,'_pin_register_t::max7219_n::rows()'],['../struct__pin__register2__t_1_1keypad16__2n.html#acb8c914dba2619d05539da2daf0f729f',1,'_pin_register2_t::keypad16_2n::rows()']]],
+  ['rspin_1635',['RSpin',['../struct__pin__register__t_1_1hd44780__n.html#a7af2a3ec9e0bda689a56ca75fe315f23',1,'_pin_register_t::hd44780_n']]],
+  ['run_5fforeground_1636',['run_foreground',['../structexecutive__settings__n.html#a12ab369dfd18e98d3aa53ca5fe9c0049',1,'executive_settings_n']]],
+  ['runforeground_1637',['RunForeground',['../main_8c.html#a98f9330c013b24244f5b39affb54294b',1,'main.c']]],
+  ['rx_5fclockstretching_1638',['RX_ClockStretching',['../protocol_8c.html#a340dde3262302ea74cf19ec71718a574',1,'protocol.c']]],
+  ['rxbuffer_1639',['rxbuffer',['../structtest__data__n.html#a7e86e74fdad91d4dee8cf3737f5d02e9',1,'test_data_n::rxbuffer()'],['../utilities_8h.html#adfaed9f311d2c2a3f68858550f130be1',1,'rxbuffer():&#160;utilities.h'],['../protocol_8c.html#a3fcf4eadb6a8c5082f8256123d87e4d5',1,'Rxbuffer():&#160;protocol.c'],['../serial_wombat_8h.html#a3fcf4eadb6a8c5082f8256123d87e4d5',1,'Rxbuffer():&#160;protocol.c']]],
+  ['rxqueue_1640',['rxqueue',['../struct__pin__register__t_1_1spi__master__n.html#a8c0d6a502d77a436ec675c773bd548c5',1,'_pin_register_t::spi_master_n']]]
+];

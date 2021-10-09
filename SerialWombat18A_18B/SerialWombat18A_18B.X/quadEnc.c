@@ -109,12 +109,10 @@ void initQuadEnc(void)
 		{
 			case 0:  // Port A
 				{
-                    //TODO make so pins can be on different ports
                     IOCPUA &=~CurrentPinBitmap();
 					IOCPUA &= ~pinBitmap[quadEnc->secondPin];
 					IOCPDA |= CurrentPinBitmap();
-					IOCPDA |= pinBitmap[quadEnc->secondPin];
-                    
+					IOCPDA |= pinBitmap[quadEnc->secondPin];   
 				}
 				break;
 
@@ -124,7 +122,6 @@ void initQuadEnc(void)
 					IOCPUB &= ~pinBitmap[quadEnc->secondPin];
 					IOCPDB |= CurrentPinBitmap();
 					IOCPDB |= pinBitmap[quadEnc->secondPin];
-
 				}
 				break;
 		}

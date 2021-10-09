@@ -89,6 +89,7 @@
       <itemPath>asciiConversion.c</itemPath>
       <itemPath>pinRegisters.c</itemPath>
       <itemPath>queue.c</itemPath>
+      <itemPath>gotoReset.s</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -347,6 +348,8 @@
         <property key="programoptions.uselvpprogramming" value="false"/>
         <property key="voltagevalue" value="3.25"/>
       </PICkit3PlatformTool>
+      <item path="gotoReset.s" ex="true" overriding="false">
+      </item>
       <pk4hybrid>
         <property key="ADC 1" value="true"/>
         <property key="AutoSelectMemRanges" value="auto"/>

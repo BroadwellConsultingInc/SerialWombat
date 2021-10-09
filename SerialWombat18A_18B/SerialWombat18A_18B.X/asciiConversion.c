@@ -78,3 +78,23 @@ void uint16ToAscii5NoHWMath(uint16_t val, uint8_t* buffer)
     ++ buffer;
     *buffer = (uint8_t)('0' + val);
 }
+
+void uint16ToAsciiHex4(uint16_t val, uint8_t* buffer)
+{
+    uint8_t i;
+    for (i = 0; i < 4; ++ i)
+    {
+     uint8_t x = val & 0xF;
+     if ( x > 9)
+     {
+         x += 'A' - 10;
+     }
+     else
+     {
+         x+= '0';
+     }
+    
+    buffer[3-i] =x;
+    val >>= 4;
+    }
+}

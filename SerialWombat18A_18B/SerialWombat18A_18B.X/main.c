@@ -11,7 +11,7 @@ uint8_t FrameTimingPin = 0xFF;
  bool RunForeground = false;
 
 
-uint8_t user_buffer[SIZE_OF_USER_BUFFER];
+uint8_t UserBuffer[SIZE_OF_USER_BUFFER];
 
 void reset ()
 {
@@ -20,29 +20,38 @@ void reset ()
 		{ __asm__ volatile (" reset");  }       
 	}
 }
-uint16_t debug16;
-uint32_t debugloopcounter = 0;
+
+uint16_t OverflowFrames = 0;
+uint32_t FramesRun = 0;
+uint16_t SystemUtilizationAverage = 0x8000;
+uint16_t SystemUtilizationCount = 0;
+uint32_t SystemUtilizationSum = 0;
+uint32_t volatile debug_i;
 int main(void)
 {
-	// initialize the device
-	SYSTEM_Initialize();
-    while (!HLVDCONbits.BGVST); // Wait for Band Gap to stabilize.
+    INTERRUPT_GlobalDisable();
+    RCON = 0;
     INTCON2 |= 0x100; // Set Alternate vector table.  Bits in .h file are wrong in INTCON2bits so use bit or
-    INTERRUPT_GlobalEnable();
+	// initialize the device
     for (CurrentPin = 0; CurrentPin <=  NUMBER_OF_TOTAL_PINS; ++CurrentPin)
 	{
         SetMode(CurrentPin, PIN_MODE_DIGITAL_IO);
     }
+    {
+        uint16_t i;
+        for (i = 0; i <SIZE_OF_USER_BUFFER; ++i )
+        {
+            UserBuffer[i] = 0;
+        }
+    }
+	SYSTEM_Initialize();
+    while (!HLVDCONbits.BGVST); // Wait for Band Gap to stabilize.
     
+    INTERRUPT_GlobalEnable();
+             for (debug_i = 0; debug_i < 10000; ++ debug_i);
  
 	while (1)
 	{
-       debugloopcounter++;
-       if (debugloopcounter == 0x1DB)
-       {
-           ++debugloopcounter;
-       }
-        debug16=INTCON2;
 		//SET_THROUGHPUT_ANALOG(30);
 		ProcessRx();
 #ifdef TODO
@@ -58,18 +67,28 @@ int main(void)
 //i2cDebugTest();
 			RunForeground = false;
 //TODO			update_clock_time();
+            ++FramesRun;
 			ProcessPins();
+            if (RunForeground)
+			{
+					++OverflowFrames;
+			}
+            else
+            {
+                SystemUtilizationSum += TMR2_Counter16BitGet();
+                ++SystemUtilizationCount;
+                if (SystemUtilizationCount == 1024)
+                {
+                    SystemUtilizationSum <<= 6;
+                    SystemUtilizationSum/= PR2;
+                    SystemUtilizationAverage = SystemUtilizationSum;
+                    SystemUtilizationCount = 0;
+                    SystemUtilizationSum = 0;
+                }
+            }
             PinLow(FrameTimingPin);
 //TODO			++bg_systime.u;
-			if (RunForeground)
-			{
-#ifdef TODO
-                if (overflow_frames.u < 0xFFFFFFFF)
-				{
-					++overflow_frames.u;
-				}
-#endif
-			}
+			
 		}
 	}
 
@@ -198,6 +217,12 @@ void ProcessPins()
 					//update_uart_tx();
 				}
 				break;
+            case PIN_MODE_TM1637:
+            {
+                extern void updateTM1637();
+                updateTM1637();
+            }
+            break;
 		}
 	}
 }

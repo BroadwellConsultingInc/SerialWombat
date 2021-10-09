@@ -156,11 +156,16 @@ uint16_t TMR2_Counter16BitGet( void )
     return( TMR2 );
 }
 
+volatile uint16_t FramesDropped = 0;
 volatile uint32_t System1msCount = 0;
 void __attribute__ ((weak)) TMR2_CallBack(void)
 {
 	extern bool RunForeground;
     ++System1msCount;
+    if (RunForeground)
+    {
+        FramesDropped++;
+    }
 	 RunForeground = true;
 }
 

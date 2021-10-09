@@ -51,15 +51,24 @@ void uartStartTX()
 	UartTxbufferCounter = 0;
 }
 
+uint16_t Errors = 0;
 void error(SW_ERROR_t errorCode)
 {
     Txbuffer[0] = 'E';
     uint16ToAscii5((uint16_t) errorCode, &Txbuffer[1]);
     Txbuffer[6] = 0x55;
     Txbuffer[7] = 0x55;
+    if (Errors == 65535)
+    {
+        Errors = 65500;  // Knock down so it will continue changing for pulse on pin or other functions
+    }
+    ++ Errors;
 }
+
+uint16_t PacketsProcessed = 0;
 void ProcessRxbuffer( void )
 {
+    PacketsProcessed++;
 	Txbuffer[0] = Rxbuffer[0];
 	Txbuffer[1] = Rxbuffer[1];
 	Txbuffer[2] = Rxbuffer[2];
@@ -432,7 +441,7 @@ Examples:
 				{
 					count = 7;
 				}
-				 memcpy(&Txbuffer[1],&user_buffer[address],count);
+				 memcpy(&Txbuffer[1],&UserBuffer[address],count);
 			 }
 			 //TODO:  Error on bad address
 		}
@@ -441,34 +450,45 @@ Examples:
 		case COMMAND_BINARY_WRITE_USER_BUFFER:
 		{
 			 lastUserBufferIndex = RXBUFFER16(1);
-			 if (lastUserBufferIndex< SIZE_OF_USER_BUFFER)
-			 {
-				uint16_t count = SIZE_OF_USER_BUFFER - lastUserBufferIndex - 1;
-				if (count > 5)
-				{
-					count = 5;
-				}
-				 memcpy(&user_buffer[lastUserBufferIndex],&Rxbuffer[3],count);
-				 lastUserBufferIndex += count;
-			 }
-			 //TODO:  Error on bad address
+             uint16_t count = Rxbuffer[3];
+             if (count > 4)
+             {
+                 error(SW_ERROR_WUB_COUNT_GT_4);
+             }
+             else
+             {
+                 
+             
+                 if (lastUserBufferIndex + count < SIZE_OF_USER_BUFFER)
+                 {
+                     memcpy(&UserBuffer[lastUserBufferIndex],&Rxbuffer[4],count);
+                     lastUserBufferIndex += count;
+                 }
+                 else
+                 {
+                     error(SW_ERROR_WUB_INVALID_ADDRESS);
+                 }
+             }
 
 		}
 		break;
 		case COMMAND_BINARY_WRITE_USER_BUFFER_CONTINUE:
 		{
-			 if (lastUserBufferIndex < SIZE_OF_USER_BUFFER)
+			if (lastUserBufferIndex < SIZE_OF_USER_BUFFER)
 			 {
 				uint16_t count = SIZE_OF_USER_BUFFER - lastUserBufferIndex - 1;
-				if (count > 7)
+				if (count >= 7)
 				{
 					count = 7;
+                     memcpy(&UserBuffer[lastUserBufferIndex],&Rxbuffer[1],count);
+                     lastUserBufferIndex += count;
 				}
-				 memcpy(&user_buffer[lastUserBufferIndex],&Rxbuffer[3],count);
-				 lastUserBufferIndex += count;
+                else
+                {
+                      error(SW_ERROR_WUB_CONTINUE_OUTOFBOUNDS);
+                }
+				
 			 }
-			 //TODO:  Error on bad address
-
 		}
 		break;
 
@@ -781,6 +801,13 @@ Write 0x32 the byte at RAM address 0x0247.
             
         }
         break;
+        
+        case 254: // TODO Remove
+        {
+            TXBUFFER16(1,RCON);
+            RCON = 0;
+        }
+        break;
 
 		case CONFIGURE_CHANNEL_MODE_0:
 		case CONFIGURE_CHANNEL_MODE_1:
@@ -1000,6 +1027,17 @@ void ProcessSetPin()
         }
         break;
         
+        case PIN_MODE_TM1637:
+        {
+            extern void initTM1637();
+            initTM1637();
+        }
+        break;
         
+        default:
+        {
+            error(SW_ERROR_UNKNOWN_PIN_MODE);
+        }
+        break;
     }
 }
