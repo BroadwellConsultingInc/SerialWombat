@@ -21,7 +21,135 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 */
 #include "serialWombat.h"
 #include <stdint.h>
+#include "asciiConversion.h"
 
+
+
+
+#define SEG_A 0x1
+#define SEG_B 0x2
+#define SEG_C 0x4
+#define SEG_D 0x8
+#define SEG_E 0x10
+#define SEG_F 0x20
+#define SEG_G 0x40
+#define SEG_POINT 0x80
+#define OFF__ 0
+const uint8_t seven_seg_table[]={
+//  a 
+// f b
+//  g 
+// e c
+//  d 
+
+#define INV__  SEG_E  // No valid way to show this character.  Show error bar
+
+OFF__|OFF__|OFF__|OFF__|OFF__|OFF__|OFF__|OFF__,   //SPACE, 0x20
+OFF__|SEG_B|OFF__|OFF__|OFF__|OFF__|OFF__|OFF__,   //!    
+OFF__|SEG_B|OFF__|OFF__|OFF__|SEG_F|OFF__|OFF__,   //"    
+OFF__|OFF__|OFF__|OFF__|OFF__|OFF__|OFF__|INV__,   //#    
+SEG_A|OFF__|SEG_C|SEG_D|OFF__|SEG_F|SEG_G|OFF__,   //$    
+OFF__|OFF__|SEG_C|OFF__|OFF__|SEG_F|SEG_G|OFF__,   //%    
+OFF__|OFF__|OFF__|OFF__|OFF__|OFF__|OFF__|INV__,   //&    
+OFF__|SEG_B|OFF__|OFF__|OFF__|OFF__|OFF__|OFF__,   //'    
+SEG_A|OFF__|OFF__|SEG_D|SEG_E|SEG_F|OFF__|OFF__,   //(    
+SEG_A|SEG_B|SEG_C|SEG_D|OFF__|OFF__|OFF__|OFF__,   //)    
+SEG_A|OFF__|OFF__|OFF__|OFF__|OFF__|OFF__|OFF__,   //*    
+OFF__|OFF__|OFF__|OFF__|OFF__|OFF__|OFF__|INV__,   //+    
+OFF__|OFF__|SEG_C|OFF__|OFF__|OFF__|OFF__|OFF__,   //,    
+OFF__|OFF__|OFF__|OFF__|OFF__|OFF__|SEG_G|OFF__,   //-    
+OFF__|OFF__|OFF__|OFF__|OFF__|OFF__|OFF__|INV__,   //.    
+OFF__|SEG_B|OFF__|SEG_D|OFF__|OFF__|SEG_G|OFF__,   ///    
+SEG_A|SEG_B|SEG_C|OFF__|SEG_E|SEG_F|OFF__|OFF__,   //0
+OFF__|SEG_B|SEG_C|OFF__|OFF__|OFF__|OFF__|OFF__,   //1    
+SEG_A|SEG_B|OFF__|SEG_D|SEG_E|OFF__|SEG_G|OFF__,   //2   
+SEG_A|SEG_B|SEG_C|SEG_D|OFF__|OFF__|SEG_G|OFF__,   //3   
+OFF__|SEG_B|SEG_C|OFF__|OFF__|SEG_F|SEG_G|OFF__,   //4   
+SEG_A|OFF__|SEG_C|SEG_D|OFF__|SEG_F|SEG_G|OFF__,   //5   
+SEG_A|OFF__|SEG_C|SEG_D|SEG_E|SEG_F|SEG_G|OFF__,   //6   
+SEG_A|SEG_B|SEG_C|OFF__|OFF__|OFF__|OFF__|OFF__,   //7   
+SEG_A|SEG_B|SEG_C|SEG_D|SEG_E|SEG_F|SEG_G|OFF__,   //8
+SEG_A|SEG_B|SEG_C|OFF__|OFF__|SEG_F|SEG_G|OFF__,   //9   
+OFF__|OFF__|OFF__|OFF__|OFF__|OFF__|OFF__|INV__,   //:    
+OFF__|OFF__|OFF__|OFF__|OFF__|OFF__|OFF__|INV__,   //;    
+OFF__|OFF__|OFF__|SEG_D|SEG_E|OFF__|OFF__|OFF__,   //<    
+OFF__|OFF__|OFF__|OFF__|SEG_D|OFF__|SEG_G|OFF__,   //=    
+OFF__|OFF__|SEG_C|SEG_D|OFF__|OFF__|OFF__|OFF__,   //>    
+OFF__|OFF__|OFF__|OFF__|OFF__|OFF__|OFF__|INV__,   //?    
+OFF__|OFF__|OFF__|OFF__|OFF__|OFF__|OFF__|INV__,   //@    
+SEG_A|SEG_B|SEG_C|OFF__|SEG_E|SEG_F|SEG_G|OFF__,   //A   
+OFF__|OFF__|SEG_C|SEG_D|SEG_E|SEG_F|SEG_G|OFF__,   //B   
+SEG_A|OFF__|OFF__|SEG_D|SEG_E|SEG_F|OFF__|OFF__,   //C  
+OFF__|SEG_B|SEG_C|SEG_D|SEG_E|OFF__|SEG_G|OFF__,   //D   
+SEG_A|OFF__|OFF__|SEG_D|SEG_E|SEG_F|SEG_G|OFF__,   //E   
+SEG_A|OFF__|OFF__|OFF__|SEG_E|SEG_F|SEG_G|OFF__,   //F 
+SEG_A|OFF__|SEG_C|SEG_D|SEG_E|SEG_F|SEG_G|OFF__,   //G    
+OFF__|SEG_B|SEG_C|OFF__|SEG_E|SEG_F|SEG_G|OFF__,   //H    
+OFF__|OFF__|OFF__|OFF__|SEG_E|SEG_F|OFF__|OFF__,   //I    
+OFF__|SEG_B|SEG_C|SEG_D|SEG_E|OFF__|OFF__|OFF__,   //J    
+OFF__|SEG_B|SEG_C|OFF__|SEG_E|SEG_F|SEG_G|OFF__,   //K    
+OFF__|OFF__|OFF__|SEG_D|SEG_E|SEG_F|OFF__|OFF__,   //L    
+OFF__|OFF__|SEG_C|OFF__|SEG_E|OFF__|SEG_G|OFF__,   //M    
+OFF__|OFF__|SEG_C|OFF__|SEG_E|OFF__|SEG_G|OFF__,   //N    
+OFF__|OFF__|SEG_C|SEG_D|SEG_E|OFF__|SEG_G|OFF__,   //O    
+SEG_A|SEG_B|OFF__|OFF__|SEG_E|SEG_F|SEG_G|OFF__,   //P    
+SEG_A|SEG_B|SEG_C|OFF__|OFF__|SEG_F|SEG_G|OFF__,   //Q    
+OFF__|OFF__|OFF__|OFF__|SEG_E|OFF__|SEG_G|OFF__,   //R    
+SEG_A|OFF__|SEG_C|SEG_D|OFF__|SEG_F|SEG_G|OFF__,   //S    
+OFF__|OFF__|OFF__|SEG_D|SEG_E|SEG_F|SEG_G|OFF__,   //T    
+OFF__|OFF__|SEG_C|SEG_D|SEG_E|OFF__|OFF__|OFF__,   //U    
+OFF__|OFF__|SEG_C|SEG_D|SEG_E|OFF__|OFF__|OFF__,    //V    
+OFF__|OFF__|SEG_C|SEG_D|SEG_E|OFF__|OFF__|OFF__,    //W    
+OFF__|SEG_B|SEG_C|OFF__|SEG_E|SEG_F|SEG_G|OFF__,   //X    
+OFF__|SEG_B|SEG_C|SEG_D|OFF__|SEG_F|SEG_G|OFF__,   //Y    
+SEG_A|SEG_B|OFF__|SEG_D|SEG_E|OFF__|SEG_G|OFF__,   //Z    
+SEG_A|OFF__|OFF__|SEG_D|SEG_E|SEG_F|OFF__|OFF__,   //[    
+OFF__|OFF__|SEG_C|OFF__|OFF__|SEG_F|SEG_G|OFF__,   // backslash    
+SEG_A|SEG_B|SEG_C|SEG_D|OFF__|OFF__|OFF__|OFF__,   //]    
+SEG_A|SEG_B|OFF__|OFF__|OFF__|SEG_F|OFF__|OFF__,   //^    
+OFF__|OFF__|OFF__|SEG_D|OFF__|OFF__|OFF__|OFF__,   //_    
+OFF__|OFF__|OFF__|OFF__|OFF__|SEG_F|OFF__|OFF__,   //`    
+SEG_A|SEG_B|SEG_C|OFF__|SEG_E|SEG_F|SEG_G|OFF__,   //a    
+OFF__|OFF__|SEG_C|SEG_D|SEG_E|SEG_F|SEG_G|OFF__,   //b    
+SEG_A|OFF__|OFF__|SEG_D|SEG_E|SEG_F|OFF__|OFF__,   //c    
+OFF__|SEG_B|SEG_C|SEG_D|SEG_E|OFF__|SEG_G|OFF__,   //d    
+SEG_A|OFF__|OFF__|SEG_D|SEG_E|SEG_F|SEG_G|OFF__,   //e    
+SEG_A|OFF__|OFF__|OFF__|SEG_E|SEG_F|SEG_G|OFF__,   //f    
+SEG_A|OFF__|SEG_C|SEG_D|SEG_E|SEG_F|SEG_G|OFF__,   //g    
+OFF__|SEG_B|SEG_C|OFF__|SEG_E|SEG_F|SEG_G|OFF__,   //h    
+OFF__|OFF__|OFF__|OFF__|SEG_E|SEG_F|OFF__|OFF__,   //i    
+OFF__|SEG_B|SEG_C|SEG_D|SEG_E|OFF__|OFF__|OFF__,   //j    
+OFF__|SEG_B|SEG_C|OFF__|SEG_E|SEG_F|SEG_G|OFF__,   //k    
+OFF__|OFF__|OFF__|SEG_D|SEG_E|SEG_F|OFF__|OFF__,   //l    
+OFF__|OFF__|SEG_C|OFF__|SEG_E|OFF__|SEG_G|OFF__,   //m    
+OFF__|OFF__|SEG_C|OFF__|SEG_E|OFF__|SEG_G|OFF__,   //n    
+OFF__|OFF__|SEG_C|SEG_D|SEG_E|OFF__|SEG_G|OFF__,   //o    
+SEG_A|SEG_B|OFF__|OFF__|SEG_E|SEG_F|SEG_G|OFF__,   //p    
+SEG_A|SEG_B|SEG_C|OFF__|OFF__|SEG_F|SEG_G|OFF__,   //q    
+OFF__|OFF__|OFF__|OFF__|SEG_E|OFF__|SEG_G|OFF__,   //r    
+SEG_A|OFF__|SEG_C|SEG_D|OFF__|SEG_F|SEG_G|OFF__,   //s    
+OFF__|OFF__|OFF__|SEG_D|SEG_E|SEG_F|SEG_G|OFF__,   //t    
+OFF__|OFF__|SEG_C|SEG_D|SEG_E|OFF__|OFF__|OFF__,   //u    
+OFF__|OFF__|SEG_C|SEG_D|SEG_E|OFF__|OFF__|OFF__,   //v    
+OFF__|OFF__|SEG_C|SEG_D|SEG_E|OFF__|OFF__|OFF__,   //w    
+OFF__|SEG_B|SEG_C|OFF__|SEG_E|SEG_F|SEG_G|OFF__,   //x    
+OFF__|SEG_B|SEG_C|SEG_D|OFF__|SEG_F|SEG_G|OFF__,   //y    
+SEG_A|SEG_B|OFF__|SEG_D|SEG_E|OFF__|SEG_G|OFF__,   //z    
+SEG_A|OFF__|OFF__|SEG_D|SEG_E|SEG_F|OFF__|OFF__,   //{    
+OFF__|OFF__|OFF__|OFF__|SEG_E|SEG_F|OFF__|OFF__,   //|    
+SEG_A|SEG_B|SEG_C|SEG_D|OFF__|OFF__|OFF__|OFF__,   //}    
+SEG_A|OFF__|OFF__|OFF__|OFF__|OFF__|OFF__|OFF__,   //~    
+
+};
+
+typedef enum {
+	TM1637_MODE_BUFFER_DEC = 0,
+	TM1637_MODE_BUFFER_HEX = 1,
+	TM1637_MODE_STRING = 2, 
+            TM1637_MODE_RAW = 3,
+	TM1637_MODE_ANIMATION = 4,
+            
+}TM1637_MODE_t;
 
 typedef struct tm1637_n{
 	uint8_t outputBuffer[6];  ///< Used to hold user data for output.  Can be raw data, characters, pin to draw data from, or animation parameters based on mode
@@ -113,7 +241,7 @@ typedef enum {
 
 //TODO update documentation
 /*!
-    \brief Initialization routine for Analog Input
+    \brief Initialization routine for TM1637 Seven Segment 
 
 ----
 

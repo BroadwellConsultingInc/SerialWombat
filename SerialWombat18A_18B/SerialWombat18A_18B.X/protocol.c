@@ -1033,6 +1033,13 @@ void ProcessSetPin()
             initTM1637();
         }
         break;
+
+	case PIN_MODE_WS2812:
+        {
+            extern void initWS2812();
+            initWS2812();
+        }
+        break;
         
         default:
         {

@@ -83,6 +83,7 @@
         <itemPath>protectedOutput.c</itemPath>
         <itemPath>watchdog.c</itemPath>
         <itemPath>TM1637.c</itemPath>
+        <itemPath>ws2812.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>protocol.c</itemPath>
@@ -349,6 +350,18 @@
         <property key="voltagevalue" value="3.25"/>
       </PICkit3PlatformTool>
       <item path="gotoReset.s" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-CO>
+        </C30-CO>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
       </item>
       <pk4hybrid>
         <property key="ADC 1" value="true"/>

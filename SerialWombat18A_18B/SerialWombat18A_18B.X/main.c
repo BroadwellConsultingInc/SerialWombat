@@ -223,6 +223,13 @@ void ProcessPins()
                 updateTM1637();
             }
             break;
+
+	    case PIN_MODE_WS2812:
+            {
+                extern void updateWS2812();
+                updateWS2812();
+            }
+            break;
 		}
 	}
 }
