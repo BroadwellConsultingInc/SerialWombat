@@ -110,6 +110,137 @@ const uint16_t pinBitmap[NUMBER_OF_PHYSICAL_PINS] =
 	0x8000 , // 19 RB15
 };
 
+
+uint8_t SPI1Semaphore = RESOURCE_AVAILABLE;
+uint8_t DMA5Semaphore = RESOURCE_AVAILABLE;
+
+
+void SetPPSOutput(uint8_t pin, uint8_t value)
+{
+    switch (pin)
+    {
+
+    	case 1:
+	{
+		RPOR0bits.RP0R = value;
+	}
+	break;
+
+
+    	case 2:
+	{
+		RPOR0bits.RP1R = value;
+	}
+	break;
+
+
+    	case 3:
+	{
+		RPOR1bits.RP2R = value;
+	}
+	break;
+
+
+    	case 4:
+	{
+		RPOR1bits.RP3R = value;
+	}
+	break;
+
+
+    	case 7:
+	{
+		RPOR2bits.RP4R = value;
+	}
+	break;
+
+
+    	case 9:
+	{
+		RPOR2bits.RP5R = value;
+	}
+	break;
+
+
+    	case 10:
+	{
+		RPOR3bits.RP6R = value;
+	}
+	break;
+
+
+    	case 11:
+	{
+		RPOR3bits.RP7R = value;
+	}
+	break;
+
+
+    	case 12:
+	{
+		RPOR4bits.RP8R = value;
+	}
+	break;
+
+
+    	case 13:
+	{
+		RPOR4bits.RP9R = value;
+	}
+	break;
+
+
+    	case 14:
+	{
+		RPOR5bits.RP10R = value;
+	}
+	break;
+
+
+    	case 15:
+	{
+		RPOR5bits.RP11R = value;
+	}
+	break;
+
+
+    	case 16:
+	{
+		RPOR6bits.RP12R = value;
+	}
+	break;
+
+
+    	case 17:
+	{
+		RPOR6bits.RP13R = value;
+	}
+	break;
+
+
+    	case 18:
+	{
+		RPOR7bits.RP14R = value;
+	}
+	break;
+
+
+	case 19:
+	{
+		RPOR7bits.RP15R = value;
+	}
+	break;
+
+	default:
+	{
+		//DO nothing
+	}
+	break;
+
+
+    }
+    
+}
 uint16_t CurrentPinBitmap(void)
 {
 	if (CurrentPin >= NUMBER_OF_PHYSICAL_PINS)
