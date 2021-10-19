@@ -96,11 +96,16 @@ typedef enum {
             SW_ERROR_FLASH_WRITE_INVALID_ADDRESS = 11, ///<An attempt to write or erase flash was made to a protected or non-existant area
 	    SW_ERROR_INVALID_PIN_COMMAND = 12, ///< The pin command 0xC1, 0xC2, etc is not suported by this pin mode (May vary by model)
             SW_ERROR_PIN_CONFIG_WRONG_ORDER = 13, ///<The called pin command 0xC1, 0xC2 was called before other required prior commands (e.g. 0xC0)
+            SW_ERROR_WS2812_INDEX_GT_LEDS = 14, ///<The command references an index that is greater or equal to the number of leds
+            SW_ERROR_PIN_NOT_CAPABLE = 15, ///<The commanded pin does not have the hardware support to perform the commanded pin mode
             
             
             
 }SW_ERROR_t;
 
 void error (SW_ERROR_t errorCode);
+
+extern uint32_t FramesRun;
+
 #endif
 

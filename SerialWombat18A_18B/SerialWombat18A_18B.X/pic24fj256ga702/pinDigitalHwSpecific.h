@@ -1,6 +1,7 @@
 #ifndef PIN_DIGITAL_HW_SPECIFIC_H
 #define PIN_DIGITAL_HW_SPECIFIC_H
 #include <stdint.h>
+#include "deviceSpecific.h"
 #define SIZE_OF_DMA_ARRAY 128
 
 #define OUTPUT_ARRAY_A_DMA_INDEX (SIZE_OF_DMA_ARRAY - DMACNT0) 
@@ -12,6 +13,7 @@ extern uint16_t OutputArrayA[SIZE_OF_DMA_ARRAY];
 extern uint16_t OutputArrayB[SIZE_OF_DMA_ARRAY];
 extern uint16_t InputArrayA[SIZE_OF_DMA_ARRAY];
 extern uint16_t InputArrayB[SIZE_OF_DMA_ARRAY];
+extern const uint8_t WombatPinToADCChannel[NUMBER_OF_PHYSICAL_PINS];
 
 #define DIGITAL_LOW 0
 #define DIGITAL_HIGH 1
@@ -25,8 +27,12 @@ void SetPin(uint8_t pin, uint8_t pinState);
 extern const uint16_t pinBitmap[];
 extern const uint8_t pinPort[];
 #define RESOURCE_AVAILABLE 0xFF
-extern uint8_t SPI1Semaphore;
+extern uint8_t ADC1Semaphore;
 extern uint8_t DMA5Semaphore;
+extern uint8_t SPI1Semaphore;
+extern uint8_t TMR1Semaphore;
+extern uint8_t TMR3Semaphore;
+
 
 void orCount(uint16_t* buffer, uint16_t bitmap, uint16_t count);
 void andCount(uint16_t* buffer, uint16_t bitmap, uint16_t count);

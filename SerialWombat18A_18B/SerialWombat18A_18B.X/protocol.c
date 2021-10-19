@@ -68,7 +68,7 @@ void error(SW_ERROR_t errorCode)
 uint16_t PacketsProcessed = 0;
 void ProcessRxbuffer( void )
 {
-    PacketsProcessed++;
+	PacketsProcessed++;
 	Txbuffer[0] = Rxbuffer[0];
 	Txbuffer[1] = Rxbuffer[1];
 	Txbuffer[2] = Rxbuffer[2];
@@ -81,43 +81,43 @@ void ProcessRxbuffer( void )
 	{
 		case COMMAND_ASCII_ECHO:
 
-/** \addtogroup ProtocolAsciiCommands
-\{
+			/** \addtogroup ProtocolAsciiCommands
+			  \{
 
-ASCII Echo 
----------------------
-This command simply sends back what was sent and takes no action.
-Echos back response unless error.
+			  ASCII Echo 
+			  ---------------------
+			  This command simply sends back what was sent and takes no action.
+			  Echos back response unless error.
 
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|'!'|AnyByte|AnyByte|AnyByte|AnyByte|AnyByte|AnyByte|AnyByte|
+			  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+			  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+			  |'!'|AnyByte|AnyByte|AnyByte|AnyByte|AnyByte|AnyByte|AnyByte|
 
 Examples:
 
 `!1234567`
 
- Will respond `!1234567`
+Will respond `!1234567`
 
 \}
-**/
+			 **/
 
 			break;
 		case COMMAND_ASCII_LINEFEED:
-		{
-/** \addtogroup ProtocolAsciiCommands
-\{
+			{
+				/** \addtogroup ProtocolAsciiCommands
+				  \{
 
-ASCII Enable / Disable Line Breaks
----------------------
-This command causes the Serial Wombat to echo back input and add a carraige return / line feed before and after every returned message.
+				  ASCII Enable / Disable Line Breaks
+				  ---------------------
+				  This command causes the Serial Wombat to echo back input and add a carraige return / line feed before and after every returned message.
 
-This is very useful when you're typing commands in a terminal, but will cause problems if you are talking to the Serial Wombat
-with a program, particularly if you are using Binary commands.
+				  This is very useful when you're typing commands in a terminal, but will cause problems if you are talking to the Serial Wombat
+				  with a program, particularly if you are using Binary commands.
 
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|'^'|'L'|'I'|'N'|'E'|'B'|'K'|'0' or '1'|
+				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+				  |'^'|'L'|'I'|'N'|'E'|'B'|'K'|'0' or '1'|
 
 Examples:
 
@@ -130,40 +130,40 @@ Enables Line Breaks.
 Disables Line Breaks (default). 
 
 \}
-**/
+				 **/
 
-			if (Rxbuffer[1] == 'L' &&
-				Rxbuffer[2] == 'I' &&
-				Rxbuffer[3] == 'N' &&
-				Rxbuffer[4] == 'E' &&
-				Rxbuffer[5] == 'B' &&
-				Rxbuffer[6] == 'K')
-			{
-				if (Rxbuffer[7] == '1')
+				if (Rxbuffer[1] == 'L' &&
+						Rxbuffer[2] == 'I' &&
+						Rxbuffer[3] == 'N' &&
+						Rxbuffer[4] == 'E' &&
+						Rxbuffer[5] == 'B' &&
+						Rxbuffer[6] == 'K')
 				{
-					LineBreaksAndEcho = true;
-				}
-				else
-				{
-					LineBreaksAndEcho = false;
-				}
+					if (Rxbuffer[7] == '1')
+					{
+						LineBreaksAndEcho = true;
+					}
+					else
+					{
+						LineBreaksAndEcho = false;
+					}
 
+				}
 			}
-		}
-		break;
+			break;
 
-        case COMMAND_ASCII_SET_PUBLIC_DATA: // Set Public Data
-/** \addtogroup ProtocolAsciiCommands
-\{
+		case COMMAND_ASCII_SET_PUBLIC_DATA: // Set Public Data
+			/** \addtogroup ProtocolAsciiCommands
+			  \{
 
-ASCII Set Public Data 
----------------------
-This command allows the public data of a pin to be set.  Maximum allowable data value is 65535 .
-Echos back response unless error.
+			  ASCII Set Public Data 
+			  ---------------------
+			  This command allows the public data of a pin to be set.  Maximum allowable data value is 65535 .
+			  Echos back response unless error.
 
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|'D'|Pin X 10's|Pin X 1's|Public Data 10000's|Public Data 1000's|Public Data 100's | Public Data 10's | Public Data 1's|
+			  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+			  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+			  |'D'|Pin X 10's|Pin X 1's|Public Data 10000's|Public Data 1000's|Public Data 100's | Public Data 10's | Public Data 1's|
 
 Examples:
 
@@ -172,7 +172,7 @@ Examples:
 Sets pin 2 Public Data to 13143.
 
 \}
-**/
+			 **/
 			{
 				uint8_t pin =  ascii_to_val(Rxbuffer[1]);
 				pin *= 10;
@@ -197,20 +197,20 @@ Sets pin 2 Public Data to 13143.
 			}
 			break;
 
-        case COMMAND_ASCII_GET_PUBLIC_DATA: // Set Public Data
-/** \addtogroup ProtocolAsciiCommands
-\{
+		case COMMAND_ASCII_GET_PUBLIC_DATA: // Set Public Data
+			/** \addtogroup ProtocolAsciiCommands
+			  \{
 
-ASCII Get Public Data 
----------------------
-This command allows the public data of a pin to be set.  Maximum allowable data value is 65535 .
-Echos back response unless error.
+			  ASCII Get Public Data 
+			  ---------------------
+			  This command allows the public data of a pin to be set.  Maximum allowable data value is 65535 .
+			  Echos back response unless error.
 
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|'G'|Pin X 10's|Pin X 1's|'U'*|'U'*|'U'*|'U'*|'U'*|
+			  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+			  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+			  |'G'|Pin X 10's|Pin X 1's|'U'*|'U'*|'U'*|'U'*|'U'*|
 
- *'U' is recommended, but any byte is acceptable
+			 *'U' is recommended, but any byte is acceptable
 
 Examples:
 
@@ -224,7 +224,7 @@ Sample Response:
 Public data for Pin 2 is 26132.
 
 \}
-**/
+			 **/
 			{
 				uint8_t pin =  ascii_to_val(Rxbuffer[1]);
 				pin *= 10;
@@ -235,29 +235,29 @@ Public data for Pin 2 is 26132.
 
 
 
-	case COMMAND_ASCII_SET_PIN: 
-/** \addtogroup ProtocolAsciiCommands
-\{
+		case COMMAND_ASCII_SET_PIN: 
+			/** \addtogroup ProtocolAsciiCommands
+			  \{
 
-ASCII Set Pin Command
----------------------
-This command allows the digital state of up to 5 consecutive pins to be set.  
+			  ASCII Set Pin Command
+			  ---------------------
+			  This command allows the digital state of up to 5 consecutive pins to be set.  
 
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|'P'|Pin X 10's|Pin X 1's|Pin X Setting|Pin X+1 Setting|Pin X+2 Setting|Pin X+3 Setting|Pin X+4 Setting|
+			  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+			  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+			  |'P'|Pin X 10's|Pin X 1's|Pin X Setting|Pin X+1 Setting|Pin X+2 Setting|Pin X+3 Setting|Pin X+4 Setting|
 
-Possible Pin Settings:
- - 'l' Make the pin an Output Low
- - 'h' Make the pin an Output High
- - 'a' Make the pin an Analog Input
- - 'd' Make the pin an Input (with a weak Pull Down)
- - 'i' Make the pin an Input (without a weak Pull Up or Pull Down)
- - 's' Make the pin a Servo Controller
- - 'u' Make the pin an Input (with a weak Pull Up)
- - 'w' Make the pin a PWM Output
- - 'x' No change
-Echos back response unless error.
+			  Possible Pin Settings:
+			  - 'l' Make the pin an Output Low
+			  - 'h' Make the pin an Output High
+			  - 'a' Make the pin an Analog Input
+			  - 'd' Make the pin an Input (with a weak Pull Down)
+			  - 'i' Make the pin an Input (without a weak Pull Up or Pull Down)
+			  - 's' Make the pin a Servo Controller
+			  - 'u' Make the pin an Input (with a weak Pull Up)
+			  - 'w' Make the pin a PWM Output
+			  - 'x' No change
+			  Echos back response unless error.
 
 Examples:
 
@@ -271,7 +271,7 @@ Sets pin 2 high, and doesn't change any other pins
 Sets pin 9 High, pin 10 Low, doesn't change pin 11, and sets pins 12 and 13 to inputs
 
 \}
-**/
+			 **/
 			{
 				uint8_t pinToSet, rxIndex;
 				pinToSet = ascii_to_val(Rxbuffer[1]);
@@ -282,9 +282,9 @@ Sets pin 9 High, pin 10 Low, doesn't change pin 11, and sets pins 12 and 13 to i
 					if (Rxbuffer[rxIndex] == 'a')
 					{
 						CurrentPin = pinToSet;		
-                        CurrentPinRegister = &PinUpdateRegisters[CurrentPin];
+						CurrentPinRegister = &PinUpdateRegisters[CurrentPin];
 						Rxbuffer[0] = CONFIGURE_CHANNEL_MODE_0;
-                        void initAnalogInput(void);
+						void initAnalogInput(void);
 						initAnalogInput();
 					}
 					else
@@ -322,13 +322,13 @@ Sets pin 9 High, pin 10 Low, doesn't change pin 11, and sets pins 12 and 13 to i
 								break;
 							case 's':  //Servo
 								{
-                                    void initServoSimple(uint8_t pinToSet);
+									void initServoSimple(uint8_t pinToSet);
 									initServoSimple(pinToSet);
 								}
 								break;
 							case 'w':  //PWM
 								{
-                                    void initPWMSimple(uint8_t pinToSet);
+									void initPWMSimple(uint8_t pinToSet);
 									initPWMSimple(pinToSet);
 								}
 								break;
@@ -347,25 +347,25 @@ Sets pin 9 High, pin 10 Low, doesn't change pin 11, and sets pins 12 and 13 to i
 			}
 			break;
 		case COMMAND_ASCII_RESET: // 'R'
-/** \addtogroup ProtocolAsciiCommands
-\{
+			/** \addtogroup ProtocolAsciiCommands
+			  \{
 
-ASCII Reset Command
----------------------
-This command causes an internal reset of the Serial Wombat, similar to one caused by pulling the reset pin low.
+			  ASCII Reset Command
+			  ---------------------
+			  This command causes an internal reset of the Serial Wombat, similar to one caused by pulling the reset pin low.
 
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|'R'|'e'|'S'|'e'|'T'|'!'|'#'|'*'|
+			  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+			  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+			  |'R'|'e'|'S'|'e'|'T'|'!'|'#'|'*'|
 
 
-No response, as Wombat enters reset upon receipt.
+			  No response, as Wombat enters reset upon receipt.
 Example:
 
 `ReSeT!#*`
 
 \}
-**/
+			 **/
 			{
 				if (Rxbuffer[1] == 'e' && 
 						Rxbuffer[2] == 'S' && Rxbuffer[3] == 'e' && 
@@ -381,29 +381,29 @@ Example:
 			}
 			break;
 		case COMMAND_ASCII_VERSION: //Ascii 'V'  Version String
-/** \addtogroup ProtocolAsciiCommands
-\{
+			/** \addtogroup ProtocolAsciiCommands
+			  \{
 
-ASCII Version Command
----------------------
-Sends back V followed by 7 characters indicating the firmware version number
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|'V'|'U'*|'U'*|'U'*|'U'*|'U'*|'U'*|'U'*|
-*'U' is recommended, but any byte is acceptable
+			  ASCII Version Command
+			  ---------------------
+			  Sends back V followed by 7 characters indicating the firmware version number
+			  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+			  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+			  |'V'|'U'*|'U'*|'U'*|'U'*|'U'*|'U'*|'U'*|
+			 *'U' is recommended, but any byte is acceptable
 
 Examples:
 
 `VUUUUUUU`
 
- Will respond 
- 
- `VSW20001`
+Will respond 
 
- Or similar
+`VSW20001`
+
+Or similar
 
 \}
-**/
+			 **/
 			Txbuffer[1] = 'S';   //Serial Wombat
 			Txbuffer[2] = '1';//(uint8_t)((NUMBER_OF_PHYSICAL_PINS / 10) + '0');   
 			Txbuffer[3] = '8';//(uint8_t)((NUMBER_OF_PHYSICAL_PINS % 10) + '0');
@@ -414,98 +414,98 @@ Examples:
 
 			break;
 		case COMMAND_BINARY_READ_PIN_BUFFFER:
-		{
-			uint16_t temp = GetBuffer(Rxbuffer[1]);
-			TXBUFFER16(2,temp);		
-			temp = GetBuffer(Rxbuffer[1] + 1);
-			TXBUFFER16(4,temp);		
-			temp = GetBuffer(Rxbuffer[1] + 2);
-			TXBUFFER16(6,temp);		
+			{
+				uint16_t temp = GetBuffer(Rxbuffer[1]);
+				TXBUFFER16(2,temp);		
+				temp = GetBuffer(Rxbuffer[1] + 1);
+				TXBUFFER16(4,temp);		
+				temp = GetBuffer(Rxbuffer[1] + 2);
+				TXBUFFER16(6,temp);		
 
-		}
-		break;
+			}
+			break;
 		case COMMAND_BINARY_SET_PIN_BUFFFER:
-		{
-			SetBuffer(Rxbuffer[1],RXBUFFER16(2));
-			SetBuffer(Rxbuffer[4],RXBUFFER16(5));
-		}
-		break;
+			{
+				SetBuffer(Rxbuffer[1],RXBUFFER16(2));
+				SetBuffer(Rxbuffer[4],RXBUFFER16(5));
+			}
+			break;
 
 		case COMMAND_BINARY_READ_USER_BUFFER:
-		{
-			 uint16_t address = RXBUFFER16(1);
-			 if (address< SIZE_OF_USER_BUFFER)
-			 {
-				uint16_t count = SIZE_OF_USER_BUFFER - address - 1;
-				if (count > 7)
+			{
+				uint16_t address = RXBUFFER16(1);
+				if (address< SIZE_OF_USER_BUFFER)
 				{
-					count = 7;
+					uint16_t count = SIZE_OF_USER_BUFFER - address - 1;
+					if (count > 7)
+					{
+						count = 7;
+					}
+					memcpy(&Txbuffer[1],&UserBuffer[address],count);
 				}
-				 memcpy(&Txbuffer[1],&UserBuffer[address],count);
-			 }
-			 //TODO:  Error on bad address
-		}
-		break;
+				//TODO:  Error on bad address
+			}
+			break;
 
 		case COMMAND_BINARY_WRITE_USER_BUFFER:
-		{
-			 lastUserBufferIndex = RXBUFFER16(1);
-             uint16_t count = Rxbuffer[3];
-             if (count > 4)
-             {
-                 error(SW_ERROR_WUB_COUNT_GT_4);
-             }
-             else
-             {
-                 
-             
-                 if (lastUserBufferIndex + count < SIZE_OF_USER_BUFFER)
-                 {
-                     memcpy(&UserBuffer[lastUserBufferIndex],&Rxbuffer[4],count);
-                     lastUserBufferIndex += count;
-                 }
-                 else
-                 {
-                     error(SW_ERROR_WUB_INVALID_ADDRESS);
-                 }
-             }
-
-		}
-		break;
-		case COMMAND_BINARY_WRITE_USER_BUFFER_CONTINUE:
-		{
-			if (lastUserBufferIndex < SIZE_OF_USER_BUFFER)
-			 {
-				uint16_t count = SIZE_OF_USER_BUFFER - lastUserBufferIndex - 1;
-				if (count >= 7)
+			{
+				lastUserBufferIndex = RXBUFFER16(1);
+				uint16_t count = Rxbuffer[3];
+				if (count > 4)
 				{
-					count = 7;
-                     memcpy(&UserBuffer[lastUserBufferIndex],&Rxbuffer[1],count);
-                     lastUserBufferIndex += count;
+					error(SW_ERROR_WUB_COUNT_GT_4);
 				}
-                else
-                {
-                      error(SW_ERROR_WUB_CONTINUE_OUTOFBOUNDS);
-                }
-				
-			 }
-		}
-		break;
+				else
+				{
+
+
+					if (lastUserBufferIndex + count < SIZE_OF_USER_BUFFER)
+					{
+						memcpy(&UserBuffer[lastUserBufferIndex],&Rxbuffer[4],count);
+						lastUserBufferIndex += count;
+					}
+					else
+					{
+						error(SW_ERROR_WUB_INVALID_ADDRESS);
+					}
+				}
+
+			}
+			break;
+		case COMMAND_BINARY_WRITE_USER_BUFFER_CONTINUE:
+			{
+				if (lastUserBufferIndex < SIZE_OF_USER_BUFFER)
+				{
+					uint16_t count = SIZE_OF_USER_BUFFER - lastUserBufferIndex - 1;
+					if (count >= 7)
+					{
+						count = 7;
+						memcpy(&UserBuffer[lastUserBufferIndex],&Rxbuffer[1],count);
+						lastUserBufferIndex += count;
+					}
+					else
+					{
+						error(SW_ERROR_WUB_CONTINUE_OUTOFBOUNDS);
+					}
+
+				}
+			}
+			break;
 
 		case COMMAND_BINARY_QUEUE_INITIALIZE:
-		{
-/** \addtogroup ProtocolBinaryCommands
-\{
+			{
+				/** \addtogroup ProtocolBinaryCommands
+				  \{
 
-Initialize Queue
----------------------
-Initialize a queue in user memory 
-Queue types are as follows:  
-0 - Byte data queue in RAM
+				  Initialize Queue
+				  ---------------------
+				  Initialize a queue in user memory 
+				  Queue types are as follows:  
+				  0 - Byte data queue in RAM
 
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0x90 |Queue Address LSB |Queue Address MSB |Size LSB|Size MSB|Queue Type|Varies|Varies|
+				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+				  |0x90 |Queue Address LSB |Queue Address MSB |Size LSB|Size MSB|Queue Type|Varies|Varies|
 
 Examples:
 
@@ -514,24 +514,24 @@ Examples:
 Initializes a ram queue of 32 bytes at address 0x0010 in user memory.
 
 \}
-**/
-			QueueByteInitialize(RXBUFFER16(1),RXBUFFER16(2));	
-			//TODO handle error return codes
+				 **/
+				QueueByteInitialize(RXBUFFER16(1),RXBUFFER16(2));	
+				//TODO handle error return codes
 
-		}
-		break;
+			}
+			break;
 		case COMMAND_BINARY_QUEUE_ADD_BYTES:
-		{
-/** \addtogroup ProtocolBinaryCommands
-\{
+			{
+				/** \addtogroup ProtocolBinaryCommands
+				  \{
 
-Add bytes to queue
----------------------
-Add bytes to a ram queue of bytes.  Updates the internal last queue variable with the queue being added to.
+				  Add bytes to queue
+				  ---------------------
+				  Add bytes to a ram queue of bytes.  Updates the internal last queue variable with the queue being added to.
 
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0x90 |Queue Address LSB |Queue Address MSB |Count of bytes to add (0-4)| Byte to Add| Byte to Add| Byte to Add| Byte to Add|
+				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+				  |0x90 |Queue Address LSB |Queue Address MSB |Count of bytes to add (0-4)| Byte to Add| Byte to Add| Byte to Add| Byte to Add|
 
 Examples:
 
@@ -540,29 +540,29 @@ Examples:
 Add bytes 0x31, 0x32, 0x33, and 0x34 to queue located at 0x0010.
 
 \}
-**/
-			uint8_t i;
-			lastQueueIndex = RXBUFFER16(1);
-			for (i = 0; i < Rxbuffer[3]; ++i)
-			{
-				QueueAddByte(lastQueueIndex,Rxbuffer[4 + i]);
+				 **/
+				uint8_t i;
+				lastQueueIndex = RXBUFFER16(1);
+				for (i = 0; i < Rxbuffer[3]; ++i)
+				{
+					QueueAddByte(lastQueueIndex,Rxbuffer[4 + i]);
+				}
+				//TODO handle error return codes
+
 			}
-			//TODO handle error return codes
-
-		}
-		break;
+			break;
 		case COMMAND_BINARY_QUEUE_ADD_7BYTES:
-		{
-/** \addtogroup ProtocolBinaryCommands
-\{
+			{
+				/** \addtogroup ProtocolBinaryCommands
+				  \{
 
-Add bytes to queue
----------------------
-Add 7 bytes to the last written ram queue of bytes.  
+				  Add bytes to queue
+				  ---------------------
+				  Add 7 bytes to the last written ram queue of bytes.  
 
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0x92 |Byte to Add|Byte to Add|Byte to Add|  Byte to Add| Byte to Add| Byte to Add| Byte to Add|
+				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+				  |0x92 |Byte to Add|Byte to Add|Byte to Add|  Byte to Add| Byte to Add| Byte to Add| Byte to Add|
 
 Examples:
 
@@ -571,29 +571,29 @@ Examples:
 Add bytes 0x35, 0x36, 0x37, 0x38, 0x39, 0x3A and 0x3B to queue last added to.
 
 \}
-**/
-			uint8_t i;
-			lastQueueIndex = RXBUFFER16(1);
-			for (i = 0; i < Rxbuffer[3]; ++i)
-			{
-				QueueAddByte(lastQueueIndex,Rxbuffer[4 + i]);
+				 **/
+				uint8_t i;
+				lastQueueIndex = RXBUFFER16(1);
+				for (i = 0; i < Rxbuffer[3]; ++i)
+				{
+					QueueAddByte(lastQueueIndex,Rxbuffer[4 + i]);
+				}
+				//TODO handle error return codes
+
 			}
-			//TODO handle error return codes
-
-		}
-		break;
+			break;
 		case COMMAND_BINARY_QUEUE_READ_BYTES:
-		{
-/** \addtogroup ProtocolBinaryCommands
-\{
+			{
+				/** \addtogroup ProtocolBinaryCommands
+				  \{
 
-Read Bytes from Queue
----------------------
-Read up to 6 bytes from a given queue
+				  Read Bytes from Queue
+				  ---------------------
+				  Read up to 6 bytes from a given queue
 
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0x93 |Queue Address LSB|Queue Address MSB|Maximum bytes to read|Unused|Unused|Unused|Unused|
+				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+				  |0x93 |Queue Address LSB|Queue Address MSB|Maximum bytes to read|Unused|Unused|Unused|Unused|
 
 
 Response:
@@ -612,38 +612,38 @@ Sample Response:
 Two bytes were available in the queue.  0x34, and 0x35
 
 \}
-**/
-			QUEUE_RESULT_t result = QUEUE_RESULT_SUCCESS;
-			uint8_t i;
-			for (i = 0; i < Rxbuffer[3] && result == QUEUE_RESULT_SUCCESS; ++i)
-			{
-				result = QueueAddByte(RXBUFFER16(1),&Txbuffer[2 + i]); //TODO this is wrong...
+				 **/
+				QUEUE_RESULT_t result = QUEUE_RESULT_SUCCESS;
+				uint8_t i;
+				for (i = 0; i < Rxbuffer[3] && result == QUEUE_RESULT_SUCCESS; ++i)
+				{
+					result = QueueAddByte(RXBUFFER16(1),&Txbuffer[2 + i]); //TODO this is wrong...
+				}
+				Txbuffer[1] = i;
+				//TODO handle error return codes
+
 			}
-			Txbuffer[1] = i;
-			//TODO handle error return codes
+			break;
+		case COMMAND_BINARY_READ_RAM:
+			{
+				/** \addtogroup ProtocolBinaryCommands
+				  \{
 
-		}
-		break;
-       case COMMAND_BINARY_READ_RAM:
-        {
-            /** \addtogroup ProtocolBinaryCommands
-\{
+				  ----
 
-----
+				  Binary Read RAM, 16 Bit address
+				  ---------------------
 
-Binary Read RAM, 16 Bit address
----------------------
+				  Reads a byte from an address in Microcontroller RAM.  The SW4A and SW4B use 16 bit addresses.  
 
-Reads a byte from an address in Microcontroller RAM.  The SW4A and SW4B use 16 bit addresses.  
-
-Note that the PIC16F15214 is a Microchip Enhanced Mid-Range chip with both a banked RAM area and a Linear RAM area at an offset address.  
-See the datasheet for details.
+				  Note that the PIC16F15214 is a Microchip Enhanced Mid-Range chip with both a banked RAM area and a Linear RAM area at an offset address.  
+				  See the datasheet for details.
 
 
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xA0|Least Significant byte of 16-bit address |Most Significant byte of 16-bit address | 0x55* | 0x55* | 0x55* |  0x55* | 0x55* |
- *0x55 is recommended, but any byte is acceptable
+				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+				  |0xA0|Least Significant byte of 16-bit address |Most Significant byte of 16-bit address | 0x55* | 0x55* | 0x55* |  0x55* | 0x55* |
+				 *0x55 is recommended, but any byte is acceptable
 
 Response:
 
@@ -662,31 +662,31 @@ Response:
 > `0xA0 0x47 0x02 0xAC 0x55 0x55 0x55 0x55`
 
 \}
-**/
-	uint16_t addr = RXBUFFER16(1);
-    Txbuffer[3] = *(uint8_t*)addr;
-            
-        }
-        break;
-        
-        case COMMAND_BINARY_READ_FLASH:
-        {
-/** \addtogroup ProtocolBinaryCommands
-\{
+				 **/
+				uint16_t addr = RXBUFFER16(1);
+				Txbuffer[3] = *(uint8_t*)addr;
 
-----
+			}
+			break;
 
-Binary Read Flash, 32 Bit address, 32 Bit result
----------------------
+		case COMMAND_BINARY_READ_FLASH:
+			{
+				/** \addtogroup ProtocolBinaryCommands
+				  \{
 
-Reads two bytes from an address in Microcontroller Flash.  The SW18AB  uses 32 bit addresses.  Due to 24 bit architecture the high byte of a 32 bit word is 0.
-Multiply the Word Address by 2 to get the byte address.  
+				  ----
 
-See the Datasheet for the microchip PIC16F15214 for information on organization
+				  Binary Read Flash, 32 Bit address, 32 Bit result
+				  ---------------------
 
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xA1|Least Significant byte of 32-bit byte address (must be multiple of 4) |Middle low byte of 32-bit byte address  | Middle High byte of 32-bit byte address | Most Significant byte of 32-bit byte address | 0x55* |  0x55* | 0x55* |
+				  Reads two bytes from an address in Microcontroller Flash.  The SW18AB  uses 32 bit addresses.  Due to 24 bit architecture the high byte of a 32 bit word is 0.
+				  Multiply the Word Address by 2 to get the byte address.  
+
+				  See the Datasheet for the microchip PIC16F15214 for information on organization
+
+				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+				  |0xA1|Least Significant byte of 32-bit byte address (must be multiple of 4) |Middle low byte of 32-bit byte address  | Middle High byte of 32-bit byte address | Most Significant byte of 32-bit byte address | 0x55* |  0x55* | 0x55* |
 
 
 Response:
@@ -706,55 +706,55 @@ Response:
 > `0xA1 0x46 0x08 0x01 0x00 0xEF 0x07 0x55`
 
 \}
-**/
-            uint32_t address = RXBUFFER32(1);
-            uint16_t result = 0;
-            if (address & 0x01)
-            {
-                error(SW_ERROR_RF_ODD_ADDRESS);
-            }
-            else
-            {
-                INTERRUPT_GlobalDisable();  // While we're messing with TBLPAG
-                uint8_t tblpag = TBLPAG;
-                TBLPAG = address >>16;
-                    result = __builtin_tblrdl(address );
-                    TXBUFFER16(4,result);          
-                    result = __builtin_tblrdh(address );
-                    TBLPAG = tblpag;
-                    INTERRUPT_GlobalEnable();
-                     TXBUFFER16(6,result);
-                     
-            }
+				 **/
+				uint32_t address = RXBUFFER32(1);
+				uint16_t result = 0;
+				if (address & 0x01)
+				{
+					error(SW_ERROR_RF_ODD_ADDRESS);
+				}
+				else
+				{
+					INTERRUPT_GlobalDisable();  // While we're messing with TBLPAG
+					uint8_t tblpag = TBLPAG;
+					TBLPAG = address >>16;
+					result = __builtin_tblrdl(address );
+					TXBUFFER16(4,result);          
+					result = __builtin_tblrdh(address );
+					TBLPAG = tblpag;
+					INTERRUPT_GlobalEnable();
+					TXBUFFER16(6,result);
 
-        }
-        break;
-        
-        case COMMAND_BINARY_WRITE_RAM:
-        {
-       /** \addtogroup ProtocolBinaryCommands
-\{
+				}
 
-----
+			}
+			break;
 
-Binary Write RAM, 16 Bit address (
----------------------
+		case COMMAND_BINARY_WRITE_RAM:
+			{
+				/** \addtogroup ProtocolBinaryCommands
+				  \{
 
-Reads a byte from an address in Microcontroller RAM.  The SW4A and SW4B use 16 bit addresses.  
+				  ----
 
-Note that the PIC16F15214 is a Microchip Enhanced Mid-Range chip with both a banked RAM area and a Linear RAM area at an offset address.  
-See the datasheet for details.
+				  Binary Write RAM, 16 Bit address (
+				  ---------------------
+
+				  Reads a byte from an address in Microcontroller RAM.  The SW4A and SW4B use 16 bit addresses.  
+
+				  Note that the PIC16F15214 is a Microchip Enhanced Mid-Range chip with both a banked RAM area and a Linear RAM area at an offset address.  
+				  See the datasheet for details.
 
 
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xA3|Least Significant byte of 16-bit address |Most Significant byte of 16-bit address | 0 (for 32-bit compatability) | 0 (for 32-bit compatability) | Byte To write |  0x55* | 0x55* |
- *0x55 is recommended, but any byte is acceptable
+				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+				  |0xA3|Least Significant byte of 16-bit address |Most Significant byte of 16-bit address | 0 (for 32-bit compatability) | 0 (for 32-bit compatability) | Byte To write |  0x55* | 0x55* |
+				 *0x55 is recommended, but any byte is acceptable
 
 Response:
 
 Echoed Back.
-        * 
+				 * 
 Examples:
 
 Write 0x32 the byte at RAM address 0x0247.
@@ -764,50 +764,50 @@ Write 0x32 the byte at RAM address 0x0247.
 
 
 \}
-**/
-		uint16_t addr = RXBUFFER16(1);
-        *(uint8_t*)addr = Rxbuffer[5];            
-        }
-        break;
-        
-        case COMMAND_BINARY_TEST_SEQUENCE:
-        {
-            if (Txbuffer[1] == 'R' && 
-                    Txbuffer[2] == 'E'  &&
-                    Txbuffer[3] == 'S'  &&
-                    Txbuffer[4] == 'E'  &&
-                    Txbuffer[5] == 'T' )
-            {
-                testSequenceNumber = 0;
-                testSequenceArmed = 1;
-            }
-            else
-            {
-                uint8_t i;
-                for (i = 1; i < 8 ; ++ i )
-                {
-                    if (Txbuffer[i] != testSequenceNumber && testSequenceArmed)
-                    {
-                        #ifdef __DEBUG    
-    __builtin_software_breakpoint();
-    testSequenceArmed = 0;
-    /* If we are in debug mode, cause a software breakpoint in the debugger */
+				 **/
+				uint16_t addr = RXBUFFER16(1);
+				*(uint8_t*)addr = Rxbuffer[5];            
+			}
+			break;
+
+		case COMMAND_BINARY_TEST_SEQUENCE:
+			{
+				if (Txbuffer[1] == 'R' && 
+						Txbuffer[2] == 'E'  &&
+						Txbuffer[3] == 'S'  &&
+						Txbuffer[4] == 'E'  &&
+						Txbuffer[5] == 'T' )
+				{
+					testSequenceNumber = 0;
+					testSequenceArmed = 1;
+				}
+				else
+				{
+					uint8_t i;
+					for (i = 1; i < 8 ; ++ i )
+					{
+						if (Txbuffer[i] != testSequenceNumber && testSequenceArmed)
+						{
+#ifdef __DEBUG    
+							__builtin_software_breakpoint();
+							testSequenceArmed = 0;
+							/* If we are in debug mode, cause a software breakpoint in the debugger */
 #endif
-                    }
-                    ++testSequenceNumber;
-                    
-                }
-            }
-            
-        }
-        break;
-        
-        case 254: // TODO Remove
-        {
-            TXBUFFER16(1,RCON);
-            RCON = 0;
-        }
-        break;
+						}
+						++testSequenceNumber;
+
+					}
+				}
+
+			}
+			break;
+
+		case 254: // TODO Remove
+			{
+				TXBUFFER16(1,RCON);
+				RCON = 0;
+			}
+			break;
 
 		case CONFIGURE_CHANNEL_MODE_0:
 		case CONFIGURE_CHANNEL_MODE_1:
@@ -828,14 +828,14 @@ Write 0x32 the byte at RAM address 0x0247.
 		case CONFIGURE_CHANNEL_MODE_16:
 		case CONFIGURE_CHANNEL_MODE_17:
 		case CONFIGURE_CHANNEL_MODE_18:
-        case CONFIGURE_CHANNEL_MODE_DISABLE:
-        case CONFIGURE_CHANNEL_MODE_HW_0:
-        case CONFIGURE_CHANNEL_MODE_HW_1:
-        case CONFIGURE_CHANNEL_MODE_HW_2 :
-        case CONFIGURE_CHANNEL_MODE_HW_3:
-        {
-			ProcessSetPin();
-        }
+		case CONFIGURE_CHANNEL_MODE_DISABLE:
+		case CONFIGURE_CHANNEL_MODE_HW_0:
+		case CONFIGURE_CHANNEL_MODE_HW_1:
+		case CONFIGURE_CHANNEL_MODE_HW_2 :
+		case CONFIGURE_CHANNEL_MODE_HW_3:
+			{
+				ProcessSetPin();
+			}
 			break;
 		default:
 			error(SW_ERROR_INVALID_COMMAND);
@@ -848,108 +848,113 @@ Write 0x32 the byte at RAM address 0x0247.
 
 void ProcessRx(void)
 {
-    /*
-	if ( UartRxbufferCounter < RXBUFFER_LENGTH)
+	if (SW_I2CAddress == 0)  // Use UART
 	{
-		uint8_t numberOfBytesRead = 0;
-		numberOfBytesRead = UART1_ReadBuffer(&Rxbuffer[UartRxbufferCounter], RXBUFFER_LENGTH - UartRxbufferCounter);
-		if (LineBreaksAndEcho)
-				{
-					UART1_WriteBuffer(&Rxbuffer[UartRxbufferCounter],numberOfBytesRead);
-				}
-        UartRxbufferCounter += numberOfBytesRead;
-        
-		while (UartRxbufferCounter > 0  && Rxbuffer[0] == 0x55 )
+		if ( UartRxbufferCounter < RXBUFFER_LENGTH)
 		{
-			uint8_t i;
-			for (i = 0; i < RXBUFFER_LENGTH - 1; ++i)
+			uint8_t numberOfBytesRead = 0;
+			numberOfBytesRead = UART1_ReadBuffer(&Rxbuffer[UartRxbufferCounter], RXBUFFER_LENGTH - UartRxbufferCounter);
+			if (LineBreaksAndEcho)
 			{
-				Rxbuffer[i] = Rxbuffer[i+1];
-
+				UART1_WriteBuffer(&Rxbuffer[UartRxbufferCounter],numberOfBytesRead);
 			}
-			-- UartRxbufferCounter;
-			++debug_discarded_bytes;
+			UartRxbufferCounter += numberOfBytesRead;
+
+			while (UartRxbufferCounter > 0  && Rxbuffer[0] == 0x55 )
+			{
+				uint8_t i;
+				for (i = 0; i < RXBUFFER_LENGTH - 1; ++i)
+				{
+					Rxbuffer[i] = Rxbuffer[i+1];
+
+				}
+				-- UartRxbufferCounter;
+				++debug_discarded_bytes;
+			}
+		}
+
+		if (UartRxbufferCounter >= RXBUFFER_LENGTH)
+		{
+			int i;
+			ProcessRxbuffer();
+			UartRxbufferCounter = 0;
+			for (i = 0; i < RXBUFFER_LENGTH; ++i)
+			{
+				Rxbuffer[i] = 0xFE;
+			}	
+			uartStartTX();
 		}
 	}
-    
-	if (UartRxbufferCounter >= RXBUFFER_LENGTH)
+	if (SW_I2CAddress != 0)  // Use I2C
 	{
-		int i;
-		ProcessRxbuffer();
-		UartRxbufferCounter = 0;
-		for (i = 0; i < RXBUFFER_LENGTH; ++i)
+
+		extern volatile uint8_t wombatI2CRxData[8];
+		extern volatile uint8_t wombatI2CTxData[8];
+		extern volatile uint8_t wombatI2CRxDataCount;
+
+		if (wombatI2CRxDataCount >= 8)
 		{
-			Rxbuffer[i] = 0xFE;
-		}	
-		uartStartTX();
-	}
-     */
-    extern volatile uint8_t wombatI2CRxData[8];
-    extern volatile uint8_t wombatI2CTxData[8];
-    extern volatile uint8_t wombatI2CRxDataCount;
-    
-    if (wombatI2CRxDataCount >= 8)
-    {
-        OUTPUT_I2C_DEBUG(0x11);
-        OUTPUT_I2C_DEBUG(0x11);
-       
-        
-        ResponseAvailable = false;
-        
-        memcpy(Rxbuffer,wombatI2CRxData,8);
-        wombatI2CRxDataCount = 0;
-        	if (RX_ClockStretching)  
+			OUTPUT_I2C_DEBUG(0x11);
+			OUTPUT_I2C_DEBUG(0x11);
+
+
+			ResponseAvailable = false;
+
+			memcpy(Rxbuffer,wombatI2CRxData,8);
+			wombatI2CRxDataCount = 0;
+			if (RX_ClockStretching)  
 			{
-                OUTPUT_I2C_DEBUG(30);
+				OUTPUT_I2C_DEBUG(30);
 				// If we're in the middle of stretching a 2nd request to send us data to from the host, release.  
 				// We've made a copy of the incoming data, so we can receive another while we're processing this one.
 				// The fact that the host is trying to send us another packet means it doesn't care about the response
 				// from the packet we're about to process.
 				TX_ClockStretching = 0; 
-			
+
 				I2C2CONLbits.SCLREL	 = 1; // Release clock stretch in hardware
 			}
 
-        ProcessRxbuffer();
-        if (Rxbuffer[1] == 0x21 && Rxbuffer[0] != 0x21 )
-        {
-            ++debugBreakpointVariable;
-        }
-        INTERRUPT_GlobalDisable();
-        memcpy(wombatI2CTxData,Txbuffer,8);
-        ResponseAvailable = true;
-        ResponsePending = false;
-        
-        if (RX_ClockStretching)
-		{
-			OUTPUT_I2C_DEBUG(28);
-			// If we're in the middle of stretching a 2nd request to send us data to from the host, release.  
-			RX_ClockStretching = 0;
+			ProcessRxbuffer();
+			if (Rxbuffer[1] == 0x21 && Rxbuffer[0] != 0x21 )
+			{
+				++debugBreakpointVariable;
+			}
+			INTERRUPT_GlobalDisable();
+			memcpy(wombatI2CTxData,Txbuffer,8);
+			ResponseAvailable = true;
+			ResponsePending = false;
 
-			ResponseAvailable = false;
+			if (RX_ClockStretching)
+			{
+				OUTPUT_I2C_DEBUG(28);
+				// If we're in the middle of stretching a 2nd request to send us data to from the host, release.  
+				RX_ClockStretching = 0;
+
+				ResponseAvailable = false;
+			}
+
+			if (TX_ClockStretching && ResponseAvailable)
+			{
+
+				OUTPUT_I2C_DEBUG(29);
+				// If we were clock stretching waiting for a response to the last packet to be generated,
+				// it's ready now, so stop stretching the clock.
+				TX_ClockStretching = 0;
+				RX_ClockStretching = 0;
+				extern volatile uint8_t wombatI2CTxDataCount;
+				I2C2CONLbits.SCLREL	 = 1; // Release clock stretch
+				ResponseAvailable = 0;
+				//I2C2TRN =   wombatI2CTxData[ 0 ];   
+				wombatI2CTxDataCount = 0;
+
+
+
+			}
+			INTERRUPT_GlobalEnable();
+			OUTPUT_I2C_DEBUG(0x11);
+			OUTPUT_I2C_DEBUG(0x11);
 		}
-        
-        if (TX_ClockStretching && ResponseAvailable)
-        {
-
-OUTPUT_I2C_DEBUG(29);
-		// If we were clock stretching waiting for a response to the last packet to be generated,
-		// it's ready now, so stop stretching the clock.
-		TX_ClockStretching = 0;
-		RX_ClockStretching = 0;
-        extern volatile uint8_t wombatI2CTxDataCount;
-        I2C2CONLbits.SCLREL	 = 1; // Release clock stretch
-		ResponseAvailable = 0;
-		//I2C2TRN =   wombatI2CTxData[ 0 ];   
-        		wombatI2CTxDataCount = 0;
-
-
-		
 	}
-        INTERRUPT_GlobalEnable();
-         OUTPUT_I2C_DEBUG(0x11);
-        OUTPUT_I2C_DEBUG(0x11);
-    }
 }
 
 
@@ -1038,6 +1043,12 @@ void ProcessSetPin()
         {
             extern void initWS2812();
             initWS2812();
+        }
+        break;
+        case PIN_MODE_TOUCH:
+        {
+            extern void initTouch();
+            initTouch();
         }
         break;
         

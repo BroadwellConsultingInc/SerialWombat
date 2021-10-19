@@ -63,17 +63,11 @@ void reset ()
 void (*voidvoidPtr)();
 int main(void)
 {
- 
-   
 
-      
      I2C2CONL = 0;  //Shut off I2C
-     
-     
      INTCON2 |= 0x100; // Set Alternate vector table.  Bits in .h file are wrong in INTCON2bits so use bit or
 // Get the address from the reset vector and jump to the reset routine.
       // Jumping directly into the AVT causes an address trap.
-      
       uint32_t high = 0;
       uint16_t low = 0;
        low = __builtin_tblrdl(0x4000);

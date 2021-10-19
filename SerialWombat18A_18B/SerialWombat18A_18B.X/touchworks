@@ -1,0 +1,420 @@
+/*
+Copyright 2020-2021 Broadwell Consulting Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a 
+ * copy of this software and associated documentation files (the "Software"), 
+ * to deal in the Software without restriction, including without limitation 
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+ * and/or sell copies of the Software, and to permit persons to whom the 
+ * Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in 
+ * all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR 
+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
+ * OTHER DEALINGS IN THE SOFTWARE.
+*/
+#include "serialWombat.h"
+#include <stdint.h>
+#include "pic24fj256ga702/mcc_generated_files/mcc.h"
+
+typedef struct touch_n{
+}touch_t;
+
+#define CTMU_MODE_EDGE 0
+#define RANGE_0_550uA 1 // .550uA
+#define CTMU_TOUCH_THRESHHOLD_OFFSET 20
+
+typedef enum
+{
+	TOUCH_CHANNEL_ON_OFF,
+	TOUCH_CHANNEL_MODE
+}
+TOUCH_CHANNEL_t;
+
+void CtmuCapTouchConfig(unsigned int mode, unsigned int range, signed int trim, TOUCH_CHANNEL_t touchChannel)
+{
+// step 1 Configure the CTMU
+CTMUCON1L = 0x0000; // Disable CTMU
+CTMUCON1Lbits.TGEN = mode; // Enable/Disable Time Generation mode
+CTMUCON1Lbits.EDGEN = 0; // Edges are disabled
+CTMUCON1Lbits.ITRIM = trim; // Set trim
+CTMUCON1Lbits.CTTRIG = 0; // Trigger output disabled
+CTMUCON1Lbits.IRNG = (range & 3); // Set range
+
+CTMUCON1H = 0; // Edges are disabled, edge controls ignored
+// This line does not apply to all devices
+CTMUCON1Hbits.IRNGH = (range>>2); // set high bit of range
+
+CTMUCON2Lbits.IRSTEN = 0; // Current source reset disabled
+CTMUCON2Lbits.DSCHS = 0; // Discharge source disabled
+// Step 2 Configure the port Ports
+//TRISB = TRISB | (1<<15); // Set channel 9
+//ANSBbits.ANSB15 = 1; // Make AN2 as analog
+
+// Step 3 configure the ADC
+if (touchChannel == TOUCH_CHANNEL_ON_OFF)
+{
+AD1CHSbits.CH0SA = 8; // Select the analog channel(2)
+}
+else
+{
+AD1CHSbits.CH0SA = 7; // Select the analog channel(2)
+    
+}
+
+AD1CON1 = 0x8020; // Turn On A/D Converter,
+// Unsigned fractional format, TMR3 to
+// start conversion, Sample when SAMP bit is set
+AD1CON2 = 0x0000; // VR+ = AVDD, V- = AVSS, Don't scan,
+AD1CON3 = 0x8002; // ADC uses system clock
+AD1CON3bits.ADCS = 0; // conversion clock = 1xTcy
+AD1CON5 = 0x0000; // Auto-Scan disabled
+}
+
+
+unsigned int CtmuReturnSample(TOUCH_CHANNEL_t touchChannel)
+{
+unsigned int result, x;
+
+// Step 4 - 7 Enable the current source and start sampling
+CTMUCON1Lbits.CTMUEN = 1; // Enable the CTMU
+CTMUCON1Hbits.EDG1STAT = 1; // Enable current source
+CTMUCON1Lbits.IDISSEN = 1; // Enable discharge
+
+
+AD1CON1bits.DONE = 0; //Set up the timer 
+T3CON = 0;
+TMR3 = 0;
+PR3 = 0x2000;
+
+AD1CON1bits.SAMP = 1; // Manual sampling start
+// step 8 1500us delay to discharge sample cap
+for (x = 0; x < 2000; x++); // ~6 cycles * 2000
+// step 9 Disable the discharge circuit
+
+INTERRUPT_GlobalDisable();
+CTMUCON1Lbits.IDISSEN = 0; // Disable discharge (start charging)
+T3CON = 0x8000; //Start timer
+INTERRUPT_GlobalEnable();
+
+
+while(AD1CON1bits.DONE == 0); // Wait for A/D convert complete
+// Step 12 Disable the current source
+CTMUCON1Hbits.EDG1STAT = 0; // Disable current source
+IFS0bits.AD1IF = 0; // Clear ADC interrupt flag
+CTMUCON1Lbits.CTMUEN = 0; // Disable the CTMU
+result = ADC1BUF0;
+return (result);
+}
+unsigned int sampleR;
+unsigned int untouchedRight;
+bool untouchedRightSet = false;
+
+bool TouchRightTouched()
+{
+CtmuCapTouchConfig(CTMU_MODE_EDGE, RANGE_0_550uA, 0, TOUCH_CHANNEL_ON_OFF);
+
+sampleR = CtmuReturnSample(TOUCH_CHANNEL_ON_OFF);
+
+if (! untouchedRightSet)
+{
+	untouchedRight = sampleR;
+    untouchedRightSet = true;
+	return (false);
+}
+return (sampleR < untouchedRight - CTMU_TOUCH_THRESHHOLD_OFFSET);
+
+}
+
+unsigned int sampleL;
+unsigned int untouchedLeft;
+bool untouchedLeftSet = false;
+
+bool TouchLeftTouched()
+{
+CtmuCapTouchConfig(CTMU_MODE_EDGE, RANGE_0_550uA, 0, TOUCH_CHANNEL_MODE);
+
+sampleL = CtmuReturnSample(TOUCH_CHANNEL_MODE);
+
+if (! untouchedLeftSet)
+{
+	untouchedLeft = sampleL;
+    untouchedLeftSet = true;
+	return (false);
+}
+return (sampleL < untouchedLeft - 6);
+
+}
+
+
+#define touch ((touch_t*) CurrentPinRegister)
+
+/*!
+    \brief Initialization routine for Capacitive Touch sensor
+
+----
+
+Retrevial of Raw A/D conversions
+-------------------------------
+
+Configure the A/D using the CONFIGURE_CHANNEL_MODE_0 command before reading values.  
+Raw A/D conversions are stored in the Pin's 16-bit Public data area.  Use the Read Pin Buffer command to retreive it.
+
+-----
+
+
+CONFIGURE_CHANNEL_MODE_0:
+---------------------
+
+Initialize Analog Input.  Disables averaged and filtered values.
+
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xC0|Pin To Set|0x02 (Analog Input) | 0x55* |0x55* |0x55* |0x55* |0x55* |
+
+\*0x55 is recommended, but any byte is acceptable
+
+Response:
+
+Command is echoed back.
+
+Examples:
+
+Set pin 3 to Analog Input.
+
+> `0xC0 0x03 0x02 0x55 0x55 0x55 0x55 0x55 `
+
+----
+
+CONFIGURE_CHANNEL_MODE_1:
+---------------------
+
+Configure analog input averaging and filtering.  CONFIGURE_CHANNEL_MODE_0 should be sent for the pin prior to sending this command.
+
+Filtering is done by the following algorithm:  
+
+Filtered Value = Prior Filtered value * (constant / 65536) + New Sample * ((65536 - constant) 
+
+This happens every 1mS (1000 hZ).
+
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xC1|Pin To Set|0x02 (Analog Input) |Averaging Count low byte (0 = off, 64 = 64 counts) | Averaging Count high byte (set to 0, for compatability with SW19) |  Filter Constant Low Byte | Filter Constant High Byte | 0x55* |
+
+\*0x55 is recommended, but any byte is acceptable
+
+Response:
+
+Command is echoed back.
+
+Examples:
+
+Configure pin 3 Analog input to turn on averaging, set filter constant to 64358 (0xFB66)
+
+> `0xC1 0x03 0x02 0x40 0x00 0x66 0xFB 0x55 `
+
+
+----
+
+CONFIGURE_CHANNEL_MODE_2:
+---------------------
+
+
+Unused on the SW4A and SW4B.
+
+----
+
+CONFIGURE_CHANNEL_MODE_3:
+---------------------
+
+Retreive the Minimum and Maximum recorded raw values.
+
+This command can optionally reset the minimum and maximum values after reading.  This will cause them both to be set to the next A/D sample taken.
+
+The pin should have previously been configured as an analog input before sending this command.
+
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xC3|Pin Number|0x02 (Analog Input) | 0:  Don't reset values  1:  Reset Minimum and Maximum |     0x55* |0x55* |0x55* |0x55* |
+
+\*0x55 is recommended, but any byte is acceptable
+
+Response:
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xC3|Pin Number|0x02 (Analog Input) | Minimum Low Byte | Minimum High Byte | Maximum Low Byte | Maximum High Byte | Echo of Byte 7 |
+
+
+
+Examples:
+
+Get Minimum and maximum values from pin 3, and reset after reading.  (Assume minimum value was 0x3F80, and Maximum was 0xDC40 )
+
+Sent: 
+
+> `0xC3 0x03 0x02 0x01 0x55 0x55 0x55 0x55`
+
+Received:
+
+> `0xC3 0x03 0x02 0x80 0x3F 0x40 0xDC 0x55`
+
+----
+
+CONFIGURE_CHANNEL_MODE_4:
+---------------------
+
+Retreive the averaged and filtered values. 
+
+The pin should have previously been configured as an analog input  using CONFIGURE_CHANNEL_MODE_0 and the average and/or filtered values enabled using
+CONFIGURE_CHANNEL_MODE_1 before sending this command.
+
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xC4|Pin Number|0x02 (Analog Input) | 0x55* |     0x55* |0x55* |0x55* |0x55* |
+
+\*0x55 is recommended, but any byte is acceptable
+
+Response:
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xC4|Pin Number|0x02 (Analog Input) | Average Low Byte | Average High Byte | Filtered Low Byte | Filtered High Byte | Echo of Byte 7 |
+
+
+
+Examples:
+
+Get Averaged and Filtered values from pin 3.  (Assume Averaged value was 0x3F80, and Filtered was 0xDC40 )
+
+Sent: 
+
+> `0xC4 0x03 0x02 0x55 0x55 0x55 0x55 0x55`
+
+Received:
+
+> `0xC4 0x03 0x02 0x80 0x3F 0x40 0xDC 0x55`
+
+*/
+
+void initTouch (void)
+{
+	
+	switch(Rxbuffer[0])
+	{
+		case CONFIGURE_CHANNEL_MODE_0:
+			{
+				CurrentPinInput();
+				CurrentPinAnalog();
+				CurrentPinRegister->generic.mode = PIN_MODE_TOUCH;
+                TouchRightTouched();
+                TXBUFFER16(3,sampleR);
+			}
+			break;
+
+		case CONFIGURE_CHANNEL_MODE_1:
+			{
+if (CurrentPinRegister->generic.mode == PIN_MODE_TOUCH)
+				{
+                     
+				}
+				else
+				{
+					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+				}
+			}
+			break;
+
+	}
+}
+/*
+void updateAnalogInput()
+{ 
+	
+	//uint16_t sample =  GetADCConversion(CurrentPin);
+uint16_t sample =  GetADCConversion(CurrentPin);
+if (sample >= 0xFFE0)
+{
+    sample = 0xFFFF;
+}
+	if (analogInput -> averageTotalSamples > 0)
+	{
+		analogInput-> averageSum += sample;
+		++analogInput->averageCount;
+#ifdef AVERAGE128
+        if (analogInput->averageCount == 128)
+        {
+            analogInput->average = (uint16_t)(analogInput->averageTotalSamples >> 7);
+            analogInput->averageTotalSamples = 0;
+			analogInput->averageSum = 0;
+        }
+#else
+		if (analogInput-> averageCount >= analogInput->averageTotalSamples)
+		{
+			analogInput->average = analogInput->averageSum / analogInput->averageTotalSamples;
+			analogInput->averageTotalSamples = 0;
+			analogInput->averageSum = 0;
+		}
+#endif
+	}
+	else
+	{
+		analogInput->average = sample;
+	}
+
+	if (analogInput -> filterConstant != 0)
+	{
+		uint32_t temp = analogInput-> filteredValue *  analogInput->filterConstant;
+		temp += sample * (65536 - analogInput->filterConstant);
+	        analogInput->filteredValue = temp >> 16;
+			
+
+	}
+	else
+	{
+		analogInput->filteredValue = sample;
+	}
+
+    if (CurrentPinRegister->generic.buffer < analogInput->minimum)
+	{
+		analogInput->minimum = CurrentPinRegister->generic.buffer;
+	}
+	if (CurrentPinRegister->generic.buffer > analogInput->maximum)
+	{
+		analogInput->maximum = CurrentPinRegister->generic.buffer;
+	}
+	switch (analogInput->publicDataSelection)
+	{
+		case 1: // filtered value
+			CurrentPinRegister ->generic.buffer = analogInput->filteredValue;
+		break;
+		case 2: // average 
+			CurrentPinRegister ->generic.buffer = analogInput->average;
+		break;
+		case 3: // minimum 
+			CurrentPinRegister ->generic.buffer = analogInput->minimum;
+		break;
+		case 4: // maximum 
+			CurrentPinRegister ->generic.buffer = analogInput->maximum;
+		break;
+
+		case 0:
+		default:
+			CurrentPinRegister->generic.buffer = sample;
+		break;
+	}
+	
+
+}
+
+*/

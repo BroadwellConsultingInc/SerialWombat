@@ -70,13 +70,11 @@ void SYSTEM_Initialize(void)
     UART2_Initialize();
   //  CVR_Initialize();
     CRC_Initialize();
-  //  UART1_Initialize();
     ADC1_Initialize();
-       
       ANSELB = 0;  // No analogs to start
    ANSELA = 0;
     
-    TMR3_Initialize();
+   // TMR3_Initialize();
     TMR2_Initialize();
     DMA_Initialize();
     TMR1_Initialize();  
@@ -87,25 +85,36 @@ void SYSTEM_Initialize(void)
     {
         //TODO initialize serial
         SW_I2CAddress = 0;
+  
+        RPINR18bits.U1RXR = 0x0005;    //RB5->UART1:U1RX
+        RPOR2bits.RP4R = 0x0003;    //RB4->UART1:U1TX
+        UART1_Initialize();
+        IPC3bits.U1TXIP = 1;
+        IPC2bits.U1RXIP = 1;
+        TRISBbits.TRISB4 = 0;
     }
     else if (addressVoltage < 825) // 10k
     {
         SW_I2CAddress = 0x68;
+         I2C2_Initialize();
     }
     else if (addressVoltage < 1375) //20 k
     {
         SW_I2CAddress = 0x69;
+         I2C2_Initialize();
     }
      else if (addressVoltage < 1925)  //30 k
     {
         SW_I2CAddress = 0x6A;
+         I2C2_Initialize();
     }
      else
      {
          SW_I2CAddress = 0x6B;
+          I2C2_Initialize();
      }
     }
-	   I2C2_Initialize();
+	  
 	   //    I2C1_Initialize();
 }
 

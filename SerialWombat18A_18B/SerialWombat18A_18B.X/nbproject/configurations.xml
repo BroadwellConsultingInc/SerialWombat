@@ -84,6 +84,7 @@
         <itemPath>watchdog.c</itemPath>
         <itemPath>TM1637.c</itemPath>
         <itemPath>ws2812.c</itemPath>
+        <itemPath>touch.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>protocol.c</itemPath>

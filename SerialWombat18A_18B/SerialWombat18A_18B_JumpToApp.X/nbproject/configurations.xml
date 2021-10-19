@@ -20,6 +20,7 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
     <itemPath>main_boot.c</itemPath>
+    <itemPath>main_boot.c</itemPath>
   </logicalFolder>
   <sourceRootList>
     <Elem>.</Elem>

@@ -21,7 +21,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 */
 #include "serialWombat.h"
 #include <stdint.h>
-#include <string.h>  //for memset
 #include "asciiConversion.h"
 
 
@@ -224,21 +223,15 @@ void StopDMA()
 CONFIGURE_CHANNEL_MODE_0:
 ---------------------
 
-Initialize TM1637 Output
+Initialize WS2812 Output
 
 
 |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xC0|Pin To Set (TO TM1637 Clock)|0x0A (TM1637 ) | Second Pin (TO TM1637 Data) |Digits | Mode |Public Data Source pin | Brightness (0-7) |
+|0xC0|Pin To Set |0x0C  | userBufferIndex LSB |userBufferIndex MSB | Number of LEDS |Unused 0x55*  |Unused 0x55* |
 
+\*0x55 is recommended, but any byte is acceptable
 
-Modes:
-
-- 16 bit Decimal output from Pin Public Data = 0,
-- 16 bit Hex output from Pin public Data = 1,
-- Char Array provided with 0xC4, 0xC5 commands  = 2, 
-- Raw 7 segment provided with 0xC4, 0xC5 commands  = 3,
-- Animation = 4,
 
 Response:
 
@@ -246,9 +239,9 @@ Command is echoed back.
 
 Examples:
 
-Set pin 19 to TM1637 Clock, 18 to TM1637 Data,  4 digit display, Hex output of pin 19, Brightness 5
+Set pin 19 to WS2812, user buffer index of 0x180, 16 LEDS
 
-> `0xC0 0x13 0x0A 0x12 0x04 0x02 0x13 0x05 `
+> `0xC0 0x13 0x0B 0x80 0x01 0x10 0x55 0x55 `
 
 ----
 
@@ -256,16 +249,13 @@ Set pin 19 to TM1637 Clock, 18 to TM1637 Data,  4 digit display, Hex output of p
 CONFIGURE_CHANNEL_MODE_1:
 ---------------------
 
-Change Display order of Digits 0-4.   If "012345" is displayed on the display after the 0xC0 command is sent and the digits appear in the
-wrong order, then use this command and CONFIGURE_CHANNEL_MODE_2 to change the display order.
-
-This command is also useful to map the bottom 4 digits of a 5 digit (16 bit) decimal display to the 4 digits of a 4-place display.
-
+Set an LED RGB Value
 
 
 |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xC1|Pin To Set (TO TM1637 Clock)|0x0A (TM1637 ) |Mapping for 0 digit |Mapping for 1 digit | Mapping for 2 digit |Mapping for 3 digit | Mapping for 4 digit |
+|0xC1|Pin To Set |0x0B  |LED index (0 to (Num LEDs - 1)) |Blue (0-255) | Green(0-255) |Red (0-255) |Unused 0x55* |
+\*0x55 is recommended, but any byte is acceptable
 
 
 
@@ -275,12 +265,11 @@ Command is echoed back.
 
 Examples:
 
+Set Pin 16,  LED 7 to RGB value 0x002532BF
 
-Upon displaying "012345" on a six digit display "210543" is displayed.  This can be corrected by sending the commands:
 
-> `0xC1 0x13 0x0A 0x02 0x01 0x00 0x15 0x04 `
+> `0xC1 0x13 0x0B 0x07 0xBF 0x32 0x25 0x55 `
 
-> `0xC2 0x13 0x0A 0x03 0x55 0x55 0x55 0x55 `
 
 
 ----
@@ -288,28 +277,42 @@ Upon displaying "012345" on a six digit display "210543" is displayed.  This can
 CONFIGURE_CHANNEL_MODE_2:
 ---------------------
 
-Change Display order of Digit 5.    See CONFIGURE_CHANNEL_MODE_1
+Respond with number of bytes needed in User Buffer to store a support a specified number of LEDS
 
 
 
 |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xC2|Pin To Set (TO TM1637 Clock)|0x0A (TM1637 ) |Mapping for 5 digit |Unused/0x55* |Unused/0x55* |Unused/0x55* |Unused/0x55* |
+|0xC2|Pin To Set |0x0B |Number of LEDS |Unused/0x55* |Unused/0x55* |Unused/0x55* |Unused/0x55* |
 
 \*0x55 is recommended, but any byte is acceptable
 
+Response:
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xC2|Pin To Set |0x0B |Number of Bytes MSB |Number of Bytes LSB |Unused/0x55* |Unused/0x55* |Unused/0x55* |
+
+Examples:
+
+Set Pin 16,  Request byte count for 15 LEDS
+
+
+> `0xC2 0x13 0x0B 0x0F 0x55 0x55 0x55 0x55 `
+Response (assume answer is 725 bytes (0x2D5):
+> `0xC2 0x13 0x0B 0xD5 0x02 0x55 0x55 0x55 `
 
 CONFIGURE_CHANNEL_MODE_3:
 ---------------------
 
-Set TM1637 Brightness
+Set an LED RGB Value in an animation frame.  This command cannot be called until the Animation buffer index is set with command 0xC4
 
 
 |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xC3|Pin To Set (TO TM1637 Clock)|0x0A (TM1637 ) |Brightness (0-7) |Unused/0x55* |Unused/0x55* |Unused/0x55* |Unused/0x55* | 
+|0xC3|Pin To Set |0x0B  |Frame Index | LED index (0 to (Num LEDs - 1)) |Blue (0-255) | Green(0-255) |Red (0-255) |
 
-\*0x55 is recommended, but any byte is acceptable
+
 
 Response:
 
@@ -317,87 +320,21 @@ Command is echoed back.
 
 Examples:
 
-Set pin 19  TM1637 Brightness to level 3
+Set Pin 16,  Frame 3 LED 7 to RGB value 0x002532BF
 
-> `0xC3 0x13 0x0A 0x03 0x55 0x55 0x55 0x55  `
+
+> `0xC1 0x13 0x0B 0x03 0x07 0xBF 0x32 0x25 `
+
 
 
 CONFIGURE_CHANNEL_MODE_4:
 ---------------------
 
-Set output values for TM1637.     0xC4 and 0xC5 are used to set 6 output bytes when in the Char array (2), Raw Segment (3), and animation (4) modes.  
-
-For Char array, ASCII characters are loaded into output values 0-5.  These are translated within the pin mode to Seven Segment displays.  Bytes above ASCII range (0x7F) in char mode are anded with 0x7F and transferred as is, allowing raw display in addition to characters.
-
-In Raw Segment Mode the 8 bit data (7 segments (Seg A in LSB)  and decimal point (MSB)) are transferred directly to the display.
-
-In animation mode output values specify a 16 bit index into the User Memory buffer where a series of 6 byte Raw Segment arrays are stored, a 16 bit delay time between arrays, and an 8 bit count of the number of arrays to display.  The final output value byte is used internally by the firmware and should be set to 0.
-
+Set the index of the animation frames area and the number of frames.   The animation frames area is separate from the buffer defined in command 0xC0 and cannot overlap.   The length of this area is (2 + 3 * NumLeds)* NumFrames.  
 
 |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xC4|Pin To Set (TO TM1637 Clock)|0x0A (TM1637 ) |OutputValue[0] |OutputValue[1]|OutputValue[2]|OutputValue[3]|OutputValue[4]| 
-
-
-Response:
-
-Command is echoed back.
-
-Examples:
-
-Display "Hello" on the display:
-
-Initialize the display in character array mode (mode 2) (assume pin 19 clk and 18 dio as above), brightness 5.   The source
-pin value in the 0xC0 command isn't used in this mode so we'll set it to 0x55.
-
-> `0xC0 0x13 0x0A 0x12 0x02 0x02 0x55 0x05 `
-
-At this point0xC1 and 0xC2 commands would be sent if necessary to define the order in which the display's digits are ordered.
-
-Send the "Hello " to the output:
-
-> `0xC4 0x13 0x0A ` '`H`' '`E`' '`L`' '`L`' '`O`'  
-
-> `0xC5 0x13 0x0A ` '` ` ' `0x55 0x55 0x55 0x55 ` 
-
-
-Display a set of 12 raw arrays of segment data on the display with 1000ms delays in between.  Data is stored in the user buffer
-at index 0x180 .
-
-
-Start by sending the array of data to the user buffer starting at index 0x180 using the 0x84 WRITE USER BUFFER and 0x85 WRITE USER BUFFER CONTINUE COMMANDS 
-
-
-Initialize the display in character Animation mode (mode 4) (assume pin 19 clk and 18 dio as above), brightness 5.   The source
-pin value in the 0xC0 command isn't used in this mode so we'll set it to 0x55.
-
-> `0xC0 0x13 0x0A 0x12 0x04 0x02 0x55 0x05 `
-
-At this point 0xC1 and 0xC2 commands would send the important data - Index (0x180) in Little Endian format, delay (0x1E8) in little endian format, and frame count (0x0C) 
-
-and set the final byte to 0 with the 0xC5 command
-
-Send the animation setup to the output array:
-
-> `0xC4 0x13 0x0A 0x80 0x01 0xE8 0x03 0xC `
-
-> `0xC5 0x13 0x0A 0x00 0x55 0x55 0x55 0x55 ` 
-
-
-CONFIGURE_CHANNEL_MODE_5:
----------------------
-
-Set TM1637 Decimal Points
-
-The bottom 6 LSB are used as decimal points for digits 0-5 (before location translation)
-
-Note that the way TM1637 displays are wired varies a lot from display to display, so this command may not work as expected.
-Consult the TM1637 and LED module datasheets.
-
-
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xC3|Pin To Set (TO TM1637 Clock)|0x0A (TM1637 ) | Decimal Point Bitmap |Unused/0x55* |Unused/0x55* |Unused/0x55* |Unused/0x55* | 
+|0xC4|Pin To Set|0x0B |Animation Buffer Index LSB|Animation Buffer Index MSB|Number of Animation Frames|Unused 0x55* | Unused 0x55*|
 
 \*0x55 is recommended, but any byte is acceptable
 
@@ -407,9 +344,56 @@ Command is echoed back.
 
 Examples:
 
-Set pin 19  TM1637 Decimal Point third digit decimal on
+Set the animation buffer index to 0x0440 and the number of frames to 10
 
-> `0xC6 0x13 0x0A 0x04 0x55 0x55 0x55 0x55  `
+> `0xC0 0x13 0x0B 0x40 0x04 0x0A 0x55 0x05 `
+
+
+
+CONFIGURE_CHANNEL_MODE_5:
+---------------------
+
+Set the delay for an animation frame in mS.  This command must not be called before the animation buffer index is set with command  0xC4.
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xC5|Pin To Set|0x0B | Frame Index |delay LSB |delay MSB |Unused/0x55* |Unused/0x55* | 
+
+\*0x55 is recommended, but any byte is acceptable
+
+Response:
+
+Command is echoed back.
+
+Examples:
+
+Set pin 19  Animation frame 2 to a delay of 8000 ms (0x1F40)
+
+> `0xC5 0x13 0x0B 0x02 0x40 0x1F 0x55 0x55  `
+
+CONFIGURE_CHANNEL_MODE_6:
+---------------------
+
+Set the mode for the WS2812 driver.  Modes are:
+0 -  Buffered RGB values
+1 - Animation
+2 - Chase LED (used for testing and debugging)
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xC6|Pin To Set|0x0B | Mode (0-2) |Unused/0x55* |Unused/0x55* |Unused/0x55* |  Unused/0x55* | 
+
+\*0x55 is recommended, but any byte is acceptable
+
+Response:
+
+Command is echoed back.
+
+Examples:
+
+Set pin 19  to WS2812 mode Chase LED
+
+> `0xC6 0x13 0x0B 0x02 0x55 0x55 0x55 0x55  `
 
 */
 
@@ -430,7 +414,7 @@ void initWS2812 (void)
                 ws2812->chaseLED = 0;
                 ws2812->delay = 0;
                 ws2812->mode = 0;
-                //memset(dmaBuffer,0, ws2812->userBufferIndex + ((uint16_t)ws2812->numOfLEDS )*24 * 2 + RESET_SIGNAL_LENGTH * 2);
+                
                 SendResetSignal();
                 uint8_t i;
                 for (i = 0; i < ws2812->numOfLEDS; ++i)
@@ -448,21 +432,25 @@ void initWS2812 (void)
 			{
 				if (CurrentPinRegister->generic.mode == PIN_MODE_WS2812)
 				{
-                    uint32_t rgb = RXBUFFER32(4);
-                    uint16_t index = ws2812->userBufferIndex + ((uint16_t) Rxbuffer[3])*24 * 2 + RESET_SIGNAL_LENGTH * 2;
-                    if (index + 48 > SIZE_OF_USER_BUFFER)
-                    {
-                        error(SW_ERROR_WUB_INVALID_ADDRESS);
-                    }
-                    else
-                    {
-                    ws2812->dmaQueuePosition = 
-                            &UserBuffer[ index ];
-                    QueueRGB(rgb);
-                    ws2812->dmaQueuePosition = dmaBuffer;
-                    ws2812->delay = 0;
-                    }
-                    
+					uint32_t rgb = RXBUFFER32(4);
+					uint16_t index = ws2812->userBufferIndex + ((uint16_t) Rxbuffer[3])*24 * 2 + RESET_SIGNAL_LENGTH * 2;
+					if (index >=  ws2812->numOfLEDS)
+					{
+						error(SW_ERROR_WS2812_INDEX_GT_LEDS);
+					}
+					else if (index + 48 > SIZE_OF_USER_BUFFER)
+					{
+						error(SW_ERROR_WUB_INVALID_ADDRESS);
+					}
+					else
+					{
+						ws2812->dmaQueuePosition = 
+							&UserBuffer[ index ];
+						QueueRGB(rgb);
+						ws2812->dmaQueuePosition = dmaBuffer;
+						ws2812->delay = 0;
+					}
+
 				}
 				else
 				{
@@ -604,6 +592,10 @@ void updateWS2812()
 	{
 
 	}
+    else if (ws2812->delay == 0)
+    {
+        
+    }
 	else 
 	{
 		

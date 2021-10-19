@@ -316,6 +316,8 @@ int TMR3_SoftwareCounterGet(void);
 
 void TMR3_SoftwareCounterClear(void);
 
+void TMR3_ResetConditions(void);
+
 #ifdef __cplusplus  // Provide C++ Compatibility
 
     }

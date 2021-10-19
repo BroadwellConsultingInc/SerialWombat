@@ -110,9 +110,12 @@ const uint16_t pinBitmap[NUMBER_OF_PHYSICAL_PINS] =
 	0x8000 , // 19 RB15
 };
 
-
-uint8_t SPI1Semaphore = RESOURCE_AVAILABLE;
+uint8_t ADC1Semaphore = RESOURCE_AVAILABLE;
 uint8_t DMA5Semaphore = RESOURCE_AVAILABLE;
+uint8_t SPI1Semaphore = RESOURCE_AVAILABLE;
+uint8_t TMR1Semaphore = RESOURCE_AVAILABLE;
+uint8_t TMR3Semaphore = RESOURCE_AVAILABLE;
+
 
 
 void SetPPSOutput(uint8_t pin, uint8_t value)
@@ -682,5 +685,27 @@ void CurrentPinNoPullDown()
         SetPinPullDown(CurrentPin,false);
 }
 
-
+const uint8_t WombatPinToADCChannel[NUMBER_OF_PHYSICAL_PINS] =
+{
+    1, //WP0
+    2,
+    3,
+    4,
+    5,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    0xFF,
+    8,
+    7,
+   6, 
+    9,
+};
 

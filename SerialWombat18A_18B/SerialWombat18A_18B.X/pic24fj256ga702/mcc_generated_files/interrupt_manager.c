@@ -79,5 +79,5 @@ void INTERRUPT_Initialize (void)
     //    SICI: SI2C2 - I2C2 Slave Events
     //    Priority: 1
   //BDB          IPC12bits.SI2C2IP = 1;
-
+    IPC0bits.T1IP = 5; // Raise above default 4.
 }

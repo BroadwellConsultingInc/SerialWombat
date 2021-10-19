@@ -52,17 +52,27 @@
 /**
   Section: Driver Interface
 */
-
+void ADC1_ResetConditions(void)
+{
+    AD1CON1 = 0;
+  AD1CON2 = 0;
+  AD1CON3 = 0;
+  AD1CON4 = 0;
+  AD1CON5 = 0;
+  AD1CSSH = 0;
+  AD1CSSL = 0;
+}
 
 void ADC1_Initialize (void)
 { 					//TODO Optimize clocks
   
+    ADC1_ResetConditions();
 
 AD1CON1 = 0x0670; // Internal counter triggers conversion, Unsigned Fraction, 12 bit
 AD1CHS = 0x0000; // Connect AN0 as positive input
 AD1CSSL = 0x03FF;  // Scan 0,1,2,3,4,5,6,7,8,9
 AD1CSSH = 0x1000;  // Scan  28 (VBG)
-AD1CON3 = 0x1FFF; // Sample time = 15Tad, Tad = Tcy
+AD1CON3 = 0x1F0A; // Sample time = 15Tad, Tad = Tcy
 AD1CON2 = 0x0400 | ((11)<<2); // Continuous Scan, Set AD1IF after every 11 samples
 AD1CON5 = 0x0000; // Autoscan.
 AD1CON1bits.ADON = 1;

@@ -182,6 +182,13 @@ void TMR3_SoftwareCounterClear(void)
     tmr3_obj.count = 0; 
 }
 
+void TMR3_ResetConditions(void)
+{
+     T3CON = 0x0000;
+    TMR3 = 0x00;
+    PR3 = 0x00;
+     
+}
 /**
  End of File
 */

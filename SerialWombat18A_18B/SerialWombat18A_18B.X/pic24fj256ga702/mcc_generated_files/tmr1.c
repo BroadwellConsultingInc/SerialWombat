@@ -182,6 +182,21 @@ void TMR1_SoftwareCounterClear(void)
     tmr1_obj.count = 0; 
 }
 
+void __attribute__ ( ( interrupt, no_auto_psv ) ) _T1Interrupt (  )
+{
+
+    IFS0bits.T1IF = false;
+    CTMUCON1Lbits.IDISSEN = 0; // Disable discharge (start charging)
+    T1CON = 0;
+}
+
+void TMR1_ResetConditions()
+{
+    TMR1_INTERRUPT_DISABLE();
+    T1CON = 0;
+    TMR1 = 0;
+    PR1 = 0;
+}
 /**
  End of File
 */

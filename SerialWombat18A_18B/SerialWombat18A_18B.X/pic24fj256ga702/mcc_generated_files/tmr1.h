@@ -316,6 +316,12 @@ int TMR1_SoftwareCounterGet(void);
 
 void TMR1_SoftwareCounterClear(void);
 
+#define TMR1_INTERRUPT_ENABLE() {IEC0bits.T1IE = 1;}
+#define TMR1_INTERRUPT_DISABLE() {IEC0bits.T1IE = 0;}
+
+void TMR1_ResetConditions(void);
+
+
 #ifdef __cplusplus  // Provide C++ Compatibility
 
     }

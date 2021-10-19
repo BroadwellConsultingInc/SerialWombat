@@ -46,6 +46,7 @@ typedef enum {
     PIN_MODE_DMA_PULSE_OUTPUT = 19,
             PIN_MODE_ANALOG_THROUGHPUT = 20,
             PIN_MODE_FRAME_TIMER = 21,
+	    PIN_MODE_TOUCH = 22,
 }
 pinMode_t;
 
