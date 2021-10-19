@@ -54,7 +54,25 @@
 #define OUTPUT_I2C_DEBUG(_value) {LATB = (_value <<11);  LATBbits.LATB10= 1;Nop();Nop();Nop();Nop(); LATBbits.LATB10 = 0;}
 #warning I2C_DEBUG_OUTPUT ENABLED!   PORT B DMA Disabled!
 #else
-#define OUTPUT_I2C_DEBUG(_value){}
+//#define OUTPUT_I2C_DEBUG(_value){}
+
+uint8_t I2CDebugQueue[15] = {255,255,255,255,255,255,255,255,255,255,255,255,255,255,255};
+#define OUTPUT_I2C_DEBUG(_value){  \
+	I2CDebugQueue[ 0] = I2CDebugQueue[ 1];\
+	I2CDebugQueue[ 1] = I2CDebugQueue[ 2];\
+	I2CDebugQueue[ 2] = I2CDebugQueue[ 3];\
+	I2CDebugQueue[ 3] = I2CDebugQueue[ 4];\
+	I2CDebugQueue[ 4] = I2CDebugQueue[ 5];\
+	I2CDebugQueue[ 5] = I2CDebugQueue[ 6];\
+	I2CDebugQueue[ 6] = I2CDebugQueue[ 7];\
+	I2CDebugQueue[ 7] = I2CDebugQueue[ 8];\
+	I2CDebugQueue[ 8] = I2CDebugQueue[ 9];\
+	I2CDebugQueue[ 9] = I2CDebugQueue[10];\
+	I2CDebugQueue[10] = I2CDebugQueue[11];\
+	I2CDebugQueue[11] = I2CDebugQueue[12];\
+	I2CDebugQueue[12] = I2CDebugQueue[13];\
+	I2CDebugQueue[13] = I2CDebugQueue[14];\
+ I2CDebugQueue[14] = _value;}
 #endif
 /**
  Section: Data Types
@@ -205,27 +223,23 @@ void __attribute__((interrupt, no_auto_psv)) _SI2C2Interrupt(void) {
                the same so we share the code here.
              */
             //LATBbits.LATB12 = I2C2_DATA_NOT_ADDRESS_STATUS_BIT;
-            if (
-                    // case of 7-bit address detected
-                    (((I2C2_10_BIT_ADDRESS_ENABLE_BIT == 0) &&
-                    (I2C2_DATA_NOT_ADDRESS_STATUS_BIT == 0))
-                    )
+            if ((((I2C2_10_BIT_ADDRESS_ENABLE_BIT == 0) &&
+                    (I2C2_DATA_NOT_ADDRESS_STATUS_BIT == 0)))// case of 7-bit address detected
                     ||
-                    // case of general address call detected
                     (((I2C2_GENERAL_CALL_ENABLE_BIT == 1) &&
-                    (I2C2_GENERAL_CALL_ADDRESS_STATUS_BIT == 1)) ||
-                    nextInterruptAddress
-                    )
-                    ) {
+                    (I2C2_GENERAL_CALL_ADDRESS_STATUS_BIT == 1)) || nextInterruptAddress )                    )                     // case of general address call detected
+                {
             
-                if (I2C2_READ_NOT_WRITE_STATUS_BIT == 0) {
+                if (I2C2_READ_NOT_WRITE_STATUS_BIT == 0) 
+                {
                     //Input to this chip.
 DebugLastPoint = 1;
                         OUTPUT_I2C_DEBUG(0x02);
                     //I2C2_StatusCallback(I2C2_SLAVE_RECEIVE_REQUEST_DETECTED);
 
                     // Receive the data if valid
-                    if (I2C2STATbits.ACKTIM) {
+                    if (I2C2STATbits.ACKTIM) 
+                    {
                         nextInterruptAddress = true;
                         //LATBbits.LATB10 = 1;
                         DebugLastPoint = 11;
@@ -253,7 +267,8 @@ DebugLastPoint = 1;
                          
                         wombatI2CTxDataCount = 0;
                        // LATBbits.LATB10 = 0;
-                    } else {
+                    } else 
+                    {
                         nextInterruptAddress = false;
                         //LATBbits.LATB13 = 1;
                          dummy = I2C2_RECEIVE_REG; //JAB
@@ -275,10 +290,13 @@ DebugLastPoint = 1;
                         }
                     
 
-                } else {
+                } 
+                else 
+                {
                     DebugLastPoint = 53;
                     OUTPUT_I2C_DEBUG(0x08);
-                    if (I2C2STATbits.ACKTIM) {
+                    if (I2C2STATbits.ACKTIM) 
+                    {
                            nextInterruptAddress = true;
                         DebugLastPoint = 5;
                         OUTPUT_I2C_DEBUG(0x09);
@@ -304,7 +322,9 @@ DebugLastPoint = 1;
                              OUTPUT_I2C_DEBUG(0x0B);
                          }
                
-                    } else {
+                    } 
+                    else 
+                    {
                         DebugLastPoint = 6;
                         OUTPUT_I2C_DEBUG(12);
                         // read the receive register only when
@@ -330,17 +350,13 @@ DebugLastPoint = 1;
 
 
             }
-            else if
-                (
-
-                    // case of 10-bit high address detected
-                    ((I2C2_10_BIT_ADDRESS_ENABLE_BIT == 1) &&
-                    (I2C2_DATA_NOT_ADDRESS_STATUS_BIT == 0)
-                    )
-                    ) {
+            else if (((I2C2_10_BIT_ADDRESS_ENABLE_BIT == 1) &&
+                    (I2C2_DATA_NOT_ADDRESS_STATUS_BIT == 0)))  // case of 10-bit high address detected
+            {
                              DebugLastPoint = 7;
                              OUTPUT_I2C_DEBUG(13);
-                if (I2C2_READ_NOT_WRITE_STATUS_BIT == 0) {
+                if (I2C2_READ_NOT_WRITE_STATUS_BIT == 0) 
+                {
                                  DebugLastPoint = 8;
                                  OUTPUT_I2C_DEBUG(14);
                     // it is the detection of high byte address of 
@@ -348,11 +364,13 @@ DebugLastPoint = 1;
                     prior_address_match = false;
                     i2c2_slave_state = S_SLAVE_LOW_BYTE_ADDRESS_DETECT;
 
-                } else // if (I2C2_READ_NOT_WRITE_STATUS_BIT == 1)
+                } 
+                else // if (I2C2_READ_NOT_WRITE_STATUS_BIT == 1)
                 {
                                  DebugLastPoint = 9;
                                  OUTPUT_I2C_DEBUG(15);
-                    if (prior_address_match == true) {
+                    if (prior_address_match == true) 
+                    {
                                      DebugLastPoint = 10;
                                      OUTPUT_I2C_DEBUG(16);
                         // it is the detection of high byte
@@ -373,7 +391,9 @@ DebugLastPoint = 1;
 
                         I2C2_TransmitProcess();
                         i2c2_slave_state = S_SLAVE_TRANSMIT_MODE;
-                    } else {
+                    } 
+                    else 
+                    {
                                      DebugLastPoint = 11;
                                      OUTPUT_I2C_DEBUG(17);
                         // it is the detection of high byte address of
@@ -396,23 +416,27 @@ DebugLastPoint = 1;
 
             // this if statement is to make sure we only save incoming
             // data when we are truly in receiving mode
-            if (i2c2_slave_state == S_SLAVE_RECEIVE_MODE) {
+            if (i2c2_slave_state == S_SLAVE_RECEIVE_MODE) 
+            {
                              DebugLastPoint = 12;
                              OUTPUT_I2C_DEBUG(0x13);
                 // case of data received
-               if (I2C2_DATA_NOT_ADDRESS_STATUS_BIT == 1 ) {
+               if (I2C2_DATA_NOT_ADDRESS_STATUS_BIT == 1 ) 
+               {
 //                            if (!nextInterruptAddress ) {
                              DebugLastPoint = 13;
                                  OUTPUT_I2C_DEBUG(0x14);
-                    // check if we are overflowing the receive buffer
-                    if (I2C2_RECEIVE_OVERFLOW_STATUS_BIT != 1) {
+                    
+                    if (I2C2_RECEIVE_OVERFLOW_STATUS_BIT != 1) // check if we are overflowing the receive buffer
+                    {
                                      DebugLastPoint = 14;
                                      OUTPUT_I2C_DEBUG(0x15);
-
                         I2C2_ReceiveProcess();
                                   
                         // not_busy = I2C2_StatusCallback(I2C2_SLAVE_RECEIVED_DATA_DETECTED);
-                    } else {
+                    } 
+                    else 
+                    {
                         // overflow detected!
                         // read the buffer to reset the buffer full flag
                         // and clear the overflow bit
@@ -444,7 +468,8 @@ DebugLastPoint = 1;
             // full 10-bit address detection
             prior_address_match = true;
 
-            if (not_busy) {
+            if (not_busy) 
+            {
                        DebugLastPoint = 19;
                        OUTPUT_I2C_DEBUG(24);
                 // dummy read is needed
@@ -464,7 +489,8 @@ DebugLastPoint = 1;
             // if the transaction was ACK'ed, more data needs to be sent
             // if the transaction was NACK'ed then we don't need to send
             // more data
-            if (I2C2_ACKNOWLEDGE_STATUS_BIT == 0) {
+            if (I2C2_ACKNOWLEDGE_STATUS_BIT == 0) 
+            {
                 // prepare next data
                 I2C2_StatusCallback(I2C2_SLAVE_TRANSMIT_REQUEST_DETECTED);
 
@@ -473,7 +499,8 @@ DebugLastPoint = 1;
                                     DebugLastPoint = 16;
                                     OUTPUT_I2C_DEBUG(25);
 
-            } else //if (I2C2_ACKNOWLEDGE_STATUS_BIT == 1)
+            } 
+            else //if (I2C2_ACKNOWLEDGE_STATUS_BIT == 1)
             {
                 // no more data to be sent so we go to idle state
                 i2c2_slave_state = S_SLAVE_IDLE;
@@ -538,16 +565,6 @@ void I2C2_SlaveAddressSet(
 }
 
 inline void __attribute__((always_inline)) I2C2_TransmitProcess(void) {
-    /*JAB
-    // get the data to be transmitted
-    
-    // sanity check (to avoid stress)
-    if (p_i2c2_read_pointer == NULL)
-        return;
-
-    I2C2_TRANSMIT_REG = *p_i2c2_read_pointer;
-
-     */
     
     I2C2CONLbits.ACKDT = 0;
     I2C2_TRANSMIT_REG = wombatI2CTxData[ wombatI2CTxDataCount ];
@@ -561,15 +578,6 @@ inline void __attribute__((always_inline)) I2C2_TransmitProcess(void) {
 }
 
 inline void __attribute__((always_inline)) I2C2_ReceiveProcess(void) {
-    // store the received data 
-
-    /*JAB
-    // sanity check (to avoid stress)
-    if (p_i2c2_write_pointer == NULL)
-        return;
-
-     *p_i2c2_write_pointer = I2C2_RECEIVE_REG;
-     */
 OUTPUT_I2C_DEBUG(wombatI2CRxDataCount);
 if (discardI2CData || nextInterruptAddress)
 {
@@ -578,7 +586,8 @@ if (discardI2CData || nextInterruptAddress)
     OUTPUT_I2C_DEBUG(31);
     discardI2CData = false;
 }
-else if (wombatI2CRxDataCount < 8) {
+else if (wombatI2CRxDataCount < 8) 
+{
         I2C2CONLbits.ACKDT = 0;
         uint8_t rxByte = I2C2_RECEIVE_REG;
         OUTPUT_I2C_DEBUG(rxByte);
