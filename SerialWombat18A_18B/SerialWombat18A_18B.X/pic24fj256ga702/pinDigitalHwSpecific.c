@@ -115,6 +115,8 @@ uint8_t DMA5Semaphore = RESOURCE_AVAILABLE;
 uint8_t SPI1Semaphore = RESOURCE_AVAILABLE;
 uint8_t TMR1Semaphore = RESOURCE_AVAILABLE;
 uint8_t TMR3Semaphore = RESOURCE_AVAILABLE;
+uint8_t UART1Semaphore = RESOURCE_AVAILABLE;
+uint8_t UART2Semaphore = RESOURCE_AVAILABLE;
 
 
 

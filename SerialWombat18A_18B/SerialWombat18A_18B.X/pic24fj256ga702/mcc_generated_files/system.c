@@ -59,8 +59,14 @@
 #include "uart2.h"
 #include "cvr.h"
 #include "memory/flash.h"
+#include "pinDigitalHwSpecific.h"
 
-
+/* 
+ System peripherals:
+ * 
+ 
+ 
+ */
 void SYSTEM_Initialize(void)
 {
        
@@ -83,7 +89,7 @@ void SYSTEM_Initialize(void)
        extern uint8_t SW_I2CAddress;
     if (addressVoltage < 275)
     {
-        //TODO initialize serial
+	extern uint8_t UART1Semaphore;
         SW_I2CAddress = 0;
   
         RPINR18bits.U1RXR = 0x0005;    //RB5->UART1:U1RX
@@ -92,6 +98,7 @@ void SYSTEM_Initialize(void)
         IPC3bits.U1TXIP = 1;
         IPC2bits.U1RXIP = 1;
         TRISBbits.TRISB4 = 0;
+	UART1Semaphore = RESOURCE_USED_BY_SYSTEM;
     }
     else if (addressVoltage < 825) // 10k
     {

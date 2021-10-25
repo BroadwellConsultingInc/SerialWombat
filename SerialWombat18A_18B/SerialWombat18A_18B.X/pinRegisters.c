@@ -38,11 +38,11 @@ uint16_t GetBuffer(uint8_t pin)
 	{
 		return(PinUpdateRegisters[pin].generic.buffer);
 	}
-	 else if (pin == 65)
+	 else if (pin == SW_DATA_SOURCE_INCREMENTING_NUMBER)
     {
         return(incrementingValue++);
     }
-    else if (pin == 66)
+    else if (pin == SW_DATA_SOURCE_1024mvCounts)
     {
 uint32_t result = GetSourceVoltageADC();
         result *= 1024;  //Convert to 1.2  V reference to 1.024 v reference for compatibility with SW4B
@@ -51,22 +51,22 @@ uint32_t result = GetSourceVoltageADC();
 
     }
     
-    else if (pin == 67)
+    else if (pin == SW_DATA_SOURCE_FRAMES_RUN_LSW)
     {
        extern uint32_t FramesRun;
        return ((uint16_t)FramesRun);
     }
-    else if (pin == 68)
+    else if (pin == SW_DATA_SOURCE_FRAMES_RUN_MSW)
     {
         extern uint32_t FramesRun;
         return (FramesRun>>16);
     }
-    else if (pin == 69)
+    else if (pin == SW_DATA_SOURCE_OVERRUN_FRAMES)
     {
      extern uint16_t OverflowFrames;
      return (OverflowFrames);
     }
-    else if (pin == 70)
+    else if (pin == SW_DATA_SOURCE_TEMPERATURE)
     {
         return ( GetTemperature_degC100ths());    
     }
@@ -75,17 +75,17 @@ uint32_t result = GetSourceVoltageADC();
          extern uint16_t PacketsProcessed;
         return (PacketsProcessed );    
     }
-     else if (pin == 72)
+     else if (pin == SW_DATA_SOURCE_ERRORS)
      {
          extern uint16_t Errors;
          return(Errors);
      }
-     else if (pin == 73)
+     else if (pin == SW_DATA_SOURCE_FRAMES_DROPPED)
      {
          extern volatile uint16_t FramesDropped;
          return (FramesDropped);
      }
-     else if (pin == 74)
+     else if (pin == SW_DATA_SOURCE_SYSTEM_UTILIZATION)
      {
          extern uint16_t SystemUtilizationAverage;
          return (SystemUtilizationAverage);

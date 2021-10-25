@@ -64,7 +64,7 @@ void INTERRUPT_Initialize (void)
     //    MICI: MI2C1 - I2C1 Master Events
     //    Priority: 1
   //BDB          IPC4bits.MI2C1IP = 1;
-    //    SICI: SI2C1 - I2C1 Slave Events
+    //    SICI: SI2C1 - I2C1 Periph Events
     //    Priority: 1
  //BDB           IPC4bits.SI2C1IP = 1;
     //    DMA0I: DMA0 - Direct Memory Access 0
@@ -76,7 +76,7 @@ void INTERRUPT_Initialize (void)
     //    MICI: MI2C2 - I2C2 Master Events
     //    Priority: 1
   //BDB          IPC12bits.MI2C2IP = 1;
-    //    SICI: SI2C2 - I2C2 Slave Events
+    //    SICI: SI2C2 - I2C2 Periph Events
     //    Priority: 1
   //BDB          IPC12bits.SI2C2IP = 1;
     IPC0bits.T1IP = 5; // Raise above default 4.

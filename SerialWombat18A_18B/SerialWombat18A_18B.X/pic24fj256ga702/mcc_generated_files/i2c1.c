@@ -450,7 +450,7 @@ void __attribute__ ( ( interrupt, no_auto_psv ) ) _MI2C1Interrupt ( void )
                         // no!, there are more TRB to be sent.
                         //I2C1_START_CONDITION_ENABLE_BIT = 1;
 
-                        // In some cases, the slave may require
+                        // In some cases, the peripheral may require
                         // a restart instead of a start. So use this one
                         // instead.
                         I2C1_REPEAT_START_CONDITION_ENABLE_BIT = 1;

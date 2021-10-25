@@ -16,10 +16,15 @@ uint8_t UserBuffer[SIZE_OF_USER_BUFFER];
 
 void reset ()
 {
+    #ifdef __DEBUG    
+        //TODO  shut down peripherals, shut off interrupts, jump to reset vector ?
+#else
+    
 	while (1)
 	{           
 		{ __asm__ volatile (" reset");  }       
 	}
+#endif
 }
 
 uint16_t OverflowFrames = 0;
@@ -40,7 +45,7 @@ int main(void)
     memset(UserBuffer,0, sizeof(UserBuffer));
 	SYSTEM_Initialize();
     while (!HLVDCONbits.BGVST); // Wait for Band Gap to stabilize.
-    
+    timingResourceManagerInit();
     INTERRUPT_GlobalEnable();
  
 	while (1)
@@ -74,6 +79,11 @@ int main(void)
             }
             PinLow(FrameTimingPin);			
 		}
+        {
+         
+        i2cHealthMonitor();
+        }
+        
 	}
 
 	return 1;
@@ -216,7 +226,7 @@ void ProcessPins()
             break;
              case PIN_MODE_TOUCH:
             {
-                extern void updateTOUCH();
+                extern void updateTouch();
                 updateTouch();
             }
             break;

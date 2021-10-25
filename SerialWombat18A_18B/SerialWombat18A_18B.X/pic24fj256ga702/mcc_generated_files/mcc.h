@@ -61,6 +61,7 @@
 #include "tmr3.h"
 #include "uart1.h"
 #include "tmr1.h"
+#include "uart1.h"
 #include "uart2.h"
 #include "cvr.h"
 #include "memory/flash.h"

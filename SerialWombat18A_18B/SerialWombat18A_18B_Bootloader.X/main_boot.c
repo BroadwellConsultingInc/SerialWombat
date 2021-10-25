@@ -189,7 +189,7 @@ int main(void)
       uint32_t high = 0;
       uint16_t low = 0;
        low = __builtin_tblrdl(0x4000);
-      voidvoidPtr = low;
+      voidvoidPtr =(void(*)(void)) low;
       high = __builtin_tblrdl(0x4002);
       high <<= 16;
       voidvoidPtr += high;

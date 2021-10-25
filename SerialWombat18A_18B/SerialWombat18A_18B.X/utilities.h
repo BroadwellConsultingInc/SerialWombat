@@ -223,10 +223,10 @@ typedef enum
 	PPS_OUTPUT_U2RTS = 6, //UART2 Request-to-Send
 	PPS_OUTPUT_SDO1 = 7, //SPI1 Data Output
 	PPS_OUTPUT_SCK1OUT = 8, //SPI1 Clock Output
-	PPS_OUTPUT_SS1OUT = 9, //SPI1 Slave Select Output
+	PPS_OUTPUT_SS1OUT = 9, //SPI1 Chip Select Output
 	PPS_OUTPUT_SDO2 = 10, //SPI2 Data Output
 	PPS_OUTPUT_SCK2OUT = 11, //SPI2 Clock Output
-	PPS_OUTPUT_SS2OUT = 12, //SPI2 Slave Select Output
+	PPS_OUTPUT_SS2OUT = 12, //SPI2 Chip Select Output
 	PPS_OUTPUT_OC1 = 13, //Output Compare 1
 	PPS_OUTPUT_OC2 = 14, //Output Compare 2
 	PPS_OUTPUT_OC3 = 15, //Output Compare 3
@@ -239,7 +239,7 @@ typedef enum
 	PPS_OUTPUT_Reserved = 22, //—
 	PPS_OUTPUT_SDO3 = 23, //SPI3 Data Output
 	PPS_OUTPUT_SCK3OUT = 24, //SPI3 Clock Output
-	PPS_OUTPUT_SS3OUT = 25, //SPI3 Slave Select Output
+	PPS_OUTPUT_SS3OUT = 25, //SPI3 Chip Select Output
 	PPS_OUTPUT_C3OUT = 26, //Comparator 3 Output
 	PPS_OUTPUT_PWRGT = 27, //RTCC Power Control
 	PPS_OUTPUT_REFO = 28, //Reference Clock Output

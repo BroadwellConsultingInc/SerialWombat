@@ -60,6 +60,9 @@
 
 #endif
         
+#define UART1_CONFIG_TX_BYTEQ_LENGTH 64
+#define UART1_CONFIG_RX_BYTEQ_LENGTH 128
+        
 /**
   Section: Data Types
 */

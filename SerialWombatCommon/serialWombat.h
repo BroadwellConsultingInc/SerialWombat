@@ -82,6 +82,85 @@ void reset(void);
 
 
 typedef enum {
+
+	SW_DATA_SOURCE_PIN_0 = 0,
+	SW_DATA_SOURCE_PIN_1 = 1,
+	SW_DATA_SOURCE_PIN_2 = 2,
+	SW_DATA_SOURCE_PIN_3 = 3,
+	SW_DATA_SOURCE_PIN_4 = 4,
+	SW_DATA_SOURCE_PIN_5 = 5,
+	SW_DATA_SOURCE_PIN_6 = 6,
+	SW_DATA_SOURCE_PIN_7 = 7,
+	SW_DATA_SOURCE_PIN_8 = 8,
+	SW_DATA_SOURCE_PIN_9 = 9,
+	SW_DATA_SOURCE_PIN_10 = 10,
+	SW_DATA_SOURCE_PIN_11 = 11,
+	SW_DATA_SOURCE_PIN_12 = 12,
+	SW_DATA_SOURCE_PIN_13 = 13,
+	SW_DATA_SOURCE_PIN_14 = 14,
+	SW_DATA_SOURCE_PIN_15 = 15,
+	SW_DATA_SOURCE_PIN_16 = 16,
+	SW_DATA_SOURCE_PIN_17 = 17,
+	SW_DATA_SOURCE_PIN_18 = 18,
+	SW_DATA_SOURCE_PIN_19 = 19,
+//	SW_DATA_SOURCE_PIN_20 = 20,
+//	SW_DATA_SOURCE_PIN_21 = 21,
+//	SW_DATA_SOURCE_PIN_22 = 22,
+//	SW_DATA_SOURCE_PIN_23 = 23,
+//	SW_DATA_SOURCE_PIN_24 = 24,
+//	SW_DATA_SOURCE_PIN_25 = 25,
+//	SW_DATA_SOURCE_PIN_26 = 26,
+//	SW_DATA_SOURCE_PIN_27 = 27,
+//	SW_DATA_SOURCE_PIN_28 = 28,
+//	SW_DATA_SOURCE_PIN_29 = 29,
+//	SW_DATA_SOURCE_PIN_30 = 30,
+//	SW_DATA_SOURCE_PIN_31 = 31,
+//	SW_DATA_SOURCE_PIN_32 = 32,
+//	SW_DATA_SOURCE_PIN_33 = 33,
+//	SW_DATA_SOURCE_PIN_34 = 34,
+//	SW_DATA_SOURCE_PIN_35 = 35,
+//	SW_DATA_SOURCE_PIN_36 = 36,
+//	SW_DATA_SOURCE_PIN_37 = 37,
+//	SW_DATA_SOURCE_PIN_38 = 38,
+//	SW_DATA_SOURCE_PIN_39 = 39,
+//	SW_DATA_SOURCE_PIN_40 = 40,
+//	SW_DATA_SOURCE_PIN_41 = 41,
+//	SW_DATA_SOURCE_PIN_42 = 42,
+//	SW_DATA_SOURCE_PIN_43 = 43,
+//	SW_DATA_SOURCE_PIN_44 = 44,
+//	SW_DATA_SOURCE_PIN_45 = 45,
+//	SW_DATA_SOURCE_PIN_46 = 46,
+//	SW_DATA_SOURCE_PIN_47 = 47,
+//	SW_DATA_SOURCE_PIN_48 = 48,
+//	SW_DATA_SOURCE_PIN_49 = 49,
+//	SW_DATA_SOURCE_PIN_50 = 50,
+//	SW_DATA_SOURCE_PIN_51 = 51,
+//	SW_DATA_SOURCE_PIN_52 = 52,
+//	SW_DATA_SOURCE_PIN_53 = 53,
+//	SW_DATA_SOURCE_PIN_54 = 54,
+//	SW_DATA_SOURCE_PIN_55 = 55,
+//	SW_DATA_SOURCE_PIN_56 = 56,
+//	SW_DATA_SOURCE_PIN_57 = 57,
+//	SW_DATA_SOURCE_PIN_58 = 58,
+//	SW_DATA_SOURCE_PIN_59 = 59,
+//	SW_DATA_SOURCE_PIN_60 = 60,
+//	SW_DATA_SOURCE_PIN_61 = 61,
+//	SW_DATA_SOURCE_PIN_62 = 62,
+//	SW_DATA_SOURCE_PIN_63 = 63,
+	SW_DATA_SOURCE_INCREMENTING_NUMBER = 65, ///< An number that increments each time it is accessed.
+	SW_DATA_SOURCE_1024mvCounts = 66 , ///< The number of ADC counts that result from a 1.024V reading
+	SW_DATA_SOURCE_FRAMES_RUN_LSW = 67, ///< The number of frames run since reset, least significant 16 bits
+	SW_DATA_SOURCE_FRAMES_RUN_MSW = 68, ///< The number of frames run since reset, most significant 16 bits
+	SW_DATA_SOURCE_OVERRUN_FRAMES = 69, ///< The number of frames that ran more than 1mS
+	SW_DATA_SOURCE_TEMPERATURE = 70, ///<The internal core temperature expressed in 100ths deg C
+	SW_DATA_SOURCE_PACKETS_RECEIVED = 71,  ///<The nubmer of incoming command packets that have been processed since reset (rolls over at 65535)
+	SW_DATA_SOURCE_ERRORS = 72,  ///<The number of incoming packets that have caused errors since reset (rolls over at 65535)  
+	SW_DATA_SOURCE_FRAMES_DROPPED = 73 , ///<The number of times since reset that a frame ran so far behind that it crossed two subsequent 1ms boundaries, causing a permanent lost frame
+	SW_DATA_SOURCE_SYSTEM_UTILIZATION = 74 , ///< A number between 0 and 65535 that scales to the average length of pin processing frames between 0 and 1000mS
+}SW_DATA_SOURCE_t;
+ 
+
+typedef enum {
     SW_ERROR_UNNUMBERED_ERROR = 0,
     SW_ERROR_PINS_MUST_BE_ON_SAME_PORT = 1, ///< Pins must be on the same microcontroller part (e.g. PORTA, PORTB, etc.).  See datasheet of micro for port assignments.
     SW_ERROR_ASCII_NUMBER_TOO_BIG_16 = 2, ///<A number bigger than 65535 was provided to convert to a 16 bit value
@@ -98,9 +177,12 @@ typedef enum {
             SW_ERROR_PIN_CONFIG_WRONG_ORDER = 13, ///<The called pin command 0xC1, 0xC2 was called before other required prior commands (e.g. 0xC0)
             SW_ERROR_WS2812_INDEX_GT_LEDS = 14, ///<The command references an index that is greater or equal to the number of leds
             SW_ERROR_PIN_NOT_CAPABLE = 15, ///<The commanded pin does not have the hardware support to perform the commanded pin mode
-            
-            
-            
+	    SW_ERROR_HW_RESOURCE_IN_USE = 16, ///<The requested hardware or software resource in use has already been exclusively claimed by another pin
+            SW_ERROR_INVALID_PARAMETER_3 = 17, ///<The pin configuration parameter in Byte 3 was invalid
+            SW_ERROR_INVALID_PARAMETER_4 = 18, ///<The pin configuration parameter in Byte 4 was invalid
+            SW_ERROR_INVALID_PARAMETER_5 = 19, ///<The pin configuration parameter in Byte 5 was invalid
+            SW_ERROR_INVALID_PARAMETER_6 = 20, ///<The pin configuration parameter in Byte 6 was invalid
+            SW_ERROR_INVALID_PARAMETER_7 = 21, ///<The pin configuration parameter in Byte 7 was invalid
 }SW_ERROR_t;
 
 void error (SW_ERROR_t errorCode);

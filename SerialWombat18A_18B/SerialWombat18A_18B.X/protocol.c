@@ -20,7 +20,6 @@ volatile uint8_t RX_ClockStretching = 0;
 volatile uint8_t debugBreakpointVariable = 0;
 uint16_t lastUserBufferIndex = 0xFFFF;
 uint16_t lastQueueIndex = 0xFFFF;
-
 uint8_t testSequenceNumber = 0;
 bool testSequenceArmed = 0;
 void ProcessSetPin(void);
@@ -617,7 +616,7 @@ Two bytes were available in the queue.  0x34, and 0x35
 				uint8_t i;
 				for (i = 0; i < Rxbuffer[3] && result == QUEUE_RESULT_SUCCESS; ++i)
 				{
-					result = QueueAddByte(RXBUFFER16(1),&Txbuffer[2 + i]); //TODO this is wrong...
+					result = (QUEUE_RESULT_t) QueueAddByte(RXBUFFER16(1),Txbuffer[2 + i]); //TODO this is wrong...
 				}
 				Txbuffer[1] = i;
 				//TODO handle error return codes
@@ -801,6 +800,189 @@ Write 0x32 the byte at RAM address 0x0247.
 
 			}
 			break;
+/** \addtogroup ProtocolBinaryCommands
+\{
+
+----
+
+Binary Send 7 bytes out first UART 
+---------------------
+
+Queues 7 bytes to be sent out of the first avaialble Hardware UART.  Assumes a UART pin mode has already been set up.  The host should
+query avaialble space before using this command.
+
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xB0|1st Byte to Send |2nd Byte To send |3rd Byte To send | 4th Byte To send | 5th Byte To send |  6th Byte To send | 7th Byte To send |
+
+Response:
+
+Packet is echoed back to the host.
+
+Examples:
+
+Send *WOMBAT!* out of the UART 
+
+> `0xB0 0x57 0x4F 0x4D 0x42 0x41 0x54 0x21`
+
+\}
+**/
+        case COMMAND_UART0_TX_7BYTES:
+        {
+            void UART1_Write(uint8_t txData);
+            UART1_Write(Rxbuffer[1]);
+            UART1_Write(Rxbuffer[2]);
+            UART1_Write(Rxbuffer[3]);
+            UART1_Write(Rxbuffer[4]);
+            UART1_Write(Rxbuffer[5]);
+            UART1_Write(Rxbuffer[6]);
+            UART1_Write(Rxbuffer[7]);
+        }
+        break;
+        
+/** \addtogroup ProtocolBinaryCommands
+\{
+
+----
+
+Binary Read 7 bytes from first UART 
+---------------------
+
+Read 7 bytes from the queue of the  first avaialble Hardware UART.  Assumes a UART pin mode has already been set up.  The host should
+query avaialble bytes to determine the nubmer of bytes avaiable before using this command.  This command should only be called if at
+least 7 bytes are available.
+
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xB1| 0x55* | 0x55* | 0x55* | 0x55* | 0x55* | 0x55* | 0x55* |
+ *0x55 is recommended, but any byte is acceptable
+
+Response:
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xB1|  1st byte read from UART queue |2nd byte read from UART queue |3rd byte read from UART queue |4th byte read from UART queue |5th byte read from UART queue |6th byte read from UART queue |7th byte read from UART queue |
+
+
+Examples:
+
+Assuming *GHIJKLM* are the first 7 bytes in the UART RX QUEUE:
+
+Sent:
+> `0xB1 0x55 0x55 0x55 0x55 0x55 0x55 0x55`
+
+Received:
+
+> `0xB1 0x47 0x48 0x49 0x4A 0x4B 0x4C 0x4D`
+
+\}
+**/
+        case COMMAND_UART0_RX_7BYTES:
+        {
+            uint8_t UART1_Read(void);
+            Txbuffer[1] = UART1_Read();
+            Txbuffer[2] = UART1_Read();
+            Txbuffer[3] = UART1_Read();
+            Txbuffer[4] = UART1_Read();
+            Txbuffer[5] = UART1_Read();
+            Txbuffer[6] = UART1_Read();
+            Txbuffer[7] = UART1_Read();
+        }
+        break;
+/** \addtogroup ProtocolBinaryCommands
+\{
+
+----
+
+Binary Send 7 bytes out first UART 
+---------------------
+
+Queues 7 bytes to be sent out of the first avaialble Hardware UART.  Assumes a UART pin mode has already been set up.  The host should
+query avaialble space before using this command.
+
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xB2|1st Byte to Send |2nd Byte To send |3rd Byte To send | 4th Byte To send | 5th Byte To send |  6th Byte To send | 7th Byte To send |
+
+Response:
+
+Packet is echoed back to the host.
+
+Examples:
+
+Send *WOMBAT!* out of the UART 
+
+> `0xB2 0x57 0x4F 0x4D 0x42 0x41 0x54 0x21`
+
+\}
+**/
+        case COMMAND_UART1_TX_7BYTES:
+        {
+            void UART2_Write(uint8_t txData);
+            UART2_Write(Rxbuffer[1]);
+            UART2_Write(Rxbuffer[2]);
+            UART2_Write(Rxbuffer[3]);
+            UART2_Write(Rxbuffer[4]);
+            UART2_Write(Rxbuffer[5]);
+            UART2_Write(Rxbuffer[6]);
+            UART2_Write(Rxbuffer[7]);
+        }
+        break;
+        
+/** \addtogroup ProtocolBinaryCommands
+\{
+
+----
+
+Binary Read 7 bytes from first UART 
+---------------------
+
+Read 7 bytes from the queue of the  first avaialble Hardware UART.  Assumes a UART pin mode has already been set up.  The host should
+query avaialble bytes to determine the nubmer of bytes avaiable before using this command.  This command should only be called if at
+least 7 bytes are available.
+
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xB3| 0x55* | 0x55* | 0x55* | 0x55* | 0x55* | 0x55* | 0x55* |
+ *0x55 is recommended, but any byte is acceptable
+
+Response:
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xB1|  1st byte read from UART queue |2nd byte read from UART queue |3rd byte read from UART queue |4th byte read from UART queue |5th byte read from UART queue |6th byte read from UART queue |7th byte read from UART queue |
+
+
+Examples:
+
+Assuming *GHIJKLM* are the first 7 bytes in the UART RX QUEUE:
+
+Sent:
+> `0xB3 0x55 0x55 0x55 0x55 0x55 0x55 0x55`
+
+Received:
+
+> `0xB3 0x47 0x48 0x49 0x4A 0x4B 0x4C 0x4D`
+
+\}
+**/
+        case COMMAND_UART1_RX_7BYTES:
+        {
+            uint8_t UART2_Read(void);
+            Txbuffer[1] = UART2_Read();
+            Txbuffer[2] = UART2_Read();
+            Txbuffer[3] = UART2_Read();
+            Txbuffer[4] = UART2_Read();
+            Txbuffer[5] = UART2_Read();
+            Txbuffer[6] = UART2_Read();
+            Txbuffer[7] = UART2_Read();
+        }
+        break;
+        
 
 		case 254: // TODO Remove
 			{
@@ -891,6 +1073,8 @@ void ProcessRx(void)
 		extern volatile uint8_t wombatI2CRxData[8];
 		extern volatile uint8_t wombatI2CTxData[8];
 		extern volatile uint8_t wombatI2CRxDataCount;
+        
+        
 
 		if (wombatI2CRxDataCount >= 8)
 		{
@@ -900,7 +1084,7 @@ void ProcessRx(void)
 
 			ResponseAvailable = false;
 
-			memcpy(Rxbuffer,wombatI2CRxData,8);
+			memcpy(Rxbuffer,(const void*)wombatI2CRxData,8);
 			wombatI2CRxDataCount = 0;
 			if (RX_ClockStretching)  
 			{
@@ -920,7 +1104,7 @@ void ProcessRx(void)
 				++debugBreakpointVariable;
 			}
 			INTERRUPT_GlobalDisable();
-			memcpy(wombatI2CTxData,Txbuffer,8);
+			memcpy((void*)wombatI2CTxData,(const void*)Txbuffer,8);
 			ResponseAvailable = true;
 			ResponsePending = false;
 

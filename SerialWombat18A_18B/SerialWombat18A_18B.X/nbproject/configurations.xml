@@ -73,6 +73,7 @@
         <itemPath>pic24fj256ga702/wombatasm.s</itemPath>
         <itemPath>pic24fj256ga702/pinDigitalHwSpecific.c</itemPath>
         <itemPath>pic24fj256ga702/updatePulse.c</itemPath>
+        <itemPath>timingResource.c</itemPath>
       </logicalFolder>
       <logicalFolder name="f2" displayName="PinModes" projectFiles="true">
         <itemPath>quadEnc.c</itemPath>
@@ -85,6 +86,7 @@
         <itemPath>TM1637.c</itemPath>
         <itemPath>ws2812.c</itemPath>
         <itemPath>touch.c</itemPath>
+        <itemPath>uartHw.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>protocol.c</itemPath>

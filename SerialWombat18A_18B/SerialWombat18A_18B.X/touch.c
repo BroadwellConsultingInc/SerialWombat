@@ -408,7 +408,7 @@ void touchProcessDigital()
 
 void updateTouch()
 { 
-	debugTouch = CurrentPinRegister;
+	debugTouch =(touch_t*) CurrentPinRegister;
 	switch (touch->state)
 	{
 		case TOUCH_STATE_IDLE:

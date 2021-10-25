@@ -29,20 +29,27 @@ typedef enum
     WS2812_MODE_BUFFERED = 0,
             WS2812_MODE_ANIMATION = 1,
             WS2812_MODE_CHASE = 2,
+            WS2812_MODE_BARGRAPH = 3,
     
 }ws2812_mode_t;
 
 typedef struct ws2812{
+    uint32_t offColor;
+    uint32_t onColor;
+    uint16_t* dmaQueuePosition;
     uint16_t userBufferIndex;
     uint16_t animationLedsIndex;
-    uint16_t* dmaQueuePosition;
     uint16_t delay ;
+    uint16_t bgMax;
+    uint16_t bgMin;
     uint8_t numOfLEDS;
     uint8_t chaseColor;
     uint8_t chaseLED;
     uint8_t mode;
     uint8_t animationFrames;
     uint8_t currentAnimationFrame;
+    uint8_t bgSourcePin;
+     uint8_t bgOnLEDs;
 }ws2812_t;
 
 
@@ -199,8 +206,8 @@ void StartDMA()
 {
     DMACH5bits.CHEN = 0;
     DMACNT5 = (uint16_t)ws2812->numOfLEDS * 24 * 2;//ws2812->dmaQueuePosition - dmaBuffer;
-    DMADST5 = &SPI1BUFL;
-    DMASRC5 = dmaBuffer;
+    DMADST5 =(uint16_t) &SPI1BUFL;
+    DMASRC5 = (uint16_t) dmaBuffer;
     DMACH5 = 0x140 & 0xFFFE; //Enable DMA Channel later;
     // HALFIF disabled; LOWIF disabled; HALFEN disabled; DONEIF disabled; OVRUNIF disabled; CHSEL SPI1 Transmit Interrupt; HIGHIF disabled; 
     DMAINT5= 0x2700;
@@ -249,7 +256,7 @@ Set pin 19 to WS2812, user buffer index of 0x180, 16 LEDS
 CONFIGURE_CHANNEL_MODE_1:
 ---------------------
 
-Set an LED RGB Value
+Set an LED RGB Value.  Index 0 also sets off mode for Bargraph, Index 1 also sets on Mode for bargraph.
 
 
 |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
@@ -371,18 +378,16 @@ Set pin 19  Animation frame 2 to a delay of 8000 ms (0x1F40)
 
 > `0xC5 0x13 0x0B 0x02 0x40 0x1F 0x55 0x55  `
 
-CONFIGURE_CHANNEL_MODE_6:
+CONFIGURE_CHANNEL_MODE_7:
 ---------------------
 
-Set the mode for the WS2812 driver.  Modes are:
-0 -  Buffered RGB values
-1 - Animation
-2 - Chase LED (used for testing and debugging)
+ Set the bargraph mode min and max values
 
 |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xC6|Pin To Set|0x0B | Mode (0-2) |Unused/0x55* |Unused/0x55* |Unused/0x55* |  Unused/0x55* | 
+|0xC6|Pin To Set|0x0B | bargraph min lsb |bargraph min msb |bargraph max lsb |bargraph max msb |  Unused/0x55* | 
 
+ 
 \*0x55 is recommended, but any byte is acceptable
 
 Response:
@@ -391,16 +396,18 @@ Command is echoed back.
 
 Examples:
 
-Set pin 19  to WS2812 mode Chase LED
+Set pin 19 bargraph min 1000, max 64000
 
-> `0xC6 0x13 0x0B 0x02 0x55 0x55 0x55 0x55  `
+> `0xC7 0x13 0x0B 0x0E8 0x03 0x00 0xFA 0x55  
 
 */
+
+
 
 void initWS2812 (void)
 {
 
-    debugWS2812 = CurrentPinRegister;
+    debugWS2812 = (ws2812_t*) CurrentPinRegister;
 	switch(Rxbuffer[0])
 	{
 		case CONFIGURE_CHANNEL_MODE_0:
@@ -414,6 +421,8 @@ void initWS2812 (void)
                 ws2812->chaseLED = 0;
                 ws2812->delay = 0;
                 ws2812->mode = 0;
+                ws2812->bgMax = 65535;
+                ws2812->bgMin  = 0;
                 
                 SendResetSignal();
                 uint8_t i;
@@ -432,9 +441,9 @@ void initWS2812 (void)
 			{
 				if (CurrentPinRegister->generic.mode == PIN_MODE_WS2812)
 				{
-					uint32_t rgb = RXBUFFER32(4);
+					uint32_t rgb = (RXBUFFER32(4) & 0x00FFFFFF);
 					uint16_t index = ws2812->userBufferIndex + ((uint16_t) Rxbuffer[3])*24 * 2 + RESET_SIGNAL_LENGTH * 2;
-					if (index >=  ws2812->numOfLEDS)
+					if (Rxbuffer[3] >=  ws2812->numOfLEDS)
 					{
 						error(SW_ERROR_WS2812_INDEX_GT_LEDS);
 					}
@@ -444,11 +453,22 @@ void initWS2812 (void)
 					}
 					else
 					{
+                        
+                            if (Rxbuffer[3] == 0)
+                            {
+                                ws2812->offColor = rgb;
+                            }
+                            else if (Rxbuffer[3] == 1)
+                            {
+                                ws2812->onColor = rgb;
+                            }
+                       
 						ws2812->dmaQueuePosition = 
-							&UserBuffer[ index ];
+							(uint16_t*)&UserBuffer[ index ];
 						QueueRGB(rgb);
 						ws2812->dmaQueuePosition = dmaBuffer;
 						ws2812->delay = 0;
+                      
 					}
 
 				}
@@ -540,7 +560,32 @@ void initWS2812 (void)
 			{
 				if (CurrentPinRegister->generic.mode == PIN_MODE_WS2812)
 				{
-                    ws2812->mode = Rxbuffer[3];
+                    if (Rxbuffer[3] <= WS2812_MODE_BARGRAPH)
+                    {
+                        ws2812->mode = Rxbuffer[3];
+                        if (ws2812->mode == WS2812_MODE_BARGRAPH)
+                        {
+                            ws2812->bgSourcePin = Rxbuffer[4];
+                        }
+                    }
+                    else
+                    {
+                        error(SW_ERROR_INVALID_PARAMETER_3);
+                    }
+				}
+				else
+				{
+					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+				}
+			}
+			break;
+            
+            case CONFIGURE_CHANNEL_MODE_7: 
+			{
+				if (CurrentPinRegister->generic.mode == PIN_MODE_WS2812)
+				{
+                    ws2812->bgMin = RXBUFFER16(3);
+                    ws2812->bgMax = RXBUFFER16(5);
 				}
 				else
 				{
@@ -583,7 +628,7 @@ void initWS2812 (void)
 /// string, and raw modes, and a user-defined period for animation.
 void updateWS2812()
 {
-	debugWS2812 = CurrentPinRegister;
+	debugWS2812 = (ws2812_t*) CurrentPinRegister;
 	if (ws2812->delay)
 	{
 		-- ws2812->delay;
@@ -611,7 +656,7 @@ void updateWS2812()
 				QueueRGB(0); // This is not the current LED.  Turn it off.
 			}
 		}
-		if (ws2812->mode == WS2812_MODE_ANIMATION)
+		else if (ws2812->mode == WS2812_MODE_ANIMATION)
 		{
 
 			// This is the current LED.  Turn it on with the color stored in r,g,b
@@ -626,6 +671,48 @@ void updateWS2812()
 
 
 		}
+       else if (ws2812->mode == WS2812_MODE_BARGRAPH)
+            {
+           if (ws2812->delay == ws2812->numOfLEDS )
+            {
+                 ws2812->bgOnLEDs = 0;
+
+                uint32_t value = GetBuffer(ws2812->bgSourcePin);
+                if (value >= ws2812->bgMax)
+                {
+                    ws2812->bgOnLEDs = ws2812->numOfLEDS;    
+                }
+                else if (value <= ws2812->bgMin)
+                {
+                    ws2812->bgOnLEDs = 0;    
+                }
+                else if ((ws2812->bgMin == 0 && ws2812->bgMax == 65535) || ws2812->bgMax == ws2812->bgMin)
+                {
+                    value *= ws2812->numOfLEDS;
+                    value >>= 16;
+                    ws2812->bgOnLEDs = value;
+                }
+                else
+                {
+                    value -= ws2812->bgMin;
+                    value <<= 16;
+                    value /= (ws2812->bgMax - ws2812->bgMin);
+                    value *= ws2812->numOfLEDS;
+                    value >>= 16;
+                    ws2812->bgOnLEDs = value;
+                }
+                
+            }
+           if (ws2812->numOfLEDS - ws2812->delay >= ws2812->bgOnLEDs )
+           {
+               QueueRGB(ws2812->offColor);
+           }
+           else
+           {
+               QueueRGB(ws2812->onColor);
+           }
+        }
+        
         
         
 	}
@@ -657,6 +744,8 @@ void updateWS2812()
                     ws2812->currentAnimationFrame = 0;
                 }
             }
+           
+            
             else
             {
 

@@ -191,10 +191,12 @@ typedef struct tm1637_n{
 	uint8_t outputState;      ///< Used for the byte-by-byte transfer state machine.
 	uint8_t dioPin;           ///< The second pin used by this pin mode
 	uint8_t decimalPointBitmap; ///< Least significant is first digit's decimal
+    uint8_t blinkBitmap;        ///< Digits to blink at 2Hz Least significant is first digit's decimal
 	uint8_t lastDigit:4;        ///< The last digit to send
     uint8_t brightness:4;
     uint8_t lastBrightness:4;
 	uint8_t mode:4;  ///< See type TM1637_MODE_t 
+    uint8_t suppressLeadingZeros:1;
 }tm1637_t;
 
 
@@ -358,12 +360,12 @@ Change Display order of Digit 5.    See CONFIGURE_CHANNEL_MODE_1
 CONFIGURE_CHANNEL_MODE_3:
 ---------------------
 
-Set TM1637 Brightness
+Set TM1637 Brightness and Leading Zero Suppression
 
 
 |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xC3|Pin To Set (TO TM1637 Clock)|0x0A (TM1637 ) |Brightness (0-7) |Unused/0x55* |Unused/0x55* |Unused/0x55* |Unused/0x55* | 
+|0xC3|Pin To Set (TO TM1637 Clock)|0x0A (TM1637 ) |Brightness (0-7) or 0x55 for unchanged |Leading Zero Supression (0,1, or 0x55 for unchanged) |Unused/0x55* |Unused/0x55* |Unused/0x55* | 
 
 \*0x55 is recommended, but any byte is acceptable
 
@@ -373,9 +375,9 @@ Command is echoed back.
 
 Examples:
 
-Set pin 19  TM1637 Brightness to level 3
+Set pin 19  TM1637 Brightness to level 3, leading zero supression
 
-> `0xC3 0x13 0x0A 0x03 0x55 0x55 0x55 0x55  `
+> `0xC3 0x13 0x0A 0x03 0x01 0x55 0x55 0x55  `
 
 
 CONFIGURE_CHANNEL_MODE_4:
@@ -440,7 +442,7 @@ Send the animation setup to the output array:
 > `0xC5 0x13 0x0A 0x00 0x55 0x55 0x55 0x55 ` 
 
 
-CONFIGURE_CHANNEL_MODE_5:
+CONFIGURE_CHANNEL_MODE_6:
 ---------------------
 
 Set TM1637 Decimal Points
@@ -453,7 +455,7 @@ Consult the TM1637 and LED module datasheets.
 
 |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xC3|Pin To Set (TO TM1637 Clock)|0x0A (TM1637 ) | Decimal Point Bitmap |Unused/0x55* |Unused/0x55* |Unused/0x55* |Unused/0x55* | 
+|0xC6|Pin To Set (TO TM1637 Clock)|0x0A (TM1637 ) | Decimal Point Bitmap |Unused/0x55* |Unused/0x55* |Unused/0x55* |Unused/0x55* | 
 
 \*0x55 is recommended, but any byte is acceptable
 
@@ -466,6 +468,31 @@ Examples:
 Set pin 19  TM1637 Decimal Point third digit decimal on
 
 > `0xC6 0x13 0x0A 0x04 0x55 0x55 0x55 0x55  `
+
+CONFIGURE_CHANNEL_MODE_7:
+---------------------
+
+Set TM1637 Digit Blink
+
+The bottom 6 LSB are used as indicators that the digits indicated as 1's should blink
+
+
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xC7|Pin To Set (TO TM1637 Clock)|0x0A (TM1637 ) | Blink Bitmap |Unused/0x55* |Unused/0x55* |Unused/0x55* |Unused/0x55* | 
+
+\*0x55 is recommended, but any byte is acceptable
+
+Response:
+
+Command is echoed back.
+
+Examples:
+
+Set pin 19  Blink 2nd and 3rd digit
+
+> `0xC7 0x13 0x0A 0x06 0x55 0x55 0x55 0x55  `
 
 */
 
@@ -508,6 +535,8 @@ void initTM1637 (void)
                 tm1637->lastBrightness = 0xF;
                 tm1637->decimalPointBitmap = 0;
 				tm1637->idleCounter = 0;
+                tm1637->suppressLeadingZeros = 0;
+                tm1637->blinkBitmap = 0;
 				for (i = 0; i < 6; ++ i)
 				{
 					tm1637->displayOrder[i] = i;
@@ -552,7 +581,14 @@ void initTM1637 (void)
 			{
 				if (CurrentPinRegister->generic.mode == PIN_MODE_TM1637)
 				{
-					tm1637->brightness = Rxbuffer[3] & 0x07;
+                    if (Rxbuffer[3] != 0x55)
+                    {
+                        tm1637->brightness = Rxbuffer[3] & 0x07;
+                    }
+                    if (Rxbuffer[4] != 0x55)
+                    {
+                        tm1637->suppressLeadingZeros = (Rxbuffer[4] > 0);
+                    }
 				}
 				else
 				{
@@ -601,6 +637,20 @@ void initTM1637 (void)
 				}
 			}
 			break;
+            
+             case CONFIGURE_CHANNEL_MODE_7: 
+			{
+				if (CurrentPinRegister->generic.mode == PIN_MODE_TM1637)
+				{
+					tm1637->blinkBitmap = Rxbuffer[3];
+				}
+				else
+				{
+					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+				}
+			}
+			break;
+            
 
 		default:
 			{
@@ -625,7 +675,8 @@ tm1637_t* debugTM1637;
 /// the display PCB layout).
 void tm1637UpdateRender()
 {
-    uint8_t renderArray[6]; 
+    uint8_t renderArray[6];
+    bool noDigitsFound = true;
 	
 	if (tm1637->mode == TM1637_MODE_BUFFER_DEC)
 	{
@@ -634,13 +685,32 @@ void tm1637UpdateRender()
         uint8_t i;
          for (i = 0; i < 6; ++i)
          {
-             renderArray[i] =seven_seg_table[renderArray[i]];
+             bool render = true;
+             if (renderArray[i] == '0')
+             {
+                if (tm1637->suppressLeadingZeros && //Don't suppress if suppression turned off
+                        noDigitsFound &&            //Don't suppress if we've already found a non-zero
+                        i != tm1637->lastDigit  &&  //Don't suppress if last displayed digit
+                        tm1637->blinkBitmap == 0)   //Don't suppress if we're blinking digits
+                {
+                    renderArray[i] = seven_seg_table[' '];
+                    render = false;
+                }
+             }
+             else
+             {
+                 noDigitsFound = false;
+             }
+             if (render)
+             {
+                renderArray[i] =seven_seg_table[renderArray[i]];
+             }
          }
 	}
 	else if (tm1637->mode == TM1637_MODE_BUFFER_HEX)
 	{
-		renderArray[0] = '0';
-		renderArray[1] = '0';
+		renderArray[0] = ' ';
+		renderArray[1] = ' ';
 		 uint16ToAsciiHex4(GetBuffer(tm1637->outputBuffer[0]), &renderArray[2]) ;
          uint8_t i;
          for (i = 0; i < 6; ++i)
@@ -691,7 +761,17 @@ void tm1637UpdateRender()
         }
 	}
 
-
+    if (tm1637->blinkBitmap && ((FramesRun & 0x0380) ==0)) // Blink based on FramesRun which increments every 1ms
+    {
+        uint8_t i;
+        for (i = 0; i < 6; ++i)
+        {
+            if (tm1637->blinkBitmap & (1 << i))
+        {
+            renderArray[ i] = seven_seg_table[' '];
+        }
+        }
+    }
     if (tm1637->decimalPointBitmap)
     {
         uint8_t i;
@@ -703,6 +783,8 @@ void tm1637UpdateRender()
         }
     }
     }
+    
+    
 
     {
         uint8_t i;
