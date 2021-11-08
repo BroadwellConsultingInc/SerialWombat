@@ -9,9 +9,6 @@
                      projectFiles="true">
         <logicalFolder name="memory" displayName="memory" projectFiles="true">
           <itemPath>pic24fj256ga702/mcc_generated_files/memory/flash.h</itemPath>
-          <itemPath>pic24fj256ga702/mcc_generated_files/memory/flash_demo.h</itemPath>
-          <itemPath>mcc_generated_files/memory/flash_demo.h</itemPath>
-          <itemPath>mcc_generated_files/memory/flash.h</itemPath>
         </logicalFolder>
         <itemPath>pic24fj256ga702/mcc_generated_files/i2c2.h</itemPath>
         <itemPath>pic24fj256ga702/mcc_generated_files/adc1.h</itemPath>
@@ -40,6 +37,7 @@
       <itemPath>../../SerialWombatCommon/serialWombat.h</itemPath>
       <itemPath>pic24fj256ga702/deviceSpecific.h</itemPath>
       <itemPath>pic24fj256ga702/pinDigitalHwSpecific.h</itemPath>
+      <itemPath>outputScale.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -87,6 +85,9 @@
         <itemPath>ws2812.c</itemPath>
         <itemPath>touch.c</itemPath>
         <itemPath>uartHw.c</itemPath>
+        <itemPath>servo.c</itemPath>
+        <itemPath>pwm.c</itemPath>
+        <itemPath>outputScale.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>protocol.c</itemPath>
@@ -183,7 +184,7 @@
         <property key="oXC16gcc-sfr-warn" value="false"/>
         <property key="oXC16gcc-smar-io-lvl" value="1"/>
         <property key="oXC16gcc-smart-io-fmt" value=""/>
-        <property key="optimization-level" value="0"/>
+        <property key="optimization-level" value="2"/>
         <property key="post-instruction-scheduling" value="default"/>
         <property key="pre-instruction-scheduling" value="default"/>
         <property key="preprocessor-macros" value=""/>

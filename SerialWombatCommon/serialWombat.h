@@ -1,5 +1,5 @@
 /*
-Copyright 2020 Broadwell Consulting Inc.
+Copyright 2020-2021 Broadwell Consulting Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
@@ -33,6 +33,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 extern  uint8_t CurrentPin;
 
 extern pinRegister_t PinUpdateRegisters[NUMBER_OF_TOTAL_PINS];
+
+extern bool RunForeground;
 
 #define RXBUFFER_LENGTH 8
 extern uint8_t Rxbuffer[RXBUFFER_LENGTH];
@@ -183,6 +185,8 @@ typedef enum {
             SW_ERROR_INVALID_PARAMETER_5 = 19, ///<The pin configuration parameter in Byte 5 was invalid
             SW_ERROR_INVALID_PARAMETER_6 = 20, ///<The pin configuration parameter in Byte 6 was invalid
             SW_ERROR_INVALID_PARAMETER_7 = 21, ///<The pin configuration parameter in Byte 7 was invalid
+            SW_ERROR_PIN_NUMBER_TOO_HIGH = 22, ///<The pin number indicated was greater than the greatest avaialable pin
+            SW_ERROR_PIN_IS_COMM_INTERFACE =23, ///<The pin number indicated is currently being used for Serial Wombat protocol communicaitons
 }SW_ERROR_t;
 
 void error (SW_ERROR_t errorCode);

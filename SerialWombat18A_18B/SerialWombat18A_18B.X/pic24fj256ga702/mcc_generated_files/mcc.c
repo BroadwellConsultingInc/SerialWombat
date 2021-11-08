@@ -72,7 +72,7 @@
 #pragma config SOSCSEL = OFF    //SOSC Power Selection Configuration bits->Digital (SCLKI) mode
 #pragma config PLLSS = PLL_FRC    //PLL Secondary Selection Configuration bit->PLL is fed by the on-chip Fast RC (FRC) oscillator
 #pragma config IOL1WAY = OFF   //Peripheral pin select configuration bit->Allow only one reconfiguration
-#pragma config FCKSM = CSECMD    //Clock Switching Mode bits->Clock switching is enabled,Fail-safe Clock Monitor is disabled
+#pragma config FCKSM = CSECME    //Clock Switching Mode bits->Clock switching is enabled,Fail-safe Clock Monitor is disabled
 
 // FWDT
 #pragma config WDTPS = PS32768    //Watchdog Timer Postscaler bits->1:32768

@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
-  <executable name="dist/default/production/SerialWombat18A_18B.X.production.elf">
+  <executable name="dist/default/debug/SerialWombat18A_18B_JumpToApp.X.debug.elf">
     <memory name="data">
       <units>bytes</units>
       <length>16384</length>
-      <used>11094</used>
-      <free>5290</free>
+      <used>80</used>
+      <free>16304</free>
     </memory>
     <memory name="program">
       <units>bytes</units>
-      <length>170112</length>
-      <used>38997</used>
-      <free>131115</free>
+      <length>392832</length>
+      <used>471</used>
+      <free>392361</free>
     </memory>
   </executable>
 </project>

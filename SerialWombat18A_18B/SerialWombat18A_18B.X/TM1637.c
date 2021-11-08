@@ -210,19 +210,19 @@ typedef struct tm1637_n{
 
 void tm1637Start(){	DIO_LOW();}
 
-void tm1637Stop() { SetPinQuick(CurrentPin,0); SetPinQuick(tm1637->dioPin,0); CLK_HIGH();	DIO_HIGH();}
+void tm1637Stop() { SetPin(CurrentPin,0); SetPin(tm1637->dioPin,0); CLK_HIGH();	DIO_HIGH();}
 
 void tm1637ClockByte(uint8_t data)
 {
     uint8_t i;
 	for (i = 0; i < 8; ++i)
 	{
-		SetPinQuick(CurrentPin,0);
-		SetPinQuick(tm1637->dioPin,(data & 0x01) > 0);
-		SetPinQuick(CurrentPin,1);
+		SetPin(CurrentPin,0);
+		SetPin(tm1637->dioPin,(data & 0x01) > 0);
+		SetPin(CurrentPin,1);
 		data >>=1;
 	}
-    SetPinQuick(CurrentPin,0);
+    SetPin(CurrentPin,0);
 	DIO_LOW();
 	CLK_HIGH();
 }

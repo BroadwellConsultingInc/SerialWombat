@@ -100,7 +100,7 @@ uint16_t GetADCConversion(uint8_t pin)
 	{
         
 		//  ADDR PIN  return (ADC1BUF0);
-		case 0: return (ADC1BUF1);
+		case 0: return (ADC1BUF0);
 		case 1: return (ADC1BUF2);
 		case 2: return (ADC1BUF4);
 		case 3: return (ADC1BUF5);
@@ -139,7 +139,7 @@ uint16_t GetAddressPinVoltage_mV()
     AD1CON5bits.CTMREQ =1;
         
 
-        AD1CHS = 0; // Channel 0
+        AD1CHS = 1; // Channel 1
         CTMUCON1Lbits.IDISSEN = 1;
         volatile uint32_t i;
         for (adc_i = 0; adc_i < 10000; ++adc_i)

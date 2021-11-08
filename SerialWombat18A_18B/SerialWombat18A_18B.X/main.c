@@ -45,7 +45,12 @@ int main(void)
     memset(UserBuffer,0, sizeof(UserBuffer));
 	SYSTEM_Initialize();
     while (!HLVDCONbits.BGVST); // Wait for Band Gap to stabilize.
-    timingResourceManagerInit();
+
+    SPI3CON1L = 0x8020;  // Make SPI3 Leader, CS enabled as high data source for PPS
+        SPI3CON1H = 0x0010;
+
+        timingResourceManagerInit();
+    
     INTERRUPT_GlobalEnable();
  
 	while (1)
@@ -149,10 +154,10 @@ void ProcessPins()
 				break;
 			case PIN_MODE_SERVO:
             {
-                void updatePulseOut(void);
-				updatePulseOut();
+                void updateServoHw(void);
+				updateServoHw();
             }
-				break;
+		   break;
 			case PIN_MODE_HYSTERESIS:
 				//update_hysteresis();
 				break;
@@ -187,6 +192,11 @@ void ProcessPins()
             break;
             
 			case PIN_MODE_PWM:
+            {
+                void updatePWM(void);
+                updatePWM();
+            }
+            break;
             case PIN_MODE_DMA_PULSE_OUTPUT:
             {
                 void updatePulseOut(void);

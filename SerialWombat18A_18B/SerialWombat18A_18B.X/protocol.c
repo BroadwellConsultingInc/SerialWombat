@@ -1150,9 +1150,20 @@ void ProcessSetPin()
 	CurrentPinRegister = &PinUpdateRegisters[CurrentPin];
 	if (CurrentPin >= NUMBER_OF_TOTAL_PINS)
 	{
-		//TODO error message
+		error(SW_ERROR_PIN_NUMBER_TOO_HIGH);
 		return;
 	}
+    
+    if ((CurrentPin == 3 || CurrentPin == 4 ) && SW_I2CAddress != 0  )
+    {
+        error(SW_ERROR_PIN_IS_COMM_INTERFACE);
+        return;
+    }
+    if (SW_I2CAddress == 0  && (CurrentPin == 7 || CurrentPin == 9 ))
+    {
+        error(SW_ERROR_PIN_IS_COMM_INTERFACE);
+        return;
+    }
 
 	switch (Rxbuffer[2])
 	{
@@ -1171,7 +1182,18 @@ void ProcessSetPin()
         break;
         
 		case PIN_MODE_SERVO:
+        {
+            void initServoHw(void);
+            initServoHw();
+        }
+        break;
 		case PIN_MODE_PWM:
+        {
+            void initPWM(void);
+            initPWM();
+        }
+        break;
+        
         case PIN_MODE_DMA_PULSE_OUTPUT:
 		{
             void initPulseOut(void);

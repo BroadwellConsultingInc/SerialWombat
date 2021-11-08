@@ -78,7 +78,7 @@ void SYSTEM_Initialize(void)
     CRC_Initialize();
     ADC1_Initialize();
       ANSELB = 0;  // No analogs to start
-   ANSELA = 0;
+   ANSELA = 0x02;  // Make addr pin an analog
     
    // TMR3_Initialize();
     TMR2_Initialize();

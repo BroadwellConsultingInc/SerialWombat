@@ -21,7 +21,14 @@ uint16_t lastUserBufferIndex = 0xFFFF;
 uint16_t lastQueueIndex = 0xFFFF;
 
 uint16_t debugFlashWrites = 0;
+#ifdef I2C_DEBUG_OUTPUT
+#define OUTPUT_I2C_DEBUG(_value) {LATB = (_value <<11);  LATBbits.LATB10= 1;Nop();Nop();Nop();Nop(); LATBbits.LATB10 = 0;}
+#warning I2C_DEBUG_OUTPUT ENABLED!   PORT B DMA Disabled!
+#else
+#define OUTPUT_I2C_DEBUG(_value){}
+#endif
 extern uint8_t* UserBufferBoot;
+extern uint8_t* UserBufferPtr;
 void uartStartTX()
 {
 	uint8_t crlf[] = {'\r','\n'};
@@ -215,7 +222,7 @@ Examples:
 				{
 					count = 7;
 				}
-				 memcpy(&Txbuffer[1],&UserBufferBoot[address],count);
+				 memcpy(&Txbuffer[1],UserBufferPtr + address,count);
 			 }
 			 //TODO:  Error on bad address
 		}
@@ -235,7 +242,7 @@ Examples:
              
                  if (lastUserBufferIndex + count < SIZE_OF_USER_BUFFER)
                  {
-                     memcpy(&UserBufferBoot[lastUserBufferIndex],&Rxbuffer[4],count);
+                     memcpy(UserBufferPtr+lastUserBufferIndex,&Rxbuffer[4],count);
                      lastUserBufferIndex += count;
                  }
                  else
@@ -254,8 +261,21 @@ Examples:
 				if (count >= 7)
 				{
 					count = 7;
-                     memcpy(&UserBufferBoot[lastUserBufferIndex],&Rxbuffer[1],count);
+                  
+                    
+                     memcpy(UserBufferPtr + lastUserBufferIndex ,&Rxbuffer[1],count);
                      lastUserBufferIndex += count;
+                     
+                     
+                  /*
+                     uint8_t i;
+                     for (i = 0; i < count; ++i)
+                     {
+                         UserBufferBoot[lastUserBufferIndex] = Rxbuffer[i + 1];
+                         ++lastUserBufferIndex;
+                     }
+                    */ 
+
 				}
                 else
                 {
@@ -372,7 +392,7 @@ Response:
                     {
                         FLASH_Unlock(FLASH_UNLOCK_KEY);
 
-                    FLASH_WriteRow24(address, (uint32_t*)UserBufferBoot);
+                    FLASH_WriteRow24(address, (uint32_t*)UserBufferPtr);
                     ++debugFlashWrites;
                     }
                    
@@ -457,25 +477,32 @@ void ProcessRx(void)
 		}	
 		uartStartTX();
 	}
-     */
-    extern uint8_t wombatI2CRxData[8];
-    extern uint8_t wombatI2CTxData[8];
-    extern uint8_t wombatI2CRxDataCount;
-    
-    if (wombatI2CRxDataCount >= 8)
-    {
-        ResponseAvailable = false;
+*/
+		extern volatile uint8_t wombatI2CRxData[8];
+		extern volatile uint8_t wombatI2CTxData[8];
+		extern volatile uint8_t wombatI2CRxDataCount;
         
-        memcpy(Rxbuffer,wombatI2CRxData,8);
-        wombatI2CRxDataCount = 0;
-        	if (RX_ClockStretching)  
+        
+
+		if (wombatI2CRxDataCount >= 8)
+		{
+			OUTPUT_I2C_DEBUG(0x11);
+			OUTPUT_I2C_DEBUG(0x11);
+
+
+			ResponseAvailable = false;
+
+			memcpy(Rxbuffer,(const void*)wombatI2CRxData,8);
+			wombatI2CRxDataCount = 0;
+			if (RX_ClockStretching)  
 			{
+				OUTPUT_I2C_DEBUG(30);
 				// If we're in the middle of stretching a 2nd request to send us data to from the host, release.  
 				// We've made a copy of the incoming data, so we can receive another while we're processing this one.
 				// The fact that the host is trying to send us another packet means it doesn't care about the response
 				// from the packet we're about to process.
 				TX_ClockStretching = 0; 
-			
+
 				I2C2CONLbits.SCLREL	 = 1; // Release clock stretch in hardware
 			}
 
@@ -487,7 +514,7 @@ void ProcessRx(void)
         
         if (RX_ClockStretching)
 		{
-			
+				OUTPUT_I2C_DEBUG(28);
 			// If we're in the middle of stretching a 2nd request to send us data to from the host, release.  
 			RX_ClockStretching = 0;
 
@@ -497,7 +524,7 @@ void ProcessRx(void)
         if (TX_ClockStretching && ResponseAvailable)
         {
 
-
+				OUTPUT_I2C_DEBUG(29);
 		// If we were clock stretching waiting for a response to the last packet to be generated,
 		// it's ready now, so stop stretching the clock.
 		TX_ClockStretching = 0;
@@ -512,6 +539,8 @@ void ProcessRx(void)
 		
 	}
         INTERRUPT_GlobalEnable();
+			OUTPUT_I2C_DEBUG(0x11);
+			OUTPUT_I2C_DEBUG(0x11);
     }
 }
 

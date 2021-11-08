@@ -20,7 +20,6 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
     <itemPath>main_boot.c</itemPath>
-    <itemPath>main_boot.c</itemPath>
   </logicalFolder>
   <sourceRootList>
     <Elem>.</Elem>
@@ -117,7 +116,7 @@
         <property key="oXC16gcc-sfr-warn" value="false"/>
         <property key="oXC16gcc-smar-io-lvl" value="1"/>
         <property key="oXC16gcc-smart-io-fmt" value=""/>
-        <property key="optimization-level" value="0"/>
+        <property key="optimization-level" value="2"/>
         <property key="post-instruction-scheduling" value="default"/>
         <property key="pre-instruction-scheduling" value="default"/>
         <property key="preprocessor-macros" value=""/>
@@ -276,8 +275,6 @@
         <property key="memories.programmemory.ranges" value="0-2aeff"/>
         <property key="memories.rww" value="true"/>
         <property key="poweroptions.powerenable" value="false"/>
-        <property key="programmerToGoFilePath"
-                  value="F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B_JumpToApp.X/debug/default/SerialWombat18A_18B_Bootloader_ptg"/>
         <property key="programmerToGoImageName"
                   value="SerialWombat18A_18B_Bootloader_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>

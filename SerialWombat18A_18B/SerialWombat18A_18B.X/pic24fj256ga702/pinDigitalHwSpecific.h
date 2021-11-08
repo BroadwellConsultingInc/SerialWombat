@@ -50,35 +50,46 @@ uint8_t pinIsPPSCapable(uint8_t pin);
 
 typedef enum
 {
-            TIMING_RESOURCE_OC1,
-            TIMING_RESOURCE_OC2,
+       TIMING_RESOURCE_MCCP2,
+
+                 TIMING_RESOURCE_MCCP3,
+                               TIMING_RESOURCE_MCCP4,
+ 
+
+
+    TIMING_RESOURCE_OC1,
+                        
+           TIMING_RESOURCE_OC2,
+                
             TIMING_RESOURCE_OC3,
-           // TIMING_RESOURCE_MCCP1,
-            //TIMING_RESOURCE_MCCP2,
-            //TIMING_RESOURCE_MCCP3,
-            //TIMING_RESOURCE_MCCP4,
+    
+
+           
+
             TIMING_RESOURCE_PORT_DMA,
-            TIMING_RESOURCE_NUMBER_OF_RESOURCES,
+                      TIMING_RESOURCE_MCCP1,  // Place after DMA
+                                TIMING_RESOURCE_NUMBER_OF_RESOURCES,
+                    TIMING_RESOURCE_ANY,
+                    TIMING_RESOURCE_ALL,
+            TIMING_RESOURCE_ANY_HARDWARE,
+            
             TIMING_RESOURCE_NONE = 0xFF,
             
 } TIMING_RESOURCE_t;
 
-typedef enum
-{
-    TIMING_RESOURCE_MODE_IDLE,
-    TIMING_RESOURCE_MODE_INTERRUPT,
-            TIMING_RESOURCE_MODE_PULSE_HIGH,
-            TIMING_RESOURCE_MODE_PULSE_LOW,
-            TIMING_RESOURCE_MODE_PWM,
-}TIMING_RESOURCE_MODE_t;
+
 typedef void (*timingResourceCallback_t) (void);
-TIMING_RESOURCE_t timingResourceClaim(bool requireHardwareResource);
-void timingResourceSetInterrupt(uint16_t timeout_uS, timingResourceCallback_t callBack);
-void timingResourcesHighPulse(uint16_t pulseTime_uS);
-void timingResourcesLowPulse(uint16_t pulseTime_uS);
-void timingResourcePWM(uint32_t period_uS, uint16_t dutyCycle);
-bool timingResourceIsBusy();
-bool timingResourceSevice();
-void timingResourceRelease();
+TIMING_RESOURCE_t timingResourceHighPulseClaim(TIMING_RESOURCE_t resource);
+TIMING_RESOURCE_t timingResourcePWMClaim(TIMING_RESOURCE_t resource, uint32_t period_uS);
+void timingResourceSetInterrupt(TIMING_RESOURCE_t resource, uint16_t timeout_uS, timingResourceCallback_t callBack);
+void timingResourcesHighPulse(TIMING_RESOURCE_t resource, uint16_t pulseTime_uS);
+void timingResourcesLowPulse(TIMING_RESOURCE_t resource, uint16_t pulseTime_uS);
+void timingResourcePWM(TIMING_RESOURCE_t resource, uint32_t period_uS, uint16_t dutyCycle);
+bool timingResourceHighPulseBusy(TIMING_RESOURCE_t resource );
+bool timingResourceService(TIMING_RESOURCE_t resource);
+void timingResourceRelease(TIMING_RESOURCE_t resource);
 void timingResourceManagerInit();
+
+TIMING_RESOURCE_t timingResourceInterruptClaim(TIMING_RESOURCE_t resource, uint16_t counts, uint16_t uS, void (*callBack)(void));
+void timingResourceInterruptActivate(TIMING_RESOURCE_t resource);
 #endif

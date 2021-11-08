@@ -413,7 +413,7 @@ void initWS2812 (void)
 		case CONFIGURE_CHANNEL_MODE_0:
 			{
                 ws2812->userBufferIndex = RXBUFFER16(3);
-                ws2812->animationLedsIndex = 0x8000; // Will cause invalid writes if not set
+                ws2812->animationLedsIndex = 0x0000; // Will cause invalid writes if not set
                 ws2812->animationFrames = 0;
                 ws2812->numOfLEDS = Rxbuffer[5];
                 ws2812->dmaQueuePosition = dmaBuffer;
@@ -507,9 +507,9 @@ void initWS2812 (void)
                     }
                     else
                     {
-                    UserBuffer[ index ] = Rxbuffer[5];
+                    UserBuffer[ index ] = Rxbuffer[7];
                     UserBuffer[ index + 1 ] = Rxbuffer[6];
-                    UserBuffer[ index + 2 ] = Rxbuffer[7];
+                    UserBuffer[ index + 2 ] = Rxbuffer[5];
                     }
 				}
 				else
@@ -737,7 +737,10 @@ void updateWS2812()
             }
             else if (ws2812->mode == WS2812_MODE_ANIMATION)
             {
-                ws2812->delay = *(uint16_t*) &UserBuffer[ws2812->animationLedsIndex + ws2812->currentAnimationFrame * (2 + 3 * ws2812->numOfLEDS)];
+                uint16_t index = ws2812->animationLedsIndex + ws2812->currentAnimationFrame * (2 + 3 * ws2812->numOfLEDS);
+                ws2812->delay = UserBuffer[index + 1];  // Do it byte by byte.  May be a non-word aligned address.
+                ws2812->delay <<= 8;
+                ws2812->delay += UserBuffer[index];
                 ++ws2812->currentAnimationFrame;
                 if (ws2812->currentAnimationFrame == ws2812->animationFrames)
                 {

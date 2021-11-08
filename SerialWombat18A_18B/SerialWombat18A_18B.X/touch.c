@@ -48,6 +48,7 @@ typedef struct touch_n{
 	uint8_t debounceCurrentDifferenceCount;
 	uint8_t debounceLimit;	
     uint8_t waitLimit;
+    uint8_t timingResource;
 	uint8_t debounceCurrentReportedLevel:1;
 	uint8_t digitalOutput:1;
 	uint8_t invert:1;
@@ -405,6 +406,10 @@ void touchProcessDigital()
 
 }
 
+void touchCallback()
+{
+      CTMUCON1Lbits.IDISSEN = 0; // Disable discharge (start charging)
+}
 
 void updateTouch()
 { 
@@ -417,13 +422,18 @@ void updateTouch()
 				if (touch->delayCounter >= touch->delay)
 				{
 					if (ADC1Semaphore == RESOURCE_AVAILABLE && 
-                            TMR1Semaphore == RESOURCE_AVAILABLE &&
                             TMR3Semaphore == RESOURCE_AVAILABLE)
 					{
-						ADC1Semaphore = CurrentPin;
-                        TMR1Semaphore = CurrentPin;
-						TMR3Semaphore = CurrentPin;
-						touch->state = TOUCH_STATE_DISCHARGE;                
+                        TIMING_RESOURCE_t timingResource = 
+                                timingResourceInterruptClaim(TIMING_RESOURCE_ANY,
+                                8000, 0, touchCallback);
+                        if (timingResource != TIMING_RESOURCE_NONE)
+                        {
+                            touch->timingResource = timingResource;    
+                            ADC1Semaphore = CurrentPin;
+                            TMR3Semaphore = CurrentPin;
+                            touch->state = TOUCH_STATE_DISCHARGE;                
+                        }
 					}
 				}
 			}
@@ -472,14 +482,9 @@ void updateTouch()
 				T3CON = 0;
 				PR3 = touch->chargeTime + 8000; //8000 minimum clocks to trigger A/D.
                 TMR3 = 0;
-
-				T1CON = 0;
-                PR1 = 8000;
-                TMR1 = 0;
-                
+                timingResourceInterruptActivate(touch->timingResource);
 				T3CON = 0x8000; //Start timer
-                T1CON = 0x8000;
-                TMR1_INTERRUPT_ENABLE();
+                
             
 
 				touch->state = TOUCH_STATE_WAITING_FOR_COMPLETION;
@@ -512,11 +517,11 @@ void updateTouch()
 					touch->state = TOUCH_STATE_IDLE;
 
 					ADC1_Initialize();
-                    TMR1_ResetConditions();
+
                     TMR3_ResetConditions();
 					T3CON = 0;
 					ADC1Semaphore = RESOURCE_AVAILABLE;
-                    TMR1Semaphore = RESOURCE_AVAILABLE;
+
 					TMR3Semaphore = RESOURCE_AVAILABLE;
 				}
                 else
@@ -524,10 +529,10 @@ void updateTouch()
                     ++touch->waitLimit;
                     if (touch->waitLimit >= 100){//This should happen in 1...
                         ADC1_Initialize();
-                    TMR1_ResetConditions();
+
                     TMR3_ResetConditions();
 					ADC1Semaphore = RESOURCE_AVAILABLE;
-                    TMR1Semaphore = RESOURCE_AVAILABLE;
+
 					TMR3Semaphore = RESOURCE_AVAILABLE;
                     	touch->state = TOUCH_STATE_IDLE;
                         touch->waitLimit = 0;
@@ -537,3 +542,5 @@ void updateTouch()
 			}
 	}
 }
+
+

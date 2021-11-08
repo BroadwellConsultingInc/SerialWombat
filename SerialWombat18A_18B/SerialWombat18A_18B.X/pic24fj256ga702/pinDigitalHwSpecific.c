@@ -4,8 +4,8 @@
 
 void or128(uint16_t* array, uint16_t value); 
 void and128(uint16_t* array, uint16_t value); 
-uint16_t OutputArrayA[SIZE_OF_DMA_ARRAY] = { 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF}  ;
-uint16_t OutputArrayB[SIZE_OF_DMA_ARRAY] = { 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF, 0, 0xFFFF}  ;
+uint16_t OutputArrayA[SIZE_OF_DMA_ARRAY] = { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+uint16_t OutputArrayB[SIZE_OF_DMA_ARRAY] = {  0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 uint16_t InputArrayA[SIZE_OF_DMA_ARRAY];
 uint16_t InputArrayB[SIZE_OF_DMA_ARRAY];
 
@@ -38,7 +38,7 @@ const uint16_t PinBitmapB[NUMBER_OF_PHYSICAL_PINS] =
 const uint16_t PinBitmapA[NUMBER_OF_PHYSICAL_PINS] = 
 {
 
-	0x0002 , // 0 RA1
+	0x0001 , // 0 RA0
 	0x0000 , // 1 RB0
 	0x0000 , // 2 RB1
 	0x0000 , // 3 RB2
@@ -63,7 +63,7 @@ const uint16_t PinBitmapA[NUMBER_OF_PHYSICAL_PINS] =
 const uint8_t pinPort[NUMBER_OF_PHYSICAL_PINS] =
 {
 	//Skip RA0, it's address pin, not WP.
-	0x00 , // 0 RA1
+	0x00 , // 0 RA0
 	0x01 , // 1 RB0
 	0x01 , // 2 RB1
 	0x01 , // 3 RB2
@@ -87,8 +87,8 @@ const uint8_t pinPort[NUMBER_OF_PHYSICAL_PINS] =
 
 const uint16_t pinBitmap[NUMBER_OF_PHYSICAL_PINS] =
 {
-    //Skip RA0, it's address pin, not WP.
-	0x0002 , // 0 RA1
+    //Skip RA1, it's address pin, not WP.
+	0x0001 , // 0 RA0
 	0x0001 , // 1 RB0
 	0x0002 , // 2 RB1
 	0x0004 , // 3 RB2
@@ -125,19 +125,23 @@ void SetPPSOutput(uint8_t pin, uint8_t value)
     switch (pin)
     {
 
+    	case 0:
+	{
+		RPOR13bits.RP26R = value;
+	}
+	break;
+
+
     	case 1:
 	{
 		RPOR0bits.RP0R = value;
 	}
 	break;
-
-
-    	case 2:
+	case 2:
 	{
 		RPOR0bits.RP1R = value;
 	}
 	break;
-
 
     	case 3:
 	{
@@ -409,14 +413,19 @@ bool CurrentPinRead()
 
 uint8_t pinIsPPSCapable(uint8_t pin)
 {
-	if (pin >= 0 && pin <=5)
+    if (pin >=9 && pin <= 19)
 	{
 		return (1);
 	}
-	if (pin >= 11 && pin <= 20)
+	if (pin >= 0 && pin <=4)
 	{
 		return (1);
 	}
+    if (pin == 7)
+    {
+        return(1);
+    }
+	
 	return (0);
 
 }
@@ -424,53 +433,24 @@ uint8_t pinIsPPSCapable(uint8_t pin)
 void SetPin(uint8_t pin, uint8_t pinState)
 {
 	uint16_t pinMask = 0;
-	uint8_t inB = 1;
-	if (pin < NUMBER_OF_PHYSICAL_PINS)
+	bool inB = true;
+
+	if (pin >= NUMBER_OF_PHYSICAL_PINS)
 	{
-		pinMask = PinBitmapB[pin];
-		if (pinMask == 0)
-		{
-			pinMask = PinBitmapA[pin];
-			inB = 0;
-		}
+		return;
 	}
 
-	if (pinState == DIGITAL_LOW)
+	pinMask = PinBitmapB[pin];
+	if (pinMask == 0)
 	{
-		
-		pinMask = ~pinMask;
-		if (inB)
-		{
-			and128(OutputArrayB,pinMask);
-			LATB &= pinMask;
-			TRISB &= pinMask;
-		}
-		else
-		{
-			and128(OutputArrayA,pinMask);
-			LATA &= pinMask;
-			TRISA &= pinMask;
-		}
+		pinMask = PinBitmapA[pin];
+		inB = false;
 	}
-	else if (pinState == DIGITAL_HIGH)
+
+	if (pinState == DIGITAL_INPUT)
 	{
-	
-		if (inB)
-		{
-			or128(OutputArrayB,pinMask);
-			LATB |= pinMask;
-			TRISB &= ~pinMask;
-		}
-		else
-		{
-			TRISA &= pinMask;
-			or128(OutputArrayA,pinMask);
-			LATA |= pinMask;
-			TRISA &= ~pinMask;
-		}
-	}
-	else if (pinState == DIGITAL_INPUT)
-	{
+
+
 		if (inB)
 		{
 			TRISB |= pinMask;
@@ -478,6 +458,72 @@ void SetPin(uint8_t pin, uint8_t pinState)
 		else
 		{
 			TRISA |= pinMask;
+		}
+	}
+	else 
+
+	if (pinState == DIGITAL_LOW)
+	{
+		pinMask = ~pinMask;
+		if (pinIsPPSCapable(pin))
+		{
+			SetPPSOutput(pin,0);
+			if (inB)
+			{
+				TRISB &= pinMask;
+			}
+			else
+			{
+				TRISA &= pinMask;
+			}
+		}
+		else
+		{
+
+			if (inB)
+			{
+				and128(OutputArrayB,pinMask);
+				LATB &= pinMask;
+				TRISB &= pinMask;
+			}
+			else
+			{
+				and128(OutputArrayA,pinMask);
+				LATA &= pinMask;
+				TRISA &= pinMask;
+			}
+		}
+	}
+	else if (pinState == DIGITAL_HIGH)
+	{
+		if (pinIsPPSCapable(pin))
+		{
+			SetPPSOutput(pin,25);
+			if (inB)
+			{
+				TRISB &= ~pinMask;
+			}
+			else
+			{
+				TRISA &= ~pinMask;
+			}
+		}
+		
+		else
+		{	
+			if (inB)
+			{
+				or128(OutputArrayB,pinMask);
+				LATB |= pinMask;
+				TRISB &= ~pinMask;
+			}
+			else
+			{
+				TRISA &= pinMask;
+				or128(OutputArrayA,pinMask);
+				LATA |= pinMask;
+				TRISA &= ~pinMask;
+			}
 		}
 	}
 }
@@ -506,6 +552,8 @@ void CurrentPinAnalog()
 
 void SetPinQuick(uint8_t pin, uint8_t pinState)
 {
+    SetPin(pin,pinState);
+    /*
 	uint16_t pinMask = 0;
 	uint8_t inB = 1;
 	if (pin < NUMBER_OF_PHYSICAL_PINS)
@@ -562,6 +610,7 @@ void SetPinQuick(uint8_t pin, uint8_t pinState)
 			TRISA |= pinMask;
 		}
 	}
+     */
 }
 
 void SetCurrentPin(uint8_t pinState)
@@ -689,7 +738,7 @@ void CurrentPinNoPullDown()
 
 const uint8_t WombatPinToADCChannel[NUMBER_OF_PHYSICAL_PINS] =
 {
-    1, //WP0
+    0, //WP0
     2,
     3,
     4,

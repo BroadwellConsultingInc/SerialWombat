@@ -186,8 +186,7 @@ void __attribute__ ( ( interrupt, no_auto_psv ) ) _T1Interrupt (  )
 {
 
     IFS0bits.T1IF = false;
-    CTMUCON1Lbits.IDISSEN = 0; // Disable discharge (start charging)
-    T1CON = 0;
+  
 }
 
 void TMR1_ResetConditions()

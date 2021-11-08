@@ -80,4 +80,6 @@ void INTERRUPT_Initialize (void)
     //    Priority: 1
   //BDB          IPC12bits.SI2C2IP = 1;
     IPC0bits.T1IP = 5; // Raise above default 4.
+    IPC25bits.CCT1IP = 5; 
+    IPC0bits.OC1IP = 5;
 }

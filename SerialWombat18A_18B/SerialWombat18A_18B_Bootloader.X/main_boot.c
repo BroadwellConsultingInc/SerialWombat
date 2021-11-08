@@ -10,6 +10,7 @@ uint8_t CurrentPin;
 
 
 uint8_t UserBufferBoot[SIZE_OF_USER_BUFFER];
+uint8_t *UserBufferPtr = UserBufferBoot;
 
 void reset ()
 {
