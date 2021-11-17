@@ -62,17 +62,7 @@ void initPWM (void)
                 pwm->lastValue = CurrentPinRegister->generic.buffer + 1;
                 pwm->period_uS = 1000;
 				updatePWM();
-                
-                //TODO TEST CODE:
-                {
-                    
-                    TIMING_RESOURCE_t resource;
-                    resource = timingResourceInterruptClaim(TIMING_RESOURCE_OC1, 24000, 1000, debugInterruptTest);
-                    INTERRUPT_GlobalDisable();
-                    timingResourceInterruptActivate(resource);
-                    PinHigh(12);
-                    INTERRUPT_GlobalEnable();
-                }
+               
 			}
 			break;
             case CONFIGURE_CHANNEL_MODE_HW_0:
@@ -96,10 +86,16 @@ void initPWM (void)
 
 void initPWMSimple()
 {
-    Rxbuffer[0] = CONFIGURE_CHANNEL_MODE_0;
-    Rxbuffer[4] = 0;
-    Rxbuffer[5] = 0;
-    initPWM();
+                CurrentPinRegister->generic.mode = PIN_MODE_PWM;
+				CurrentPinRegister->generic.buffer = 0;
+				pwm->invert = 0;
+                pwm->outputScale.sourcePin = CurrentPin;
+
+                CurrentPinLow(); //TODO make output, initialize DMA low
+                CurrentPinRegister->pulse_output.resource = timingResourcePWMClaim(TIMING_RESOURCE_ANY,1000); 
+                pwm->lastValue = CurrentPinRegister->generic.buffer + 1;
+                pwm->period_uS = 1000;
+				updatePWM();
 }
 
 void updatePWM(void)

@@ -6,6 +6,7 @@
 uint32_t debug_discarded_bytes = 0;
 
 uint8_t SW_I2CAddress = 0x6B;
+bool UART2ndInterface = false;
 uint8_t UartRxbufferCounter = 0;
 uint8_t UartTxbufferCounter = 0;
 uint8_t Rxbuffer[RXBUFFER_LENGTH];
@@ -162,11 +163,11 @@ Disables Line Breaks (default).
 
 			  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 			  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-			  |'D'|Pin X 10's|Pin X 1's|Public Data 10000's|Public Data 1000's|Public Data 100's | Public Data 10's | Public Data 1's|
+			  |'d'|Pin X 10's|Pin X 1's|Public Data 10000's|Public Data 1000's|Public Data 100's | Public Data 10's | Public Data 1's|
 
 Examples:
 
-`D0213143`
+`d0213143`
 
 Sets pin 2 Public Data to 13143.
 
@@ -207,13 +208,13 @@ Sets pin 2 Public Data to 13143.
 
 			  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 			  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-			  |'G'|Pin X 10's|Pin X 1's|'U'*|'U'*|'U'*|'U'*|'U'*|
+			  |'G'|Pin X 100's |Pin X 10's|Pin X 1's|'U'*|'U'*|'U'*|'U'*|
 
 			 *'U' is recommended, but any byte is acceptable
 
 Examples:
 
-`G02UUUUU`
+`G002UUUUU`
 
 Gets pin 2 Public Data In Ascii
 Sample Response:
@@ -228,6 +229,10 @@ Public data for Pin 2 is 26132.
 				uint8_t pin =  ascii_to_val(Rxbuffer[1]);
 				pin *= 10;
 				pin += ascii_to_val(Rxbuffer[2]);
+                pin *= 10;
+				pin += ascii_to_val(Rxbuffer[3]);
+                Txbuffer[1] = Rxbuffer[3];
+                Txbuffer[2] = ' ';
 				uint16ToAscii5(GetBuffer(pin),&Txbuffer[3]);
 			}
 			break;
@@ -244,7 +249,7 @@ Public data for Pin 2 is 26132.
 
 			  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 			  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-			  |'P'|Pin X 10's|Pin X 1's|Pin X Setting|Pin X+1 Setting|Pin X+2 Setting|Pin X+3 Setting|Pin X+4 Setting|
+			  |'p'|Pin X 10's|Pin X 1's|Pin X Setting|Pin X+1 Setting|Pin X+2 Setting|Pin X+3 Setting|Pin X+4 Setting|
 
 			  Possible Pin Settings:
 			  - 'l' Make the pin an Output Low
@@ -255,12 +260,12 @@ Public data for Pin 2 is 26132.
 			  - 's' Make the pin a Servo Controller
 			  - 'u' Make the pin an Input (with a weak Pull Up)
 			  - 'w' Make the pin a PWM Output
-			  - 'x' No change
+			  - 'x' or ' ' or 'U' No change
 			  Echos back response unless error.
 
 Examples:
 
-`P021xxxx`
+`p021xxxx`
 
 Sets pin 2 high, and doesn't change any other pins
 
@@ -276,12 +281,13 @@ Sets pin 9 High, pin 10 Low, doesn't change pin 11, and sets pins 12 and 13 to i
 				pinToSet = ascii_to_val(Rxbuffer[1]);
 				pinToSet  *= 10;
 				pinToSet  += ascii_to_val(Rxbuffer[2]); 
+                CurrentPin = pinToSet;		
+				CurrentPinRegister = &PinUpdateRegisters[CurrentPin];
 				for ( rxIndex = 3; rxIndex < 8 ; ++rxIndex,++pinToSet )
 				{
 					if (Rxbuffer[rxIndex] == 'a')
 					{
-						CurrentPin = pinToSet;		
-						CurrentPinRegister = &PinUpdateRegisters[CurrentPin];
+						
 						Rxbuffer[0] = CONFIGURE_CHANNEL_MODE_0;
 						void initAnalogInput(void);
 						initAnalogInput();
@@ -321,17 +327,19 @@ Sets pin 9 High, pin 10 Low, doesn't change pin 11, and sets pins 12 and 13 to i
 								break;
 							case 's':  //Servo
 								{
-									void initServoSimple(uint8_t pinToSet);
-									initServoSimple(pinToSet);
+									void initServoHwSimple(void);
+									initServoHwSimple();
 								}
 								break;
 							case 'w':  //PWM
 								{
-									void initPWMSimple(uint8_t pinToSet);
-									initPWMSimple(pinToSet);
+									void initPWMSimple();
+									initPWMSimple();
 								}
 								break;
 							case 'x':
+                            case ' ':
+                            case 'U':
 								{
 								}
 								break;
@@ -406,20 +414,23 @@ Or similar
 			Txbuffer[1] = 'S';   //Serial Wombat
 			Txbuffer[2] = '1';//(uint8_t)((NUMBER_OF_PHYSICAL_PINS / 10) + '0');   
 			Txbuffer[3] = '8';//(uint8_t)((NUMBER_OF_PHYSICAL_PINS % 10) + '0');
+            if (SW_I2CAddress != 0)
+            {
 			Txbuffer[4] = 'B';//SERIAL_WOMBAT_HARDWARE_IDENTIFIER;	     
+            }
+            else
+            {
+               Txbuffer[4] = 'A';//SERIAL_WOMBAT_HARDWARE_IDENTIFIER;	 
+            }
 			Txbuffer[5] = '2';	     
 			Txbuffer[6] = '0';	     
-			Txbuffer[7] = '3';	     
+			Txbuffer[7] = '4';	     
 
 			break;
 		case COMMAND_BINARY_READ_PIN_BUFFFER:
 			{
 				uint16_t temp = GetBuffer(Rxbuffer[1]);
 				TXBUFFER16(2,temp);		
-				temp = GetBuffer(Rxbuffer[1] + 1);
-				TXBUFFER16(4,temp);		
-				temp = GetBuffer(Rxbuffer[1] + 2);
-				TXBUFFER16(6,temp);		
 
 			}
 			break;
@@ -800,6 +811,123 @@ Write 0x32 the byte at RAM address 0x0247.
 
 			}
 			break;
+            
+        case COMMAND_CALIBRATE_ANALOG:
+        {
+            if (RXBUFFER16(1) != 0xABCD)  // Unlock value
+            {
+                 error(SW_ERROR_ANALOG_CAL_WRONG_UNLOCK);
+                 return;
+            }
+             INTERRUPT_GlobalDisable();  // While we're messing with TBLPAG
+                uint8_t tblpag = TBLPAG;
+                
+                           int i;
+                TBLPAG = VBG_CAL_ADDRESS >>16;
+                for (i = 0; i < 192; ++i)
+                {
+                    ((uint32_t*)UserBuffer)[i] = __builtin_tblrdl(VBG_CAL_ADDRESS + 2 * i);
+                }
+                           
+                uint32_t address = VBG_CAL_ADDRESS;
+                
+                NVMADRU = (uint16_t)(address >>16);
+                    NVMADR = (uint16_t)(address & 0xFFFF);
+                            NVMCON = 0x4003;
+                    __builtin_disi(6);
+                    __builtin_write_NVM();
+                
+                TBLPAG = address >>16;
+     
+                
+                ((uint32_t*)UserBuffer)[Rxbuffer[3]] = RXBUFFER16(4);
+                 FLASH_Unlock(FLASH_UNLOCK_KEY);
+                    FLASH_WriteRow24(address, (uint32_t*)UserBuffer);
+                   
+                   TBLPAG = tblpag;
+                   
+                   INTERRUPT_GlobalEnable();
+          
+           
+            
+        }
+        break;
+        				/** \addtogroup ProtocolBinaryCommands
+				  \{
+
+				  ----
+
+				  Enable 2nd Command Interface 
+				  ---------------------
+
+                         This command is only supported on the SW18AB chip.
+				  When in I2C mode by address pin, this enables the UART command interface in parallel with I2C on pins WP7 (TX out) and
+                         W9 (RX in).
+                         This allows monitoring of the Serial Wombat Chip by a PC or other tool while the chip is also being commanded
+                         over I2C
+                         
+                         Note that enabling then disabling this feature will leave the UART interface interally connected to pins 7 and 9,
+                         however commands will no longer be processed through this interface.  A reset is required to fully disconnect internally.
+                         
+                         The last 6 bytes must match exactly in order to prevent accidental enabling.
+
+				  
+
+
+				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+				  |0xA5|1 = enable, 0 = disable |0xB2 |0xA5 |0x61 |0x73 |0xF8 |0xA2|
+
+Response:
+
+Echoed Back or error message.
+				 * 
+Examples:
+
+Enable 2nd command interface.
+
+> `0xA5 0x01 0xB2 0xA5 0x61 0x73 0xF8 0xA2`
+
+
+
+\}
+				 **/
+        case COMMAND_ENABLE_2ND_UART:
+        {
+            if (RXBUFFER16(2) == 0xA5B2 &&
+                    RXBUFFER16(4) == 0x7361 &&
+                    RXBUFFER16(6) == 0xA2F8)
+            {
+                if (Rxbuffer[1] == 1 )
+                {
+                    if(SW_I2CAddress != 0)
+                {
+            
+             RPINR18bits.U1RXR = 0x0005;    //RB5->UART1:U1RX
+        RPOR2bits.RP4R = 0x0003;    //RB4->UART1:U1TX
+        UART1_Initialize();
+        IPC3bits.U1TXIP = 1;
+        IPC2bits.U1RXIP = 1;
+        TRISBbits.TRISB4 = 0;
+        UART1Semaphore = RESOURCE_USED_BY_SYSTEM;
+        UART2ndInterface = true;
+                }
+                    else
+                    {
+                        error(SW_ERROR_2ND_INF_UNAVAILABLE);
+                    }
+                }
+                else
+                {
+                   UART2ndInterface = false;
+                }
+            }
+            else
+            {
+                error(SW_ERROR_2ND_INF_WRONG_UNLOCK);
+            
+            }
+        }
 /** \addtogroup ProtocolBinaryCommands
 \{
 
@@ -830,6 +958,11 @@ Send *WOMBAT!* out of the UART
 **/
         case COMMAND_UART0_TX_7BYTES:
         {
+            if (!IEC0bits.U1RXIE ) 
+            {
+               error(SW_ERROR_UART_NOT_INITIALIZED);
+               return;
+            }
             void UART1_Write(uint8_t txData);
             UART1_Write(Rxbuffer[1]);
             UART1_Write(Rxbuffer[2]);
@@ -881,6 +1014,11 @@ Received:
 **/
         case COMMAND_UART0_RX_7BYTES:
         {
+            if (!IEC0bits.U1RXIE ) 
+            {
+               error(SW_ERROR_UART_NOT_INITIALIZED);
+               return;
+            }
             uint8_t UART1_Read(void);
             Txbuffer[1] = UART1_Read();
             Txbuffer[2] = UART1_Read();
@@ -1030,7 +1168,7 @@ Received:
 
 void ProcessRx(void)
 {
-	if (SW_I2CAddress == 0)  // Use UART
+	if (SW_I2CAddress == 0 || UART2ndInterface)  // Use UART
 	{
 		if ( UartRxbufferCounter < RXBUFFER_LENGTH)
 		{
@@ -1042,7 +1180,7 @@ void ProcessRx(void)
 			}
 			UartRxbufferCounter += numberOfBytesRead;
 
-			while (UartRxbufferCounter > 0  && Rxbuffer[0] == 0x55 )
+			while (UartRxbufferCounter > 0  && (Rxbuffer[0] == 0x55 || Rxbuffer[0] == ' ')  )
 			{
 				uint8_t i;
 				for (i = 0; i < RXBUFFER_LENGTH - 1; ++i)
@@ -1099,7 +1237,7 @@ void ProcessRx(void)
 			}
 
 			ProcessRxbuffer();
-			if (Rxbuffer[1] == 0x21 && Rxbuffer[0] != 0x21 )
+			if (Rxbuffer[1] == 0x21 && Rxbuffer[0] != 0x21 ) //TODO REmove
 			{
 				++debugBreakpointVariable;
 			}
@@ -1258,6 +1396,20 @@ void ProcessSetPin()
         }
         break;
         
+        case PIN_MODE_RESISTANCE_INPUT:
+            {
+                extern void initResistanceInput(void);
+               initResistanceInput();
+            }
+            break;
+        
+        case PIN_MODE_UART0_TXRX:
+        case PIN_MODE_UART1_TXRX:
+        {
+            extern void initUARTHw(void);
+            initUARTHw();
+        }
+        break;
         default:
         {
             error(SW_ERROR_UNKNOWN_PIN_MODE);

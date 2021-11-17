@@ -26,7 +26,23 @@ void reset ()
 	}
 #endif
 }
-
+/*
+ Serial Wombat Memory Map:
+ 0 - 0x4000  Bootloader
+ 0x4000 - 0x4100 Alternate IVT
+ * 0x4100 - 0x1F800 Program memory
+ * 0x1F800   Magic number 0xCD23
+ * 0x1F804 - 16 bit CRC
+ * 0x20000 - 0x28000 -  User Space
+ * 0x2A000 - 0x2B000 - Calibration space:
+ *  0x2A000 - Vbg in mV
+ *  0x2A002 - Trim value for 55uA current
+ *  0x2A004 - Temperature reading reported
+ *  0x2A006 - Temperature reading actual
+ * 0x2A008 - Temperature reading2 reported
+ *  0x2A00A - Temperature reading2 actual
+ 
+ */
 uint16_t OverflowFrames = 0;
 uint32_t FramesRun = 0;
 uint16_t SystemUtilizationAverage = 0x8000;
@@ -130,7 +146,14 @@ void ProcessPins()
 
 			case PIN_MODE_DIGITAL_IO:
 				{
-					CurrentPinRegister->generic.buffer = CurrentPinRead();
+					if (CurrentPinRead())
+                    {
+                        CurrentPinRegister->generic.buffer = 65535;
+                    }
+                    else
+                    {
+                        CurrentPinRegister->generic.buffer = 0;
+                    }
 
 				}
 				break;
@@ -238,6 +261,21 @@ void ProcessPins()
             {
                 extern void updateTouch();
                 updateTouch();
+            }
+            break;
+            
+            case PIN_MODE_RESISTANCE_INPUT:
+            {
+                extern void updateResistanceInput(void);
+                updateResistanceInput();
+            }
+            break;
+            
+            case PIN_MODE_UART0_TXRX:
+            case PIN_MODE_UART1_TXRX:
+            {
+                extern void updateUARTHw(void);
+                updateUARTHw();
             }
             break;
 		}

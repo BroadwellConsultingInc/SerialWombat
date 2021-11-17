@@ -52,6 +52,11 @@
 /**
   Section: Driver Interface
 */
+
+uint16_t VbgCalibration = 1200;  //Nominal value
+volatile uint8_t CTMUTrim = 0x00;
+int16_t TemperatureCache = 2500;
+
 void ADC1_ResetConditions(void)
 {
     AD1CON1 = 0;
@@ -64,8 +69,39 @@ void ADC1_ResetConditions(void)
 }
 
 void ADC1_Initialize (void)
-{ 					//TODO Optimize clocks
-  
+{ 					
+    {  // Calibrate Vbg
+    uint8_t tblpag = TBLPAG;
+    TBLPAG = VBG_CAL_ADDRESS >> 16;
+    uint16_t VbgStored  = __builtin_tblrdl((uint16_t)VBG_CAL_ADDRESS);
+    TBLPAG = tblpag;
+    if (VbgStored > 1000 && VbgStored < 1400)
+    {
+        VbgCalibration = VbgStored;
+    }
+    else
+    {
+        VbgCalibration = 1200; // Nominal value
+    }
+    }
+    
+    {  // Calibrate ITrim
+    uint8_t tblpag = TBLPAG;
+    TBLPAG = VBG_CAL_ADDRESS >> 16;
+    int16_t trim;
+    *((uint16_t*)&trim)= __builtin_tblrdl((uint16_t)(VBG_CAL_ADDRESS + 2));
+    
+    TBLPAG = tblpag;
+    if (trim >= 0 && trim <= 62)
+    {
+        CTMUTrim = trim - 31;
+    }
+    else
+    {
+        CTMUTrim = 0; // Nominal value
+    }
+    }
+    
     ADC1_ResetConditions();
 
 AD1CON1 = 0x0670; // Internal counter triggers conversion, Unsigned Fraction, 12 bit
@@ -172,8 +208,67 @@ uint16_t GetAddressPinVoltage_mV()
         return ( (uint16_t) result);    
   
     }
+
+void GetCurrentPinReistanceOhmsSetup()
+{
+    if (WombatPinToADCChannel[CurrentPin] == 0xFF)
+    {
+        return;
+    }
+    AD1CON1 = 0;
+        AD1CON2 = 0;
+        AD1CON3 = 0;
+        AD1CON4 = 0;
+        AD1CON5 = 0; 
+        
+        
+        
+    CTMUCON1Lbits.CTMUEN = 1;
+    CTMUCON1Lbits.EDGEN = 0;
+    CTMUCON1Lbits.IRNG = 3;
+    CTMUCON1Hbits.IRNGH = 0;
+    CTMUCON1Hbits.EDG1STAT = 1;
+    CTMUCON1Hbits.EDG2STAT = 0;
+    AD1CON5bits.CTMREQ =1;
+        
+
+        AD1CHS = WombatPinToADCChannel[CurrentPin]; // Channel 1
+     
+        
+        CTMUCON1Lbits.IDISSEN = 0;
+        CTMUCON1Hbits.EDG2STAT = 0;
+        CTMUCON1Lbits.ITRIM = CTMUTrim;
+
+        AD1CON3 = 0x9FFF; // Sample time = 15Tad, Tad = Tcy
+       AD1CON1bits.MODE12 = 1;  // Turn on 12 bit
+        AD1CON1bits.FORM = 2; // Left Justified
+        AD1CON1bits.SSRC = 7;  // manual end sampling 
+        AD1CON1bits.ADON = 1; // Turn on A/D
+        AD1CON1bits.SAMP = 1; //Start conversion.
+}
+uint16_t GetCurrentPinReistanceOhmsRead(uint16_t sourceVoltagemV)
+{
+        
+        while(AD1CON1bits.DONE == 0);
+
+        uint32_t result = ADC1BUF0;      
+        
+        CTMUCON1L = 0 ;  //CTMU OFF
+        result *= sourceVoltagemV; 
+        result >>= 16;
+        result *= 18182; // 1/ .000055 A
+        result /= 1000;
+        ADC1_Initialize();  // Put things back where we found them.
+       
+        return ( (uint16_t) result);    
+  
+    }
 int16_t GetTemperature_degC100ths()
 {
+    if (ADC1Semaphore != RESOURCE_AVAILABLE )
+    {
+        return TemperatureCache;
+    }
         int32_t Vref = GetSourceVoltage_mV();
          AD1CON1 = 0;
         AD1CON2 = 0;
@@ -201,15 +296,26 @@ int16_t GetTemperature_degC100ths()
         result =  ((int32_t)760 * 65536) - result;
         result /= ((int32_t)(.0155 * 65535));
         
+            int16_t tReported, tActual;
+        {  // Get Temperature offset
+    uint8_t tblpag = TBLPAG;
+    TBLPAG = VBG_CAL_ADDRESS >> 16;
+
+    *((uint16_t*)&tReported) = __builtin_tblrdl((uint16_t)(VBG_CAL_ADDRESS + 4) );
+    *((uint16_t*)&tActual) = __builtin_tblrdl((uint16_t)(VBG_CAL_ADDRESS + 6) );
+    TBLPAG = tblpag;
+   
+    }
+        TemperatureCache = result + (tActual-tReported);
         ADC1_Initialize();  // Put things back where we found them.
-        return ( (uint16_t) result);    
+        return ( TemperatureCache);    
 }
 
 uint16_t GetSourceVoltage_mV()
 {
     uint16_t VrefADC = ADC1BUF10;
     
-    uint32_t temp = 65536 * 1200;
+    uint32_t temp = 65536 * VbgCalibration;
     temp /= VrefADC;
     return ((uint16_t)temp);
 }
@@ -217,6 +323,43 @@ uint16_t GetSourceVoltage_mV()
 uint16_t GetSourceVoltageADC()
 {
     return (ADC1BUF10);
+}
+
+uint16_t GetVBgCountsVsVRefPin()
+{
+         AD1CON1 = 0;
+        AD1CON2 = 0;
+        AD1CON3 = 0;
+        AD1CON4 = 0;
+        AD1CON5 = 0; 
+        
+        
+        
+        ANSELA |= 0x0001; // Make VREF analog
+        AD1CHS = 28; // VBG
+        
+
+        AD1CON3 = 0x1FFF; // Sample time = 15Tad, Tad = Tcy
+        AD1CON1bits.MODE12 = 1;  // Turn on 12 bit
+        AD1CON1bits.FORM = 0; // Left Justified
+        AD1CON1bits.SSRC = 7;  // 
+        AD1CON2bits.PVCFG = 1; // External Vref
+        
+        AD1CON1bits.ADON = 1; // Turn on A/D
+
+        uint16_t result = 0;
+        {
+            uint8_t i;
+        for (i = 0; i < 16; ++i)
+        {
+        AD1CON1bits.SAMP = 1;
+        while(AD1CON1bits.DONE == 0);
+
+        result += ADC1BUF0;      
+        }
+        }
+        ADC1_Initialize();  // Put things back where we found them.
+        return ( (uint16_t) result);    
 }
 /**
   End of File

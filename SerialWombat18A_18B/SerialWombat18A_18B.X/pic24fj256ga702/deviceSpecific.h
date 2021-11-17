@@ -11,6 +11,8 @@
 #define ADC_MAX_COUNTS 0xFFF0
 
 #define SIZE_OF_USER_BUFFER 8192
+
+#define VBG_CAL_ADDRESS ((uint32_t)0x2A000)
 #include "pinDigitalHwSpecific.h"
 
 #endif

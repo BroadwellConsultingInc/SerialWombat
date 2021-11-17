@@ -90,6 +90,24 @@ uint32_t result = GetSourceVoltageADC();
          extern uint16_t SystemUtilizationAverage;
          return (SystemUtilizationAverage);
      }
+     else if (pin == SW_DATA_SOURCE_VCC_mVOLTS)
+     {
+           
+                
+            return (GetSourceVoltage_mV()); 
+     }
+     else if (pin == SW_DATA_SOURCE_VBG_COUNTS_VS_VREF)
+     {  
+         return(GetVBgCountsVsVRefPin());
+     }
+     else if (pin >= SW_DATA_SOURCE_PIN_0_MV &&pin <= SW_DATA_SOURCE_PIN_19_MV )
+     {
+         uint32_t result = PinUpdateRegisters[pin - SW_DATA_SOURCE_PIN_0_MV].generic.buffer;
+         result *= GetSourceVoltage_mV();
+         result >>= 16;
+         return ((uint16_t)result);
+         
+     }
     else if (pin == 85) //0x55
     {
         return (0x5555);

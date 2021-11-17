@@ -331,7 +331,7 @@ void initPWMSimple(uint8_t pin)
 	updatePulseOutput(pin);
 }
  */
-
+/*
 void initServoSimple(uint8_t pin)
 {
 	pinRegister_t* pr = &PinUpdateRegisters[pin];
@@ -348,4 +348,5 @@ void initServoSimple(uint8_t pin)
 
 	PinLow(pin); //TODO make generic output, place after updatePulse
 }
+ */
 

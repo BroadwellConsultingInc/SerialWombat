@@ -373,6 +373,8 @@ int16_t GetTemperature_degC100ths(void);
 uint16_t GetSourceVoltage_mV(void);
 uint16_t GetSourceVoltageADC(void);
 uint16_t GetAddressPinVoltage_mV(void);
+void GetCurrentPinReistanceOhmsSetup(void);
+uint16_t GetCurrentPinReistanceOhmsRead(uint16_t SourceVoltagemV);
 void ADC1_ResetConditions();
 #ifdef __cplusplus  // Provide C++ Compatibility
 

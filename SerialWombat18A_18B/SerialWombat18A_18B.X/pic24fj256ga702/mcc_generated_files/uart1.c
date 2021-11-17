@@ -157,7 +157,7 @@ void __attribute__ ( ( interrupt, no_auto_psv ) ) _U1TXInterrupt ( void )
 { 
     if((uart1_obj.txHead == uart1_obj.txTail) && (uart1_obj.txStatus.s.full == false))
     {
-        while(U1STAbits.TRMT == 0){}
+        //JAB while(U1STAbits.TRMT == 0){}
         
         uart1_obj.txStatus.s.empty = true;
         IEC0bits.U1TXIE = 0;
@@ -233,6 +233,8 @@ void __attribute__ ( ( interrupt, no_auto_psv ) ) _U1ErrInterrupt( void )
 uint8_t UART1_Read( void)
 {
     uint8_t data = 0;
+    
+    if (!IEC0bits.U1RXIE ) return 0;  //Uninitialized
 
     data = *uart1_obj.rxHead;
 
@@ -254,7 +256,8 @@ uint8_t UART1_Read( void)
 }
 
 unsigned int UART1_ReadBuffer( uint8_t *buffer, const unsigned int bufLen)
-{
+ {
+    if (!IEC0bits.U1RXIE ) return 0;  //Uninitialized
     IEC0bits.U1RXIE = 0;
     unsigned int numBytesRead = 0 ;
     while ( numBytesRead < ( bufLen ))
@@ -274,6 +277,7 @@ IEC0bits.U1RXIE = 1;
 
 void UART1_Write( const uint8_t byte)
 {
+    if (!IEC0bits.U1RXIE ) return;  //Uninitialized
     IEC0bits.U1TXIE = 0;
     
     *uart1_obj.txTail = byte;
@@ -298,6 +302,7 @@ void UART1_Write( const uint8_t byte)
 unsigned int UART1_WriteBuffer( const uint8_t *buffer , const unsigned int bufLen )
 {
     unsigned int numBytesWritten = 0 ;
+    if (!IEC0bits.U1RXIE ) return 0;  //Uninitialized
 
     while ( numBytesWritten < ( bufLen ))
     {
@@ -358,6 +363,8 @@ UART1_TRANSFER_STATUS UART1_TransferStatusGet (void )
 */
 uint8_t UART1_Peek(uint16_t offset)
 {
+    if (!IEC0bits.U1RXIE ) return 0;  //Uninitialized
+    
     if( (uart1_obj.rxHead + offset) >= (uart1_rxByteQ + UART1_CONFIG_RX_BYTEQ_LENGTH))
     {
       return uart1_rxByteQ[offset - (uart1_rxByteQ + UART1_CONFIG_RX_BYTEQ_LENGTH - uart1_obj.rxHead)];
@@ -376,7 +383,7 @@ bool UART1_PeekSafe(uint8_t *dataByte, uint16_t offset)
 {
     uint16_t index = 0;
     bool status = true;
-    
+    if (!IEC0bits.U1RXIE ) return 0;  //Uninitialized
     if((offset >= UART1_CONFIG_RX_BYTEQ_LENGTH) || (uart1_obj.rxStatus.s.empty) || (!dataByte))
     {
         status = false;
@@ -418,6 +425,7 @@ bool UART1_PeekSafe(uint8_t *dataByte, uint16_t offset)
 
 unsigned int UART1_ReceiveBufferSizeGet(void)
 {
+    if (!IEC0bits.U1RXIE ) return 0;  //Uninitialized
     if(!uart1_obj.rxStatus.s.full)
     {
         if(uart1_obj.rxHead > uart1_obj.rxTail)
@@ -434,6 +442,7 @@ unsigned int UART1_ReceiveBufferSizeGet(void)
 
 unsigned int UART1_TransmitBufferSizeGet(void)
 {
+    if (!IEC0bits.U1RXIE ) return 0;  //Uninitialized
     if(!uart1_obj.txStatus.s.full)
     { 
         if(uart1_obj.txHead > uart1_obj.txTail)
@@ -450,11 +459,13 @@ unsigned int UART1_TransmitBufferSizeGet(void)
 
 bool UART1_ReceiveBufferIsEmpty (void)
 {
+    if (!IEC0bits.U1RXIE ) return true;  //Uninitialized
     return(uart1_obj.rxStatus.s.empty);
 }
 
 bool UART1_TransmitBufferIsFull(void)
 {
+    if (!IEC0bits.U1RXIE ) return false;  //Uninitialized
     return(uart1_obj.txStatus.s.full);
 }
 
@@ -471,6 +482,8 @@ void UART1_Enable(void)
 
 void UART1_Disable(void)
 {
+    IEC0bits.U1RXIE = 0;
+    IEC0bits.U1TXIE = 0;
     U1MODEbits.UARTEN = 0;
     U1STAbits.UTXEN = 0;
 }

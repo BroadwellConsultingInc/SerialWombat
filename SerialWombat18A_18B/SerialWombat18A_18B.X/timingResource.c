@@ -668,7 +668,7 @@ void timingResourcePWM(TIMING_RESOURCE_t resource, uint32_t period_uS, uint16_t 
 					uint32_t highTime = ((uint32_t) CCP2PRL) * dutyCycle;
 					highTime >>= 16;
 					CCP2RB = highTime;
-                    SetPPSOutput(CurrentPin,16);  // Connect pin to CCP2
+                        SetPPSOutput(CurrentPin,16);  // Connect pin to CCP2
 				}
 			}
 			break;

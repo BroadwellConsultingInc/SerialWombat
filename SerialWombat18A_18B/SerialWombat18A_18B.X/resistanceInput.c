@@ -26,7 +26,7 @@ uint16_t GetADCConversion(uint8_t pin);
 
 
 
-typedef struct analogInput_n{
+typedef struct resistanceInput_n{
 
     uint32_t averageSum;
 	uint16_t maximum;
@@ -37,10 +37,10 @@ typedef struct analogInput_n{
 	uint16_t filteredValue;
 	uint16_t filterConstant;
 	uint8_t publicDataSelection;
-    uint8_t dataSourcePin;
-}analogInput_t;
+    uint8_t delayCount;
+}resistanceInput_t;
 
-#define analogInput ((analogInput_t*) CurrentPinRegister)
+#define resistanceInput ((resistanceInput_t*) CurrentPinRegister)
 
 /*!
     \brief Initialization routine for Analog Input
@@ -64,7 +64,7 @@ Initialize Analog Input.  Disables averaged and filtered values.
 
 |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xC0|Pin To Set|0x02 (Analog Input) | 0x55* |0x55* |0x55* |0x55* |0x55* |
+|0xC0|Pin To Set|0x02 (Resistance Input) | 0x55* |0x55* |0x55* |0x55* |0x55* |
 
 \*0x55 is recommended, but any byte is acceptable
 
@@ -83,7 +83,7 @@ Set pin 3 to Analog Input.
 CONFIGURE_CHANNEL_MODE_1:
 ---------------------
 
-Configure analog input averaging and filtering.  CONFIGURE_CHANNEL_MODE_0 should be sent for the pin prior to sending this command.
+Configure resistance input averaging and filtering.  CONFIGURE_CHANNEL_MODE_0 should be sent for the pin prior to sending this command.
 
 Filtering is done by the following algorithm:  
 
@@ -126,7 +126,7 @@ Retreive the Minimum and Maximum recorded raw values.
 
 This command can optionally reset the minimum and maximum values after reading.  This will cause them both to be set to the next A/D sample taken.
 
-The pin should have previously been configured as an analog input before sending this command.
+The pin should have previously been configured as an resistance input before sending this command.
 
 
 |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
@@ -162,7 +162,7 @@ CONFIGURE_CHANNEL_MODE_4:
 
 Retreive the averaged and filtered values. 
 
-The pin should have previously been configured as an analog input  using CONFIGURE_CHANNEL_MODE_0 and the average and/or filtered values enabled using
+The pin should have previously been configured as an resistance input  using CONFIGURE_CHANNEL_MODE_0 and the average and/or filtered values enabled using
 CONFIGURE_CHANNEL_MODE_1 before sending this command.
 
 
@@ -194,7 +194,7 @@ Received:
 
 */
 
-void initAnalogInput (void)
+void initResistanceInput (void)
 {
 	
 	switch(Rxbuffer[0])
@@ -203,38 +203,43 @@ void initAnalogInput (void)
 			{
 				CurrentPinInput();
 				CurrentPinAnalog();
-				CurrentPinRegister->generic.mode = PIN_MODE_ANALOGINPUT;
+				CurrentPinRegister->generic.mode = PIN_MODE_RESISTANCE_INPUT;
 #ifndef AVERAGE128
-				analogInput->averageTotalSamples = 0;
+				resistanceInput->averageTotalSamples = 0;
 #endif
-				analogInput->averageSum = 0;
-				analogInput->averageCount = 0;
-				analogInput->filterConstant = 0;
+				resistanceInput->averageSum = 0;
+				resistanceInput->averageCount = 0;
+				resistanceInput->filterConstant = 0;
 #ifdef DATAOURCEPIN_ENABLED
-				analogInput->dataSourcePin = CurrentPin;
+				resistanceInput->dataSourcePin = CurrentPin;
 #endif
-				analogInput->publicDataSelection = 0;
+				resistanceInput->publicDataSelection = 0;
 
-				analogInput->average =
-					analogInput->filteredValue =
-	CurrentPinRegister->generic.buffer = GetADCConversion(CurrentPin);
-					analogInput->minimum = 65535;
-					analogInput->maximum = 0;
-                    analogInput->dataSourcePin = CurrentPin;
-
+				resistanceInput->average =
+					resistanceInput->filteredValue =
+	//CurrentPinRegister->generic.buffer = 65535;
+					resistanceInput->minimum = 65535;
+					resistanceInput->maximum = 0;
+                    resistanceInput->delayCount = 5;
+                if (ADC1Semaphore == CurrentPin)
+				{
+					ADC1Semaphore = RESOURCE_AVAILABLE;
+                    CTMUCON1L = 0;
+                    CTMUCON1H = 0;
+				}
 
 			}
 			break;
 
 		case CONFIGURE_CHANNEL_MODE_1:
 			{
-                if (CurrentPinRegister->generic.mode == PIN_MODE_ANALOGINPUT)
+                if (CurrentPinRegister->generic.mode == PIN_MODE_RESISTANCE_INPUT)
 				{
-				analogInput->averageTotalSamples = RXBUFFER16(3);
-				analogInput->averageSum = 0;
-				analogInput->averageCount = 0;
-				analogInput->filterConstant = RXBUFFER16(5);
-				analogInput->publicDataSelection = Rxbuffer[7];
+				resistanceInput->averageTotalSamples = RXBUFFER16(3);
+				resistanceInput->averageSum = 0;
+				resistanceInput->averageCount = 0;
+				resistanceInput->filterConstant = RXBUFFER16(5);
+				resistanceInput->publicDataSelection = Rxbuffer[7];
                 }
 				else
 				{
@@ -242,28 +247,17 @@ void initAnalogInput (void)
 				}
 			}
 			break;
-		case CONFIGURE_CHANNEL_MODE_2:
-			{
-                  if (CurrentPinRegister->generic.mode == PIN_MODE_ANALOGINPUT)
-				{
-				analogInput->dataSourcePin = Rxbuffer[3];
-                }
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
-			}
-			break;
+		
 		case CONFIGURE_CHANNEL_MODE_3: // Get Minimum and Maximum.
 			{
-                  if (CurrentPinRegister->generic.mode == PIN_MODE_ANALOGINPUT)
+                  if (CurrentPinRegister->generic.mode == PIN_MODE_RESISTANCE_INPUT)
 				{
-				TXBUFFER16(3,analogInput->minimum);
-				TXBUFFER16(5,analogInput->maximum);
+				TXBUFFER16(3,resistanceInput->minimum);
+				TXBUFFER16(5,resistanceInput->maximum);
 				if (Rxbuffer[3] > 0)
 				{
-					analogInput->minimum = 65535;
-					analogInput->maximum = 0;
+					resistanceInput->minimum = 65535;
+					resistanceInput->maximum = 0;
 				}
                 }
 				else
@@ -274,10 +268,10 @@ void initAnalogInput (void)
 			break;
 		case CONFIGURE_CHANNEL_MODE_4: 
 			{
-                  if (CurrentPinRegister->generic.mode == PIN_MODE_ANALOGINPUT)
+                  if (CurrentPinRegister->generic.mode == PIN_MODE_RESISTANCE_INPUT)
 				{
-				TXBUFFER16(3,analogInput->average);
-				TXBUFFER16(5,analogInput->filteredValue);
+				TXBUFFER16(3,resistanceInput->average);
+				TXBUFFER16(5,resistanceInput->filteredValue);
                 }
 				else
 				{
@@ -288,12 +282,46 @@ void initAnalogInput (void)
 	}
 }
 
-analogInput_t* debugAnalog;
-void updateAnalogInput()
+resistanceInput_t* debugResistance;
+void updateResistanceInput()
 { 
-    debugAnalog = (analogInput_t*)CurrentPinRegister;
-	uint16_t sample;
-    if (analogInput->dataSourcePin == CurrentPin)
+     debugResistance = (resistanceInput_t*)CurrentPinRegister;
+	uint16_t sample = 0;
+    if (resistanceInput->delayCount > 1)
+    {
+        --resistanceInput->delayCount;
+        return;
+    }
+    else if (resistanceInput->delayCount == 1)
+    {
+        if (ADC1Semaphore == RESOURCE_AVAILABLE)
+        {
+            ADC1Semaphore = CurrentPin;
+            GetCurrentPinReistanceOhmsSetup(); 
+            --resistanceInput->delayCount;
+        }
+        return;
+            
+    }
+    else if (resistanceInput->delayCount == 0)
+    {
+        if (AD1CON1bits.DONE)
+        {
+            sample = GetCurrentPinReistanceOhmsRead(GetSourceVoltage_mV());
+            ADC1Semaphore = RESOURCE_AVAILABLE;
+            
+            resistanceInput->delayCount = 50;
+        }
+        else
+        {
+         return;  
+            
+         }
+    }
+    
+ 
+	/*
+    if (resistanceInput->dataSourcePin == CurrentPin)
     {
  sample =  GetADCConversion(CurrentPin);
 if (sample >= ADC_MAX_COUNTS)
@@ -303,58 +331,58 @@ if (sample >= ADC_MAX_COUNTS)
     }
     else
     {
-        sample = GetBuffer(analogInput->dataSourcePin);
-    }
-	if (analogInput -> averageTotalSamples > 0)
+        sample = GetBuffer(resistanceInput->dataSourcePin);
+    }*/
+	if (resistanceInput -> averageTotalSamples > 0)
 	{
-		analogInput-> averageSum += sample;
-		++analogInput->averageCount;
-		if (analogInput-> averageCount >= analogInput->averageTotalSamples)
+		resistanceInput-> averageSum += sample;
+		++resistanceInput->averageCount;
+		if (resistanceInput-> averageCount >= resistanceInput->averageTotalSamples)
 		{
-			analogInput->average = analogInput->averageSum / analogInput->averageTotalSamples;
-			analogInput->averageCount = 0;
-			analogInput->averageSum = 0;
+			resistanceInput->average = resistanceInput->averageSum / resistanceInput->averageTotalSamples;
+			resistanceInput->averageCount = 0;
+			resistanceInput->averageSum = 0;
 		}
 	}
 	else
 	{
-		analogInput->average = sample;
+		resistanceInput->average = sample;
 	}
 
-	if (analogInput -> filterConstant != 0)
+	if (resistanceInput -> filterConstant != 0)
 	{
-		uint32_t temp = ((uint32_t)analogInput-> filteredValue) *  (analogInput->filterConstant + 1 );
-		temp += (uint32_t)sample * (((uint32_t)65536) - analogInput->filterConstant);
-	        analogInput->filteredValue = temp >> 16;
+		uint32_t temp = ((uint32_t)resistanceInput-> filteredValue) *  (resistanceInput->filterConstant + 1 );
+		temp += (uint32_t)sample * (((uint32_t)65536) - resistanceInput->filterConstant);
+	        resistanceInput->filteredValue = temp >> 16;
 			
 
 	}
 	else
 	{
-		analogInput->filteredValue = sample;
+		resistanceInput->filteredValue = sample;
 	}
 
-    if (sample < analogInput->minimum)
+    if (sample < resistanceInput->minimum)
 	{
-		analogInput->minimum = sample;
+		resistanceInput->minimum = sample;
 	}
-	if (sample > analogInput->maximum)
+	if (sample > resistanceInput->maximum)
 	{
-		analogInput->maximum = sample;
+		resistanceInput->maximum = sample;
 	}
-	switch (analogInput->publicDataSelection)
+	switch (resistanceInput->publicDataSelection)
 	{
 		case 1: // filtered value
-			CurrentPinRegister ->generic.buffer = analogInput->filteredValue;
+			CurrentPinRegister ->generic.buffer = resistanceInput->filteredValue;
 		break;
 		case 2: // average 
-			CurrentPinRegister ->generic.buffer = analogInput->average;
+			CurrentPinRegister ->generic.buffer = resistanceInput->average;
 		break;
 		case 3: // minimum 
-			CurrentPinRegister ->generic.buffer = analogInput->minimum;
+			CurrentPinRegister ->generic.buffer = resistanceInput->minimum;
 		break;
 		case 4: // maximum 
-			CurrentPinRegister ->generic.buffer = analogInput->maximum;
+			CurrentPinRegister ->generic.buffer = resistanceInput->maximum;
 		break;
 
 		case 0:

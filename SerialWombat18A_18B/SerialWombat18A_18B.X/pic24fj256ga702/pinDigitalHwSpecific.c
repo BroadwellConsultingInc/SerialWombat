@@ -109,6 +109,30 @@ const uint16_t pinBitmap[NUMBER_OF_PHYSICAL_PINS] =
 	0x4000 , // 18 RB14
 	0x8000 , // 19 RB15
 };
+const uint8_t pinPPSInputMap[NUMBER_OF_PHYSICAL_PINS] =
+{
+    //Skip RA1, it's address pin, not WP.
+	26 , // 0 RA0
+	0 , // 1 RB0
+	1 , // 2 RB1
+	2 , // 3 RB2
+	3 , // 4 RB3
+	0xFF , // 5 RA2
+	0xFF , // 6 RA3
+        4 , // 7 RB4
+	0xFF , // 8 RA4
+	5 , // 9 RB5
+	6 , // 10 RB6
+	7 , // 11 RB7
+	8 , // 12 RB8
+	9 , // 13 RB9
+	10 , // 14 RB10
+	11 , // 15 RB11
+	12 , // 16 RB12
+	13 , // 17 RB13
+	14 , // 18 RB14
+	15 , // 19 RB15
+};
 
 uint8_t ADC1Semaphore = RESOURCE_AVAILABLE;
 uint8_t DMA5Semaphore = RESOURCE_AVAILABLE;
@@ -429,6 +453,7 @@ uint8_t pinIsPPSCapable(uint8_t pin)
 	return (0);
 
 }
+
 
 void SetPin(uint8_t pin, uint8_t pinState)
 {

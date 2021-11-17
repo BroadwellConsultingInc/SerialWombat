@@ -54,8 +54,6 @@ void initServoHwSimple()
     servo->variablePeriod = 2000 ;
     servo->reverse = 0;
     CurrentPinLow();
-        
-       // TMR1_StartTimer();
 }
 
 /*!

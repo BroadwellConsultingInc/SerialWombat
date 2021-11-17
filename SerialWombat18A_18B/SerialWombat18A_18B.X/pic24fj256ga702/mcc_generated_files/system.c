@@ -98,7 +98,7 @@ void SYSTEM_Initialize(void)
         IPC3bits.U1TXIP = 1;
         IPC2bits.U1RXIP = 1;
         TRISBbits.TRISB4 = 0;
-	UART1Semaphore = RESOURCE_USED_BY_SYSTEM;
+        UART1Semaphore = RESOURCE_USED_BY_SYSTEM;
     }
     else if (addressVoltage < 825) // 10k
     {

@@ -159,6 +159,28 @@ typedef enum {
 	SW_DATA_SOURCE_ERRORS = 72,  ///<The number of incoming packets that have caused errors since reset (rolls over at 65535)  
 	SW_DATA_SOURCE_FRAMES_DROPPED = 73 , ///<The number of times since reset that a frame ran so far behind that it crossed two subsequent 1ms boundaries, causing a permanent lost frame
 	SW_DATA_SOURCE_SYSTEM_UTILIZATION = 74 , ///< A number between 0 and 65535 that scales to the average length of pin processing frames between 0 and 1000mS
+            SW_DATA_SOURCE_VCC_mVOLTS = 75, ///<The system source voltage in mV
+            SW_DATA_SOURCE_VBG_COUNTS_VS_VREF = 76, ///< A/D conversion of VBG against VRef .  Used for mfg calibration
+            SW_DATA_SOURCE_PIN_0_MV = 100,
+            SW_DATA_SOURCE_PIN_1_MV = 101,
+            SW_DATA_SOURCE_PIN_2_MV = 102,
+            SW_DATA_SOURCE_PIN_3_MV = 103,
+            SW_DATA_SOURCE_PIN_4_MV = 104,
+//NOT ANALOG            SW_DATA_SOURCE_PIN_5_MV = 105,
+//NOT ANALOG            SW_DATA_SOURCE_PIN_6_MV = 106,
+//NOT ANALOG            SW_DATA_SOURCE_PIN_7_MV = 107,
+//NOT ANALOG            SW_DATA_SOURCE_PIN_8_MV = 108,
+//NOT ANALOG            SW_DATA_SOURCE_PIN_9_MV = 109,
+//NOT ANALOG            SW_DATA_SOURCE_PIN_10_MV = 110,
+//NOT ANALOG            SW_DATA_SOURCE_PIN_11_MV = 111,
+//NOT ANALOG            SW_DATA_SOURCE_PIN_12_MV = 112,
+//NOT ANALOG            SW_DATA_SOURCE_PIN_13_MV = 113,
+//NOT ANALOG            SW_DATA_SOURCE_PIN_14_MV = 114,
+//NOT ANALOG            SW_DATA_SOURCE_PIN_15_MV = 115,
+            SW_DATA_SOURCE_PIN_16_MV = 116,
+            SW_DATA_SOURCE_PIN_17_MV = 117,
+            SW_DATA_SOURCE_PIN_18_MV = 118,
+            SW_DATA_SOURCE_PIN_19_MV = 119,
 }SW_DATA_SOURCE_t;
  
 
@@ -186,7 +208,13 @@ typedef enum {
             SW_ERROR_INVALID_PARAMETER_6 = 20, ///<The pin configuration parameter in Byte 6 was invalid
             SW_ERROR_INVALID_PARAMETER_7 = 21, ///<The pin configuration parameter in Byte 7 was invalid
             SW_ERROR_PIN_NUMBER_TOO_HIGH = 22, ///<The pin number indicated was greater than the greatest avaialable pin
-            SW_ERROR_PIN_IS_COMM_INTERFACE =23, ///<The pin number indicated is currently being used for Serial Wombat protocol communicaitons
+            SW_ERROR_PIN_IS_COMM_INTERFACE = 23, ///<The pin number indicated is currently being used for Serial Wombat protocol communicaitons
+            SW_ERROR_ANALOG_CAL_WRONG_UNLOCK = 24, ///<The unlock value provided to write analog calibration was incorrect.
+            SW_ERROR_2ND_INF_WRONG_UNLOCK = 25, ///<The unlock value provided to enable the 2nd interface was incorrect.
+            SW_ERROR_2ND_INF_UNAVAILABLE = 26, ///<The 2nd interface hardware was not avaialble to claim
+            SW_ERROR_UART_NOT_INITIALIZED = 27, ///<A UART operation was requested but the UART was not intialized
+ 
+            
 }SW_ERROR_t;
 
 void error (SW_ERROR_t errorCode);

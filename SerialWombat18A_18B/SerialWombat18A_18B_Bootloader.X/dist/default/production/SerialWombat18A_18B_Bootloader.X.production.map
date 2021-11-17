@@ -116,13 +116,13 @@ section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x100               0x88a           0xccf  (3279)
 .const                       0x98a                0xa0            0xf0  (240)
-.text                        0xa2a              0x278e          0x3b55  (15189)
-.NVM_flash                  0x31b8               0x168           0x21c  (540)
-.text                       0x3320               0x46c           0x6a2  (1698)
-.dinit                      0x378c                0x90            0xd8  (216)
-.text                       0x381c               0x15c           0x20a  (522)
+.text                        0xa2a              0x2828          0x3c3c  (15420)
+.NVM_flash                  0x3252               0x168           0x21c  (540)
+.text                       0x33ba               0x46c           0x6a2  (1698)
+.dinit                      0x3826                0x98            0xe4  (228)
+.text                       0x38be               0x15c           0x20a  (522)
 
-                 Total "pgm" memory used (bytes):         0x54b4  (21684) 89%
+                 Total "pgm" memory used (bytes):         0x55a7  (21927) 90%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x4000]
@@ -134,9 +134,9 @@ section                    address      alignment gaps    total length  (dec)
 .bss                        0x2d90                   0             0x8  (8)
 .data                       0x2d98                   0             0xc  (12)
 .bss                        0x2da4                   0             0xc  (12)
-.data                       0x2db0                   0             0x6  (6)
+.data                       0x2db0                   0             0x8  (8)
 
-                 Total "data" memory used (bytes):         0x25b6  (9654) 58%
+                 Total "data" memory used (bytes):         0x25b8  (9656) 58%
 
 
 Dynamic Memory Usage
@@ -144,9 +144,9 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                       0x2db6                              0x1a4a  (6730)
+stack                       0x2db8                              0x1a48  (6728)
 
-                 Maximum dynamic memory (bytes):         0x1a4a  (6730)
+                 Maximum dynamic memory (bytes):         0x1a48  (6728)
 
 
 External Symbols in Data Memory (by address):
@@ -209,6 +209,7 @@ External Symbols in Data Memory (by address):
                     0x2da8                  _TMR1_InterruptHandler
                     0x2dac                  _TMR3_InterruptHandler
                     0x2db0                  _FlashKey
+                    0x2db4                  _VbgCalibration
 
 External Symbols in Data Memory (by name):
 
@@ -247,6 +248,7 @@ External Symbols in Data Memory (by name):
                     0x2d4d                  _UartTxbufferCounter
                     0x0802                  _UserBufferBoot
                     0x2d7e                  _UserBufferPtr
+                    0x2db4                  _VbgCalibration
                     0x2da4                  _adc_i
                     0x2d92                  _asciiChar
                     0x2d90                  _asciiVal
@@ -275,8 +277,8 @@ External Symbols in Program Memory (by address):
 
                   0x000100                  __resetPRI
                   0x00013c                  __psv_init
-                  0x000152                  __data_init
                   0x000152                  __data_init_da
+                  0x000152                  __data_init
                   0x000208                  __ADC1Interrupt
                   0x00022e                  __DMA0Interrupt
                   0x00024e                  __MI2C1Interrupt
@@ -362,121 +364,122 @@ External Symbols in Program Memory (by address):
                   0x0023a4                  _CRC_CalculationResultReverseGet
                   0x0023b2                  _CRC_CalculationResultXORGet
                   0x0023ec                  _CRC_CalculationResultGet
-                  0x002438                  _UART1_Initialize
-                  0x002476                  _UART1_Read
-                  0x0024ac                  _UART1_ReadBuffer
-                  0x0024e4                  _UART1_Write
-                  0x00251a                  _UART1_WriteBuffer
-                  0x00254c                  _UART1_TransferStatusGet
-                  0x002588                  _UART1_Peek
-                  0x0025b0                  _UART1_PeekSafe
-                  0x002642                  _UART1_ReceiveBufferSizeGet
-                  0x002670                  _UART1_TransmitBufferSizeGet
-                  0x0026a0                  _UART1_ReceiveBufferIsEmpty
-                  0x0026b8                  _UART1_TransmitBufferIsFull
-                  0x0026d0                  _UART1_StatusGet
-                  0x0026d8                  _UART1_Enable
-                  0x0026e2                  _UART1_Disable
-                  0x0026ec                  _ascii_to_val
-                  0x00273c                  _uint16ToAscii5
-                  0x002810                  _uint16ToAscii5NoHWMath
-                  0x0028d8                  _uint16ToAscii5NoHWMathNoIndex
-                  0x002954                  _ADC1_ResetConditions
-                  0x002968                  _ADC1_Initialize
-                  0x002996                  _GetADCConversion
-                  0x0029fe                  _GetAddressPinVoltage_mV
-                  0x002ac8                  _GetTemperature_degC100ths
-                  0x002b6c                  _GetSourceVoltage_mV
-                  0x002b92                  _GetSourceVoltageADC
-                  0x002bb2                  _reset
-                  0x002bb8                  _crc
-                  0x002c52                  _crcAppSpace
-                  0x002d56                  _main
-                  0x002dc4                  _orCount
-                  0x002dca                  _or128
-                  0x002ecc                  _andCount
-                  0x002ed2                  _and128
-                  0x002fd4                  _I2C1_Initialize
-                  0x00300a                  _I2C1_ErrorCountGet
-                  0x00305c                  _I2C1_MasterWrite
-                  0x00308e                  _I2C1_MasterRead
-                  0x0030c0                  _I2C1_MasterTRBInsert
-                  0x003138                  _I2C1_MasterReadTRBBuild
-                  0x003168                  _I2C1_MasterWriteTRBBuild
-                  0x00318c                  _I2C1_MasterQueueIsEmpty
-                  0x0031a2                  _I2C1_MasterQueueIsFull
-                  0x0031ba                  _FLASH_Unlock
-                  0x0031c4                  _FLASH_Lock
-                  0x0031d2                  _FLASH_SendNvmKey
-                  0x0031f0                  _FLASH_ReadWord24
-                  0x0031fe                  _FLASH_ReadWord16
-                  0x00320a                  _FLASH_ErasePage
-                  0x00322e                  _FLASH_WriteDoubleWord24
-                  0x003266                  _FLASH_WriteDoubleWord16
-                  0x0032a0                  _FLASH_WriteRow24
-                  0x0032d8                  _FLASH_WriteRow16
-                  0x003310                  _FLASH_GetErasePageOffset
-                  0x003316                  _FLASH_GetErasePageAddress
-                  0x003320                  _I2C2_Initialize
-                  0x003344                  _I2C2_PeriphAddressMaskSet
-                  0x003350                  _I2C2_PeriphAddressSet
-                  0x00336e                  _I2C2_TransmitProcess
-                  0x00339e                  _I2C2_ReceiveProcess
-                  0x0033fc                  _i2cHealthMonitor
-                  0x00347a                  _TMR2_Initialize
-                  0x00349e                  _TMR2_Period16BitSet
-                  0x0034b0                  _TMR2_Period16BitGet
-                  0x0034b8                  _TMR2_Counter16BitSet
-                  0x0034ca                  _TMR2_Counter16BitGet
-                  0x0034f8                  _TMR2_SetInterruptHandler
-                  0x003508                  _TMR2_Start
-                  0x003518                  _TMR2_Stop
-                  0x003522                  _TMR2_GetElapsedThenClear
-                  0x00353a                  _TMR2_SoftwareCounterGet
-                  0x003546                  _TMR2_SoftwareCounterClear
-                  0x003552                  _SYSTEM_Initialize
-                  0x003612                  _TMR1_Initialize
-                  0x003628                  _TMR1_Tasks_16BitOperation
-                  0x003648                  _TMR1_Period16BitSet
-                  0x00365a                  _TMR1_Period16BitGet
-                  0x003662                  _TMR1_Counter16BitSet
-                  0x003674                  _TMR1_Counter16BitGet
-                  0x00367c                  _TMR1_Start
-                  0x00368a                  _TMR1_Stop
-                  0x003692                  _TMR1_GetElapsedThenClear
-                  0x0036aa                  _TMR1_SoftwareCounterGet
-                  0x0036b6                  _TMR1_SoftwareCounterClear
-                  0x0036c2                  _TMR1_ResetConditions
-                  0x0036d0                  _TMR3_Initialize
-                  0x0036e4                  _TMR3_Tasks_16BitOperation
-                  0x003706                  _TMR3_Period16BitSet
-                  0x003718                  _TMR3_Period16BitGet
-                  0x003720                  _TMR3_Counter16BitSet
-                  0x003732                  _TMR3_Counter16BitGet
-                  0x00373a                  _TMR3_Start
-                  0x003748                  _TMR3_Stop
-                  0x003750                  _TMR3_GetElapsedThenClear
-                  0x003768                  _TMR3_SoftwareCounterGet
-                  0x003774                  _TMR3_SoftwareCounterClear
-                  0x003780                  _TMR3_ResetConditions
-                  0x00381c                  _UART2_Initialize
-                  0x003830                  _UART2_Read
-                  0x00384e                  _UART2_Write
-                  0x003866                  _UART2_StatusGet
-                  0x00386e                  _UART2_Enable
-                  0x003878                  _UART2_Disable
-                  0x003882                  _CLOCK_Initialize
-                  0x0038de                  _PIN_MANAGER_Initialize
-                  0x003916                  _INTERRUPT_Initialize
-                  0x00395e                  _CVR_Initialize
-                  0x00396e                  _OSCILLATOR_Initialize
+                  0x002438                  _ADC1_ResetConditions
+                  0x00244c                  _ADC1_Initialize
+                  0x0024a6                  _GetADCConversion
+                  0x00250e                  _GetAddressPinVoltage_mV
+                  0x0025d8                  _GetTemperature_degC100ths
+                  0x00267c                  _GetSourceVoltage_mV
+                  0x0026a6                  _GetSourceVoltageADC
+                  0x0026ae                  _GetVBgCountsVsVRefPin
+                  0x002718                  _UART1_Initialize
+                  0x002756                  _UART1_Read
+                  0x00278c                  _UART1_ReadBuffer
+                  0x0027c4                  _UART1_Write
+                  0x0027fa                  _UART1_WriteBuffer
+                  0x00282c                  _UART1_TransferStatusGet
+                  0x002868                  _UART1_Peek
+                  0x002890                  _UART1_PeekSafe
+                  0x002922                  _UART1_ReceiveBufferSizeGet
+                  0x002950                  _UART1_TransmitBufferSizeGet
+                  0x002980                  _UART1_ReceiveBufferIsEmpty
+                  0x002998                  _UART1_TransmitBufferIsFull
+                  0x0029b0                  _UART1_StatusGet
+                  0x0029b8                  _UART1_Enable
+                  0x0029c2                  _UART1_Disable
+                  0x0029cc                  _ascii_to_val
+                  0x002a1c                  _uint16ToAscii5
+                  0x002af0                  _uint16ToAscii5NoHWMath
+                  0x002bb8                  _uint16ToAscii5NoHWMathNoIndex
+                  0x002c4c                  _reset
+                  0x002c52                  _crc
+                  0x002cec                  _crcAppSpace
+                  0x002df0                  _main
+                  0x002e5e                  _orCount
+                  0x002e64                  _or128
+                  0x002f66                  _andCount
+                  0x002f6c                  _and128
+                  0x00306e                  _I2C1_Initialize
+                  0x0030a4                  _I2C1_ErrorCountGet
+                  0x0030f6                  _I2C1_MasterWrite
+                  0x003128                  _I2C1_MasterRead
+                  0x00315a                  _I2C1_MasterTRBInsert
+                  0x0031d2                  _I2C1_MasterReadTRBBuild
+                  0x003202                  _I2C1_MasterWriteTRBBuild
+                  0x003226                  _I2C1_MasterQueueIsEmpty
+                  0x00323c                  _I2C1_MasterQueueIsFull
+                  0x003254                  _FLASH_Unlock
+                  0x00325e                  _FLASH_Lock
+                  0x00326c                  _FLASH_SendNvmKey
+                  0x00328a                  _FLASH_ReadWord24
+                  0x003298                  _FLASH_ReadWord16
+                  0x0032a4                  _FLASH_ErasePage
+                  0x0032c8                  _FLASH_WriteDoubleWord24
+                  0x003300                  _FLASH_WriteDoubleWord16
+                  0x00333a                  _FLASH_WriteRow24
+                  0x003372                  _FLASH_WriteRow16
+                  0x0033aa                  _FLASH_GetErasePageOffset
+                  0x0033b0                  _FLASH_GetErasePageAddress
+                  0x0033ba                  _I2C2_Initialize
+                  0x0033de                  _I2C2_PeriphAddressMaskSet
+                  0x0033ea                  _I2C2_PeriphAddressSet
+                  0x003408                  _I2C2_TransmitProcess
+                  0x003438                  _I2C2_ReceiveProcess
+                  0x003496                  _i2cHealthMonitor
+                  0x003514                  _TMR2_Initialize
+                  0x003538                  _TMR2_Period16BitSet
+                  0x00354a                  _TMR2_Period16BitGet
+                  0x003552                  _TMR2_Counter16BitSet
+                  0x003564                  _TMR2_Counter16BitGet
+                  0x003592                  _TMR2_SetInterruptHandler
+                  0x0035a2                  _TMR2_Start
+                  0x0035b2                  _TMR2_Stop
+                  0x0035bc                  _TMR2_GetElapsedThenClear
+                  0x0035d4                  _TMR2_SoftwareCounterGet
+                  0x0035e0                  _TMR2_SoftwareCounterClear
+                  0x0035ec                  _SYSTEM_Initialize
+                  0x0036ac                  _TMR1_Initialize
+                  0x0036c2                  _TMR1_Tasks_16BitOperation
+                  0x0036e2                  _TMR1_Period16BitSet
+                  0x0036f4                  _TMR1_Period16BitGet
+                  0x0036fc                  _TMR1_Counter16BitSet
+                  0x00370e                  _TMR1_Counter16BitGet
+                  0x003716                  _TMR1_Start
+                  0x003724                  _TMR1_Stop
+                  0x00372c                  _TMR1_GetElapsedThenClear
+                  0x003744                  _TMR1_SoftwareCounterGet
+                  0x003750                  _TMR1_SoftwareCounterClear
+                  0x00375c                  _TMR1_ResetConditions
+                  0x00376a                  _TMR3_Initialize
+                  0x00377e                  _TMR3_Tasks_16BitOperation
+                  0x0037a0                  _TMR3_Period16BitSet
+                  0x0037b2                  _TMR3_Period16BitGet
+                  0x0037ba                  _TMR3_Counter16BitSet
+                  0x0037cc                  _TMR3_Counter16BitGet
+                  0x0037d4                  _TMR3_Start
+                  0x0037e2                  _TMR3_Stop
+                  0x0037ea                  _TMR3_GetElapsedThenClear
+                  0x003802                  _TMR3_SoftwareCounterGet
+                  0x00380e                  _TMR3_SoftwareCounterClear
+                  0x00381a                  _TMR3_ResetConditions
+                  0x0038be                  _UART2_Initialize
+                  0x0038d2                  _UART2_Read
+                  0x0038f0                  _UART2_Write
+                  0x003908                  _UART2_StatusGet
+                  0x003910                  _UART2_Enable
+                  0x00391a                  _UART2_Disable
+                  0x003924                  _CLOCK_Initialize
+                  0x003980                  _PIN_MANAGER_Initialize
+                  0x0039b8                  _INTERRUPT_Initialize
+                  0x003a00                  _CVR_Initialize
+                  0x003a10                  _OSCILLATOR_Initialize
                   0x02af00                  __FSEC.sec
 
 External Symbols in Program Memory (by name):
 
-                  0x002968                  _ADC1_Initialize
-                  0x002954                  _ADC1_ResetConditions
-                  0x003882                  _CLOCK_Initialize
+                  0x00244c                  _ADC1_Initialize
+                  0x002438                  _ADC1_ResetConditions
+                  0x003924                  _CLOCK_Initialize
                   0x002238                  _CRC_CalculateBufferStart
                   0x002274                  _CRC_CalculateProgramStart
                   0x002336                  _CRC_CalculationIsDone
@@ -487,7 +490,7 @@ External Symbols in Program Memory (by name):
                   0x001eba                  _CRC_Initialize
                   0x002174                  _CRC_SeedSet
                   0x0022c0                  _CRC_Task
-                  0x00395e                  _CVR_Initialize
+                  0x003a00                  _CVR_Initialize
                   0x0013ac                  _ConfigurePinAnalog
                   0x0016ae                  _CurrentPinAnalog
                   0x00138c                  _CurrentPinBitmap
@@ -520,41 +523,42 @@ External Symbols in Program Memory (by name):
                   0x000afc                  _DMA__Channel3_Tasks
                   0x000b16                  _DMA__Channel4_Tasks
                   0x000b32                  _DMA__Channel5_Tasks
-                  0x00320a                  _FLASH_ErasePage
-                  0x003316                  _FLASH_GetErasePageAddress
-                  0x003310                  _FLASH_GetErasePageOffset
-                  0x0031c4                  _FLASH_Lock
-                  0x0031fe                  _FLASH_ReadWord16
-                  0x0031f0                  _FLASH_ReadWord24
-                  0x0031d2                  _FLASH_SendNvmKey
-                  0x0031ba                  _FLASH_Unlock
-                  0x003266                  _FLASH_WriteDoubleWord16
-                  0x00322e                  _FLASH_WriteDoubleWord24
-                  0x0032d8                  _FLASH_WriteRow16
-                  0x0032a0                  _FLASH_WriteRow24
-                  0x002996                  _GetADCConversion
-                  0x0029fe                  _GetAddressPinVoltage_mV
+                  0x0032a4                  _FLASH_ErasePage
+                  0x0033b0                  _FLASH_GetErasePageAddress
+                  0x0033aa                  _FLASH_GetErasePageOffset
+                  0x00325e                  _FLASH_Lock
+                  0x003298                  _FLASH_ReadWord16
+                  0x00328a                  _FLASH_ReadWord24
+                  0x00326c                  _FLASH_SendNvmKey
+                  0x003254                  _FLASH_Unlock
+                  0x003300                  _FLASH_WriteDoubleWord16
+                  0x0032c8                  _FLASH_WriteDoubleWord24
+                  0x003372                  _FLASH_WriteRow16
+                  0x00333a                  _FLASH_WriteRow24
+                  0x0024a6                  _GetADCConversion
+                  0x00250e                  _GetAddressPinVoltage_mV
                   0x001e6a                  _GetBuffer
-                  0x002b92                  _GetSourceVoltageADC
-                  0x002b6c                  _GetSourceVoltage_mV
-                  0x002ac8                  _GetTemperature_degC100ths
-                  0x00300a                  _I2C1_ErrorCountGet
-                  0x002fd4                  _I2C1_Initialize
-                  0x00318c                  _I2C1_MasterQueueIsEmpty
-                  0x0031a2                  _I2C1_MasterQueueIsFull
-                  0x00308e                  _I2C1_MasterRead
-                  0x003138                  _I2C1_MasterReadTRBBuild
-                  0x0030c0                  _I2C1_MasterTRBInsert
-                  0x00305c                  _I2C1_MasterWrite
-                  0x003168                  _I2C1_MasterWriteTRBBuild
-                  0x003320                  _I2C2_Initialize
-                  0x003344                  _I2C2_PeriphAddressMaskSet
-                  0x003350                  _I2C2_PeriphAddressSet
-                  0x00339e                  _I2C2_ReceiveProcess
-                  0x00336e                  _I2C2_TransmitProcess
-                  0x003916                  _INTERRUPT_Initialize
-                  0x00396e                  _OSCILLATOR_Initialize
-                  0x0038de                  _PIN_MANAGER_Initialize
+                  0x0026a6                  _GetSourceVoltageADC
+                  0x00267c                  _GetSourceVoltage_mV
+                  0x0025d8                  _GetTemperature_degC100ths
+                  0x0026ae                  _GetVBgCountsVsVRefPin
+                  0x0030a4                  _I2C1_ErrorCountGet
+                  0x00306e                  _I2C1_Initialize
+                  0x003226                  _I2C1_MasterQueueIsEmpty
+                  0x00323c                  _I2C1_MasterQueueIsFull
+                  0x003128                  _I2C1_MasterRead
+                  0x0031d2                  _I2C1_MasterReadTRBBuild
+                  0x00315a                  _I2C1_MasterTRBInsert
+                  0x0030f6                  _I2C1_MasterWrite
+                  0x003202                  _I2C1_MasterWriteTRBBuild
+                  0x0033ba                  _I2C2_Initialize
+                  0x0033de                  _I2C2_PeriphAddressMaskSet
+                  0x0033ea                  _I2C2_PeriphAddressSet
+                  0x003438                  _I2C2_ReceiveProcess
+                  0x003408                  _I2C2_TransmitProcess
+                  0x0039b8                  _INTERRUPT_Initialize
+                  0x003a10                  _OSCILLATOR_Initialize
+                  0x003980                  _PIN_MANAGER_Initialize
                   0x0009b2                  _PinBitmapA
                   0x00098a                  _PinBitmapB
                   0x001710                  _PinHigh
@@ -567,69 +571,69 @@ External Symbols in Program Memory (by name):
                   0x001ddc                  _ProcessRx
                   0x001908                  _ProcessRxbuffer
                   0x001466                  _ReadPin
-                  0x003552                  _SYSTEM_Initialize
+                  0x0035ec                  _SYSTEM_Initialize
                   0x0016f2                  _SetCurrentPin
                   0x0011be                  _SetPPSOutput
                   0x001582                  _SetPin
                   0x00179a                  _SetPinPullDown
                   0x00171e                  _SetPinPullUp
                   0x0016e2                  _SetPinQuick
-                  0x003674                  _TMR1_Counter16BitGet
-                  0x003662                  _TMR1_Counter16BitSet
-                  0x003692                  _TMR1_GetElapsedThenClear
-                  0x003612                  _TMR1_Initialize
-                  0x00365a                  _TMR1_Period16BitGet
-                  0x003648                  _TMR1_Period16BitSet
-                  0x0036c2                  _TMR1_ResetConditions
-                  0x0036b6                  _TMR1_SoftwareCounterClear
-                  0x0036aa                  _TMR1_SoftwareCounterGet
-                  0x00367c                  _TMR1_Start
-                  0x00368a                  _TMR1_Stop
-                  0x003628                  _TMR1_Tasks_16BitOperation
-                  0x0034ca                  _TMR2_Counter16BitGet
-                  0x0034b8                  _TMR2_Counter16BitSet
-                  0x003522                  _TMR2_GetElapsedThenClear
-                  0x00347a                  _TMR2_Initialize
-                  0x0034b0                  _TMR2_Period16BitGet
-                  0x00349e                  _TMR2_Period16BitSet
-                  0x0034f8                  _TMR2_SetInterruptHandler
-                  0x003546                  _TMR2_SoftwareCounterClear
-                  0x00353a                  _TMR2_SoftwareCounterGet
-                  0x003508                  _TMR2_Start
-                  0x003518                  _TMR2_Stop
-                  0x003732                  _TMR3_Counter16BitGet
-                  0x003720                  _TMR3_Counter16BitSet
-                  0x003750                  _TMR3_GetElapsedThenClear
-                  0x0036d0                  _TMR3_Initialize
-                  0x003718                  _TMR3_Period16BitGet
-                  0x003706                  _TMR3_Period16BitSet
-                  0x003780                  _TMR3_ResetConditions
-                  0x003774                  _TMR3_SoftwareCounterClear
-                  0x003768                  _TMR3_SoftwareCounterGet
-                  0x00373a                  _TMR3_Start
-                  0x003748                  _TMR3_Stop
-                  0x0036e4                  _TMR3_Tasks_16BitOperation
-                  0x0026e2                  _UART1_Disable
-                  0x0026d8                  _UART1_Enable
-                  0x002438                  _UART1_Initialize
-                  0x002588                  _UART1_Peek
-                  0x0025b0                  _UART1_PeekSafe
-                  0x002476                  _UART1_Read
-                  0x0024ac                  _UART1_ReadBuffer
-                  0x0026a0                  _UART1_ReceiveBufferIsEmpty
-                  0x002642                  _UART1_ReceiveBufferSizeGet
-                  0x0026d0                  _UART1_StatusGet
-                  0x00254c                  _UART1_TransferStatusGet
-                  0x0026b8                  _UART1_TransmitBufferIsFull
-                  0x002670                  _UART1_TransmitBufferSizeGet
-                  0x0024e4                  _UART1_Write
-                  0x00251a                  _UART1_WriteBuffer
-                  0x003878                  _UART2_Disable
-                  0x00386e                  _UART2_Enable
-                  0x00381c                  _UART2_Initialize
-                  0x003830                  _UART2_Read
-                  0x003866                  _UART2_StatusGet
-                  0x00384e                  _UART2_Write
+                  0x00370e                  _TMR1_Counter16BitGet
+                  0x0036fc                  _TMR1_Counter16BitSet
+                  0x00372c                  _TMR1_GetElapsedThenClear
+                  0x0036ac                  _TMR1_Initialize
+                  0x0036f4                  _TMR1_Period16BitGet
+                  0x0036e2                  _TMR1_Period16BitSet
+                  0x00375c                  _TMR1_ResetConditions
+                  0x003750                  _TMR1_SoftwareCounterClear
+                  0x003744                  _TMR1_SoftwareCounterGet
+                  0x003716                  _TMR1_Start
+                  0x003724                  _TMR1_Stop
+                  0x0036c2                  _TMR1_Tasks_16BitOperation
+                  0x003564                  _TMR2_Counter16BitGet
+                  0x003552                  _TMR2_Counter16BitSet
+                  0x0035bc                  _TMR2_GetElapsedThenClear
+                  0x003514                  _TMR2_Initialize
+                  0x00354a                  _TMR2_Period16BitGet
+                  0x003538                  _TMR2_Period16BitSet
+                  0x003592                  _TMR2_SetInterruptHandler
+                  0x0035e0                  _TMR2_SoftwareCounterClear
+                  0x0035d4                  _TMR2_SoftwareCounterGet
+                  0x0035a2                  _TMR2_Start
+                  0x0035b2                  _TMR2_Stop
+                  0x0037cc                  _TMR3_Counter16BitGet
+                  0x0037ba                  _TMR3_Counter16BitSet
+                  0x0037ea                  _TMR3_GetElapsedThenClear
+                  0x00376a                  _TMR3_Initialize
+                  0x0037b2                  _TMR3_Period16BitGet
+                  0x0037a0                  _TMR3_Period16BitSet
+                  0x00381a                  _TMR3_ResetConditions
+                  0x00380e                  _TMR3_SoftwareCounterClear
+                  0x003802                  _TMR3_SoftwareCounterGet
+                  0x0037d4                  _TMR3_Start
+                  0x0037e2                  _TMR3_Stop
+                  0x00377e                  _TMR3_Tasks_16BitOperation
+                  0x0029c2                  _UART1_Disable
+                  0x0029b8                  _UART1_Enable
+                  0x002718                  _UART1_Initialize
+                  0x002868                  _UART1_Peek
+                  0x002890                  _UART1_PeekSafe
+                  0x002756                  _UART1_Read
+                  0x00278c                  _UART1_ReadBuffer
+                  0x002980                  _UART1_ReceiveBufferIsEmpty
+                  0x002922                  _UART1_ReceiveBufferSizeGet
+                  0x0029b0                  _UART1_StatusGet
+                  0x00282c                  _UART1_TransferStatusGet
+                  0x002998                  _UART1_TransmitBufferIsFull
+                  0x002950                  _UART1_TransmitBufferSizeGet
+                  0x0027c4                  _UART1_Write
+                  0x0027fa                  _UART1_WriteBuffer
+                  0x00391a                  _UART2_Disable
+                  0x003910                  _UART2_Enable
+                  0x0038be                  _UART2_Initialize
+                  0x0038d2                  _UART2_Read
+                  0x003908                  _UART2_StatusGet
+                  0x0038f0                  _UART2_Write
                   0x000a16                  _WombatPinToADCChannel
                   0x000208                  __ADC1Interrupt
                   0x0007f6                  __AddressError
@@ -653,25 +657,25 @@ External Symbols in Program Memory (by name):
                   0x000152                  __data_init_da
                   0x00013c                  __psv_init
                   0x000100                  __resetPRI
-                  0x002ed2                  _and128
-                  0x002ecc                  _andCount
-                  0x0026ec                  _ascii_to_val
-                  0x002bb8                  _crc
-                  0x002c52                  _crcAppSpace
+                  0x002f6c                  _and128
+                  0x002f66                  _andCount
+                  0x0029cc                  _ascii_to_val
+                  0x002c52                  _crc
+                  0x002cec                  _crcAppSpace
                   0x0018e6                  _error
-                  0x0033fc                  _i2cHealthMonitor
-                  0x002d56                  _main
+                  0x003496                  _i2cHealthMonitor
+                  0x002df0                  _main
                   0x00097c                  _memcpy
-                  0x002dca                  _or128
-                  0x002dc4                  _orCount
+                  0x002e64                  _or128
+                  0x002e5e                  _orCount
                   0x0009ee                  _pinBitmap
                   0x001554                  _pinIsPPSCapable
                   0x0009da                  _pinPort
-                  0x002bb2                  _reset
+                  0x002c4c                  _reset
                   0x0018a2                  _uartStartTX
-                  0x00273c                  _uint16ToAscii5
-                  0x002810                  _uint16ToAscii5NoHWMath
-                  0x0028d8                  _uint16ToAscii5NoHWMathNoIndex
+                  0x002a1c                  _uint16ToAscii5
+                  0x002af0                  _uint16ToAscii5NoHWMath
+                  0x002bb8                  _uint16ToAscii5NoHWMathNoIndex
 
 Memory Configuration
 
@@ -2339,10 +2343,12 @@ __c30_signature
  .bss               0x2dac          0x4 build/default/production/_ext/275911920/tmr3.o
                     0x2dac                  _TMR3_InterruptHandler
 
-.data               0x2db0          0x6
+.data               0x2db0          0x8
  .data              0x2db0          0x4 build/default/production/_ext/1542527744/flash.o
                     0x2db0                  _FlashKey
- .data              0x2db4          0x2 build/default/production/_ext/275911920/traps.o
+ .data              0x2db4          0x2 build/default/production/_ext/275911920/adc1.o
+                    0x2db4                  _VbgCalibration
+ .data              0x2db6          0x2 build/default/production/_ext/275911920/traps.o
 
 .ivt._ADC1Interrupt
                   0x00002e          0x2
@@ -2447,7 +2453,7 @@ __c30_signature
                     0x89ee                  _pinBitmap
                     0x8a16                  _WombatPinToADCChannel
 
-.text             0x000a2a       0x278e
+.text             0x000a2a       0x2828
  .text            0x000a2a        0x794 build/default/production/_ext/275911920/dma.o
                   0x000a2a                  _DMA_Initialize
                   0x000ab8                  _DMA_Channel0_CallBack
@@ -2521,141 +2527,142 @@ __c30_signature
                   0x0023a4                  _CRC_CalculationResultReverseGet
                   0x0023b2                  _CRC_CalculationResultXORGet
                   0x0023ec                  _CRC_CalculationResultGet
- .text            0x002438        0x2b4 build/default/production/_ext/275911920/uart1.o
-                  0x002438                  _UART1_Initialize
-                  0x002476                  _UART1_Read
-                  0x0024ac                  _UART1_ReadBuffer
-                  0x0024e4                  _UART1_Write
-                  0x00251a                  _UART1_WriteBuffer
-                  0x00254c                  _UART1_TransferStatusGet
-                  0x002588                  _UART1_Peek
-                  0x0025b0                  _UART1_PeekSafe
-                  0x002642                  _UART1_ReceiveBufferSizeGet
-                  0x002670                  _UART1_TransmitBufferSizeGet
-                  0x0026a0                  _UART1_ReceiveBufferIsEmpty
-                  0x0026b8                  _UART1_TransmitBufferIsFull
-                  0x0026d0                  _UART1_StatusGet
-                  0x0026d8                  _UART1_Enable
-                  0x0026e2                  _UART1_Disable
- .text            0x0026ec        0x268 build/default/production/_ext/998979777/asciiConversion.o
-                  0x0026ec                  _ascii_to_val
-                  0x00273c                  _uint16ToAscii5
-                  0x002810                  _uint16ToAscii5NoHWMath
-                  0x0028d8                  _uint16ToAscii5NoHWMathNoIndex
- .text            0x002954        0x246 build/default/production/_ext/275911920/adc1.o
-                  0x002954                  _ADC1_ResetConditions
-                  0x002968                  _ADC1_Initialize
-                  0x002996                  _GetADCConversion
-                  0x0029fe                  _GetAddressPinVoltage_mV
-                  0x002ac8                  _GetTemperature_degC100ths
-                  0x002b6c                  _GetSourceVoltage_mV
-                  0x002b92                  _GetSourceVoltageADC
- .text            0x002b9a        0x22a build/default/production/main_boot.o
-                  0x002bb2                  _reset
-                  0x002bb8                  _crc
-                  0x002c52                  _crcAppSpace
-                  0x002d56                  _main
- .text            0x002dc4        0x210 build/default/production/_ext/1497480854/wombatasm.o
-                  0x002dc4                  _orCount
-                  0x002dca                  _or128
-                  0x002ecc                  _andCount
-                  0x002ed2                  _and128
- .text            0x002fd4        0x1e4 build/default/production/_ext/275911920/i2c1.o
-                  0x002fd4                  _I2C1_Initialize
-                  0x00300a                  _I2C1_ErrorCountGet
-                  0x00305c                  _I2C1_MasterWrite
-                  0x00308e                  _I2C1_MasterRead
-                  0x0030c0                  _I2C1_MasterTRBInsert
-                  0x003138                  _I2C1_MasterReadTRBBuild
-                  0x003168                  _I2C1_MasterWriteTRBBuild
-                  0x00318c                  _I2C1_MasterQueueIsEmpty
-                  0x0031a2                  _I2C1_MasterQueueIsFull
+ .text            0x002438        0x2e0 build/default/production/_ext/275911920/adc1.o
+                  0x002438                  _ADC1_ResetConditions
+                  0x00244c                  _ADC1_Initialize
+                  0x0024a6                  _GetADCConversion
+                  0x00250e                  _GetAddressPinVoltage_mV
+                  0x0025d8                  _GetTemperature_degC100ths
+                  0x00267c                  _GetSourceVoltage_mV
+                  0x0026a6                  _GetSourceVoltageADC
+                  0x0026ae                  _GetVBgCountsVsVRefPin
+ .text            0x002718        0x2b4 build/default/production/_ext/275911920/uart1.o
+                  0x002718                  _UART1_Initialize
+                  0x002756                  _UART1_Read
+                  0x00278c                  _UART1_ReadBuffer
+                  0x0027c4                  _UART1_Write
+                  0x0027fa                  _UART1_WriteBuffer
+                  0x00282c                  _UART1_TransferStatusGet
+                  0x002868                  _UART1_Peek
+                  0x002890                  _UART1_PeekSafe
+                  0x002922                  _UART1_ReceiveBufferSizeGet
+                  0x002950                  _UART1_TransmitBufferSizeGet
+                  0x002980                  _UART1_ReceiveBufferIsEmpty
+                  0x002998                  _UART1_TransmitBufferIsFull
+                  0x0029b0                  _UART1_StatusGet
+                  0x0029b8                  _UART1_Enable
+                  0x0029c2                  _UART1_Disable
+ .text            0x0029cc        0x268 build/default/production/_ext/998979777/asciiConversion.o
+                  0x0029cc                  _ascii_to_val
+                  0x002a1c                  _uint16ToAscii5
+                  0x002af0                  _uint16ToAscii5NoHWMath
+                  0x002bb8                  _uint16ToAscii5NoHWMathNoIndex
+ .text            0x002c34        0x22a build/default/production/main_boot.o
+                  0x002c4c                  _reset
+                  0x002c52                  _crc
+                  0x002cec                  _crcAppSpace
+                  0x002df0                  _main
+ .text            0x002e5e        0x210 build/default/production/_ext/1497480854/wombatasm.o
+                  0x002e5e                  _orCount
+                  0x002e64                  _or128
+                  0x002f66                  _andCount
+                  0x002f6c                  _and128
+ .text            0x00306e        0x1e4 build/default/production/_ext/275911920/i2c1.o
+                  0x00306e                  _I2C1_Initialize
+                  0x0030a4                  _I2C1_ErrorCountGet
+                  0x0030f6                  _I2C1_MasterWrite
+                  0x003128                  _I2C1_MasterRead
+                  0x00315a                  _I2C1_MasterTRBInsert
+                  0x0031d2                  _I2C1_MasterReadTRBBuild
+                  0x003202                  _I2C1_MasterWriteTRBBuild
+                  0x003226                  _I2C1_MasterQueueIsEmpty
+                  0x00323c                  _I2C1_MasterQueueIsFull
 
-.NVM_flash        0x0031b8        0x168
- .NVM_flash       0x0031b8        0x168 build/default/production/_ext/1542527744/flash.o
-                  0x0031ba                  _FLASH_Unlock
-                  0x0031c4                  _FLASH_Lock
-                  0x0031d2                  _FLASH_SendNvmKey
-                  0x0031f0                  _FLASH_ReadWord24
-                  0x0031fe                  _FLASH_ReadWord16
-                  0x00320a                  _FLASH_ErasePage
-                  0x00322e                  _FLASH_WriteDoubleWord24
-                  0x003266                  _FLASH_WriteDoubleWord16
-                  0x0032a0                  _FLASH_WriteRow24
-                  0x0032d8                  _FLASH_WriteRow16
-                  0x003310                  _FLASH_GetErasePageOffset
-                  0x003316                  _FLASH_GetErasePageAddress
+.NVM_flash        0x003252        0x168
+ .NVM_flash       0x003252        0x168 build/default/production/_ext/1542527744/flash.o
+                  0x003254                  _FLASH_Unlock
+                  0x00325e                  _FLASH_Lock
+                  0x00326c                  _FLASH_SendNvmKey
+                  0x00328a                  _FLASH_ReadWord24
+                  0x003298                  _FLASH_ReadWord16
+                  0x0032a4                  _FLASH_ErasePage
+                  0x0032c8                  _FLASH_WriteDoubleWord24
+                  0x003300                  _FLASH_WriteDoubleWord16
+                  0x00333a                  _FLASH_WriteRow24
+                  0x003372                  _FLASH_WriteRow16
+                  0x0033aa                  _FLASH_GetErasePageOffset
+                  0x0033b0                  _FLASH_GetErasePageAddress
 
-.text             0x003320        0x46c
- .text            0x003320        0x15a build/default/production/_ext/275911920/i2c2.o
-                  0x003320                  _I2C2_Initialize
-                  0x003344                  _I2C2_PeriphAddressMaskSet
-                  0x003350                  _I2C2_PeriphAddressSet
-                  0x00336e                  _I2C2_TransmitProcess
-                  0x00339e                  _I2C2_ReceiveProcess
-                  0x0033fc                  _i2cHealthMonitor
- .text            0x00347a         0xd8 build/default/production/_ext/275911920/tmr2.o
-                  0x00347a                  _TMR2_Initialize
-                  0x00349e                  _TMR2_Period16BitSet
-                  0x0034b0                  _TMR2_Period16BitGet
-                  0x0034b8                  _TMR2_Counter16BitSet
-                  0x0034ca                  _TMR2_Counter16BitGet
-                  0x0034d2                  _TMR2_CallBack
-                  0x0034f8                  _TMR2_SetInterruptHandler
-                  0x003508                  _TMR2_Start
-                  0x003518                  _TMR2_Stop
-                  0x003522                  _TMR2_GetElapsedThenClear
-                  0x00353a                  _TMR2_SoftwareCounterGet
-                  0x003546                  _TMR2_SoftwareCounterClear
- .text            0x003552         0xc0 build/default/production/_ext/275911920/system.o
-                  0x003552                  _SYSTEM_Initialize
- .text            0x003612         0xbe build/default/production/_ext/275911920/tmr1.o
-                  0x003612                  _TMR1_Initialize
-                  0x003628                  _TMR1_Tasks_16BitOperation
-                  0x003648                  _TMR1_Period16BitSet
-                  0x00365a                  _TMR1_Period16BitGet
-                  0x003662                  _TMR1_Counter16BitSet
-                  0x003674                  _TMR1_Counter16BitGet
-                  0x00367c                  _TMR1_Start
-                  0x00368a                  _TMR1_Stop
-                  0x003692                  _TMR1_GetElapsedThenClear
-                  0x0036aa                  _TMR1_SoftwareCounterGet
-                  0x0036b6                  _TMR1_SoftwareCounterClear
-                  0x0036c2                  _TMR1_ResetConditions
- .text            0x0036d0         0xbc build/default/production/_ext/275911920/tmr3.o
-                  0x0036d0                  _TMR3_Initialize
-                  0x0036e4                  _TMR3_Tasks_16BitOperation
-                  0x003706                  _TMR3_Period16BitSet
-                  0x003718                  _TMR3_Period16BitGet
-                  0x003720                  _TMR3_Counter16BitSet
-                  0x003732                  _TMR3_Counter16BitGet
-                  0x00373a                  _TMR3_Start
-                  0x003748                  _TMR3_Stop
-                  0x003750                  _TMR3_GetElapsedThenClear
-                  0x003768                  _TMR3_SoftwareCounterGet
-                  0x003774                  _TMR3_SoftwareCounterClear
-                  0x003780                  _TMR3_ResetConditions
+.text             0x0033ba        0x46c
+ .text            0x0033ba        0x15a build/default/production/_ext/275911920/i2c2.o
+                  0x0033ba                  _I2C2_Initialize
+                  0x0033de                  _I2C2_PeriphAddressMaskSet
+                  0x0033ea                  _I2C2_PeriphAddressSet
+                  0x003408                  _I2C2_TransmitProcess
+                  0x003438                  _I2C2_ReceiveProcess
+                  0x003496                  _i2cHealthMonitor
+ .text            0x003514         0xd8 build/default/production/_ext/275911920/tmr2.o
+                  0x003514                  _TMR2_Initialize
+                  0x003538                  _TMR2_Period16BitSet
+                  0x00354a                  _TMR2_Period16BitGet
+                  0x003552                  _TMR2_Counter16BitSet
+                  0x003564                  _TMR2_Counter16BitGet
+                  0x00356c                  _TMR2_CallBack
+                  0x003592                  _TMR2_SetInterruptHandler
+                  0x0035a2                  _TMR2_Start
+                  0x0035b2                  _TMR2_Stop
+                  0x0035bc                  _TMR2_GetElapsedThenClear
+                  0x0035d4                  _TMR2_SoftwareCounterGet
+                  0x0035e0                  _TMR2_SoftwareCounterClear
+ .text            0x0035ec         0xc0 build/default/production/_ext/275911920/system.o
+                  0x0035ec                  _SYSTEM_Initialize
+ .text            0x0036ac         0xbe build/default/production/_ext/275911920/tmr1.o
+                  0x0036ac                  _TMR1_Initialize
+                  0x0036c2                  _TMR1_Tasks_16BitOperation
+                  0x0036e2                  _TMR1_Period16BitSet
+                  0x0036f4                  _TMR1_Period16BitGet
+                  0x0036fc                  _TMR1_Counter16BitSet
+                  0x00370e                  _TMR1_Counter16BitGet
+                  0x003716                  _TMR1_Start
+                  0x003724                  _TMR1_Stop
+                  0x00372c                  _TMR1_GetElapsedThenClear
+                  0x003744                  _TMR1_SoftwareCounterGet
+                  0x003750                  _TMR1_SoftwareCounterClear
+                  0x00375c                  _TMR1_ResetConditions
+ .text            0x00376a         0xbc build/default/production/_ext/275911920/tmr3.o
+                  0x00376a                  _TMR3_Initialize
+                  0x00377e                  _TMR3_Tasks_16BitOperation
+                  0x0037a0                  _TMR3_Period16BitSet
+                  0x0037b2                  _TMR3_Period16BitGet
+                  0x0037ba                  _TMR3_Counter16BitSet
+                  0x0037cc                  _TMR3_Counter16BitGet
+                  0x0037d4                  _TMR3_Start
+                  0x0037e2                  _TMR3_Stop
+                  0x0037ea                  _TMR3_GetElapsedThenClear
+                  0x003802                  _TMR3_SoftwareCounterGet
+                  0x00380e                  _TMR3_SoftwareCounterClear
+                  0x00381a                  _TMR3_ResetConditions
 
-.dinit            0x00378c         0x90
- .dinit           0x00378c         0x90 data_init
+.dinit            0x003826         0x98
+ .dinit           0x003826         0x98 data_init
 
-.text             0x00381c        0x15c
- .text            0x00381c         0x66 build/default/production/_ext/275911920/uart2.o
-                  0x00381c                  _UART2_Initialize
-                  0x003830                  _UART2_Read
-                  0x00384e                  _UART2_Write
-                  0x003866                  _UART2_StatusGet
-                  0x00386e                  _UART2_Enable
-                  0x003878                  _UART2_Disable
- .text            0x003882         0x5c build/default/production/_ext/275911920/clock.o
-                  0x003882                  _CLOCK_Initialize
- .text            0x0038de         0x38 build/default/production/_ext/275911920/pin_manager.o
-                  0x0038de                  _PIN_MANAGER_Initialize
- .text            0x003916         0x2a build/default/production/_ext/275911920/interrupt_manager.o
-                  0x003916                  _INTERRUPT_Initialize
- .text            0x003940         0x1e build/default/production/_ext/275911920/traps.o
-                  0x003940                  _TRAPS_halt_on_error
- .text            0x00395e         0x10 build/default/production/_ext/275911920/cvr.o
-                  0x00395e                  _CVR_Initialize
- .text            0x00396e          0xa build/default/production/_ext/275911920/mcc.o
-                  0x00396e                  _OSCILLATOR_Initialize
+.text             0x0038be        0x15c
+ .text            0x0038be         0x66 build/default/production/_ext/275911920/uart2.o
+                  0x0038be                  _UART2_Initialize
+                  0x0038d2                  _UART2_Read
+                  0x0038f0                  _UART2_Write
+                  0x003908                  _UART2_StatusGet
+                  0x003910                  _UART2_Enable
+                  0x00391a                  _UART2_Disable
+ .text            0x003924         0x5c build/default/production/_ext/275911920/clock.o
+                  0x003924                  _CLOCK_Initialize
+ .text            0x003980         0x38 build/default/production/_ext/275911920/pin_manager.o
+                  0x003980                  _PIN_MANAGER_Initialize
+ .text            0x0039b8         0x2a build/default/production/_ext/275911920/interrupt_manager.o
+                  0x0039b8                  _INTERRUPT_Initialize
+ .text            0x0039e2         0x1e build/default/production/_ext/275911920/traps.o
+                  0x0039e2                  _TRAPS_halt_on_error
+ .text            0x003a00         0x10 build/default/production/_ext/275911920/cvr.o
+                  0x003a00                  _CVR_Initialize
+ .text            0x003a10          0xa build/default/production/_ext/275911920/mcc.o
+                  0x003a10                  _OSCILLATOR_Initialize

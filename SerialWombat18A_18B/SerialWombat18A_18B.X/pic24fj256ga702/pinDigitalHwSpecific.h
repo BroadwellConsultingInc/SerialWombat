@@ -14,6 +14,7 @@ extern uint16_t OutputArrayB[SIZE_OF_DMA_ARRAY];
 extern uint16_t InputArrayA[SIZE_OF_DMA_ARRAY];
 extern uint16_t InputArrayB[SIZE_OF_DMA_ARRAY];
 extern const uint8_t WombatPinToADCChannel[NUMBER_OF_PHYSICAL_PINS];
+extern const uint8_t pinPPSInputMap[NUMBER_OF_PHYSICAL_PINS];
 
 #define DIGITAL_LOW 0
 #define DIGITAL_HIGH 1

@@ -176,10 +176,12 @@ void initQuadEnc(void)
     }
 } 
 
-uint16_t debugMaxQuadEncCounter = 0;
+quadEnc_t* debugQuadEnc;
 void updateQuadEnc(void)
 {
+    
 	quadEnc_t* quadEnc = (quadEnc_t*) CurrentPinRegister;
+    debugQuadEnc = quadEnc;
 	uint16_t bitmap = CurrentPinBitmap();
 	uint16_t buffer = CurrentPinRegister->generic.buffer;
 	uint16_t sample = 0;
@@ -217,11 +219,8 @@ void updateQuadEnc(void)
 				{
 					//Was low!
 					++ quadEnc->debouncecounter;
-                    if (quadEnc->debouncecounter > debugMaxQuadEncCounter)
-                    {
-                        debugMaxQuadEncCounter = quadEnc->debouncecounter;
-                    }
-					if (quadEnc->debouncecounter > quadEnc->debouncesamples)
+                  
+					if (quadEnc->debouncecounter >= quadEnc->debouncesamples)
 					{    
 
 						currentState = 1;
@@ -273,11 +272,7 @@ void updateQuadEnc(void)
 				{
                     //Was High
 					++ quadEnc->debouncecounter;
-                    if (quadEnc->debouncecounter > debugMaxQuadEncCounter)
-                    {
-                        debugMaxQuadEncCounter = quadEnc->debouncecounter;
-                    }
-					if (quadEnc->debouncecounter > quadEnc->debouncesamples)
+  					if (quadEnc->debouncecounter > quadEnc->debouncesamples)
 					{    
 						
 						currentState = 0;

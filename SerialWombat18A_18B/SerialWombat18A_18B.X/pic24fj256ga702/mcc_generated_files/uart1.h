@@ -144,6 +144,7 @@ typedef enum
     /* Indicates that the core driver transmitter buffer is empty */
     UART1_TRANSFER_STATUS_TX_EMPTY
         /*DOM-IGNORE-BEGIN*/  = (1 << 4) /*DOM-IGNORE-END*/
+     
 
 } UART1_TRANSFER_STATUS;
 
