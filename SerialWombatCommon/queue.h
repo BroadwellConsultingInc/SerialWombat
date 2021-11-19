@@ -9,11 +9,19 @@ typedef enum
 	QUEUE_RESULT_INVALID_QUEUE = 3,
 	QUEUE_RESULT_FULL = 4,
 	QUEUE_RESULT_EMPTY = 5,
-}QUEUE_RESULT_t;
+}SW_QUEUE_RESULT_t;
 
-QUEUE_RESULT_t QueueByteInitialize(uint16_t address, uint16_t capacity);
-QUEUE_RESULT_t QueueBytesInQueue(uint16_t address,uint16_t* bytesInQueue );
-QUEUE_RESULT_t QueueAddByte(uint16_t address, uint8_t data);
-QUEUE_RESULT_t QueueReadByte(uint16_t address, uint8_t* data);
+typedef enum
+{
+	QUEUE_TYPE_RAM_BYTE = 0, ///< Queues one byte at a time in ram
+}SW_QUEUE_TYPE_t;
+
+SW_QUEUE_RESULT_t QueueByteInitialize(uint16_t address, uint16_t capacity);
+SW_QUEUE_RESULT_t QueueBytesInQueue(uint16_t address,uint16_t* bytesInQueue );
+SW_QUEUE_RESULT_t QueueAddByte(uint16_t address, uint8_t data);
+SW_QUEUE_RESULT_t QueueReadByte(uint16_t address, uint8_t* data);
+SW_QUEUE_RESULT_t QueuePeekByte(uint16_t address, uint8_t* data);
+SW_QUEUE_RESULT_t QueueGetBytesFilledInQueue(uint16_t address, uint16_t* bytesFilledInQueue);
+SW_QUEUE_RESULT_t QueueGetBytesFreeInQueue(uint16_t address, uint16_t* bytesFreeInQueue);
 
 #endif

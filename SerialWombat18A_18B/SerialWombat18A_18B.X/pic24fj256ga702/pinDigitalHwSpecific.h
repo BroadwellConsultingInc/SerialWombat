@@ -51,31 +51,19 @@ uint8_t pinIsPPSCapable(uint8_t pin);
 
 typedef enum
 {
-       TIMING_RESOURCE_MCCP2,
-
-                 TIMING_RESOURCE_MCCP3,
-                               TIMING_RESOURCE_MCCP4,
- 
-
-
-    TIMING_RESOURCE_OC1,
-                        
-           TIMING_RESOURCE_OC2,
-                
-            TIMING_RESOURCE_OC3,
-    
-
-           
-
-            TIMING_RESOURCE_PORT_DMA,
-                      TIMING_RESOURCE_MCCP1,  // Place after DMA
-                                TIMING_RESOURCE_NUMBER_OF_RESOURCES,
-                    TIMING_RESOURCE_ANY,
-                    TIMING_RESOURCE_ALL,
-            TIMING_RESOURCE_ANY_HARDWARE,
-            
-            TIMING_RESOURCE_NONE = 0xFF,
-            
+	TIMING_RESOURCE_MCCP2,
+	TIMING_RESOURCE_MCCP3,
+	TIMING_RESOURCE_MCCP4,
+	TIMING_RESOURCE_OC1,
+	TIMING_RESOURCE_OC2,
+	TIMING_RESOURCE_OC3,
+	TIMING_RESOURCE_PORT_DMA,
+	TIMING_RESOURCE_MCCP1,  // Place after DMA
+	TIMING_RESOURCE_NUMBER_OF_RESOURCES,
+	TIMING_RESOURCE_ANY,
+	TIMING_RESOURCE_ALL,
+	TIMING_RESOURCE_ANY_HARDWARE,
+	TIMING_RESOURCE_NONE = 0xFF,
 } TIMING_RESOURCE_t;
 
 
@@ -93,4 +81,12 @@ void timingResourceManagerInit();
 
 TIMING_RESOURCE_t timingResourceInterruptClaim(TIMING_RESOURCE_t resource, uint16_t counts, uint16_t uS, void (*callBack)(void));
 void timingResourceInterruptActivate(TIMING_RESOURCE_t resource);
+
+
+typedef struct DMABitStream_n{
+uint8_t nextLocationToQueue;
+uint8_t lastDMA;
+}DMABitStream_t;
+uint8_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint8_t count, DMABitStream_t* bitStream );
+
 #endif

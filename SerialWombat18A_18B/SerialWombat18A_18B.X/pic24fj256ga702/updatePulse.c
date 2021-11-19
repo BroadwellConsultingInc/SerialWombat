@@ -171,6 +171,212 @@ void updatePulseOutput(uint8_t pin)
 	pinPtr->pulse_output.lastDMA = nextLocationToQueue;
 }
 
+uint8_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint8_t count, DMABitStream_t* bitStream )
+{
+	uint16_t bitmap = pinBitmap[pin];
+	uint16_t invbitmap = ~bitmap;
+	uint8_t nextLocationToQueue = bitStream->nextLocationToQueue;
+	uint16_t* baseAddress;
+
+	int nextDMAHWTransfer ; // The next DMA location that will be transferred by Hardware.  Don't overwrite this one.  We need to catch up to this.
+
+	if (pinPort[pin] == 0)
+	{
+		baseAddress = OutputArrayA;
+		nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMACNT0 ; 
+	}
+	else
+	{
+		baseAddress = OutputArrayB;
+		nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMACNT1 ;
+	}
+
+	// This can go a few ways:
+	
+	//1: The DMA pointer is at a lower address than the last byte we queued.  If this is the case, go to case 2.  Otherwise, skip to case 6
+	//2: Are there enough high bits left to fill the DMA to the end? yes  Do that, subtract the nubmer from the high count, and skip to case 6 , else go to 3
+	//3: There wasn't enough to fill the DMA to the end.  Put them all in there.  Go to 4.
+	//4: Are there enough low bits to fill the DMA to the end?  Yes: Do that, subtract the nubmer from the low count, and skip to case 7, else go to step 5
+	//5: There weren't enough low bits to fill the DMA to the end. Fill them all  Reset the high and low counters, and go to state 1.
+	//6:  Are there enough High bits to fill the DMA from the beginning to the DMA pointer? Yes:  Do that, subtract from counter.  Done.  No:  Put them all in and go to step 7.
+	//7:  Are there enough Low bits to fill the DMA from the beginning to the DMA pointer? Yes:  Do that, subtract from counter.  Done.  No:  Put them all in, reset counters and go to step 6. 
+	//8: Done
+
+
+	uint8_t state = 1;
+
+
+	while (state < 8)
+	{
+		switch (state)
+		{
+			case 1:
+				{
+
+					if (nextDMAHWTransfer < nextLocationToQueue)
+					{
+						// DMA counter rolled over.
+						state = 2;
+					}
+					else
+					{
+						state = 6;
+					}	
+
+				}
+				break;
+			case 2:
+			{
+				uint8_t AvailableDMASpace = SIZE_OF_DMA_ARRAY - nextLocationToQueue ;
+				if (count > AvailableDMASpace)
+				{
+					count -= AvailableDMASpace;
+					if (level)
+					{
+						orCount(&baseAddress[nextLocationToQueue],bitmap,AvailableDMASpace);
+					}
+					else
+					{
+						andCount(&baseAddress[nextLocationToQueue],invbitmap,AvailableDMASpace);
+					}
+					nextLocationToQueue = 0;
+					state = 6;
+				}
+				else
+				{
+					state = 3;
+				}
+
+
+			}
+			break;
+
+			case 3:
+			{
+					if (level)
+					{
+						orCount(&baseAddress[nextLocationToQueue],bitmap,count);
+					}
+					else
+					{
+						andCount(&baseAddress[nextLocationToQueue],invbitmap,count);
+					}
+					nextLocationToQueue+= count;
+					count = 0;
+					state = 4;
+
+			}
+			break;
+
+			case 4:
+			{
+				/* ???
+				uint8_t AvailableDMASpace = SIZE_OF_DMA_ARRAY - nextLocationToQueue ;
+				if (pinPtr->pulse_output.lowRemaining > AvailableDMASpace)
+				{
+					pinPtr->pulse_output.lowRemaining -= AvailableDMASpace;
+					andCount(&baseAddress[nextLocationToQueue],invbitmap,AvailableDMASpace);
+					nextLocationToQueue = 0;
+					state = 7;
+				}
+				else
+				{
+					state = 5;
+				}
+
+				*/
+
+			}
+			break;
+
+			case 5:
+			{
+				/*
+					andCount(&baseAddress[nextLocationToQueue],invbitmap,pinPtr->pulse_output.lowRemaining);
+					nextLocationToQueue+= pinPtr->pulse_output.lowRemaining;
+					pinPtr->pulse_output.highRemaining = pinPtr->pulse_output.highReload;
+					pinPtr->pulse_output.lowRemaining = pinPtr->pulse_output.lowReload;
+					state = 1;
+				*/
+
+			}
+			break;
+
+			case 6:
+			{
+				uint8_t AvailableDMASpace = nextDMAHWTransfer -  nextLocationToQueue ;
+				if (count > AvailableDMASpace)
+				{
+					count -= AvailableDMASpace;
+					if (level)
+					{
+					orCount(&baseAddress[nextLocationToQueue],bitmap,AvailableDMASpace);
+					}
+					else
+					{
+						andCount(&baseAddress[nextLocationToQueue],invbitmap,AvailableDMASpace);
+					}
+					nextLocationToQueue  += AvailableDMASpace;
+					state = 8;
+				}
+				else
+				{
+					if (level)
+					{
+					orCount(&baseAddress[nextLocationToQueue],bitmap,count);
+					}
+					else
+					{
+					andCount(&baseAddress[nextLocationToQueue],invbitmap,count);
+					}
+
+					nextLocationToQueue+= count;
+					count = 0;
+					state = 7;
+				}
+
+			}
+			break;
+
+			case 7:
+			{
+				/* ???
+				uint8_t AvailableDMASpace = nextDMAHWTransfer -  nextLocationToQueue ;
+				if (pinPtr->pulse_output.lowRemaining > AvailableDMASpace)
+				{
+					pinPtr->pulse_output.lowRemaining -= AvailableDMASpace;
+					andCount(&baseAddress[nextLocationToQueue],invbitmap,AvailableDMASpace);
+					nextLocationToQueue += AvailableDMASpace;
+					state = 8;
+				}
+				else
+				{
+					andCount(&baseAddress[nextLocationToQueue],invbitmap,pinPtr->pulse_output.lowRemaining);
+					nextLocationToQueue+= pinPtr->pulse_output.lowRemaining;
+					pinPtr->pulse_output.highRemaining = pinPtr->pulse_output.highReload;
+					pinPtr->pulse_output.lowRemaining = pinPtr->pulse_output.lowReload;
+					state = 6;
+				}
+				*/
+
+			}
+			break;
+
+			default:
+			{
+				state = 8;
+			}
+			break;
+		
+
+		}
+	}
+
+	
+	bitStream->nextLocationToQueue ;
+	return (count);
+}
+
 uint8_t  PulseInGetOldestDMABit(uint8_t pin)
 {
     uint16_t* baseAddress;

@@ -193,6 +193,14 @@ typedef union _pin_register_t{
 	uint16_t mode;
       } pulse_output;
 
+      struct bitstreamOutput_n
+      {
+        uint8_t bytes[27]
+	uint8_t lastDMA;
+	uint16_t buffer;
+	uint16_t mode;
+      } bitstream_output;
+
       struct morse_n {
            uint16 queue;
            uint16 dot_time;

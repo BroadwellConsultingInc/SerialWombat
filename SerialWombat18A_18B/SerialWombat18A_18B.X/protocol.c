@@ -516,6 +516,12 @@ Or similar
 				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
 				  |0x90 |Queue Address LSB |Queue Address MSB |Size LSB|Size MSB|Queue Type|Varies|Varies|
+                 
+                  Response: 
+                 |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+				  |0x90 |Queue Address LSB |Queue Address MSB |Used Size LSB|Used Size MSB|Queue Type|Varies|Varies| 
+             
 
 Examples:
 
@@ -525,9 +531,19 @@ Initializes a ram queue of 32 bytes at address 0x0010 in user memory.
 
 \}
 				 **/
-				QueueByteInitialize(RXBUFFER16(1),RXBUFFER16(2));	
-				//TODO handle error return codes
-
+				
+                SW_QUEUE_RESULT_t result = QueueByteInitialize(RXBUFFER16(1),RXBUFFER16(3));	
+                
+                if (result == QUEUE_RESULT_SUCCESS)
+                {
+                    uint16_t length = RXBUFFER16(3) + 8;
+                    TXBUFFER16(3,length);
+                }
+                else
+                {
+                    TXBUFFER16(3,0);
+                    Txbuffer[5] = (uint8_t)result;
+                }
 			}
 			break;
 		case COMMAND_BINARY_QUEUE_ADD_BYTES:
@@ -542,6 +558,12 @@ Initializes a ram queue of 32 bytes at address 0x0010 in user memory.
 				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
 				  |0x90 |Queue Address LSB |Queue Address MSB |Count of bytes to add (0-4)| Byte to Add| Byte to Add| Byte to Add| Byte to Add|
+                 
+                 Response:
+
+                 				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+				  |0x90 |Queue Address LSB |Queue Address MSB |Number added| Queue Result Code | Free bytes after add LSB | Free Bytes after add MSB| 0x55|
 
 Examples:
 
@@ -552,13 +574,24 @@ Add bytes 0x31, 0x32, 0x33, and 0x34 to queue located at 0x0010.
 \}
 				 **/
 				uint8_t i;
+                bool success = true;
 				lastQueueIndex = RXBUFFER16(1);
-				for (i = 0; i < Rxbuffer[3]; ++i)
+                uint8_t successCount = 0;
+                SW_QUEUE_RESULT_t result = 0;
+				for (i = 0; i < Rxbuffer[3] && success ; ++i)
 				{
-					QueueAddByte(lastQueueIndex,Rxbuffer[4 + i]);
+					result =QueueAddByte(lastQueueIndex,Rxbuffer[4 + i]);
+                    success = result == QUEUE_RESULT_SUCCESS;
+                    if (success)
+                    {
+                        ++successCount;
+                    }
 				}
-				//TODO handle error return codes
-
+				Txbuffer[3] = successCount;
+                Txbuffer[4] = result;
+                uint16_t freeBytes;
+                QueueGetBytesFreeInQueue(lastQueueIndex, &freeBytes);
+                TXBUFFER16(5,freeBytes);
 			}
 			break;
 		case COMMAND_BINARY_QUEUE_ADD_7BYTES:
@@ -573,6 +606,12 @@ Add bytes 0x31, 0x32, 0x33, and 0x34 to queue located at 0x0010.
 				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
 				  |0x92 |Byte to Add|Byte to Add|Byte to Add|  Byte to Add| Byte to Add| Byte to Add| Byte to Add|
+                 * 
+                 *  Response:
+
+                 				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+				  |0x91 |Queue Address LSB |Queue Address MSB |Number added| Queue Result Code | Free bytes after add LSB | Free Bytes after add MSB| 0x55|
 
 Examples:
 
@@ -583,12 +622,23 @@ Add bytes 0x35, 0x36, 0x37, 0x38, 0x39, 0x3A and 0x3B to queue last added to.
 \}
 				 **/
 				uint8_t i;
-				lastQueueIndex = RXBUFFER16(1);
-				for (i = 0; i < Rxbuffer[3]; ++i)
+                bool success = true;
+                uint8_t successCount = 0;
+                SW_QUEUE_RESULT_t result = 0;
+				for (i = 0; i < 7 && success ; ++i)
 				{
-					QueueAddByte(lastQueueIndex,Rxbuffer[4 + i]);
+					result =QueueAddByte(lastQueueIndex,Rxbuffer[1 + i]);
+                    success = result == QUEUE_RESULT_SUCCESS;
+                    if (success)
+                    {
+                        ++successCount;
+                    }
 				}
-				//TODO handle error return codes
+				Txbuffer[3] = successCount;
+                Txbuffer[4] = result;
+                uint16_t freeBytes;
+                QueueGetBytesFreeInQueue(lastQueueIndex, &freeBytes);
+                TXBUFFER16(5,freeBytes);
 
 			}
 			break;
@@ -606,15 +656,18 @@ Add bytes 0x35, 0x36, 0x37, 0x38, 0x39, 0x3A and 0x3B to queue last added to.
 				  |0x93 |Queue Address LSB|Queue Address MSB|Maximum bytes to read|Unused|Unused|Unused|Unused|
 
 
-Response:
+Response :
 |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
 |0x93 |Number of Bytes read from Queue|Data Byte|Data Byte|Data Byte|Data Byte|Data Byte|Data Byte|
+                 
+                 Note:  If Byte 1 is 5 or less, then byte 7 will contain the last queue result.
 Examples:
+         
 
 `0x93 0x0170 0x04 0x20 0x20 0x20 0x20`
 
-Read up to 4 bytes from queue at address 0x0170
+Read up to 6 bytes from queue at address 0x0170
 
 Sample Response:
 `0x93 0x02 0x34 0x35 0x20 0x20 0x20 0x20` 
@@ -623,14 +676,75 @@ Two bytes were available in the queue.  0x34, and 0x35
 
 \}
 				 **/
-				QUEUE_RESULT_t result = QUEUE_RESULT_SUCCESS;
+				SW_QUEUE_RESULT_t result = QUEUE_RESULT_SUCCESS;
 				uint8_t i;
 				for (i = 0; i < Rxbuffer[3] && result == QUEUE_RESULT_SUCCESS; ++i)
 				{
-					result = (QUEUE_RESULT_t) QueueAddByte(RXBUFFER16(1),Txbuffer[2 + i]); //TODO this is wrong...
+					result = (SW_QUEUE_RESULT_t) QueueReadByte(RXBUFFER16(1),&Txbuffer[2 + i]); 
 				}
 				Txbuffer[1] = i;
-				//TODO handle error return codes
+                if (i <= 5)
+                {
+                    Txbuffer[7] = (uint8_t) result;
+                }
+
+			}
+			break;
+            
+            case COMMAND_BINARY_QUEUE_GET_INFO:
+			{
+				/** \addtogroup ProtocolBinaryCommands
+				  \{
+
+                 Peek the first byte from the queue without removing it.  Get the number of available bytes to read and free space.
+				  ---------------------
+				
+				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+				  |0x94 |Queue Address LSB|Queue Address MSB|Unused|Unused|Unused|Unused|Unused|
+
+
+Response :
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0x94 |Queue Address LSB|Queue Address MSB|Peeked Byte| Bytes Available to Read LSB |Bytes Available to Read MSB |Free Bytes LSB | Free Bytes MSB|
+                 
+               
+                 Note:  Ignore peeked value if Bytes Available == 0.
+       Example:  
+
+`0x94 0x70 0x01 0x55 0x55 0x55 0x55 0x55`
+
+Peek byte from queue at address 0x0170
+
+Sample Response:
+
+         
+`0x94 0x70 0x01 0x37 0x80 0x01 0xF4 0x01` 
+
+        Next byte is 0x37 .  384 bytes available to read, 500 bytes Free
+
+\}
+				 **/
+                 uint16_t bytesFree = 0;
+                    uint16_t bytesAvailable = 0;
+				SW_QUEUE_RESULT_t result = QUEUE_RESULT_SUCCESS;
+								{
+					result = (SW_QUEUE_RESULT_t) QueuePeekByte(RXBUFFER16(1),&Txbuffer[3]); 
+				}
+                
+                if (result == QUEUE_RESULT_SUCCESS)
+                {
+                   
+                    QueueGetBytesFilledInQueue(RXBUFFER16(1), &bytesAvailable);
+                    QueueGetBytesFreeInQueue(RXBUFFER16(1), &bytesFree);                    
+                }
+                else if (result == QUEUE_RESULT_EMPTY)
+                {
+                     QueueGetBytesFreeInQueue(RXBUFFER16(1), &bytesFree);  
+                }
+                TXBUFFER16(4,bytesAvailable);
+                TXBUFFER16(6,bytesFree);
 
 			}
 			break;
