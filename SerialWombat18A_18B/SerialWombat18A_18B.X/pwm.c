@@ -37,13 +37,7 @@ typedef struct pulseTimer_n{
 void updatePWM(void);
 
 
-//TODO: 
-volatile uint32_t debugInterruptTestCounter = 0;
-void debugInterruptTest()
-{
-    PinLow(12);
-    ++debugInterruptTestCounter;
-}
+
 #define pwm  ((pwm_t*) CurrentPinRegister)
 void initPWM (void)
 {

@@ -25,6 +25,9 @@ uint8_t testSequenceNumber = 0;
 bool testSequenceArmed = 0;
 void ProcessSetPin(void);
 
+pinRegister_t PinRegisterCopyBuffer;
+timingResourceManager_t TimingResourceManagerCopyBuffer;
+
 //#define I2C_DEBUG_OUTPUT
 #ifdef I2C_DEBUG_OUTPUT
 #define OUTPUT_I2C_DEBUG(_value) {LATB = (_value <<11);  LATBbits.LATB10= 1;Nop();Nop();Nop();Nop(); LATBbits.LATB10 = 0;}
@@ -673,16 +676,23 @@ Sample Response:
 `0x93 0x02 0x34 0x35 0x20 0x20 0x20 0x20` 
 
 Two bytes were available in the queue.  0x34, and 0x35
+                 
+                 * TODO:  Make rx[1] equal to total bytes avaialble or 255
 
 \}
 				 **/
 				SW_QUEUE_RESULT_t result = QUEUE_RESULT_SUCCESS;
 				uint8_t i;
+                Txbuffer[1] = 0;
 				for (i = 0; i < Rxbuffer[3] && result == QUEUE_RESULT_SUCCESS; ++i)
 				{
 					result = (SW_QUEUE_RESULT_t) QueueReadByte(RXBUFFER16(1),&Txbuffer[2 + i]); 
+                    if (result == QUEUE_RESULT_SUCCESS)
+                    {
+                        ++Txbuffer[1];
+                    }
 				}
-				Txbuffer[1] = i;
+			
                 if (i <= 5)
                 {
                     Txbuffer[7] = (uint8_t) result;
@@ -925,6 +935,52 @@ Write 0x32 the byte at RAM address 0x0247.
 
 			}
 			break;
+             case COMMAND_BINARY_RW_PIN_MEMORY:
+        {
+            switch (Rxbuffer[1])
+            {
+                case 0: // Read 7 bytes of RAM
+                {
+                    // For pin Rxbuffer[2]
+                    // Starting at Rxbuffer[3]
+                    // If Rxbuffer[3] == 0, make a copy to the shadow for coherence
+                    if (Rxbuffer[2] >= NUMBER_OF_TOTAL_PINS)
+                    {
+                        error(SW_ERROR_PIN_NUMBER_TOO_HIGH);
+                        return;
+                    }
+                    if (Rxbuffer[3] == 0)
+                    {
+                        memcpy(&PinRegisterCopyBuffer,&PinUpdateRegisters[Rxbuffer[2]], sizeof(pinRegister_t));
+                    }
+                    
+                    memcpy(&Txbuffer[1], &PinRegisterCopyBuffer.bytes[Rxbuffer[3]],7);
+                }
+                break;
+                
+                case 10:  // Read Timing Resource Resource struct
+                { 
+                    extern timingResourceManager_t timingResources[TIMING_RESOURCE_NUMBER_OF_RESOURCES];
+                    
+                    if (Rxbuffer[3] == 0)
+                    {
+                        memcpy(&TimingResourceManagerCopyBuffer,&timingResources[Rxbuffer[2]], sizeof(timingResourceManager_t));
+                    }
+                    
+                    memcpy(&Txbuffer[1], &((uint8_t*)&TimingResourceManagerCopyBuffer)[Rxbuffer[3]],7);
+                }
+                break;
+                
+                default:
+                {
+                    error(SW_ERROR_CMD_BYTE_1);
+                    return;
+                }
+                break;
+                
+            }
+        }
+        break;
             
         case COMMAND_CALIBRATE_ANALOG:
         {
@@ -1490,6 +1546,13 @@ void ProcessSetPin()
         }
         break;
         
+        case PIN_MODE_SW_UART:
+        {
+            extern void initUARTSw(void);
+            initUARTSw();
+            
+        }
+        break;
         case PIN_MODE_TM1637:
         {
             extern void initTM1637();
@@ -1524,6 +1587,8 @@ void ProcessSetPin()
             initUARTHw();
         }
         break;
+        
+       
         default:
         {
             error(SW_ERROR_UNKNOWN_PIN_MODE);

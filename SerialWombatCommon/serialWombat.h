@@ -213,8 +213,14 @@ typedef enum {
             SW_ERROR_2ND_INF_WRONG_UNLOCK = 25, ///<The unlock value provided to enable the 2nd interface was incorrect.
             SW_ERROR_2ND_INF_UNAVAILABLE = 26, ///<The 2nd interface hardware was not avaialble to claim
             SW_ERROR_UART_NOT_INITIALIZED = 27, ///<A UART operation was requested but the UART was not intialized
- 
-            
+            SW_ERROR_CMD_BYTE_1 = 28, ///< Byte 1 of the command was invalid
+            SW_ERROR_CMD_BYTE_2 = 29, ///< Byte 2 of the command was invalid
+            SW_ERROR_CMD_BYTE_3 = 30, ///< Byte 3 of the command was invalid
+            SW_ERROR_CMD_BYTE_4 = 31, ///< Byte 4 of the command was invalid
+            SW_ERROR_CMD_BYTE_5 = 32, ///< Byte 5 of the command was invalid
+            SW_ERROR_CMD_BYTE_6 = 33, ///< Byte 6 of the command was invalid
+            SW_ERROR_CMD_BYTE_7 = 34, ///< Byte 7 of the command was invalid
+            SW_ERROR_CMD_UNSUPPORTED_BAUD_RATE = 35, ///< invalid baud rate enumeration            
 }SW_ERROR_t;
 
 void error (SW_ERROR_t errorCode);

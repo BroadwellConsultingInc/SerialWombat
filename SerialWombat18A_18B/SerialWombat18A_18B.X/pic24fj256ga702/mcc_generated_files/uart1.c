@@ -96,7 +96,7 @@ typedef struct
 
 } UART_OBJECT ;
 
-static volatile UART_OBJECT uart1_obj ;
+ volatile UART_OBJECT uart1_obj ; 
 
 /** UART Driver Queue Length
 
@@ -133,7 +133,7 @@ void UART1_Initialize(void)
     // ADMADDR 0; ADMMASK 0; 
     U1ADMD = 0x00;
     
-    IEC0bits.U1RXIE = 1;
+  
     
     //Make sure to set LAT bit corresponding to TxPin as high before UART initialization
     
@@ -147,6 +147,7 @@ void UART1_Initialize(void)
     uart1_obj.txStatus.s.empty = true;
     uart1_obj.txStatus.s.full = false;
     uart1_obj.rxStatus.s.full = false;
+    IEC0bits.U1RXIE = 1;
 }
 
 /**
@@ -234,7 +235,7 @@ uint8_t UART1_Read( void)
 {
     uint8_t data = 0;
     
-    if (!IEC0bits.U1RXIE ) return 0;  //Uninitialized
+  //  if (!IEC0bits.U1RXIE ) return 0;  //Uninitialized
 
     data = *uart1_obj.rxHead;
 

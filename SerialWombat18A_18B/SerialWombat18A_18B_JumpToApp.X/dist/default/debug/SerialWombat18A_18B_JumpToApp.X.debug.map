@@ -4,13 +4,13 @@ Tool Name:
   c:\program files\microchip\xc16\v1.70\bin\bin\..\bin/elf-ld.exe
 
 Command:
-  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp0005f418.00 \
-  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp0005f418.01 \
-  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp0005f418.02 \
-  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp0005f418.03 \
-  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp0005f418.04 \
-  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp0005f418.05 \
-  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp0005f418.06 \
+  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00005168.00 \
+  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00005168.01 \
+  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00005168.02 \
+  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00005168.03 \
+  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00005168.04 \
+  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00005168.05 \
+  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00005168.06 \
   -p24FJ256GA702 \
   --mdfp=C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC24F-GA-GB_DFP/1.4.141/xc16 \
   -o \
@@ -96,10 +96,10 @@ Default Scalar Model: Small
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x100               0x10a           0x18f  (399)
-.text                        0x20a                0x18            0x24  (36)
-.dinit                       0x222                 0x8             0xc  (12)
+.text                        0x20a                0x44            0x66  (102)
+.dinit                       0x24e                 0x8             0xc  (12)
 
-                 Total "pgm" memory used (bytes):          0x1bf  (447) 1%
+                 Total "pgm" memory used (bytes):          0x201  (513) 2%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x4000]
@@ -301,22 +301,22 @@ __FDEVOPT1
 .comment
  *(.comment)
 
-.debug_info       0x000000        0x23f
+.debug_info       0x000000        0x243
  *(.debug_info)
- .debug_info      0x000000        0x23f build/default/debug/main_boot.o
+ .debug_info      0x000000        0x243 build/default/debug/main_boot.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000         0xd4
+.debug_abbrev     0x000000         0xc7
  *(.debug_abbrev)
- .debug_abbrev    0x000000         0xd4 build/default/debug/main_boot.o
+ .debug_abbrev    0x000000         0xc7 build/default/debug/main_boot.o
 
-.debug_line       0x000000        0x111
+.debug_line       0x000000        0x117
  *(.debug_line)
- .debug_line      0x000000        0x111 build/default/debug/main_boot.o
+ .debug_line      0x000000        0x117 build/default/debug/main_boot.o
 
-.debug_frame      0x000000         0x34
+.debug_frame      0x000000         0x48
  *(.debug_frame)
- .debug_frame     0x000000         0x34 build/default/debug/main_boot.o
+ .debug_frame     0x000000         0x48 build/default/debug/main_boot.o
 
 .debug_str        0x000000         0x15
  *(.debug_str)
@@ -1726,10 +1726,10 @@ __c30_signature
 .config_BSLIM     0x02af10          0x2
  .config_BSLIM    0x02af10          0x2 build/default/debug/main_boot.o
 
-.text             0x00020a         0x18
- .text            0x00020a         0x18 build/default/debug/main_boot.o
+.text             0x00020a         0x44
+ .text            0x00020a         0x44 build/default/debug/main_boot.o
                   0x00020a                  _reset
                   0x000210                  _main
 
-.dinit            0x000222          0x8
- .dinit           0x000222          0x8 data_init
+.dinit            0x00024e          0x8
+ .dinit           0x00024e          0x8 data_init

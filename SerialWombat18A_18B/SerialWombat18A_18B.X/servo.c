@@ -30,6 +30,7 @@ typedef struct servo_n{
 	uint16_t fixedPeriod; ///< The shortest possible pulse in uS 
 	uint16_t variablePeriod; ///< The difference between the shortest possible pulse and the longest possible pulse in uS
 	uint8_t inactiveCount; ///< How many 1ms Frames have 
+    uint8_t waitingCount; ///< How long have we waited for frame to finish?
 	uint8_t reverse; ///< 0:  Normal  1:  Subtract commanded value from 65535.
     uint8_t state;
 }servoPin_t;
@@ -124,6 +125,7 @@ void initServoHw (void)
             timingResourceRelease(TIMING_RESOURCE_ALL);
             CurrentPinRegister->pulse_output.resource = TIMING_RESOURCE_NONE;
             CurrentPinLow();
+              servo->waitingCount = 0;
 	}
 	break;
 	case CONFIGURE_CHANNEL_MODE_1:
@@ -138,7 +140,6 @@ void initServoHw (void)
 
   }
 }
-
 
 /*!
 \brief Periodic call to service the Servo State Machine for a pin
@@ -162,6 +163,7 @@ pulsetime = fixed time + variableTime * buffer / 65536.
 void updateServoHw()
 {   
 
+  
 	switch (servo->state)
 	{
 		case SERVO_STATE_WAITING:
@@ -193,7 +195,7 @@ void updateServoHw()
                         CurrentPinRegister->pulse_output.resource = resource;
 						timingResourcesHighPulse(CurrentPinRegister->pulse_output.resource, period);
 						servo->state = SERVO_STATE_GENERATING_PULSE;
-						
+                        servo->waitingCount = 0;						
 					}
                     else if (servo->inactiveCount > 22)
                     {
@@ -202,9 +204,9 @@ void updateServoHw()
                         // dma based
                         timingResourceHighPulseClaim(TIMING_RESOURCE_PORT_DMA);
                         CurrentPinRegister->pulse_output.resource =TIMING_RESOURCE_PORT_DMA;
-                        timingResourcesHighPulse(CurrentPinRegister->pulse_output.resource, period);
-                 
+                        timingResourcesHighPulse(CurrentPinRegister->pulse_output.resource, period);                 
 						servo->state = SERVO_STATE_GENERATING_PULSE;
+                        servo->waitingCount = 0;
                     }
 				}
 			}
@@ -213,15 +215,32 @@ void updateServoHw()
 
 		case SERVO_STATE_GENERATING_PULSE:
 			{
+    
                 timingResourceService(CurrentPinRegister->pulse_output.resource);
 				if (!timingResourceHighPulseBusy(CurrentPinRegister->pulse_output.resource))
 				{
                     CurrentPinLow();
 					timingResourceRelease(TIMING_RESOURCE_ALL);
                     CurrentPinRegister->pulse_output.resource = TIMING_RESOURCE_NONE;
-					servo->inactiveCount = 0;
+					servo->waitingCount = 0;
+                    servo->inactiveCount = 0;
 					servo->state = SERVO_STATE_WAITING;
 				}
+
+                else
+                {
+                    ++servo->waitingCount;
+                    if (servo->waitingCount > 5)
+                    {
+                         CurrentPinLow();
+					timingResourceRelease(TIMING_RESOURCE_ALL);
+                    CurrentPinRegister->pulse_output.resource = TIMING_RESOURCE_NONE;
+					servo->waitingCount = 0;
+                    servo->inactiveCount = 0;
+					servo->state = SERVO_STATE_WAITING;
+                    }
+                }
+               
 			}
 			break;
 	}

@@ -133,8 +133,7 @@ void UART2_Initialize(void)
     // ADMADDR 0; ADMMASK 0; 
     U2ADMD = 0x00;
     
-    IEC1bits.U2RXIE = 1;
-    
+
     //Make sure to set LAT bit corresponding to TxPin as high before UART initialization
     
     UART2_Enable();  // enabling UARTEN bit
@@ -147,7 +146,10 @@ void UART2_Initialize(void)
     uart2_obj.txStatus.s.empty = true;
     uart2_obj.txStatus.s.full = false;
     uart2_obj.rxStatus.s.full = false;
-}
+    
+     IEC1bits.U2RXIE = 1;
+}   
+    
 
 /**
     Maintains the driver's transmitter state machine and implements its ISR
@@ -255,7 +257,7 @@ uint8_t UART2_Read( void)
 unsigned int UART2_ReadBuffer( uint8_t *buffer, const unsigned int bufLen)
  {
     if (!IEC1bits.U2RXIE ) return 0;  //Uninitialized
-    IEC0bits.U1RXIE = 0;
+    IEC1bits.U2RXIE = 0;
     unsigned int numBytesRead = 0 ;
     while ( numBytesRead < ( bufLen ))
     {

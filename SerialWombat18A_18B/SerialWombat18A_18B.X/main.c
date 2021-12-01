@@ -115,31 +115,11 @@ void ProcessPins()
 {
 	//IO Processing
 
-	for (CurrentPin = 0; CurrentPin <=  NUMBER_OF_TOTAL_PINS; ++CurrentPin)
+	for (CurrentPin = 0; CurrentPin <  NUMBER_OF_TOTAL_PINS; ++CurrentPin)
 	{
 
 
-		if ((CurrentPin & 0x01) )
-		{
-#ifdef TODO
-        }
-			if(comm_settings.processrxbeforeoddpins)
-			{
-				SET_THROUGHPUT_ANALOG(31);
-				ProcessRx();
-			}
-#endif
-		}
-		else
-		{
-#ifdef TODO
-			if (comm_settings.processrxbeforeevenpins)
-			{
-				SET_THROUGHPUT_ANALOG(31);
-				ProcessRx();
-			}
-#endif
-		}
+
 		CurrentPinRegister = &PinUpdateRegisters[CurrentPin];
 		switch (CurrentPinRegister->generic.mode)
 		{
@@ -166,9 +146,7 @@ void ProcessPins()
 			case PIN_MODE_CONTROLLED:
             case PIN_MODE_FRAME_TIMER:
 				break;
-			case PIN_MODE_DMA_WIGGLE:
-                        //TODO
-				break;
+
 			case PIN_MODE_QUADRATURE_ENC:
             {
                 void updateQuadEnc(void);
@@ -234,16 +212,14 @@ void ProcessPins()
 #endif
 			
 
-			case PIN_MODE_SW_UART_RX:
+			case PIN_MODE_SW_UART:
 				{
-					//update_uart_rx();
+                    extern void updateUARTSw(void);
+					updateUARTSw();
 				}
 				break;
-			case PIN_MODE_SW_UART_TX:
-				{
-					//update_uart_tx();
-				}
-				break;
+		
+                
             case PIN_MODE_TM1637:
             {
                 extern void updateTM1637();

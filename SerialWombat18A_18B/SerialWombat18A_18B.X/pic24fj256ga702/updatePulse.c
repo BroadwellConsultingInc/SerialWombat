@@ -171,7 +171,7 @@ void updatePulseOutput(uint8_t pin)
 	pinPtr->pulse_output.lastDMA = nextLocationToQueue;
 }
 
-uint8_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint8_t count, DMABitStream_t* bitStream )
+uint16_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint16_t count, DMABitStream_t* bitStream )
 {
 	uint16_t bitmap = pinBitmap[pin];
 	uint16_t invbitmap = ~bitmap;
@@ -285,7 +285,7 @@ uint8_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint8_t count, DMABitS
 				}
 
 				*/
-
+                state = 8;
 			}
 			break;
 
@@ -298,7 +298,7 @@ uint8_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint8_t count, DMABitS
 					pinPtr->pulse_output.lowRemaining = pinPtr->pulse_output.lowReload;
 					state = 1;
 				*/
-
+                state = 8;
 			}
 			break;
 
@@ -358,7 +358,7 @@ uint8_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint8_t count, DMABitS
 					state = 6;
 				}
 				*/
-
+                state = 8;
 			}
 			break;
 
@@ -373,9 +373,125 @@ uint8_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint8_t count, DMABitS
 	}
 
 	
-	bitStream->nextLocationToQueue ;
+	bitStream->nextLocationToQueue = nextLocationToQueue ;
 	return (count);
 }
+
+
+uint16_t removeBitStreamOutput(uint8_t pin, uint16_t count, uint16_t margin, DMABitStream_t* bitStream )
+{
+	
+    
+    
+
+	int nextDMAHWTransfer ; // The next DMA location that will be transferred by Hardware.  Don't overwrite this one.  We need to catch up to this.
+
+	if (pinPort[pin] == 0)
+	{
+		nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMACNT0 ; 
+	}
+	else
+	{
+		nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMACNT1 ;
+	}
+    
+    int16_t available;
+    if (nextDMAHWTransfer >  bitStream->nextLocationToQueue)
+    {
+        available = SIZE_OF_DMA_ARRAY - nextDMAHWTransfer + bitStream->nextLocationToQueue;
+    }
+    else if (nextDMAHWTransfer <  bitStream->nextLocationToQueue )
+    {
+        available = bitStream->nextLocationToQueue - nextDMAHWTransfer;
+    }
+    else
+    {
+        return 0;
+    }
+    
+    available -= margin; // Leave these;
+    if (available <= 0)
+    {
+        return 0;
+    }
+    
+    int16_t removed = 0;
+    if (available >= count)
+    {
+        removed = count;
+    }
+    else
+    {
+        removed = available;
+    }
+    
+    if (nextDMAHWTransfer >  bitStream->nextLocationToQueue)
+    {
+        if (bitStream->nextLocationToQueue >= removed)
+        {
+           bitStream->nextLocationToQueue -= removed;
+           return (removed);
+        }
+        else
+        {
+            uint16_t returnval = removed;
+            removed -= bitStream->nextLocationToQueue;
+            bitStream->nextLocationToQueue = SIZE_OF_DMA_ARRAY - removed;
+            return (returnval);
+        }
+       
+    }
+    else if (nextDMAHWTransfer <  bitStream->nextLocationToQueue )
+    {
+        bitStream->nextLocationToQueue -= removed;
+        return (removed);
+    }
+    
+/*
+	if (bitStream->nextLocationToQueue > nextDMAHWTransfer)
+	{
+		uint16_t available = bitStream->nextLocationToQueue - nextDMAHWTransfer;
+		if (available > margin)
+		{
+			removed = available - margin;
+			if (removed > count)
+			{
+				removed = count;
+			}
+			if (bitStream->nextLocationToQueue > removed)
+            {
+                bitStream->nextLocationToQueue -= removed;
+            }
+            PinHigh(12);
+            PinLow(12);
+            return (removed);
+
+		}
+		else
+		{
+			return 0 ;
+		}
+	}
+ */
+    /*
+        if (bitStream->nextLocationToQueue < nextDMAHWTransfer)
+	{
+		uint16_t available = bitStream->nextLocationToQueue;
+        
+        if (count > bitStream->nextLocationToQueue)
+        {
+            bitStream->nextLocationToQueue = 0;
+        }
+        else if (((int)(bitStream->nextLocationToQueue)) - count > margin)
+        {
+            bitStream->nextLocationToQueue -= count;
+        }
+    
+    }
+     */
+
+}
+
 
 uint8_t  PulseInGetOldestDMABit(uint8_t pin)
 {

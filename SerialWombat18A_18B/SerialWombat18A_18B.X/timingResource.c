@@ -25,15 +25,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 
 #include "serialWombat.h"
 
-typedef struct
-{
-    timingResourceCallback_t callBack;
-    uint8_t resourceHolder;    
-    uint32_t period_uS;
-    uint16_t highTime_uS;
-    uint16_t lowTime_uS;
-    uint16_t pwmDutyCycle;
-}timingResourceManager_t;
+
 
 timingResourceManager_t timingResources[TIMING_RESOURCE_NUMBER_OF_RESOURCES];
 
@@ -378,7 +370,7 @@ void timingResourcesHighPulse(TIMING_RESOURCE_t resource, uint16_t pulseTime_uS)
 				CCP4CON1L = 0x0000;
 				CCP4TMRL = 0;
 				CCP4RAL = pulseTime_uS * 16;               
-				SetPPSOutput(CurrentPin,20); //CCP2A Output
+				SetPPSOutput(CurrentPin,20); //CCP4A Output
 				CCP4STATL = 0; // Clear SCEVT
 				CCP4CON1L = 0x8002;
 			}
@@ -914,11 +906,15 @@ bool timingResourceHighPulseBusy(TIMING_RESOURCE_t resource)
                         }
                         return (true);
         }
+        break;
+        default:
+            return (false);
+        break;
     }
     return(false);
 }
 
-bool timingResourceService(TIMING_RESOURCE_t resource)
+void timingResourceService(TIMING_RESOURCE_t resource)
 {
    
 
@@ -928,8 +924,13 @@ bool timingResourceService(TIMING_RESOURCE_t resource)
         {
             updatePulseOutput(CurrentPin);
         }
+        break;
+        default:
+        {
+            //DO nothing
+        }
     }
-    return true;
+ 
 }
 
 TIMING_RESOURCE_t timingResourceInterruptClaim(TIMING_RESOURCE_t resource, uint16_t counts, uint16_t uS, timingResourceCallback_t callback)
@@ -1081,6 +1082,12 @@ void timingResourceInterruptActivate(TIMING_RESOURCE_t resource)
 				IEC1bits.OC3IE = 1;
 				OC3CON1 = 0x1C02;
 				
+        }
+        break;
+        
+        default:
+        {
+            // Do nothing.
         }
         break;
 

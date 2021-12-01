@@ -66,8 +66,18 @@ typedef enum
 	TIMING_RESOURCE_NONE = 0xFF,
 } TIMING_RESOURCE_t;
 
-
 typedef void (*timingResourceCallback_t) (void);
+typedef struct
+{
+    timingResourceCallback_t callBack;
+    uint32_t period_uS;
+    uint16_t highTime_uS;
+    uint16_t lowTime_uS;
+    uint16_t pwmDutyCycle;
+    uint8_t resourceHolder;    
+}timingResourceManager_t;
+
+
 TIMING_RESOURCE_t timingResourceHighPulseClaim(TIMING_RESOURCE_t resource);
 TIMING_RESOURCE_t timingResourcePWMClaim(TIMING_RESOURCE_t resource, uint32_t period_uS);
 void timingResourceSetInterrupt(TIMING_RESOURCE_t resource, uint16_t timeout_uS, timingResourceCallback_t callBack);
@@ -75,7 +85,7 @@ void timingResourcesHighPulse(TIMING_RESOURCE_t resource, uint16_t pulseTime_uS)
 void timingResourcesLowPulse(TIMING_RESOURCE_t resource, uint16_t pulseTime_uS);
 void timingResourcePWM(TIMING_RESOURCE_t resource, uint32_t period_uS, uint16_t dutyCycle);
 bool timingResourceHighPulseBusy(TIMING_RESOURCE_t resource );
-bool timingResourceService(TIMING_RESOURCE_t resource);
+void timingResourceService(TIMING_RESOURCE_t resource);
 void timingResourceRelease(TIMING_RESOURCE_t resource);
 void timingResourceManagerInit();
 
@@ -87,6 +97,7 @@ typedef struct DMABitStream_n{
 uint8_t nextLocationToQueue;
 uint8_t lastDMA;
 }DMABitStream_t;
-uint8_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint8_t count, DMABitStream_t* bitStream );
+uint16_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint16_t count, DMABitStream_t* bitStream );
+uint16_t removeBitStreamOutput(uint8_t pin, uint16_t count, uint16_t margin, DMABitStream_t* bitStream );
 
 #endif
