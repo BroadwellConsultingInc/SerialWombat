@@ -40,7 +40,7 @@ What Serial Wombats are Available?
 ---------------------------------
 
 | Model                        | SW4A                                                                            | SW4B                                                                            | SW18AB                   |
-|------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------|---------------------------------------------------------|
+|------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------|
 | Availability                 | Q3 2022                                                                         | Now                                                                             | Q1 2022                                            |
 | Interface                    | UART                                                                            | I2C                                                                             | UART  or I2C                                                    |
 | Package                      | DIP 8                                                                           | DIP 8                                                                           | DIP 28 (300 mil)                                             |
@@ -53,7 +53,7 @@ What Serial Wombats are Available?
 | Operating Current            | < 4mA                                                                           | < 4mA                                                                           | TBD                                                     | TBD                                                     |
 | Sleep Current                | < 750 uA                                                                        | < 750 uA                                                                        | TBD                                                     | TBD                                                     |
 | Internal Temperature Sensor  | No                                                                              | No                                                                              | Yes, Low Accuracy    |
-| Pin Modes                    | Digital I/O<BR> ADC<BR> Debounce<BR> Protected Output<BR> Pulse Timer<BR> PWM<BR> Servo<BR> Watchdog | Digital I/O<BR> ADC<BR> Debounce<BR> Protected Output<BR> Pulse Timer<BR> PWM<BR> Servo<BR> Watchdog <BR>I2C to UART | All Classes listed<BR> in Arduino class list                            |                                                     |
+| Pin Modes                    | Digital I/O<BR> ADC<BR> Debounce<BR> Protected Output<BR> Pulse Timer<BR> PWM<BR> Servo<BR> Watchdog | Digital I/O<BR> ADC<BR> Debounce<BR> Protected Output<BR> Pulse Timer<BR> PWM<BR> Servo<BR> Watchdog <BR>I2C to UART | All Classes listed<BR> in Arduino class list                            |                       
   
 Resources
 ---------
