@@ -1,17 +1,19 @@
 # Serial Wombat
 
-What is a Serial Wombat?
+What is a Serial Wombat Chip?
 ------------------------
 
 The Serial Wombat project is a line of microcontroller firmwares designed to extend the capabilities of single board computers such as Arduino boards and the Raspberry Pi or a PC or other smart device.
 
-The Serial Wombat is an open-source, MIT Licensed project developed by Broadwell Consulting Inc. to showcase and promote the embedded systems capabilities of the company.  
+The Serial Wombat firmware is an open-source, MIT Licensed project developed by Broadwell Consulting Inc. to showcase and promote the embedded systems capabilities of the company.  
+
+*Serial Wombat* is a registered trademark of Broadwell Consulting Inc. in the United States.  See SerialWombat.com for usage guidelines.
 
 This page explains the inner workings of the Serial Wombat firmware.  If you just want to access it with the Arduino Library or Raspberry Pi Python Package (available soon) read the next few paragraphs then go to that area and read about the API.
 
 A Serial Wombat is not programmed for a given application by the end user.  It is pre-programmed with general-purpose firmware, and configured at run time to make the hardware resources of the microcontroller available for command by the host in ways that solve common embedded systems problems.
 
-Why would I use a Serial Wombat?
+Why would I use a Serial Wombat Chip?
 --------------------------------
 
 * Because you need more I/O
@@ -25,33 +27,33 @@ Why would I use a Serial Wombat?
 **The Serial Wombat does what other expansion chips do, but smarter**
 
 
-A Serial Wombat could be used for many of the same tasks as an MCP3008 ADC converter, such as adding Analog to Digital Conversion to a Raspberry Pi.  Both have 10-Bit ADC capability.  However, only the Serial Wombat is capable of taking many sequential measurements and averaging or performing first-order filtering without additional effort by the host.
+A Serial Wombat chip could be used for many of the same tasks as an MCP3008 ADC converter, such as adding Analog to Digital Conversion to a Raspberry Pi.  Both have 10-Bit ADC capability.  However, only the Serial Wombat chip and firmware is capable of taking many sequential measurements and averaging or performing first-order filtering without additional effort by the host.
 
-The Serial Wombat is also a potential replacement for the MCP23017.  Like the MCP23017, the Serial Wombat 4A and 4B (SW4A and SW4B) provide operation up to 5.5V with the ability to talk to a 3.0 or 3.3V host over I2C.  Both provide 25mA of sink and source current per pin, with open drain and weak pull up options available.  However, the Serial Wombat uses onboard firmware to allow functions like Quadrature Encoder reading, Servo driving, PWM output, and pulse width / duty cycle measurement without additional help from the host.  Serial Wombat 4A and 4B allow 4 pins to be added with each chip, with multiple chips possible on the same bus in the case of the I2C based SW4B.  The forthcoming Serial Wombat 19 (SW19) series will provide 19 pins, 10 of which will be A/D capable.
+The Serial Wombat chip is also a potential replacement for the MCP23017.  Like the MCP23017, the Serial Wombat 4A and 4B (SW4A and SW4B) chips provide operation up to 5.5V with the ability to talk to a 3.0 or 3.3V host over I2C.  Both provide 25mA of sink and source current per pin, with open drain and weak pull up options available.  However, the Serial Wombat chip uses onboard firmware to allow functions like Quadrature Encoder reading, Servo driving, PWM output, and pulse width / duty cycle measurement without additional help from the host.  Serial Wombat 4A and 4B chips allow 4 pins to be added with each chip, with multiple chips possible on the same bus in the case of the I2C based SW4B.  The forthcoming Serial Wombat 18AB chip will provide 18 pins, 10 of which will be A/D capable.
 
-**The Serial Wombat offloads tasks your single-board computer could do itself so they're faster, smoother, or easier**
+**Serial Wombat Chips offload tasks your single-board computer could do itself so they're faster, smoother, or easier**
 
-Pins on the Serial Wombat can be assigned tasks fairly independently.  A single Serial Wombat 4A could have 4 A/D pins, or 2 A/D pins and a quadrature encoder, or an A/D, a button, and two servo drivers or any other combination.  All your program has to do is configure the pins at startup, then only check in with the Serial Wombat when you want a status update on an input or need to change an output.  All the while, the Serial Wombat is doing what it takes to drive the output or process the input.  
+Pins on the Serial Wombat chip can be assigned tasks fairly independently.  A single Serial Wombat 4A chip could have 4 A/D pins, or 2 A/D pins and a quadrature encoder, or an A/D, a button, and two servo drivers or any other combination.  All your program has to do is configure the pins at startup, then only check in with the Serial Wombat chip when you want a status update on an input or need to change an output.  All the while, the Serial Wombat chip is doing what it takes to drive the output or process the input.  
 
 
 What Serial Wombats are Available?
 ---------------------------------
 
-| Model                        | SW4A                                                                            | SW4B                                                                            | SW19A                                                   | SW19B                                                   |
+| Model                        | SW4A                                                                            | SW4B                                                                            | SW18AB                   |
 |------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------|---------------------------------------------------------|
-| Availability                 | Q1 2021                                                                         | Now                                                                             | Q4 2021                                                 | Q3 2021                                                 |
-| Interface                    | UART                                                                            | I2C                                                                             | UART                                                    | I2C                                                     |
-| Package                      | DIP 8                                                                           | DIP 8                                                                           | DIP 28 (300 mil)                                        | DIP 28 (300 mil)                                        |
-| I/O Pins                     | 4 I/O                                                                           | 3 I/O, 1 input                                                                  | 19 I/0                                                  | 19 I/0                                                  |
-| A/D Pins                     | 4  (10-bit)                                                                     | 3 (10-bit)                                                                      | 10  (12-bit)                                            | 10 (12-bit)                                             |
-| D/A Pins                     | 0                                                                               | 0                                                                               | 1 (5-bit)                                               | 1 (5-bit)                                               |
-| Operating Voltage            | 2.5-5.5V                                                                        | 2.5-5.5V                                                                        | 2.5-3.6                                                 | 2.5-3.6V                                                |
-| Current Per pin              | 25mA                                                                            | 25mA                                                                            | 25mA <BR> (200 mA max per chip)                             | 25 mA<BR> (200 mA max per chip)                             |
-| Required External Components | 1x 100nF Capacitor                                                              | 1x 100nF Capacitor                                                              | 2x 100nF Capacitor<BR> 1x 10uF Capacitor<BR> 1x 10k Resistor<BR> | 2x 100nF Capacitor<BR> 1x 10uF Capacitor<BR> 1x 10k Resistor<BR> |
+| Availability                 | Q3 2022                                                                         | Now                                                                             | Q1 2022                                            |
+| Interface                    | UART                                                                            | I2C                                                                             | UART  or I2C                                                    |
+| Package                      | DIP 8                                                                           | DIP 8                                                                           | DIP 28 (300 mil)                                             |
+| I/O Pins                     | 4 I/O                                                                           | 3 I/O, 1 input                                                                  | 18 I/0                                                            |
+| A/D Pins                     | 4  (10-bit)                                                                     | 3 (10-bit)                                                                      | 7 in I2C mode,<BR> 9 in UART Mode                                         |
+| D/A Pins                     | 0                                                                               | 0                                                                               | 1 (5-bit)                                                                                  |
+| Operating Voltage            | 2.5-5.5V                                                                        | 2.5-5.5V                                                                        | 2.5-3.6                                                                                     |
+| Current Per pin              | 25mA                                                                            | 25mA                                                                            | 25mA <BR> (200 mA max per chip)                                                   |
+| Required External Components | 1x 100nF Capacitor                                                              | 1x 100nF Capacitor                                                              | 2x 100nF Capacitor<BR> 1x 10uF Capacitor<BR> 1x 10k Resistor<BR> | 
 | Operating Current            | < 4mA                                                                           | < 4mA                                                                           | TBD                                                     | TBD                                                     |
 | Sleep Current                | < 750 uA                                                                        | < 750 uA                                                                        | TBD                                                     | TBD                                                     |
-| Internal Temperature Sensor  | No                                                                              | No                                                                              | Yes                                                     | Yes                                                     |
-| Pin Modes                    | Digital I/O<BR> ADC<BR> Debounce<BR> Protected Output<BR> Pulse Timer<BR> PWM<BR> Servo<BR> Watchdog | Digital I/O<BR> ADC<BR> Debounce<BR> Protected Output<BR> Pulse Timer<BR> PWM<BR> Servo<BR> Watchdog <BR>I2C to UART | TBD                                                     | TBD                                                     |
+| Internal Temperature Sensor  | No                                                                              | No                                                                              | Yes, Low Accuracy    |
+| Pin Modes                    | Digital I/O<BR> ADC<BR> Debounce<BR> Protected Output<BR> Pulse Timer<BR> PWM<BR> Servo<BR> Watchdog | Digital I/O<BR> ADC<BR> Debounce<BR> Protected Output<BR> Pulse Timer<BR> PWM<BR> Servo<BR> Watchdog <BR>I2C to UART | All Classes listed<BR> in Arduino class list                            |                                                     |
   
 Resources
 ---------
@@ -71,7 +73,7 @@ A Raspberry Pi Python package is in development.
 A C# library is also nearly finished and will be released soon.
 
 
-FIRMWARE ARCHITECTURE
+SW4A / SW4B FIRMWARE ARCHITECTURE
 =====================
 The Serial Wombat 4A and 4B firmware runs on the PIC16F15214 microcontroller.  It is designed for the PRO version of the XC8 compiler, and the MPLAB X development environment.
 
