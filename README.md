@@ -1,6 +1,6 @@
 # Serial Wombat
 
-What is a Serial Wombat Chip?
+What is a Serial Wombat chip?  What is the Serial Wombat firmware?
 ------------------------
 
 The Serial Wombat project is a line of microcontroller firmwares designed to extend the capabilities of single board computers such as Arduino boards and the Raspberry Pi or a PC or other smart device.
