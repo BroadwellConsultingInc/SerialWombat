@@ -36,7 +36,7 @@ The Serial Wombat chip is also a potential replacement for the MCP23017.  Like t
 Pins on the Serial Wombat chip can be assigned tasks fairly independently.  A single Serial Wombat 4A chip could have 4 A/D pins, or 2 A/D pins and a quadrature encoder, or an A/D, a button, and two servo drivers or any other combination.  All your program has to do is configure the pins at startup, then only check in with the Serial Wombat chip when you want a status update on an input or need to change an output.  All the while, the Serial Wombat chip is doing what it takes to drive the output or process the input.  
 
 
-What Serial Wombats are Available?
+What Serial Wombat Chips are Available?
 ---------------------------------
 
 | Model                        | SW4A                                                                            | SW4B                                                                            | SW18AB                   |
