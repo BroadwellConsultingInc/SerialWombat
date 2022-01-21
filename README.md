@@ -11,7 +11,7 @@ The Serial Wombat firmware is an open-source, MIT Licensed project developed by 
 
 This page explains the inner workings of the Serial Wombat firmware.  If you just want to access it with the Arduino Library or Raspberry Pi Python Package (available soon) read the next few paragraphs then go to that area and read about the API.
 
-A Serial Wombat is not programmed for a given application by the end user.  It is pre-programmed with general-purpose firmware, and configured at run time to make the hardware resources of the microcontroller available for command by the host in ways that solve common embedded systems problems.
+A Serial Wombat chip is not programmed for a given application by the end user.  It is pre-programmed with general-purpose firmware, and configured at run time to make the hardware resources of the microcontroller available for command by the host in ways that solve common embedded systems problems.
 
 Why would I use a Serial Wombat Chip?
 --------------------------------
