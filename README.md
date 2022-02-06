@@ -1,17 +1,19 @@
 # Serial Wombat
 
-What is a Serial Wombat?
+What is a Serial Wombat chip?  What is the Serial Wombat firmware?
 ------------------------
 
 The Serial Wombat project is a line of microcontroller firmwares designed to extend the capabilities of single board computers such as Arduino boards and the Raspberry Pi or a PC or other smart device.
 
-The Serial Wombat is an open-source, MIT Licensed project developed by Broadwell Consulting Inc. to showcase and promote the embedded systems capabilities of the company.  
+The Serial Wombat firmware is an open-source, MIT Licensed project developed by Broadwell Consulting Inc. to showcase and promote the embedded systems capabilities of the company.  
+
+*Serial Wombat* is a registered trademark of Broadwell Consulting Inc. in the United States.  See SerialWombat.com for usage guidelines.
 
 This page explains the inner workings of the Serial Wombat firmware.  If you just want to access it with the Arduino Library or Raspberry Pi Python Package (available soon) read the next few paragraphs then go to that area and read about the API.
 
-A Serial Wombat is not programmed for a given application by the end user.  It is pre-programmed with general-purpose firmware, and configured at run time to make the hardware resources of the microcontroller available for command by the host in ways that solve common embedded systems problems.
+A Serial Wombat chip is not programmed for a given application by the end user.  It is pre-programmed with general-purpose firmware, and configured at run time to make the hardware resources of the microcontroller available for command by the host in ways that solve common embedded systems problems.
 
-Why would I use a Serial Wombat?
+Why would I use a Serial Wombat Chip?
 --------------------------------
 
 * Because you need more I/O
@@ -25,33 +27,33 @@ Why would I use a Serial Wombat?
 **The Serial Wombat does what other expansion chips do, but smarter**
 
 
-A Serial Wombat could be used for many of the same tasks as an MCP3008 ADC converter, such as adding Analog to Digital Conversion to a Raspberry Pi.  Both have 10-Bit ADC capability.  However, only the Serial Wombat is capable of taking many sequential measurements and averaging or performing first-order filtering without additional effort by the host.
+A Serial Wombat chip could be used for many of the same tasks as an MCP3008 ADC converter, such as adding Analog to Digital Conversion to a Raspberry Pi.  Both have 10-Bit ADC capability.  However, only the Serial Wombat chip and firmware is capable of taking many sequential measurements and averaging or performing first-order filtering without additional effort by the host.
 
-The Serial Wombat is also a potential replacement for the MCP23017.  Like the MCP23017, the Serial Wombat 4A and 4B (SW4A and SW4B) provide operation up to 5.5V with the ability to talk to a 3.0 or 3.3V host over I2C.  Both provide 25mA of sink and source current per pin, with open drain and weak pull up options available.  However, the Serial Wombat uses onboard firmware to allow functions like Quadrature Encoder reading, Servo driving, PWM output, and pulse width / duty cycle measurement without additional help from the host.  Serial Wombat 4A and 4B allow 4 pins to be added with each chip, with multiple chips possible on the same bus in the case of the I2C based SW4B.  The forthcoming Serial Wombat 19 (SW19) series will provide 19 pins, 10 of which will be A/D capable.
+The Serial Wombat chip is also a potential replacement for the MCP23017.  Like the MCP23017, the Serial Wombat 4A and 4B (SW4A and SW4B) chips provide operation up to 5.5V with the ability to talk to a 3.0 or 3.3V host over I2C.  Both provide 25mA of sink and source current per pin, with open drain and weak pull up options available.  However, the Serial Wombat chip uses onboard firmware to allow functions like Quadrature Encoder reading, Servo driving, PWM output, and pulse width / duty cycle measurement without additional help from the host.  Serial Wombat 4A and 4B chips allow 4 pins to be added with each chip, with multiple chips possible on the same bus in the case of the I2C based SW4B.  The forthcoming Serial Wombat 18AB chip will provide 18 pins, 10 of which will be A/D capable.
 
-**The Serial Wombat offloads tasks your single-board computer could do itself so they're faster, smoother, or easier**
+**Serial Wombat Chips offload tasks your single-board computer could do itself so they're faster, smoother, or easier**
 
-Pins on the Serial Wombat can be assigned tasks fairly independently.  A single Serial Wombat 4A could have 4 A/D pins, or 2 A/D pins and a quadrature encoder, or an A/D, a button, and two servo drivers or any other combination.  All your program has to do is configure the pins at startup, then only check in with the Serial Wombat when you want a status update on an input or need to change an output.  All the while, the Serial Wombat is doing what it takes to drive the output or process the input.  
+Pins on the Serial Wombat chip can be assigned tasks fairly independently.  A single Serial Wombat 4A chip could have 4 A/D pins, or 2 A/D pins and a quadrature encoder, or an A/D, a button, and two servo drivers or any other combination.  All your program has to do is configure the pins at startup, then only check in with the Serial Wombat chip when you want a status update on an input or need to change an output.  All the while, the Serial Wombat chip is doing what it takes to drive the output or process the input.  
 
 
-What Serial Wombats are Available?
+What Serial Wombat Chips are Available?
 ---------------------------------
 
-| Model                        | SW4A                                                                            | SW4B                                                                            | SW19A                                                   | SW19B                                                   |
-|------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------|---------------------------------------------------------|
-| Availability                 | Q1 2021                                                                         | Now                                                                             | Q4 2021                                                 | Q3 2021                                                 |
-| Interface                    | UART                                                                            | I2C                                                                             | UART                                                    | I2C                                                     |
-| Package                      | DIP 8                                                                           | DIP 8                                                                           | DIP 28 (300 mil)                                        | DIP 28 (300 mil)                                        |
-| I/O Pins                     | 4 I/O                                                                           | 3 I/O, 1 input                                                                  | 19 I/0                                                  | 19 I/0                                                  |
-| A/D Pins                     | 4  (10-bit)                                                                     | 3 (10-bit)                                                                      | 10  (12-bit)                                            | 10 (12-bit)                                             |
-| D/A Pins                     | 0                                                                               | 0                                                                               | 1 (5-bit)                                               | 1 (5-bit)                                               |
-| Operating Voltage            | 2.5-5.5V                                                                        | 2.5-5.5V                                                                        | 2.5-3.6                                                 | 2.5-3.6V                                                |
-| Current Per pin              | 25mA                                                                            | 25mA                                                                            | 25mA <BR> (200 mA max per chip)                             | 25 mA<BR> (200 mA max per chip)                             |
-| Required External Components | 1x 100nF Capacitor                                                              | 1x 100nF Capacitor                                                              | 2x 100nF Capacitor<BR> 1x 10uF Capacitor<BR> 1x 10k Resistor<BR> | 2x 100nF Capacitor<BR> 1x 10uF Capacitor<BR> 1x 10k Resistor<BR> |
+| Model                        | SW4A                                                                            | SW4B                                                                            | SW18AB                   |
+|------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------|
+| Availability                 | Q3 2022                                                                         | Now                                                                             | Q1 2022                                            |
+| Interface                    | UART                                                                            | I2C                                                                             | UART  or I2C                                                    |
+| Package                      | DIP 8                                                                           | DIP 8                                                                           | DIP 28 (300 mil)                                             |
+| I/O Pins                     | 4 I/O                                                                           | 3 I/O, 1 input                                                                  | 18 I/0                                                            |
+| A/D Pins                     | 4  (10-bit)                                                                     | 3 (10-bit)                                                                      | 7 in I2C mode,<BR> 9 in UART Mode                                         |
+| D/A Pins                     | 0                                                                               | 0                                                                               | 1 (5-bit)                                                                                  |
+| Operating Voltage            | 2.5-5.5V                                                                        | 2.7-3.3V                                                                        | 2.5-3.6                                                                                     |
+| Current Per pin              | 25mA                                                                            | 25mA                                                                            | 25mA <BR> (200 mA max per chip)                                                   |
+| Required External Components | 1x 100nF Capacitor                                                              | 1x 100nF Capacitor                                                              | 2x 100nF Capacitor<BR> 1x 10uF Capacitor<BR> 1x 10k Resistor<BR> | 
 | Operating Current            | < 4mA                                                                           | < 4mA                                                                           | TBD                                                     | TBD                                                     |
 | Sleep Current                | < 750 uA                                                                        | < 750 uA                                                                        | TBD                                                     | TBD                                                     |
-| Internal Temperature Sensor  | No                                                                              | No                                                                              | Yes                                                     | Yes                                                     |
-| Pin Modes                    | Digital I/O<BR> ADC<BR> Debounce<BR> Protected Output<BR> Pulse Timer<BR> PWM<BR> Servo<BR> Watchdog | Digital I/O<BR> ADC<BR> Debounce<BR> Protected Output<BR> Pulse Timer<BR> PWM<BR> Servo<BR> Watchdog <BR>I2C to UART | TBD                                                     | TBD                                                     |
+| Internal Temperature Sensor  | No                                                                              | No                                                                              | Yes, Low Accuracy    |
+| Pin Modes                    | Digital I/O<BR> ADC<BR> Debounce<BR> Protected Output<BR> Pulse Timer<BR> PWM<BR> Servo<BR> Watchdog | Digital I/O<BR> ADC<BR> Debounce<BR> Protected Output<BR> Pulse Timer<BR> PWM<BR> Servo<BR> Watchdog <BR>I2C to UART | All Classes listed<BR> in Arduino class list                            |                       
   
 Resources
 ---------
@@ -71,7 +73,7 @@ A Raspberry Pi Python package is in development.
 A C# library is also nearly finished and will be released soon.
 
 
-FIRMWARE ARCHITECTURE
+SW4A / SW4B FIRMWARE ARCHITECTURE
 =====================
 The Serial Wombat 4A and 4B firmware runs on the PIC16F15214 microcontroller.  It is designed for the PRO version of the XC8 compiler, and the MPLAB X development environment.
 
@@ -103,11 +105,11 @@ Each Pin State machine has an init function, a process function, and a structure
 
 Once a pin has been set to a mode, the process function is called every 1mS by the executive.  This is where real-time processing of the pin's state machine happens.
 
-Each pin has a fixed amount of memory allocated to it.  There is an array of pin_register_t unions declared with at least as many elements as there are avaialble state machine pins on the Serial Wombat.
+Each pin has a fixed amount of memory allocated to it.  There is an array of pin_register_t unions declared with at least as many elements as there are avaialble state machine pins on the Serial Wombat chip.
 
 The size of pin_register_t varies by model to allow more powerful chips to allocate more ram to each state machine.  The pin_register_t.generic member is a structure that contains some number of general-purpose bytes that is consistent for all pin modes on that family of models, followed by the 16-bit public data for that statemachine, followed by an 8-bit mode byte.
 
-On models with strong indexed addressing capability such as the PIC24FJ256GA702 based Serial Wombat 19 series, iteration through the pins is achieved by a single pointer, CurrentPinRegister, which is incremented prior to each process call to point to the pin currently being serviced.  The variable CurrentPin is updated to be the pin number currently being serviced.  Similarly, the pointer and index are updated prior to init calls.
+On models with strong indexed addressing capability such as the PIC24FJ256GA702 based Serial Wombat 18AB chip, iteration through the pins is achieved by a single pointer, CurrentPinRegister, which is incremented prior to each process call to point to the pin currently being serviced.  The variable CurrentPin is updated to be the pin number currently being serviced.  Similarly, the pointer and index are updated prior to init calls.
 
 On models with weak indexed addressing capability such as the PIC16F15214 based Serial Wombat 4 series, the array element is copied to a buffer of type pin_register_t prior to pin process execution.  The pin mode then executes against the fixed addresses of the buffered values.  After processing is complete, the buffer is copied back to the array.  This has processing time cost to do the copies, but greatly reduces the code space required for each pin mode, allowing much more functionality within the limited flash space of the chip.  For these chips, CurrentPinRegister becomes a #define  which defines CurrentPinRegister as the address of the buffer.
 
@@ -130,22 +132,22 @@ Proportial public data is always scaled to be a 16-bit value.  0 is the lowest p
 
 Special Public Data Values
 --------------------------
-Public data is requested or written by pins or Serial Wombat Communication Protocol commands, and is indexed by the pin whose data it is.  Up to 64 pins are allowed per Serial Wombat with this architecture, correpsonding to indexes 0-63.  
+Public data is requested or written by pins or Serial Wombat Communication Protocol commands, and is indexed by the pin whose data it is.  Up to 64 pins are allowed per Serial Wombat chip with this architecture, correpsonding to indexes 0-63.  
 
 Values of 64 or higher correspond to special values.  
 
-For instance, public data 64 is the number of frames that have been run.  This increments every mS when the Serial Wombat is running correctly.
+For instance, public data 64 is the number of frames that have been run.  This increments every mS when the Serial Wombat firmware is running correctly.
   
 Public data 65 is the frame overflow count.  A frame overflow occurs if the prior forground subroutine call is still executing when it's time to start the next one.  This can occur if the CPU processing requirements of the selected pin modes exceed the CPU processing capacity of the microcontroller, or if too many interrupts are being generated to allow sufficient processing time for state machines and communications.
 
-Public data 66 is the measured value of an internal 1.024v reference voltage, scaled to counts from 0 to 65535.  By examining this value it is possible to determine the Serial Wombat's source voltage.
+Public data 66 is the measured value of an internal 1.024v reference voltage, scaled to counts from 0 to 65535.  By examining this value it is possible to determine the Serial Wombat chip's source voltage.
 
 
 
 Communication Protocol
 ======================
 
-The Serial Wombat Communication Protocol (SWCP) is based on 8-byte packets of data regardless of the data bus being used.  The Serial Wombat expects an 8 byte command from the Host, and will respond with an 8 byte response.  The Serial Wombat will never send unsolicited data to the host.
+The Serial Wombat Communication Protocol (SWCP) is based on 8-byte packets of data regardless of the data bus being used.  The Serial Wombat expects an 8 byte command from the Host, and will respond with an 8 byte response.  The Serial Wombat chip will never send unsolicited data to the host.
 
 See the protocol.c file documentation for each Serial Wombat firmware build for a list of supported commands by that Serial Wombat build.
 
@@ -153,23 +155,23 @@ I2C
 ---
 
 Packet framing on I2C relies on the Start and Stop of the I2C packet.  Packets sent with less than 8 bytes will be ignored.  Any byte beyond 8 in a packet will be discarded.  
-An I2C packet of 8 bytes is sent to the Serial Wombat.   The host may then optionally read an 8 byte response from the Serial Wombat in a second read packet.  The Serial Wombat's device address is used, but there is no concept of a register address.  Sending a register address before a read will clear the prior packet response due to the address being seen as a 1-byte, incomplete packet.  See the Arduino Library or Raspberry Pi package send or send/receive methods for examples.
+An I2C packet of 8 bytes is sent to the Serial Wombat chip.   The host may then optionally read an 8 byte response from the Serial Wombat chip in a second read packet.  The Serial Wombat chip's device address is used, but there is no concept of a register address.  Sending a register address before a read will clear the prior packet response due to the address being seen as a 1-byte, incomplete packet.  See the Arduino Library or Raspberry Pi package send or send/receive methods for examples.
 
-The Serial Wombat makes use of I2C clock stretching to allow time for responses to be generated if a read immediately follows a write, or if a second write is sent before the prior write has been processed.  This may introduce a few-hundred uS of delay into transactions during which the SCL line of the I2C bus will be held low by the Serial Wombat.  The host must ensure at least 20 uS of delay between end and next start of  writes or writes and reads to allow the Serial Wombat I2C hardware to prepare for the next packet.
+The Serial Wombat chip makes use of I2C clock stretching to allow time for responses to be generated if a read immediately follows a write, or if a second write is sent before the prior write has been processed.  This may introduce a few-hundred uS of delay into transactions during which the SCL line of the I2C bus will be held low by the Serial Wombat.  The host must ensure at least 20 uS of delay between end and next start of  writes or writes and reads to allow the Serial Wombat chip's I2C hardware to prepare for the next packet.
 
 UART
 ----
 
 UART communication occurs at 115200 baud and 8 bits, no stop bits, no parity, no flow control.
 
-The Host sends a packet of 8 bytes.  The Serial Wombat processes those 8 bytes and sends an 8 byte response.  The host should wait until the 8 byte response has been received before sending another packet.
+The Host sends a packet of 8 bytes.  The Serial Wombat firmware processes those 8 bytes and sends an 8 byte response.  The host should wait until the 8 byte response has been received before sending another packet.
 
-The UART protocol has no inherent framing.  It relies on synchronization between host and Serial wombat so that the proper number of bytes are sent and both sides.  Sending of an incomplete packet, sending of characters in excess of 8 per packet, unexpected reset of the Host or Serial Wombat while a packet is in progress, or noise on the line can result in loss of Synchronization.
+The UART protocol has no inherent framing.  It relies on synchronization between host and Serial Wombat chip so that the proper number of bytes are sent and both sides.  Sending of an incomplete packet, sending of characters in excess of 8 per packet, unexpected reset of the Host or Serial Wombat chip while a packet is in progress, or noise on the line can result in loss of Synchronization.
 
-Loss of synchronization typically becomes evident when the Serial Wombat does not return a packet or returns a packet which is incorrect.  Every response packet begins with the same first byte as the command packet from the host.  This should be checked for maximum reliability.  In the event of a suspected synchronization loss, the user should consider resetting the Serial Wombat in case unexpected configuration changes resulted.
+Loss of synchronization typically becomes evident when the Serial Wombat chip does not return a packet or returns a packet which is incorrect.  Every response packet begins with the same first byte as the command packet from the host.  This should be checked for maximum reliability.  In the event of a suspected synchronization loss, the user should consider resetting the Serial Wombat chip in case unexpected configuration changes resulted.
 
 When synchronization is lost, it can be regained by sending eight or more 0x55 ('U') bytes. These values are discarded if received as the first byte of a packet.  When sending a packet, unused bytes should be filled with 0x55 so that they will be discarded if accidentally received as the beginning of a new packet rather than the end of the prior packet.
 
-Serial Wombats based on a UART interface allow both binary and ASCII communication.  This allows a user to experiment by manually typing commands into a serial terminal connected to the Serial Wombat.  A simplified subset of the binary commands available can be accessed through ASCII commands.  These commands are still 8 byte packets.  The Serial Wombat can optionally be configured to echo back incoming bytes and add newlines between packets.  Enabling echos and newlines will break compatability with binary operations until they are turned off or the Serial Wombat is reset.
+Serial Wombat chips based on a UART interface allow both binary and ASCII communication.  This allows a user to experiment by manually typing commands into a serial terminal connected to the Serial Wombat chip.  A simplified subset of the binary commands available can be accessed through ASCII commands.  These commands are still 8 byte packets.  The Serial Wombat chip can optionally be configured to echo back incoming bytes and add newlines between packets.  Enabling echos and newlines will break compatability with binary operations until they are turned off or the Serial Wombat chip is reset.
 
 
