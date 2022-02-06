@@ -26,6 +26,7 @@
         <itemPath>pic24fj256ga702/mcc_generated_files/uart2.h</itemPath>
         <itemPath>pic24fj256ga702/mcc_generated_files/clock.h</itemPath>
         <itemPath>pic24fj256ga702/mcc_generated_files/pin_manager.h</itemPath>
+        <itemPath>pic24fj256ga702/mcc_generated_files/i2c1.h</itemPath>
       </logicalFolder>
       <itemPath>types.h</itemPath>
       <itemPath>utilities.h</itemPath>
@@ -38,6 +39,7 @@
       <itemPath>pic24fj256ga702/deviceSpecific.h</itemPath>
       <itemPath>pic24fj256ga702/pinDigitalHwSpecific.h</itemPath>
       <itemPath>outputScale.h</itemPath>
+      <itemPath>inputProcess.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -76,7 +78,6 @@
       <logicalFolder name="f2" displayName="PinModes" projectFiles="true">
         <itemPath>quadEnc.c</itemPath>
         <itemPath>analogInput.c</itemPath>
-        <itemPath>pulseOutput.c</itemPath>
         <itemPath>pulseTimer.c</itemPath>
         <itemPath>debounce.c</itemPath>
         <itemPath>protectedOutput.c</itemPath>
@@ -90,6 +91,10 @@
         <itemPath>outputScale.c</itemPath>
         <itemPath>resistanceInput.c</itemPath>
         <itemPath>uartSw.c</itemPath>
+        <itemPath>throughputConsumer.c</itemPath>
+        <itemPath>matrixKeypad.c</itemPath>
+        <itemPath>inputProcess.c</itemPath>
+        <itemPath>pinInputProcessor.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>protocol.c</itemPath>
@@ -186,7 +191,7 @@
         <property key="oXC16gcc-sfr-warn" value="false"/>
         <property key="oXC16gcc-smar-io-lvl" value="1"/>
         <property key="oXC16gcc-smart-io-fmt" value=""/>
-        <property key="optimization-level" value="0"/>
+        <property key="optimization-level" value="2"/>
         <property key="post-instruction-scheduling" value="default"/>
         <property key="pre-instruction-scheduling" value="default"/>
         <property key="preprocessor-macros" value=""/>
@@ -433,6 +438,8 @@
         <property key="memories.programmemory.ranges" value="0-2aeff"/>
         <property key="memories.rww" value="true"/>
         <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmerToGoFilePath"
+                  value="F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/debug/default/SerialWombat2_ptg"/>
         <property key="programmerToGoImageName" value="SerialWombat2_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
@@ -769,6 +776,8 @@
         <property key="memories.programmemory.ranges" value="0-2aeff"/>
         <property key="memories.rww" value="true"/>
         <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmerToGoFilePath"
+                  value="F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/debug/Optimized/SerialWombat18A_18B_ptg"/>
         <property key="programmerToGoImageName" value="SerialWombat18A_18B_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>

@@ -7,8 +7,8 @@ typedef struct uartHw_n{
     uint8_t rxPin;
     uint8_t baudRate;
 }uartHw_t;
-//TODO update
-//300  1200 2400  4800  9600  19.2  38.4  57.6  115.2
+
+//300  1200 2400  4800  9600  19.2  38.4  57.6  115.2  
 const uint16_t baudDivisor[] = { 13332,3332,1666, 832, 416, 207, 103, 68, 34  };
 
 
@@ -17,7 +17,7 @@ void initUARTHw()
     uartHw_t* uartHw = (uartHw_t*)CurrentPinRegister;
 	if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0  &&
 			CurrentPinRegister->generic.mode != PIN_MODE_UART0_TXRX &&
-			CurrentPinRegister->generic.mode != PIN_MODE_UART0_TXRX)
+			CurrentPinRegister->generic.mode != PIN_MODE_UART1_TXRX)
 	{
 		// We're getting out of order configuration.  Return an error
 		// and do nothing.	
@@ -49,6 +49,11 @@ void initUARTHw()
 					return;
 				}
 
+                if (Rxbuffer[3] >8)
+				{
+				  error(SW_ERROR_INVALID_PARAMETER_3);
+                  return;
+				}
 
 				if (Rxbuffer[2] == PIN_MODE_UART0_TXRX)
 				{    
@@ -58,14 +63,23 @@ void initUARTHw()
 						return;
 					}
 
-					SetPPSOutput(Rxbuffer[5], 3); // 3 = UART1 TX PPS
+
 					if (Rxbuffer[4] != 0xFF)
 					{
-						RPINR18bits.U1RXR = pinPPSInputMap[Rxbuffer[4]];
                         PinInput(Rxbuffer[4]);
+                        SetPinPullUp(Rxbuffer[4],1);
+						RPINR18bits.U1RXR = pinPPSInputMap[Rxbuffer[4]];
+                        
                         PinUpdateRegisters[Rxbuffer[4]].generic.mode = PIN_MODE_CONTROLLED;
 					}
 					UART1_Initialize();
+                    
+                    if (Rxbuffer[4] != 0xFF)
+                    {
+                        SetPinPullUp(Rxbuffer[4],0);
+                    }
+                        
+                        
 				}
 				else
 				{
@@ -74,22 +88,18 @@ void initUARTHw()
 						error (SW_ERROR_HW_RESOURCE_IN_USE);
 						return;
 					}
-					SetPPSOutput(Rxbuffer[5], 5); // 3 = UART1 TX PPS
+					
 					if (Rxbuffer[4] != 0xFF)
 					{
 						RPINR19bits.U2RXR = pinPPSInputMap[Rxbuffer[4]];
                         PinInput(Rxbuffer[4]);
-					PinUpdateRegisters[Rxbuffer[4]].generic.mode = PIN_MODE_CONTROLLED;
+                        PinUpdateRegisters[Rxbuffer[4]].generic.mode = PIN_MODE_CONTROLLED;
                     }
 					UART2_Initialize();
 				}
 
 
-				if (Rxbuffer[3] >8)
-				{
-					Rxbuffer[3] = 8;  //TODO make error
-                    Txbuffer[3] = 8;
-				}
+				
 
 				if (Rxbuffer[2]  == PIN_MODE_UART0_TXRX)
 				{    
@@ -108,11 +118,11 @@ void initUARTHw()
 
 					if (Rxbuffer[2] == PIN_MODE_UART0_TXRX)
 					{    
-						SetPPSOutput(CurrentPin, 0x03);  //UART 1 
+						SetPPSOutput(Rxbuffer[5], 0x03);  //UART 1 
 					}
 					else
 					{
-						SetPPSOutput(CurrentPin, 0x05);    //UART 2
+						SetPPSOutput(Rxbuffer[5], 0x05);    //UART 2
 
 					}
      
@@ -146,7 +156,7 @@ void initUARTHw()
 						UART2_Write(Rxbuffer[4 + i]);
 					}
 					Txbuffer[3] = UART2_TransmitBufferSizeGet() ;
-					Txbuffer[4] = UART2_CONFIG_RX_BYTEQ_LENGTH -  UART1_ReceiveBufferSizeGet();
+					Txbuffer[4] = UART2_CONFIG_RX_BYTEQ_LENGTH -  UART2_ReceiveBufferSizeGet();
 
 				}
 			}

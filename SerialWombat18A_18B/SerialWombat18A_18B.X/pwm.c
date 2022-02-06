@@ -26,7 +26,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #include <stdint.h>
 #include "outputScale.h"
 
-typedef struct pulseTimer_n{
+typedef struct pwm_n{
     outputScale_t outputScale;
     uint32_t period_uS;
     uint16_t lastValue;
@@ -41,7 +41,7 @@ void updatePWM(void);
 #define pwm  ((pwm_t*) CurrentPinRegister)
 void initPWM (void)
 {
-
+    BUILD_BUG_ON( sizeof(pwm_t) >  BYTES_AVAIALABLE_OUTPUT_PULSE );   
 	switch (Rxbuffer[0])
 	{
 		case CONFIGURE_CHANNEL_MODE_0:
@@ -51,10 +51,11 @@ void initPWM (void)
 				pwm->invert = Rxbuffer[6];
                 pwm->outputScale.sourcePin = CurrentPin;
 
-                CurrentPinLow(); //TODO make output, initialize DMA low
+                InitializePinLow(CurrentPin);
                 CurrentPinRegister->pulse_output.resource = timingResourcePWMClaim(TIMING_RESOURCE_ANY,1000); 
                 pwm->lastValue = CurrentPinRegister->generic.buffer + 1;
                 pwm->period_uS = 1000;
+                outputScaleInit(&pwm->outputScale);
 				updatePWM();
                
 			}
@@ -73,6 +74,12 @@ void initPWM (void)
 				}
 			}
 			break;
+            
+             case CONFIGURE_CHANNEL_MODE_10:
+        {
+            outputScaleCommProcess(&pwm->outputScale);
+        }
+        break;
 
 
 	}
@@ -85,7 +92,7 @@ void initPWMSimple()
 				pwm->invert = 0;
                 pwm->outputScale.sourcePin = CurrentPin;
 
-                CurrentPinLow(); //TODO make output, initialize DMA low
+                InitializePinLow(CurrentPin);
                 CurrentPinRegister->pulse_output.resource = timingResourcePWMClaim(TIMING_RESOURCE_ANY,1000); 
                 pwm->lastValue = CurrentPinRegister->generic.buffer + 1;
                 pwm->period_uS = 1000;
@@ -98,7 +105,7 @@ void updatePWM(void)
     uint16_t outputValue;
     
     outputValue = outputScaleProcess(&pwm->outputScale);
-	  
+	CurrentPinRegister->generic.buffer = outputValue;  
         
     timingResourcePWM(CurrentPinRegister->pulse_output.resource, pwm->period_uS, outputValue);
     timingResourceService(CurrentPinRegister->pulse_output.resource);

@@ -276,3 +276,6 @@ _and128:
 	AND W1, [W0], [W0++]
 	RETURN
 
+    .section *,code, address(0x1F800)
+    .global __FlashProgrammedMarker
+    .WORD 0xCD23

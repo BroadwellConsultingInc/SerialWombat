@@ -24,6 +24,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  */
 #include <stdint.h>
 #include "serialWombat.h"
+#include "outputScale.h"
 
 
 typedef struct servo_n{
@@ -33,6 +34,7 @@ typedef struct servo_n{
     uint8_t waitingCount; ///< How long have we waited for frame to finish?
 	uint8_t reverse; ///< 0:  Normal  1:  Subtract commanded value from 65535.
     uint8_t state;
+    outputScale_t outputScale;
 }servoPin_t;
 #define  servo ((servoPin_t*) CurrentPinRegister)
 
@@ -43,17 +45,18 @@ typedef enum
   SERVO_STATE_GENERATING_PULSE = 1,
 }SERVO_STATE_t;
 
-/// \brief  A simple, no-parameter call to initialze the Servo.  Used in ASCII pin configuration commands.
+/// \brief  A simple, no-parameter call to initialize the Servo.  Used in ASCII pin configuration commands.
 ///
 ///  Initializes servo to 500-2500 uS pulse, not reversed.
 void initServoHwSimple()
 {
-    
+    BUILD_BUG_ON( sizeof(servoPin_t) >  BYTES_AVAIALABLE_OUTPUT_PULSE );
     CurrentPinRegister->generic.mode = PIN_MODE_SERVO;
     CurrentPinRegister->generic.buffer = 0;
     servo->fixedPeriod = 500 ;
     servo->variablePeriod = 2000 ;
     servo->reverse = 0;
+    outputScaleInit(&servo->outputScale);
     CurrentPinLow();
 }
 
@@ -126,6 +129,7 @@ void initServoHw (void)
             CurrentPinRegister->pulse_output.resource = TIMING_RESOURCE_NONE;
             CurrentPinLow();
               servo->waitingCount = 0;
+       outputScaleInit(&servo->outputScale);
 	}
 	break;
 	case CONFIGURE_CHANNEL_MODE_1:
@@ -136,7 +140,18 @@ void initServoHw (void)
         }        
 	break;
     
+        case CONFIGURE_CHANNEL_MODE_2:
+        {
+            CurrentPinRegister->generic.buffer = RXBUFFER16(3);
+            outputScaleResetTimeout(&servo->outputScale);
+        }
+        break;
       
+        case CONFIGURE_CHANNEL_MODE_10:
+        {
+            outputScaleCommProcess(&servo->outputScale);
+        }
+        break;
 
   }
 }
@@ -163,6 +178,7 @@ pulsetime = fixed time + variableTime * buffer / 65536.
 void updateServoHw()
 {   
 
+    CurrentPinRegister->generic.buffer = outputScaleProcess(&servo->outputScale);
   
 	switch (servo->state)
 	{

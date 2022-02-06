@@ -159,7 +159,6 @@ void __attribute__ ( ( interrupt, no_auto_psv ) ) _U2TXInterrupt ( void )
 { 
     if((uart2_obj.txHead == uart2_obj.txTail) && (uart2_obj.txStatus.s.full == false))
     {
-        while(U2STAbits.TRMT == 0){}
         
         uart2_obj.txStatus.s.empty = true;
         IEC1bits.U2TXIE = 0;

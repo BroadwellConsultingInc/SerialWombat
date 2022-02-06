@@ -9,7 +9,7 @@ uint8_t CurrentPin;
  bool RunForeground = false;
 
 
-uint8_t UserBufferBoot[SIZE_OF_USER_BUFFER];
+uint32_t UserBufferBoot[SIZE_OF_USER_BUFFER / 4]; // Force alignment by making uint32_t
 uint8_t *UserBufferPtr = UserBufferBoot;
 
 void reset ()
@@ -22,13 +22,11 @@ void reset ()
 
 extern volatile uint32_t System1msCount;
 bool StayInBoot = false;
+           
+void (*voidvoidPtr)();
       
       
-      
-      void (*voidvoidPtr)();
-      
-      
-      // ASCII bytes "87654321"
+// ASCII bytes "87654321"
 volatile unsigned short message[] = {0x3738,0x3536,0x3334,0x3132};
 volatile unsigned short crcResultCRCCCITT = 0;
 void crc()
@@ -160,20 +158,22 @@ int main(void)
     INTERRUPT_GlobalEnable();
         while (!HLVDCONbits.BGVST); // Wait for Band Gap to stabilize.
    
-
-     
+        uint16_t magicProgrammedNumber;
+INTERRUPT_GlobalDisable();  // While we're messing with TBLPAG
+                uint8_t tblpag = TBLPAG;
+                TBLPAG = 1;
+                    magicProgrammedNumber = __builtin_tblrdl(0xF800);      
+                    TBLPAG = tblpag;
+                    INTERRUPT_GlobalEnable();
+ 
 //#warning STAY IN BOOT FOREVER!
        // while (1)
         //TODO add check for final word write
-    while (System1msCount <= 60 || StayInBoot) //Stay in boot for 60 mS  
+    while (System1msCount <= 60 || StayInBoot || magicProgrammedNumber != 0xCD23) //Stay in boot for 60 mS  
 	{
-            if (time == 0)
-            {
-               
-            }
-
+        LATBbits.LATB6 = 1; //TODO REMOVE
 		ProcessRx();
-
+     LATBbits.LATB6 = 0; //TODO REMOVE
 	}
 
      INTERRUPT_GlobalDisable();

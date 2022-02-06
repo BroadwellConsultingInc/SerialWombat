@@ -18,7 +18,6 @@ volatile bool ResponseAvailable = false;
 volatile uint8_t TX_ClockStretching = 0;
 volatile uint8_t RX_ClockStretching = 0;
 
-volatile uint8_t debugBreakpointVariable = 0;
 uint16_t lastUserBufferIndex = 0xFFFF;
 uint16_t lastQueueIndex = 0xFFFF;
 uint8_t testSequenceNumber = 0;
@@ -288,58 +287,77 @@ Sets pin 9 High, pin 10 Low, doesn't change pin 11, and sets pins 12 and 13 to i
 				CurrentPinRegister = &PinUpdateRegisters[CurrentPin];
 				for ( rxIndex = 3; rxIndex < 8 ; ++rxIndex,++pinToSet )
 				{
-					if (Rxbuffer[rxIndex] == 'a')
+					
 					{
-						
-						Rxbuffer[0] = CONFIGURE_CHANNEL_MODE_0;
-						void initAnalogInput(void);
-						initAnalogInput();
-					}
-					else
-					{
+                        
+                        if(Rxbuffer[rxIndex] != 'a')
+                        {
 						ConfigurePinAnalog(pinToSet,false);
 						SetMode(pinToSet,PIN_MODE_DIGITAL_IO) ;
+                        }
 						switch(Rxbuffer[rxIndex])
 						{
 							case 'i':
 								{
-									PinInput(pinToSet);
+								    SetPinPullUp(pinToSet,0);
+                                    SetPinPullDown(pinToSet,0);
+								PinInput(pinToSet);
 								}
 								break;
 							case 'l':	
 								{
+								    SetPinPullUp(pinToSet,0);
+                                    SetPinPullDown(pinToSet,0);
 									PinLow(pinToSet);
 								}
 								break;
 							case 'h':
 								{
+								    SetPinPullUp(pinToSet,0);
+                                    SetPinPullDown(pinToSet,0);
 									PinHigh(pinToSet);
 								}
 								break;
 							case 'u':  //Pull Up Input
 								{
-									//TODO add pullup
+                                    SetPinPullDown(pinToSet,0);
+									SetPinPullUp(pinToSet,1);
 									PinInput(pinToSet);
 								}
 								break;
 							case 'd':  //Pull Down Input
 								{
-									//TODO add pulldown
+									SetPinPullUp(pinToSet,0);
+                                    SetPinPullDown(pinToSet,1);
 									PinInput(pinToSet);
 								}
 								break;
 							case 's':  //Servo
 								{
 									void initServoHwSimple(void);
+								    SetPinPullUp(pinToSet,0);
+                                    SetPinPullDown(pinToSet,0);
 									initServoHwSimple();
 								}
 								break;
 							case 'w':  //PWM
 								{
-									void initPWMSimple();
-									initPWMSimple();
+									void initPWMSimple(void);
+									    SetPinPullUp(pinToSet,0);
+                                    SetPinPullDown(pinToSet,0);
+								initPWMSimple();
 								}
 								break;
+                            
+                            case 'a':
+                                {
+                                    void initAnalogSimple(void);
+ 								    SetPinPullUp(pinToSet,0);
+                                    SetPinPullDown(pinToSet,0);
+                                   initAnalogSimple();
+                                }
+                                break;
+                                
 							case 'x':
                             case ' ':
                             case 'U':
@@ -427,7 +445,7 @@ Or similar
             }
 			Txbuffer[5] = '2';	     
 			Txbuffer[6] = '0';	     
-			Txbuffer[7] = '4';	     
+			Txbuffer[7] = '5';	     
 
 			break;
 		case COMMAND_BINARY_READ_PIN_BUFFFER:
@@ -456,7 +474,10 @@ Or similar
 					}
 					memcpy(&Txbuffer[1],&UserBuffer[address],count);
 				}
-				//TODO:  Error on bad address
+				else
+                {
+                    error(SW_ERROR_RUB_INVALID_ADDRESS);
+                }
 			}
 			break;
 
@@ -984,15 +1005,118 @@ Write 0x32 the byte at RAM address 0x0247.
             
         case COMMAND_CALIBRATE_ANALOG:
         {
-            if (RXBUFFER16(1) != 0xABCD)  // Unlock value
+            
+            extern uint16_t VbgCalibration ;  
+            extern volatile uint8_t CTMUTrim;
+            int i;
+            
+              if (RXBUFFER16(1) != 0xABCD)  // Unlock value
             {
                  error(SW_ERROR_ANALOG_CAL_WRONG_UNLOCK);
                  return;
             }
+            
+            VbgCalibration = 0;
+            uint32_t vbg = 0;
+            for (i = 0; i < 16; ++i)
+            {
+                vbg += GetVBgCountsVsVRefPin();
+            }            
+           
+            TXBUFFER16(3,vbg);
+            TXBUFFER16(5,(vbg/65536));
+            vbg +=8; // Average, not truncate
+            vbg /= 512;
+            VbgCalibration = vbg;
+            TXBUFFER16(1,VbgCalibration);
+            
+            {
+                
+            
+                uint8_t bestTrim = CTMUTrim;
+            int16_t bestDifference = 30000;
+            int16_t difference = 30000;
+            CTMUCON1Lbits.ITRIM = CTMUTrim - 31;
+            CurrentPin = 19; // Read 30k resistance on pin 19
+            uint16_t ohms = 0;
+            
+            int i;
+            for (i = 0; i < 32; ++i)
+            {
+                {
+                    uint32_t ohms32 = 0;
+                int ohms_i;
+                for (ohms_i = 0; ohms_i < 8; ++ ohms_i)
+                {
+                    
+            GetCurrentPinReistanceOhmsSetup(); 
+            timingResourceBusyWait(5000);
+            ohms32 +=  GetCurrentPinReistanceOhmsRead(GetSourceVoltage_mV());
+            ohms32 += 4;
+                }
+                ohms = ohms32 / 8;
+                }
+            if (ohms > 30000)
+            {
+                difference = ohms - 30000;
+                  if (difference < bestDifference)
+            {
+                bestDifference = difference;
+                bestTrim = CTMUTrim;
+            }
+                if (CTMUTrim > 0)
+                {
+                    --CTMUTrim;
+                }
+            }
+            else
+            {
+                difference = 30000 - ohms;
+                  if (difference < bestDifference)
+            {
+                bestDifference = difference;
+                bestTrim = CTMUTrim;
+            }
+                if (CTMUTrim < 61)
+                {
+                    ++CTMUTrim;
+                }
+            }
+          
+            }
+            CTMUTrim = bestTrim;
+            CTMUCON1Lbits.ITRIM = CTMUTrim - 31;
+            }
+            
+            uint32_t externalTemperature = 0;
+            uint32_t internalTemperature = 0;
+            //Temperature calibration (single point)
+            {
+            
+                
+                int i;
+                for (i = 0; i < 16; ++i)
+                {
+                    uint16_t GetADCConversion(uint8_t pin);
+                    uint32_t temperature = GetADCConversion(18); // TMP235 Temperature sensor on Pin 18
+                    temperature *= GetSourceVoltage_mV();
+                    temperature >>= 16;
+                    externalTemperature += temperature;
+                    internalTemperature += GetTemperature_degC100ths(false);
+                    	timingResourceBusyWait(100);
+                }
+                externalTemperature +=8;
+                externalTemperature /= 16;
+                externalTemperature -= 500;
+                externalTemperature *= 10;
+                               
+                internalTemperature += 8;
+                internalTemperature /= 16;
+            }
              INTERRUPT_GlobalDisable();  // While we're messing with TBLPAG
                 uint8_t tblpag = TBLPAG;
                 
-                           int i;
+                           
                 TBLPAG = VBG_CAL_ADDRESS >>16;
                 for (i = 0; i < 192; ++i)
                 {
@@ -1009,16 +1133,18 @@ Write 0x32 the byte at RAM address 0x0247.
                 
                 TBLPAG = address >>16;
      
-                
-                ((uint32_t*)UserBuffer)[Rxbuffer[3]] = RXBUFFER16(4);
+                uint32_t* UserBufferWord32s = (uint32_t*)&UserBuffer;
+                UserBufferWord32s[0] = VbgCalibration;
+                UserBufferWord32s[1] = CTMUTrim;
+                UserBufferWord32s[2] = internalTemperature;
+                UserBufferWord32s[3] = externalTemperature;
                  FLASH_Unlock(FLASH_UNLOCK_KEY);
-                    FLASH_WriteRow24(address, (uint32_t*)UserBuffer);
+                    FLASH_WriteRow24(address, UserBufferWord32s);
                    
                    TBLPAG = tblpag;
                    
                    INTERRUPT_GlobalEnable();
-          
-           
+                   
             
         }
         break;
@@ -1292,12 +1418,7 @@ Received:
         break;
         
 
-		case 254: // TODO Remove
-			{
-				TXBUFFER16(1,RCON);
-				RCON = 0;
-			}
-			break;
+	
 
 		case CONFIGURE_CHANNEL_MODE_0:
 		case CONFIGURE_CHANNEL_MODE_1:
@@ -1340,6 +1461,34 @@ void ProcessRx(void)
 {
 	if (SW_I2CAddress == 0 || UART2ndInterface)  // Use UART
 	{
+        uint8_t peekData = UART1_Peek(0);
+        
+        
+        if ((UART1_CONFIG_RX_BYTEQ_LENGTH -UART1_ReceiveBufferSizeGet()) >= 8)
+        {
+            while(((UART1_CONFIG_RX_BYTEQ_LENGTH - UART1_ReceiveBufferSizeGet()) > 0) && (peekData == 0x55 || peekData == ' ') )
+        {
+            UART1_Read();
+            peekData = UART1_Peek(0);
+        }
+            if ((UART1_CONFIG_RX_BYTEQ_LENGTH -UART1_ReceiveBufferSizeGet()) >= 8)
+            {
+                
+            uint8_t i; 
+            for (i = 0; i < 8; ++i)
+            {
+                Rxbuffer[i] = UART1_Read();
+            }
+            if (LineBreaksAndEcho)
+			{
+				UART1_WriteBuffer(Rxbuffer,8);
+			}
+            ProcessRxbuffer();
+            uartStartTX();
+                        }
+
+        }
+        /*
 		if ( UartRxbufferCounter < RXBUFFER_LENGTH)
 		{
 			uint8_t numberOfBytesRead = 0;
@@ -1361,8 +1510,10 @@ void ProcessRx(void)
 				-- UartRxbufferCounter;
 				++debug_discarded_bytes;
 			}
+         
 		}
-
+*/
+        /*
 		if (UartRxbufferCounter >= RXBUFFER_LENGTH)
 		{
 			int i;
@@ -1374,6 +1525,7 @@ void ProcessRx(void)
 			}	
 			uartStartTX();
 		}
+         */
 	}
 	if (SW_I2CAddress != 0)  // Use I2C
 	{
@@ -1407,10 +1559,7 @@ void ProcessRx(void)
 			}
 
 			ProcessRxbuffer();
-			if (Rxbuffer[1] == 0x21 && Rxbuffer[0] != 0x21 ) //TODO REmove
-			{
-				++debugBreakpointVariable;
-			}
+		
 			INTERRUPT_GlobalDisable();
 			memcpy((void*)wombatI2CTxData,(const void*)Txbuffer,8);
 			ResponseAvailable = true;
@@ -1482,6 +1631,13 @@ void ProcessSetPin()
 		}
 		break;
 
+        case PIN_MODE_THROUGHPUT_CONSUMER:
+        {
+            void initThroughputConsumer();
+            initThroughputConsumer();
+        }
+        break;
+        
         case PIN_MODE_DEBOUNCE:
         {
             void initDebounce(void);
@@ -1502,12 +1658,7 @@ void ProcessSetPin()
         }
         break;
         
-        case PIN_MODE_DMA_PULSE_OUTPUT:
-		{
-            void initPulseOut(void);
-			initPulseOut();
-		}
-		break;
+      
         
         case PIN_MODE_DIGITAL_IO:
         {
@@ -1524,6 +1675,12 @@ void ProcessSetPin()
             initPulseTimer();
         }
         break;
+        case PIN_MODE_INPUT_PROCESSOR:
+        {
+            void initPinInputProcessor(void);
+            initPinInputProcessor();
+        }
+        break;
 
         case PIN_MODE_WATCHDOG:
         {
@@ -1535,6 +1692,13 @@ void ProcessSetPin()
 	{
         void initAnalogInput(void);
 		initAnalogInput();
+	}
+	break;
+    
+    case PIN_MODE_MATRIX_KEYPAD:
+	{
+        void initMatrixKeypad(void);
+		initMatrixKeypad();
 	}
 	break;
     
@@ -1579,7 +1743,13 @@ void ProcessSetPin()
                initResistanceInput();
             }
             break;
-        
+            
+              case PIN_MODE_PROTECTEDOUTPUT:
+            {
+                extern void initProtectedOutput(void);
+               initProtectedOutput();
+            }
+            break;
         case PIN_MODE_UART0_TXRX:
         case PIN_MODE_UART1_TXRX:
         {

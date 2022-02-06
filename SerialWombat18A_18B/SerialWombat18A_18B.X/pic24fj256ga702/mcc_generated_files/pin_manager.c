@@ -98,13 +98,21 @@ void PIN_MANAGER_Initialize (void)
     /****************************************************************************
      * Set the PPS
      ***************************************************************************/
-    __builtin_write_OSCCONL(OSCCON & 0xbf); // unlock PPS
+    __builtin_write_OSCCONL(OSCCON & 0xbf); // unlock PPS, leave it unlocked
 
-    //RPINR18bits.U1RXR = 0x0005;    //RB5->UART1:U1RX
-   // RPINR3bits.T3CKR = 0x0000;    //RB0->TMR3:T3CK
-    //RPOR2bits.RP4R = 0x0003;    //RB4->UART1:U1TX
 
-   // __builtin_write_OSCCONL(OSCCON | 0x40); // lock PPS
+    //Set all pins to GPIO
+    RPOR0 = 0;  
+     RPOR1 = 0; 
+      RPOR2 = 0; 
+       RPOR3 = 0; 
+        RPOR4 = 0; 
+         RPOR5 = 0; 
+          RPOR6 = 0; 
+           RPOR7 = 0; 
+            RPOR8 = 0; 
+                 RPOR12 = 0; 
+                 RPOR13 = 0; 
 
 }
 

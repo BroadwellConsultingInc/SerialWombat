@@ -297,6 +297,7 @@ void updateResistanceInput()
         if (ADC1Semaphore == RESOURCE_AVAILABLE)
         {
             ADC1Semaphore = CurrentPin;
+
             GetCurrentPinReistanceOhmsSetup(); 
             --resistanceInput->delayCount;
         }
@@ -309,7 +310,7 @@ void updateResistanceInput()
         {
             sample = GetCurrentPinReistanceOhmsRead(GetSourceVoltage_mV());
             ADC1Semaphore = RESOURCE_AVAILABLE;
-            
+
             resistanceInput->delayCount = 50;
         }
         else

@@ -24,6 +24,10 @@ void PinOutput(uint8_t pin);
 void PinHigh(uint8_t pin);
 void PinLow(uint8_t pin);
 void SetPin(uint8_t pin, uint8_t pinState); 
+void InitializePinLow(uint8_t pin);
+
+void SetPinPullUp(uint8_t pin, bool isPulledUp);
+void SetPinPullDown(uint8_t pin, bool isPulledDown);
 
 extern const uint16_t pinBitmap[];
 extern const uint8_t pinPort[];
@@ -43,6 +47,8 @@ void andCount(uint16_t* buffer, uint16_t bitmap, uint16_t count);
 void updatePulseOutput(uint8_t pin);
 uint8_t  PulseInGetOldestDMABit(uint8_t pin);
 bool  PulseInGetOldestDMASample(uint8_t pin, uint16_t* value);
+uint8_t  PulseInSkipDMABits(uint8_t pin, uint8_t count);
+void PulseInDiscardUntilLow(uint8_t pin);
 void SetPinQuick(uint8_t pin, uint8_t pinState);
 void SetPPSOutput(uint8_t pin, uint8_t value);
 void SetPPSInput(uint8_t pin, uint8_t peripheral);
@@ -91,12 +97,13 @@ void timingResourceManagerInit();
 
 TIMING_RESOURCE_t timingResourceInterruptClaim(TIMING_RESOURCE_t resource, uint16_t counts, uint16_t uS, void (*callBack)(void));
 void timingResourceInterruptActivate(TIMING_RESOURCE_t resource);
-
+void timingResourceBusyWait(uint16_t uS);
 
 typedef struct DMABitStream_n{
 uint8_t nextLocationToQueue;
 uint8_t lastDMA;
 }DMABitStream_t;
+void initializeBitStreamOutput(uint8_t pin, uint8_t level,  DMABitStream_t* bitStream );
 uint16_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint16_t count, DMABitStream_t* bitStream );
 uint16_t removeBitStreamOutput(uint8_t pin, uint16_t count, uint16_t margin, DMABitStream_t* bitStream );
 

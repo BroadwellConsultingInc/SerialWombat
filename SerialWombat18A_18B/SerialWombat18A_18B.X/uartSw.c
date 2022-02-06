@@ -34,114 +34,92 @@ typedef enum
     
 }UART_SW_RX_STATE_t;
 
+//300  1200 2400  4800  9600  19.2  28.8  57.6  115.2
+const uint16_t swBaudDivisor[] = { 192,48,24, 12, 6, 3, 2, 1, 1  };
+
 void initUARTSw()
 {
-    uartSw_t* uartSw = (uartSw_t*)CurrentPinRegister;
-    
-    
-    /*
-	if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0  &&
-			CurrentPinRegister->generic.mode != PIN_MODE_UART0_TXRX &&
-			CurrentPinRegister->generic.mode != PIN_MODE_UART0_TXRX)
-	{
-		// We're getting out of order configuration.  Return an error
-		// and do nothing.	
-		error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-		return;
+	uartSw_t* uartSw = (uartSw_t*)CurrentPinRegister;
 
-	}
-
-*/
 
 	switch (Rxbuffer[0])
 	{
 		case CONFIGURE_CHANNEL_MODE_0:
 			{
-				
-
-				uartSw->txPin = Rxbuffer[4];
-                uartSw->rxPin = Rxbuffer[5];
-
-
 				if (Rxbuffer[3] >7)
 				{
-					Rxbuffer[3] = 7;  //TODO make error
-                    Txbuffer[3] = 7;
+					error(SW_ERROR_INVALID_PARAMETER_3);
+                    return;
 				}
-/*
-				if (Rxbuffer[2]  == PIN_MODE_UART0_TXRX)
-				{    
-					U1BRG=    baudDivisor[Rxbuffer[3]]; 
-                    
-				}
-                else
-                {
-                    U2BRG=    baudDivisor[Rxbuffer[3]]; 
-                }
-
-				
-				if (Rxbuffer[5] < NUMBER_OF_PHYSICAL_PINS)
+				uartSw-> divisor  = swBaudDivisor[Rxbuffer[3]];
+				uartSw->rxPin = Rxbuffer[4];
+				uartSw->txPin = Rxbuffer[5];
+                
+                if (uartSw->rxPin != 0xFF)
 				{
-					SetPin(Rxbuffer[5], DIGITAL_HIGH);
+					PinInput(uartSw->rxPin);
+					if (uartSw->rxPin != CurrentPin)
+					{
+						SetMode(uartSw->rxPin, PIN_MODE_CONTROLLED);
+					}
+				}
+                
+				if (uartSw->txPin != 0xFF)
+				{
+                    
+                    initializeBitStreamOutput(uartSw->txPin,  1, &uartSw->bitStream );
+					PinLow(uartSw->txPin);
+					if (uartSw->txPin != CurrentPin)
+					{
+						SetMode(uartSw->txPin, PIN_MODE_CONTROLLED);
+					}
+				}
+				
 
-					if (Rxbuffer[2] == PIN_MODE_UART0_TXRX)
-					{    
-						SetPPSOutput(CurrentPin, 0x03);  //UART 1 
+				CurrentPinRegister->generic.mode = PIN_MODE_SW_UART;
+				uartSw->txQueue = 0xFFFF;
+				uartSw->rxQueue = 0xFFFF;
+				uartSw->rxState = UART_SW_RX_STATE_IDLE;
+				uartSw->rxBitsReceived = 0;
+				uartSw->rxSampleDelay = 0;
+				uartSw->rxFrameErrors = 0;
+			}
+			break;
+
+		case CONFIGURE_CHANNEL_MODE_1:  //Transmit 
+			{
+				uint8_t i;
+				if (CurrentPinRegister->generic.mode == PIN_MODE_SW_UART)
+				{    
+					for (i = 0; i < Rxbuffer[3]; ++i)
+					{
+						QueueAddByte(uartSw->txQueue,Rxbuffer[4 + i]);
+					}
+					uint16_t count;
+					QueueGetBytesFreeInQueue(uartSw->txQueue,&count) ;
+					if (count < 255)
+					{
+					Txbuffer[3] = count;
 					}
 					else
 					{
-						SetPPSOutput(CurrentPin, 0x05);    //UART 2
-
+						Txbuffer[3] = 255;
 					}
-     
-                    PinUpdateRegisters[Rxbuffer[5]].generic.mode = PIN_MODE_CONTROLLED;
-				}
-				CurrentPinRegister->generic.mode = Rxbuffer[2];
-				
-                uartHw->baudRate = Rxbuffer[3];
-                uartHw->rxPin = Rxbuffer[4];
-                uartHw->txPin = Rxbuffer[5];
-               */ 
-                PinInput(uartSw->rxPin);
-                PinLow(uartSw->txPin);
-                CurrentPinRegister->generic.mode = PIN_MODE_SW_UART;
-                uartSw-> divisor  = 6;
-                uartSw->txQueue = 0xFFFF;
-                uartSw->rxQueue = 0xFFFF;
-                uartSw->rxState = UART_SW_RX_STATE_IDLE;
-                uartSw->rxBitsReceived = 0;
-                uartSw->rxSampleDelay = 0;
-                uartSw->rxFrameErrors = 0;
 
-			}
+					QueueGetBytesFilledInQueue(uartSw->txQueue,&count);
 
-			break;
-          
-		case CONFIGURE_CHANNEL_MODE_1:  //Transmit 
-			{
-                               
-        }
-        break;
-        /*
-				uint8_t i;
-				if (CurrentPinRegister->generic.mode == PIN_MODE_UART0_TXRX)
-				{    
-					for (i = 0; i < Rxbuffer[3]; ++i)
+					if (count < 255)
 					{
-						UART1_Write(Rxbuffer[4 + i]);
+                        Txbuffer[4] = count;
 					}
-					Txbuffer[3] = UART1_TransmitBufferSizeGet() ;
-					Txbuffer[4] = UART1_CONFIG_RX_BYTEQ_LENGTH -  UART1_ReceiveBufferSizeGet();
+					else
+					{
+						Txbuffer[4] = 255;
+					}
 				}
-				else if (CurrentPinRegister->generic.mode == PIN_MODE_UART1_TXRX)
+				else
 				{
-					for (i = 0; i < Rxbuffer[3]; ++i)
-					{
-						UART2_Write(Rxbuffer[4 + i]);
-					}
-					Txbuffer[3] = UART2_TransmitBufferSizeGet() ;
-					Txbuffer[4] = UART2_CONFIG_RX_BYTEQ_LENGTH -  UART1_ReceiveBufferSizeGet();
-
+					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER );
 				}
 			}
 			break;
@@ -150,78 +128,89 @@ void initUARTSw()
 				Txbuffer[3] = 0;
 				Rxbuffer[3] += 4;
 				uint8_t i;
-				if (CurrentPinRegister->generic.mode == PIN_MODE_UART0_TXRX)
+				if (CurrentPinRegister->generic.mode == PIN_MODE_SW_UART)
 				{    
-					for (i = 4; i < Rxbuffer[3] && (UART1_CONFIG_RX_BYTEQ_LENGTH -  UART1_ReceiveBufferSizeGet()) != 0 ; ++i)
+					SW_QUEUE_RESULT_t result = QUEUE_RESULT_SUCCESS; 
+					for (i = 4; i < Rxbuffer[3] && result == QUEUE_RESULT_SUCCESS ; ++i)
 					{
-						Txbuffer[i] = UART1_Read();
-						++Txbuffer[3];
+						uint8_t data;
+						result = QueueReadByte(uartSw->rxQueue,&data);
+						if (result == QUEUE_RESULT_SUCCESS)
+						{
+							Txbuffer[i] = data;
+							++Txbuffer[3];
+						}
 					}
 				}
-				else if (CurrentPinRegister->generic.mode == PIN_MODE_UART1_TXRX)
-				{    
-					for (i = 4; i < Rxbuffer[3] && (UART2_CONFIG_RX_BYTEQ_LENGTH -  UART2_ReceiveBufferSizeGet()) != 0 ; ++i)
-					{
-						Txbuffer[i] = UART2_Read();
-						++Txbuffer[3];
-					}
-
+				else
+				{
+					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER );
 				}
 			}
 			break;
 
 		case CONFIGURE_CHANNEL_MODE_3: // Peek RX
 			{
-				if (CurrentPinRegister->generic.mode == PIN_MODE_UART0_TXRX)
+				if (CurrentPinRegister->generic.mode == PIN_MODE_SW_UART)
 				{    
-					Txbuffer[3] = UART1_TransmitBufferSizeGet() ;
-					Txbuffer[4] = UART1_CONFIG_RX_BYTEQ_LENGTH -  UART1_ReceiveBufferSizeGet();
-					Txbuffer[5] = UART1_Peek(0);
-				}
-				else if (CurrentPinRegister->generic.mode == PIN_MODE_UART1_TXRX)
-				{
 
-					Txbuffer[3] = UART2_TransmitBufferSizeGet() ;
-					Txbuffer[4] = UART2_CONFIG_RX_BYTEQ_LENGTH -  UART2_ReceiveBufferSizeGet();
-					Txbuffer[5] = UART2_Peek(0);
-
+					uint16_t count;
+					QueueGetBytesFreeInQueue(uartSw->txQueue, & count) ;
+					if (count >255)
+					{
+						Txbuffer[3] = 255;
+					}
+					else
+					{
+						Txbuffer[3] = count;
+					}
+					QueueGetBytesFreeInQueue(uartSw->rxQueue, & count) ;
+					if (count >255)
+					{
+						Txbuffer[4] = 255;
+					}
+					else
+					{
+						Txbuffer[4] = count;
+					}
+					QueuePeekByte(uartSw->rxQueue,&Txbuffer[5]);
 				}
 			}
 			break; 
-            
-            case CONFIGURE_CHANNEL_MODE_4: // Close Port
+
+		case CONFIGURE_CHANNEL_MODE_4: // Close Port
 			{
-				if (uartSw->txPin != 0xFF)
-                {
-                    SetPPSOutput(uartHw->txPin, 0); //Return to GPIO
-                    PinHigh(uartHw->txPin);
-                    if (CurrentPinRegister->generic.mode == PIN_MODE_UART0_TXRX)
-                    {
-                        UART1_Disable();
-                    }
-                    else if (CurrentPinRegister->generic.mode == PIN_MODE_UART1_TXRX)
-                    {
-                        UART2_Disable();
-                    }
-                }
+				uartSw->txPin = 0xFF;
+				uartSw->rxPin = 0xFF;
 			}
 			break; 
-*/
-          case CONFIGURE_CHANNEL_MODE_5: 
+
+		case CONFIGURE_CHANNEL_MODE_5: 
 			{  //TODO add sanity checks, mode, etc
 				uartSw->txQueue = RXBUFFER16(3);
-                if (QueueByteInitialize(uartSw->txQueue, RXBUFFER16(5)) != QUEUE_RESULT_SUCCESS)
+                uint16_t resultSize;
+				if (QueueGetBytesFreeInQueue(uartSw->txQueue, &resultSize) != QUEUE_RESULT_SUCCESS)
+				{
+					error(SW_ERROR_UNNUMBERED_ERROR); // TODO make errors based on result
+				}
+                else
                 {
-                    error(0); // TODO make errors based on result
+                    TXBUFFER16(5,resultSize);
                 }
 			}
 			break; 
-          case CONFIGURE_CHANNEL_MODE_6: 
+
+		case CONFIGURE_CHANNEL_MODE_6: 
 			{  //TODO add sanity checks, mode, etc
 				uartSw->rxQueue = RXBUFFER16(3);
-                if (QueueByteInitialize(uartSw->rxQueue, RXBUFFER16(5)) != QUEUE_RESULT_SUCCESS)
+                uint16_t resultSize;
+				if (QueueGetBytesFreeInQueue(uartSw->txQueue, &resultSize) != QUEUE_RESULT_SUCCESS)
+				{
+					error(SW_ERROR_UNNUMBERED_ERROR); // TODO make errors based on result
+				}
+                else
                 {
-                    error(0); // TODO make errors based on result
+                    TXBUFFER16(5,resultSize);
                 }
 			}
 			break; 
@@ -230,13 +219,14 @@ void initUARTSw()
 
 }
 
-
+uartSw_t* debuguartSw;
 
 void updateUARTSwTx()
 {
     
  
     uartSw_t* uartSw = (uartSw_t*)CurrentPinRegister;
+    debuguartSw = uartSw;
    
     if (uartSw->idleBitsQueued)
     {
@@ -255,42 +245,7 @@ void updateUARTSwTx()
         // we still have room in the DMA
         
         if (uartSw->txRemainingBits)
-        {
-            /*
-            
-             uartSw->txCurrentBit = uartSw->txRemainingBitmap & 0x01;
-            uartSw->txRemainingBitmap >>= 1;
-            -- uartSw->txRemainingBits;
-             if (uartSw->txRemainingBits == 0)
-                {
-                    uartSw->txCurrentBit = 1; // stop bit
-                }
-            uartSw->txRemainingNips = uartSw->divisor;
-            while (uartSw->txRemainingBits)
-            {
-                uint8_t newbit = uartSw->txRemainingBitmap & 0x01;
-                if (uartSw->txRemainingBits == 1)
-                {
-                    newbit = 1;
-                }
-                if (newbit == uartSw->txCurrentBit)
-                {
-                          -- uartSw->txRemainingBits;
-                          uartSw->txRemainingBitmap >>= 1;
-                          uartSw->txRemainingNips += uartSw->divisor;
-                          if (uartSw->txRemainingBits == 0)
-                          {
-                              uartSw->txRemainingNips = updateBitStreamOutput(uartSw->txPin, uartSw->txCurrentBit,  uartSw->txRemainingNips, &uartSw->bitStream);
-                          }
-                }
-                else
-                {
-                    uartSw->txRemainingNips = updateBitStreamOutput(uartSw->txPin, uartSw->txCurrentBit,  uartSw->txRemainingNips, &uartSw->bitStream);
-                    break;
-                }
-                
-            } */
-            
+        {    
             //one bit at a time
             uartSw->txCurrentBit = uartSw->txRemainingBitmap & 0x01;
             uartSw->txRemainingBitmap >>= 1;
@@ -321,8 +276,7 @@ void updateUARTSwTx()
         {
             //Idle
              uartSw->idleBitsQueued = 255 - updateBitStreamOutput(uartSw->txPin, 1,  255, &uartSw->bitStream);
-            
-            //TODO optimize:  Add bitstream remove function that removes idled bits at the beginning of next call 
+             
             idle = 1;
         }
         
@@ -332,17 +286,6 @@ void updateUARTSwTx()
 
 
 
-uint16_t debugBadBytes= 0; //TODO REMOVE
-uint8_t debugSamplePoint[8];
-uint8_t debugStartPoint;
-uint8_t debugStopPoint;
-uint8_t debugStartBegin = 0;
-uint8_t debugIdleSampleDelay = 0;
-
-uint8_t debugSampleFC[8];
-uint8_t debugStartBeginFC;
-uint8_t debugStopFC;
-uint8_t debugStartSampleFC = 0;
 void updateUARTSwRx()
 {
     uartSw_t* uartSw = (uartSw_t*)CurrentPinRegister;
@@ -352,22 +295,19 @@ void updateUARTSwRx()
        //     SetPin(15,(inputBit & 0x01) > 0);
     while (inputBit != 2)
     {
+       
         if (uartSw->rxSampleDelay > 0)
         {
-            --uartSw->rxSampleDelay;
-            inputBit = PulseInGetOldestDMABit(uartSw->rxPin);
-        //    SetPin(14,(inputBit & 0x02) > 0);
-        //    SetPin(15,(inputBit & 0x01) > 0);
-        //    PinHigh(11);
-         //       PinLow(11);
-                
-            if (uartSw->rxSampleDelay > 0 || inputBit == 2)
+            -- uartSw->rxSampleDelay; // The bit we'll take on the way out
+            if (uartSw->rxSampleDelay > 0)
             {
-                
-                      continue;
-          
+                uartSw->rxSampleDelay -=   PulseInSkipDMABits(uartSw->rxPin, uartSw->rxSampleDelay);
             }
+            inputBit = PulseInGetOldestDMABit(uartSw->rxPin);
+            continue;
         }
+
+         
     switch (uartSw->rxState)
     {
         case UART_SW_RX_STATE_IDLE:
@@ -377,16 +317,25 @@ void updateUARTSwRx()
              //   PinHigh(12);
                 uartSw->rxState = UART_SW_RX_STATE_SAMPLE_START;
                 uartSw->rxSampleDelay = (uartSw->divisor  ) /2  - 1;
-                debugStartBegin = CurrentPinRegister->pulse_input.lastDMA;
-                debugStartBeginFC = FramesRun;
+                if (uartSw->divisor < 3)
+                {
+                    uartSw->rxState = UART_SW_RX_STATE_SAMPLE_START;
+                    uartSw->rxSampleDelay = 0;
+                    uartSw->rxBitmap = 0;
+                    uartSw->rxBitsReceived = 0;
+                    uartSw->rxState = UART_SW_RX_STATE_BITS;
+                }
+             }
+
+            else
+            {
+                PulseInDiscardUntilLow(uartSw->rxPin);
             }
         }
         break;
         
     case UART_SW_RX_STATE_SAMPLE_START:
         {
-            debugStartPoint = CurrentPinRegister->pulse_input.lastDMA;
-            debugStartSampleFC = FramesRun;
             if (inputBit != 0)
             {
                 uartSw->rxState = UART_SW_RX_STATE_IDLE;
@@ -411,15 +360,9 @@ void updateUARTSwRx()
             {
                 uartSw->rxBitmap |= 0x80;
             }
-            debugSamplePoint[uartSw->rxBitsReceived] = CurrentPinRegister->pulse_input.lastDMA;
-                debugSampleFC[uartSw->rxBitsReceived] = FramesRun;
             ++ uartSw->rxBitsReceived;
             if (uartSw->rxBitsReceived >= 8)
             {
-                if (uartSw->rxBitmap & 0x80)
-                {
-                    ++debugBadBytes;
-                }
                 uartSw->rxState = UART_SW_RX_STATE_STOP;
             }
             uartSw->rxSampleDelay = uartSw->divisor - 1;
@@ -435,9 +378,6 @@ void updateUARTSwRx()
              //   PinLow(12);
                 QueueAddByte(uartSw->rxQueue, uartSw->rxBitmap);
                 uartSw->rxState = UART_SW_RX_STATE_IDLE;
-                debugIdleSampleDelay = uartSw->rxSampleDelay;
-                debugStopPoint = CurrentPinRegister->pulse_input.lastDMA;
-                debugStopFC = FramesRun;
             }
             else
             {
@@ -463,24 +403,12 @@ void updateUARTSwRx()
         
     }
     inputBit = PulseInGetOldestDMABit(uartSw->rxPin);
-     //SetPin(14,(inputBit & 0x02) > 0);
-      //      SetPin(15,(inputBit & 0x01) > 0);
     }
 }
 
 void updateUARTSw()
 {
     uartSw_t* uartSw = (uartSw_t*)CurrentPinRegister;
-	/*
-     if (CurrentPinRegister->generic.mode == PIN_MODE_UART0_TXRX)
-	    {    
-		    CurrentPinRegister->generic.buffer = UART1_ReceiveBufferSizeGet();
-	    }
-	    else if (CurrentPinRegister->generic.mode == PIN_MODE_UART1_TXRX)
-	    {           
-		    CurrentPinRegister->generic.buffer = UART2_ReceiveBufferSizeGet();  
-	    }
-	    */
 
     if (uartSw->txPin != 0xFF)
     {

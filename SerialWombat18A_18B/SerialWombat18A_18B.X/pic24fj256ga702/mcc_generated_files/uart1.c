@@ -147,7 +147,14 @@ void UART1_Initialize(void)
     uart1_obj.txStatus.s.empty = true;
     uart1_obj.txStatus.s.full = false;
     uart1_obj.rxStatus.s.full = false;
+    while (U1STAbits.URXDA == 1)
+    {
+      U1RXREG;
+    }
+
     IEC0bits.U1RXIE = 1;
+
+
 }
 
 /**
@@ -156,12 +163,13 @@ void UART1_Initialize(void)
 
 void __attribute__ ( ( interrupt, no_auto_psv ) ) _U1TXInterrupt ( void )
 { 
+    LATBbits.LATB8 = 1; //TODO REMOVE
     if((uart1_obj.txHead == uart1_obj.txTail) && (uart1_obj.txStatus.s.full == false))
     {
-        //JAB while(U1STAbits.TRMT == 0){}
         
         uart1_obj.txStatus.s.empty = true;
         IEC0bits.U1TXIE = 0;
+             LATBbits.LATB8 = 0; //TODO REMOVE
         return;
     }
 
@@ -185,12 +193,14 @@ void __attribute__ ( ( interrupt, no_auto_psv ) ) _U1TXInterrupt ( void )
             break;
         }
     }
+         LATBbits.LATB8 = 0; //TODO REMOVE
 }
 uint8_t lastRXInterruptByte = 0x00;
 uint32_t TotalRxBytes = 0;
 void __attribute__ ( ( interrupt, no_auto_psv ) ) _U1RXInterrupt( void )
 {
 
+    LATBbits.LATB8 = 1; //TODO REMOVE
     IFS0bits.U1RXIF = false;
     while((U1STAbits.URXDA == 1))
     {
@@ -214,17 +224,19 @@ void __attribute__ ( ( interrupt, no_auto_psv ) ) _U1RXInterrupt( void )
         }
     }
 
-    
+         LATBbits.LATB8 = 0; //TODO REMOVE
 }
 
 void __attribute__ ( ( interrupt, no_auto_psv ) ) _U1ErrInterrupt( void )
 {
+      LATBbits.LATB8 = 1; //TODO REMOVE
     if ((U1STAbits.OERR == 1))
     {
         U1STAbits.OERR = 0;
     }
     
     IFS4bits.U1ERIF = false;
+        LATBbits.LATB8 = 0; //TODO REMOVE
 }
 
 /**
@@ -426,7 +438,7 @@ bool UART1_PeekSafe(uint8_t *dataByte, uint16_t offset)
 
 unsigned int UART1_ReceiveBufferSizeGet(void)
 {
-    if (!IEC0bits.U1RXIE ) return 0;  //Uninitialized
+    if (!IEC0bits.U1RXIE ) return UART1_CONFIG_RX_BYTEQ_LENGTH;  //Uninitialized
     if(!uart1_obj.rxStatus.s.full)
     {
         if(uart1_obj.rxHead > uart1_obj.rxTail)

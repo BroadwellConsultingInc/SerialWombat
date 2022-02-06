@@ -466,7 +466,7 @@ namespace IntelHex
                 else
                 {
                     //Write out current data
-                    s += $"0x{(currentdata & 0xFFFFFFFF):X8},";
+                    s += $"0x{(currentdata & 0xFFFFFFFF):X},";
                     if (CommentAddresses)
                     {
                         s += $" // {RLEStartAddress:X8}";
@@ -480,7 +480,7 @@ namespace IntelHex
 
             }
             //Write out current data
-            s += $"0x{(currentdata & 0xFFFFFFFF):X8},";
+            s += $"0x{(currentdata & 0xFFFFFFFF):X},";
             if (CommentAddresses)
             {
                 s += $" // {RLEStartAddress:X8}";

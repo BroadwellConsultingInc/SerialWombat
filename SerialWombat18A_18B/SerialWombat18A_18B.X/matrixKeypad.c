@@ -1,307 +1,624 @@
-#ifndef COMPILING_FIRMWARE
-#include <stdio.h>
-#endif
-#include "types.h"
-#include "utilities.h"
-#include "global_data.h"
-#include "kp.h"
-#pragma code APPLICATION
 
-//RX
-// 0 - CONFIGURE D I/O
-// 1 - PIN NUMBER
-// 2 - Mode - Keypad Scan Row 0
-// 3 - Pin # for Column 1
-// 4 - QUEUE ADDRESS (H)
-// 5 - (L)
-// 6 - Scan Delay States
-// 7 - Mode : 0x0F = 0: queue nothing
-//                   1: queue button push numbers, binary
-//                   2: queue button push numbers, Ascii 
-//                   3: queue bitmap changes 
-//            0xF0   
-//                   2: Buffer = last button pressed, held
-//                   1: Buffer = current button number, 255 for none
-//                   0: Buffer = current bitmap, 
-// Registers
-// This Pin:
-// R0 - Pin for Column 1 of 4
-// R1 - QUEUE ADDRESS (H)
-// R2 - (L)
-// R3 - Current Reading Bitmap (High)
-// R4 - Current Reading Bitmap (Low)
-// R5 - Previous Reading Bitmap (H)
-// R6 - Previous Reading Bitmap (L)
-// R7 - Current State 
-// This pin + 1:
-// R0 - Currently pressed button 0-15, or 255 for none
-#define NO_KEY_PRESSED 0xFF
-// R1 - Previously pressed button 
-// R2 - Scan Delay States
-// R3 - Mode 
-// R4 - Current Delay
+#include "serialWombat.h"
+#include <stdint.h>
 
-#define KEYPAD_STATE_SETUP_ALL_LOW 0
-#define KEYPAD_STATE_WAIT_FOR_PRESS 1
-#define KEYPAD_STATE_SETUP_ROW_1 2
-#define KEYPAD_STATE_SETUP_ROW_1_WAIT 3
-#define KEYPAD_STATE_READ_ROW_1  4
-#define KEYPAD_STATE_SETUP_ROW_2 5
-#define KEYPAD_STATE_SETUP_ROW_2_WAIT 6
-#define KEYPAD_STATE_READ_ROW_2  7
-#define KEYPAD_STATE_SETUP_ROW_3 8
-#define KEYPAD_STATE_SETUP_ROW_3_WAIT 9
-#define KEYPAD_STATE_READ_ROW_3  10
-#define KEYPAD_STATE_SETUP_ROW_4 11
-#define KEYPAD_STATE_SETUP_ROW_4_WAIT 12
-#define KEYPAD_STATE_READ_ROW_4  13
-#define KEYPAD_STATE_DELAY       14
-#define KEYPAD_STATE_IDLE        15
+typedef enum {
+	KEYPAD_STATE_SETUP_ROW_0 = 0,
+	KEYPAD_STATE_WAIT_ROW_0,
+	KEYPAD_STATE_READ_ROW_0,
+	KEYPAD_STATE_SETUP_ROW_1 ,
+	KEYPAD_STATE_WAIT_ROW_1,
+	KEYPAD_STATE_READ_ROW_1,
+	KEYPAD_STATE_SETUP_ROW_2 ,
+	KEYPAD_STATE_WAIT_ROW_2,
+	KEYPAD_STATE_READ_ROW_2,
+	KEYPAD_STATE_SETUP_ROW_3 ,
+	KEYPAD_STATE_WAIT_ROW_3,
+	KEYPAD_STATE_READ_ROW_3,
+	KEYPAD_STATE_IDLE,
+}KEYPAD_STATE_t;
 
 #define KEYPAD_BUFFER_MODE_BINARY 0
-#define KEYPAD_BUFFER_MODE_LAST_BUTTON 1
-#define KEYPAD_BUFFER_MODE_CURRENT_BUTTON 2
+#define KEYPAD_BUFFER_CURRENT_BUTTON 1
+#define KEYPAD_BUFFER_MODE_LAST_BUTTON 2
+#define KEYPAD_BUFFER_MODE_LAST_ASCII 3
 
-#define KEYPAD_QUEUE_MODE_NONE 0
-#define KEYPAD_QUEUE_MODE_BUTTON_DOWN 1
-#define KEYPAD_QUEUE_MODE_BUTTON_ASCII 2
-#define KEYPAD_QUEUE_MODE_BINARY_CHANGE 3
+#define KEYPAD_QUEUE_MODE_BUTTON_INDEX 0
+#define KEYPAD_QUEUE_MODE_BUTTON_ASCII 1
+
+static const uint8_t KeypadAscii[] =
+{
+  '1',
+  '2',
+  '3',
+  'A',
+  '4',
+  '5',
+  '6',
+  'B',
+  '7',
+  '8',
+  '9',
+  'C',
+  '*',
+  '0',
+  '#',
+  'D',
+};
 
 typedef struct matrixKeypad_n{
-	uint8_t current_button;
-	uint8_t previous_button;
-	uint8_t queue_mode:3;
-	uint8_t buffer_mode:3;
-	uint8_t testing_button;
-	uint8_t rows:4;
-	uint8_t columns:4;
-	uint8_t current_row;
-	uint8_t column_pin;
-	uint16_t queue;
-	uint16_t current_reading;
-	uint16_t previous_reading;
-	uint8_t state;
+	uint16_t currentReading;
+	uint16_t previousReading;
+    uint16_t queueMask;
+	uint8_t colPins[4];
+	uint8_t rowPins[4];
+    KEYPAD_STATE_t state;
+    uint8_t timingPinMemory;
+    uint8_t queuePinMemory;
+    uint8_t countPinMemory;
+	uint8_t queueMode;
+	uint8_t bufferMode;
+	uint8_t delayPeriod;
+	uint8_t delayRemaining;
+
 } matrixKeypad_t;
+
+matrixKeypad_t* debugMatrixKeypad;
+
+#define SIZE_OF_KEYPAD_QUEUE 32
+static uint8_t matrixKeypadQueueAvailable()
+{
+    matrixKeypad_t* matrixKeypad = (matrixKeypad_t*) CurrentPinRegister;
+    if (matrixKeypad->queuePinMemory == 0xFF)
+    {
+        return 0;
+    }
+    uint8_t* queueArray = (uint8_t*) &PinUpdateRegisters[matrixKeypad->queuePinMemory];
+    
+     uint8_t i;
+        for (i = 0; i < SIZE_OF_KEYPAD_QUEUE - 1 ; ++i)
+        {
+            if (queueArray[i] == 0xFF)
+            {
+                break;
+            }
+        }
+     return (i);
+}
+
+static void matrixKeypadQueueAdd(uint8_t valueToAdd)
+{
+    matrixKeypad_t* matrixKeypad = (matrixKeypad_t*) CurrentPinRegister;
+    if (matrixKeypad->queuePinMemory == 0xFF)
+    {
+        return;
+    }
+    uint8_t* queueArray = (uint8_t*) &PinUpdateRegisters[matrixKeypad->queuePinMemory];
+    
+     uint8_t i;
+        for (i = 0; i < SIZE_OF_KEYPAD_QUEUE - 1 ; ++i)
+        {
+            if (queueArray[i] == 0xFF)
+            {
+                queueArray[i] = valueToAdd;
+                break;
+            }
+        }
+}
+
+static int16_t matrixKeypadQueueRead()
+{
+    matrixKeypad_t* matrixKeypad = (matrixKeypad_t*) CurrentPinRegister;
+    if (matrixKeypad->queuePinMemory == 0xFF)
+    {
+        return -1;
+    }
+    uint8_t* queueArray = (uint8_t*) &PinUpdateRegisters[matrixKeypad->queuePinMemory];
+    
+    if (queueArray[0] == 0xFF)
+    {
+        return (-1);
+    }
+   
+        uint8_t returnVal = queueArray[0];
+        uint8_t i;
+        for (i = 0; i < SIZE_OF_KEYPAD_QUEUE - 1 ; ++i)
+        {
+            queueArray[i] = queueArray[i + 1];
+        }
+        queueArray[SIZE_OF_KEYPAD_QUEUE - 1] = 0xFF;
+        return (returnVal);
+    
+}
+
+static int16_t matrixKeypadQueuePeek()
+{
+     matrixKeypad_t* matrixKeypad = (matrixKeypad_t*) CurrentPinRegister;
+    if (matrixKeypad->queuePinMemory == 0xFF)
+    {
+        return -1 ;
+    }
+    uint8_t* queueArray = (uint8_t*) &PinUpdateRegisters[matrixKeypad->queuePinMemory];
+    
+    if (queueArray[0] == 0xFF)
+    {
+        return (-1);
+    }
+    else
+    {
+        return (queueArray[0]);
+    }
+}
+
+static void matrixKeypadQueueInit()
+{
+    matrixKeypad_t* matrixKeypad = (matrixKeypad_t*) CurrentPinRegister;
+    if (matrixKeypad->queuePinMemory == 0xFF)
+    {
+        return;
+    }
+    uint8_t* queueArray = (uint8_t*) &PinUpdateRegisters[matrixKeypad->queuePinMemory];
+    
+    uint8_t i;
+    for (i = 0; i < SIZE_OF_KEYPAD_QUEUE; ++i)
+    {
+        queueArray[i] = 0;
+    }
+    
+}
 
 void initMatrixKeypad (void)
 {
-	      local_j = map_pin(map_next_physical_pin[Rxbuffer[1]]);
-	      get_tp2(local_j);
-      	      if (Rxbuffer[0] == CONFIGURE_CHANNEL_MODE_0)
-	      {
-		      
-		      matrixKeypad->.column_pin = Rxbuffer[3];	
-		       matrixKeypad->.queue = RXBUFFER16(4);	
-		       matrixKeypad->.queue_mode = Rxbuffer[6]; 
-		       matrixKeypad->.buffer_mode = Rxbuffer[7]; 
-		       matrixKeypad->.current_reading = 0;
-		       matrixKeypad->.previous_reading= 0;
-		       matrixKeypad->.state=  KEYPAD_STATE_IDLE;
-		       matrixKeypad->.current_button = NO_KEY_PRESSED;
-		       matrixKeypad->.previous_button = NO_KEY_PRESSED;
-		 }
-		 else if (Rxbuffer[0] == CONFIGURE_CHANNEL_MODE_1)
-		 {
-		      matrixKeypad->.rows = Rxbuffer[3];
-		      matrixKeypad->.columns = Rxbuffer[4];
-		      local_j = Rxbuffer[1];
-		      for (local_i = 0; local_i <  Rxbuffer[3]; ++local_i)
-		      {
-			local_k = map_pin(local_j);
-			set_pin(local_k,INPUT);
-			set_mode(local_k, PIN_MODE_CONTROLLED);
-			local_j = map_next_physical_pin[local_j];
-		      }
-		      local_j = matrixKeypad->.column_pin;
-		      for (local_i = 0; local_i < Rxbuffer[4]; ++local_i)
-		      {
-			local_k = map_pin(local_j);
-			set_pin(local_k,INPUT);
-			set_mode(local_k, PIN_MODE_CONTROLLED);
-			local_j = map_next_physical_pin[local_j];
-		      }
-		      matrixKeypad->.state = KEYPAD_STATE_SETUP_ALL_LOW;
-                 }
-		 local_j = map_pin(map_next_physical_pin[Rxbuffer[1]]);
-                 put_tp2(local_j);
+	matrixKeypad_t* matrixKeypad = (matrixKeypad_t*) CurrentPinRegister;
+	debugMatrixKeypad = (matrixKeypad_t*) CurrentPinRegister;
+	switch (Rxbuffer[0])
+	{
+		case CONFIGURE_CHANNEL_MODE_0:
+			{
+				CurrentPinRegister->generic.mode = PIN_MODE_MATRIX_KEYPAD;
+				matrixKeypad->timingPinMemory = 0xFF;
+				matrixKeypad->queuePinMemory = 0xFF;
+                matrixKeypad->queueMask = 0xFFFF;
+				matrixKeypad->state=  KEYPAD_STATE_IDLE;
+				matrixKeypad->rowPins[0] = Rxbuffer[3];
+				matrixKeypad->rowPins[1]  = Rxbuffer[4];
+				matrixKeypad->rowPins[2]  = Rxbuffer[5];
+				matrixKeypad->rowPins[3]  = Rxbuffer[6];
+				matrixKeypad->colPins[0] = Rxbuffer[7];
+
+				uint8_t i;
+				for (i = 0; i < 4; ++i)
+				{
+					if (matrixKeypad->rowPins[i] < NUMBER_OF_PHYSICAL_PINS)
+					{
+						if (matrixKeypad->rowPins[i] != CurrentPin)
+						{
+							PinUpdateRegisters[matrixKeypad->rowPins[i]].generic.mode = PIN_MODE_CONTROLLED;
+						}     
+						PinInput(matrixKeypad->rowPins[i]);
+					}
+				}
+				if (matrixKeypad->colPins[0] != CurrentPin)
+				{
+					PinUpdateRegisters[matrixKeypad->colPins[0]].generic.mode = PIN_MODE_CONTROLLED;
+				}
+
+				SetPinPullUp(matrixKeypad->colPins[0],1);
+
+
+			}
+			break;
+			/* Not applicable.  Reserved to be consistent with other stream interfaces
+			   case CONFIGURE_CHANNEL_MODE_1:  //Transmit 
+			   {
+			   uint8_t i;
+			   if (CurrentPinRegister->generic.mode == PIN_MODE_UART0_TXRX)
+			   {    
+			   for (i = 0; i < Rxbuffer[3]; ++i)
+			   {
+			   UART1_Write(Rxbuffer[4 + i]);
+			   }
+			   Txbuffer[3] = UART1_TransmitBufferSizeGet() ;
+			   Txbuffer[4] = UART1_CONFIG_RX_BYTEQ_LENGTH -  UART1_ReceiveBufferSizeGet();
+			   }
+			   else if (CurrentPinRegister->generic.mode == PIN_MODE_UART1_TXRX)
+			   {
+			   for (i = 0; i < Rxbuffer[3]; ++i)
+			   {
+			   UART2_Write(Rxbuffer[4 + i]);
+			   }
+			   Txbuffer[3] = UART2_TransmitBufferSizeGet() ;
+			   Txbuffer[4] = UART2_CONFIG_RX_BYTEQ_LENGTH -  UART2_ReceiveBufferSizeGet();
+
+			   }
+			   }
+			   break;
+			   */
+		case CONFIGURE_CHANNEL_MODE_2:
+			{
+				Txbuffer[3] = 0;
+				Rxbuffer[3] += 4;
+				uint8_t i;
+
+				for (i = 4; i < Rxbuffer[3] && (matrixKeypadQueueAvailable()) != 0 ; ++i)
+				{
+					Txbuffer[i] = matrixKeypadQueueRead();
+					++Txbuffer[3];
+				}
+
+			}
+			break;
+
+		case CONFIGURE_CHANNEL_MODE_3: // Peek RX
+			{
+				if (CurrentPinRegister->generic.mode == PIN_MODE_UART0_TXRX)
+				{    
+					Txbuffer[3] = 0 ; // No space to transmit...
+					Txbuffer[4] = matrixKeypadQueueAvailable();
+					Txbuffer[5] = (uint8_t)matrixKeypadQueuePeek();
+				}
+			}
+			break; 
+
+			// CONFIGURE_CHANNEL_MODE_4 is used to close ports.  N/A
+
+		case CONFIGURE_CHANNEL_MODE_5:
+			{
+
+				if (CurrentPinRegister->generic.mode == PIN_MODE_MATRIX_KEYPAD)
+				{
+					matrixKeypad->colPins[1] = Rxbuffer[3];
+					matrixKeypad->colPins[2] = Rxbuffer[4];
+					matrixKeypad->colPins[3] = Rxbuffer[5];
+					matrixKeypad->bufferMode = Rxbuffer[6];
+					matrixKeypad->queueMode = Rxbuffer[7];
+
+					uint8_t i;
+					for (i= 1; i < 4; ++i)
+					{
+						if (matrixKeypad->colPins[i] < NUMBER_OF_PHYSICAL_PINS)
+						{
+							if (matrixKeypad->colPins[i] != CurrentPin)
+							{
+								PinUpdateRegisters[matrixKeypad->colPins[i]].generic.mode = PIN_MODE_CONTROLLED;
+							}     
+							PinInput(matrixKeypad->colPins[i]);
+							SetPinPullUp(matrixKeypad->colPins[i],1);
+						}
+					}
+					matrixKeypad->state = KEYPAD_STATE_SETUP_ROW_0;
+
+					for (i = 0; i < 4; ++ i)
+					{
+						if (matrixKeypad->colPins[i] != 0xFF &&
+								matrixKeypad->colPins[i] != CurrentPin)
+						{
+							matrixKeypad->queuePinMemory = matrixKeypad->colPins[i];
+							break;
+						}
+					}
+					if ( matrixKeypad->queuePinMemory == 0xFF)
+					{
+						for (i = 0; i < 4; ++ i)
+						{
+							if (matrixKeypad->rowPins[i] != 0xFF &&
+									matrixKeypad->rowPins[i] != CurrentPin)
+							{
+								matrixKeypad->queuePinMemory = matrixKeypad->rowPins[i];
+								break;
+							}
+						}
+					}
+
+					for (i = 0; i < 4; ++ i)
+					{
+						if (matrixKeypad->colPins[i] != 0xFF &&
+								matrixKeypad->colPins[i] != CurrentPin &&
+								matrixKeypad->colPins[i] != matrixKeypad->queuePinMemory)
+						{
+							matrixKeypad->timingPinMemory = matrixKeypad->colPins[i];
+							break;
+						}
+					}
+					if ( matrixKeypad->timingPinMemory == 0xFF)
+					{
+						for (i = 0; i < 4; ++ i)
+						{
+							if (matrixKeypad->rowPins[i] != 0xFF &&
+									matrixKeypad->rowPins[i] != CurrentPin&&
+									matrixKeypad->rowPins[i] != matrixKeypad->queuePinMemory)
+							{
+								matrixKeypad->timingPinMemory = matrixKeypad->rowPins[i];
+								break;
+							}
+						}
+					}
+
+					for (i = 0; i < 4; ++ i)
+					{
+						if (matrixKeypad->colPins[i] != 0xFF &&
+								matrixKeypad->colPins[i] != CurrentPin &&
+								matrixKeypad->colPins[i] != matrixKeypad->queuePinMemory &&
+								matrixKeypad->colPins[i] != matrixKeypad->timingPinMemory)
+						{
+							matrixKeypad->countPinMemory = matrixKeypad->colPins[i];
+							break;
+						}
+					}
+					if ( matrixKeypad->timingPinMemory == 0xFF)
+					{
+						for (i = 0; i < 4; ++ i)
+						{
+							if (matrixKeypad->rowPins[i] != 0xFF &&
+									matrixKeypad->rowPins[i] != CurrentPin&&
+									matrixKeypad->rowPins[i] != matrixKeypad->queuePinMemory &&
+									matrixKeypad->colPins[i] != matrixKeypad->timingPinMemory)
+							{
+								matrixKeypad->countPinMemory = matrixKeypad->rowPins[i];
+								break;
+							}
+						}
+					}
+
+					matrixKeypadQueueInit();
+
+					if (matrixKeypad->timingPinMemory != 0xFF)
+					{
+						uint16_t* changeTimeArray = (uint16_t*)&PinUpdateRegisters[matrixKeypad->timingPinMemory];
+						for (i = 0; i <16; ++i)   
+						{
+							changeTimeArray[i] = 0;
+						}
+					}
+
+					if (matrixKeypad->countPinMemory != 0xFF)
+					{
+						uint16_t* changeCountArray = (uint16_t*)&PinUpdateRegisters[matrixKeypad->countPinMemory];
+						for (i = 0; i <16; ++i)   
+						{
+							changeCountArray[i] = 0;
+						}
+					}
+				}
+				else
+				{
+					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+				}
+			}
+			break;
+		case CONFIGURE_CHANNEL_MODE_6:
+			{
+				uint8_t keyIndex = Rxbuffer[4];
+				if (keyIndex >= 16)
+				{
+					error(SW_ERROR_INVALID_PARAMETER_4);
+					return;
+				}
+				if (matrixKeypad->timingPinMemory < NUMBER_OF_PHYSICAL_PINS && matrixKeypad->countPinMemory < NUMBER_OF_PHYSICAL_PINS)
+				{
+					uint16_t* changeTimeArray = (uint16_t*)&PinUpdateRegisters[matrixKeypad->timingPinMemory];
+					uint16_t* changeCountArray = (uint16_t*)&PinUpdateRegisters[matrixKeypad->countPinMemory];
+					Txbuffer[3] =  (matrixKeypad->previousReading >> keyIndex) & 0x01;
+					TXBUFFER16(4, changeCountArray[keyIndex]);
+					TXBUFFER16(6, changeTimeArray[keyIndex]);
+					if (Rxbuffer[3] != 0)
+					{
+						changeCountArray[keyIndex] = 0;
+					}
+				}
+				else
+				{
+					error(SW_ERROR_DATA_NOT_AVAILABLE);
+				}
+			}
+			break;
+            
+        case CONFIGURE_CHANNEL_MODE_7:
+        {
+            if (CurrentPinRegister->generic.mode == PIN_MODE_MATRIX_KEYPAD)
+            {
+                matrixKeypad->queueMask = RXBUFFER16(3);
+            }
+            	else
+				{
+					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+				}
+        }
+        break;
+	}
 }
 
 
-void updateMatrixkeypad(void)
+
+void updateMatrixKeypad(void)
 {
-    uint8_t  temp8_1;
-    uint16_t temp1_16;
+	matrixKeypad_t* matrixKeypad = (matrixKeypad_t*) CurrentPinRegister;
+	debugMatrixKeypad = (matrixKeypad_t*) CurrentPinRegister;
 
+	if (matrixKeypad->state == KEYPAD_STATE_IDLE)
+	{
+		return;
+	}
 
+	switch (matrixKeypad->state)
+	{
 
-              if (matrixKeypad->.state == KEYPAD_STATE_IDLE)
-	      {
-		      return;
-	      }
-              local_i = unmap_pin(virtual_pin);
-      	      local_j = map_pin(map_next_physical_pin[local_i]);
-              get_tp2(local_j);
-	      
-	      switch (matrixKeypad->.state)
-	      {
-
-		      case KEYPAD_STATE_SETUP_ROW_1_WAIT:
-			      matrixKeypad->.state = KEYPAD_STATE_READ_ROW_1;
-		      break;
-
-		      case KEYPAD_STATE_SETUP_ALL_LOW:
-		      default:
-		      {
-			   local_j = unmap_pin(virtual_pin);
-			   for (local_i = 0; local_i < matrixKeypad->.rows; ++local_i)
-			   {
-				     set_pin(map_pin(local_j ), LOW);
-				     local_j = map_next_physical_pin[local_j];
-			   }      
-		           matrixKeypad->.state = KEYPAD_STATE_WAIT_FOR_PRESS;
-		      }
-		      break;
-
-		      case KEYPAD_STATE_WAIT_FOR_PRESS:
-		      {
-			   matrixKeypad->.testing_button  = 0;
-			   matrixKeypad->.current_reading = 0;   //Current bitmap = 0
-			   matrixKeypad->.current_button = NO_KEY_PRESSED; //No key pressed
-			   matrixKeypad->.current_row = 0;
-			      local_j = matrixKeypad->.column_pin;
-			      for (local_i = 0; local_i < matrixKeypad->.columns; ++ local_i)
-			      {
-				      if  (! read_pin( map_pin(local_j) )) 
-				      {
-					      matrixKeypad->.state = KEYPAD_STATE_SETUP_ROW_1;
-				      }
-
-				      local_j = map_next_physical_pin[local_j];
-			      }
-			      if (matrixKeypad->.state != KEYPAD_STATE_SETUP_ROW_1) 
-			      {
-				   matrixKeypad->.state = KEYPAD_STATE_DELAY;
-			      }
-		     }
-		      break;
-
-
+		case KEYPAD_STATE_SETUP_ROW_0:
 		case KEYPAD_STATE_SETUP_ROW_1:
 		case KEYPAD_STATE_SETUP_ROW_2:
 		case KEYPAD_STATE_SETUP_ROW_3:
-		case KEYPAD_STATE_SETUP_ROW_4:
-		   local_j = unmap_pin(virtual_pin);
-		   for (local_i = 0; local_i < matrixKeypad->.rows; ++local_i)
-		   {
-			  if (local_i == matrixKeypad->.current_row)
-	                  {
-			     set_pin(map_pin(local_j ), LOW);
-			  }
-			  else
-	                  {
-			     set_pin(map_pin(local_j ), INPUT);
-			  }
-			  local_j = map_next_physical_pin[local_j];
-		   }      
-		   ++matrixKeypad->.current_row;
-		   matrixKeypad->.state  = KEYPAD_STATE_SETUP_ROW_1_WAIT;
-		    
-		break;
+			{
+				uint8_t i;
+				for (i = 0; i < 4; ++i)
+				{
+					PinInput(matrixKeypad->rowPins[i]);
+				}			
 
+				PinLow(matrixKeypad->rowPins[(matrixKeypad->state / 3)]);
+				matrixKeypad->delayRemaining = matrixKeypad->delayPeriod;
+				++matrixKeypad->state;
+			}
+			break;
+
+		case KEYPAD_STATE_WAIT_ROW_0:
+		case KEYPAD_STATE_WAIT_ROW_1:
+		case KEYPAD_STATE_WAIT_ROW_2:
+		case KEYPAD_STATE_WAIT_ROW_3:
+			{
+				if (matrixKeypad->delayRemaining)
+				{
+					-- matrixKeypad->delayRemaining;
+				}
+				else
+				{
+					++matrixKeypad->state;
+				}
+			}
+			break;
+
+		case KEYPAD_STATE_READ_ROW_0:
 		case KEYPAD_STATE_READ_ROW_1:
 		case KEYPAD_STATE_READ_ROW_2:
 		case KEYPAD_STATE_READ_ROW_3:
-		case KEYPAD_STATE_READ_ROW_4:
+			{
+				if (matrixKeypad->state == KEYPAD_STATE_READ_ROW_0)
+				{
+					matrixKeypad->currentReading = 0;
+				}
 
-		   local_j = matrixKeypad->.column_pin;
-		   for (local_k = 0; local_k < matrixKeypad->.columns; ++ local_k)
-		   {
-		      local_i = map_pin(local_j);
-		      if (!read_pin(local_i))
-		      {
-                           matrixKeypad->.current_button = matrixKeypad->.testing_button;
-			   if (matrixKeypad->.testing_button < 16)
-			   {
-				   matrixKeypad->.current_reading |= uint16_bitfield[matrixKeypad->.testing_button];
-			   }
-		      }	
-		      local_j = map_next_physical_pin[local_j];
-		      ++matrixKeypad->.testing_button; 
-		   }
+				uint16_t result = 0;
+				uint8_t i; 
+				for (i = 0; i < 4; ++i)
+				{
+					uint8_t pin = matrixKeypad->colPins[i];
+					if (pin == 255)
+					{  
+						continue;
+					}
+					else if (ReadPin(pin) == 0)
+					{
+						result |= (0x8000 >> (3 - i));
+					}
+				}
+				result >>= (3 - (matrixKeypad->state / 3)) * 4;
 
-		   if (matrixKeypad->.current_row == matrixKeypad->.rows)
-		   {
-			  matrixKeypad->.state = KEYPAD_STATE_DELAY;
-		   }
-		   else 
-		   {
-			  matrixKeypad->.state = KEYPAD_STATE_SETUP_ROW_1;
-		   }
-		   
-		break;
+				matrixKeypad->currentReading |= result;
+
+				if (matrixKeypad->state == KEYPAD_STATE_READ_ROW_3)
+				{
+                    if (matrixKeypad->timingPinMemory < NUMBER_OF_PHYSICAL_PINS && matrixKeypad->countPinMemory < NUMBER_OF_PHYSICAL_PINS)
+                    {
+                        uint16_t* changeTimeArray = (uint16_t*)&PinUpdateRegisters[matrixKeypad->timingPinMemory];
+			uint16_t* changeCountArray = (uint16_t*)&PinUpdateRegisters[matrixKeypad->countPinMemory];
+                                uint8_t keyIndex;
+                                for (keyIndex = 0; keyIndex < 16 ; ++ keyIndex)
+                                {
+                              
+                                    
+                                    if (((0x0001 << keyIndex)& matrixKeypad->currentReading) !=
+                                            ((0x0001 << keyIndex)& matrixKeypad->previousReading))
+                                    {
+                                        changeTimeArray[keyIndex] = 0;
+				        ++ changeCountArray[keyIndex];	
+                                    }
+                                    else
+                                    {
+                                        if (changeTimeArray[keyIndex] < 65535)
+                                        {
+                                            ++ changeTimeArray[keyIndex];
+                                        }
+                                    }
+                                }
+                    }
+                    if (matrixKeypad->currentReading != matrixKeypad->previousReading)
+                    {
+                            uint8_t keyIndex;
+                                for (keyIndex = 0; keyIndex < 16 ; ++ keyIndex)
+                                {
+                                    
+                                    if (((0x0001 << keyIndex)& matrixKeypad->currentReading) != 0)
+                                    {
+
+                                        break;
+                                    }
+                                }
+                        switch (matrixKeypad->bufferMode)
+                        {
+                            case KEYPAD_BUFFER_MODE_BINARY:
+                            {
+                                CurrentPinRegister->generic.buffer = matrixKeypad->currentReading;
+                            }
+                            break;
+                            
+                           
+                            case KEYPAD_BUFFER_MODE_LAST_ASCII:
+                            {
+                                if (keyIndex < 16 )
+                                {
+                                    CurrentPinRegister->generic.buffer = KeypadAscii[keyIndex];
+                                }
+                            }
+                            break;
+                            case KEYPAD_BUFFER_CURRENT_BUTTON:
+                            {
+                                 CurrentPinRegister->generic.buffer = keyIndex;
+                             }
+                            break;
+                            case KEYPAD_BUFFER_MODE_LAST_BUTTON:
+                            {
+                              
+                                 if (keyIndex < 16)
+                                {
+                                CurrentPinRegister->generic.buffer = keyIndex;
+                                }
+                            }
+                            break;
+                        }
+                        
+                        switch (matrixKeypad->queueMode)
+                        {
+                            case KEYPAD_QUEUE_MODE_BUTTON_INDEX:
+                            {
+                                if (keyIndex < 16)
+                                {
+                                    if ((((uint16_t)1)<<keyIndex) & matrixKeypad->queueMask)
+                                    {
+                                    matrixKeypadQueueAdd(keyIndex);
+                                    }
+                                }
+                            }
+                            break;
+                            case KEYPAD_QUEUE_MODE_BUTTON_ASCII:
+                            {
+                                if (keyIndex < 16)
+                                {
+                                     if ((((uint16_t)1)<<keyIndex) & matrixKeypad->queueMask)
+                                    {
+                                    matrixKeypadQueueAdd(KeypadAscii[keyIndex]);
+                                     }
+                                }
+                            }
+                            break;
+                         
+                        }
+                        matrixKeypad->previousReading = matrixKeypad->currentReading;
+                       
+                    }
+                    matrixKeypad->state = KEYPAD_STATE_SETUP_ROW_0;
+				}
+                else
+                {
+                    ++matrixKeypad->state;
+                }
 
 
+			}
+			break;
 
 
-
-
-
-		case KEYPAD_STATE_DELAY:
-                   queue_address = matrixKeypad->.queue;
-		   
-                   if (matrixKeypad->.buffer_mode == KEYPAD_BUFFER_MODE_CURRENT_BUTTON)
-                   {
-                        tp.generic.buffer = matrixKeypad->.current_button;
-                   }
-		   else if (matrixKeypad->.buffer_mode == KEYPAD_BUFFER_MODE_LAST_BUTTON && matrixKeypad->.current_button != NO_KEY_PRESSED)
-                   {
-				tp.generic.buffer = matrixKeypad->.current_button;
-                   }
-                   else if (matrixKeypad->.buffer_mode == KEYPAD_BUFFER_MODE_BINARY)
-                   {
-                        tp.generic.buffer = matrixKeypad->.current_reading;
-                   }
-
-                   if (matrixKeypad->.queue_mode == KEYPAD_QUEUE_MODE_BUTTON_DOWN)
-                   {
-
-                       if (matrixKeypad->.current_button != NO_KEY_PRESSED  &&
-                           matrixKeypad->.previous_button == NO_KEY_PRESSED)
-                       {
-			   push_byte(matrixKeypad->.current_button);
-                       }
-                   }
-                   if (matrixKeypad->.queue_mode == 2)
-                   {
-                       if (matrixKeypad->.current_button != NO_KEY_PRESSED  &&
-                           matrixKeypad->.previous_button == NO_KEY_PRESSED)
-                       {
-                           push_byte(val_to_ascii(matrixKeypad->.current_button));
-                       }
-                   }
-                   else if (matrixKeypad->.queue_mode == 3)
-                   {
-                       if ( matrixKeypad->.current_reading != matrixKeypad->.previous_reading)
-                       {
-                           push_word(matrixKeypad->.current_reading);
-                       }
-                 }
-       
-		 if (matrixKeypad->.current_reading != matrixKeypad->.previous_reading)
-		 {
-		    matrixKeypad->.previous_reading = matrixKeypad->.current_reading;
-		 }
-		 if (matrixKeypad->.current_button != matrixKeypad->.previous_button)
-		 {
-		    matrixKeypad->.previous_button = matrixKeypad->.current_button;
-		 }
-		 matrixKeypad->.state = KEYPAD_STATE_SETUP_ALL_LOW;
-		break;
 		case KEYPAD_STATE_IDLE:
-		break;
-              } // end keypad switch
-      	      local_i = map_pin(map_next_physical_pin[unmap_pin(virtual_pin) ]);
-              put_tp2(local_i);
+			break;
+	} 
 }
 
 

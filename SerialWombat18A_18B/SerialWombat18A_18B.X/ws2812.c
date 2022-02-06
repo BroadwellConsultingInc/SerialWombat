@@ -603,29 +603,9 @@ void initWS2812 (void)
 }
 
 //TODO update
-/// \brief update the TM1637 pin state machine
+/// \brief update the WS2812 pin state machine
 ///
-/// This state machine is used to update the TM1637 display.
-///
-/// It progresses through the following states after initialization:
-///
-/// Setup:  The segments to be displayed are rendered and put in digit order by 
-/// tm1637UpdateRender().
-/// The displayArray is then compared with lastDisplay to see if anything has changed
-/// since the display is last written.  If not, then the update gets skipped to save
-/// Serial Wombat chip CPU cycles.
-/// 
-/// If an update is required, then the MEMORY WRITE TM1637 command is sent followed by the
-/// Initial address.  A digit by digit comparison from position 0 to 5 is then performed
-/// to determine if one or more digits can be skipped due to being identical to the last write,
-/// and the TM1637 address is set accordingly.
-///
-/// Data bytes from the first changed location to the last are clocked out.
-///
-/// If the brightness has changed, then the brightness command is clocked out.
-///
-/// The system then stays in idle mode for a number of calls.  20 for decimal, hex,
-/// string, and raw modes, and a user-defined period for animation.
+
 void updateWS2812()
 {
 	debugWS2812 = (ws2812_t*) CurrentPinRegister;

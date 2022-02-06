@@ -167,19 +167,20 @@ void updateWatchdog()
 		if (CurrentPinRegister->generic.buffer == 0)
 		{
 			SetCurrentPin(watchdog->timeoutPinState);
+            /* TODO Add ability to set defaults to pins.
 			if (watchdog->setPinsToDefault)
 			{
 				// Disable any hardware driving the pins by making sure the Pin select is set to GPIO.
 #ifdef UARTWOMBAT
 				WP0_PPS = 0;
 #endif
-                /*TODO
+                
 				WP1_PPS = 0;
 				WP2_PPS = 0;
 				WP3_PPS = 0;
 				WP_ANSEL = 0;
 				WP_WPU = 0;
-                 */
+                 
 				uint8_t i;
 				for (i = 0; i < NUMBER_OF_TOTAL_PINS; ++i)
 				{
@@ -188,6 +189,7 @@ void updateWatchdog()
 					watchdog->defaultPinValues >>= 2;
 				}
 			}
+            */
 		}
 	}
 	else

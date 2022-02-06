@@ -22,6 +22,11 @@ pinRegister_t* CurrentPinRegister;
 #endif
 
 
+void pinRegisterSizeCheck()
+{
+    BUILD_BUG_ON( sizeof(pinRegister_t) != 64 );
+}
+
 void SetBuffer(uint8_t pin, uint16_t value)
 {
    if (pin < NUMBER_OF_TOTAL_PINS)
@@ -68,7 +73,8 @@ uint32_t result = GetSourceVoltageADC();
     }
     else if (pin == SW_DATA_SOURCE_TEMPERATURE)
     {
-        return ( GetTemperature_degC100ths());    
+        uint16_t result = (uint16_t) GetTemperature_degC100ths(true);
+        return (result);    
     }
      else if (pin == 71)
     {
@@ -107,6 +113,30 @@ uint32_t result = GetSourceVoltageADC();
          result >>= 16;
          return ((uint16_t)result);
          
+     }
+    
+     else if (pin == SW_DATA_SOURCE_RESET_REGISTER)
+     {
+         uint16_t rcon = RCON;
+         RCON = 0;
+         return(rcon);
+     }
+    
+     else if (pin ==  SW_DATA_SOURCE_2HZ_SQUARE )
+     {  extern uint32_t FramesRun;
+         return ( (FramesRun & 0x100)? 0xFFFF:0);
+     }
+     else if (pin ==  SW_DATA_SOURCE_1HZ_SQUARE )
+     {  extern uint32_t FramesRun;
+         return ( (FramesRun & 0x200)? 0xFFFF:0);
+     }
+     else if (pin ==  SW_DATA_SOURCE_2SEC_SQUARE )
+     {  extern uint32_t FramesRun;
+         return ( (FramesRun & 0x400)? 0xFFFF:0);
+     }
+     else if (pin ==  SW_DATA_SOURCE_8SEC_SQUARE )
+     {  extern uint32_t FramesRun;
+         return ( (FramesRun & 0x1000)? 0xFFFF:0);
      }
     else if (pin == 85) //0x55
     {

@@ -29,6 +29,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #define BYTES_PER_PIN_REGISTER 20
 #else
 #define BYTES_PER_PIN_REGISTER 64
+#define BYTES_AVAIALABLE_OUTPUT_PULSE 50
+#define BYTES_AVAILABLE_INPUT_DMA (BYTES_PER_PIN_REGISTER - 5)
 #endif
 
 typedef union _pin_register_t{ 
@@ -51,7 +53,7 @@ typedef union _pin_register_t{
 #ifndef _PIC14EX
 	struct pulse_output_n
 	{
-		uint8_t bytes[50];
+		uint8_t bytes[BYTES_AVAIALABLE_OUTPUT_PULSE];
         uint8_t resource;
 		uint8_t lastDMA;
 		uint16_t highRemaining;
@@ -64,7 +66,7 @@ typedef union _pin_register_t{
     
     struct pulse_input_n
     {
-        uint8_t bytes[49];
+        uint8_t bytes[BYTES_AVAILABLE_INPUT_DMA];
         uint8_t lastDMA;
         uint16_t buffer;
 		uint16_t mode;
@@ -72,6 +74,13 @@ typedef union _pin_register_t{
     
 #endif
 } pinRegister_t;
+
+
+/// \brief Awesome way to check structure sizes at build time.
+///
+/// See https://scaryreasoner.wordpress.com/2009/02/28/checking-sizeof-at-compile-time/
+#define BUILD_BUG_ON(condition) ((void)sizeof(char[1 - 2*!!(condition)]))
+
 
 extern pinRegister_t PinUpdateRegisters[NUMBER_OF_TOTAL_PINS];
 

@@ -161,6 +161,7 @@ typedef enum {
 	SW_DATA_SOURCE_SYSTEM_UTILIZATION = 74 , ///< A number between 0 and 65535 that scales to the average length of pin processing frames between 0 and 1000mS
             SW_DATA_SOURCE_VCC_mVOLTS = 75, ///<The system source voltage in mV
             SW_DATA_SOURCE_VBG_COUNTS_VS_VREF = 76, ///< A/D conversion of VBG against VRef .  Used for mfg calibration
+            SW_DATA_SOURCE_RESET_REGISTER = 77, ///< Hardware dependent reset reason register contents
             SW_DATA_SOURCE_PIN_0_MV = 100,
             SW_DATA_SOURCE_PIN_1_MV = 101,
             SW_DATA_SOURCE_PIN_2_MV = 102,
@@ -181,11 +182,27 @@ typedef enum {
             SW_DATA_SOURCE_PIN_17_MV = 117,
             SW_DATA_SOURCE_PIN_18_MV = 118,
             SW_DATA_SOURCE_PIN_19_MV = 119,
+            
+            SW_DATA_SOURCE_2HZ_SQUARE = 164,
+            SW_DATA_SOURCE_2HZ_SAW = 165,
+            SW_DATA_SOURCE_2HZ_SIN = 166,
+            SW_DATA_SOURCE_1HZ_SQUARE = 167,
+            SW_DATA_SOURCE_1HZ_SAW = 168,
+            SW_DATA_SOURCE_1HZ_SIN = 169,
+            SW_DATA_SOURCE_2SEC_SQUARE = 170,
+            SW_DATA_SOURCE_2SEC_SAW = 171,
+            SW_DATA_SOURCE_2SEC_SIN = 172,
+            SW_DATA_SOURCE_8SEC_SQUARE = 173,
+            SW_DATA_SOURCE_8SEC_SAW = 174,
+            SW_DATA_SOURCE_8SEC_SIN = 175,
+            SW_DATA_SOURCE_65SEC_SQUARE = 176,
+            SW_DATA_SOURCE_65SEC_SAW = 177,
+            SW_DATA_SOURCE_65SEC_SIN = 178,
 }SW_DATA_SOURCE_t;
  
 
 typedef enum {
-    SW_ERROR_UNNUMBERED_ERROR = 0,
+    SW_ERROR_UNNUMBERED_ERROR = 32767,
     SW_ERROR_PINS_MUST_BE_ON_SAME_PORT = 1, ///< Pins must be on the same microcontroller part (e.g. PORTA, PORTB, etc.).  See datasheet of micro for port assignments.
     SW_ERROR_ASCII_NUMBER_TOO_BIG_16 = 2, ///<A number bigger than 65535 was provided to convert to a 16 bit value
             SW_ERROR_UNKNOWN_PIN_MODE = 3, ///< A Pin mode was indicated that is not avaialble on this model or version of Serial Wombat chip
@@ -220,7 +237,17 @@ typedef enum {
             SW_ERROR_CMD_BYTE_5 = 32, ///< Byte 5 of the command was invalid
             SW_ERROR_CMD_BYTE_6 = 33, ///< Byte 6 of the command was invalid
             SW_ERROR_CMD_BYTE_7 = 34, ///< Byte 7 of the command was invalid
-            SW_ERROR_CMD_UNSUPPORTED_BAUD_RATE = 35, ///< invalid baud rate enumeration            
+            SW_ERROR_CMD_UNSUPPORTED_BAUD_RATE = 35, ///< invalid baud rate enumeration    
+            SW_ERROR_QUEUE_RESULT_INSUFFICIENT_USER_SPACE = 36,
+	SW_ERROR_QUEUE_RESULT_UNALIGNED_ADDRESS = 37,
+	SW_ERROR_QUEUE_RESULT_INVALID_QUEUE = 38,
+	SW_ERROR_QUEUE_RESULT_FULL = 39,
+	SW_ERROR_QUEUE_RESULT_EMPTY = 40,
+	SW_ERROR_DATA_NOT_AVAILABLE = 41,
+            SW_ERROR_TM1637_WRONG_MODE = 42, ///< The TM1637 pin is configured for the wrong TM1637 mode to process the command
+           SW_ERROR_RUB_INVALID_ADDRESS = 43, ///<An attempt to read user buffer address outside the user buffer was attempted.
+            SW_ERROR_UNKNOWN_OUTPUTSCALE_COMMAND = 44, // The command index for an output scaling command is not supported on this firmware
+            SW_ERROR_UNKNOWN_INPUT_PROCESS_COMMAND = 45, // The command index for an inputProcess command is not supported on this firmware
 }SW_ERROR_t;
 
 void error (SW_ERROR_t errorCode);

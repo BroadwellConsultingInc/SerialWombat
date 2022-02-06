@@ -33,118 +33,65 @@ typedef enum
     OUTPUT_TRANSFORM_MODE_NONE,
     OUTPUT_TRANSFORM_MODE_LINEAR,
     OUTPUT_TRANSFORM_MODE_2D_LOOKUP,
-    OUTPUT_TRANSFORM_MODE_PID_CONTROL_LOOKUP,
+    OUTPUT_TRANSFORM_MODE_PID_CONTROL,
     OUTPUT_TRANSFORM_MODE_HYSTERESIS,
 }OUTPUT_TRANSFORM_MODE_t;
 
 typedef enum
 {
-    OUTPUT_FILTER_MODE_NONE,
-    OUTPUT_FILTER_MODE_RATE,
-    OUTPUT_FILTER_MODE_FIRST_ORDER,         
+    OUTPUT_FILTER_MODE_NONE = 0,
+    OUTPUT_FILTER_MODE_CHANGE_LIMIT = 1,
+    OUTPUT_FILTER_MODE_FIRST_ORDER = 2,         
 }OUTPUT_FILTER_MODE_t;
 
 typedef struct outputScale_n
 {
     union{
-    uint8_t transformParams[12];
+        int16_t transform_i16[6];
+    uint16_t transform_u16[6];    
+    uint8_t transform_bytes[12];
+	struct{
+		uint16_t highLimit;
+		uint16_t lowLimit;
+		uint16_t lastValue;
+		uint16_t outputHigh;
+		uint16_t outputLow;
+	}hystersis;
+	struct{
+		int32_t integrator;
+		uint16_t lastProcessVariable;
+		uint16_t kp;
+		uint16_t ki;
+		uint16_t kd;
+	}pid;
     };
     uint16_t inputMin;
     uint16_t inputMax;
     uint16_t outputMin;
     uint16_t outputMax;
-    uint16_t maximumChangeRate;
+    uint16_t filterConstant;
     uint16_t currentOutput;
+    uint16_t commTimeout;
+    uint16_t commTimeoutCounter;
+    uint16_t commTimeoutValue;
+    uint16_t targetValue;
     uint8_t filterMode;
     uint8_t  transformMode;
+
     uint8_t sourcePin;
     uint8_t invert:1;
+    uint8_t active:1;
+    uint8_t sampleRate:4;
     
 }outputScale_t;
 
 
-void outputScaleInit(outputScale_t* outputScale)
-{
-    outputScale->sourcePin = CurrentPin;
-    outputScale->inputMin = 0;
-    outputScale->inputMax = 65535;
-    outputScale->outputMin = 0;
-    outputScale->outputMax = 65535;
-    outputScale->maximumChangeRate = 0;
-    outputScale->transformMode = OUTPUT_TRANSFORM_MODE_NONE;
-    outputScale->filterMode = OUTPUT_FILTER_MODE_NONE;
-    outputScale->invert = 0;
-}
+void outputScaleInit(outputScale_t* outputScale);
 
+void outputScaleResetTimeout(outputScale_t* outputScale);
 
-uint16_t outputScaleProcess(outputScale_t* outputScale)
-{
-    uint32_t outputValue = GetBuffer(outputScale->sourcePin);
-    
-    
-    // Scale the input.  This allows a sub-range of the input to drive the 
-    // output a full 0 to 65535
-    if (outputScale->inputMin != 0 || outputScale->inputMax != 65535)
-    {
-        if (outputValue <= outputScale->inputMin)
-        {
-            outputValue = 0;
-        }
-        else if (outputValue >= outputScale->inputMax)
-        {
-            outputValue = 65535;
-        }
-        else
-        {
-            outputValue -= outputScale->inputMin;
-            outputValue <<= 16;
-            outputValue /= outputScale->inputMax - outputScale->inputMin;
-            if (outputValue > 65535)
-            {
-                outputValue = 65535;
-            }
-        }
-    }
-    
-    if (outputScale->invert)
-    {
-        outputValue = 65535 - outputValue;
-    }
-    
-    switch (outputScale->transformMode)
-    {
-        
-        default:
-        case OUTPUT_TRANSFORM_MODE_NONE:
-        {
-            
-        }
-        break;
-        
-    }
-    
-     switch (outputScale->filterMode)
-    {
-        default:
-        case OUTPUT_FILTER_MODE_NONE:
-        {
-            
-        }
-        break;
-    }
-     
-    
-    if (outputScale->outputMin != 0 || outputScale->outputMax != 65535)
-    {
-
-        outputValue *= (outputScale->outputMax - outputScale->outputMin);
-        outputValue += outputScale->outputMin;
-    }
-    
-   
-    
-    return(GetBuffer(outputScale->sourcePin));
-}
+uint16_t outputScaleProcess(outputScale_t* outputScale);
+uint16_t outputScaleCommProcess(outputScale_t* outputScale);
 
 
 #endif

@@ -494,6 +494,32 @@ Set pin 19  Blink 2nd and 3rd digit
 
 > `0xC7 0x13 0x0A 0x06 0x55 0x55 0x55 0x55  `
 
+CONFIGURE_CHANNEL_MODE_8:
+---------------------
+
+Write 1 byte to string mode.
+
+Moves 1 byte into rightmost digit, and shifts all other digits 1 leftward.  Used 
+for compatibility with Arduino Print::write function.
+
+
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0xC8|Pin To Set (TO TM1637 Clock)|0x0A (TM1637 ) | Byte to Write |Unused/0x55* |Unused/0x55* |Unused/0x55* |Unused/0x55* | 
+
+\*0x55 is recommended, but any byte is acceptable
+
+Response:
+
+Command is echoed back.
+
+Examples:
+
+Write an ascii 7 to TM1637 on pin 19.\
+
+> `0xC8 0x13 0x0A 0x37 0x55 0x55 0x55 0x55  `
+
 */
 
 void initTM1637 (void)
@@ -643,6 +669,38 @@ void initTM1637 (void)
 				if (CurrentPinRegister->generic.mode == PIN_MODE_TM1637)
 				{
 					tm1637->blinkBitmap = Rxbuffer[3];
+				}
+				else
+				{
+					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+				}
+			}
+			break;
+            
+             case CONFIGURE_CHANNEL_MODE_8: 
+			{
+				if (CurrentPinRegister->generic.mode == PIN_MODE_TM1637)
+				{
+                    if (tm1637->mode != TM1637_MODE_STRING)
+					{
+                        error(SW_ERROR_TM1637_WRONG_MODE);
+                        return;
+                    }          
+                    if (Rxbuffer[3] > 4)
+                    {
+                        error(SW_ERROR_CMD_BYTE_3);
+                        return;
+                    }
+                    uint8_t i;
+                    for (i = 0; i < Rxbuffer[3]; ++i)
+                    {
+                    tm1637->outputBuffer[0] = tm1637->outputBuffer[1];
+                    tm1637->outputBuffer[1] = tm1637->outputBuffer[2];
+                    tm1637->outputBuffer[2] = tm1637->outputBuffer[3];
+                    tm1637->outputBuffer[3] = tm1637->outputBuffer[4];
+                    tm1637->outputBuffer[4] = tm1637->outputBuffer[5];
+                    tm1637->outputBuffer[tm1637->lastDigit] = Rxbuffer[4 + i];
+                    }
 				}
 				else
 				{

@@ -446,9 +446,8 @@ void __attribute__((interrupt, no_auto_psv)) _SI2C2Interrupt(void)
 
 
 		default:
-			// should never happen, if we ever get here stay here forever
-			//TODO come up with better solution
-			while (1);
+			// should never happen, if we ever get here reset
+			reset();
 			break;
 	}
 }

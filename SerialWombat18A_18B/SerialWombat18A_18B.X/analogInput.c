@@ -36,6 +36,9 @@ typedef struct analogInput_n{
 	uint16_t averageCount;
 	uint16_t filteredValue;
 	uint16_t filterConstant;
+    uint16_t queueIndex;
+    uint16_t queuePeriod;
+    uint16_t queueCounter;
 	uint8_t publicDataSelection;
     uint8_t dataSourcePin;
 }analogInput_t;
@@ -221,6 +224,7 @@ void initAnalogInput (void)
 					analogInput->minimum = 65535;
 					analogInput->maximum = 0;
                     analogInput->dataSourcePin = CurrentPin;
+                    analogInput->queueIndex = 0xFFFF;
 
 
 			}
@@ -285,6 +289,15 @@ void initAnalogInput (void)
 				}
 			}
 			break;
+            
+        case CONFIGURE_CHANNEL_MODE_18:
+        {
+            analogInput->queueIndex = RXBUFFER16(3);
+            analogInput->queuePeriod = RXBUFFER16(5);
+            analogInput->queueCounter = analogInput->queuePeriod;
+            
+        }
+        break;
 	}
 }
 
@@ -362,7 +375,48 @@ if (sample >= ADC_MAX_COUNTS)
 			CurrentPinRegister->generic.buffer = sample;
 		break;
 	}
+    
+    if (analogInput->queueIndex != 0xFFFF)
+    {
+        if (analogInput->queueCounter)
+        {
+            -- analogInput->queueCounter;
+        }
+        else
+        {
+            QueueAddByte(analogInput->queueIndex, (uint8_t)(CurrentPinRegister ->generic.buffer & 0xFF));
+            QueueAddByte(analogInput->queueIndex, (uint8_t)(CurrentPinRegister ->generic.buffer >>8));
+            analogInput->queueCounter = analogInput->queuePeriod;
+        }
+    }
 	
 
 }
+
+void initAnalogSimple()
+{
+    
+    CurrentPinInput();
+				CurrentPinAnalog();
+				CurrentPinRegister->generic.mode = PIN_MODE_ANALOGINPUT;
+#ifndef AVERAGE128
+				analogInput->averageTotalSamples = 0;
+#endif
+				analogInput->averageSum = 0;
+				analogInput->averageCount = 0;
+				analogInput->filterConstant = 0;
+#ifdef DATAOURCEPIN_ENABLED
+				analogInput->dataSourcePin = CurrentPin;
+#endif
+				analogInput->publicDataSelection = 0;
+
+				analogInput->average =
+					analogInput->filteredValue =
+	CurrentPinRegister->generic.buffer = GetADCConversion(CurrentPin);
+					analogInput->minimum = 65535;
+					analogInput->maximum = 0;
+                    analogInput->dataSourcePin = CurrentPin;
+                    analogInput->queueIndex = 0xFFFF;
+}
+        
 

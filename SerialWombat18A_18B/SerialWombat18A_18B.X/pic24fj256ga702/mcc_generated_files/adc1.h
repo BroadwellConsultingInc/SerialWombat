@@ -369,7 +369,7 @@ void ADC1_CallBack(void);
 void ADC1_Tasks(void);
 
 uint16_t GetAddressPinVoltage(void);
-int16_t GetTemperature_degC100ths(void);
+int16_t GetTemperature_degC100ths(bool corrected);
 uint16_t GetSourceVoltage_mV(void);
 uint16_t GetSourceVoltageADC(void);
 uint16_t GetAddressPinVoltage_mV(void);

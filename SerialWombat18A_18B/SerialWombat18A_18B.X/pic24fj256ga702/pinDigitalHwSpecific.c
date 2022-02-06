@@ -10,6 +10,7 @@ uint16_t InputArrayA[SIZE_OF_DMA_ARRAY];
 uint16_t InputArrayB[SIZE_OF_DMA_ARRAY];
 
 #define PIN_QUICK_SET_DMA_COUNTS 15  //How many DMA counts into the future to set the current state.   This has to last until the pin gets set again. 
+/*
 const uint16_t PinBitmapB[NUMBER_OF_PHYSICAL_PINS] = 
 {
     //Skip RA0, it's address pin, not WP.
@@ -35,6 +36,7 @@ const uint16_t PinBitmapB[NUMBER_OF_PHYSICAL_PINS] =
 	0x8000 , // 19 RB15
 };
 
+
 const uint16_t PinBitmapA[NUMBER_OF_PHYSICAL_PINS] = 
 {
 
@@ -59,7 +61,7 @@ const uint16_t PinBitmapA[NUMBER_OF_PHYSICAL_PINS] =
 	0x0000 , // 18 RB14
 	0x0000 , // 19 RB15
 };
-
+*/
 const uint8_t pinPort[NUMBER_OF_PHYSICAL_PINS] =
 {
 	//Skip RA0, it's address pin, not WP.
@@ -363,13 +365,15 @@ bool ReadPin(uint8_t pin)
 	uint8_t inB = 1;
 	if (pin < NUMBER_OF_PHYSICAL_PINS)
 	{
-		pinMask = PinBitmapB[pin];
-		if (pinMask == 0)
-		{
-			pinMask = PinBitmapA[pin];
-			inB = 0;
-		}
+		pinMask = pinBitmap[pin];
+		
+	     inB = pinPort[pin];
+		
 	}
+    else
+    {
+        return(0);
+    }
 
 	if (inB)
 	{
@@ -458,19 +462,16 @@ uint8_t pinIsPPSCapable(uint8_t pin)
 void SetPin(uint8_t pin, uint8_t pinState)
 {
 	uint16_t pinMask = 0;
-	bool inB = true;
+	bool inB ;
 
 	if (pin >= NUMBER_OF_PHYSICAL_PINS)
 	{
 		return;
 	}
 
-	pinMask = PinBitmapB[pin];
-	if (pinMask == 0)
-	{
-		pinMask = PinBitmapA[pin];
-		inB = false;
-	}
+	pinMask = pinBitmap[pin];
+	
+		inB = pinPort[pin];
 
 	if (pinState == DIGITAL_INPUT)
 	{
@@ -734,6 +735,48 @@ void PinPullDown(uint8_t pin)
 void CurrentPinHigh()
 {
     PinHigh(CurrentPin);
+}
+
+void InitializePinLow(uint8_t pin)
+{
+   
+	uint16_t pinMask = 0;
+	bool inB ;
+
+	if (pin >= NUMBER_OF_PHYSICAL_PINS)
+	{
+		return;
+	}
+
+	pinMask = pinBitmap[pin];
+	
+		inB = pinPort[pin];
+
+	
+		pinMask = ~pinMask;
+        {
+
+			if (inB)
+			{
+				and128(OutputArrayB,pinMask);
+				LATB &= pinMask;
+				TRISB &= pinMask;
+			}
+			else
+			{
+				and128(OutputArrayA,pinMask);
+				LATA &= pinMask;
+				TRISA &= pinMask;
+			}
+		}
+		if (pinIsPPSCapable(pin))
+		{
+			SetPPSOutput(pin,0);
+		
+		}
+	
+		
+	
 }
 
 void CurrentPinLow()

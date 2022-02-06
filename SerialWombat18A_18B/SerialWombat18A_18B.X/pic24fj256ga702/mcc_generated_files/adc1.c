@@ -54,7 +54,7 @@
 */
 
 uint16_t VbgCalibration = 1200;  //Nominal value
-volatile uint8_t CTMUTrim = 0x00;
+volatile uint8_t CTMUTrim = 0xFF;
 int16_t TemperatureCache = 2500;
 
 void ADC1_ResetConditions(void)
@@ -79,26 +79,28 @@ void ADC1_Initialize (void)
     {
         VbgCalibration = VbgStored;
     }
-    else
+    else if (VbgCalibration < 1000 || VbgCalibration > 1400)
     {
         VbgCalibration = 1200; // Nominal value
     }
     }
     
+    if (CTMUTrim > 62)
     {  // Calibrate ITrim
     uint8_t tblpag = TBLPAG;
     TBLPAG = VBG_CAL_ADDRESS >> 16;
-    int16_t trim;
-    *((uint16_t*)&trim)= __builtin_tblrdl((uint16_t)(VBG_CAL_ADDRESS + 2));
+
+    //*((uint16_t*)&CTMUTrim)= __builtin_tblrdl((uint16_t)(VBG_CAL_ADDRESS + 2));
+    CTMUTrim = (uint8_t) __builtin_tblrdl((uint16_t)(VBG_CAL_ADDRESS + 2));
     
     TBLPAG = tblpag;
-    if (trim >= 0 && trim <= 62)
+    if (CTMUTrim >= 0 && CTMUTrim <= 62)
     {
-        CTMUTrim = trim - 31;
+       
     }
     else
     {
-        CTMUTrim = 0; // Nominal value
+        CTMUTrim = 31; // Nominal value
     }
     }
     
@@ -237,9 +239,9 @@ void GetCurrentPinReistanceOhmsSetup()
         
         CTMUCON1Lbits.IDISSEN = 0;
         CTMUCON1Hbits.EDG2STAT = 0;
-        CTMUCON1Lbits.ITRIM = CTMUTrim;
-
-        AD1CON3 = 0x9FFF; // Sample time = 15Tad, Tad = Tcy
+        CTMUCON1Lbits.ITRIM = CTMUTrim - 31;
+        AD1CON3 = 0x9F0A;
+        //AD1CON3 = 0x9F30; // Sample time = 15Tad, Tad = Tcy
        AD1CON1bits.MODE12 = 1;  // Turn on 12 bit
         AD1CON1bits.FORM = 2; // Left Justified
         AD1CON1bits.SSRC = 7;  // manual end sampling 
@@ -255,6 +257,7 @@ uint16_t GetCurrentPinReistanceOhmsRead(uint16_t sourceVoltagemV)
         
         CTMUCON1L = 0 ;  //CTMU OFF
         result *= sourceVoltagemV; 
+        result += 0x8000;
         result >>= 16;
         result *= 18182; // 1/ .000055 A
         result /= 1000;
@@ -263,7 +266,7 @@ uint16_t GetCurrentPinReistanceOhmsRead(uint16_t sourceVoltagemV)
         return ( (uint16_t) result);    
   
     }
-int16_t GetTemperature_degC100ths()
+int16_t GetTemperature_degC100ths(bool corrected)
 {
     if (ADC1Semaphore != RESOURCE_AVAILABLE )
     {
@@ -281,7 +284,8 @@ int16_t GetTemperature_degC100ths()
         CTMUCON2L = 0;
         AD1CON5bits.CTMREQ = 1;
         AD1CHS = 14; // Die Temperature Conversion
-        AD1CON3 = 0x1FFF; // Sample time = 15Tad, Tad = Tcy
+        AD1CON3 = 0x1F20;
+        //AD1CON3 = 0x1FFF; // Sample time = 15Tad, Tad = Tcy
         AD1CON1bits.MODE12 = 1;  // Turn on 12 bit
         AD1CON1bits.FORM = 2; // Left Justified
         AD1CON1bits.SSRC = 7;  // Auto Convert
@@ -295,18 +299,20 @@ int16_t GetTemperature_degC100ths()
    
         result =  ((int32_t)760 * 65536) - result;
         result /= ((int32_t)(.0155 * 65535));
-        
-            int16_t tReported, tActual;
+        TemperatureCache = result;
+          
+        if (corrected)
         {  // Get Temperature offset
+              int16_t tReported, tActual;
     uint8_t tblpag = TBLPAG;
     TBLPAG = VBG_CAL_ADDRESS >> 16;
 
     *((uint16_t*)&tReported) = __builtin_tblrdl((uint16_t)(VBG_CAL_ADDRESS + 4) );
     *((uint16_t*)&tActual) = __builtin_tblrdl((uint16_t)(VBG_CAL_ADDRESS + 6) );
     TBLPAG = tblpag;
-   
+           TemperatureCache = result + (tActual-tReported);
     }
-        TemperatureCache = result + (tActual-tReported);
+
         ADC1_Initialize();  // Put things back where we found them.
         return ( TemperatureCache);    
 }

@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <string.h>
+#include <p24FJ256GA702.h>
 #include "SerialWombat.h"
 #include "asciiConversion.h"
 uint32_t debug_discarded_bytes = 0;
@@ -390,9 +391,19 @@ Response:
                     }
                     else
                     {
+                        LATBbits.LATB7 = 1; //TODO REMOVE
+                        UART1_Write(UserBufferPtr);
+                        UART1_Write(((uint16_t)UserBufferPtr)>>8);
+                        UART1_Write('!');
+                        UART1_Write('!');
+                        UART1_Write('!');
+                        while(UART1_TransmitBufferIsFull()); //TODO REMOVE
+                        INTERRUPT_GlobalDisable();
                         FLASH_Unlock(FLASH_UNLOCK_KEY);
 
                     FLASH_WriteRow24(address, (uint32_t*)UserBufferPtr);
+                    INTERRUPT_GlobalEnable();
+                    LATBbits.LATB7 = 0; //TODO REMOVE
                     ++debugFlashWrites;
                     }
                    
@@ -442,42 +453,77 @@ Response:
 
 void ProcessRx(void)
 {
-    /*
-	if ( UartRxbufferCounter < RXBUFFER_LENGTH)
+	if (SW_I2CAddress == 0 )  // Use UART
 	{
-		uint8_t numberOfBytesRead = 0;
-		numberOfBytesRead = UART1_ReadBuffer(&Rxbuffer[UartRxbufferCounter], RXBUFFER_LENGTH - UartRxbufferCounter);
-		if (LineBreaksAndEcho)
-				{
-					UART1_WriteBuffer(&Rxbuffer[UartRxbufferCounter],numberOfBytesRead);
-				}
-        UartRxbufferCounter += numberOfBytesRead;
+        uint8_t peekData = UART1_Peek(0);
         
-		while (UartRxbufferCounter > 0  && Rxbuffer[0] == 0x55 )
-		{
-			uint8_t i;
-			for (i = 0; i < RXBUFFER_LENGTH - 1; ++i)
+        
+        if ((UART1_CONFIG_RX_BYTEQ_LENGTH -UART1_ReceiveBufferSizeGet()) >= 8)
+        {
+            while(((UART1_CONFIG_RX_BYTEQ_LENGTH - UART1_ReceiveBufferSizeGet()) > 0) && (peekData == 0x55 || peekData == ' ') )
+        {
+            UART1_Read();
+            peekData = UART1_Peek(0);
+        }
+            if ((UART1_CONFIG_RX_BYTEQ_LENGTH -UART1_ReceiveBufferSizeGet()) >= 8)
+            {
+                
+            uint8_t i; 
+            for (i = 0; i < 8; ++i)
+            {
+                Rxbuffer[i] = UART1_Read();
+            }
+            if (LineBreaksAndEcho)
 			{
-				Rxbuffer[i] = Rxbuffer[i+1];
-
+				UART1_WriteBuffer(Rxbuffer,8);
 			}
-			-- UartRxbufferCounter;
-			++debug_discarded_bytes;
-		}
-	}
-    
-	if (UartRxbufferCounter >= RXBUFFER_LENGTH)
-	{
-		int i;
-		ProcessRxbuffer();
-		UartRxbufferCounter = 0;
-		for (i = 0; i < RXBUFFER_LENGTH; ++i)
+            ProcessRxbuffer();
+            uartStartTX();
+                        }
+
+        }
+        /*
+		if ( UartRxbufferCounter < RXBUFFER_LENGTH)
 		{
-			Rxbuffer[i] = 0xFE;
-		}	
-		uartStartTX();
-	}
+			uint8_t numberOfBytesRead = 0;
+			numberOfBytesRead = UART1_ReadBuffer(&Rxbuffer[UartRxbufferCounter], RXBUFFER_LENGTH - UartRxbufferCounter);
+			if (LineBreaksAndEcho)
+			{
+				UART1_WriteBuffer(&Rxbuffer[UartRxbufferCounter],numberOfBytesRead);
+			}
+			UartRxbufferCounter += numberOfBytesRead;
+
+			while (UartRxbufferCounter > 0  && (Rxbuffer[0] == 0x55 || Rxbuffer[0] == ' ')  )
+			{
+				uint8_t i;
+				for (i = 0; i < RXBUFFER_LENGTH - 1; ++i)
+				{
+					Rxbuffer[i] = Rxbuffer[i+1];
+
+				}
+				-- UartRxbufferCounter;
+				++debug_discarded_bytes;
+			}
+         
+		}
 */
+        /*
+		if (UartRxbufferCounter >= RXBUFFER_LENGTH)
+		{
+			int i;
+			ProcessRxbuffer();
+			UartRxbufferCounter = 0;
+			for (i = 0; i < RXBUFFER_LENGTH; ++i)
+			{
+				Rxbuffer[i] = 0xFE;
+			}	
+			uartStartTX();
+		}
+         */
+	}
+	if (SW_I2CAddress != 0)  // Use I2C
+	{
+
 		extern volatile uint8_t wombatI2CRxData[8];
 		extern volatile uint8_t wombatI2CTxData[8];
 		extern volatile uint8_t wombatI2CRxDataCount;
@@ -506,23 +552,24 @@ void ProcessRx(void)
 				I2C2CONLbits.SCLREL	 = 1; // Release clock stretch in hardware
 			}
 
-        ProcessRxbuffer();
-        INTERRUPT_GlobalDisable();
-        memcpy(wombatI2CTxData,Txbuffer,8);
-        ResponseAvailable = true;
-        ResponsePending = false;
-        
-        if (RX_ClockStretching)
-		{
-				OUTPUT_I2C_DEBUG(28);
-			// If we're in the middle of stretching a 2nd request to send us data to from the host, release.  
-			RX_ClockStretching = 0;
+			ProcessRxbuffer();
+		
+			INTERRUPT_GlobalDisable();
+			memcpy((void*)wombatI2CTxData,(const void*)Txbuffer,8);
+			ResponseAvailable = true;
+			ResponsePending = false;
 
-			ResponseAvailable = false;
-		}
-        
-        if (TX_ClockStretching && ResponseAvailable)
-        {
+			if (RX_ClockStretching)
+			{
+				OUTPUT_I2C_DEBUG(28);
+				// If we're in the middle of stretching a 2nd request to send us data to from the host, release.  
+				RX_ClockStretching = 0;
+
+				ResponseAvailable = false;
+			}
+
+			if (TX_ClockStretching && ResponseAvailable)
+			{
 
 				OUTPUT_I2C_DEBUG(29);
 		// If we were clock stretching waiting for a response to the last packet to be generated,
@@ -541,7 +588,8 @@ void ProcessRx(void)
         INTERRUPT_GlobalEnable();
 			OUTPUT_I2C_DEBUG(0x11);
 			OUTPUT_I2C_DEBUG(0x11);
-    }
+		}
+	}
 }
 
 uint16_t GetBuffer(uint8_t pin)
@@ -558,7 +606,7 @@ uint16_t GetBuffer(uint8_t pin)
     else if (pin == 70)
     {
          
-        return ( GetTemperature_degC100ths());    
+        return ( 2500);//GetTemperature_degC100ths(false));    
     }
     else if (pin == 85) //0x55
     {

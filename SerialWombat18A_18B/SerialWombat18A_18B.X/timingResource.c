@@ -809,7 +809,7 @@ void timingResourcePWM(TIMING_RESOURCE_t resource, uint32_t period_uS, uint16_t 
 				}
 				else
 				{
-					CurrentPinLow();
+					
 					period_uS *= 3775;
 					period_uS += 0x8000; // Round up
 					period_uS >>= 16;   // Fractional math instead of dividing by 57600 DMA rate
@@ -817,6 +817,10 @@ void timingResourcePWM(TIMING_RESOURCE_t resource, uint32_t period_uS, uint16_t 
 					uint32_t high = period_uS * dutyCycle;
 					high >>= 16;
 
+                    if (CurrentPinRegister->pulse_output.highReload != high ||
+                           CurrentPinRegister->pulse_output.lowReload != (period_uS - high) )
+                    {
+                    CurrentPinLow();
 					CurrentPinRegister->pulse_output.highReload = 
 						high;
 					CurrentPinRegister->pulse_output.lowReload = period_uS - high;
@@ -828,6 +832,7 @@ void timingResourcePWM(TIMING_RESOURCE_t resource, uint32_t period_uS, uint16_t 
 					{
 						CurrentPinRegister->pulse_output.lowRemaining = CurrentPinRegister->pulse_output.lowReload;
 					}
+                    }
 				}
 
 			}
@@ -1191,4 +1196,24 @@ void __attribute__ ( ( interrupt, no_auto_psv ) ) _OC3Interrupt (  )
 	IEC1bits.OC3IE = 0;
     ++ OC3InterruptCount;
     timingResources[TIMING_RESOURCE_OC3].resourceHolder = 0xFF;
+}
+
+
+void timingResourceBusyWait(uint16_t uS)
+{
+    if (timingResources[TIMING_RESOURCE_MCCP1].resourceHolder == 0xFF )
+    {
+        timingResources[TIMING_RESOURCE_MCCP1].resourceHolder = CurrentPin;
+        
+             CCP1CON1L = 0;
+            CCP1TMRL = 0;
+            IFS6bits.CCT1IF = 0;
+            CCP1PRL = uS;
+            IEC6bits.CCT1IE = 0;
+            CCP1CON1L = 0x8080;
+            
+            while (!IFS6bits.CCT1IF);
+             CCP1CON1L = 0;
+        timingResources[TIMING_RESOURCE_MCCP1].resourceHolder = 0xFF;
+    }
 }

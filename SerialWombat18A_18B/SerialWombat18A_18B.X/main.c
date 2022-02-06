@@ -110,20 +110,15 @@ int main(void)
 	return 1;
 }
 
-
 void ProcessPins()
 {
 	//IO Processing
 
 	for (CurrentPin = 0; CurrentPin <  NUMBER_OF_TOTAL_PINS; ++CurrentPin)
 	{
-
-
-
 		CurrentPinRegister = &PinUpdateRegisters[CurrentPin];
 		switch (CurrentPinRegister->generic.mode)
 		{
-
 			case PIN_MODE_DIGITAL_IO:
 				{
 					if (CurrentPinRead())
@@ -134,7 +129,6 @@ void ProcessPins()
                     {
                         CurrentPinRegister->generic.buffer = 0;
                     }
-
 				}
 				break;
             case PIN_MODE_ANALOGINPUT:
@@ -160,10 +154,15 @@ void ProcessPins()
             }
 		   break;
 			case PIN_MODE_HYSTERESIS:
+            {
 				//update_hysteresis();
+            }
 				break;
-			case PIN_MODE_KEYPAD_SCAN_ROW:
-				//keypad_process();
+			case PIN_MODE_MATRIX_KEYPAD:
+            {
+				void updateMatrixKeypad(void);
+                updateMatrixKeypad();
+            }
 				break;
 			case PIN_MODE_WATCHDOG:
             {
@@ -191,6 +190,12 @@ void ProcessPins()
                 updatePulseTimer();
             }
             break;
+            case PIN_MODE_INPUT_PROCESSOR:
+            {
+                void updatePinInputProcessor(void);
+                updatePinInputProcessor();
+            }
+            break;
             
 			case PIN_MODE_PWM:
             {
@@ -198,20 +203,7 @@ void ProcessPins()
                 updatePWM();
             }
             break;
-            case PIN_MODE_DMA_PULSE_OUTPUT:
-            {
-                void updatePulseOut(void);
-				updatePulseOut();
-            }
-				break;
-#ifdef TODO
-			case PIN_MODE_PWM_FOLLOW_DIRECT:
-			case PIN_MODE_ANALOG_OUT_FOLLOW:
-				//update_pwm_follow_direct();
-				break;
-#endif
-			
-
+            
 			case PIN_MODE_SW_UART:
 				{
                     extern void updateUARTSw(void);
@@ -219,7 +211,13 @@ void ProcessPins()
 				}
 				break;
 		
-                
+                case PIN_MODE_PROTECTEDOUTPUT:
+            {
+                extern void updateProtectedOutput();
+                updateProtectedOutput();
+            }
+            break;
+            
             case PIN_MODE_TM1637:
             {
                 extern void updateTM1637();
@@ -246,7 +244,13 @@ void ProcessPins()
                 updateResistanceInput();
             }
             break;
-            
+             case PIN_MODE_THROUGHPUT_CONSUMER:
+        {
+            void updateThroughputConsumer();
+            updateThroughputConsumer();
+        }
+        break;
+        
             case PIN_MODE_UART0_TXRX:
             case PIN_MODE_UART1_TXRX:
             {
