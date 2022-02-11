@@ -41,6 +41,11 @@ void updatePWM(void);
 #define pwm  ((pwm_t*) CurrentPinRegister)
 void initPWM (void)
 {
+    if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_PWM)
+	{
+		error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+		return;
+	}
     BUILD_BUG_ON( sizeof(pwm_t) >  BYTES_AVAIALABLE_OUTPUT_PULSE );   
 	switch (Rxbuffer[0])
 	{
@@ -62,22 +67,22 @@ void initPWM (void)
 			break;
             case CONFIGURE_CHANNEL_MODE_HW_0:
 			{
-				if (CurrentPinRegister->generic.mode == PIN_MODE_PWM)
-				{
+				
 					pwm->period_uS = RXBUFFER32(3);
                     timingResourceRelease(CurrentPinRegister->pulse_output.resource);
                     CurrentPinRegister->pulse_output.resource = timingResourcePWMClaim(TIMING_RESOURCE_ANY,pwm->period_uS); 
-				}
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+				
 			}
 			break;
             
              case CONFIGURE_CHANNEL_MODE_10:
         {
             outputScaleCommProcess(&pwm->outputScale);
+        }
+        break;
+         default:
+        {
+            error(SW_ERROR_INVALID_COMMAND);      
         }
         break;
 

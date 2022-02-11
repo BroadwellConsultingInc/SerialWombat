@@ -116,7 +116,11 @@ Fixed period is 750 = 0x02EE, variable period is (1750 - 750) = 1000 = 0x03E8
 */
 void initServoHw (void)
 {
-
+if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_SERVO)
+	{
+		error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+		return;
+	}
 	switch(Rxbuffer[0])
 	{
         case CONFIGURE_CHANNEL_MODE_0:
@@ -152,7 +156,11 @@ void initServoHw (void)
             outputScaleCommProcess(&servo->outputScale);
         }
         break;
-
+  default:
+        {
+            error(SW_ERROR_INVALID_COMMAND);      
+        }
+        break;
   }
 }
 

@@ -57,13 +57,15 @@ Command:
   build/default/production/uartSw.o \
   build/default/production/throughputConsumer.o \
   build/default/production/matrixKeypad.o \
+  build/default/production/inputProcess.o \
+  build/default/production/pinInputProcessor.o \
+  build/default/production/pulseOnChange.o \
   build/default/production/main.o \
   build/default/production/protocol.o \
   build/default/production/asciiConversion.o \
   build/default/production/pinRegisters.o \
   build/default/production/queue.o \
-  build/default/production/inputProcess.o \
-  build/default/production/pinInputProcessor.o \
+  build/default/production/hfServo.o \
   --local-stack \
   --defsym=__MPLAB_BUILD=1 \
   -Tp24FJ256GA702_app.gld.00 \
@@ -147,21 +149,21 @@ Default Scalar Model: Small
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                       0x4800               0xc1e          0x122d  (4653)
-.text                       0x541e              0x609a          0x90e7  (37095)
-.text                       0xb4b8               0xfe0          0x17d0  (6096)
-.NVM_flash                  0xc498               0x168           0x21c  (540)
-.text                       0xc600               0x146           0x1e9  (489)
-.dinit                      0xc746               0x136           0x1d1  (465)
-.text                       0xc87c               0x8c4           0xd26  (3366)
-.init.delay32               0xd140                0x1c            0x2a  (42)
-.text                       0xd15c                 0xa             0xf  (15)
+.text                       0x541e              0x63b8          0x9594  (38292)
+.text                       0xb7d6               0xdfa          0x14f7  (5367)
+.NVM_flash                  0xc5d0               0x168           0x21c  (540)
+.text                       0xc738               0x152           0x1fb  (507)
+.dinit                      0xc88a               0x146           0x1e9  (489)
+.text                       0xc9d0               0xb3a          0x10d7  (4311)
+.init.delay32               0xd50a                0x1c            0x2a  (42)
+.text                       0xd526                 0x4             0x6  (6)
 pic24fj256ga702/wombatasm.s.scn1   0x1f800                 0x2             0x3  (3)
 .const                     0x1f802               0x16e           0x225  (549)
-.text                      0x1f970               0x264           0x396  (918)
-.text                      0x1fbd4                0x22            0x33  (51)
-.text                      0x1fbf6                 0x8             0xc  (12)
+.text                      0x1f970               0x25e           0x38d  (909)
+.text                      0x1fbce                0x22            0x33  (51)
+.text                      0x1fbf0                 0xe            0x15  (21)
 
-                 Total "program" memory used (bytes):         0xd416  (54294) 31%
+                 Total "program" memory used (bytes):         0xd9bc  (55740) 32%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x4000]
@@ -174,16 +176,18 @@ section                    address      alignment gaps    total length  (dec)
 .ndata                       0x86e                   0            0x10  (16)
 .nbss                        0x87e                   0             0x4  (4)
 .ndata                       0x882                   0             0x4  (4)
-.nbss                        0x886                   0             0xc  (12)
-.ndata                       0x892                   0             0x2  (2)
-.nbss                        0x894                   0            0x14  (20)
-.bss                         0x8a8                   0          0x2b82  (11138)
-.data                       0x342a                   0            0x18  (24)
-.bss                        0x3442                   0            0x30  (48)
-.data                       0x3472                   0             0x4  (4)
-.bss                        0x3476                   0             0x6  (6)
+.nbss                        0x886                   0             0x4  (4)
+.ndata                       0x88a                   0             0x4  (4)
+.nbss                        0x88e                   0             0x8  (8)
+.ndata                       0x896                   0             0x2  (2)
+.nbss                        0x898                   0            0x16  (22)
+.bss                         0x8ae                   0          0x2b82  (11138)
+.data                       0x3430                   0            0x18  (24)
+.bss                        0x3448                   0            0x30  (48)
+.data                       0x3478                   0             0x4  (4)
+.bss                        0x347c                   0             0x6  (6)
 
-                 Total "data" memory used (bytes):         0x2c7c  (11388) 69%
+                 Total "data" memory used (bytes):         0x2c82  (11394) 69%
 
 
 Dynamic Memory Usage
@@ -191,9 +195,9 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                       0x347c                              0x1384  (4996)
+stack                       0x3482                              0x137e  (4990)
 
-                 Maximum dynamic memory (bytes):         0x1384  (4996)
+                 Maximum dynamic memory (bytes):         0x137e  (4990)
 
 
 External Symbols in Data Memory (by address):
@@ -257,36 +261,38 @@ External Symbols in Data Memory (by address):
                     0x0884                  _SystemUtilizationAverage
                     0x0886                  _incrementingValue
                     0x0888                  _CurrentPinRegister
-                    0x088a                  _QueueOverflowCounter
-                    0x088c                  _QueueUnderflowCounter
-                    0x088e                  _TMR1_InterruptHandler
-                    0x0890                  _TMR3_InterruptHandler
-                    0x0894                  _debugQuadEnc
-                    0x0896                  _debugAnalog
-                    0x0898                  _debugPulseTimer
-                    0x089a                  _debugTM1637
-                    0x089c                  _debugWS2812
-                    0x089e                  _debugTouch
-                    0x08a0                  _debugResistance
-                    0x08a2                  _debuguartSw
-                    0x08a4                  _debugMatrixKeypad
-                    0x08a6                  _debugPinInputProcessor
-                    0x08a8                  _UserBuffer
-                    0x28a8                  _PinUpdateRegisters
-                    0x2da8                  _OutputArrayA
-                    0x2ea8                  _OutputArrayB
-                    0x2fa8                  _InputArrayA
-                    0x30a8                  _InputArrayB
-                    0x31a8                  _uart1_obj
-                    0x333c                  _timingResources
-                    0x33ac                  _Rxbuffer
-                    0x33b4                  _Txbuffer
-                    0x33bc                  _PinRegisterCopyBuffer
-                    0x33fc                  _TimingResourceManagerCopyBuffer
-                    0x342a                  _ColorTable
-                    0x3454                  _wombatI2CRxData
-                    0x345c                  _wombatI2CTxData
-                    0x3472                  _FlashKey
+                    0x088a                  _lfsrSeed
+                    0x088e                  _QueueOverflowCounter
+                    0x0890                  _QueueUnderflowCounter
+                    0x0892                  _TMR1_InterruptHandler
+                    0x0894                  _TMR3_InterruptHandler
+                    0x0898                  _debugQuadEnc
+                    0x089a                  _debugAnalog
+                    0x089c                  _debugPulseTimer
+                    0x089e                  _debugTM1637
+                    0x08a0                  _debugWS2812
+                    0x08a2                  _debugTouch
+                    0x08a4                  _debugResistance
+                    0x08a6                  _debuguartSw
+                    0x08a8                  _debugMatrixKeypad
+                    0x08aa                  _debugPinInputProcessor
+                    0x08ac                  _debugPulseOnChange
+                    0x08ae                  _UserBuffer
+                    0x28ae                  _PinUpdateRegisters
+                    0x2dae                  _OutputArrayA
+                    0x2eae                  _OutputArrayB
+                    0x2fae                  _InputArrayA
+                    0x30ae                  _InputArrayB
+                    0x31ae                  _uart1_obj
+                    0x3342                  _timingResources
+                    0x33b2                  _Rxbuffer
+                    0x33ba                  _Txbuffer
+                    0x33c2                  _PinRegisterCopyBuffer
+                    0x3402                  _TimingResourceManagerCopyBuffer
+                    0x3430                  _ColorTable
+                    0x345a                  _wombatI2CRxData
+                    0x3462                  _wombatI2CTxData
+                    0x3478                  _FlashKey
 
 External Symbols in Data Memory (by name):
 
@@ -296,36 +302,36 @@ External Symbols in Data Memory (by name):
                     0x084e                  _CCT3InterruptCount
                     0x0850                  _CCT4InterruptCount
                     0x0870                  _CTMUTrim
-                    0x342a                  _ColorTable
+                    0x3430                  _ColorTable
                     0x0848                  _CurrentPin
                     0x0888                  _CurrentPinRegister
                     0x0861                  _DMA5Semaphore
                     0x0816                  _DebugLastPoint
                     0x0836                  _Errors
-                    0x3472                  _FlashKey
+                    0x3478                  _FlashKey
                     0x0882                  _FrameTimingPin
                     0x085a                  _FramesDropped
                     0x083e                  _FramesRun
                     0x081c                  _I2CInterruptCount
-                    0x2fa8                  _InputArrayA
-                    0x30a8                  _InputArrayB
+                    0x2fae                  _InputArrayA
+                    0x30ae                  _InputArrayB
                     0x082f                  _LineBreaksAndEcho
                     0x0852                  _OC1InterruptCount
                     0x0854                  _OC2InterruptCount
                     0x0856                  _OC3InterruptCount
-                    0x2da8                  _OutputArrayA
-                    0x2ea8                  _OutputArrayB
+                    0x2dae                  _OutputArrayA
+                    0x2eae                  _OutputArrayB
                     0x083c                  _OverflowFrames
                     0x0838                  _PacketsProcessed
-                    0x33bc                  _PinRegisterCopyBuffer
-                    0x28a8                  _PinUpdateRegisters
-                    0x088a                  _QueueOverflowCounter
-                    0x088c                  _QueueUnderflowCounter
+                    0x33c2                  _PinRegisterCopyBuffer
+                    0x28ae                  _PinUpdateRegisters
+                    0x088e                  _QueueOverflowCounter
+                    0x0890                  _QueueUnderflowCounter
                     0x0833                  _RX_ClockStretching
                     0x0831                  _ResponseAvailable
                     0x0830                  _ResponsePending
                     0x083a                  _RunForeground
-                    0x33ac                  _Rxbuffer
+                    0x33b2                  _Rxbuffer
                     0x0862                  _SPI1Semaphore
                     0x0874                  _SW_I2CAddress
                     0x085c                  _System1msCount
@@ -333,34 +339,35 @@ External Symbols in Data Memory (by name):
                     0x0842                  _SystemUtilizationCount
                     0x0844                  _SystemUtilizationSum
                     0x0863                  _TMR1Semaphore
-                    0x088e                  _TMR1_InterruptHandler
+                    0x0892                  _TMR1_InterruptHandler
                     0x0858                  _TMR2_InterruptHandler
                     0x0864                  _TMR3Semaphore
-                    0x0890                  _TMR3_InterruptHandler
+                    0x0894                  _TMR3_InterruptHandler
                     0x0832                  _TX_ClockStretching
                     0x0872                  _TemperatureCache
-                    0x33fc                  _TimingResourceManagerCopyBuffer
+                    0x3402                  _TimingResourceManagerCopyBuffer
                     0x086a                  _TotalRxBytes
-                    0x33b4                  _Txbuffer
+                    0x33ba                  _Txbuffer
                     0x0865                  _UART1Semaphore
                     0x0866                  _UART2Semaphore
                     0x082c                  _UART2ndInterface
                     0x082d                  _UartRxbufferCounter
                     0x082e                  _UartTxbufferCounter
-                    0x08a8                  _UserBuffer
+                    0x08ae                  _UserBuffer
                     0x086e                  _VbgCalibration
                     0x087e                  _adc_i
-                    0x0896                  _debugAnalog
-                    0x08a4                  _debugMatrixKeypad
-                    0x08a6                  _debugPinInputProcessor
-                    0x0898                  _debugPulseTimer
-                    0x0894                  _debugQuadEnc
-                    0x08a0                  _debugResistance
-                    0x089a                  _debugTM1637
-                    0x089e                  _debugTouch
-                    0x089c                  _debugWS2812
+                    0x089a                  _debugAnalog
+                    0x08a8                  _debugMatrixKeypad
+                    0x08aa                  _debugPinInputProcessor
+                    0x08ac                  _debugPulseOnChange
+                    0x089c                  _debugPulseTimer
+                    0x0898                  _debugQuadEnc
+                    0x08a4                  _debugResistance
+                    0x089e                  _debugTM1637
+                    0x08a2                  _debugTouch
+                    0x08a0                  _debugWS2812
                     0x0828                  _debug_discarded_bytes
-                    0x08a2                  _debuguartSw
+                    0x08a6                  _debuguartSw
                     0x081a                  _discardI2CData
                     0x0824                  _i2c2_periph_state
                     0x0820                  _i2cHealthMonitorSuspicionSCL
@@ -370,14 +377,15 @@ External Symbols in Data Memory (by name):
                     0x0878                  _lastQueueIndex
                     0x0868                  _lastRXInterruptByte
                     0x0876                  _lastUserBufferIndex
+                    0x088a                  _lfsrSeed
                     0x0819                  _nextInterruptAddress
                     0x0835                  _testSequenceArmed
                     0x0834                  _testSequenceNumber
-                    0x333c                  _timingResources
-                    0x31a8                  _uart1_obj
-                    0x3454                  _wombatI2CRxData
+                    0x3342                  _timingResources
+                    0x31ae                  _uart1_obj
+                    0x345a                  _wombatI2CRxData
                     0x0817                  _wombatI2CRxDataCount
-                    0x345c                  _wombatI2CTxData
+                    0x3462                  _wombatI2CTxData
                     0x0818                  _wombatI2CTxDataCount
 
 External Symbols in Program Memory (by address):
@@ -424,275 +432,268 @@ External Symbols in Program Memory (by address):
                   0x00541e                  _uartStartTX
                   0x00546c                  _error
                   0x005490                  _ProcessSetPin
-                  0x00556e                  _ProcessRxbuffer
-                  0x0062ba                  _ProcessRx
-                  0x006394                  _timingResourceDefault
-                  0x00641e                  _timingResourceManagerInit
-                  0x006430                  _timingResourceHighPulseClaim
-                  0x006488                  _timingResourcePWMClaim
-                  0x006570                  _timingResourceRelease
-                  0x0065c8                  _timingResourcesHighPulse
-                  0x0066c8                  _timingResourcePWM
-                  0x006dc4                  _timingResourceHighPulseBusy
-                  0x006e2e                  _timingResourceService
-                  0x006e3a                  _timingResourceInterruptClaim
-                  0x007006                  _timingResourceInterruptActivate
-                  0x0070ae                  _timingResourceBusyWait
-                  0x0070d0                  _ws2812_SPI1_Initialize
-                  0x0070ea                  _ws2812ConfigHardware
-                  0x00710a                  _queue1Bit
-                  0x007116                  _queue0Bit
-                  0x007122                  _QueueRGB
-                  0x00735c                  _SendResetSignal
-                  0x00736a                  _StartDMA
-                  0x007392                  _StopDMA
-                  0x007396                  _initWS2812
-                  0x007626                  _updateWS2812
-                  0x007844                  _tm1637Start
-                  0x00784c                  _tm1637Stop
-                  0x00786a                  _tm1637ClockByte
-                  0x0078c8                  _tm1637_hwinit
-                  0x0078d4                  _tm1637SendInitialAddress
-                  0x0078f6                  _tm1637SendDisplayControlCommand
-                  0x0078fe                  _initTM1637
-                  0x007b8a                  _tm1637UpdateRender
-                  0x007d16                  _updateTM1637
-                  0x007e5a                  _outputScaleInit
-                  0x007e86                  _outputScaleProcess
-                  0x00814e                  _outputScaleResetTimeout
-                  0x008154                  _outputScaleCommProcess
-                  0x0083f6                  _initMatrixKeypad
-                  0x00878c                  _updateMatrixKeypad
-                  0x008930                  _updatePulseOutput
-                  0x008b0c                  _updateBitStreamOutput
-                  0x008bec                  _initializeBitStreamOutput
-                  0x008c36                  _removeBitStreamOutput
-                  0x008c94                  _PulseInGetOldestDMABit
-                  0x008cf0                  _PulseInDiscardUntilLow
-                  0x008d56                  _PulseInSkipDMABits
-                  0x008dce                  _PulseInGetOldestDMASample
-                  0x008e1a                  _SetPPSOutput
-                  0x008f2c                  _CurrentPinBitmap
-                  0x008f40                  _ConfigurePinAnalog
-                  0x008f92                  _PinIsAnalogCapable
-                  0x008fa2                  _CurrentPinPort
-                  0x008fb4                  _ReadPin
-                  0x008fe4                  _PinOutput
-                  0x00901c                  _PinInput
-                  0x00904e                  _CurrentPinRead
-                  0x009052                  _pinIsPPSCapable
-                  0x00906a                  _SetPin
-                  0x00915e                  _CurrentPinInput
-                  0x009162                  _CurrentPinAnalog
-                  0x00918c                  _SetPinQuick
-                  0x00918e                  _SetCurrentPin
-                  0x009194                  _PinLow
-                  0x009198                  _PinHigh
-                  0x00919c                  _SetPinPullUp
-                  0x0091e6                  _SetPinPullDown
-                  0x009230                  _PinPullUp
-                  0x009244                  _PinPullDown
-                  0x009258                  _CurrentPinHigh
-                  0x00925e                  _InitializePinLow
-                  0x0092c0                  _CurrentPinLow
-                  0x0092c6                  _CurrentPinPullUp
-                  0x0092ca                  _CurrentPinNoPullUp
-                  0x0092d0                  _CurrentPinPullDown
-                  0x0092d4                  _CurrentPinNoPullDown
-                  0x0092da                  _initUARTSw
-                  0x009518                  _updateUARTSwTx
-                  0x00963a                  _updateUARTSwRx
-                  0x00975c                  _updateUARTSw
-                  0x009774                  _initQuadEnc
-                  0x009a74                  _updateQuadEnc
-                  0x009c00                  _DMA_Initialize
-                  0x009c7a                  _DMA__Channel1_Tasks
-                  0x009c8a                  _DMA__Channel2_Tasks
-                  0x009c9a                  _DMA__Channel3_Tasks
-                  0x009caa                  _DMA__Channel4_Tasks
-                  0x009cba                  _DMA__Channel5_Tasks
-                  0x009cc8                  _DMA_ChannelEnable
-                  0x009cfa                  _DMA_ChannelDisable
-                  0x009d2c                  _DMA_TransferCountSet
-                  0x009d5e                  _DMA_TransferCountGet
-                  0x009d90                  _DMA_SoftwareTriggerEnable
-                  0x009dc2                  _DMA_SourceAddressSet
-                  0x009df4                  _DMA_DestinationAddressSet
-                  0x009e26                  _DMA_IsSoftwareRequestPending
-                  0x009e70                  _DMA_IsBufferedWriteComplete
-                  0x009eae                  _DMA_IsHighAddressLimitFlagSet
-                  0x009ef8                  _DMA_IsLowAddressLimitFlagSet
-                  0x009f42                  _DMA_IsOperationDone
-                  0x009f8c                  _DMA_IsOverrunFlagSet
-                  0x009fd6                  _DMA_IsOperationHalfComplete
-                  0x00a020                  _CRC_Initialize
-                  0x00a04c                  _CRC_SeedSet
-                  0x00a0c2                  _CRC_CalculateBufferStart
-                  0x00a0e6                  _CRC_CalculateProgramStart
-                  0x00a114                  _CRC_Task
-                  0x00a2ec                  _CRC_CalculationIsDone
-                  0x00a2fc                  _CRC_CalculationResultRawGet
-                  0x00a330                  _CRC_CalculationResultReverseGet
-                  0x00a36e                  _CRC_CalculationResultXORGet
-                  0x00a3ac                  _CRC_CalculationResultGet
-                  0x00a40e                  _touchCallback
-                  0x00a412                  _initTouch
-                  0x00a59a                  _touchProcessDigital
-                  0x00a62c                  _updateTouch
-                  0x00a79a                  _ADC1_ResetConditions
-                  0x00a7aa                  _ADC1_Initialize
-                  0x00a85a                  _GetADCConversion
-                  0x00a8aa                  _GetAddressPinVoltage_mV
-                  0x00a95c                  _GetCurrentPinReistanceOhmsSetup
-                  0x00a9b8                  _GetCurrentPinReistanceOhmsRead
-                  0x00a9e8                  _GetTemperature_degC100ths
-                  0x00aac4                  _GetSourceVoltage_mV
-                  0x00aad0                  _GetSourceVoltageADC
-                  0x00aad4                  _GetVBgCountsVsVRefPin
-                  0x00ab1c                  _inputProcessInit
-                  0x00ab40                  _inputProcessProcess
-                  0x00acb0                  _inputProcessCommProcess
-                  0x00ae7e                  _initUARTHw
-                  0x00b1b2                  _updateUARTHw
-                  0x00b1dc                  _initPulseTimer
-                  0x00b320                  _updatePulseTimer
-                  0x00b4b8                  _UART1_Initialize
-                  0x00b4fa                  _UART1_Read
-                  0x00b53a                  _UART1_ReadBuffer
-                  0x00b56e                  _UART1_Write
-                  0x00b5b6                  _UART1_WriteBuffer
-                  0x00b5e6                  _UART1_TransferStatusGet
-                  0x00b60a                  _UART1_Peek
-                  0x00b62e                  _UART1_PeekSafe
-                  0x00b698                  _UART1_ReceiveBufferSizeGet
-                  0x00b6c0                  _UART1_TransmitBufferSizeGet
-                  0x00b6e6                  _UART1_ReceiveBufferIsEmpty
-                  0x00b6f4                  _UART1_TransmitBufferIsFull
-                  0x00b702                  _UART1_StatusGet
-                  0x00b706                  _UART1_Enable
-                  0x00b70c                  _UART1_Disable
-                  0x00b716                  _UART2_Initialize
-                  0x00b740                  _UART2_Read
-                  0x00b784                  _UART2_ReadBuffer
-                  0x00b7b8                  _UART2_Write
-                  0x00b800                  _UART2_WriteBuffer
-                  0x00b830                  _UART2_TransferStatusGet
-                  0x00b854                  _UART2_Peek
-                  0x00b878                  _UART2_PeekSafe
-                  0x00b8e2                  _UART2_ReceiveBufferSizeGet
-                  0x00b908                  _UART2_TransmitBufferSizeGet
-                  0x00b92e                  _UART2_ReceiveBufferIsEmpty
-                  0x00b93c                  _UART2_TransmitBufferIsFull
-                  0x00b94a                  _UART2_StatusGet
-                  0x00b94e                  _UART2_Enable
-                  0x00b954                  _UART2_Disable
-                  0x00b95e                  _reset
-                  0x00b964                  _ProcessPins
-                  0x00bad2                  _main
-                  0x00bb8c                  _orCount
-                  0x00bb92                  _or128
-                  0x00bc94                  _andCount
-                  0x00bc9a                  _and128
-                  0x00bd9c                  _initResistanceInput
-                  0x00be88                  _updateResistanceInput
-                  0x00bf78                  _initServoHwSimple
-                  0x00bf96                  _initServoHw
-                  0x00c042                  _updateServoHw
-                  0x00c144                  _pinRegisterSizeCheck
-                  0x00c146                  _SetBuffer
-                  0x00c154                  _GetBuffer
-                  0x00c2e2                  _SetMode
-                  0x00c2f0                  _GetMode
-                  0x00c32a                  _QueueByteInitialize
-                  0x00c34e                  _QueueGetBytesFilledInQueue
-                  0x00c376                  _QueueGetBytesFreeInQueue
-                  0x00c3aa                  _QueueAddByte
-                  0x00c3fc                  _QueueReadByte
-                  0x00c458                  _QueuePeekByte
-                  0x00c49a                  _FLASH_Unlock
-                  0x00c4a4                  _FLASH_Lock
-                  0x00c4b2                  _FLASH_SendNvmKey
-                  0x00c4d0                  _FLASH_ReadWord24
-                  0x00c4de                  _FLASH_ReadWord16
-                  0x00c4ea                  _FLASH_ErasePage
-                  0x00c50e                  _FLASH_WriteDoubleWord24
-                  0x00c546                  _FLASH_WriteDoubleWord16
-                  0x00c580                  _FLASH_WriteRow24
-                  0x00c5b8                  _FLASH_WriteRow16
-                  0x00c5f0                  _FLASH_GetErasePageOffset
-                  0x00c5f6                  _FLASH_GetErasePageAddress
-                  0x00c600                  _updatePWM
-                  0x00c622                  _initPWMSimple
-                  0x00c660                  _initPWM
-                  0x00c87c                  _initDebounce
-                  0x00c916                  _updateDebounce
-                  0x00c98c                  _ascii_to_val
-                  0x00c9c6                  _uint16ToAscii5
-                  0x00ca1a                  _uint16ToAscii5NoHWMath
-                  0x00ca72                  _uint16ToAsciiHex4
-                  0x00ca94                  _I2C2_Initialize
-                  0x00cac4                  _I2C2_PeriphAddressMaskSet
-                  0x00cac8                  _I2C2_PeriphAddressSet
-                  0x00cae0                  _I2C2_TransmitProcess
-                  0x00cafc                  _I2C2_ReceiveProcess
-                  0x00cb30                  _i2cHealthMonitor
-                  0x00cb8a                  _initProtectedOutput
-                  0x00cbda                  _updateProtectedOutput
-                  0x00cc50                  _I2C1_Initialize
-                  0x00cc6c                  _I2C1_ErrorCountGet
-                  0x00cc70                  _I2C1_MasterTRBInsert
-                  0x00ccb0                  _I2C1_MasterRead
-                  0x00ccce                  _I2C1_MasterWrite
-                  0x00cce8                  _I2C1_MasterReadTRBBuild
-                  0x00ccf4                  _I2C1_MasterWriteTRBBuild
-                  0x00ccfc                  _I2C1_MasterQueueIsEmpty
-                  0x00cd02                  _I2C1_MasterQueueIsFull
-                  0x00cd08                  _initWatchdog
-                  0x00cd80                  _updateWatchdog
-                  0x00cdb6                  _initThroughputConsumer
-                  0x00ce3c                  _updateThroughputConsumer
-                  0x00ce5e                  _SYSTEM_Initialize
-                  0x00cf0a                  _TMR2_Initialize
-                  0x00cf36                  _TMR2_Period16BitSet
-                  0x00cf3e                  _TMR2_Period16BitGet
-                  0x00cf42                  _TMR2_Counter16BitSet
-                  0x00cf4a                  _TMR2_Counter16BitGet
-                  0x00cf4e                  _TMR2_SetInterruptHandler
-                  0x00cf56                  _TMR2_Start
-                  0x00cf60                  _TMR2_Stop
-                  0x00cf66                  _TMR2_GetElapsedThenClear
-                  0x00cf72                  _TMR2_SoftwareCounterGet
-                  0x00cf78                  _TMR2_SoftwareCounterClear
-                  0x00cf7e                  _TMR1_Initialize
-                  0x00cf8e                  _TMR1_Tasks_16BitOperation
-                  0x00cfa0                  _TMR1_Period16BitSet
-                  0x00cfa8                  _TMR1_Period16BitGet
-                  0x00cfac                  _TMR1_Counter16BitSet
-                  0x00cfb4                  _TMR1_Counter16BitGet
-                  0x00cfb8                  _TMR1_Start
-                  0x00cfc0                  _TMR1_Stop
-                  0x00cfc4                  _TMR1_GetElapsedThenClear
-                  0x00cfd0                  _TMR1_SoftwareCounterGet
-                  0x00cfd6                  _TMR1_SoftwareCounterClear
-                  0x00cfdc                  _TMR1_ResetConditions
-                  0x00cfe6                  _TMR3_Initialize
-                  0x00cff4                  _TMR3_Tasks_16BitOperation
-                  0x00d006                  _TMR3_Period16BitSet
-                  0x00d00e                  _TMR3_Period16BitGet
-                  0x00d012                  _TMR3_Counter16BitSet
-                  0x00d01a                  _TMR3_Counter16BitGet
-                  0x00d01e                  _TMR3_Start
-                  0x00d026                  _TMR3_Stop
-                  0x00d02a                  _TMR3_GetElapsedThenClear
-                  0x00d036                  _TMR3_SoftwareCounterGet
-                  0x00d03c                  _TMR3_SoftwareCounterClear
-                  0x00d042                  _TMR3_ResetConditions
-                  0x00d04a                  _initPinInputProcessor
-                  0x00d07c                  _updatePinInputProcessor
-                  0x00d0ae                  _PIN_MANAGER_Initialize
-                  0x00d0f8                  _CLOCK_Initialize
-                  0x00d140                  ___delay32
-                  0x00d162                  _OSCILLATOR_Initialize
+                  0x00557a                  _ProcessRxbuffer
+                  0x0062c6                  _ProcessRx
+                  0x0063a0                  _timingResourceDefault
+                  0x00642a                  _timingResourceManagerInit
+                  0x00643c                  _timingResourceHighPulseClaim
+                  0x006494                  _timingResourcePWMClaim
+                  0x006588                  _timingResourceRelease
+                  0x0065e0                  _timingResourcesHighPulse
+                  0x0066e0                  _timingResourcePWM
+                  0x006ddc                  _timingResourceHighPulseBusy
+                  0x006e46                  _timingResourceService
+                  0x006e52                  _timingResourceInterruptClaim
+                  0x00701e                  _timingResourceInterruptActivate
+                  0x0070c6                  _timingResourceBusyWait
+                  0x0070e8                  _ws2812_SPI1_Initialize
+                  0x007102                  _ws2812ConfigHardware
+                  0x007122                  _queue1Bit
+                  0x00712e                  _queue0Bit
+                  0x00713a                  _QueueRGB
+                  0x007374                  _SendResetSignal
+                  0x007382                  _StartDMA
+                  0x0073aa                  _StopDMA
+                  0x0073ae                  _initWS2812
+                  0x00761e                  _updateWS2812
+                  0x00783c                  _tm1637Start
+                  0x007844                  _tm1637Stop
+                  0x007862                  _tm1637ClockByte
+                  0x0078c0                  _tm1637_hwinit
+                  0x0078cc                  _tm1637SendInitialAddress
+                  0x0078ee                  _tm1637SendDisplayControlCommand
+                  0x0078f6                  _initTM1637
+                  0x007b4e                  _tm1637UpdateRender
+                  0x007cda                  _updateTM1637
+                  0x007e1e                  _outputScaleInit
+                  0x007e4a                  _outputScaleProcess
+                  0x008112                  _outputScaleResetTimeout
+                  0x008118                  _outputScaleCommProcess
+                  0x0083ba                  _initMatrixKeypad
+                  0x008744                  _updateMatrixKeypad
+                  0x0088e8                  _updatePulseOutput
+                  0x008ac4                  _updateBitStreamOutput
+                  0x008ba4                  _initializeBitStreamOutput
+                  0x008bee                  _removeBitStreamOutput
+                  0x008c4c                  _PulseInGetOldestDMABit
+                  0x008ca8                  _PulseInDiscardUntilLow
+                  0x008d0e                  _PulseInSkipDMABits
+                  0x008d86                  _PulseInGetOldestDMASample
+                  0x008dd2                  _SetPPSOutput
+                  0x008ee4                  _CurrentPinBitmap
+                  0x008ef8                  _ConfigurePinAnalog
+                  0x008f4a                  _PinIsAnalogCapable
+                  0x008f5a                  _CurrentPinPort
+                  0x008f6c                  _ReadPin
+                  0x008f9c                  _PinOutput
+                  0x008fd4                  _PinInput
+                  0x009006                  _CurrentPinRead
+                  0x00900a                  _pinIsPPSCapable
+                  0x009022                  _SetPin
+                  0x009116                  _CurrentPinInput
+                  0x00911a                  _CurrentPinAnalog
+                  0x009144                  _SetPinQuick
+                  0x009146                  _SetCurrentPin
+                  0x00914c                  _PinLow
+                  0x009150                  _PinHigh
+                  0x009154                  _SetPinPullUp
+                  0x00919e                  _SetPinPullDown
+                  0x0091e8                  _PinPullUp
+                  0x0091fc                  _PinPullDown
+                  0x009210                  _CurrentPinHigh
+                  0x009216                  _InitializePinLow
+                  0x009278                  _CurrentPinLow
+                  0x00927e                  _CurrentPinPullUp
+                  0x009282                  _CurrentPinNoPullUp
+                  0x009288                  _CurrentPinPullDown
+                  0x00928c                  _CurrentPinNoPullDown
+                  0x009292                  _initQuadEnc
+                  0x0095b0                  _updateQuadEnc
+                  0x00973c                  _initUARTSw
+                  0x009984                  _updateUARTSwTx
+                  0x009aa6                  _updateUARTSwRx
+                  0x009bc8                  _updateUARTSw
+                  0x009be0                  _DMA_Initialize
+                  0x009c5a                  _DMA__Channel1_Tasks
+                  0x009c6a                  _DMA__Channel2_Tasks
+                  0x009c7a                  _DMA__Channel3_Tasks
+                  0x009c8a                  _DMA__Channel4_Tasks
+                  0x009c9a                  _DMA__Channel5_Tasks
+                  0x009ca8                  _DMA_ChannelEnable
+                  0x009cda                  _DMA_ChannelDisable
+                  0x009d0c                  _DMA_TransferCountSet
+                  0x009d3e                  _DMA_TransferCountGet
+                  0x009d70                  _DMA_SoftwareTriggerEnable
+                  0x009da2                  _DMA_SourceAddressSet
+                  0x009dd4                  _DMA_DestinationAddressSet
+                  0x009e06                  _DMA_IsSoftwareRequestPending
+                  0x009e50                  _DMA_IsBufferedWriteComplete
+                  0x009e8e                  _DMA_IsHighAddressLimitFlagSet
+                  0x009ed8                  _DMA_IsLowAddressLimitFlagSet
+                  0x009f22                  _DMA_IsOperationDone
+                  0x009f6c                  _DMA_IsOverrunFlagSet
+                  0x009fb6                  _DMA_IsOperationHalfComplete
+                  0x00a000                  _CRC_Initialize
+                  0x00a02c                  _CRC_SeedSet
+                  0x00a0a2                  _CRC_CalculateBufferStart
+                  0x00a0c6                  _CRC_CalculateProgramStart
+                  0x00a0f4                  _CRC_Task
+                  0x00a2cc                  _CRC_CalculationIsDone
+                  0x00a2dc                  _CRC_CalculationResultRawGet
+                  0x00a310                  _CRC_CalculationResultReverseGet
+                  0x00a34e                  _CRC_CalculationResultXORGet
+                  0x00a38c                  _CRC_CalculationResultGet
+                  0x00a3ee                  _inputProcessInit
+                  0x00a412                  _inputProcessProcess
+                  0x00a5c0                  _inputProcessCommProcess
+                  0x00a7d2                  _ADC1_ResetConditions
+                  0x00a7e2                  _ADC1_Initialize
+                  0x00a892                  _GetADCConversion
+                  0x00a8e2                  _GetAddressPinVoltage_mV
+                  0x00a994                  _GetCurrentPinReistanceOhmsSetup
+                  0x00a9f0                  _GetCurrentPinReistanceOhmsRead
+                  0x00aa20                  _GetTemperature_degC100ths
+                  0x00aafc                  _GetSourceVoltage_mV
+                  0x00ab08                  _GetSourceVoltageADC
+                  0x00ab0c                  _GetVBgCountsVsVRefPin
+                  0x00ab54                  _touchCallback
+                  0x00ab58                  _initTouch
+                  0x00acbc                  _touchProcessDigital
+                  0x00ad4e                  _updateTouch
+                  0x00aebc                  _initUARTHw
+                  0x00b1f6                  _updateUARTHw
+                  0x00b220                  _initPulseTimer
+                  0x00b386                  _updatePulseTimer
+                  0x00b51e                  _initPulseOnChange
+                  0x00b684                  _updatePulseOnChange
+                  0x00b7d6                  _reset
+                  0x00b7dc                  _ProcessPins
+                  0x00b96a                  _main
+                  0x00ba24                  _UART2_Initialize
+                  0x00ba4e                  _UART2_Read
+                  0x00ba92                  _UART2_ReadBuffer
+                  0x00bac6                  _UART2_Write
+                  0x00bb0e                  _UART2_WriteBuffer
+                  0x00bb3e                  _UART2_TransferStatusGet
+                  0x00bb62                  _UART2_Peek
+                  0x00bb86                  _UART2_PeekSafe
+                  0x00bbf0                  _UART2_ReceiveBufferSizeGet
+                  0x00bc16                  _UART2_TransmitBufferSizeGet
+                  0x00bc3c                  _UART2_ReceiveBufferIsEmpty
+                  0x00bc4a                  _UART2_TransmitBufferIsFull
+                  0x00bc58                  _UART2_StatusGet
+                  0x00bc5c                  _UART2_Enable
+                  0x00bc62                  _UART2_Disable
+                  0x00bc6c                  _orCount
+                  0x00bc72                  _or128
+                  0x00bd74                  _andCount
+                  0x00bd7a                  _and128
+                  0x00be7c                  _pinRegisterSizeCheck
+                  0x00be7e                  _SetBuffer
+                  0x00be8c                  _wrandom
+                  0x00bec8                  _GetBuffer
+                  0x00c066                  _SetMode
+                  0x00c074                  _GetMode
+                  0x00c088                  _initServoHwSimple
+                  0x00c0a6                  _initServoHw
+                  0x00c16a                  _updateServoHw
+                  0x00c26c                  _initResistanceInput
+                  0x00c34c                  _updateResistanceInput
+                  0x00c462                  _QueueByteInitialize
+                  0x00c486                  _QueueGetBytesFilledInQueue
+                  0x00c4ae                  _QueueGetBytesFreeInQueue
+                  0x00c4e2                  _QueueAddByte
+                  0x00c534                  _QueueReadByte
+                  0x00c590                  _QueuePeekByte
+                  0x00c5d2                  _FLASH_Unlock
+                  0x00c5dc                  _FLASH_Lock
+                  0x00c5ea                  _FLASH_SendNvmKey
+                  0x00c608                  _FLASH_ReadWord24
+                  0x00c616                  _FLASH_ReadWord16
+                  0x00c622                  _FLASH_ErasePage
+                  0x00c646                  _FLASH_WriteDoubleWord24
+                  0x00c67e                  _FLASH_WriteDoubleWord16
+                  0x00c6b8                  _FLASH_WriteRow24
+                  0x00c6f0                  _FLASH_WriteRow16
+                  0x00c728                  _FLASH_GetErasePageOffset
+                  0x00c72e                  _FLASH_GetErasePageAddress
+                  0x00c738                  _updatePWM
+                  0x00c75a                  _initPWMSimple
+                  0x00c798                  _initPWM
+                  0x00c9d0                  _initDebounce
+                  0x00ca7c                  _updateDebounce
+                  0x00caf2                  _initHfServo
+                  0x00cbd2                  _updateHfServo
+                  0x00cc14                  _initAnalogInput
+                  0x00cd00                  _updateAnalogInput
+                  0x00cd22                  _initAnalogSimple
+                  0x00cd34                  _ascii_to_val
+                  0x00cd6e                  _uint16ToAscii5
+                  0x00cdc2                  _uint16ToAscii5NoHWMath
+                  0x00ce1a                  _uint16ToAsciiHex4
+                  0x00ce3c                  _I2C2_Initialize
+                  0x00ce6c                  _I2C2_PeriphAddressMaskSet
+                  0x00ce70                  _I2C2_PeriphAddressSet
+                  0x00ce88                  _I2C2_TransmitProcess
+                  0x00cea4                  _I2C2_ReceiveProcess
+                  0x00ced8                  _i2cHealthMonitor
+                  0x00cf32                  _initProtectedOutput
+                  0x00cf92                  _updateProtectedOutput
+                  0x00d008                  _initWatchdog
+                  0x00d090                  _updateWatchdog
+                  0x00d0c6                  _I2C1_Initialize
+                  0x00d0e2                  _I2C1_ErrorCountGet
+                  0x00d0e6                  _I2C1_MasterTRBInsert
+                  0x00d126                  _I2C1_MasterRead
+                  0x00d144                  _I2C1_MasterWrite
+                  0x00d15e                  _I2C1_MasterReadTRBBuild
+                  0x00d16a                  _I2C1_MasterWriteTRBBuild
+                  0x00d172                  _I2C1_MasterQueueIsEmpty
+                  0x00d178                  _I2C1_MasterQueueIsFull
+                  0x00d17e                  _initThroughputConsumer
+                  0x00d204                  _updateThroughputConsumer
+                  0x00d226                  _SYSTEM_Initialize
+                  0x00d2d2                  _TMR2_Initialize
+                  0x00d2fe                  _TMR2_Period16BitSet
+                  0x00d306                  _TMR2_Period16BitGet
+                  0x00d30a                  _TMR2_Counter16BitSet
+                  0x00d312                  _TMR2_Counter16BitGet
+                  0x00d316                  _TMR2_SetInterruptHandler
+                  0x00d31e                  _TMR2_Start
+                  0x00d328                  _TMR2_Stop
+                  0x00d32e                  _TMR2_GetElapsedThenClear
+                  0x00d33a                  _TMR2_SoftwareCounterGet
+                  0x00d340                  _TMR2_SoftwareCounterClear
+                  0x00d346                  _TMR1_Initialize
+                  0x00d356                  _TMR1_Tasks_16BitOperation
+                  0x00d368                  _TMR1_Period16BitSet
+                  0x00d370                  _TMR1_Period16BitGet
+                  0x00d374                  _TMR1_Counter16BitSet
+                  0x00d37c                  _TMR1_Counter16BitGet
+                  0x00d380                  _TMR1_Start
+                  0x00d388                  _TMR1_Stop
+                  0x00d38c                  _TMR1_GetElapsedThenClear
+                  0x00d398                  _TMR1_SoftwareCounterGet
+                  0x00d39e                  _TMR1_SoftwareCounterClear
+                  0x00d3a4                  _TMR1_ResetConditions
+                  0x00d3ae                  _initPinInputProcessor
+                  0x00d3e2                  _updatePinInputProcessor
+                  0x00d414                  _TMR3_Initialize
+                  0x00d422                  _TMR3_Tasks_16BitOperation
+                  0x00d434                  _TMR3_Period16BitSet
+                  0x00d43c                  _TMR3_Period16BitGet
+                  0x00d440                  _TMR3_Counter16BitSet
+                  0x00d448                  _TMR3_Counter16BitGet
+                  0x00d44c                  _TMR3_Start
+                  0x00d454                  _TMR3_Stop
+                  0x00d458                  _TMR3_GetElapsedThenClear
+                  0x00d464                  _TMR3_SoftwareCounterGet
+                  0x00d46a                  _TMR3_SoftwareCounterClear
+                  0x00d470                  _TMR3_ResetConditions
+                  0x00d478                  _PIN_MANAGER_Initialize
+                  0x00d4c2                  _CLOCK_Initialize
+                  0x00d50a                  ___delay32
+                  0x00d526                  _OSCILLATOR_Initialize
                   0x01f802                  _seven_seg_table
                   0x01f882                  _pinPort
                   0x01f896                  _pinBitmap
@@ -702,201 +703,213 @@ External Symbols in Program Memory (by address):
                   0x01f91c                  _inputProcessSamplePeriodMask
                   0x01f93c                  _baudDivisor
                   0x01f94e                  _swBaudDivisor
-                  0x01f970                  _initAnalogInput
-                  0x01fab2                  _updateAnalogInput
-                  0x01fb96                  _initAnalogSimple
-                  0x01fbd4                  _INTERRUPT_Initialize
-                  0x01fbf6                  _CVR_Initialize
+                  0x01f970                  _UART1_Initialize
+                  0x01f9b2                  _UART1_Read
+                  0x01f9f2                  _UART1_ReadBuffer
+                  0x01fa26                  _UART1_Write
+                  0x01fa6e                  _UART1_WriteBuffer
+                  0x01fa9e                  _UART1_TransferStatusGet
+                  0x01fac2                  _UART1_Peek
+                  0x01fae6                  _UART1_PeekSafe
+                  0x01fb50                  _UART1_ReceiveBufferSizeGet
+                  0x01fb78                  _UART1_TransmitBufferSizeGet
+                  0x01fb9e                  _UART1_ReceiveBufferIsEmpty
+                  0x01fbac                  _UART1_TransmitBufferIsFull
+                  0x01fbba                  _UART1_StatusGet
+                  0x01fbbe                  _UART1_Enable
+                  0x01fbc4                  _UART1_Disable
+                  0x01fbce                  _INTERRUPT_Initialize
+                  0x01fbf0                  _CVR_Initialize
                   0x02af00                  __FSEC.sec
 
 External Symbols in Program Memory (by name):
 
-                  0x00a7aa                  _ADC1_Initialize
-                  0x00a79a                  _ADC1_ResetConditions
-                  0x00d0f8                  _CLOCK_Initialize
-                  0x00a0c2                  _CRC_CalculateBufferStart
-                  0x00a0e6                  _CRC_CalculateProgramStart
-                  0x00a2ec                  _CRC_CalculationIsDone
-                  0x00a3ac                  _CRC_CalculationResultGet
-                  0x00a2fc                  _CRC_CalculationResultRawGet
-                  0x00a330                  _CRC_CalculationResultReverseGet
-                  0x00a36e                  _CRC_CalculationResultXORGet
-                  0x00a020                  _CRC_Initialize
-                  0x00a04c                  _CRC_SeedSet
-                  0x00a114                  _CRC_Task
-                  0x01fbf6                  _CVR_Initialize
-                  0x008f40                  _ConfigurePinAnalog
-                  0x009162                  _CurrentPinAnalog
-                  0x008f2c                  _CurrentPinBitmap
-                  0x009258                  _CurrentPinHigh
-                  0x00915e                  _CurrentPinInput
-                  0x0092c0                  _CurrentPinLow
-                  0x0092d4                  _CurrentPinNoPullDown
-                  0x0092ca                  _CurrentPinNoPullUp
-                  0x008fa2                  _CurrentPinPort
-                  0x0092d0                  _CurrentPinPullDown
-                  0x0092c6                  _CurrentPinPullUp
-                  0x00904e                  _CurrentPinRead
-                  0x009cfa                  _DMA_ChannelDisable
-                  0x009cc8                  _DMA_ChannelEnable
-                  0x009df4                  _DMA_DestinationAddressSet
-                  0x009c00                  _DMA_Initialize
-                  0x009e70                  _DMA_IsBufferedWriteComplete
-                  0x009eae                  _DMA_IsHighAddressLimitFlagSet
-                  0x009ef8                  _DMA_IsLowAddressLimitFlagSet
-                  0x009f42                  _DMA_IsOperationDone
-                  0x009fd6                  _DMA_IsOperationHalfComplete
-                  0x009f8c                  _DMA_IsOverrunFlagSet
-                  0x009e26                  _DMA_IsSoftwareRequestPending
-                  0x009d90                  _DMA_SoftwareTriggerEnable
-                  0x009dc2                  _DMA_SourceAddressSet
-                  0x009d5e                  _DMA_TransferCountGet
-                  0x009d2c                  _DMA_TransferCountSet
-                  0x009c7a                  _DMA__Channel1_Tasks
-                  0x009c8a                  _DMA__Channel2_Tasks
-                  0x009c9a                  _DMA__Channel3_Tasks
-                  0x009caa                  _DMA__Channel4_Tasks
-                  0x009cba                  _DMA__Channel5_Tasks
-                  0x00c4ea                  _FLASH_ErasePage
-                  0x00c5f6                  _FLASH_GetErasePageAddress
-                  0x00c5f0                  _FLASH_GetErasePageOffset
-                  0x00c4a4                  _FLASH_Lock
-                  0x00c4de                  _FLASH_ReadWord16
-                  0x00c4d0                  _FLASH_ReadWord24
-                  0x00c4b2                  _FLASH_SendNvmKey
-                  0x00c49a                  _FLASH_Unlock
-                  0x00c546                  _FLASH_WriteDoubleWord16
-                  0x00c50e                  _FLASH_WriteDoubleWord24
-                  0x00c5b8                  _FLASH_WriteRow16
-                  0x00c580                  _FLASH_WriteRow24
-                  0x00a85a                  _GetADCConversion
-                  0x00a8aa                  _GetAddressPinVoltage_mV
-                  0x00c154                  _GetBuffer
-                  0x00a9b8                  _GetCurrentPinReistanceOhmsRead
-                  0x00a95c                  _GetCurrentPinReistanceOhmsSetup
-                  0x00c2f0                  _GetMode
-                  0x00aad0                  _GetSourceVoltageADC
-                  0x00aac4                  _GetSourceVoltage_mV
-                  0x00a9e8                  _GetTemperature_degC100ths
-                  0x00aad4                  _GetVBgCountsVsVRefPin
-                  0x00cc6c                  _I2C1_ErrorCountGet
-                  0x00cc50                  _I2C1_Initialize
-                  0x00ccfc                  _I2C1_MasterQueueIsEmpty
-                  0x00cd02                  _I2C1_MasterQueueIsFull
-                  0x00ccb0                  _I2C1_MasterRead
-                  0x00cce8                  _I2C1_MasterReadTRBBuild
-                  0x00cc70                  _I2C1_MasterTRBInsert
-                  0x00ccce                  _I2C1_MasterWrite
-                  0x00ccf4                  _I2C1_MasterWriteTRBBuild
-                  0x00ca94                  _I2C2_Initialize
-                  0x00cac4                  _I2C2_PeriphAddressMaskSet
-                  0x00cac8                  _I2C2_PeriphAddressSet
-                  0x00cafc                  _I2C2_ReceiveProcess
-                  0x00cae0                  _I2C2_TransmitProcess
-                  0x01fbd4                  _INTERRUPT_Initialize
-                  0x00925e                  _InitializePinLow
-                  0x00d162                  _OSCILLATOR_Initialize
-                  0x00d0ae                  _PIN_MANAGER_Initialize
-                  0x009198                  _PinHigh
-                  0x00901c                  _PinInput
-                  0x008f92                  _PinIsAnalogCapable
-                  0x009194                  _PinLow
-                  0x008fe4                  _PinOutput
-                  0x009244                  _PinPullDown
-                  0x009230                  _PinPullUp
-                  0x00b964                  _ProcessPins
-                  0x0062ba                  _ProcessRx
-                  0x00556e                  _ProcessRxbuffer
+                  0x00a7e2                  _ADC1_Initialize
+                  0x00a7d2                  _ADC1_ResetConditions
+                  0x00d4c2                  _CLOCK_Initialize
+                  0x00a0a2                  _CRC_CalculateBufferStart
+                  0x00a0c6                  _CRC_CalculateProgramStart
+                  0x00a2cc                  _CRC_CalculationIsDone
+                  0x00a38c                  _CRC_CalculationResultGet
+                  0x00a2dc                  _CRC_CalculationResultRawGet
+                  0x00a310                  _CRC_CalculationResultReverseGet
+                  0x00a34e                  _CRC_CalculationResultXORGet
+                  0x00a000                  _CRC_Initialize
+                  0x00a02c                  _CRC_SeedSet
+                  0x00a0f4                  _CRC_Task
+                  0x01fbf0                  _CVR_Initialize
+                  0x008ef8                  _ConfigurePinAnalog
+                  0x00911a                  _CurrentPinAnalog
+                  0x008ee4                  _CurrentPinBitmap
+                  0x009210                  _CurrentPinHigh
+                  0x009116                  _CurrentPinInput
+                  0x009278                  _CurrentPinLow
+                  0x00928c                  _CurrentPinNoPullDown
+                  0x009282                  _CurrentPinNoPullUp
+                  0x008f5a                  _CurrentPinPort
+                  0x009288                  _CurrentPinPullDown
+                  0x00927e                  _CurrentPinPullUp
+                  0x009006                  _CurrentPinRead
+                  0x009cda                  _DMA_ChannelDisable
+                  0x009ca8                  _DMA_ChannelEnable
+                  0x009dd4                  _DMA_DestinationAddressSet
+                  0x009be0                  _DMA_Initialize
+                  0x009e50                  _DMA_IsBufferedWriteComplete
+                  0x009e8e                  _DMA_IsHighAddressLimitFlagSet
+                  0x009ed8                  _DMA_IsLowAddressLimitFlagSet
+                  0x009f22                  _DMA_IsOperationDone
+                  0x009fb6                  _DMA_IsOperationHalfComplete
+                  0x009f6c                  _DMA_IsOverrunFlagSet
+                  0x009e06                  _DMA_IsSoftwareRequestPending
+                  0x009d70                  _DMA_SoftwareTriggerEnable
+                  0x009da2                  _DMA_SourceAddressSet
+                  0x009d3e                  _DMA_TransferCountGet
+                  0x009d0c                  _DMA_TransferCountSet
+                  0x009c5a                  _DMA__Channel1_Tasks
+                  0x009c6a                  _DMA__Channel2_Tasks
+                  0x009c7a                  _DMA__Channel3_Tasks
+                  0x009c8a                  _DMA__Channel4_Tasks
+                  0x009c9a                  _DMA__Channel5_Tasks
+                  0x00c622                  _FLASH_ErasePage
+                  0x00c72e                  _FLASH_GetErasePageAddress
+                  0x00c728                  _FLASH_GetErasePageOffset
+                  0x00c5dc                  _FLASH_Lock
+                  0x00c616                  _FLASH_ReadWord16
+                  0x00c608                  _FLASH_ReadWord24
+                  0x00c5ea                  _FLASH_SendNvmKey
+                  0x00c5d2                  _FLASH_Unlock
+                  0x00c67e                  _FLASH_WriteDoubleWord16
+                  0x00c646                  _FLASH_WriteDoubleWord24
+                  0x00c6f0                  _FLASH_WriteRow16
+                  0x00c6b8                  _FLASH_WriteRow24
+                  0x00a892                  _GetADCConversion
+                  0x00a8e2                  _GetAddressPinVoltage_mV
+                  0x00bec8                  _GetBuffer
+                  0x00a9f0                  _GetCurrentPinReistanceOhmsRead
+                  0x00a994                  _GetCurrentPinReistanceOhmsSetup
+                  0x00c074                  _GetMode
+                  0x00ab08                  _GetSourceVoltageADC
+                  0x00aafc                  _GetSourceVoltage_mV
+                  0x00aa20                  _GetTemperature_degC100ths
+                  0x00ab0c                  _GetVBgCountsVsVRefPin
+                  0x00d0e2                  _I2C1_ErrorCountGet
+                  0x00d0c6                  _I2C1_Initialize
+                  0x00d172                  _I2C1_MasterQueueIsEmpty
+                  0x00d178                  _I2C1_MasterQueueIsFull
+                  0x00d126                  _I2C1_MasterRead
+                  0x00d15e                  _I2C1_MasterReadTRBBuild
+                  0x00d0e6                  _I2C1_MasterTRBInsert
+                  0x00d144                  _I2C1_MasterWrite
+                  0x00d16a                  _I2C1_MasterWriteTRBBuild
+                  0x00ce3c                  _I2C2_Initialize
+                  0x00ce6c                  _I2C2_PeriphAddressMaskSet
+                  0x00ce70                  _I2C2_PeriphAddressSet
+                  0x00cea4                  _I2C2_ReceiveProcess
+                  0x00ce88                  _I2C2_TransmitProcess
+                  0x01fbce                  _INTERRUPT_Initialize
+                  0x009216                  _InitializePinLow
+                  0x00d526                  _OSCILLATOR_Initialize
+                  0x00d478                  _PIN_MANAGER_Initialize
+                  0x009150                  _PinHigh
+                  0x008fd4                  _PinInput
+                  0x008f4a                  _PinIsAnalogCapable
+                  0x00914c                  _PinLow
+                  0x008f9c                  _PinOutput
+                  0x0091fc                  _PinPullDown
+                  0x0091e8                  _PinPullUp
+                  0x00b7dc                  _ProcessPins
+                  0x0062c6                  _ProcessRx
+                  0x00557a                  _ProcessRxbuffer
                   0x005490                  _ProcessSetPin
-                  0x008cf0                  _PulseInDiscardUntilLow
-                  0x008c94                  _PulseInGetOldestDMABit
-                  0x008dce                  _PulseInGetOldestDMASample
-                  0x008d56                  _PulseInSkipDMABits
-                  0x00c3aa                  _QueueAddByte
-                  0x00c32a                  _QueueByteInitialize
-                  0x00c34e                  _QueueGetBytesFilledInQueue
-                  0x00c376                  _QueueGetBytesFreeInQueue
-                  0x00c458                  _QueuePeekByte
-                  0x007122                  _QueueRGB
-                  0x00c3fc                  _QueueReadByte
-                  0x008fb4                  _ReadPin
-                  0x00ce5e                  _SYSTEM_Initialize
-                  0x00735c                  _SendResetSignal
-                  0x00c146                  _SetBuffer
-                  0x00918e                  _SetCurrentPin
-                  0x00c2e2                  _SetMode
-                  0x008e1a                  _SetPPSOutput
-                  0x00906a                  _SetPin
-                  0x0091e6                  _SetPinPullDown
-                  0x00919c                  _SetPinPullUp
-                  0x00918c                  _SetPinQuick
-                  0x00736a                  _StartDMA
-                  0x007392                  _StopDMA
-                  0x00cfb4                  _TMR1_Counter16BitGet
-                  0x00cfac                  _TMR1_Counter16BitSet
-                  0x00cfc4                  _TMR1_GetElapsedThenClear
-                  0x00cf7e                  _TMR1_Initialize
-                  0x00cfa8                  _TMR1_Period16BitGet
-                  0x00cfa0                  _TMR1_Period16BitSet
-                  0x00cfdc                  _TMR1_ResetConditions
-                  0x00cfd6                  _TMR1_SoftwareCounterClear
-                  0x00cfd0                  _TMR1_SoftwareCounterGet
-                  0x00cfb8                  _TMR1_Start
-                  0x00cfc0                  _TMR1_Stop
-                  0x00cf8e                  _TMR1_Tasks_16BitOperation
-                  0x00cf4a                  _TMR2_Counter16BitGet
-                  0x00cf42                  _TMR2_Counter16BitSet
-                  0x00cf66                  _TMR2_GetElapsedThenClear
-                  0x00cf0a                  _TMR2_Initialize
-                  0x00cf3e                  _TMR2_Period16BitGet
-                  0x00cf36                  _TMR2_Period16BitSet
-                  0x00cf4e                  _TMR2_SetInterruptHandler
-                  0x00cf78                  _TMR2_SoftwareCounterClear
-                  0x00cf72                  _TMR2_SoftwareCounterGet
-                  0x00cf56                  _TMR2_Start
-                  0x00cf60                  _TMR2_Stop
-                  0x00d01a                  _TMR3_Counter16BitGet
-                  0x00d012                  _TMR3_Counter16BitSet
-                  0x00d02a                  _TMR3_GetElapsedThenClear
-                  0x00cfe6                  _TMR3_Initialize
-                  0x00d00e                  _TMR3_Period16BitGet
-                  0x00d006                  _TMR3_Period16BitSet
-                  0x00d042                  _TMR3_ResetConditions
-                  0x00d03c                  _TMR3_SoftwareCounterClear
-                  0x00d036                  _TMR3_SoftwareCounterGet
-                  0x00d01e                  _TMR3_Start
-                  0x00d026                  _TMR3_Stop
-                  0x00cff4                  _TMR3_Tasks_16BitOperation
-                  0x00b70c                  _UART1_Disable
-                  0x00b706                  _UART1_Enable
-                  0x00b4b8                  _UART1_Initialize
-                  0x00b60a                  _UART1_Peek
-                  0x00b62e                  _UART1_PeekSafe
-                  0x00b4fa                  _UART1_Read
-                  0x00b53a                  _UART1_ReadBuffer
-                  0x00b6e6                  _UART1_ReceiveBufferIsEmpty
-                  0x00b698                  _UART1_ReceiveBufferSizeGet
-                  0x00b702                  _UART1_StatusGet
-                  0x00b5e6                  _UART1_TransferStatusGet
-                  0x00b6f4                  _UART1_TransmitBufferIsFull
-                  0x00b6c0                  _UART1_TransmitBufferSizeGet
-                  0x00b56e                  _UART1_Write
-                  0x00b5b6                  _UART1_WriteBuffer
-                  0x00b954                  _UART2_Disable
-                  0x00b94e                  _UART2_Enable
-                  0x00b716                  _UART2_Initialize
-                  0x00b854                  _UART2_Peek
-                  0x00b878                  _UART2_PeekSafe
-                  0x00b740                  _UART2_Read
-                  0x00b784                  _UART2_ReadBuffer
-                  0x00b92e                  _UART2_ReceiveBufferIsEmpty
-                  0x00b8e2                  _UART2_ReceiveBufferSizeGet
-                  0x00b94a                  _UART2_StatusGet
-                  0x00b830                  _UART2_TransferStatusGet
-                  0x00b93c                  _UART2_TransmitBufferIsFull
-                  0x00b908                  _UART2_TransmitBufferSizeGet
-                  0x00b7b8                  _UART2_Write
-                  0x00b800                  _UART2_WriteBuffer
+                  0x008ca8                  _PulseInDiscardUntilLow
+                  0x008c4c                  _PulseInGetOldestDMABit
+                  0x008d86                  _PulseInGetOldestDMASample
+                  0x008d0e                  _PulseInSkipDMABits
+                  0x00c4e2                  _QueueAddByte
+                  0x00c462                  _QueueByteInitialize
+                  0x00c486                  _QueueGetBytesFilledInQueue
+                  0x00c4ae                  _QueueGetBytesFreeInQueue
+                  0x00c590                  _QueuePeekByte
+                  0x00713a                  _QueueRGB
+                  0x00c534                  _QueueReadByte
+                  0x008f6c                  _ReadPin
+                  0x00d226                  _SYSTEM_Initialize
+                  0x007374                  _SendResetSignal
+                  0x00be7e                  _SetBuffer
+                  0x009146                  _SetCurrentPin
+                  0x00c066                  _SetMode
+                  0x008dd2                  _SetPPSOutput
+                  0x009022                  _SetPin
+                  0x00919e                  _SetPinPullDown
+                  0x009154                  _SetPinPullUp
+                  0x009144                  _SetPinQuick
+                  0x007382                  _StartDMA
+                  0x0073aa                  _StopDMA
+                  0x00d37c                  _TMR1_Counter16BitGet
+                  0x00d374                  _TMR1_Counter16BitSet
+                  0x00d38c                  _TMR1_GetElapsedThenClear
+                  0x00d346                  _TMR1_Initialize
+                  0x00d370                  _TMR1_Period16BitGet
+                  0x00d368                  _TMR1_Period16BitSet
+                  0x00d3a4                  _TMR1_ResetConditions
+                  0x00d39e                  _TMR1_SoftwareCounterClear
+                  0x00d398                  _TMR1_SoftwareCounterGet
+                  0x00d380                  _TMR1_Start
+                  0x00d388                  _TMR1_Stop
+                  0x00d356                  _TMR1_Tasks_16BitOperation
+                  0x00d312                  _TMR2_Counter16BitGet
+                  0x00d30a                  _TMR2_Counter16BitSet
+                  0x00d32e                  _TMR2_GetElapsedThenClear
+                  0x00d2d2                  _TMR2_Initialize
+                  0x00d306                  _TMR2_Period16BitGet
+                  0x00d2fe                  _TMR2_Period16BitSet
+                  0x00d316                  _TMR2_SetInterruptHandler
+                  0x00d340                  _TMR2_SoftwareCounterClear
+                  0x00d33a                  _TMR2_SoftwareCounterGet
+                  0x00d31e                  _TMR2_Start
+                  0x00d328                  _TMR2_Stop
+                  0x00d448                  _TMR3_Counter16BitGet
+                  0x00d440                  _TMR3_Counter16BitSet
+                  0x00d458                  _TMR3_GetElapsedThenClear
+                  0x00d414                  _TMR3_Initialize
+                  0x00d43c                  _TMR3_Period16BitGet
+                  0x00d434                  _TMR3_Period16BitSet
+                  0x00d470                  _TMR3_ResetConditions
+                  0x00d46a                  _TMR3_SoftwareCounterClear
+                  0x00d464                  _TMR3_SoftwareCounterGet
+                  0x00d44c                  _TMR3_Start
+                  0x00d454                  _TMR3_Stop
+                  0x00d422                  _TMR3_Tasks_16BitOperation
+                  0x01fbc4                  _UART1_Disable
+                  0x01fbbe                  _UART1_Enable
+                  0x01f970                  _UART1_Initialize
+                  0x01fac2                  _UART1_Peek
+                  0x01fae6                  _UART1_PeekSafe
+                  0x01f9b2                  _UART1_Read
+                  0x01f9f2                  _UART1_ReadBuffer
+                  0x01fb9e                  _UART1_ReceiveBufferIsEmpty
+                  0x01fb50                  _UART1_ReceiveBufferSizeGet
+                  0x01fbba                  _UART1_StatusGet
+                  0x01fa9e                  _UART1_TransferStatusGet
+                  0x01fbac                  _UART1_TransmitBufferIsFull
+                  0x01fb78                  _UART1_TransmitBufferSizeGet
+                  0x01fa26                  _UART1_Write
+                  0x01fa6e                  _UART1_WriteBuffer
+                  0x00bc62                  _UART2_Disable
+                  0x00bc5c                  _UART2_Enable
+                  0x00ba24                  _UART2_Initialize
+                  0x00bb62                  _UART2_Peek
+                  0x00bb86                  _UART2_PeekSafe
+                  0x00ba4e                  _UART2_Read
+                  0x00ba92                  _UART2_ReadBuffer
+                  0x00bc3c                  _UART2_ReceiveBufferIsEmpty
+                  0x00bbf0                  _UART2_ReceiveBufferSizeGet
+                  0x00bc58                  _UART2_StatusGet
+                  0x00bb3e                  _UART2_TransferStatusGet
+                  0x00bc4a                  _UART2_TransmitBufferIsFull
+                  0x00bc16                  _UART2_TransmitBufferSizeGet
+                  0x00bac6                  _UART2_Write
+                  0x00bb0e                  _UART2_WriteBuffer
                   0x01f8d2                  _WombatPinToADCChannel
                   0x004ffe                  __ADC1Interrupt
                   0x004e0c                  __AddressError
@@ -924,7 +937,7 @@ External Symbols in Program Memory (by name):
                   0x004ff4                  __U2ErrInterrupt
                   0x004fa6                  __U2RXInterrupt
                   0x004f40                  __U2TXInterrupt
-                  0x00d140                  ___delay32
+                  0x00d50a                  ___delay32
                   0x0052be                  ___divdi3
                   0x005138                  ___divsi3
                   0x00531e                  ___moddi3
@@ -938,105 +951,110 @@ External Symbols in Program Memory (by name):
                   0x004852                  __data_init_da
                   0x00483c                  __psv_init
                   0x004800                  __resetPRI
-                  0x00bc9a                  _and128
-                  0x00bc94                  _andCount
-                  0x00c98c                  _ascii_to_val
+                  0x00bd7a                  _and128
+                  0x00bd74                  _andCount
+                  0x00cd34                  _ascii_to_val
                   0x01f93c                  _baudDivisor
                   0x00546c                  _error
-                  0x00cb30                  _i2cHealthMonitor
-                  0x01f970                  _initAnalogInput
-                  0x01fb96                  _initAnalogSimple
-                  0x00c87c                  _initDebounce
-                  0x0083f6                  _initMatrixKeypad
-                  0x00c660                  _initPWM
-                  0x00c622                  _initPWMSimple
-                  0x00d04a                  _initPinInputProcessor
-                  0x00cb8a                  _initProtectedOutput
-                  0x00b1dc                  _initPulseTimer
-                  0x009774                  _initQuadEnc
-                  0x00bd9c                  _initResistanceInput
-                  0x00bf96                  _initServoHw
-                  0x00bf78                  _initServoHwSimple
-                  0x0078fe                  _initTM1637
-                  0x00cdb6                  _initThroughputConsumer
-                  0x00a412                  _initTouch
-                  0x00ae7e                  _initUARTHw
-                  0x0092da                  _initUARTSw
-                  0x007396                  _initWS2812
-                  0x00cd08                  _initWatchdog
-                  0x008bec                  _initializeBitStreamOutput
-                  0x00acb0                  _inputProcessCommProcess
-                  0x00ab1c                  _inputProcessInit
-                  0x00ab40                  _inputProcessProcess
+                  0x00ced8                  _i2cHealthMonitor
+                  0x00cc14                  _initAnalogInput
+                  0x00cd22                  _initAnalogSimple
+                  0x00c9d0                  _initDebounce
+                  0x00caf2                  _initHfServo
+                  0x0083ba                  _initMatrixKeypad
+                  0x00c798                  _initPWM
+                  0x00c75a                  _initPWMSimple
+                  0x00d3ae                  _initPinInputProcessor
+                  0x00cf32                  _initProtectedOutput
+                  0x00b51e                  _initPulseOnChange
+                  0x00b220                  _initPulseTimer
+                  0x009292                  _initQuadEnc
+                  0x00c26c                  _initResistanceInput
+                  0x00c0a6                  _initServoHw
+                  0x00c088                  _initServoHwSimple
+                  0x0078f6                  _initTM1637
+                  0x00d17e                  _initThroughputConsumer
+                  0x00ab58                  _initTouch
+                  0x00aebc                  _initUARTHw
+                  0x00973c                  _initUARTSw
+                  0x0073ae                  _initWS2812
+                  0x00d008                  _initWatchdog
+                  0x008ba4                  _initializeBitStreamOutput
+                  0x00a5c0                  _inputProcessCommProcess
+                  0x00a3ee                  _inputProcessInit
+                  0x00a412                  _inputProcessProcess
                   0x01f91c                  _inputProcessSamplePeriodMask
-                  0x00bad2                  _main
+                  0x00b96a                  _main
                   0x005410                  _memcpy
-                  0x00bb92                  _or128
-                  0x00bb8c                  _orCount
+                  0x00bc72                  _or128
+                  0x00bc6c                  _orCount
                   0x01f8fc                  _outputSamplePeriodMask
-                  0x008154                  _outputScaleCommProcess
-                  0x007e5a                  _outputScaleInit
-                  0x007e86                  _outputScaleProcess
-                  0x00814e                  _outputScaleResetTimeout
+                  0x008118                  _outputScaleCommProcess
+                  0x007e1e                  _outputScaleInit
+                  0x007e4a                  _outputScaleProcess
+                  0x008112                  _outputScaleResetTimeout
                   0x01f896                  _pinBitmap
-                  0x009052                  _pinIsPPSCapable
+                  0x00900a                  _pinIsPPSCapable
                   0x01f8be                  _pinPPSInputMap
                   0x01f882                  _pinPort
-                  0x00c144                  _pinRegisterSizeCheck
-                  0x007116                  _queue0Bit
-                  0x00710a                  _queue1Bit
-                  0x008c36                  _removeBitStreamOutput
-                  0x00b95e                  _reset
+                  0x00be7c                  _pinRegisterSizeCheck
+                  0x00712e                  _queue0Bit
+                  0x007122                  _queue1Bit
+                  0x008bee                  _removeBitStreamOutput
+                  0x00b7d6                  _reset
                   0x01f802                  _seven_seg_table
                   0x01f94e                  _swBaudDivisor
-                  0x0070ae                  _timingResourceBusyWait
-                  0x006394                  _timingResourceDefault
-                  0x006dc4                  _timingResourceHighPulseBusy
-                  0x006430                  _timingResourceHighPulseClaim
-                  0x007006                  _timingResourceInterruptActivate
-                  0x006e3a                  _timingResourceInterruptClaim
-                  0x00641e                  _timingResourceManagerInit
-                  0x0066c8                  _timingResourcePWM
-                  0x006488                  _timingResourcePWMClaim
-                  0x006570                  _timingResourceRelease
-                  0x006e2e                  _timingResourceService
-                  0x0065c8                  _timingResourcesHighPulse
-                  0x00786a                  _tm1637ClockByte
-                  0x0078f6                  _tm1637SendDisplayControlCommand
-                  0x0078d4                  _tm1637SendInitialAddress
-                  0x007844                  _tm1637Start
-                  0x00784c                  _tm1637Stop
-                  0x007b8a                  _tm1637UpdateRender
-                  0x0078c8                  _tm1637_hwinit
-                  0x00a40e                  _touchCallback
-                  0x00a59a                  _touchProcessDigital
+                  0x0070c6                  _timingResourceBusyWait
+                  0x0063a0                  _timingResourceDefault
+                  0x006ddc                  _timingResourceHighPulseBusy
+                  0x00643c                  _timingResourceHighPulseClaim
+                  0x00701e                  _timingResourceInterruptActivate
+                  0x006e52                  _timingResourceInterruptClaim
+                  0x00642a                  _timingResourceManagerInit
+                  0x0066e0                  _timingResourcePWM
+                  0x006494                  _timingResourcePWMClaim
+                  0x006588                  _timingResourceRelease
+                  0x006e46                  _timingResourceService
+                  0x0065e0                  _timingResourcesHighPulse
+                  0x007862                  _tm1637ClockByte
+                  0x0078ee                  _tm1637SendDisplayControlCommand
+                  0x0078cc                  _tm1637SendInitialAddress
+                  0x00783c                  _tm1637Start
+                  0x007844                  _tm1637Stop
+                  0x007b4e                  _tm1637UpdateRender
+                  0x0078c0                  _tm1637_hwinit
+                  0x00ab54                  _touchCallback
+                  0x00acbc                  _touchProcessDigital
                   0x00541e                  _uartStartTX
-                  0x00c9c6                  _uint16ToAscii5
-                  0x00ca1a                  _uint16ToAscii5NoHWMath
-                  0x00ca72                  _uint16ToAsciiHex4
-                  0x01fab2                  _updateAnalogInput
-                  0x008b0c                  _updateBitStreamOutput
-                  0x00c916                  _updateDebounce
-                  0x00878c                  _updateMatrixKeypad
-                  0x00c600                  _updatePWM
-                  0x00d07c                  _updatePinInputProcessor
-                  0x00cbda                  _updateProtectedOutput
-                  0x008930                  _updatePulseOutput
-                  0x00b320                  _updatePulseTimer
-                  0x009a74                  _updateQuadEnc
-                  0x00be88                  _updateResistanceInput
-                  0x00c042                  _updateServoHw
-                  0x007d16                  _updateTM1637
-                  0x00ce3c                  _updateThroughputConsumer
-                  0x00a62c                  _updateTouch
-                  0x00b1b2                  _updateUARTHw
-                  0x00975c                  _updateUARTSw
-                  0x00963a                  _updateUARTSwRx
-                  0x009518                  _updateUARTSwTx
-                  0x007626                  _updateWS2812
-                  0x00cd80                  _updateWatchdog
-                  0x0070ea                  _ws2812ConfigHardware
-                  0x0070d0                  _ws2812_SPI1_Initialize
+                  0x00cd6e                  _uint16ToAscii5
+                  0x00cdc2                  _uint16ToAscii5NoHWMath
+                  0x00ce1a                  _uint16ToAsciiHex4
+                  0x00cd00                  _updateAnalogInput
+                  0x008ac4                  _updateBitStreamOutput
+                  0x00ca7c                  _updateDebounce
+                  0x00cbd2                  _updateHfServo
+                  0x008744                  _updateMatrixKeypad
+                  0x00c738                  _updatePWM
+                  0x00d3e2                  _updatePinInputProcessor
+                  0x00cf92                  _updateProtectedOutput
+                  0x00b684                  _updatePulseOnChange
+                  0x0088e8                  _updatePulseOutput
+                  0x00b386                  _updatePulseTimer
+                  0x0095b0                  _updateQuadEnc
+                  0x00c34c                  _updateResistanceInput
+                  0x00c16a                  _updateServoHw
+                  0x007cda                  _updateTM1637
+                  0x00d204                  _updateThroughputConsumer
+                  0x00ad4e                  _updateTouch
+                  0x00b1f6                  _updateUARTHw
+                  0x009bc8                  _updateUARTSw
+                  0x009aa6                  _updateUARTSwRx
+                  0x009984                  _updateUARTSwTx
+                  0x00761e                  _updateWS2812
+                  0x00d090                  _updateWatchdog
+                  0x00be8c                  _wrandom
+                  0x007102                  _ws2812ConfigHardware
+                  0x0070e8                  _ws2812_SPI1_Initialize
 
 Memory Configuration
 
@@ -1098,13 +1116,15 @@ LOAD build/default/production/resistanceInput.o
 LOAD build/default/production/uartSw.o
 LOAD build/default/production/throughputConsumer.o
 LOAD build/default/production/matrixKeypad.o
+LOAD build/default/production/inputProcess.o
+LOAD build/default/production/pinInputProcessor.o
+LOAD build/default/production/pulseOnChange.o
 LOAD build/default/production/main.o
 LOAD build/default/production/protocol.o
 LOAD build/default/production/asciiConversion.o
 LOAD build/default/production/pinRegisters.o
 LOAD build/default/production/queue.o
-LOAD build/default/production/inputProcess.o
-LOAD build/default/production/pinInputProcessor.o
+LOAD build/default/production/hfServo.o
                     0x0001                  __MPLAB_BUILD = 0x1
 LOAD pPIC24Fxxx
 LOAD c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libfx-elf.a
@@ -1252,7 +1272,7 @@ __FDEVOPT1
 .comment
  *(.comment)
 
-.debug_info       0x000000      0x2e489
+.debug_info       0x000000      0x3383d
  *(.debug_info)
  .debug_info      0x000000        0x547 build/default/production/pic24fj256ga702/mcc_generated_files/clock.o
  .debug_info      0x000547        0xda9 build/default/production/pic24fj256ga702/mcc_generated_files/crc.o
@@ -1276,33 +1296,35 @@ __FDEVOPT1
  .debug_info      0x00c50e        0xff0 build/default/production/pic24fj256ga702/pinDigitalHwSpecific.o
  .debug_info      0x00d4fe        0xae0 build/default/production/pic24fj256ga702/updatePulse.o
  .debug_info      0x00dfde       0x1fb0 build/default/production/timingResource.o
- .debug_info      0x00ff8e       0x16ac build/default/production/quadEnc.o
- .debug_info      0x01163a       0x151f build/default/production/analogInput.o
- .debug_info      0x012b59       0x198b build/default/production/pulseTimer.o
- .debug_info      0x0144e4        0xe69 build/default/production/debounce.o
- .debug_info      0x01534d        0xe6b build/default/production/protectedOutput.o
- .debug_info      0x0161b8        0xe41 build/default/production/watchdog.o
- .debug_info      0x016ff9       0x1971 build/default/production/TM1637.o
- .debug_info      0x01896a       0x2134 build/default/production/ws2812.o
- .debug_info      0x01aa9e       0x23e4 build/default/production/touch.o
- .debug_info      0x01ce82       0x15cb build/default/production/uartHw.o
- .debug_info      0x01e44d       0x133e build/default/production/servo.o
- .debug_info      0x01f78b       0x183c build/default/production/pwm.o
- .debug_info      0x020fc7        0xb7a build/default/production/outputScale.o
- .debug_info      0x021b41       0x16df build/default/production/resistanceInput.o
- .debug_info      0x023220       0x185b build/default/production/uartSw.o
- .debug_info      0x024a7b       0x1403 build/default/production/throughputConsumer.o
- .debug_info      0x025e7e       0x1a6d build/default/production/matrixKeypad.o
- .debug_info      0x0278eb        0xc72 build/default/production/main.o
- .debug_info      0x02855d       0x2f55 build/default/production/protocol.o
- .debug_info      0x02b4b2        0x27b build/default/production/asciiConversion.o
- .debug_info      0x02b72d        0xd52 build/default/production/pinRegisters.o
- .debug_info      0x02c47f        0x6c1 build/default/production/queue.o
- .debug_info      0x02cb40        0x7c8 build/default/production/inputProcess.o
- .debug_info      0x02d308       0x1181 build/default/production/pinInputProcessor.o
+ .debug_info      0x00ff8e       0x172f build/default/production/quadEnc.o
+ .debug_info      0x0116bd       0x179b build/default/production/analogInput.o
+ .debug_info      0x012e58       0x1a12 build/default/production/pulseTimer.o
+ .debug_info      0x01486a       0x148d build/default/production/debounce.o
+ .debug_info      0x015cf7       0x148f build/default/production/protectedOutput.o
+ .debug_info      0x017186       0x1465 build/default/production/watchdog.o
+ .debug_info      0x0185eb       0x19f6 build/default/production/TM1637.o
+ .debug_info      0x019fe1       0x21b9 build/default/production/ws2812.o
+ .debug_info      0x01c19a       0x2469 build/default/production/touch.o
+ .debug_info      0x01e603       0x1650 build/default/production/uartHw.o
+ .debug_info      0x01fc53       0x1962 build/default/production/servo.o
+ .debug_info      0x0215b5       0x18c1 build/default/production/pwm.o
+ .debug_info      0x022e76        0xb7a build/default/production/outputScale.o
+ .debug_info      0x0239f0       0x1764 build/default/production/resistanceInput.o
+ .debug_info      0x025154       0x18cc build/default/production/uartSw.o
+ .debug_info      0x026a20       0x1488 build/default/production/throughputConsumer.o
+ .debug_info      0x027ea8       0x1af2 build/default/production/matrixKeypad.o
+ .debug_info      0x02999a        0x821 build/default/production/inputProcess.o
+ .debug_info      0x02a1bb       0x11b0 build/default/production/pinInputProcessor.o
+ .debug_info      0x02b36b       0x17f5 build/default/production/pulseOnChange.o
+ .debug_info      0x02cb60        0xcec build/default/production/main.o
+ .debug_info      0x02d84c       0x3023 build/default/production/protocol.o
+ .debug_info      0x03086f        0x27b build/default/production/asciiConversion.o
+ .debug_info      0x030aea        0xdde build/default/production/pinRegisters.o
+ .debug_info      0x0318c8        0x6c1 build/default/production/queue.o
+ .debug_info      0x031f89       0x18b4 build/default/production/hfServo.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000       0x4641
+.debug_abbrev     0x000000       0x48e5
  *(.debug_abbrev)
  .debug_abbrev    0x000000         0xc5 build/default/production/pic24fj256ga702/mcc_generated_files/clock.o
  .debug_abbrev    0x0000c5        0x298 build/default/production/pic24fj256ga702/mcc_generated_files/crc.o
@@ -1327,31 +1349,33 @@ __FDEVOPT1
  .debug_abbrev    0x001ce6        0x1d8 build/default/production/pic24fj256ga702/updatePulse.o
  .debug_abbrev    0x001ebe        0x29c build/default/production/timingResource.o
  .debug_abbrev    0x00215a        0x18c build/default/production/quadEnc.o
- .debug_abbrev    0x0022e6        0x13b build/default/production/analogInput.o
- .debug_abbrev    0x002421        0x17b build/default/production/pulseTimer.o
- .debug_abbrev    0x00259c         0xf4 build/default/production/debounce.o
- .debug_abbrev    0x002690        0x105 build/default/production/protectedOutput.o
- .debug_abbrev    0x002795         0xdf build/default/production/watchdog.o
- .debug_abbrev    0x002874        0x209 build/default/production/TM1637.o
- .debug_abbrev    0x002a7d        0x2a1 build/default/production/ws2812.o
- .debug_abbrev    0x002d1e        0x1cc build/default/production/touch.o
- .debug_abbrev    0x002eea        0x172 build/default/production/uartHw.o
- .debug_abbrev    0x00305c        0x151 build/default/production/servo.o
- .debug_abbrev    0x0031ad        0x13d build/default/production/pwm.o
- .debug_abbrev    0x0032ea        0x249 build/default/production/outputScale.o
- .debug_abbrev    0x003533        0x18a build/default/production/resistanceInput.o
- .debug_abbrev    0x0036bd        0x16b build/default/production/uartSw.o
- .debug_abbrev    0x003828        0x109 build/default/production/throughputConsumer.o
- .debug_abbrev    0x003931        0x1ed build/default/production/matrixKeypad.o
- .debug_abbrev    0x003b1e        0x20f build/default/production/main.o
- .debug_abbrev    0x003d2d        0x2cb build/default/production/protocol.o
- .debug_abbrev    0x003ff8         0xae build/default/production/asciiConversion.o
- .debug_abbrev    0x0040a6        0x193 build/default/production/pinRegisters.o
- .debug_abbrev    0x004239        0x161 build/default/production/queue.o
- .debug_abbrev    0x00439a        0x167 build/default/production/inputProcess.o
- .debug_abbrev    0x004501        0x140 build/default/production/pinInputProcessor.o
+ .debug_abbrev    0x0022e6        0x15d build/default/production/analogInput.o
+ .debug_abbrev    0x002443        0x17b build/default/production/pulseTimer.o
+ .debug_abbrev    0x0025be         0xf4 build/default/production/debounce.o
+ .debug_abbrev    0x0026b2        0x105 build/default/production/protectedOutput.o
+ .debug_abbrev    0x0027b7         0xdf build/default/production/watchdog.o
+ .debug_abbrev    0x002896        0x209 build/default/production/TM1637.o
+ .debug_abbrev    0x002a9f        0x2a1 build/default/production/ws2812.o
+ .debug_abbrev    0x002d40        0x1cc build/default/production/touch.o
+ .debug_abbrev    0x002f0c        0x172 build/default/production/uartHw.o
+ .debug_abbrev    0x00307e        0x151 build/default/production/servo.o
+ .debug_abbrev    0x0031cf        0x13d build/default/production/pwm.o
+ .debug_abbrev    0x00330c        0x249 build/default/production/outputScale.o
+ .debug_abbrev    0x003555        0x18a build/default/production/resistanceInput.o
+ .debug_abbrev    0x0036df        0x16b build/default/production/uartSw.o
+ .debug_abbrev    0x00384a        0x109 build/default/production/throughputConsumer.o
+ .debug_abbrev    0x003953        0x1ed build/default/production/matrixKeypad.o
+ .debug_abbrev    0x003b40        0x167 build/default/production/inputProcess.o
+ .debug_abbrev    0x003ca7        0x140 build/default/production/pinInputProcessor.o
+ .debug_abbrev    0x003de7        0x146 build/default/production/pulseOnChange.o
+ .debug_abbrev    0x003f2d        0x20f build/default/production/main.o
+ .debug_abbrev    0x00413c        0x2cb build/default/production/protocol.o
+ .debug_abbrev    0x004407         0xae build/default/production/asciiConversion.o
+ .debug_abbrev    0x0044b5        0x1a0 build/default/production/pinRegisters.o
+ .debug_abbrev    0x004655        0x161 build/default/production/queue.o
+ .debug_abbrev    0x0047b6        0x12f build/default/production/hfServo.o
 
-.debug_line       0x000000       0x5d77
+.debug_line       0x000000       0x629c
  *(.debug_line)
  .debug_line      0x000000        0x13c build/default/production/pic24fj256ga702/mcc_generated_files/clock.o
  .debug_line      0x00013c        0x291 build/default/production/pic24fj256ga702/mcc_generated_files/crc.o
@@ -1374,33 +1398,35 @@ __FDEVOPT1
  .debug_line      0x001edf        0x14f build/default/production/pic24fj256ga702/wombatasm.o
  .debug_line      0x00202e        0x2c7 build/default/production/pic24fj256ga702/pinDigitalHwSpecific.o
  .debug_line      0x0022f5        0x2dc build/default/production/pic24fj256ga702/updatePulse.o
- .debug_line      0x0025d1        0x601 build/default/production/timingResource.o
- .debug_line      0x002bd2        0x29a build/default/production/quadEnc.o
- .debug_line      0x002e6c        0x194 build/default/production/analogInput.o
- .debug_line      0x003000        0x1d4 build/default/production/pulseTimer.o
- .debug_line      0x0031d4        0x117 build/default/production/debounce.o
- .debug_line      0x0032eb        0x11c build/default/production/protectedOutput.o
- .debug_line      0x003407        0x104 build/default/production/watchdog.o
- .debug_line      0x00350b        0x2e1 build/default/production/TM1637.o
- .debug_line      0x0037ec        0x45c build/default/production/ws2812.o
- .debug_line      0x003c48        0x278 build/default/production/touch.o
- .debug_line      0x003ec0        0x260 build/default/production/uartHw.o
- .debug_line      0x004120        0x189 build/default/production/servo.o
- .debug_line      0x0042a9        0x152 build/default/production/pwm.o
- .debug_line      0x0043fb        0x20f build/default/production/outputScale.o
- .debug_line      0x00460a        0x21b build/default/production/resistanceInput.o
- .debug_line      0x004825        0x28c build/default/production/uartSw.o
- .debug_line      0x004ab1        0x10d build/default/production/throughputConsumer.o
- .debug_line      0x004bbe        0x2cf build/default/production/matrixKeypad.o
- .debug_line      0x004e8d        0x26a build/default/production/main.o
- .debug_line      0x0050f7        0x5c3 build/default/production/protocol.o
- .debug_line      0x0056ba         0xd7 build/default/production/asciiConversion.o
- .debug_line      0x005791        0x1f9 build/default/production/pinRegisters.o
- .debug_line      0x00598a        0x153 build/default/production/queue.o
- .debug_line      0x005add        0x187 build/default/production/inputProcess.o
- .debug_line      0x005c64        0x113 build/default/production/pinInputProcessor.o
+ .debug_line      0x0025d1        0x608 build/default/production/timingResource.o
+ .debug_line      0x002bd9        0x2bf build/default/production/quadEnc.o
+ .debug_line      0x002e98        0x159 build/default/production/analogInput.o
+ .debug_line      0x002ff1        0x1f8 build/default/production/pulseTimer.o
+ .debug_line      0x0031e9        0x132 build/default/production/debounce.o
+ .debug_line      0x00331b        0x137 build/default/production/protectedOutput.o
+ .debug_line      0x003452        0x11f build/default/production/watchdog.o
+ .debug_line      0x003571        0x2f2 build/default/production/TM1637.o
+ .debug_line      0x003863        0x467 build/default/production/ws2812.o
+ .debug_line      0x003cca        0x28b build/default/production/touch.o
+ .debug_line      0x003f55        0x27b build/default/production/uartHw.o
+ .debug_line      0x0041d0        0x1ae build/default/production/servo.o
+ .debug_line      0x00437e        0x16d build/default/production/pwm.o
+ .debug_line      0x0044eb        0x20f build/default/production/outputScale.o
+ .debug_line      0x0046fa        0x233 build/default/production/resistanceInput.o
+ .debug_line      0x00492d        0x29c build/default/production/uartSw.o
+ .debug_line      0x004bc9        0x125 build/default/production/throughputConsumer.o
+ .debug_line      0x004cee        0x2e3 build/default/production/matrixKeypad.o
+ .debug_line      0x004fd1        0x1b5 build/default/production/inputProcess.o
+ .debug_line      0x005186        0x113 build/default/production/pinInputProcessor.o
+ .debug_line      0x005299        0x1f4 build/default/production/pulseOnChange.o
+ .debug_line      0x00548d        0x277 build/default/production/main.o
+ .debug_line      0x005704        0x5e7 build/default/production/protocol.o
+ .debug_line      0x005ceb         0xd7 build/default/production/asciiConversion.o
+ .debug_line      0x005dc2        0x21b build/default/production/pinRegisters.o
+ .debug_line      0x005fdd        0x153 build/default/production/queue.o
+ .debug_line      0x006130        0x16c build/default/production/hfServo.o
 
-.debug_frame      0x000000       0x1cac
+.debug_frame      0x000000       0x1d68
  *(.debug_frame)
  .debug_frame     0x000000         0x24 build/default/production/pic24fj256ga702/mcc_generated_files/clock.o
  .debug_frame     0x000024         0xf4 build/default/production/pic24fj256ga702/mcc_generated_files/crc.o
@@ -1423,31 +1449,33 @@ __FDEVOPT1
  .debug_frame     0x000f20         0xf6 build/default/production/pic24fj256ga702/updatePulse.o
  .debug_frame     0x001016        0x29e build/default/production/timingResource.o
  .debug_frame     0x0012b4         0x74 build/default/production/quadEnc.o
- .debug_frame     0x001328         0x62 build/default/production/analogInput.o
- .debug_frame     0x00138a         0x50 build/default/production/pulseTimer.o
- .debug_frame     0x0013da         0x3e build/default/production/debounce.o
- .debug_frame     0x001418         0x34 build/default/production/protectedOutput.o
- .debug_frame     0x00144c         0x34 build/default/production/watchdog.o
- .debug_frame     0x001480         0xe6 build/default/production/TM1637.o
- .debug_frame     0x001566         0xd0 build/default/production/ws2812.o
- .debug_frame     0x001636         0x5e build/default/production/touch.o
- .debug_frame     0x001694         0x5a build/default/production/uartHw.o
- .debug_frame     0x0016ee         0x60 build/default/production/servo.o
- .debug_frame     0x00174e         0x58 build/default/production/pwm.o
- .debug_frame     0x0017a6         0x66 build/default/production/outputScale.o
- .debug_frame     0x00180c         0x3e build/default/production/resistanceInput.o
- .debug_frame     0x00184a         0xa2 build/default/production/uartSw.o
- .debug_frame     0x0018ec         0x34 build/default/production/throughputConsumer.o
- .debug_frame     0x001920         0x7c build/default/production/matrixKeypad.o
- .debug_frame     0x00199c         0x60 build/default/production/main.o
- .debug_frame     0x0019fc         0xac build/default/production/protocol.o
- .debug_frame     0x001aa8         0x54 build/default/production/asciiConversion.o
- .debug_frame     0x001afc         0x6e build/default/production/pinRegisters.o
- .debug_frame     0x001b6a         0xa0 build/default/production/queue.o
- .debug_frame     0x001c0a         0x64 build/default/production/inputProcess.o
- .debug_frame     0x001c6e         0x3e build/default/production/pinInputProcessor.o
+ .debug_frame     0x001328         0x58 build/default/production/analogInput.o
+ .debug_frame     0x001380         0x50 build/default/production/pulseTimer.o
+ .debug_frame     0x0013d0         0x3e build/default/production/debounce.o
+ .debug_frame     0x00140e         0x34 build/default/production/protectedOutput.o
+ .debug_frame     0x001442         0x34 build/default/production/watchdog.o
+ .debug_frame     0x001476         0xe6 build/default/production/TM1637.o
+ .debug_frame     0x00155c         0xd0 build/default/production/ws2812.o
+ .debug_frame     0x00162c         0x5e build/default/production/touch.o
+ .debug_frame     0x00168a         0x5a build/default/production/uartHw.o
+ .debug_frame     0x0016e4         0x60 build/default/production/servo.o
+ .debug_frame     0x001744         0x58 build/default/production/pwm.o
+ .debug_frame     0x00179c         0x66 build/default/production/outputScale.o
+ .debug_frame     0x001802         0x3e build/default/production/resistanceInput.o
+ .debug_frame     0x001840         0xa2 build/default/production/uartSw.o
+ .debug_frame     0x0018e2         0x34 build/default/production/throughputConsumer.o
+ .debug_frame     0x001916         0x7c build/default/production/matrixKeypad.o
+ .debug_frame     0x001992         0x7a build/default/production/inputProcess.o
+ .debug_frame     0x001a0c         0x3e build/default/production/pinInputProcessor.o
+ .debug_frame     0x001a4a         0x62 build/default/production/pulseOnChange.o
+ .debug_frame     0x001aac         0x60 build/default/production/main.o
+ .debug_frame     0x001b0c         0xac build/default/production/protocol.o
+ .debug_frame     0x001bb8         0x54 build/default/production/asciiConversion.o
+ .debug_frame     0x001c0c         0x7e build/default/production/pinRegisters.o
+ .debug_frame     0x001c8a         0xa0 build/default/production/queue.o
+ .debug_frame     0x001d2a         0x3e build/default/production/hfServo.o
 
-.debug_str        0x000000       0x16a3
+.debug_str        0x000000       0x171c
  *(.debug_str)
  .debug_str       0x000000         0x1d build/default/production/pic24fj256ga702/mcc_generated_files/clock.o
  .debug_str       0x00001d         0x57 build/default/production/pic24fj256ga702/mcc_generated_files/crc.o
@@ -1483,13 +1511,15 @@ __FDEVOPT1
  .debug_str       0x001084         0x6b build/default/production/uartSw.o
  .debug_str       0x0010ef         0x40 build/default/production/throughputConsumer.o
  .debug_str       0x00112f         0x9e build/default/production/matrixKeypad.o
- .debug_str       0x0011cd         0xde build/default/production/main.o
- .debug_str       0x0012ab        0x27d build/default/production/protocol.o
- .debug_str       0x001528          0x7 build/default/production/asciiConversion.o
- .debug_str       0x00152f         0x84 build/default/production/pinRegisters.o
- .debug_str       0x0015b3         0x5e build/default/production/queue.o
- .debug_str       0x001611         0x46 build/default/production/inputProcess.o
- .debug_str       0x001657         0x4c build/default/production/pinInputProcessor.o
+ .debug_str       0x0011cd         0x46 build/default/production/inputProcess.o
+ .debug_str       0x001213         0x4c build/default/production/pinInputProcessor.o
+ .debug_str       0x00125f         0x44 build/default/production/pulseOnChange.o
+ .debug_str       0x0012a3         0xde build/default/production/main.o
+ .debug_str       0x001381        0x27d build/default/production/protocol.o
+ .debug_str       0x0015fe          0x7 build/default/production/asciiConversion.o
+ .debug_str       0x001605         0x8d build/default/production/pinRegisters.o
+ .debug_str       0x001692         0x5e build/default/production/queue.o
+ .debug_str       0x0016f0         0x2c build/default/production/hfServo.o
 
 .debug_loc
  *(.debug_loc)
@@ -1498,7 +1528,7 @@ __FDEVOPT1
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000       0x2446
+                  0x000000       0x24ea
  *(.debug_pubnames)
  .debug_pubnames
                   0x000000         0x27 build/default/production/pic24fj256ga702/mcc_generated_files/clock.o
@@ -1575,24 +1605,28 @@ __FDEVOPT1
  .debug_pubnames
                   0x001e42         0x54 build/default/production/matrixKeypad.o
  .debug_pubnames
-                  0x001e96         0xea build/default/production/main.o
+                  0x001e96         0x7c build/default/production/inputProcess.o
  .debug_pubnames
-                  0x001f80        0x20f build/default/production/protocol.o
+                  0x001f12         0x63 build/default/production/pinInputProcessor.o
  .debug_pubnames
-                  0x00218f         0x67 build/default/production/asciiConversion.o
+                  0x001f75         0x57 build/default/production/pulseOnChange.o
  .debug_pubnames
-                  0x0021f6         0xa3 build/default/production/pinRegisters.o
+                  0x001fcc         0xea build/default/production/main.o
  .debug_pubnames
-                  0x002299         0xce build/default/production/queue.o
+                  0x0020b6        0x20f build/default/production/protocol.o
  .debug_pubnames
-                  0x002367         0x7c build/default/production/inputProcess.o
+                  0x0022c5         0x67 build/default/production/asciiConversion.o
  .debug_pubnames
-                  0x0023e3         0x63 build/default/production/pinInputProcessor.o
+                  0x00232c         0xbc build/default/production/pinRegisters.o
+ .debug_pubnames
+                  0x0023e8         0xce build/default/production/queue.o
+ .debug_pubnames
+                  0x0024b6         0x34 build/default/production/hfServo.o
 
 .debug_ranges
  *(.debug_ranges)
 
-.debug_aranges    0x000000        0x450
+.debug_aranges    0x000000        0x480
  *(.debug_aranges)
  .debug_aranges
                   0x000000         0x18 build/default/production/pic24fj256ga702/mcc_generated_files/clock.o
@@ -1673,19 +1707,23 @@ __FDEVOPT1
  .debug_aranges
                   0x000390         0x18 build/default/production/matrixKeypad.o
  .debug_aranges
-                  0x0003a8         0x18 build/default/production/main.o
+                  0x0003a8         0x18 build/default/production/inputProcess.o
  .debug_aranges
-                  0x0003c0         0x18 build/default/production/protocol.o
+                  0x0003c0         0x18 build/default/production/pinInputProcessor.o
  .debug_aranges
-                  0x0003d8         0x18 build/default/production/asciiConversion.o
+                  0x0003d8         0x18 build/default/production/pulseOnChange.o
  .debug_aranges
-                  0x0003f0         0x18 build/default/production/pinRegisters.o
+                  0x0003f0         0x18 build/default/production/main.o
  .debug_aranges
-                  0x000408         0x18 build/default/production/queue.o
+                  0x000408         0x18 build/default/production/protocol.o
  .debug_aranges
-                  0x000420         0x18 build/default/production/inputProcess.o
+                  0x000420         0x18 build/default/production/asciiConversion.o
  .debug_aranges
-                  0x000438         0x18 build/default/production/pinInputProcessor.o
+                  0x000438         0x18 build/default/production/pinRegisters.o
+ .debug_aranges
+                  0x000450         0x18 build/default/production/queue.o
+ .debug_aranges
+                  0x000468         0x18 build/default/production/hfServo.o
 
 .ivt              0x004004         0xfc
                   0x004004          0x4 LONG 0x4dc8 DEFINED (__OscillatorFail)?ABSOLUTE (__OscillatorFail):ABSOLUTE (__DefaultInterrupt)
@@ -3157,204 +3195,212 @@ LOAD default_isr
 LOAD data_init
 
 .debug_pubtypes
-                  0x000450       0x24a1
+                  0x000480       0x2694
  .debug_pubtypes
-                  0x000450         0x4c build/default/production/pic24fj256ga702/mcc_generated_files/clock.o
+                  0x000480         0x4c build/default/production/pic24fj256ga702/mcc_generated_files/clock.o
  .debug_pubtypes
-                  0x00049c         0xe0 build/default/production/pic24fj256ga702/mcc_generated_files/crc.o
+                  0x0004cc         0xe0 build/default/production/pic24fj256ga702/mcc_generated_files/crc.o
  .debug_pubtypes
-                  0x00057c         0x1f build/default/production/pic24fj256ga702/mcc_generated_files/cvr.o
+                  0x0005ac         0x1f build/default/production/pic24fj256ga702/mcc_generated_files/cvr.o
  .debug_pubtypes
-                  0x00059b        0x25c build/default/production/pic24fj256ga702/mcc_generated_files/dma.o
+                  0x0005cb        0x25c build/default/production/pic24fj256ga702/mcc_generated_files/dma.o
  .debug_pubtypes
-                  0x0007f7        0x13e build/default/production/pic24fj256ga702/mcc_generated_files/i2c1.o
+                  0x000827        0x13e build/default/production/pic24fj256ga702/mcc_generated_files/i2c1.o
  .debug_pubtypes
-                  0x000935        0x116 build/default/production/pic24fj256ga702/mcc_generated_files/i2c2.o
+                  0x000965        0x116 build/default/production/pic24fj256ga702/mcc_generated_files/i2c2.o
  .debug_pubtypes
-                  0x000a4b         0x5b build/default/production/pic24fj256ga702/mcc_generated_files/interrupt_manager.o
+                  0x000a7b         0x5b build/default/production/pic24fj256ga702/mcc_generated_files/interrupt_manager.o
  .debug_pubtypes
-                  0x000aa6         0x12 build/default/production/pic24fj256ga702/mcc_generated_files/mcc.o
+                  0x000ad6         0x12 build/default/production/pic24fj256ga702/mcc_generated_files/mcc.o
  .debug_pubtypes
-                  0x000ab8         0x1f build/default/production/pic24fj256ga702/mcc_generated_files/pin_manager.o
+                  0x000ae8         0x1f build/default/production/pic24fj256ga702/mcc_generated_files/pin_manager.o
  .debug_pubtypes
-                  0x000ad7         0xc6 build/default/production/pic24fj256ga702/mcc_generated_files/system.o
+                  0x000b07         0xc6 build/default/production/pic24fj256ga702/mcc_generated_files/system.o
  .debug_pubtypes
-                  0x000b9d         0xa4 build/default/production/pic24fj256ga702/mcc_generated_files/tmr1.o
+                  0x000bcd         0xa4 build/default/production/pic24fj256ga702/mcc_generated_files/tmr1.o
  .debug_pubtypes
-                  0x000c41         0xb1 build/default/production/pic24fj256ga702/mcc_generated_files/tmr2.o
+                  0x000c71         0xb1 build/default/production/pic24fj256ga702/mcc_generated_files/tmr2.o
  .debug_pubtypes
-                  0x000cf2         0x87 build/default/production/pic24fj256ga702/mcc_generated_files/tmr3.o
+                  0x000d22         0x87 build/default/production/pic24fj256ga702/mcc_generated_files/tmr3.o
  .debug_pubtypes
-                  0x000d79         0x71 build/default/production/pic24fj256ga702/mcc_generated_files/traps.o
+                  0x000da9         0x71 build/default/production/pic24fj256ga702/mcc_generated_files/traps.o
  .debug_pubtypes
-                  0x000dea        0x12c build/default/production/pic24fj256ga702/mcc_generated_files/uart1.o
+                  0x000e1a        0x12c build/default/production/pic24fj256ga702/mcc_generated_files/uart1.o
  .debug_pubtypes
-                  0x000f16        0x102 build/default/production/pic24fj256ga702/mcc_generated_files/uart2.o
+                  0x000f46        0x102 build/default/production/pic24fj256ga702/mcc_generated_files/uart2.o
  .debug_pubtypes
-                  0x001018        0x141 build/default/production/pic24fj256ga702/mcc_generated_files/adc1.o
+                  0x001048        0x141 build/default/production/pic24fj256ga702/mcc_generated_files/adc1.o
  .debug_pubtypes
-                  0x001159        0x144 build/default/production/pic24fj256ga702/pinDigitalHwSpecific.o
+                  0x001189        0x144 build/default/production/pic24fj256ga702/pinDigitalHwSpecific.o
  .debug_pubtypes
-                  0x00129d         0xb6 build/default/production/pic24fj256ga702/updatePulse.o
+                  0x0012cd         0xb6 build/default/production/pic24fj256ga702/updatePulse.o
  .debug_pubtypes
-                  0x001353        0x23d build/default/production/timingResource.o
+                  0x001383        0x23d build/default/production/timingResource.o
  .debug_pubtypes
-                  0x001590         0xac build/default/production/quadEnc.o
+                  0x0015c0         0xac build/default/production/quadEnc.o
  .debug_pubtypes
-                  0x00163c         0xb5 build/default/production/analogInput.o
+                  0x00166c         0xf3 build/default/production/analogInput.o
  .debug_pubtypes
-                  0x0016f1         0xf1 build/default/production/pulseTimer.o
+                  0x00175f         0xf1 build/default/production/pulseTimer.o
  .debug_pubtypes
-                  0x0017e2         0xa2 build/default/production/debounce.o
+                  0x001850         0xa2 build/default/production/debounce.o
  .debug_pubtypes
-                  0x001884         0xb0 build/default/production/protectedOutput.o
+                  0x0018f2         0xb0 build/default/production/protectedOutput.o
  .debug_pubtypes
-                  0x001934         0xa2 build/default/production/watchdog.o
+                  0x0019a2         0xa2 build/default/production/watchdog.o
  .debug_pubtypes
-                  0x0019d6         0xab build/default/production/TM1637.o
+                  0x001a44         0xab build/default/production/TM1637.o
  .debug_pubtypes
-                  0x001a81         0xed build/default/production/ws2812.o
+                  0x001aef         0xed build/default/production/ws2812.o
  .debug_pubtypes
-                  0x001b6e        0x195 build/default/production/touch.o
+                  0x001bdc        0x195 build/default/production/touch.o
  .debug_pubtypes
-                  0x001d03         0xe4 build/default/production/uartHw.o
+                  0x001d71         0xe4 build/default/production/uartHw.o
  .debug_pubtypes
-                  0x001de7         0xe8 build/default/production/servo.o
+                  0x001e55         0xe8 build/default/production/servo.o
  .debug_pubtypes
-                  0x001ecf         0xe1 build/default/production/pwm.o
+                  0x001f3d         0xe1 build/default/production/pwm.o
  .debug_pubtypes
-                  0x001fb0         0xcd build/default/production/outputScale.o
+                  0x00201e         0xcd build/default/production/outputScale.o
  .debug_pubtypes
-                  0x00207d         0xe0 build/default/production/resistanceInput.o
+                  0x0020eb         0xe0 build/default/production/resistanceInput.o
  .debug_pubtypes
-                  0x00215d         0xda build/default/production/uartSw.o
+                  0x0021cb         0xda build/default/production/uartSw.o
  .debug_pubtypes
-                  0x002237         0xc3 build/default/production/throughputConsumer.o
+                  0x0022a5         0xc3 build/default/production/throughputConsumer.o
  .debug_pubtypes
-                  0x0022fa         0xc9 build/default/production/matrixKeypad.o
+                  0x002368         0xc9 build/default/production/matrixKeypad.o
  .debug_pubtypes
-                  0x0023c3         0xb4 build/default/production/main.o
+                  0x002431         0x76 build/default/production/inputProcess.o
  .debug_pubtypes
-                  0x002477        0x1ff build/default/production/protocol.o
+                  0x0024a7         0xf8 build/default/production/pinInputProcessor.o
  .debug_pubtypes
-                  0x002676         0x2b build/default/production/asciiConversion.o
+                  0x00259f         0xcc build/default/production/pulseOnChange.o
  .debug_pubtypes
-                  0x0026a1         0x91 build/default/production/pinRegisters.o
+                  0x00266b         0xb4 build/default/production/main.o
  .debug_pubtypes
-                  0x002732         0x51 build/default/production/queue.o
+                  0x00271f        0x1ff build/default/production/protocol.o
  .debug_pubtypes
-                  0x002783         0x76 build/default/production/inputProcess.o
+                  0x00291e         0x2b build/default/production/asciiConversion.o
  .debug_pubtypes
-                  0x0027f9         0xf8 build/default/production/pinInputProcessor.o
+                  0x002949         0x91 build/default/production/pinRegisters.o
+ .debug_pubtypes
+                  0x0029da         0x51 build/default/production/queue.o
+ .debug_pubtypes
+                  0x002a2b         0xe9 build/default/production/hfServo.o
 
 __c30_signature
-                  0x0028f1        0x13e
+                  0x002b14        0x14a
  __c30_signature
-                  0x0028f1          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/clock.o
+                  0x002b14          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/clock.o
  __c30_signature
-                  0x0028f7          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/crc.o
+                  0x002b1a          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/crc.o
  __c30_signature
-                  0x0028fd          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/cvr.o
+                  0x002b20          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/cvr.o
  __c30_signature
-                  0x002903          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/dma.o
+                  0x002b26          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/dma.o
  __c30_signature
-                  0x002909          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/i2c1.o
+                  0x002b2c          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/i2c1.o
  __c30_signature
-                  0x00290f          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/i2c2.o
+                  0x002b32          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/i2c2.o
  __c30_signature
-                  0x002915          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/interrupt_manager.o
+                  0x002b38          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/interrupt_manager.o
  __c30_signature
-                  0x00291b          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/mcc.o
+                  0x002b3e          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/mcc.o
  __c30_signature
-                  0x002921          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/pin_manager.o
+                  0x002b44          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/pin_manager.o
  __c30_signature
-                  0x002927          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/system.o
+                  0x002b4a          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/system.o
  __c30_signature
-                  0x00292d          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/tmr1.o
+                  0x002b50          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/tmr1.o
  __c30_signature
-                  0x002933          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/tmr2.o
+                  0x002b56          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/tmr2.o
  __c30_signature
-                  0x002939          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/tmr3.o
+                  0x002b5c          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/tmr3.o
  __c30_signature
-                  0x00293f          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/traps.o
+                  0x002b62          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/traps.o
  __c30_signature
-                  0x002945          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/uart1.o
+                  0x002b68          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/uart1.o
  __c30_signature
-                  0x00294b          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/uart2.o
+                  0x002b6e          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/uart2.o
  __c30_signature
-                  0x002951          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/adc1.o
+                  0x002b74          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/adc1.o
  __c30_signature
-                  0x002957          0x6 build/default/production/pic24fj256ga702/pinDigitalHwSpecific.o
+                  0x002b7a          0x6 build/default/production/pic24fj256ga702/pinDigitalHwSpecific.o
  __c30_signature
-                  0x00295d          0x6 build/default/production/pic24fj256ga702/updatePulse.o
+                  0x002b80          0x6 build/default/production/pic24fj256ga702/updatePulse.o
  __c30_signature
-                  0x002963          0x6 build/default/production/timingResource.o
+                  0x002b86          0x6 build/default/production/timingResource.o
  __c30_signature
-                  0x002969          0x6 build/default/production/quadEnc.o
+                  0x002b8c          0x6 build/default/production/quadEnc.o
  __c30_signature
-                  0x00296f          0x6 build/default/production/analogInput.o
+                  0x002b92          0x6 build/default/production/analogInput.o
  __c30_signature
-                  0x002975          0x6 build/default/production/pulseTimer.o
+                  0x002b98          0x6 build/default/production/pulseTimer.o
  __c30_signature
-                  0x00297b          0x6 build/default/production/debounce.o
+                  0x002b9e          0x6 build/default/production/debounce.o
  __c30_signature
-                  0x002981          0x6 build/default/production/protectedOutput.o
+                  0x002ba4          0x6 build/default/production/protectedOutput.o
  __c30_signature
-                  0x002987          0x6 build/default/production/watchdog.o
+                  0x002baa          0x6 build/default/production/watchdog.o
  __c30_signature
-                  0x00298d          0x6 build/default/production/TM1637.o
+                  0x002bb0          0x6 build/default/production/TM1637.o
  __c30_signature
-                  0x002993          0x6 build/default/production/ws2812.o
+                  0x002bb6          0x6 build/default/production/ws2812.o
  __c30_signature
-                  0x002999          0x6 build/default/production/touch.o
+                  0x002bbc          0x6 build/default/production/touch.o
  __c30_signature
-                  0x00299f          0x6 build/default/production/uartHw.o
+                  0x002bc2          0x6 build/default/production/uartHw.o
  __c30_signature
-                  0x0029a5          0x6 build/default/production/servo.o
+                  0x002bc8          0x6 build/default/production/servo.o
  __c30_signature
-                  0x0029ab          0x6 build/default/production/pwm.o
+                  0x002bce          0x6 build/default/production/pwm.o
  __c30_signature
-                  0x0029b1          0x6 build/default/production/outputScale.o
+                  0x002bd4          0x6 build/default/production/outputScale.o
  __c30_signature
-                  0x0029b7          0x6 build/default/production/resistanceInput.o
+                  0x002bda          0x6 build/default/production/resistanceInput.o
  __c30_signature
-                  0x0029bd          0x6 build/default/production/uartSw.o
+                  0x002be0          0x6 build/default/production/uartSw.o
  __c30_signature
-                  0x0029c3          0x6 build/default/production/throughputConsumer.o
+                  0x002be6          0x6 build/default/production/throughputConsumer.o
  __c30_signature
-                  0x0029c9          0x6 build/default/production/matrixKeypad.o
+                  0x002bec          0x6 build/default/production/matrixKeypad.o
  __c30_signature
-                  0x0029cf          0x6 build/default/production/main.o
+                  0x002bf2          0x6 build/default/production/inputProcess.o
  __c30_signature
-                  0x0029d5          0x6 build/default/production/protocol.o
+                  0x002bf8          0x6 build/default/production/pinInputProcessor.o
  __c30_signature
-                  0x0029db          0x6 build/default/production/asciiConversion.o
+                  0x002bfe          0x6 build/default/production/pulseOnChange.o
  __c30_signature
-                  0x0029e1          0x6 build/default/production/pinRegisters.o
+                  0x002c04          0x6 build/default/production/main.o
  __c30_signature
-                  0x0029e7          0x6 build/default/production/queue.o
+                  0x002c0a          0x6 build/default/production/protocol.o
  __c30_signature
-                  0x0029ed          0x6 build/default/production/inputProcess.o
+                  0x002c10          0x6 build/default/production/asciiConversion.o
  __c30_signature
-                  0x0029f3          0x6 build/default/production/pinInputProcessor.o
+                  0x002c16          0x6 build/default/production/pinRegisters.o
  __c30_signature
-                  0x0029f9          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(crt0_extended24.o)
+                  0x002c1c          0x6 build/default/production/queue.o
  __c30_signature
-                  0x0029ff          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(data_init_24.o)
+                  0x002c22          0x6 build/default/production/hfServo.o
  __c30_signature
-                  0x002a05          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(delay32da.Leo)
+                  0x002c28          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(crt0_extended24.o)
  __c30_signature
-                  0x002a0b          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(divsi3.daeo)
+                  0x002c2e          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(data_init_24.o)
  __c30_signature
-                  0x002a11          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(udivsi3.daeo)
+                  0x002c34          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(delay32da.Leo)
  __c30_signature
-                  0x002a17          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(divmoddi3.daeo)
+                  0x002c3a          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(divsi3.daeo)
  __c30_signature
-                  0x002a1d          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(muldi3.daeo)
+                  0x002c40          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(udivsi3.daeo)
  __c30_signature
-                  0x002a23          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(umuldi3.daeo)
+                  0x002c46          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(divmoddi3.daeo)
  __c30_signature
-                  0x002a29          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-c-elf.a(memcpy.DA_eo)
+                  0x002c4c          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(muldi3.daeo)
+ __c30_signature
+                  0x002c52          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\libm-elf.a(umuldi3.daeo)
+ __c30_signature
+                  0x002c58          0x6 c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-c-elf.a(memcpy.DA_eo)
 
 .nbss               0x0800         0x60
  .nbss              0x0800         0x16 build/default/production/pic24fj256ga702/mcc_generated_files/i2c1.o
@@ -3438,84 +3484,92 @@ __c30_signature
                     0x0882                  _FrameTimingPin
                     0x0884                  _SystemUtilizationAverage
 
-.nbss               0x0886          0xc
+.nbss               0x0886          0x4
  .nbss              0x0886          0x4 build/default/production/pinRegisters.o
                     0x0886                  _incrementingValue
                     0x0888                  _CurrentPinRegister
- .nbss              0x088a          0x4 build/default/production/queue.o
-                    0x088a                  _QueueOverflowCounter
-                    0x088c                  _QueueUnderflowCounter
- .nbss              0x088e          0x2 build/default/production/pic24fj256ga702/mcc_generated_files/tmr1.o
-                    0x088e                  _TMR1_InterruptHandler
- .nbss              0x0890          0x2 build/default/production/pic24fj256ga702/mcc_generated_files/tmr3.o
-                    0x0890                  _TMR3_InterruptHandler
 
-.ndata              0x0892          0x2
- .ndata             0x0892          0x2 build/default/production/pic24fj256ga702/mcc_generated_files/traps.o
+.ndata              0x088a          0x4
+ .ndata             0x088a          0x4 build/default/production/pinRegisters.o
+                    0x088a                  _lfsrSeed
 
-.nbss               0x0894         0x14
- .nbss              0x0894          0x2 build/default/production/quadEnc.o
-                    0x0894                  _debugQuadEnc
- .nbss              0x0896          0x2 build/default/production/analogInput.o
-                    0x0896                  _debugAnalog
- .nbss              0x0898          0x2 build/default/production/pulseTimer.o
-                    0x0898                  _debugPulseTimer
- .nbss              0x089a          0x2 build/default/production/TM1637.o
-                    0x089a                  _debugTM1637
- .nbss              0x089c          0x2 build/default/production/ws2812.o
-                    0x089c                  _debugWS2812
- .nbss              0x089e          0x2 build/default/production/touch.o
-                    0x089e                  _debugTouch
- .nbss              0x08a0          0x2 build/default/production/resistanceInput.o
-                    0x08a0                  _debugResistance
- .nbss              0x08a2          0x2 build/default/production/uartSw.o
-                    0x08a2                  _debuguartSw
- .nbss              0x08a4          0x2 build/default/production/matrixKeypad.o
-                    0x08a4                  _debugMatrixKeypad
- .nbss              0x08a6          0x2 build/default/production/pinInputProcessor.o
-                    0x08a6                  _debugPinInputProcessor
+.nbss               0x088e          0x8
+ .nbss              0x088e          0x4 build/default/production/queue.o
+                    0x088e                  _QueueOverflowCounter
+                    0x0890                  _QueueUnderflowCounter
+ .nbss              0x0892          0x2 build/default/production/pic24fj256ga702/mcc_generated_files/tmr1.o
+                    0x0892                  _TMR1_InterruptHandler
+ .nbss              0x0894          0x2 build/default/production/pic24fj256ga702/mcc_generated_files/tmr3.o
+                    0x0894                  _TMR3_InterruptHandler
 
-.bss                0x08a8       0x2b82
- .bss               0x08a8       0x2000 build/default/production/main.o
-                    0x08a8                  _UserBuffer
- .bss               0x28a8        0x500 build/default/production/pinRegisters.o
-                    0x28a8                  _PinUpdateRegisters
- .bss               0x2da8        0x400 build/default/production/pic24fj256ga702/pinDigitalHwSpecific.o
-                    0x2da8                  _OutputArrayA
-                    0x2ea8                  _OutputArrayB
-                    0x2fa8                  _InputArrayA
-                    0x30a8                  _InputArrayB
- .bss               0x31a8         0xca build/default/production/pic24fj256ga702/mcc_generated_files/uart1.o
-                    0x31a8                  _uart1_obj
- .bss               0x3272         0xca build/default/production/pic24fj256ga702/mcc_generated_files/uart2.o
- .bss               0x333c         0x70 build/default/production/timingResource.o
-                    0x333c                  _timingResources
- .bss               0x33ac         0x5e build/default/production/protocol.o
-                    0x33ac                  _Rxbuffer
-                    0x33b4                  _Txbuffer
-                    0x33bc                  _PinRegisterCopyBuffer
-                    0x33fc                  _TimingResourceManagerCopyBuffer
- .bss               0x340a         0x20 build/default/production/pic24fj256ga702/mcc_generated_files/traps.o
+.ndata              0x0896          0x2
+ .ndata             0x0896          0x2 build/default/production/pic24fj256ga702/mcc_generated_files/traps.o
 
-.data               0x342a         0x18
- .data              0x342a         0x18 build/default/production/ws2812.o
-                    0x342a                  _ColorTable
+.nbss               0x0898         0x16
+ .nbss              0x0898          0x2 build/default/production/quadEnc.o
+                    0x0898                  _debugQuadEnc
+ .nbss              0x089a          0x2 build/default/production/analogInput.o
+                    0x089a                  _debugAnalog
+ .nbss              0x089c          0x2 build/default/production/pulseTimer.o
+                    0x089c                  _debugPulseTimer
+ .nbss              0x089e          0x2 build/default/production/TM1637.o
+                    0x089e                  _debugTM1637
+ .nbss              0x08a0          0x2 build/default/production/ws2812.o
+                    0x08a0                  _debugWS2812
+ .nbss              0x08a2          0x2 build/default/production/touch.o
+                    0x08a2                  _debugTouch
+ .nbss              0x08a4          0x2 build/default/production/resistanceInput.o
+                    0x08a4                  _debugResistance
+ .nbss              0x08a6          0x2 build/default/production/uartSw.o
+                    0x08a6                  _debuguartSw
+ .nbss              0x08a8          0x2 build/default/production/matrixKeypad.o
+                    0x08a8                  _debugMatrixKeypad
+ .nbss              0x08aa          0x2 build/default/production/pinInputProcessor.o
+                    0x08aa                  _debugPinInputProcessor
+ .nbss              0x08ac          0x2 build/default/production/pulseOnChange.o
+                    0x08ac                  _debugPulseOnChange
 
-.bss                0x3442         0x30
- .bss               0x3442         0x12 build/default/production/pic24fj256ga702/mcc_generated_files/i2c1.o
- .bss               0x3454         0x10 build/default/production/pic24fj256ga702/mcc_generated_files/i2c2.o
-                    0x3454                  _wombatI2CRxData
-                    0x345c                  _wombatI2CTxData
- .bss               0x3464          0xe build/default/production/pic24fj256ga702/mcc_generated_files/crc.o
+.bss                0x08ae       0x2b82
+ .bss               0x08ae       0x2000 build/default/production/main.o
+                    0x08ae                  _UserBuffer
+ .bss               0x28ae        0x500 build/default/production/pinRegisters.o
+                    0x28ae                  _PinUpdateRegisters
+ .bss               0x2dae        0x400 build/default/production/pic24fj256ga702/pinDigitalHwSpecific.o
+                    0x2dae                  _OutputArrayA
+                    0x2eae                  _OutputArrayB
+                    0x2fae                  _InputArrayA
+                    0x30ae                  _InputArrayB
+ .bss               0x31ae         0xca build/default/production/pic24fj256ga702/mcc_generated_files/uart1.o
+                    0x31ae                  _uart1_obj
+ .bss               0x3278         0xca build/default/production/pic24fj256ga702/mcc_generated_files/uart2.o
+ .bss               0x3342         0x70 build/default/production/timingResource.o
+                    0x3342                  _timingResources
+ .bss               0x33b2         0x5e build/default/production/protocol.o
+                    0x33b2                  _Rxbuffer
+                    0x33ba                  _Txbuffer
+                    0x33c2                  _PinRegisterCopyBuffer
+                    0x3402                  _TimingResourceManagerCopyBuffer
+ .bss               0x3410         0x20 build/default/production/pic24fj256ga702/mcc_generated_files/traps.o
 
-.data               0x3472          0x4
- .data              0x3472          0x4 build/default/production/pic24fj256ga702/mcc_generated_files/memory/flash.o
-                    0x3472                  _FlashKey
+.data               0x3430         0x18
+ .data              0x3430         0x18 build/default/production/ws2812.o
+                    0x3430                  _ColorTable
 
-.bss                0x3476          0x6
- .bss               0x3476          0x2 build/default/production/pic24fj256ga702/mcc_generated_files/tmr1.o
- .bss               0x3478          0x2 build/default/production/pic24fj256ga702/mcc_generated_files/tmr2.o
- .bss               0x347a          0x2 build/default/production/pic24fj256ga702/mcc_generated_files/tmr3.o
+.bss                0x3448         0x30
+ .bss               0x3448         0x12 build/default/production/pic24fj256ga702/mcc_generated_files/i2c1.o
+ .bss               0x345a         0x10 build/default/production/pic24fj256ga702/mcc_generated_files/i2c2.o
+                    0x345a                  _wombatI2CRxData
+                    0x3462                  _wombatI2CTxData
+ .bss               0x346a          0xe build/default/production/pic24fj256ga702/mcc_generated_files/crc.o
+
+.data               0x3478          0x4
+ .data              0x3478          0x4 build/default/production/pic24fj256ga702/mcc_generated_files/memory/flash.o
+                    0x3478                  _FlashKey
+
+.bss                0x347c          0x6
+ .bss               0x347c          0x2 build/default/production/pic24fj256ga702/mcc_generated_files/tmr1.o
+ .bss               0x347e          0x2 build/default/production/pic24fj256ga702/mcc_generated_files/tmr2.o
+ .bss               0x3480          0x2 build/default/production/pic24fj256ga702/mcc_generated_files/tmr3.o
 
 .config_ALTI2C1
                   0x02af2c          0x2
@@ -3566,358 +3620,365 @@ pic24fj256ga702/wombatasm.s.scn1
                     0xf94e                  _swBaudDivisor
  .const             0xf960         0x10 build/default/production/matrixKeypad.o
 
-.text             0x00541e       0x609a
- .text            0x00541e        0xf76 build/default/production/protocol.o
+.text             0x00541e       0x63b8
+ .text            0x00541e        0xf82 build/default/production/protocol.o
                   0x00541e                  _uartStartTX
                   0x00546c                  _error
                   0x005490                  _ProcessSetPin
-                  0x00556e                  _ProcessRxbuffer
-                  0x0062ba                  _ProcessRx
- .text            0x006394        0xd3c build/default/production/timingResource.o
-                  0x006394                  _timingResourceDefault
-                  0x00641e                  _timingResourceManagerInit
-                  0x006430                  _timingResourceHighPulseClaim
-                  0x006488                  _timingResourcePWMClaim
-                  0x006570                  _timingResourceRelease
-                  0x0065c8                  _timingResourcesHighPulse
-                  0x0066c8                  _timingResourcePWM
-                  0x006dc4                  _timingResourceHighPulseBusy
-                  0x006e2e                  _timingResourceService
-                  0x006e3a                  _timingResourceInterruptClaim
-                  0x007006                  _timingResourceInterruptActivate
-                  0x0070ae                  _timingResourceBusyWait
- .text            0x0070d0        0x774 build/default/production/ws2812.o
-                  0x0070d0                  _ws2812_SPI1_Initialize
-                  0x0070ea                  _ws2812ConfigHardware
-                  0x00710a                  _queue1Bit
-                  0x007116                  _queue0Bit
-                  0x007122                  _QueueRGB
-                  0x00735c                  _SendResetSignal
-                  0x00736a                  _StartDMA
-                  0x007392                  _StopDMA
-                  0x007396                  _initWS2812
-                  0x007626                  _updateWS2812
- .text            0x007844        0x616 build/default/production/TM1637.o
-                  0x007844                  _tm1637Start
-                  0x00784c                  _tm1637Stop
-                  0x00786a                  _tm1637ClockByte
-                  0x0078c8                  _tm1637_hwinit
-                  0x0078d4                  _tm1637SendInitialAddress
-                  0x0078f6                  _tm1637SendDisplayControlCommand
-                  0x0078fe                  _initTM1637
-                  0x007b8a                  _tm1637UpdateRender
-                  0x007d16                  _updateTM1637
- .text            0x007e5a        0x578 build/default/production/outputScale.o
-                  0x007e5a                  _outputScaleInit
-                  0x007e86                  _outputScaleProcess
-                  0x00814e                  _outputScaleResetTimeout
-                  0x008154                  _outputScaleCommProcess
- .text            0x0083d2        0x55e build/default/production/matrixKeypad.o
-                  0x0083f6                  _initMatrixKeypad
-                  0x00878c                  _updateMatrixKeypad
- .text            0x008930        0x4ea build/default/production/pic24fj256ga702/updatePulse.o
-                  0x008930                  _updatePulseOutput
-                  0x008b0c                  _updateBitStreamOutput
-                  0x008bec                  _initializeBitStreamOutput
-                  0x008c36                  _removeBitStreamOutput
-                  0x008c94                  _PulseInGetOldestDMABit
-                  0x008cf0                  _PulseInDiscardUntilLow
-                  0x008d56                  _PulseInSkipDMABits
-                  0x008dce                  _PulseInGetOldestDMASample
- .text            0x008e1a        0x4c0 build/default/production/pic24fj256ga702/pinDigitalHwSpecific.o
-                  0x008e1a                  _SetPPSOutput
-                  0x008f2c                  _CurrentPinBitmap
-                  0x008f40                  _ConfigurePinAnalog
-                  0x008f92                  _PinIsAnalogCapable
-                  0x008fa2                  _CurrentPinPort
-                  0x008fb4                  _ReadPin
-                  0x008fe4                  _PinOutput
-                  0x00901c                  _PinInput
-                  0x00904e                  _CurrentPinRead
-                  0x009052                  _pinIsPPSCapable
-                  0x00906a                  _SetPin
-                  0x00915e                  _CurrentPinInput
-                  0x009162                  _CurrentPinAnalog
-                  0x00918c                  _SetPinQuick
-                  0x00918e                  _SetCurrentPin
-                  0x009194                  _PinLow
-                  0x009198                  _PinHigh
-                  0x00919c                  _SetPinPullUp
-                  0x0091e6                  _SetPinPullDown
-                  0x009230                  _PinPullUp
-                  0x009244                  _PinPullDown
-                  0x009258                  _CurrentPinHigh
-                  0x00925e                  _InitializePinLow
-                  0x0092c0                  _CurrentPinLow
-                  0x0092c6                  _CurrentPinPullUp
-                  0x0092ca                  _CurrentPinNoPullUp
-                  0x0092d0                  _CurrentPinPullDown
-                  0x0092d4                  _CurrentPinNoPullDown
- .text            0x0092da        0x49a build/default/production/uartSw.o
-                  0x0092da                  _initUARTSw
-                  0x009518                  _updateUARTSwTx
-                  0x00963a                  _updateUARTSwRx
-                  0x00975c                  _updateUARTSw
- .text            0x009774        0x48c build/default/production/quadEnc.o
-                  0x009774                  _initQuadEnc
-                  0x009a74                  _updateQuadEnc
- .text            0x009c00        0x420 build/default/production/pic24fj256ga702/mcc_generated_files/dma.o
-                  0x009c00                  _DMA_Initialize
-                  0x009c76                  _DMA_Channel0_CallBack
-                  0x009c78                  _DMA_Channel1_CallBack
-                  0x009c7a                  _DMA__Channel1_Tasks
-                  0x009c88                  _DMA_Channel2_CallBack
-                  0x009c8a                  _DMA__Channel2_Tasks
-                  0x009c98                  _DMA_Channel3_CallBack
-                  0x009c9a                  _DMA__Channel3_Tasks
-                  0x009ca8                  _DMA_Channel4_CallBack
-                  0x009caa                  _DMA__Channel4_Tasks
-                  0x009cb8                  _DMA_Channel5_CallBack
-                  0x009cba                  _DMA__Channel5_Tasks
-                  0x009cc8                  _DMA_ChannelEnable
-                  0x009cfa                  _DMA_ChannelDisable
-                  0x009d2c                  _DMA_TransferCountSet
-                  0x009d5e                  _DMA_TransferCountGet
-                  0x009d90                  _DMA_SoftwareTriggerEnable
-                  0x009dc2                  _DMA_SourceAddressSet
-                  0x009df4                  _DMA_DestinationAddressSet
-                  0x009e26                  _DMA_IsSoftwareRequestPending
-                  0x009e70                  _DMA_IsBufferedWriteComplete
-                  0x009eae                  _DMA_IsHighAddressLimitFlagSet
-                  0x009ef8                  _DMA_IsLowAddressLimitFlagSet
-                  0x009f42                  _DMA_IsOperationDone
-                  0x009f8c                  _DMA_IsOverrunFlagSet
-                  0x009fd6                  _DMA_IsOperationHalfComplete
- .text            0x00a020        0x3ee build/default/production/pic24fj256ga702/mcc_generated_files/crc.o
-                  0x00a020                  _CRC_Initialize
-                  0x00a04c                  _CRC_SeedSet
-                  0x00a0c2                  _CRC_CalculateBufferStart
-                  0x00a0e6                  _CRC_CalculateProgramStart
-                  0x00a112                  _CRC_CallBack
-                  0x00a114                  _CRC_Task
-                  0x00a2ec                  _CRC_CalculationIsDone
-                  0x00a2fc                  _CRC_CalculationResultRawGet
-                  0x00a330                  _CRC_CalculationResultReverseGet
-                  0x00a36e                  _CRC_CalculationResultXORGet
-                  0x00a3ac                  _CRC_CalculationResultGet
- .text            0x00a40e        0x38c build/default/production/touch.o
-                  0x00a40e                  _touchCallback
-                  0x00a412                  _initTouch
-                  0x00a59a                  _touchProcessDigital
-                  0x00a62c                  _updateTouch
- .text            0x00a79a        0x382 build/default/production/pic24fj256ga702/mcc_generated_files/adc1.o
-                  0x00a79a                  _ADC1_ResetConditions
-                  0x00a7aa                  _ADC1_Initialize
-                  0x00a85a                  _GetADCConversion
-                  0x00a8aa                  _GetAddressPinVoltage_mV
-                  0x00a95c                  _GetCurrentPinReistanceOhmsSetup
-                  0x00a9b8                  _GetCurrentPinReistanceOhmsRead
-                  0x00a9e8                  _GetTemperature_degC100ths
-                  0x00aac4                  _GetSourceVoltage_mV
-                  0x00aad0                  _GetSourceVoltageADC
-                  0x00aad4                  _GetVBgCountsVsVRefPin
- .text            0x00ab1c        0x362 build/default/production/inputProcess.o
-                  0x00ab1c                  _inputProcessInit
-                  0x00ab40                  _inputProcessProcess
-                  0x00acb0                  _inputProcessCommProcess
- .text            0x00ae7e        0x35e build/default/production/uartHw.o
-                  0x00ae7e                  _initUARTHw
-                  0x00b1b2                  _updateUARTHw
- .text            0x00b1dc        0x2dc build/default/production/pulseTimer.o
-                  0x00b1dc                  _initPulseTimer
-                  0x00b320                  _updatePulseTimer
+                  0x00557a                  _ProcessRxbuffer
+                  0x0062c6                  _ProcessRx
+ .text            0x0063a0        0xd48 build/default/production/timingResource.o
+                  0x0063a0                  _timingResourceDefault
+                  0x00642a                  _timingResourceManagerInit
+                  0x00643c                  _timingResourceHighPulseClaim
+                  0x006494                  _timingResourcePWMClaim
+                  0x006588                  _timingResourceRelease
+                  0x0065e0                  _timingResourcesHighPulse
+                  0x0066e0                  _timingResourcePWM
+                  0x006ddc                  _timingResourceHighPulseBusy
+                  0x006e46                  _timingResourceService
+                  0x006e52                  _timingResourceInterruptClaim
+                  0x00701e                  _timingResourceInterruptActivate
+                  0x0070c6                  _timingResourceBusyWait
+ .text            0x0070e8        0x754 build/default/production/ws2812.o
+                  0x0070e8                  _ws2812_SPI1_Initialize
+                  0x007102                  _ws2812ConfigHardware
+                  0x007122                  _queue1Bit
+                  0x00712e                  _queue0Bit
+                  0x00713a                  _QueueRGB
+                  0x007374                  _SendResetSignal
+                  0x007382                  _StartDMA
+                  0x0073aa                  _StopDMA
+                  0x0073ae                  _initWS2812
+                  0x00761e                  _updateWS2812
+ .text            0x00783c        0x5e2 build/default/production/TM1637.o
+                  0x00783c                  _tm1637Start
+                  0x007844                  _tm1637Stop
+                  0x007862                  _tm1637ClockByte
+                  0x0078c0                  _tm1637_hwinit
+                  0x0078cc                  _tm1637SendInitialAddress
+                  0x0078ee                  _tm1637SendDisplayControlCommand
+                  0x0078f6                  _initTM1637
+                  0x007b4e                  _tm1637UpdateRender
+                  0x007cda                  _updateTM1637
+ .text            0x007e1e        0x578 build/default/production/outputScale.o
+                  0x007e1e                  _outputScaleInit
+                  0x007e4a                  _outputScaleProcess
+                  0x008112                  _outputScaleResetTimeout
+                  0x008118                  _outputScaleCommProcess
+ .text            0x008396        0x552 build/default/production/matrixKeypad.o
+                  0x0083ba                  _initMatrixKeypad
+                  0x008744                  _updateMatrixKeypad
+ .text            0x0088e8        0x4ea build/default/production/pic24fj256ga702/updatePulse.o
+                  0x0088e8                  _updatePulseOutput
+                  0x008ac4                  _updateBitStreamOutput
+                  0x008ba4                  _initializeBitStreamOutput
+                  0x008bee                  _removeBitStreamOutput
+                  0x008c4c                  _PulseInGetOldestDMABit
+                  0x008ca8                  _PulseInDiscardUntilLow
+                  0x008d0e                  _PulseInSkipDMABits
+                  0x008d86                  _PulseInGetOldestDMASample
+ .text            0x008dd2        0x4c0 build/default/production/pic24fj256ga702/pinDigitalHwSpecific.o
+                  0x008dd2                  _SetPPSOutput
+                  0x008ee4                  _CurrentPinBitmap
+                  0x008ef8                  _ConfigurePinAnalog
+                  0x008f4a                  _PinIsAnalogCapable
+                  0x008f5a                  _CurrentPinPort
+                  0x008f6c                  _ReadPin
+                  0x008f9c                  _PinOutput
+                  0x008fd4                  _PinInput
+                  0x009006                  _CurrentPinRead
+                  0x00900a                  _pinIsPPSCapable
+                  0x009022                  _SetPin
+                  0x009116                  _CurrentPinInput
+                  0x00911a                  _CurrentPinAnalog
+                  0x009144                  _SetPinQuick
+                  0x009146                  _SetCurrentPin
+                  0x00914c                  _PinLow
+                  0x009150                  _PinHigh
+                  0x009154                  _SetPinPullUp
+                  0x00919e                  _SetPinPullDown
+                  0x0091e8                  _PinPullUp
+                  0x0091fc                  _PinPullDown
+                  0x009210                  _CurrentPinHigh
+                  0x009216                  _InitializePinLow
+                  0x009278                  _CurrentPinLow
+                  0x00927e                  _CurrentPinPullUp
+                  0x009282                  _CurrentPinNoPullUp
+                  0x009288                  _CurrentPinPullDown
+                  0x00928c                  _CurrentPinNoPullDown
+ .text            0x009292        0x4aa build/default/production/quadEnc.o
+                  0x009292                  _initQuadEnc
+                  0x0095b0                  _updateQuadEnc
+ .text            0x00973c        0x4a4 build/default/production/uartSw.o
+                  0x00973c                  _initUARTSw
+                  0x009984                  _updateUARTSwTx
+                  0x009aa6                  _updateUARTSwRx
+                  0x009bc8                  _updateUARTSw
+ .text            0x009be0        0x420 build/default/production/pic24fj256ga702/mcc_generated_files/dma.o
+                  0x009be0                  _DMA_Initialize
+                  0x009c56                  _DMA_Channel0_CallBack
+                  0x009c58                  _DMA_Channel1_CallBack
+                  0x009c5a                  _DMA__Channel1_Tasks
+                  0x009c68                  _DMA_Channel2_CallBack
+                  0x009c6a                  _DMA__Channel2_Tasks
+                  0x009c78                  _DMA_Channel3_CallBack
+                  0x009c7a                  _DMA__Channel3_Tasks
+                  0x009c88                  _DMA_Channel4_CallBack
+                  0x009c8a                  _DMA__Channel4_Tasks
+                  0x009c98                  _DMA_Channel5_CallBack
+                  0x009c9a                  _DMA__Channel5_Tasks
+                  0x009ca8                  _DMA_ChannelEnable
+                  0x009cda                  _DMA_ChannelDisable
+                  0x009d0c                  _DMA_TransferCountSet
+                  0x009d3e                  _DMA_TransferCountGet
+                  0x009d70                  _DMA_SoftwareTriggerEnable
+                  0x009da2                  _DMA_SourceAddressSet
+                  0x009dd4                  _DMA_DestinationAddressSet
+                  0x009e06                  _DMA_IsSoftwareRequestPending
+                  0x009e50                  _DMA_IsBufferedWriteComplete
+                  0x009e8e                  _DMA_IsHighAddressLimitFlagSet
+                  0x009ed8                  _DMA_IsLowAddressLimitFlagSet
+                  0x009f22                  _DMA_IsOperationDone
+                  0x009f6c                  _DMA_IsOverrunFlagSet
+                  0x009fb6                  _DMA_IsOperationHalfComplete
+ .text            0x00a000        0x3ee build/default/production/pic24fj256ga702/mcc_generated_files/crc.o
+                  0x00a000                  _CRC_Initialize
+                  0x00a02c                  _CRC_SeedSet
+                  0x00a0a2                  _CRC_CalculateBufferStart
+                  0x00a0c6                  _CRC_CalculateProgramStart
+                  0x00a0f2                  _CRC_CallBack
+                  0x00a0f4                  _CRC_Task
+                  0x00a2cc                  _CRC_CalculationIsDone
+                  0x00a2dc                  _CRC_CalculationResultRawGet
+                  0x00a310                  _CRC_CalculationResultReverseGet
+                  0x00a34e                  _CRC_CalculationResultXORGet
+                  0x00a38c                  _CRC_CalculationResultGet
+ .text            0x00a3ee        0x3e4 build/default/production/inputProcess.o
+                  0x00a3ee                  _inputProcessInit
+                  0x00a412                  _inputProcessProcess
+                  0x00a5c0                  _inputProcessCommProcess
+ .text            0x00a7d2        0x382 build/default/production/pic24fj256ga702/mcc_generated_files/adc1.o
+                  0x00a7d2                  _ADC1_ResetConditions
+                  0x00a7e2                  _ADC1_Initialize
+                  0x00a892                  _GetADCConversion
+                  0x00a8e2                  _GetAddressPinVoltage_mV
+                  0x00a994                  _GetCurrentPinReistanceOhmsSetup
+                  0x00a9f0                  _GetCurrentPinReistanceOhmsRead
+                  0x00aa20                  _GetTemperature_degC100ths
+                  0x00aafc                  _GetSourceVoltage_mV
+                  0x00ab08                  _GetSourceVoltageADC
+                  0x00ab0c                  _GetVBgCountsVsVRefPin
+ .text            0x00ab54        0x368 build/default/production/touch.o
+                  0x00ab54                  _touchCallback
+                  0x00ab58                  _initTouch
+                  0x00acbc                  _touchProcessDigital
+                  0x00ad4e                  _updateTouch
+ .text            0x00aebc        0x364 build/default/production/uartHw.o
+                  0x00aebc                  _initUARTHw
+                  0x00b1f6                  _updateUARTHw
+ .text            0x00b220        0x2fe build/default/production/pulseTimer.o
+                  0x00b220                  _initPulseTimer
+                  0x00b386                  _updatePulseTimer
+ .text            0x00b51e        0x2b8 build/default/production/pulseOnChange.o
+                  0x00b51e                  _initPulseOnChange
+                  0x00b684                  _updatePulseOnChange
 
-.text             0x01f970        0x264
- .text            0x01f970        0x264 build/default/production/analogInput.o
-                  0x01f970                  _initAnalogInput
-                  0x01fab2                  _updateAnalogInput
-                  0x01fb96                  _initAnalogSimple
+.text             0x01f970        0x25e
+ .text            0x01f970        0x25e build/default/production/pic24fj256ga702/mcc_generated_files/uart1.o
+                  0x01f970                  _UART1_Initialize
+                  0x01f9b2                  _UART1_Read
+                  0x01f9f2                  _UART1_ReadBuffer
+                  0x01fa26                  _UART1_Write
+                  0x01fa6e                  _UART1_WriteBuffer
+                  0x01fa9e                  _UART1_TransferStatusGet
+                  0x01fac2                  _UART1_Peek
+                  0x01fae6                  _UART1_PeekSafe
+                  0x01fb50                  _UART1_ReceiveBufferSizeGet
+                  0x01fb78                  _UART1_TransmitBufferSizeGet
+                  0x01fb9e                  _UART1_ReceiveBufferIsEmpty
+                  0x01fbac                  _UART1_TransmitBufferIsFull
+                  0x01fbba                  _UART1_StatusGet
+                  0x01fbbe                  _UART1_Enable
+                  0x01fbc4                  _UART1_Disable
 
-.text             0x00b4b8        0xfe0
- .text            0x00b4b8        0x25e build/default/production/pic24fj256ga702/mcc_generated_files/uart1.o
-                  0x00b4b8                  _UART1_Initialize
-                  0x00b4fa                  _UART1_Read
-                  0x00b53a                  _UART1_ReadBuffer
-                  0x00b56e                  _UART1_Write
-                  0x00b5b6                  _UART1_WriteBuffer
-                  0x00b5e6                  _UART1_TransferStatusGet
-                  0x00b60a                  _UART1_Peek
-                  0x00b62e                  _UART1_PeekSafe
-                  0x00b698                  _UART1_ReceiveBufferSizeGet
-                  0x00b6c0                  _UART1_TransmitBufferSizeGet
-                  0x00b6e6                  _UART1_ReceiveBufferIsEmpty
-                  0x00b6f4                  _UART1_TransmitBufferIsFull
-                  0x00b702                  _UART1_StatusGet
-                  0x00b706                  _UART1_Enable
-                  0x00b70c                  _UART1_Disable
- .text            0x00b716        0x248 build/default/production/pic24fj256ga702/mcc_generated_files/uart2.o
-                  0x00b716                  _UART2_Initialize
-                  0x00b740                  _UART2_Read
-                  0x00b784                  _UART2_ReadBuffer
-                  0x00b7b8                  _UART2_Write
-                  0x00b800                  _UART2_WriteBuffer
-                  0x00b830                  _UART2_TransferStatusGet
-                  0x00b854                  _UART2_Peek
-                  0x00b878                  _UART2_PeekSafe
-                  0x00b8e2                  _UART2_ReceiveBufferSizeGet
-                  0x00b908                  _UART2_TransmitBufferSizeGet
-                  0x00b92e                  _UART2_ReceiveBufferIsEmpty
-                  0x00b93c                  _UART2_TransmitBufferIsFull
-                  0x00b94a                  _UART2_StatusGet
-                  0x00b94e                  _UART2_Enable
-                  0x00b954                  _UART2_Disable
- .text            0x00b95e        0x22e build/default/production/main.o
-                  0x00b95e                  _reset
-                  0x00b964                  _ProcessPins
-                  0x00bad2                  _main
- .text            0x00bb8c        0x210 build/default/production/pic24fj256ga702/wombatasm.o
-                  0x00bb8c                  _orCount
-                  0x00bb92                  _or128
-                  0x00bc94                  _andCount
-                  0x00bc9a                  _and128
- .text            0x00bd9c        0x1dc build/default/production/resistanceInput.o
-                  0x00bd9c                  _initResistanceInput
-                  0x00be88                  _updateResistanceInput
- .text            0x00bf78        0x1cc build/default/production/servo.o
-                  0x00bf78                  _initServoHwSimple
-                  0x00bf96                  _initServoHw
-                  0x00c042                  _updateServoHw
- .text            0x00c144        0x1c0 build/default/production/pinRegisters.o
-                  0x00c144                  _pinRegisterSizeCheck
-                  0x00c146                  _SetBuffer
-                  0x00c154                  _GetBuffer
-                  0x00c2e2                  _SetMode
-                  0x00c2f0                  _GetMode
- .text            0x00c304        0x194 build/default/production/queue.o
-                  0x00c32a                  _QueueByteInitialize
-                  0x00c34e                  _QueueGetBytesFilledInQueue
-                  0x00c376                  _QueueGetBytesFreeInQueue
-                  0x00c3aa                  _QueueAddByte
-                  0x00c3fc                  _QueueReadByte
-                  0x00c458                  _QueuePeekByte
+.text             0x00b7d6        0xdfa
+ .text            0x00b7d6        0x24e build/default/production/main.o
+                  0x00b7d6                  _reset
+                  0x00b7dc                  _ProcessPins
+                  0x00b96a                  _main
+ .text            0x00ba24        0x248 build/default/production/pic24fj256ga702/mcc_generated_files/uart2.o
+                  0x00ba24                  _UART2_Initialize
+                  0x00ba4e                  _UART2_Read
+                  0x00ba92                  _UART2_ReadBuffer
+                  0x00bac6                  _UART2_Write
+                  0x00bb0e                  _UART2_WriteBuffer
+                  0x00bb3e                  _UART2_TransferStatusGet
+                  0x00bb62                  _UART2_Peek
+                  0x00bb86                  _UART2_PeekSafe
+                  0x00bbf0                  _UART2_ReceiveBufferSizeGet
+                  0x00bc16                  _UART2_TransmitBufferSizeGet
+                  0x00bc3c                  _UART2_ReceiveBufferIsEmpty
+                  0x00bc4a                  _UART2_TransmitBufferIsFull
+                  0x00bc58                  _UART2_StatusGet
+                  0x00bc5c                  _UART2_Enable
+                  0x00bc62                  _UART2_Disable
+ .text            0x00bc6c        0x210 build/default/production/pic24fj256ga702/wombatasm.o
+                  0x00bc6c                  _orCount
+                  0x00bc72                  _or128
+                  0x00bd74                  _andCount
+                  0x00bd7a                  _and128
+ .text            0x00be7c        0x20c build/default/production/pinRegisters.o
+                  0x00be7c                  _pinRegisterSizeCheck
+                  0x00be7e                  _SetBuffer
+                  0x00be8c                  _wrandom
+                  0x00bec8                  _GetBuffer
+                  0x00c066                  _SetMode
+                  0x00c074                  _GetMode
+ .text            0x00c088        0x1e4 build/default/production/servo.o
+                  0x00c088                  _initServoHwSimple
+                  0x00c0a6                  _initServoHw
+                  0x00c16a                  _updateServoHw
+ .text            0x00c26c        0x1d0 build/default/production/resistanceInput.o
+                  0x00c26c                  _initResistanceInput
+                  0x00c34c                  _updateResistanceInput
+ .text            0x00c43c        0x194 build/default/production/queue.o
+                  0x00c462                  _QueueByteInitialize
+                  0x00c486                  _QueueGetBytesFilledInQueue
+                  0x00c4ae                  _QueueGetBytesFreeInQueue
+                  0x00c4e2                  _QueueAddByte
+                  0x00c534                  _QueueReadByte
+                  0x00c590                  _QueuePeekByte
 
-.NVM_flash        0x00c498        0x168
- .NVM_flash       0x00c498        0x168 build/default/production/pic24fj256ga702/mcc_generated_files/memory/flash.o
-                  0x00c49a                  _FLASH_Unlock
-                  0x00c4a4                  _FLASH_Lock
-                  0x00c4b2                  _FLASH_SendNvmKey
-                  0x00c4d0                  _FLASH_ReadWord24
-                  0x00c4de                  _FLASH_ReadWord16
-                  0x00c4ea                  _FLASH_ErasePage
-                  0x00c50e                  _FLASH_WriteDoubleWord24
-                  0x00c546                  _FLASH_WriteDoubleWord16
-                  0x00c580                  _FLASH_WriteRow24
-                  0x00c5b8                  _FLASH_WriteRow16
-                  0x00c5f0                  _FLASH_GetErasePageOffset
-                  0x00c5f6                  _FLASH_GetErasePageAddress
+.NVM_flash        0x00c5d0        0x168
+ .NVM_flash       0x00c5d0        0x168 build/default/production/pic24fj256ga702/mcc_generated_files/memory/flash.o
+                  0x00c5d2                  _FLASH_Unlock
+                  0x00c5dc                  _FLASH_Lock
+                  0x00c5ea                  _FLASH_SendNvmKey
+                  0x00c608                  _FLASH_ReadWord24
+                  0x00c616                  _FLASH_ReadWord16
+                  0x00c622                  _FLASH_ErasePage
+                  0x00c646                  _FLASH_WriteDoubleWord24
+                  0x00c67e                  _FLASH_WriteDoubleWord16
+                  0x00c6b8                  _FLASH_WriteRow24
+                  0x00c6f0                  _FLASH_WriteRow16
+                  0x00c728                  _FLASH_GetErasePageOffset
+                  0x00c72e                  _FLASH_GetErasePageAddress
 
-.text             0x00c600        0x146
- .text            0x00c600        0x146 build/default/production/pwm.o
-                  0x00c600                  _updatePWM
-                  0x00c622                  _initPWMSimple
-                  0x00c660                  _initPWM
+.text             0x00c738        0x152
+ .text            0x00c738        0x152 build/default/production/pwm.o
+                  0x00c738                  _updatePWM
+                  0x00c75a                  _initPWMSimple
+                  0x00c798                  _initPWM
 
-.dinit            0x00c746        0x136
- .dinit           0x00c746        0x136 data_init
+.dinit            0x00c88a        0x146
+ .dinit           0x00c88a        0x146 data_init
 
-.text             0x00c87c        0x8c4
- .text            0x00c87c        0x110 build/default/production/debounce.o
-                  0x00c87c                  _initDebounce
-                  0x00c916                  _updateDebounce
- .text            0x00c98c        0x108 build/default/production/asciiConversion.o
-                  0x00c98c                  _ascii_to_val
-                  0x00c9c6                  _uint16ToAscii5
-                  0x00ca1a                  _uint16ToAscii5NoHWMath
-                  0x00ca72                  _uint16ToAsciiHex4
- .text            0x00ca94         0xf6 build/default/production/pic24fj256ga702/mcc_generated_files/i2c2.o
-                  0x00ca94                  _I2C2_Initialize
-                  0x00cac4                  _I2C2_PeriphAddressMaskSet
-                  0x00cac8                  _I2C2_PeriphAddressSet
-                  0x00cae0                  _I2C2_TransmitProcess
-                  0x00cafc                  _I2C2_ReceiveProcess
-                  0x00cb30                  _i2cHealthMonitor
- .text            0x00cb8a         0xc6 build/default/production/protectedOutput.o
-                  0x00cb8a                  _initProtectedOutput
-                  0x00cbda                  _updateProtectedOutput
- .text            0x00cc50         0xb8 build/default/production/pic24fj256ga702/mcc_generated_files/i2c1.o
-                  0x00cc50                  _I2C1_Initialize
-                  0x00cc6c                  _I2C1_ErrorCountGet
-                  0x00cc70                  _I2C1_MasterTRBInsert
-                  0x00ccb0                  _I2C1_MasterRead
-                  0x00ccce                  _I2C1_MasterWrite
-                  0x00cce8                  _I2C1_MasterReadTRBBuild
-                  0x00ccf4                  _I2C1_MasterWriteTRBBuild
-                  0x00ccfc                  _I2C1_MasterQueueIsEmpty
-                  0x00cd02                  _I2C1_MasterQueueIsFull
- .text            0x00cd08         0xae build/default/production/watchdog.o
-                  0x00cd08                  _initWatchdog
-                  0x00cd80                  _updateWatchdog
- .text            0x00cdb6         0xa8 build/default/production/throughputConsumer.o
-                  0x00cdb6                  _initThroughputConsumer
-                  0x00ce3c                  _updateThroughputConsumer
- .text            0x00ce5e         0x94 build/default/production/pic24fj256ga702/mcc_generated_files/system.o
-                  0x00ce5e                  _SYSTEM_Initialize
- .text            0x00cef2         0x8c build/default/production/pic24fj256ga702/mcc_generated_files/tmr2.o
-                  0x00cef2                  _TMR2_CallBack
-                  0x00cf0a                  _TMR2_Initialize
-                  0x00cf36                  _TMR2_Period16BitSet
-                  0x00cf3e                  _TMR2_Period16BitGet
-                  0x00cf42                  _TMR2_Counter16BitSet
-                  0x00cf4a                  _TMR2_Counter16BitGet
-                  0x00cf4e                  _TMR2_SetInterruptHandler
-                  0x00cf56                  _TMR2_Start
-                  0x00cf60                  _TMR2_Stop
-                  0x00cf66                  _TMR2_GetElapsedThenClear
-                  0x00cf72                  _TMR2_SoftwareCounterGet
-                  0x00cf78                  _TMR2_SoftwareCounterClear
- .text            0x00cf7e         0x68 build/default/production/pic24fj256ga702/mcc_generated_files/tmr1.o
-                  0x00cf7e                  _TMR1_Initialize
-                  0x00cf8e                  _TMR1_Tasks_16BitOperation
-                  0x00cfa0                  _TMR1_Period16BitSet
-                  0x00cfa8                  _TMR1_Period16BitGet
-                  0x00cfac                  _TMR1_Counter16BitSet
-                  0x00cfb4                  _TMR1_Counter16BitGet
-                  0x00cfb8                  _TMR1_Start
-                  0x00cfc0                  _TMR1_Stop
-                  0x00cfc4                  _TMR1_GetElapsedThenClear
-                  0x00cfd0                  _TMR1_SoftwareCounterGet
-                  0x00cfd6                  _TMR1_SoftwareCounterClear
-                  0x00cfdc                  _TMR1_ResetConditions
- .text            0x00cfe6         0x64 build/default/production/pic24fj256ga702/mcc_generated_files/tmr3.o
-                  0x00cfe6                  _TMR3_Initialize
-                  0x00cff4                  _TMR3_Tasks_16BitOperation
-                  0x00d006                  _TMR3_Period16BitSet
-                  0x00d00e                  _TMR3_Period16BitGet
-                  0x00d012                  _TMR3_Counter16BitSet
-                  0x00d01a                  _TMR3_Counter16BitGet
-                  0x00d01e                  _TMR3_Start
-                  0x00d026                  _TMR3_Stop
-                  0x00d02a                  _TMR3_GetElapsedThenClear
-                  0x00d036                  _TMR3_SoftwareCounterGet
-                  0x00d03c                  _TMR3_SoftwareCounterClear
-                  0x00d042                  _TMR3_ResetConditions
- .text            0x00d04a         0x64 build/default/production/pinInputProcessor.o
-                  0x00d04a                  _initPinInputProcessor
-                  0x00d07c                  _updatePinInputProcessor
- .text            0x00d0ae         0x4a build/default/production/pic24fj256ga702/mcc_generated_files/pin_manager.o
-                  0x00d0ae                  _PIN_MANAGER_Initialize
- .text            0x00d0f8         0x48 build/default/production/pic24fj256ga702/mcc_generated_files/clock.o
-                  0x00d0f8                  _CLOCK_Initialize
+.text             0x00c9d0        0xb3a
+ .text            0x00c9d0        0x122 build/default/production/debounce.o
+                  0x00c9d0                  _initDebounce
+                  0x00ca7c                  _updateDebounce
+ .text            0x00caf2        0x122 build/default/production/hfServo.o
+                  0x00caf2                  _initHfServo
+                  0x00cbd2                  _updateHfServo
+ .text            0x00cc14        0x120 build/default/production/analogInput.o
+                  0x00cc14                  _initAnalogInput
+                  0x00cd00                  _updateAnalogInput
+                  0x00cd22                  _initAnalogSimple
+ .text            0x00cd34        0x108 build/default/production/asciiConversion.o
+                  0x00cd34                  _ascii_to_val
+                  0x00cd6e                  _uint16ToAscii5
+                  0x00cdc2                  _uint16ToAscii5NoHWMath
+                  0x00ce1a                  _uint16ToAsciiHex4
+ .text            0x00ce3c         0xf6 build/default/production/pic24fj256ga702/mcc_generated_files/i2c2.o
+                  0x00ce3c                  _I2C2_Initialize
+                  0x00ce6c                  _I2C2_PeriphAddressMaskSet
+                  0x00ce70                  _I2C2_PeriphAddressSet
+                  0x00ce88                  _I2C2_TransmitProcess
+                  0x00cea4                  _I2C2_ReceiveProcess
+                  0x00ced8                  _i2cHealthMonitor
+ .text            0x00cf32         0xd6 build/default/production/protectedOutput.o
+                  0x00cf32                  _initProtectedOutput
+                  0x00cf92                  _updateProtectedOutput
+ .text            0x00d008         0xbe build/default/production/watchdog.o
+                  0x00d008                  _initWatchdog
+                  0x00d090                  _updateWatchdog
+ .text            0x00d0c6         0xb8 build/default/production/pic24fj256ga702/mcc_generated_files/i2c1.o
+                  0x00d0c6                  _I2C1_Initialize
+                  0x00d0e2                  _I2C1_ErrorCountGet
+                  0x00d0e6                  _I2C1_MasterTRBInsert
+                  0x00d126                  _I2C1_MasterRead
+                  0x00d144                  _I2C1_MasterWrite
+                  0x00d15e                  _I2C1_MasterReadTRBBuild
+                  0x00d16a                  _I2C1_MasterWriteTRBBuild
+                  0x00d172                  _I2C1_MasterQueueIsEmpty
+                  0x00d178                  _I2C1_MasterQueueIsFull
+ .text            0x00d17e         0xa8 build/default/production/throughputConsumer.o
+                  0x00d17e                  _initThroughputConsumer
+                  0x00d204                  _updateThroughputConsumer
+ .text            0x00d226         0x94 build/default/production/pic24fj256ga702/mcc_generated_files/system.o
+                  0x00d226                  _SYSTEM_Initialize
+ .text            0x00d2ba         0x8c build/default/production/pic24fj256ga702/mcc_generated_files/tmr2.o
+                  0x00d2ba                  _TMR2_CallBack
+                  0x00d2d2                  _TMR2_Initialize
+                  0x00d2fe                  _TMR2_Period16BitSet
+                  0x00d306                  _TMR2_Period16BitGet
+                  0x00d30a                  _TMR2_Counter16BitSet
+                  0x00d312                  _TMR2_Counter16BitGet
+                  0x00d316                  _TMR2_SetInterruptHandler
+                  0x00d31e                  _TMR2_Start
+                  0x00d328                  _TMR2_Stop
+                  0x00d32e                  _TMR2_GetElapsedThenClear
+                  0x00d33a                  _TMR2_SoftwareCounterGet
+                  0x00d340                  _TMR2_SoftwareCounterClear
+ .text            0x00d346         0x68 build/default/production/pic24fj256ga702/mcc_generated_files/tmr1.o
+                  0x00d346                  _TMR1_Initialize
+                  0x00d356                  _TMR1_Tasks_16BitOperation
+                  0x00d368                  _TMR1_Period16BitSet
+                  0x00d370                  _TMR1_Period16BitGet
+                  0x00d374                  _TMR1_Counter16BitSet
+                  0x00d37c                  _TMR1_Counter16BitGet
+                  0x00d380                  _TMR1_Start
+                  0x00d388                  _TMR1_Stop
+                  0x00d38c                  _TMR1_GetElapsedThenClear
+                  0x00d398                  _TMR1_SoftwareCounterGet
+                  0x00d39e                  _TMR1_SoftwareCounterClear
+                  0x00d3a4                  _TMR1_ResetConditions
+ .text            0x00d3ae         0x66 build/default/production/pinInputProcessor.o
+                  0x00d3ae                  _initPinInputProcessor
+                  0x00d3e2                  _updatePinInputProcessor
+ .text            0x00d414         0x64 build/default/production/pic24fj256ga702/mcc_generated_files/tmr3.o
+                  0x00d414                  _TMR3_Initialize
+                  0x00d422                  _TMR3_Tasks_16BitOperation
+                  0x00d434                  _TMR3_Period16BitSet
+                  0x00d43c                  _TMR3_Period16BitGet
+                  0x00d440                  _TMR3_Counter16BitSet
+                  0x00d448                  _TMR3_Counter16BitGet
+                  0x00d44c                  _TMR3_Start
+                  0x00d454                  _TMR3_Stop
+                  0x00d458                  _TMR3_GetElapsedThenClear
+                  0x00d464                  _TMR3_SoftwareCounterGet
+                  0x00d46a                  _TMR3_SoftwareCounterClear
+                  0x00d470                  _TMR3_ResetConditions
+ .text            0x00d478         0x4a build/default/production/pic24fj256ga702/mcc_generated_files/pin_manager.o
+                  0x00d478                  _PIN_MANAGER_Initialize
+ .text            0x00d4c2         0x48 build/default/production/pic24fj256ga702/mcc_generated_files/clock.o
+                  0x00d4c2                  _CLOCK_Initialize
 
-.text             0x01fbd4         0x22
- .text            0x01fbd4         0x22 build/default/production/pic24fj256ga702/mcc_generated_files/interrupt_manager.o
-                  0x01fbd4                  _INTERRUPT_Initialize
+.text             0x01fbce         0x22
+ .text            0x01fbce         0x22 build/default/production/pic24fj256ga702/mcc_generated_files/interrupt_manager.o
+                  0x01fbce                  _INTERRUPT_Initialize
 
-.init.delay32     0x00d140         0x1c
- .init.delay32    0x00d140         0x1c c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(delay32da.Leo)
-                  0x00d140                  ___delay32
+.init.delay32     0x00d50a         0x1c
+ .init.delay32    0x00d50a         0x1c c:/program files/microchip/xc16/v1.70/bin/bin/../../lib\liblega-pic30-elf.a(delay32da.Leo)
+                  0x00d50a                  ___delay32
 
-.text             0x01fbf6          0x8
- .text            0x01fbf6          0x8 build/default/production/pic24fj256ga702/mcc_generated_files/cvr.o
-                  0x01fbf6                  _CVR_Initialize
+.text             0x01fbf0          0xe
+ .text            0x01fbf0          0x8 build/default/production/pic24fj256ga702/mcc_generated_files/cvr.o
+                  0x01fbf0                  _CVR_Initialize
+ .text            0x01fbf8          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/traps.o
+                  0x01fbf8                  _TRAPS_halt_on_error
 
-.text             0x00d15c          0xa
- .text            0x00d15c          0x6 build/default/production/pic24fj256ga702/mcc_generated_files/traps.o
-                  0x00d15c                  _TRAPS_halt_on_error
- .text            0x00d162          0x4 build/default/production/pic24fj256ga702/mcc_generated_files/mcc.o
-                  0x00d162                  _OSCILLATOR_Initialize
+.text             0x00d526          0x4
+ .text            0x00d526          0x4 build/default/production/pic24fj256ga702/mcc_generated_files/mcc.o
+                  0x00d526                  _OSCILLATOR_Initialize

@@ -41,7 +41,11 @@ typedef struct protectedOutput_n{
 
 void initProtectedOutput (void)
 {
-
+if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_PROTECTEDOUTPUT)
+	{
+		error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+		return;
+}
 	switch(Rxbuffer[0])
 	{
 		case CONFIGURE_CHANNEL_MODE_0:
@@ -63,8 +67,15 @@ void initProtectedOutput (void)
 			SetCurrentPin(Rxbuffer[4]);
 		}
 		break;
+        
+                default:
+        {
+            error(SW_ERROR_INVALID_COMMAND);      
+        }
+        break;
 	}
 }
+
 
 
 void updateProtectedOutput()
@@ -119,4 +130,5 @@ void updateProtectedOutput()
 	}
   	CurrentPinRegister->generic.buffer = protectedOutput->differenceCount; 
 }
+
 

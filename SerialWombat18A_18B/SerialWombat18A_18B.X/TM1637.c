@@ -524,7 +524,11 @@ Write an ascii 7 to TM1637 on pin 19.\
 
 void initTM1637 (void)
 {
-
+if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_TM1637)
+	{
+		error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+		return;
+	}
 	switch(Rxbuffer[0])
 	{
 		case CONFIGURE_CHANNEL_MODE_0:
@@ -575,38 +579,25 @@ void initTM1637 (void)
 
 		case CONFIGURE_CHANNEL_MODE_1:
 			{
-				if (CurrentPinRegister->generic.mode == PIN_MODE_TM1637)
-				{
 					tm1637->displayOrder[0] = Rxbuffer[3];
 					tm1637->displayOrder[1] = Rxbuffer[4];
 					tm1637->displayOrder[2] = Rxbuffer[5];
 					tm1637->displayOrder[3] = Rxbuffer[6];
 					tm1637->displayOrder[4] = Rxbuffer[7];
-				}
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
 			}
 			break;
 
 		case CONFIGURE_CHANNEL_MODE_2:
 			{
-				if (CurrentPinRegister->generic.mode == PIN_MODE_TM1637)
-				{
+				
 					tm1637->displayOrder[5] = Rxbuffer[3];
-				}
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+				
 			}
 			break;
 
 		case CONFIGURE_CHANNEL_MODE_3: 
 			{
-				if (CurrentPinRegister->generic.mode == PIN_MODE_TM1637)
-				{
+			
                     if (Rxbuffer[3] != 0x55)
                     {
                         tm1637->brightness = Rxbuffer[3] & 0x07;
@@ -615,72 +606,49 @@ void initTM1637 (void)
                     {
                         tm1637->suppressLeadingZeros = (Rxbuffer[4] > 0);
                     }
-				}
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+				
+				
 			}
 			break;
 
 		case CONFIGURE_CHANNEL_MODE_4: 
 			{
-				if (CurrentPinRegister->generic.mode == PIN_MODE_TM1637)
-				{
+				
 					tm1637->outputBuffer[0] = Rxbuffer[3];
 					tm1637->outputBuffer[1] = Rxbuffer[4];
 					tm1637->outputBuffer[2] = Rxbuffer[5];
 					tm1637->outputBuffer[3] = Rxbuffer[6];
 					tm1637->outputBuffer[4] = Rxbuffer[7];
-				}
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+				
 			}
 			break;
 		case CONFIGURE_CHANNEL_MODE_5: 
 			{
-				if (CurrentPinRegister->generic.mode == PIN_MODE_TM1637)
-				{
+				
 					tm1637->outputBuffer[5] = Rxbuffer[3];
-				}
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+				
+				
 			}
 			break;
             case CONFIGURE_CHANNEL_MODE_6: 
 			{
-				if (CurrentPinRegister->generic.mode == PIN_MODE_TM1637)
-				{
+				
 					tm1637->decimalPointBitmap = Rxbuffer[3];
-				}
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+				
 			}
 			break;
             
              case CONFIGURE_CHANNEL_MODE_7: 
 			{
-				if (CurrentPinRegister->generic.mode == PIN_MODE_TM1637)
-				{
+				
 					tm1637->blinkBitmap = Rxbuffer[3];
-				}
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+				
 			}
 			break;
             
              case CONFIGURE_CHANNEL_MODE_8: 
 			{
-				if (CurrentPinRegister->generic.mode == PIN_MODE_TM1637)
-				{
+				
                     if (tm1637->mode != TM1637_MODE_STRING)
 					{
                         error(SW_ERROR_TM1637_WRONG_MODE);
@@ -701,11 +669,7 @@ void initTM1637 (void)
                     tm1637->outputBuffer[4] = tm1637->outputBuffer[5];
                     tm1637->outputBuffer[tm1637->lastDigit] = Rxbuffer[4 + i];
                     }
-				}
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+				
 			}
 			break;
             

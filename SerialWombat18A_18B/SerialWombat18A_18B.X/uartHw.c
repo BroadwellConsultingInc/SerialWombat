@@ -222,6 +222,12 @@ void initUARTHw()
                 }
 			}
 			break; 
+            
+             default:
+        {
+            error(SW_ERROR_INVALID_COMMAND);      
+        }
+        break;
 
 	}
 

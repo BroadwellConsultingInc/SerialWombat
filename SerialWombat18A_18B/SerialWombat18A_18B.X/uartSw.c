@@ -41,7 +41,11 @@ void initUARTSw()
 {
 	uartSw_t* uartSw = (uartSw_t*)CurrentPinRegister;
 
-
+if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_SW_UART)
+	{
+		error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+		return;
+	}
 	switch (Rxbuffer[0])
 	{
 		case CONFIGURE_CHANNEL_MODE_0:
@@ -89,8 +93,7 @@ void initUARTSw()
 		case CONFIGURE_CHANNEL_MODE_1:  //Transmit 
 			{
 				uint8_t i;
-				if (CurrentPinRegister->generic.mode == PIN_MODE_SW_UART)
-				{    
+				   
 					for (i = 0; i < Rxbuffer[3]; ++i)
 					{
 						QueueAddByte(uartSw->txQueue,Rxbuffer[4 + i]);
@@ -116,11 +119,7 @@ void initUARTSw()
 					{
 						Txbuffer[4] = 255;
 					}
-				}
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER );
-				}
+				
 			}
 			break;
 		case CONFIGURE_CHANNEL_MODE_2:
@@ -128,8 +127,7 @@ void initUARTSw()
 				Txbuffer[3] = 0;
 				Rxbuffer[3] += 4;
 				uint8_t i;
-				if (CurrentPinRegister->generic.mode == PIN_MODE_SW_UART)
-				{    
+				   
 					SW_QUEUE_RESULT_t result = QUEUE_RESULT_SUCCESS; 
 					for (i = 4; i < Rxbuffer[3] && result == QUEUE_RESULT_SUCCESS ; ++i)
 					{
@@ -141,18 +139,13 @@ void initUARTSw()
 							++Txbuffer[3];
 						}
 					}
-				}
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER );
-				}
+				
 			}
 			break;
 
 		case CONFIGURE_CHANNEL_MODE_3: // Peek RX
 			{
-				if (CurrentPinRegister->generic.mode == PIN_MODE_SW_UART)
-				{    
+				
 
 					uint16_t count;
 					QueueGetBytesFreeInQueue(uartSw->txQueue, & count) ;
@@ -174,7 +167,7 @@ void initUARTSw()
 						Txbuffer[4] = count;
 					}
 					QueuePeekByte(uartSw->rxQueue,&Txbuffer[5]);
-				}
+				
 			}
 			break; 
 
@@ -214,6 +207,12 @@ void initUARTSw()
                 }
 			}
 			break; 
+            
+             default:
+        {
+            error(SW_ERROR_INVALID_COMMAND);      
+        }
+        break;
 	}
 
 

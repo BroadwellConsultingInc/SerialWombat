@@ -126,7 +126,11 @@ Bitfield = 2 + 0 * 4 + 2 * 16 + 2 * 64 = 162 = 0xA2
 */
 void initWatchdog()
 {
-
+if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_WATCHDOG)
+	{
+		error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+		return;
+}
 	switch(Rxbuffer[0])
 	{
 		case CONFIGURE_CHANNEL_MODE_0:
@@ -149,6 +153,11 @@ void initWatchdog()
 				watchdog->delayBeforeSerialWombatReset = RXBUFFER16(5);
 			}
 			break;
+             default:
+        {
+            error(SW_ERROR_INVALID_COMMAND);      
+        }
+        break;
 	}
 }
 

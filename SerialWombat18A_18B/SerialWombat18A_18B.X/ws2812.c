@@ -408,6 +408,12 @@ void initWS2812 (void)
 {
 
     debugWS2812 = (ws2812_t*) CurrentPinRegister;
+    
+    if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_WS2812)
+	{
+		error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+		return;
+}
 	switch(Rxbuffer[0])
 	{
 		case CONFIGURE_CHANNEL_MODE_0:
@@ -439,8 +445,7 @@ void initWS2812 (void)
 
 		case CONFIGURE_CHANNEL_MODE_1:
 			{
-				if (CurrentPinRegister->generic.mode == PIN_MODE_WS2812)
-				{
+				
 					uint32_t rgb = (RXBUFFER32(4) & 0x00FFFFFF);
 					uint16_t index = ws2812->userBufferIndex + ((uint16_t) Rxbuffer[3])*24 * 2 + RESET_SIGNAL_LENGTH * 2;
 					if (Rxbuffer[3] >=  ws2812->numOfLEDS)
@@ -471,33 +476,22 @@ void initWS2812 (void)
                       
 					}
 
-				}
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+				
 			}
 			break;
 
 		case CONFIGURE_CHANNEL_MODE_2:
 			{
                 //Return the number of user buffer bytes required for a given number of LEDS
-				if (CurrentPinRegister->generic.mode == PIN_MODE_WS2812)
-				{
+				
                      TXBUFFER16(3,((uint16_t)Rxbuffer[3] * 24 * 2 + RESET_SIGNAL_LENGTH * 2));
-				}
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+				
 			}
 			break;
 
 		case CONFIGURE_CHANNEL_MODE_3: 
 			{
-				if (CurrentPinRegister->generic.mode == PIN_MODE_WS2812)
-				{
-                    
+				
                     uint16_t index = ws2812->animationLedsIndex  + //Initial address 
                             ((uint16_t) Rxbuffer[3])* (2 + 3 *(uint16_t) ws2812->numOfLEDS)   +   // Skip Rxbuffer[3] Frames
                             (uint16_t)  Rxbuffer[4] * 3 + 2;  // And this frame's delay and Rxbuffer[4] LEDS]
@@ -511,32 +505,21 @@ void initWS2812 (void)
                     UserBuffer[ index + 1 ] = Rxbuffer[6];
                     UserBuffer[ index + 2 ] = Rxbuffer[5];
                     }
-				}
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+				
 			}
 			break;
 
 		case CONFIGURE_CHANNEL_MODE_4: 
 			{
-				if (CurrentPinRegister->generic.mode == PIN_MODE_WS2812)
-				{
+				
                     ws2812->animationLedsIndex = RXBUFFER16(3);
                     ws2812->animationFrames = Rxbuffer[5];
-                   
-				}
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+                 
 			}
 			break;
 		case CONFIGURE_CHANNEL_MODE_5: 
 			{
-				if (CurrentPinRegister->generic.mode == PIN_MODE_WS2812)
-				{
+				
                      uint16_t index = ws2812->animationLedsIndex  + //Initial address 
                             ((uint16_t) Rxbuffer[3])* (2 + 3 *(uint16_t) ws2812->numOfLEDS);  // Skip Rxbuffer[3] Frames
 
@@ -549,17 +532,12 @@ void initWS2812 (void)
                     UserBuffer[ index ] = Rxbuffer[4];
                     UserBuffer[ index + 1 ] = Rxbuffer[5];
                     }
-				}
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+				
 			}
 			break;
             case CONFIGURE_CHANNEL_MODE_6: 
 			{
-				if (CurrentPinRegister->generic.mode == PIN_MODE_WS2812)
-				{
+				
                     if (Rxbuffer[3] <= WS2812_MODE_BARGRAPH)
                     {
                         ws2812->mode = Rxbuffer[3];
@@ -572,25 +550,16 @@ void initWS2812 (void)
                     {
                         error(SW_ERROR_INVALID_PARAMETER_3);
                     }
-				}
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+				
 			}
 			break;
             
             case CONFIGURE_CHANNEL_MODE_7: 
 			{
-				if (CurrentPinRegister->generic.mode == PIN_MODE_WS2812)
-				{
+				
                     ws2812->bgMin = RXBUFFER16(3);
                     ws2812->bgMax = RXBUFFER16(5);
-				}
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+				
 			}
 			break;
 

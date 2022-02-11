@@ -21,6 +21,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 */
 #include "serialWombat.h"
 #include <stdint.h>
+#include "inputProcess.h"
 #include "pic24fj256ga702/mcc_generated_files/mcc.h"
 uint16_t GetADCConversion(uint8_t pin);
 
@@ -28,19 +29,8 @@ uint16_t GetADCConversion(uint8_t pin);
 
 typedef struct analogInput_n{
 
-    uint32_t averageSum;
-	uint16_t maximum;
-	uint16_t minimum;
-	uint16_t average;
-	uint16_t averageTotalSamples;
-	uint16_t averageCount;
-	uint16_t filteredValue;
-	uint16_t filterConstant;
-    uint16_t queueIndex;
-    uint16_t queuePeriod;
-    uint16_t queueCounter;
-	uint8_t publicDataSelection;
-    uint8_t dataSourcePin;
+    inputProcess_t inputProcess;
+    
 }analogInput_t;
 
 #define analogInput ((analogInput_t*) CurrentPinRegister)
@@ -199,7 +189,12 @@ Received:
 
 void initAnalogInput (void)
 {
-	
+	BUILD_BUG_ON( sizeof(analogInput_t) >  BYTES_AVAILABLE_INPUT_DMA ); 
+    if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_ANALOGINPUT)
+	{
+		error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+		return;
+	}
 	switch(Rxbuffer[0])
 	{
 		case CONFIGURE_CHANNEL_MODE_0:
@@ -207,45 +202,25 @@ void initAnalogInput (void)
 				CurrentPinInput();
 				CurrentPinAnalog();
 				CurrentPinRegister->generic.mode = PIN_MODE_ANALOGINPUT;
-#ifndef AVERAGE128
-				analogInput->averageTotalSamples = 0;
-#endif
-				analogInput->averageSum = 0;
-				analogInput->averageCount = 0;
-				analogInput->filterConstant = 0;
-#ifdef DATAOURCEPIN_ENABLED
-				analogInput->dataSourcePin = CurrentPin;
-#endif
-				analogInput->publicDataSelection = 0;
 
-				analogInput->average =
-					analogInput->filteredValue =
-	CurrentPinRegister->generic.buffer = GetADCConversion(CurrentPin);
-					analogInput->minimum = 65535;
-					analogInput->maximum = 0;
-                    analogInput->dataSourcePin = CurrentPin;
-                    analogInput->queueIndex = 0xFFFF;
-
-
+	CurrentPinRegister->generic.buffer = GetADCConversion(CurrentPin);		
+                    inputProcessInit(&analogInput->inputProcess);
+                    analogInput->inputProcess.active = true;
 			}
 			break;
 
+            
 		case CONFIGURE_CHANNEL_MODE_1:
 			{
-                if (CurrentPinRegister->generic.mode == PIN_MODE_ANALOGINPUT)
-				{
-				analogInput->averageTotalSamples = RXBUFFER16(3);
-				analogInput->averageSum = 0;
-				analogInput->averageCount = 0;
-				analogInput->filterConstant = RXBUFFER16(5);
-				analogInput->publicDataSelection = Rxbuffer[7];
-                }
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+               
+				analogInput->inputProcess.average.samplesToAverage = RXBUFFER16(3);
+                analogInput->inputProcess.firstOrder.filterconstant = RXBUFFER16(5);
+				analogInput->inputProcess.filterMode = Rxbuffer[7];
+                
 			}
 			break;
+            /*  Removed
+             
 		case CONFIGURE_CHANNEL_MODE_2:
 			{
                   if (CurrentPinRegister->generic.mode == PIN_MODE_ANALOGINPUT)
@@ -258,44 +233,39 @@ void initAnalogInput (void)
 				}
 			}
 			break;
+             * */
+
 		case CONFIGURE_CHANNEL_MODE_3: // Get Minimum and Maximum.
 			{
-                  if (CurrentPinRegister->generic.mode == PIN_MODE_ANALOGINPUT)
-				{
-				TXBUFFER16(3,analogInput->minimum);
-				TXBUFFER16(5,analogInput->maximum);
+                
+				TXBUFFER16(3,analogInput->inputProcess.min);
+				TXBUFFER16(5,analogInput->inputProcess.max);
 				if (Rxbuffer[3] > 0)
 				{
-					analogInput->minimum = 65535;
-					analogInput->maximum = 0;
+					analogInput->inputProcess.min = 65535;
+					analogInput->inputProcess.max = 0;
 				}
-                }
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+                
 			}
 			break;
 		case CONFIGURE_CHANNEL_MODE_4: 
 			{
-                  if (CurrentPinRegister->generic.mode == PIN_MODE_ANALOGINPUT)
-				{
-				TXBUFFER16(3,analogInput->average);
-				TXBUFFER16(5,analogInput->filteredValue);
-                }
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+                
+				TXBUFFER16(3,analogInput->inputProcess.average.average);
+				TXBUFFER16(5,analogInput->inputProcess.firstOrder.filteredValue);
+               
 			}
 			break;
-            
-        case CONFIGURE_CHANNEL_MODE_18:
+
+        	case CONFIGURE_CHANNEL_MODE_INPUT_PROCESSING:
+			{
+				inputProcessCommProcess(&analogInput->inputProcess);
+			}
+			break;    
+     
+        default:
         {
-            analogInput->queueIndex = RXBUFFER16(3);
-            analogInput->queuePeriod = RXBUFFER16(5);
-            analogInput->queueCounter = analogInput->queuePeriod;
-            
+            error(SW_ERROR_INVALID_COMMAND);      
         }
         break;
 	}
@@ -306,117 +276,22 @@ void updateAnalogInput()
 { 
     debugAnalog = (analogInput_t*)CurrentPinRegister;
 	uint16_t sample;
-    if (analogInput->dataSourcePin == CurrentPin)
-    {
+  
  sample =  GetADCConversion(CurrentPin);
 if (sample >= ADC_MAX_COUNTS)
 {
     sample = 0xFFFF;
 }
-    }
-    else
-    {
-        sample = GetBuffer(analogInput->dataSourcePin);
-    }
-	if (analogInput -> averageTotalSamples > 0)
-	{
-		analogInput-> averageSum += sample;
-		++analogInput->averageCount;
-		if (analogInput-> averageCount >= analogInput->averageTotalSamples)
-		{
-			analogInput->average = analogInput->averageSum / analogInput->averageTotalSamples;
-			analogInput->averageCount = 0;
-			analogInput->averageSum = 0;
-		}
-	}
-	else
-	{
-		analogInput->average = sample;
-	}
-
-	if (analogInput -> filterConstant != 0)
-	{
-		uint32_t temp = ((uint32_t)analogInput-> filteredValue) *  (analogInput->filterConstant + 1 );
-		temp += (uint32_t)sample * (((uint32_t)65536) - analogInput->filterConstant);
-	        analogInput->filteredValue = temp >> 16;
-			
-
-	}
-	else
-	{
-		analogInput->filteredValue = sample;
-	}
-
-    if (sample < analogInput->minimum)
-	{
-		analogInput->minimum = sample;
-	}
-	if (sample > analogInput->maximum)
-	{
-		analogInput->maximum = sample;
-	}
-	switch (analogInput->publicDataSelection)
-	{
-		case 1: // filtered value
-			CurrentPinRegister ->generic.buffer = analogInput->filteredValue;
-		break;
-		case 2: // average 
-			CurrentPinRegister ->generic.buffer = analogInput->average;
-		break;
-		case 3: // minimum 
-			CurrentPinRegister ->generic.buffer = analogInput->minimum;
-		break;
-		case 4: // maximum 
-			CurrentPinRegister ->generic.buffer = analogInput->maximum;
-		break;
-
-		case 0:
-		default:
-			CurrentPinRegister->generic.buffer = sample;
-		break;
-	}
-    
-    if (analogInput->queueIndex != 0xFFFF)
-    {
-        if (analogInput->queueCounter)
-        {
-            -- analogInput->queueCounter;
-        }
-        else
-        {
-            QueueAddByte(analogInput->queueIndex, (uint8_t)(CurrentPinRegister ->generic.buffer & 0xFF));
-            QueueAddByte(analogInput->queueIndex, (uint8_t)(CurrentPinRegister ->generic.buffer >>8));
-            analogInput->queueCounter = analogInput->queuePeriod;
-        }
-    }
-	
-
+ CurrentPinRegister->generic.buffer = inputProcessProcess(&analogInput->inputProcess,sample);
 }
 
 void initAnalogSimple()
 {
-    
     CurrentPinInput();
 				CurrentPinAnalog();
 				CurrentPinRegister->generic.mode = PIN_MODE_ANALOGINPUT;
-#ifndef AVERAGE128
-				analogInput->averageTotalSamples = 0;
-#endif
-				analogInput->averageSum = 0;
-				analogInput->averageCount = 0;
-				analogInput->filterConstant = 0;
-#ifdef DATAOURCEPIN_ENABLED
-				analogInput->dataSourcePin = CurrentPin;
-#endif
-				analogInput->publicDataSelection = 0;
+                inputProcessInit(&analogInput->inputProcess);
 
-				analogInput->average =
-					analogInput->filteredValue =
-	CurrentPinRegister->generic.buffer = GetADCConversion(CurrentPin);
-					analogInput->minimum = 65535;
-					analogInput->maximum = 0;
-                    analogInput->dataSourcePin = CurrentPin;
-                    analogInput->queueIndex = 0xFFFF;
 }
         
 

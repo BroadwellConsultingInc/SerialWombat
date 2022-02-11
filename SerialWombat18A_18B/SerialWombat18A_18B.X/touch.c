@@ -226,7 +226,11 @@ Response is logic high, 11 transistions, 7000 mS (1B58) since transition:
 
 void initTouch (void)
 {
-
+if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_PROTECTEDOUTPUT)
+	{
+		error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+		return;
+}
 	switch(Rxbuffer[0])
 	{
 		case CONFIGURE_CHANNEL_MODE_0:
@@ -270,51 +274,28 @@ void initTouch (void)
 			break;
 
 		case CONFIGURE_CHANNEL_MODE_1:
-			{
-				if (CurrentPinRegister->generic.mode == PIN_MODE_TOUCH)
-				{
+			{		
 					touch->hysteresisLow = RXBUFFER16(3);
 					touch->hysteresisHigh = RXBUFFER16(5);
-				}
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
 			}
 			break;
 		case CONFIGURE_CHANNEL_MODE_2:
-			{
-				if (CurrentPinRegister->generic.mode == PIN_MODE_TOUCH)
-				{
+			{	
 					touch->lowCapDigOutput = RXBUFFER16(3);
-					touch->highCapDigOutput = RXBUFFER16(5);
-				}
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+					touch->highCapDigOutput = RXBUFFER16(5);		
 			}
 			break;
 
 		case CONFIGURE_CHANNEL_MODE_3:
-			{
-				if (CurrentPinRegister->generic.mode == PIN_MODE_TOUCH)
-				{
+			{		
 					touch->digitalOutput = Rxbuffer[3] > 0;
 					touch->invert = Rxbuffer[4] > 0;
-					touch->debounceLimit = RXBUFFER16(5);
-				}
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+					touch->debounceLimit = RXBUFFER16(5);		
 			}
 			break;
 
 		case CONFIGURE_CHANNEL_MODE_4:
 			{
-				if (CurrentPinRegister->generic.mode == PIN_MODE_TOUCH)
-				{
 					Txbuffer[3] =  touch->debounceCurrentReportedLevel;
 					TXBUFFER16(4, touch->debounceTransitions);
 					uint32_t timedifference = FramesRun - touch->debounceLastTransitionFrameCount;
@@ -327,13 +308,14 @@ void initTouch (void)
 					{
 						touch->debounceTransitions   = 0;
 					}
-				}
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
 			}
 			break;
+            
+               default:
+        {
+            error(SW_ERROR_INVALID_COMMAND);      
+        }
+        break;
 	}
 }
 touch_t* debugTouch;

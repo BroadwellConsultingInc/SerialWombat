@@ -36,7 +36,31 @@ void SetBuffer(uint8_t pin, uint16_t value)
 }
 
 
+//32,7,5,3,2,1
+#define MASK 0x80000057
+uint16_t wrandom(uint32_t *seed)
+{
+  uint16_t output = 0;
+  uint8_t util_local_i;
+  for ( util_local_i = 0; util_local_i < 16; ++util_local_i)
+  {
+    if (*seed & 0x00000001)
+    {
+      *seed = (((*seed ^ MASK) >> 1) | 0x80000000);
+    }
+    else
+    {
+      *seed >>= 1;
+    }
+    output <<= 1;
+    output |= *seed & 0x01;
+  }
+  return ((output));
+}
+
 uint16_t incrementingValue = 0;
+uint32_t lfsrSeed = 1;
+
 uint16_t GetBuffer(uint8_t pin)
 {
 	if (pin < NUMBER_OF_TOTAL_PINS)
@@ -137,6 +161,10 @@ uint32_t result = GetSourceVoltageADC();
      else if (pin ==  SW_DATA_SOURCE_8SEC_SQUARE )
      {  extern uint32_t FramesRun;
          return ( (FramesRun & 0x1000)? 0xFFFF:0);
+     }
+     else if (pin == SW_DATA_SOURCE_LFSR)
+     {
+         return (wrandom(&lfsrSeed));
      }
     else if (pin == 85) //0x55
     {

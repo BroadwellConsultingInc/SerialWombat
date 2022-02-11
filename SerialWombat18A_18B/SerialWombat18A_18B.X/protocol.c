@@ -1651,6 +1651,12 @@ void ProcessSetPin()
             initServoHw();
         }
         break;
+		case PIN_MODE_HF_SERVO:
+        {
+            void initHfServo(void);
+            initHfServo();
+        }
+        break;
 		case PIN_MODE_PWM:
         {
             void initPWM(void);
@@ -1737,6 +1743,12 @@ void ProcessSetPin()
         }
         break;
         
+        case PIN_MODE_PULSE_ON_CHANGE:
+            {
+                extern void initPulseOnChange();
+                initPulseOnChange();
+            }
+            break;
         case PIN_MODE_RESISTANCE_INPUT:
             {
                 extern void initResistanceInput(void);

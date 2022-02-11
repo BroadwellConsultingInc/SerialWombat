@@ -196,7 +196,11 @@ Received:
 
 void initResistanceInput (void)
 {
-	
+	if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_RESISTANCE_INPUT)
+	{
+		error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+		return;
+	}
 	switch(Rxbuffer[0])
 	{
 		case CONFIGURE_CHANNEL_MODE_0:
@@ -233,25 +237,19 @@ void initResistanceInput (void)
 
 		case CONFIGURE_CHANNEL_MODE_1:
 			{
-                if (CurrentPinRegister->generic.mode == PIN_MODE_RESISTANCE_INPUT)
-				{
+               
 				resistanceInput->averageTotalSamples = RXBUFFER16(3);
 				resistanceInput->averageSum = 0;
 				resistanceInput->averageCount = 0;
 				resistanceInput->filterConstant = RXBUFFER16(5);
 				resistanceInput->publicDataSelection = Rxbuffer[7];
-                }
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+               
 			}
 			break;
 		
 		case CONFIGURE_CHANNEL_MODE_3: // Get Minimum and Maximum.
 			{
-                  if (CurrentPinRegister->generic.mode == PIN_MODE_RESISTANCE_INPUT)
-				{
+                
 				TXBUFFER16(3,resistanceInput->minimum);
 				TXBUFFER16(5,resistanceInput->maximum);
 				if (Rxbuffer[3] > 0)
@@ -259,26 +257,22 @@ void initResistanceInput (void)
 					resistanceInput->minimum = 65535;
 					resistanceInput->maximum = 0;
 				}
-                }
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+                
 			}
 			break;
 		case CONFIGURE_CHANNEL_MODE_4: 
 			{
-                  if (CurrentPinRegister->generic.mode == PIN_MODE_RESISTANCE_INPUT)
-				{
+               
 				TXBUFFER16(3,resistanceInput->average);
 				TXBUFFER16(5,resistanceInput->filteredValue);
-                }
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+               
 			}
 			break;
+              default:
+        {
+            error(SW_ERROR_INVALID_COMMAND);      
+        }
+        break;
 	}
 }
 

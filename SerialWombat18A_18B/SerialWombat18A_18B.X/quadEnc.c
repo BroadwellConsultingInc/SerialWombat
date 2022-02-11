@@ -19,11 +19,16 @@ typedef struct quadEnc_n{
 void initQuadEnc(void)
 {
     quadEnc_t* quadEnc = (quadEnc_t*) CurrentPinRegister;
+    if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_QUADRATURE_ENC)
+	{
+		error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+		return;
+	}
     switch(Rxbuffer[0])
     {
         case CONFIGURE_CHANNEL_MODE_0:
 
-
+        {
             
             
 	if (pinPort[Rxbuffer[5]] != CurrentPinPort())
@@ -149,7 +154,7 @@ void initQuadEnc(void)
         quadEnc->increment = 1;
         
         
-    
+        }
     break;
         case CONFIGURE_CHANNEL_MODE_1:
     {
@@ -173,6 +178,12 @@ void initQuadEnc(void)
 
     }
     break;
+    
+     default:
+        {
+            error(SW_ERROR_INVALID_COMMAND);      
+        }
+        break;
     }
 } 
 

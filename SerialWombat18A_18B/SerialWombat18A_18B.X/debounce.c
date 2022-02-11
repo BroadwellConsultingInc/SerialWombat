@@ -38,7 +38,11 @@ typedef struct debounce_n{
 
 void initDebounce (void)
 {
-
+ if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_DEBOUNCE)
+	{
+		error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+		return;
+	}
 	switch(Rxbuffer[0])
 	{
         case CONFIGURE_CHANNEL_MODE_0:
@@ -75,7 +79,11 @@ void initDebounce (void)
             }
         }
         break;
-	//ADDFEATURE Ability to read from different pin, output filtered
+	        default:
+        {
+            error(SW_ERROR_INVALID_COMMAND);      
+        }
+        break;
 
   }
 }

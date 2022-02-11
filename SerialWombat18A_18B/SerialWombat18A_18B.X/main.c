@@ -153,6 +153,12 @@ void ProcessPins()
 				updateServoHw();
             }
 		   break;
+			case PIN_MODE_HF_SERVO:
+            {
+                void updateHfServo(void);
+				updateHfServo();
+            }
+		   break;
 			case PIN_MODE_HYSTERESIS:
             {
 				//update_hysteresis();
@@ -250,6 +256,14 @@ void ProcessPins()
             updateThroughputConsumer();
         }
         break;
+        
+            case PIN_MODE_PULSE_ON_CHANGE:
+            {
+                void updatePulseOnChange(void);
+                updatePulseOnChange();
+            }
+            break;
+            
         
             case PIN_MODE_UART0_TXRX:
             case PIN_MODE_UART1_TXRX:

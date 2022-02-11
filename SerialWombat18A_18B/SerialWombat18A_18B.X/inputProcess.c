@@ -2,9 +2,8 @@
 #include "inputProcess.h"
 void inputProcessInit(inputProcess_t* inputProcess)
 {
-    //TODO proper values
 	inputProcess->filterMode = INPUT_FILTER_MODE_NONE;
-	inputProcess->active = 1;
+	inputProcess->active = 0;
     inputProcess->average.samplesToAverage = 64;
     inputProcess->firstOrder.filterconstant = 0xFF80;
 	inputProcess->initialized = 0;
@@ -57,7 +56,56 @@ uint16_t inputProcessProcess(inputProcess_t* inputProcess, uint16_t inputValue)
         {
             inputValue = 65535 - inputValue;
         }
-       
+        {
+            //Process Transform
+            switch (inputProcess->transformMode)
+            {
+                case INPUT_TRANSFORM_MODE_SCALE_RANGE:
+                {
+                    if (inputValue >= inputProcess->scaleRange.high)
+                    {
+                        inputValue = 65535;
+                    }
+                    else if (inputValue <= inputProcess->scaleRange.low)
+                    {
+                        inputValue = 0;
+                    }
+                    else
+                    {
+                        uint32_t temp = 65536/(inputProcess->scaleRange.high - inputProcess->scaleRange.low);
+                        temp *= inputValue - inputProcess->scaleRange.low;
+                    }
+                    
+                }
+                break;
+                
+                case INPUT_TRANSFORM_MODE_LINEAR_MXB:
+                {
+                    int32_t temp = inputProcess->mxb.m * inputValue;
+                    temp += inputProcess->mxb.b;
+                    if (temp > 65535)
+                    {
+                        temp = 65535;
+                    }
+                    else if (temp < 0)
+                    {
+                        temp = 0;
+                    }
+                    
+                    inputValue = (uint16_t) temp;
+                }
+                break;
+                
+                case INPUT_TRANSFORM_MODE_NONE:
+                default:
+                {
+                    
+                }
+              
+            }
+            
+            
+        }
         { // Process Average
                 if (!inputProcess->initialized || inputProcess->average.samplesAddedToSum > inputProcess->average.samplesToAverage)
                 {
@@ -69,6 +117,7 @@ uint16_t inputProcessProcess(inputProcess_t* inputProcess, uint16_t inputValue)
                 ++inputProcess->average.samplesAddedToSum;
                 if (inputProcess->average.samplesAddedToSum == inputProcess->average.samplesToAverage)
                 {
+                    ++inputProcess->average.sum;  //TODO DEBUG REMOVE
                     inputProcess->average.sum /= inputProcess->average.samplesToAverage;
                     if (inputProcess->average.sum > 65535)
                     {
@@ -84,9 +133,8 @@ uint16_t inputProcessProcess(inputProcess_t* inputProcess, uint16_t inputValue)
                 {
                     inputProcess->firstOrder.filteredValue = inputValue;
                 }               
-                uint32_t filter =  inputProcess->firstOrder.filteredValue * inputProcess->firstOrder.filterconstant;
+                uint32_t filter =  (uint32_t)inputProcess->firstOrder.filteredValue * inputProcess->firstOrder.filterconstant;
                 filter += (uint32_t) inputValue * (65535 - inputProcess->firstOrder.filterconstant);
-                filter += 0x8000;
                 filter>>= 16;
                 inputProcess->firstOrder.filteredValue = filter;
             }
@@ -175,7 +223,7 @@ void inputProcessCommProcess(inputProcess_t* inputProcess)
         case 2:
         {
             inputProcess->excludeBelow = RXBUFFER16(4);
-            inputProcess->excludeAbove = RXBUFFER16(4);
+            inputProcess->excludeAbove = RXBUFFER16(6);
         }
         break;
         
@@ -209,12 +257,11 @@ void inputProcessCommProcess(inputProcess_t* inputProcess)
         
          case 7:
         {
-            inputProcess->transformMode = INPUT_TRANSFORM_MODE_MXB;
             inputProcess->mxb.m =(int32_t) RXBUFFER32(4);
         }
         case 8:
 		{
-            inputProcess->transformMode = INPUT_TRANSFORM_MODE_MXB;
+            inputProcess->transformMode = INPUT_TRANSFORM_MODE_LINEAR_MXB;
             inputProcess->mxb.b = (int32_t)RXBUFFER32(4);
 		}
 		break;
@@ -222,13 +269,34 @@ void inputProcessCommProcess(inputProcess_t* inputProcess)
         case 9:
         {
             TXBUFFER16(4,inputProcess->min);
-            TXBUFFER16(4,inputProcess->max);
+          
             if (Rxbuffer[4] > 0)
             {
                 inputProcess->min = 65535;
-                inputProcess->max = 0;
+
             }
         }
+        break;
+        
+        case 10:
+        {
+            TXBUFFER16(4,inputProcess->max);
+          
+            if (Rxbuffer[4] > 0)
+            {
+                inputProcess->max = 65535;
+
+            }
+        }
+        break;
+        
+        case 11:
+        {
+            TXBUFFER16(4,inputProcess->average.average);
+            TXBUFFER16(6,inputProcess->firstOrder.filteredValue);    
+        }
+        break;
+        
         default:
         {
             

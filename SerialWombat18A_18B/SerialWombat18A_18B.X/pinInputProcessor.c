@@ -46,6 +46,7 @@ void initPinInputProcessor()
 				pinInputProcessor->sourcePin = Rxbuffer[3];
 				pinInputProcessor->defaultValue = RXBUFFER16(4);
 				CurrentPinRegister->generic.mode = PIN_MODE_INPUT_PROCESSOR;	
+                inputProcessInit(&pinInputProcessor->inputProcess);
 			}
 			break;
 

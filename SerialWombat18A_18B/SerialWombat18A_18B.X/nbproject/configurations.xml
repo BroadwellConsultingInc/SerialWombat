@@ -95,6 +95,8 @@
         <itemPath>matrixKeypad.c</itemPath>
         <itemPath>inputProcess.c</itemPath>
         <itemPath>pinInputProcessor.c</itemPath>
+        <itemPath>pulseOnChange.c</itemPath>
+        <itemPath>hfServo.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>protocol.c</itemPath>
@@ -438,8 +440,6 @@
         <property key="memories.programmemory.ranges" value="0-2aeff"/>
         <property key="memories.rww" value="true"/>
         <property key="poweroptions.powerenable" value="false"/>
-        <property key="programmerToGoFilePath"
-                  value="F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/debug/default/SerialWombat2_ptg"/>
         <property key="programmerToGoImageName" value="SerialWombat2_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>
@@ -776,8 +776,6 @@
         <property key="memories.programmemory.ranges" value="0-2aeff"/>
         <property key="memories.rww" value="true"/>
         <property key="poweroptions.powerenable" value="false"/>
-        <property key="programmerToGoFilePath"
-                  value="F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/debug/Optimized/SerialWombat18A_18B_ptg"/>
         <property key="programmerToGoImageName" value="SerialWombat18A_18B_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>

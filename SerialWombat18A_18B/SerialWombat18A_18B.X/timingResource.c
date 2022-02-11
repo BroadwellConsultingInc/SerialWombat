@@ -228,7 +228,7 @@ TIMING_RESOURCE_t timingResourcePWMClaim(TIMING_RESOURCE_t resource, uint32_t pe
                timingResources[TIMING_RESOURCE_MCCP4].resourceHolder == CurrentPin )
         {
             timingResources[TIMING_RESOURCE_MCCP4].resourceHolder = CurrentPin;
-            return (TIMING_RESOURCE_MCCP3);
+            return (TIMING_RESOURCE_MCCP4);
         }
         
         

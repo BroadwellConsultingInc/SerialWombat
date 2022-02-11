@@ -58,7 +58,11 @@ void initPulseTimer()
 {
     BUILD_BUG_ON( sizeof(pulseTimer_t) >  BYTES_AVAILABLE_INPUT_DMA ); 
 	pulseTimer_t* pulseTimer = (pulseTimer_t*) CurrentPinRegister;
-
+if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_PULSE_TIMER)
+	{
+		error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+		return;
+	}
 	switch(Rxbuffer[0])
 	{
 		case CONFIGURE_CHANNEL_MODE_0:
@@ -147,6 +151,11 @@ void initPulseTimer()
 				inputProcessCommProcess(&pulseTimer->inputProcess);
 			}
 			break;
+                    default:
+        {
+            error(SW_ERROR_INVALID_COMMAND);      
+        }
+        break;
 	}
 
 

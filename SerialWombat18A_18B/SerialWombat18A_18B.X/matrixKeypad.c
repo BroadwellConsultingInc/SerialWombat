@@ -171,6 +171,11 @@ void initMatrixKeypad (void)
 {
 	matrixKeypad_t* matrixKeypad = (matrixKeypad_t*) CurrentPinRegister;
 	debugMatrixKeypad = (matrixKeypad_t*) CurrentPinRegister;
+    if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_MATRIX_KEYPAD)
+	{
+		error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+		return;
+	}
 	switch (Rxbuffer[0])
 	{
 		case CONFIGURE_CHANNEL_MODE_0:
@@ -251,12 +256,11 @@ void initMatrixKeypad (void)
 
 		case CONFIGURE_CHANNEL_MODE_3: // Peek RX
 			{
-				if (CurrentPinRegister->generic.mode == PIN_MODE_UART0_TXRX)
-				{    
+				
 					Txbuffer[3] = 0 ; // No space to transmit...
 					Txbuffer[4] = matrixKeypadQueueAvailable();
 					Txbuffer[5] = (uint8_t)matrixKeypadQueuePeek();
-				}
+				
 			}
 			break; 
 
@@ -265,8 +269,7 @@ void initMatrixKeypad (void)
 		case CONFIGURE_CHANNEL_MODE_5:
 			{
 
-				if (CurrentPinRegister->generic.mode == PIN_MODE_MATRIX_KEYPAD)
-				{
+				
 					matrixKeypad->colPins[1] = Rxbuffer[3];
 					matrixKeypad->colPins[2] = Rxbuffer[4];
 					matrixKeypad->colPins[3] = Rxbuffer[5];
@@ -379,11 +382,7 @@ void initMatrixKeypad (void)
 							changeCountArray[i] = 0;
 						}
 					}
-				}
-				else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+				
 			}
 			break;
 		case CONFIGURE_CHANNEL_MODE_6:
@@ -415,14 +414,14 @@ void initMatrixKeypad (void)
             
         case CONFIGURE_CHANNEL_MODE_7:
         {
-            if (CurrentPinRegister->generic.mode == PIN_MODE_MATRIX_KEYPAD)
-            {
+           
                 matrixKeypad->queueMask = RXBUFFER16(3);
-            }
-            	else
-				{
-					error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
-				}
+           
+        }
+        break;
+                default:
+        {
+            error(SW_ERROR_INVALID_COMMAND);      
         }
         break;
 	}
