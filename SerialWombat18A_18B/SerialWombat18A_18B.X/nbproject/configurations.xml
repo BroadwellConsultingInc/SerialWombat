@@ -40,6 +40,7 @@
       <itemPath>pic24fj256ga702/pinDigitalHwSpecific.h</itemPath>
       <itemPath>outputScale.h</itemPath>
       <itemPath>inputProcess.h</itemPath>
+      <itemPath>../../SerialWombatCommon/serialWombatErrors.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -97,6 +98,8 @@
         <itemPath>pinInputProcessor.c</itemPath>
         <itemPath>pulseOnChange.c</itemPath>
         <itemPath>hfServo.c</itemPath>
+        <itemPath>ultrasonicDistance.c</itemPath>
+        <itemPath>liquidCrystal.c</itemPath>
       </logicalFolder>
       <itemPath>main.c</itemPath>
       <itemPath>protocol.c</itemPath>

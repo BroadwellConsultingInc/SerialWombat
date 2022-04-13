@@ -280,18 +280,6 @@ case HIGH_TIME:
 
 				pulseTimer->PulseHighTime =  pulseTimer->lastTimerTime;
 				
-/*
-				{ //TODO MAKE FEATURE
-					uint32_t period = COUNTS_TO_uS(pulseTimer->lastTimerTime);
-					period += COUNTS_TO_uS(pulseTimer->PulseLowTime);
-					uint32_t freq = 1000000/period;
-					if (freq > 65535)
-					{
-						freq = 65535;
-					}
-					CurrentPinRegister->generic.buffer = freq;
-				}
- * */
 				pulseTimer->lastTimerTime = 0;
 				pulseTimer->readState = 0;
 				++pulseTimer->PulseCounter;

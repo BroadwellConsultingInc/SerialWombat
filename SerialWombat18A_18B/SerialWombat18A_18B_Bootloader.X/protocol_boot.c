@@ -391,19 +391,11 @@ Response:
                     }
                     else
                     {
-                        LATBbits.LATB7 = 1; //TODO REMOVE
-                        UART1_Write(UserBufferPtr);
-                        UART1_Write(((uint16_t)UserBufferPtr)>>8);
-                        UART1_Write('!');
-                        UART1_Write('!');
-                        UART1_Write('!');
-                        while(UART1_TransmitBufferIsFull()); //TODO REMOVE
                         INTERRUPT_GlobalDisable();
                         FLASH_Unlock(FLASH_UNLOCK_KEY);
 
                     FLASH_WriteRow24(address, (uint32_t*)UserBufferPtr);
                     INTERRUPT_GlobalEnable();
-                    LATBbits.LATB7 = 0; //TODO REMOVE
                     ++debugFlashWrites;
                     }
                    

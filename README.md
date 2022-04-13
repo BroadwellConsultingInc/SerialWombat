@@ -41,7 +41,7 @@ What Serial Wombat Chips are Available?
 
 | Model                        | SW4A                                                                            | SW4B                                                                            | SW18AB                   |
 |------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------------------------------|---------------------------------------------------------|
-| Availability                 | Q3 2022                                                                         | Now                                                                             | Q1 2022                                            |
+| Availability                 | Future                                                                         | Now                                                                             | April 11, 2022 KS Launch                                            |
 | Interface                    | UART                                                                            | I2C                                                                             | UART  or I2C                                                    |
 | Package                      | DIP 8                                                                           | DIP 8                                                                           | DIP 28 (300 mil)                                             |
 | I/O Pins                     | 4 I/O                                                                           | 3 I/O, 1 input                                                                  | 18 I/0                                                            |
@@ -81,6 +81,14 @@ You can compile the firmware yourself and program chips using a PICKIT or simila
 
 The Serial Wombat binary image / Hex File is made up of two separate projects: A bootloader project and a Serial Wombat firmware project.
 
+SW18AB FIRMWARE ARCHITECTURE
+=====================
+The Serial Wombat 18AB firmware runs on the PIC24FJ256GA702 microcontroller.  It is designed for the free version of the XC16 compiler, and the MPLAB X development environment.
+
+You can compile the firmware yourself and program chips using a PICKIT4 or similar programming device, or you can buy preprogrammed kits from Broadwell Consulting Inc by backing our April 11 2022 Kickstarter project or in the future on Amazon.
+
+The Serial Wombat binary image / Hex File is made up of two separate projects: A bootloader project and a Serial Wombat firmware project.
+
 Executive Structure
 -------------------
 
@@ -89,6 +97,12 @@ The Serial Wombat firmware is a foreground / background loop system.  Important 
 The main loop runs a loop with a foreground subroutine that is run every 1 mS based on a flag which is set in a 1mS hardware timer.  Inbetween runs of the foreground subroutine the communication receive queue is checked to see if a new command from the host is ready to be processed.  If so, it is processed in its entirety and a response is generated and put into the transmit queue.  It is possiblefor the start of the foreground subroutine to be delayed by some microseconds by the communication processing routine.
 
 The main job of the foreground subroutine is to service state machines for the Serial Wombat pins.  Each pin has its own state machine and memory area.  Each pin's state machine is serviced every 1 mS by the executive.  Actual time between servicings will vary due to execution time variation.  For instance, one call may be 1100 uS after the previous, then the next call 800 uS after that.  But over time it will average out to 1 mS.
+
+The Serial Wombat 18AB firmware relies heavily on 4 DMA channels, one for reading PORTA, one for writing PORTA, one for Reading PORTB and one for writing PORTB.  These DMAs are triggered by a 57600 Hz timer interrupt, and copy to or from four 128-entry, 16 bit wide circular buffers.  Many 18AB pin modes read or write to these buffers every 1ms.  Each 1 ms the pin mode reads new data read into the buffer since the prior 1ms call, or writes data to the outgoing circular buffer until it is full.  In this way a 1mS call can generate or process wave forms that happen at 57600 Hz.  It is vital that the SW18AB executive process the 1mS state machines on time to prevent overflow or underflow of the DMA channels.
+
+The Serial Wombat 4A/4B firmwares can run in any combination of pin modes without concern for processor throughput.
+
+The Serial Wombat 18AB chip can in some cases have pin modes assigned to it in ways that overload the processer, causing unreliable pin mode operation.  This is not a concern for most users, but can be an issue when many pins are assigned to pin modes that require generation or inspection of DMA data, for example Software UART modes, or Quadrature encoder mode in high performance (DMA) mode.  Multiple different diagnostics are available for monitoring processor loading.  
 
 Pin State Machines
 ------------------

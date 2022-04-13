@@ -196,6 +196,12 @@ void ProcessPins()
                 updatePulseTimer();
             }
             break;
+            case PIN_MODE_ULTRASONIC_DISTANCE:
+            {
+                void updateUltrasonicDistance(void);
+                updateUltrasonicDistance();
+            }
+	    break;
             case PIN_MODE_INPUT_PROCESSOR:
             {
                 void updatePinInputProcessor(void);
@@ -263,7 +269,12 @@ void ProcessPins()
                 updatePulseOnChange();
             }
             break;
-            
+              case PIN_MODE_LIQUID_CRYSTAL:
+            {
+                void updateLiquidCrystal(void);
+                updateLiquidCrystal();
+            }
+            break;
         
             case PIN_MODE_UART0_TXRX:
             case PIN_MODE_UART1_TXRX:

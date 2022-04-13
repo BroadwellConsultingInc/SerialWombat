@@ -233,8 +233,6 @@ uint16_t outputScaleProcess(outputScale_t* outputScale)
                     
                     case OUTPUT_FILTER_MODE_FIRST_ORDER:
 					{
-						int32_t difference;
-
                         if (outputScale->sourcePin == CurrentPin)
                         {
                             outputValue = CurrentPinRegister->generic.buffer;

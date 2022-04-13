@@ -20,6 +20,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * OTHER DEALINGS IN THE SOFTWARE.
 */
 
+/* Serial Wombat is a trademark of Broadwell Consulting Inc. registered
+ * in the United States. */
+
+
 #ifndef SERIALWOMBAT_H
 #define SERIALWOMBAT_H
 #include <stdint.h>
@@ -164,11 +168,11 @@ typedef enum {
             SW_DATA_SOURCE_VBG_COUNTS_VS_VREF = 76, ///< A/D conversion of VBG against VRef .  Used for mfg calibration
             SW_DATA_SOURCE_RESET_REGISTER = 77, ///< Hardware dependent reset reason register contents
             SW_DATA_SOURCE_LFSR = 78, ///< A Linear FeedBack Shift register (32,7,5,3,2,1) based pseudo-random number generator
-            SW_DATA_SOURCE_PIN_0_MV = 100,
-            SW_DATA_SOURCE_PIN_1_MV = 101,
-            SW_DATA_SOURCE_PIN_2_MV = 102,
-            SW_DATA_SOURCE_PIN_3_MV = 103,
-            SW_DATA_SOURCE_PIN_4_MV = 104,
+            SW_DATA_SOURCE_PIN_0_MV = 100, ///< The public data of Pin 0 expressed as mV.  Only applicable to Analog Input mode
+            SW_DATA_SOURCE_PIN_1_MV = 101, ///< The public data of Pin 1 expressed as mV.  Only applicable to Analog Input mode
+            SW_DATA_SOURCE_PIN_2_MV = 102, ///< The public data of Pin 2 expressed as mV.  Only applicable to Analog Input mode
+            SW_DATA_SOURCE_PIN_3_MV = 103, ///< The public data of Pin 3 expressed as mV.  Only applicable to Analog Input mode
+            SW_DATA_SOURCE_PIN_4_MV = 104, ///< The public data of Pin 4 expressed as mV.  Only applicable to Analog Input mode
 //NOT ANALOG            SW_DATA_SOURCE_PIN_5_MV = 105,
 //NOT ANALOG            SW_DATA_SOURCE_PIN_6_MV = 106,
 //NOT ANALOG            SW_DATA_SOURCE_PIN_7_MV = 107,
@@ -180,26 +184,26 @@ typedef enum {
 //NOT ANALOG            SW_DATA_SOURCE_PIN_13_MV = 113,
 //NOT ANALOG            SW_DATA_SOURCE_PIN_14_MV = 114,
 //NOT ANALOG            SW_DATA_SOURCE_PIN_15_MV = 115,
-            SW_DATA_SOURCE_PIN_16_MV = 116,
-            SW_DATA_SOURCE_PIN_17_MV = 117,
-            SW_DATA_SOURCE_PIN_18_MV = 118,
-            SW_DATA_SOURCE_PIN_19_MV = 119,
+            SW_DATA_SOURCE_PIN_16_MV = 116, ///< The public data of Pin 16 expressed as mV.  Only applicable to Analog Input mode
+            SW_DATA_SOURCE_PIN_17_MV = 117, ///< The public data of Pin 17 expressed as mV.  Only applicable to Analog Input mode
+            SW_DATA_SOURCE_PIN_18_MV = 118, ///< The public data of Pin 18 expressed as mV.  Only applicable to Analog Input mode
+            SW_DATA_SOURCE_PIN_19_MV = 119, ///< The public data of Pin 19 expressed as mV.  Only applicable to Analog Input mode
             
-            SW_DATA_SOURCE_2HZ_SQUARE = 164,
-            SW_DATA_SOURCE_2HZ_SAW = 165,
-            SW_DATA_SOURCE_2HZ_SIN = 166,
-            SW_DATA_SOURCE_1HZ_SQUARE = 167,
-            SW_DATA_SOURCE_1HZ_SAW = 168,
-            SW_DATA_SOURCE_1HZ_SIN = 169,
-            SW_DATA_SOURCE_2SEC_SQUARE = 170,
-            SW_DATA_SOURCE_2SEC_SAW = 171,
-            SW_DATA_SOURCE_2SEC_SIN = 172,
-            SW_DATA_SOURCE_8SEC_SQUARE = 173,
-            SW_DATA_SOURCE_8SEC_SAW = 174,
-            SW_DATA_SOURCE_8SEC_SIN = 175,
-            SW_DATA_SOURCE_65SEC_SQUARE = 176,
-            SW_DATA_SOURCE_65SEC_SAW = 177,
-            SW_DATA_SOURCE_65SEC_SIN = 178,
+            SW_DATA_SOURCE_2HZ_SQUARE = 164, ///< Square wave that alternates between 0 and 65535 every 256 frames
+            SW_DATA_SOURCE_2HZ_SAW = 165,///< Sawtooth wave that goes from  0 to 65535 to 0 every  512 frames
+//            SW_DATA_SOURCE_2HZ_SIN = 166,
+            SW_DATA_SOURCE_1HZ_SQUARE = 167,///< Square wave that alternates between 0 and 65535 every 512 frames
+            SW_DATA_SOURCE_1HZ_SAW = 168,///< Sawtooth wave that goes from  0 to 65535 to 0 every  1024 frames
+ //           SW_DATA_SOURCE_1HZ_SIN = 169,
+            SW_DATA_SOURCE_2SEC_SQUARE = 170,///< Square wave that alternates between 0 and 65535 every 1024 frames
+            SW_DATA_SOURCE_2SEC_SAW = 171,///< Sawtooth wave that goes from  0 to 65535 to 0 every  2048 frames
+  //          SW_DATA_SOURCE_2SEC_SIN = 172,
+            SW_DATA_SOURCE_8SEC_SQUARE = 173,///< Square wave that alternates between 0 and 65535 every 4096 frames
+            SW_DATA_SOURCE_8SEC_SAW = 174,///< Sawtooth wave that goes from  0 to 65535 to 0 every  8192 frames
+   //         SW_DATA_SOURCE_8SEC_SIN = 175,
+            SW_DATA_SOURCE_65SEC_SQUARE = 176,///< Square wave that alternates between 0 and 65535 every 32768 frames
+            SW_DATA_SOURCE_65SEC_SAW = 177,///< Sawtooth wave that goes from  0 to 65535 to 0 every  65536 frames
+    //        SW_DATA_SOURCE_65SEC_SIN = 178,
 }SW_DATA_SOURCE_t;
  
 

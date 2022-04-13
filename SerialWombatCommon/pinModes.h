@@ -52,6 +52,8 @@ typedef enum
 	PIN_MODE_RESISTANCE_INPUT = 24,
             PIN_MODE_PULSE_ON_CHANGE = 25,
 	    PIN_MODE_HF_SERVO = 26,
+            PIN_MODE_ULTRASONIC_DISTANCE =27,
+            PIN_MODE_LIQUID_CRYSTAL = 28,
 }
 pinMode_t;
 

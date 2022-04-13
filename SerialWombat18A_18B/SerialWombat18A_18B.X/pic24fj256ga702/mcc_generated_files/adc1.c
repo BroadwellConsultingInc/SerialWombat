@@ -137,11 +137,13 @@ uint16_t GetADCConversion(uint8_t pin)
 	switch (pin)
 	{
         
-		//  ADDR PIN  return (ADC1BUF0);
+
 		case 0: return (ADC1BUF0);
+        		//  ADDR PIN  return (ADC1BUF1);
 		case 1: return (ADC1BUF2);
-		case 2: return (ADC1BUF4);
-		case 3: return (ADC1BUF5);
+		case 2: return (ADC1BUF3);
+		case 3: return (ADC1BUF4);
+		case 4: return (ADC1BUF5);
 		case 16: return (ADC1BUF8);
 		case 17: return (ADC1BUF7);
 		case 18: return (ADC1BUF6);

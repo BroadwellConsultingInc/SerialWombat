@@ -15,6 +15,7 @@ uint16_t QueueOverflowCounter = 0;
 uint16_t QueueUnderflowCounter = 0;
 
 #define QUEUE_MARKER_QUEUE_BYTE 0x3D7C
+#define QUEUE_MARKER_QUEUE_SHIFT 0xF314
 SW_QUEUE_RESULT_t QueueByteInitialize(uint16_t address, uint16_t capacity)
 {
 	//TODO if (address == 0xFFFF) automatically allocate
@@ -31,6 +32,33 @@ SW_QUEUE_RESULT_t QueueByteInitialize(uint16_t address, uint16_t capacity)
 
 	queueByte_t* queue = (queueByte_t*) &UserBuffer[address];
 	queue->marker = QUEUE_MARKER_QUEUE_BYTE;
+
+	queue->headIndex = 0;
+	queue->tailIndex = 0;
+	queue->capacity = capacity;
+    uint16_t i;
+    for (i = 0; i < capacity; ++i)
+    {
+        queue->buffer[i] = ' ';
+    }
+	return (QUEUE_RESULT_SUCCESS);
+}
+SW_QUEUE_RESULT_t QueueByteShiftInitialize(uint16_t address, uint16_t capacity)
+{
+	//TODO if (address == 0xFFFF) automatically allocate
+    //TODO Add protection to all queue functions
+	if (address + capacity >= SIZE_OF_USER_BUFFER)
+	{
+		return (QUEUE_RESULT_INSUFFICIENT_USER_SPACE);
+	}
+
+	if ((address & 0x01) != 0)
+	{
+		return (QUEUE_RESULT_UNALIGNED_ADDRESS);
+	}
+
+	queueByte_t* queue = (queueByte_t*) &UserBuffer[address];
+	queue->marker = QUEUE_MARKER_QUEUE_SHIFT;
 
 	queue->headIndex = 0;
 	queue->tailIndex = 0;
@@ -124,6 +152,18 @@ static SW_QUEUE_RESULT_t QueueByteAddByte(uint16_t address, uint8_t data)
 
 }
 
+static SW_QUEUE_RESULT_t QueueByteAddByteShift(uint16_t address, uint8_t data)
+{
+	queueByte_t* queue =(queueByte_t*) &UserBuffer[address];
+	for (int16_t i = 1; i < queue->capacity; ++i)
+	{
+		queue->buffer[i-1] = queue->buffer[i];
+	}
+	queue->buffer[queue->capacity -1] = data;
+	return (QUEUE_RESULT_SUCCESS);
+
+}
+
 SW_QUEUE_RESULT_t QueueAddByte(uint16_t address, uint8_t data)
 {
 	if (address >= (SIZE_OF_USER_BUFFER - sizeof(queueByte_t)))
@@ -137,6 +177,12 @@ SW_QUEUE_RESULT_t QueueAddByte(uint16_t address, uint8_t data)
 		case QUEUE_MARKER_QUEUE_BYTE:
 		{
 			return (QueueByteAddByte( address,  data));
+		}
+		break;
+
+		case QUEUE_MARKER_QUEUE_SHIFT:
+		{
+			return (QueueByteAddByteShift(address,data));
 		}
 		break;
 	}

@@ -53,6 +53,7 @@ typedef enum
             COMMAND_BINARY_WRITE_FLASH = 0xA4,
             COMMAND_CALIBRATE_ANALOG = 0xA5,
             COMMAND_ENABLE_2ND_UART = 0xA6,
+            COMMAND_READ_LAST_ERROR_PACKET = 0xA7,
             COMMAND_UART0_TX_7BYTES = 0xB0,
             COMMAND_UART0_RX_7BYTES = 0xB1,
             COMMAND_UART1_TX_7BYTES = 0xB2,

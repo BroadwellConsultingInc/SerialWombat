@@ -24,6 +24,8 @@ uint8_t testSequenceNumber = 0;
 bool testSequenceArmed = 0;
 void ProcessSetPin(void);
 
+uint8_t lastErrorPacket[8];
+
 pinRegister_t PinRegisterCopyBuffer;
 timingResourceManager_t TimingResourceManagerCopyBuffer;
 
@@ -65,6 +67,12 @@ void error(SW_ERROR_t errorCode)
         Errors = 65500;  // Knock down so it will continue changing for pulse on pin or other functions
     }
     ++ Errors;
+
+    uint8_t i;
+    for (i = 0; i < 8; ++i)
+    {
+	    lastErrorPacket[i] = Rxbuffer[i];
+    }
 }
 
 uint16_t PacketsProcessed = 0;
@@ -82,7 +90,9 @@ void ProcessRxbuffer( void )
 	switch (Rxbuffer[0])
 	{
 		case COMMAND_ASCII_ECHO:
+        {
 
+        }
 			/** \addtogroup ProtocolAsciiCommands
 			  \{
 
@@ -105,6 +115,73 @@ Will respond `!1234567`
 			 **/
 
 			break;
+            
+            /* Experimental code to change config bits to use XT oscillator instead of GPIO for primary pins.
+             * For some reason, can't write over FBSLIM after it's erased.  Show-stopper.
+        case 0x22:
+        {
+            #warning REMOVE DEBUG CODE!
+            Txbuffer[1] = 0x23;
+             INTERRUPT_GlobalDisable();  // While we're messing with TBLPAG
+                uint8_t tblpag = TBLPAG;
+                int i;
+                           
+                TBLPAG = 0x02;
+                for (i = 0; i < 0x30; i += 2)
+                {
+                    ((uint16_t*)UserBuffer)[ i] = __builtin_tblrdl(0x2AF00 +  i)  ;
+                    ((uint16_t*)UserBuffer)[i+1] = 0x00FF;
+                }
+                           
+                uint32_t address = 0x2AF00;
+                
+                NVMADRU = (uint16_t)(0x2AF00 >>16);
+                    NVMADR = (uint16_t)(0x2AF00 & 0xFFFF);
+                            NVMCON = 0x4003;
+                    __builtin_disi(6);
+                    __builtin_write_NVM();
+                
+                TBLPAG = address >>16;
+     
+              
+                UserBuffer[56]= 0x03;
+                    
+                 FLASH_Unlock(FLASH_UNLOCK_KEY);
+                 FLASH_WriteDoubleWord24(0x2AF00, *(uint32_t*)&UserBuffer[0], *(uint32_t*)&UserBuffer[4] );
+                 
+                 FLASH_Unlock(FLASH_UNLOCK_KEY);
+                 FLASH_WriteDoubleWord24(0x2AF18, *(uint32_t*)&UserBuffer[48], *(uint32_t*)&UserBuffer[52] );
+                 
+                 FLASH_Unlock(FLASH_UNLOCK_KEY);
+                 FLASH_WriteDoubleWord24(0x2AF1C, *(uint32_t*)&UserBuffer[56], *(uint32_t*)&UserBuffer[60] );
+                 
+                 FLASH_Unlock(FLASH_UNLOCK_KEY);
+                 FLASH_WriteDoubleWord24(0x2AF20, *(uint32_t*)&UserBuffer[64], *(uint32_t*)&UserBuffer[68] );
+                 
+                 FLASH_Unlock(FLASH_UNLOCK_KEY);
+                 FLASH_WriteDoubleWord24(0x2AF24, *(uint32_t*)&UserBuffer[72], *(uint32_t*)&UserBuffer[76] );
+                 
+                 FLASH_Unlock(FLASH_UNLOCK_KEY);
+                 FLASH_WriteDoubleWord24(0x2AF28, *(uint32_t*)&UserBuffer[80], *(uint32_t*)&UserBuffer[84] );
+                 
+                 FLASH_Unlock(FLASH_UNLOCK_KEY);
+                 FLASH_WriteDoubleWord24(0x2AF2C, *(uint32_t*)&UserBuffer[88], *(uint32_t*)&UserBuffer[92] );
+                 
+                 
+                  FLASH_Unlock(FLASH_UNLOCK_KEY);
+                     FLASH_WriteDoubleWord24(0x2AF10, *(uint32_t*)&UserBuffer[32], *(uint32_t*)&UserBuffer[36] );
+
+                
+                   TBLPAG = tblpag;
+                   
+                   INTERRUPT_GlobalEnable();
+                   
+            
+       
+
+        }
+        break;
+        */
 		case COMMAND_ASCII_LINEFEED:
 			{
 				/** \addtogroup ProtocolAsciiCommands
@@ -1224,6 +1301,18 @@ Enable 2nd command interface.
             
             }
         }
+        break;
+        
+        case COMMAND_READ_LAST_ERROR_PACKET:
+        {
+            uint8_t i;
+
+            for (i = 0; i < 7  && ((i + Rxbuffer[1]) < 8) ; ++i)
+            {
+                Txbuffer[i + 1] = lastErrorPacket[i];
+            }
+        }
+        break;
 /** \addtogroup ProtocolBinaryCommands
 \{
 
@@ -1681,6 +1770,12 @@ void ProcessSetPin()
             initPulseTimer();
         }
         break;
+        case PIN_MODE_ULTRASONIC_DISTANCE:
+        {
+            void initUltrasonicDistance(void);
+            initUltrasonicDistance();
+        }
+        break;
         case PIN_MODE_INPUT_PROCESSOR:
         {
             void initPinInputProcessor(void);
@@ -1747,6 +1842,13 @@ void ProcessSetPin()
             {
                 extern void initPulseOnChange();
                 initPulseOnChange();
+            }
+            break;
+            
+            case PIN_MODE_LIQUID_CRYSTAL:
+            {
+                extern void initLiquidCrystal();
+                initLiquidCrystal();
             }
             break;
         case PIN_MODE_RESISTANCE_INPUT:

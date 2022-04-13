@@ -87,10 +87,10 @@ Default Scalar Model: Small
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x100               0x10a           0x18f  (399)
-.text                        0x20a                0x18            0x24  (36)
-.dinit                       0x222                 0x8             0xc  (12)
+.text                        0x20a                0x44            0x66  (102)
+.dinit                       0x24e                 0x8             0xc  (12)
 
-                 Total "pgm" memory used (bytes):          0x1bf  (447) 1%
+                 Total "pgm" memory used (bytes):          0x201  (513) 2%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x4000]
@@ -1658,10 +1658,10 @@ __c30_signature
 .config_BSLIM     0x02af10          0x2
  .config_BSLIM    0x02af10          0x2 build/default/production/main_boot.o
 
-.text             0x00020a         0x18
- .text            0x00020a         0x18 build/default/production/main_boot.o
+.text             0x00020a         0x44
+ .text            0x00020a         0x44 build/default/production/main_boot.o
                   0x00020a                  _reset
                   0x000210                  _main
 
-.dinit            0x000222          0x8
- .dinit           0x000222          0x8 data_init
+.dinit            0x00024e          0x8
+ .dinit           0x00024e          0x8 data_init

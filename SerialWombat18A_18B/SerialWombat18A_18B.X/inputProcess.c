@@ -117,7 +117,6 @@ uint16_t inputProcessProcess(inputProcess_t* inputProcess, uint16_t inputValue)
                 ++inputProcess->average.samplesAddedToSum;
                 if (inputProcess->average.samplesAddedToSum == inputProcess->average.samplesToAverage)
                 {
-                    ++inputProcess->average.sum;  //TODO DEBUG REMOVE
                     inputProcess->average.sum /= inputProcess->average.samplesToAverage;
                     if (inputProcess->average.sum > 65535)
                     {
@@ -284,7 +283,7 @@ void inputProcessCommProcess(inputProcess_t* inputProcess)
           
             if (Rxbuffer[4] > 0)
             {
-                inputProcess->max = 65535;
+                inputProcess->max = 0;
 
             }
         }

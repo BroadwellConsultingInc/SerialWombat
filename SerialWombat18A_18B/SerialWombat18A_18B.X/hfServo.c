@@ -20,7 +20,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * OTHER DEALINGS IN THE SOFTWARE.
 */
 
-/*! \file servo.c
+/*! \file hfservo.c
  */
 #include <stdint.h>
 #include "serialWombat.h"

@@ -171,9 +171,7 @@ INTERRUPT_GlobalDisable();  // While we're messing with TBLPAG
         //TODO add check for final word write
     while (System1msCount <= 60 || StayInBoot || magicProgrammedNumber != 0xCD23) //Stay in boot for 60 mS  
 	{
-        LATBbits.LATB6 = 1; //TODO REMOVE
 		ProcessRx();
-     LATBbits.LATB6 = 0; //TODO REMOVE
 	}
 
      INTERRUPT_GlobalDisable();
