@@ -39,7 +39,7 @@ void uartStartTX()
      
 	}
 
-	UART1_WriteBuffer(Txbuffer,TXBUFFER_LENGTH); //TODO put in right spot.
+	UART1_WriteBuffer(Txbuffer,TXBUFFER_LENGTH); 
 	if (LineBreaksAndEcho)
 	{
 		UART1_WriteBuffer(crlf,2);
@@ -225,7 +225,6 @@ Examples:
 				}
 				 memcpy(&Txbuffer[1],UserBufferPtr + address,count);
 			 }
-			 //TODO:  Error on bad address
 		}
 		break;
 
@@ -426,7 +425,7 @@ Response:
                     TBLPAG = tblpag;
                     INTERRUPT_GlobalEnable();
                     TXBUFFER16(4,result);
-                    TXBUFFER16(6,debugFlashWrites);//TODO
+                    TXBUFFER16(6,debugFlashWrites);
                     
                 }
                 break;

@@ -179,12 +179,12 @@ if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode 
 			break; 
 
 		case CONFIGURE_CHANNEL_MODE_5: 
-			{  //TODO add sanity checks, mode, etc
+			{  
 				uartSw->txQueue = RXBUFFER16(3);
                 uint16_t resultSize;
 				if (QueueGetBytesFreeInQueue(uartSw->txQueue, &resultSize) != QUEUE_RESULT_SUCCESS)
 				{
-					error(SW_ERROR_UNNUMBERED_ERROR); // TODO make errors based on result
+					error(SW_ERROR_UNNUMBERED_ERROR); // TODO future improvement: make errors based on result
 				}
                 else
                 {
@@ -194,12 +194,12 @@ if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode 
 			break; 
 
 		case CONFIGURE_CHANNEL_MODE_6: 
-			{  //TODO add sanity checks, mode, etc
+			{  
 				uartSw->rxQueue = RXBUFFER16(3);
                 uint16_t resultSize;
 				if (QueueGetBytesFreeInQueue(uartSw->txQueue, &resultSize) != QUEUE_RESULT_SUCCESS)
 				{
-					error(SW_ERROR_UNNUMBERED_ERROR); // TODO make errors based on result
+					error(SW_ERROR_UNNUMBERED_ERROR); // TODO future improvement: make errors based on result
 				}
                 else
                 {

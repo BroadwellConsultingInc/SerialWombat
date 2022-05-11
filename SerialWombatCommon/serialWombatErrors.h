@@ -70,6 +70,7 @@ typedef enum {
             SW_ERROR_UNKNOWN_INPUT_PROCESS_COMMAND = 45, // The command index for an inputProcess command is not supported on this firmware
 	    SW_ERROR_PULSE_ON_CHANGE_ENTRY_OUT_OF_RANGE = 46, // The pulse on change entry number exceeded the number of entries
 	    SW_ERROR_PULSE_ON_CHANGE_UNKNOWN_MODE = 47, // The pulse on change Mode requested is unknown
+            SW_ERROR_UNKNOWN_QUEUE_TYPE = 48, // This Queue type is not supported on this firwmare
 }SW_ERROR_t;
 
 #endif

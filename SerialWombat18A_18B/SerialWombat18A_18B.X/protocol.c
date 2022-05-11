@@ -28,7 +28,7 @@ uint8_t lastErrorPacket[8];
 
 pinRegister_t PinRegisterCopyBuffer;
 timingResourceManager_t TimingResourceManagerCopyBuffer;
-
+volatile unsigned short crcResultCRCCCITT = 0;
 //#define I2C_DEBUG_OUTPUT
 #ifdef I2C_DEBUG_OUTPUT
 #define OUTPUT_I2C_DEBUG(_value) {LATB = (_value <<11);  LATBbits.LATB10= 1;Nop();Nop();Nop();Nop(); LATBbits.LATB10 = 0;}
@@ -46,7 +46,7 @@ void uartStartTX()
      
 	}
 
-	UART1_WriteBuffer(Txbuffer,TXBUFFER_LENGTH); //TODO put in right spot.
+	UART1_WriteBuffer(Txbuffer,TXBUFFER_LENGTH); //TODO Fix Line Breaks and Echo
 	if (LineBreaksAndEcho)
 	{
 		UART1_WriteBuffer(crlf,2);
@@ -591,7 +591,7 @@ Or similar
 					if (count >= 7)
 					{
 						count = 7;
-						memcpy(&UserBuffer[lastUserBufferIndex],&Rxbuffer[1],count);
+				memcpy(&UserBuffer[lastUserBufferIndex],&Rxbuffer[1],count);
 						lastUserBufferIndex += count;
 					}
 					else
@@ -613,6 +613,7 @@ Or similar
 				  Initialize a queue in user memory 
 				  Queue types are as follows:  
 				  0 - Byte data queue in RAM
+                  1 - Byte data using shifted QUEUE in RAM (Write only, no read, used for Displays and similar)
 
 				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
@@ -632,8 +633,27 @@ Initializes a ram queue of 32 bytes at address 0x0010 in user memory.
 
 \}
 				 **/
-				
-                SW_QUEUE_RESULT_t result = QueueByteInitialize(RXBUFFER16(1),RXBUFFER16(3));	
+                 SW_QUEUE_RESULT_t result;
+				switch (Rxbuffer[5])
+                {
+                    case 0:
+                    {
+               result = QueueByteInitialize(RXBUFFER16(1),RXBUFFER16(3));	
+                    }
+                break;
+                    case 1:
+                    {
+                        result = QueueByteShiftInitialize(RXBUFFER16(1),RXBUFFER16(3));
+                    }
+                    break;
+                    
+                    default:
+                    {
+                        error(SW_ERROR_UNKNOWN_QUEUE_TYPE);
+                        return;
+                    }
+                    break;
+                }
                 
                 if (result == QUEUE_RESULT_SUCCESS)
                 {
@@ -947,20 +967,106 @@ Response:
 				}
 				else
 				{
-					INTERRUPT_GlobalDisable();  // While we're messing with TBLPAG
+					//TODO Investigate Further.  INTERRUPT_GlobalDisable();  // While we're messing with TBLPAG
 					uint8_t tblpag = TBLPAG;
 					TBLPAG = address >>16;
 					result = __builtin_tblrdl(address );
 					TXBUFFER16(4,result);          
 					result = __builtin_tblrdh(address );
 					TBLPAG = tblpag;
-					INTERRUPT_GlobalEnable();
+					//TODO Investigate Further INTERRUPT_GlobalEnable();
 					TXBUFFER16(6,result);
 
 				}
 
 			}
 			break;
+            case COMMAND_BINARY_WRITE_FLASH:
+		{
+			switch (Rxbuffer[1])
+			{
+				case 0:
+				{
+					// Erase block - 32 bit address at rxbuffer[2], 16 bit length at rxbuffer[6]
+					// Up to caller to assure the block is aligned.
+                    // Called once per block.
+					// Address is in bytes not words to match hex file
+                    // User should delay appropriate time to allow erase completion before requesting response over I2C
+                   
+                    uint32_t address = RXBUFFER32(2)/2;
+                    if (address < 0x4000)  // Beginning of Application
+                    {
+                        error(SW_ERROR_FLASH_WRITE_INVALID_ADDRESS);
+                    }
+                    else
+                    {
+                    NVMADRU = (uint16_t)(address >>16);
+                    NVMADR = (uint16_t)(address & 0xFFFF);
+                            NVMCON = 0x4003;
+                    __builtin_disi(6);
+                    __builtin_write_NVM();
+                    }
+				}
+				break;
+
+				case 1:
+				{
+					// Write block - 32 bit address at rxbuffer[2], 16 bit length at rxbuffer[6]
+					// up to caller to assure block is aligned, right length.
+					// All bytes are included, even if they are not implemented.
+					// Address is in bytes not words to match hex file
+                    // Called once per block.
+                    // User should delay appropriate time to allow erase completion before requesting response over I2C
+                    uint32_t address = RXBUFFER32(2)/2;
+                    if (address < 0x4000)  // Beginning of Application
+                    {
+                        error(SW_ERROR_FLASH_WRITE_INVALID_ADDRESS);
+                    }
+                    else
+                    {
+                        INTERRUPT_GlobalDisable();
+                        FLASH_Unlock(FLASH_UNLOCK_KEY);
+
+                    FLASH_WriteRow24(address, (uint32_t*)UserBuffer);
+                    INTERRUPT_GlobalEnable();
+                    }
+                   
+				}
+				break;
+                
+                case 2:
+                {
+                    extern volatile unsigned short crcResultCRCCCITT ;
+                    void crcAppSpace(uint32_t address_w, uint32_t length_w);
+                    crcAppSpace(0x4000,0x1F800 - 0x4000);
+                    TXBUFFER16(2,crcResultCRCCCITT);
+                    
+                    
+                }
+                break;
+                 case 3:
+                {
+                    extern volatile unsigned short crcResultCRCCCITT ;
+                  
+                    TXBUFFER16(2,crcResultCRCCCITT);
+            uint16_t result = 0;
+           
+                INTERRUPT_GlobalDisable();  // While we're messing with TBLPAG
+                uint8_t tblpag = TBLPAG;
+                TBLPAG = 1;
+                    result = __builtin_tblrdl(0xF804);      
+                    TBLPAG = tblpag;
+                    INTERRUPT_GlobalEnable();
+                    TXBUFFER16(4,result);
+                    TXBUFFER16(6,1);
+                    
+                }
+                break;
+               
+                    
+            }
+		}
+		break;
 
 		case COMMAND_BINARY_WRITE_RAM:
 			{
@@ -1102,7 +1208,6 @@ Write 0x32 the byte at RAM address 0x0247.
            
             TXBUFFER16(3,vbg);
             TXBUFFER16(5,(vbg/65536));
-            vbg +=8; // Average, not truncate
             vbg /= 512;
             VbgCalibration = vbg;
             TXBUFFER16(1,VbgCalibration);
@@ -1760,6 +1865,30 @@ void ProcessSetPin()
             uint8_t pin = Rxbuffer[1];
             CurrentPinRegister->generic.mode = PIN_MODE_DIGITAL_IO;
             SetPin(pin,Rxbuffer[3]);
+            if (Rxbuffer[4] == 1)
+            {
+                PinPullUp(pin);
+            }
+            else
+            {
+                PinNoPullUp(pin);
+            }
+            if (Rxbuffer[5] == 1)
+            {
+                PinPullDown(pin);
+            }
+            else
+            {
+                PinNoPullDown(pin);
+            }
+           if (Rxbuffer[6] == 1)
+            {
+                PinOD(pin);
+            }
+            else
+            {
+                PinNoOD(pin);
+            }
                     
         }
         break;
@@ -1879,4 +2008,72 @@ void ProcessSetPin()
         }
         break;
     }
+}
+
+void crcAppSpace(uint32_t address_w, uint32_t length_w)
+{
+
+
+unsigned short data;
+////////////////////////////////////////////////////////////////////////////////
+// standard CRC-CCITT
+////////////////////////////////////////////////////////////////////////////////
+#define CRCCCITT_POLYNOMIAL ((unsigned short)0x1021)
+#define CRCCCITT_SEED_VALUE ((unsigned short)0x84CF) // non-direct of 0xffff
+CRCCON1 = 0;
+CRCCON2 = 0;
+CRCCON1bits.CRCEN = 1; // enable CRC
+CRCCON1bits.CRCISEL = 0; // interrupt when all shifts are done
+CRCCON1bits.LENDIAN = 0; // big endian
+CRCCON2bits.DWIDTH = 16-1; // 16-bit data width
+CRCCON2bits.PLEN = 16-1; // 16-bit polynomial order
+CRCCON1bits.CRCGO = 1; // start CRC calculation
+CRCXORL = CRCCCITT_POLYNOMIAL; // set polynomial
+CRCXORH = 0;
+CRCWDATL = CRCCCITT_SEED_VALUE; // set initial value
+CRCWDATH = 0;
+
+uint32_t address;
+for (address = address_w; address < address_w + length_w;  address += 2)
+{
+    
+    if (address == 0x4800)
+    {
+        Nop();
+    }
+while(CRCCON1bits.CRCFUL); // wait if FIFO is full
+
+ INTERRUPT_GlobalDisable();  // While we're messing with TBLPAG
+                uint8_t tblpag = TBLPAG;
+                TBLPAG = address >>16;
+                    data = __builtin_tblrdl(address );
+                    TBLPAG = tblpag;
+                    INTERRUPT_GlobalEnable();
+//data = *pointer++; // load data
+asm volatile ("swap %0" : "+r"(data)); // swap bytes for big endian
+CRCDATL = data; // 16 bit word access to FIFO
+
+while(CRCCON1bits.CRCFUL); // wait if FIFO is full
+
+ INTERRUPT_GlobalDisable();  // While we're messing with TBLPAG
+                tblpag = TBLPAG;
+                TBLPAG = address >>16;
+                    data = __builtin_tblrdh(address );
+                    TBLPAG = tblpag;
+                    INTERRUPT_GlobalEnable();
+//data = *pointer++; // load data
+asm volatile ("swap %0" : "+r"(data)); // swap bytes for big endian
+CRCDATL = data; // 16 bit word access to FIFO
+
+
+}
+while(CRCCON1bits.CRCFUL); // wait if FIFO is full
+CRCCON1bits.CRCGO = 0; // suspend CRC calculation to clear interrupt flag
+_CRCIF = 0; // clear interrupt flag
+CRCDATL = 0; // load dummy data to shift out the CRC result
+// data width must be equal to polynomial length
+CRCCON1bits.CRCGO = 1; // resume CRC calculation
+while(!_CRCIF); // wait until shifts are done
+crcResultCRCCCITT = CRCWDATL; // get CRC result (must be 0x9B4D)
+
 }

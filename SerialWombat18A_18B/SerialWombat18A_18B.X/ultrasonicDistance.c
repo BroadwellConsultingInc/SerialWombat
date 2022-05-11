@@ -47,7 +47,7 @@ typedef struct ultrasonicDistance_n{
 
 #define COUNTS_TO_uS(_a) ((uint32_t)( _a * (uint32_t) (65536.0 * 1000000 / DMA_FREQUENCY + .5)) >> 16)
 #define COUNTS_TO_Hz(_a) (((uint32_t)DMA_FREQUENCY * 2) / ( _a  ) + 1) >> 1;
-#define COUNTS_TO_mm(_a) (COUNTS_TO_uS(_a) * 170 / 1000)  //TODO optimize for integer math with fractional multipy and shift
+#define COUNTS_TO_mm(_a) (COUNTS_TO_uS(_a) * 170 / 1000)  //TODO future optimization: optimize for integer math with fractional multipy and shift
 
 void initUltrasonicDistance()
 {

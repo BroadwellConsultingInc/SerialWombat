@@ -10,7 +10,7 @@ uint8_t CurrentPin;
 
 
 uint32_t UserBufferBoot[SIZE_OF_USER_BUFFER / 4]; // Force alignment by making uint32_t
-uint8_t *UserBufferPtr = UserBufferBoot;
+uint8_t *UserBufferPtr = (uint8_t*)UserBufferBoot;
 
 void reset ()
 {
@@ -155,6 +155,7 @@ int main(void)
    
 	// initialize the device
 	SYSTEM_Initialize();
+    DMACON = 0;  // No need for DMA in boot.
     INTERRUPT_GlobalEnable();
         while (!HLVDCONbits.BGVST); // Wait for Band Gap to stabilize.
    
@@ -166,9 +167,7 @@ INTERRUPT_GlobalDisable();  // While we're messing with TBLPAG
                     TBLPAG = tblpag;
                     INTERRUPT_GlobalEnable();
  
-//#warning STAY IN BOOT FOREVER!
-       // while (1)
-        //TODO add check for final word write
+
     while (System1msCount <= 60 || StayInBoot || magicProgrammedNumber != 0xCD23) //Stay in boot for 60 mS  
 	{
 		ProcessRx();

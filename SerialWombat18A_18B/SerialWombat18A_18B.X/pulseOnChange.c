@@ -1,5 +1,5 @@
 /*
-Copyright 2021 Broadwell Consulting Inc.
+Copyright 2022 Broadwell Consulting Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
@@ -43,11 +43,11 @@ typedef enum
     PULSE_ABOVE_PIN = 8,
     PULSE_BELOW_PIN = 9,
     PULSE_NOT_EQUAL_PIN = 10,
-            PULSE_CROSS_VALUE = 11,
+    PULSE_CROSS_VALUE = 11,
     PULSE_CROSS_VALUE_ASCENDING = 12,
-            PULSE_CROSS_VALUE_DESCENDING = 13,
-            PULSE_WITHIN_RANGE = 14,
-            PULSE_OUTSIDE_RANGE = 15,
+    PULSE_CROSS_VALUE_DESCENDING = 13,
+    PULSE_WITHIN_RANGE = 14,
+    PULSE_OUTSIDE_RANGE = 15,
             
     PULSE_NUM_MODES 
 }PULSE_ON_CHANGE_MODE_t;
@@ -77,7 +77,7 @@ typedef struct pulseOnChange_n{
 
 pulseOnChange_t* debugPulseOnChange;
 
-
+//TODO Update documentation
 /*!
     \brief Initialization routine for WS2812B driver 
 
@@ -402,7 +402,7 @@ void updatePulseOnChange()
                 pulseOnChange->counter = pulseOnChange->durationOff;
                 pulseOnChange->state = STATE_PULSING_INACTIVE;
             }
-            return; // TODO work on constant on
+            return; // TODO future improvement: work on constant on
         }
         break;
         case    STATE_PULSING_INACTIVE:
@@ -417,7 +417,7 @@ void updatePulseOnChange()
                 pulseOnChange->counter = pulseOnChange->durationOn;
                 pulseOnChange->state = STATE_WAITING_FOR_PULSE;
             }
-            return; // TODO work on constant on
+            return; // TODO future improvement: work on constant on
             
         }
         break;

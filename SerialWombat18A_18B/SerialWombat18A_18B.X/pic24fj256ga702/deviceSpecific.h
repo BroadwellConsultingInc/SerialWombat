@@ -13,6 +13,10 @@
 #define SIZE_OF_USER_BUFFER 8192
 
 #define VBG_CAL_ADDRESS ((uint32_t)0x2A000)
+#define PROGRAM_MONTH_CAL_ADDRESS ((uint32_t)0x2A00E)
+#define PROGRAM_DAY_CAL_ADDRESS ((uint32_t)0x2A010)
+#define PROGRAM_YEAR_CAL_ADDRESS ((uint32_t)0x2A00C)
+#define MANUFACTURER_CAL_ADDRESS ((uint32_t)0x2A020) //32 words, ascii byte in lower byte
 #include "pinDigitalHwSpecific.h"
 
 #endif

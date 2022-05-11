@@ -276,7 +276,10 @@ void updateAnalogInput()
 { 
     debugAnalog = (analogInput_t*)CurrentPinRegister;
 	uint16_t sample;
-  
+    if (ADC1Semaphore != RESOURCE_AVAILABLE)
+    {
+        return;
+    }
  sample =  GetADCConversion(CurrentPin);
 if (sample >= ADC_MAX_COUNTS)
 {

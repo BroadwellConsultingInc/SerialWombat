@@ -18,7 +18,7 @@ uint16_t QueueUnderflowCounter = 0;
 #define QUEUE_MARKER_QUEUE_SHIFT 0xF314
 SW_QUEUE_RESULT_t QueueByteInitialize(uint16_t address, uint16_t capacity)
 {
-	//TODO if (address == 0xFFFF) automatically allocate
+	//TODO Future improvement: if (address == 0xFFFF) automatically allocate
     //TODO Add protection to all queue functions
 	if (address + capacity >= SIZE_OF_USER_BUFFER)
 	{
@@ -36,16 +36,12 @@ SW_QUEUE_RESULT_t QueueByteInitialize(uint16_t address, uint16_t capacity)
 	queue->headIndex = 0;
 	queue->tailIndex = 0;
 	queue->capacity = capacity;
-    uint16_t i;
-    for (i = 0; i < capacity; ++i)
-    {
-        queue->buffer[i] = ' ';
-    }
+    
 	return (QUEUE_RESULT_SUCCESS);
 }
 SW_QUEUE_RESULT_t QueueByteShiftInitialize(uint16_t address, uint16_t capacity)
 {
-	//TODO if (address == 0xFFFF) automatically allocate
+	//TODO  Future improvement: if (address == 0xFFFF) automatically allocate
     //TODO Add protection to all queue functions
 	if (address + capacity >= SIZE_OF_USER_BUFFER)
 	{
@@ -63,6 +59,11 @@ SW_QUEUE_RESULT_t QueueByteShiftInitialize(uint16_t address, uint16_t capacity)
 	queue->headIndex = 0;
 	queue->tailIndex = 0;
 	queue->capacity = capacity;
+    uint16_t i;
+    for (i = 0; i < capacity; ++i)
+    {
+        queue->buffer[i] = ' ';
+    }
 	return (QUEUE_RESULT_SUCCESS);
 }
 
@@ -155,11 +156,20 @@ static SW_QUEUE_RESULT_t QueueByteAddByte(uint16_t address, uint8_t data)
 static SW_QUEUE_RESULT_t QueueByteAddByteShift(uint16_t address, uint8_t data)
 {
 	queueByte_t* queue =(queueByte_t*) &UserBuffer[address];
-	for (int16_t i = 1; i < queue->capacity; ++i)
+    uint16_t i;
+    if (queue->headIndex < queue->capacity)
+    {
+        queue->buffer[queue->headIndex] = data;
+        ++ queue->headIndex;
+    }
+    else
+    {
+	for ( i = 1; i < queue->capacity; ++i)
 	{
 		queue->buffer[i-1] = queue->buffer[i];
 	}
 	queue->buffer[queue->capacity -1] = data;
+    }
 	return (QUEUE_RESULT_SUCCESS);
 
 }
@@ -170,7 +180,7 @@ SW_QUEUE_RESULT_t QueueAddByte(uint16_t address, uint8_t data)
 	{
 		return (QUEUE_RESULT_INVALID_QUEUE);
 	}
-    //TODO add check on address range
+    
 	uint16_t queueMarker = *((uint16_t*)&UserBuffer[address]);
 	switch (queueMarker)
 	{

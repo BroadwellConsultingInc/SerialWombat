@@ -441,6 +441,7 @@ bool CurrentPinRead()
 
 uint8_t pinIsPPSCapable(uint8_t pin)
 {
+    //TODO Future Optimization: optimize with switch
     if (pin >=9 && pin <= 19)
 	{
 		return (1);
@@ -720,17 +721,70 @@ void SetPinPullDown(uint8_t pin, bool isPulledDown)
     }
 }
 
+void SetPinOpenDrain(uint8_t pin, bool isOpenDrain)
+{
+     if (pin >= NUMBER_OF_PHYSICAL_PINS)
+    {
+        return;
+    }
+    switch (pinPort[pin])
+    {
+        case 0:
+            //PORT A
+            if (isOpenDrain)
+            {
+                ODCA |= pinBitmap[pin];
+            }
+            else
+            {
+                ODCA &= ~pinBitmap[pin];
+            }
+            break;
+        case 1:
+            //PORT B
+            if (isOpenDrain)
+            {
+                ODCB |= pinBitmap[pin];
+            }
+            else
+            {
+                ODCB &= ~pinBitmap[pin];
+            }
+        break;
+    }
+}
 void PinPullUp(uint8_t pin)
 {
     SetPinPullDown(pin,false);
     SetPinPullUp(pin,true);
 }
-
+void PinNoPullUp(uint8_t pin)
+{
+    SetPinPullUp(pin,false);
+}
 void PinPullDown(uint8_t pin)
 {
     SetPinPullUp(pin,false);
     SetPinPullDown(pin,true);    
 }
+
+
+
+void PinNoPullDown(uint8_t pin)
+{
+    SetPinPullDown(pin,false);
+}
+
+void PinOD(uint8_t pin)
+{
+    SetPinOpenDrain(pin,true);
+}
+
+void PinNoOD(uint8_t pin)
+{
+    SetPinOpenDrain(pin,false);
+}
+
 
 void CurrentPinHigh()
 {

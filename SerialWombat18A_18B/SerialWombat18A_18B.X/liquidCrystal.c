@@ -28,6 +28,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 
 
 typedef struct lcd_n{
+       uint8_t rowIndexes[8];
+    uint16_t bufferIndex;
 	uint8_t state;
 	uint8_t RSpin;
 	uint8_t D4pin;
@@ -37,6 +39,9 @@ typedef struct lcd_n{
     uint8_t e2pin;
     uint8_t displayControl;
     uint8_t displayMode;
+    uint8_t width;
+    uint8_t rows;
+ 
 }lcd_t;
 
 #define  lcd ((lcd_t*) CurrentPinRegister)
@@ -57,9 +62,27 @@ void lcd_setdata(uint8_t a) {
 	CurrentPinLow();
 }
 
+void lcd_setdata2(uint8_t a) {  
+	SetPin(lcd->e2pin,1);
+	SetPin(lcd->D4pin,(a & 0x10) > 0) ; 
+	SetPin(lcd->D5pin,(a &0x20) > 0);
+        SetPin(lcd->D6pin,(a & 0x40)> 0) ; 
+	SetPin(lcd->D7pin,(a & 0x80) > 0);
+	SetPin(lcd->e2pin,0);
+
+	SetPin(lcd->e2pin,1);
+	SetPin(lcd->D4pin,(a & 0x01)> 0) ; 
+	SetPin(lcd->D5pin,(a &0x02) > 0);
+        SetPin(lcd->D6pin,(a & 0x04)> 0) ; 
+	SetPin(lcd->D7pin,(a & 0x08)> 0 );
+	SetPin(lcd->e2pin,0);
+}
+
 
 static void clock_data(uint8_t data);
 static void clock_cmd(uint8_t data) ;
+static void clock_data2(uint8_t data);
+static void clock_cmd2(uint8_t data) ;
 
 static void delay_cycles16(uint16_t i)
 {
@@ -68,11 +91,19 @@ static void delay_cycles16(uint16_t i)
 }
 void initLiquidCrystal(void)
 {
-        if (Rxbuffer[0] == CONFIGURE_CHANNEL_MODE_0)
+    if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_LIQUID_CRYSTAL)
+	{
+		error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+		return;
+	}
+    
+    switch (Rxbuffer[0])
+    {
+        case CONFIGURE_CHANNEL_MODE_0:
 	{
             CurrentPinRegister->generic.mode = PIN_MODE_LIQUID_CRYSTAL;
 		//Set up pins
-		lcd->state = 81;
+		lcd->state = 161;
 		lcd->RSpin = (Rxbuffer[3]);
 		SetMode(lcd->RSpin, PIN_MODE_CONTROLLED);
         PinLow(Rxbuffer[3]);
@@ -92,9 +123,13 @@ void initLiquidCrystal(void)
         PinLow(Rxbuffer[7]);
         lcd->displayControl = 0x04  ; //Display on, Cursor off, blink off, Entry left, decrement
         lcd->displayMode = 0x02 /*entryLeft*/ | 0x00 /*EntryShiftDecrement*/;
+        lcd->bufferIndex = 0xFFFF;
+        lcd->width = 40;
+        lcd->e2pin = 255;
         
 	}
-	else if (Rxbuffer[0] == CONFIGURE_CHANNEL_MODE_1)
+        break;
+        case CONFIGURE_CHANNEL_MODE_1:
 	{
 		//clock in address plus 4 bytes 
 			    Rxbuffer[3] |= 0x80;
@@ -111,7 +146,8 @@ void initLiquidCrystal(void)
 			
 
 	}
-	else if (Rxbuffer[0] == CONFIGURE_CHANNEL_MODE_2)
+        break;
+        case  CONFIGURE_CHANNEL_MODE_2:
 	{
 		uint8_t i = Rxbuffer[3];
 			//Set CGRAM location
@@ -126,7 +162,9 @@ void initLiquidCrystal(void)
 			clock_data(Rxbuffer[7]);
 
 	}
-	else if (Rxbuffer[0] == CONFIGURE_CHANNEL_MODE_3)
+        break;
+        
+        case  CONFIGURE_CHANNEL_MODE_3:
 	{
         if (Rxbuffer[3] == 0)
         {
@@ -142,7 +180,8 @@ void initLiquidCrystal(void)
         clock_cmd(lcd->displayMode | 0x04);
         }
 	}
-	else if (Rxbuffer[0] == CONFIGURE_CHANNEL_MODE_4)
+        break;
+        case  CONFIGURE_CHANNEL_MODE_4:
 	{
 		if (Rxbuffer[3] == 1)
 		{
@@ -162,7 +201,8 @@ void initLiquidCrystal(void)
 			clock_data(Rxbuffer[6]);
 		}
 	}
-        else if (Rxbuffer[0] == CONFIGURE_CHANNEL_MODE_5)
+        break;
+        case  CONFIGURE_CHANNEL_MODE_5:
 	{
 		
 		
@@ -174,67 +214,154 @@ void initLiquidCrystal(void)
 		
 
 	}
+        break;
+        case  CONFIGURE_CHANNEL_MODE_6:
+	{				
+        if (RXBUFFER16(3) <= SIZE_OF_USER_BUFFER)
+        {
+lcd->bufferIndex    = RXBUFFER16(3);
+        }
+        else
+        {
+             error(SW_ERROR_INVALID_PARAMETER_3);
+return;
+        }
+if (Rxbuffer[5] > 0 && Rxbuffer[5] <= 80)
+{
+lcd->width = Rxbuffer[5];
+}
+else
+{
+    error(SW_ERROR_INVALID_PARAMETER_5);
+return;
+}
+			lcd->state = 0;	
+	}
+        break;
+        
+         case  CONFIGURE_CHANNEL_MODE_7:
+	{				
+        lcd->e2pin = Rxbuffer[3];
+        	SetPin(lcd->e2pin,0);
+            lcd->state = 171;	
+	}
+        break;
+         case  CONFIGURE_CHANNEL_MODE_8:
+	{				
+        lcd->rowIndexes[Rxbuffer[3]] = Rxbuffer[4];
+	}
+        break;
+    }
 
 }
 
+lcd_t* debugLiquidCrystal;
 void updateLiquidCrystal(void)
 {
 #ifdef HD44780_GENERIC_BUFFER
      uint16 actual_offset;
 #endif
-
+     debugLiquidCrystal = lcd;
 
      switch (lcd->state)
      {
-             case 81:
+             case 161:
 	        clock_cmd(0x20);  // 4 bit interface
 		++ lcd->state;
 		break;
-             case 82:
+             case 162:
 	        clock_cmd(0x28);  // 4bit interface, two lines
 		++ lcd->state;
 		break;
-             case 83:
+             case 163:
 	        clock_cmd(lcd->displayControl | 0x08);  // Display On
 		++ lcd->state;
 		break;
-             case 84:
+             case 164:
 	        clock_cmd(0x04 | lcd->displayMode);//Entry Mode
 		++ lcd->state;
 		break;
-             case 85:
+             case 165:
 	        clock_cmd(0x80);  // Display address 0 
 		++ lcd->state;
 		break;
-             case 86:
+             case 166:
 		clock_cmd(0x02); //Cursor home
 		++ lcd->state;
 		break;
-             case 87:
+             case 167:
 		 ++ lcd->state;
 		 break;
-             case 88:
+             case 168:
                  lcd->state = 254;
 		 break;
+         
+           case 171:
+	        clock_cmd2(0x20);  // 4 bit interface
+		++ lcd->state;
+		break;
+             case 172:
+	        clock_cmd2(0x28);  // 4bit interface, two lines
+		++ lcd->state;
+		break;
+             case 173:
+	        clock_cmd2(lcd->displayControl | 0x08);  // Display On
+		++ lcd->state;
+		break;
+             case 174:
+	        clock_cmd2(0x04 | lcd->displayMode);//Entry Mode
+		++ lcd->state;
+		break;
+             case 175:
+	        clock_cmd2(0x80);  // Display address 0 
+		++ lcd->state;
+		break;
+             case 176:
+		clock_cmd2(0x02); //Cursor home
+		++ lcd->state;
+		break;
+             case 177:
+		 ++ lcd->state;
+		 break;
+    case 254:
     break;
     default: 	
-#ifdef HD44780_GENERIC_BUFFER
-			   if (lcd->state == 80)
-			   {
-				   clock_cmd(0x80);  // Display address 0 
-				   lcd->state = 0;
-			   }
-			   else
-			   {
-				   tp2.lcd->offset  =  lcd.state;
-				   tp2.lcd->offset += tp.generic.buffer;
-				   clock_data(get_user_buffer(tp2.lcd->offset));
-				++lcd->state;
-			   }
-#endif
+        if (lcd->state < 80)
+        {
+            uint8_t x = lcd->state % lcd->width;
+            if (  x == 0)
+            {
+                uint8_t rowIndex = lcd->state / lcd->width;
+                clock_cmd(0x80 + lcd->rowIndexes[rowIndex]);
+                    delay_cycles16(500);
+            }
+            clock_data(UserBuffer[ lcd->bufferIndex + lcd->state ]);
+            ++lcd->state;
+            
+            if (lcd->state == 80 && lcd->e2pin == 255)
+            {
+                lcd->state = 0;
+            }
+        }
+        else if (lcd->e2pin != 255)
+        {
+             uint8_t x = lcd->state % lcd->width;
+            if (  x == 0)
+            {
+                clock_cmd2(0x80 + lcd->rowIndexes[lcd->state / lcd->width ]);
+                    delay_cycles16(500);
+            }
+            clock_data2(UserBuffer[ lcd->bufferIndex + lcd->state ]);
+            ++lcd->state;
+            
+            if (lcd->state == 160)
+            {
+                lcd->state = 0;
+            }
+        }
+
 	break;
-    case 254:
-    break;	
+	
      }
 }
 
@@ -247,6 +374,17 @@ void clock_cmd(uint8_t data)
 {
     		PinLow(lcd->RSpin) ;
 		lcd_setdata(data);
+}
+
+void clock_data2(uint8_t data)
+{
+    		PinHigh(lcd->RSpin) ;
+		lcd_setdata2(data);
+}
+void clock_cmd2(uint8_t data)
+{
+    		PinLow(lcd->RSpin) ;
+		lcd_setdata2(data);
 }
 
 

@@ -28,6 +28,14 @@ void InitializePinLow(uint8_t pin);
 
 void SetPinPullUp(uint8_t pin, bool isPulledUp);
 void SetPinPullDown(uint8_t pin, bool isPulledDown);
+void PinPullUp(uint8_t pin);
+void PinNoPullUp(uint8_t pin);
+void PinPullDown(uint8_t pin);
+void PinNoPullDown(uint8_t pin);
+
+void SetPinOD(uint8_t pin, bool isOpenDrain);
+void PinOD(uint8_t pin);
+void PinNoOD(uint8_t pin);
 
 extern const uint16_t pinBitmap[];
 extern const uint8_t pinPort[];

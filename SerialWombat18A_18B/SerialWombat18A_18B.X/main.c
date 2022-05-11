@@ -17,7 +17,7 @@ uint8_t UserBuffer[SIZE_OF_USER_BUFFER];
 void reset ()
 {
     #ifdef __DEBUG    
-        //TODO  shut down peripherals, shut off interrupts, jump to reset vector ?
+        //TODO  future internal debugging feature: shut down peripherals, shut off interrupts, jump to reset vector ?
 #else
     
 	while (1)
@@ -41,6 +41,7 @@ void reset ()
  *  0x2A006 - Temperature reading actual
  * 0x2A008 - Temperature reading2 reported
  *  0x2A00A - Temperature reading2 actual
+ * 0x02A00C - 
  
  */
 uint16_t OverflowFrames = 0;
@@ -54,7 +55,7 @@ int main(void)
     RCON = 0;
     INTCON2 |= 0x100; // Set Alternate vector table.  Bits in .h file are wrong in INTCON2bits so use bit or
 	// initialize the device
-    for (CurrentPin = 0; CurrentPin <=  NUMBER_OF_TOTAL_PINS; ++CurrentPin)
+    for (CurrentPin = 0; CurrentPin <  NUMBER_OF_TOTAL_PINS; ++CurrentPin)
 	{
         SetMode(CurrentPin, PIN_MODE_DIGITAL_IO);
     }
