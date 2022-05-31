@@ -48,6 +48,7 @@ if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode 
 	}
 	switch (Rxbuffer[0])
 	{
+        //TODO add pin mode check for _1 and up
 		case CONFIGURE_CHANNEL_MODE_0:
 			{
 				if (Rxbuffer[3] >7)

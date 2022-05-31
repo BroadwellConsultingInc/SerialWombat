@@ -226,7 +226,7 @@ Response is logic high, 11 transistions, 7000 mS (1B58) since transition:
 
 void initTouch (void)
 {
-if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_PROTECTEDOUTPUT)
+if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_TOUCH)
 	{
 		error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
 		return;

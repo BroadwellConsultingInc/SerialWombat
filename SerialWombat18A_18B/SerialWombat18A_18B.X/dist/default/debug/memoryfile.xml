@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+  <executable name="dist/default/debug/SerialWombat18A_18B.X.debug.elf">
+    <memory name="data">
+      <units>bytes</units>
+      <length>16384</length>
+      <used>11410</used>
+      <free>4974</free>
+    </memory>
+    <memory name="program">
+      <units>bytes</units>
+      <length>170112</length>
+      <used>81975</used>
+      <free>88137</free>
+    </memory>
+  </executable>
+</project>

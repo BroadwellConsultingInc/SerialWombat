@@ -114,6 +114,7 @@ Consume 400 microseconds upon receipt
 
 void initThroughputConsumer ()
 {
+    //TODO put check for pin mode here
 	throughputConsumer_t* throughputConsumer = (throughputConsumer_t*)CurrentPinRegister;
 	switch(Rxbuffer[0])
 	{

@@ -522,7 +522,7 @@ Or similar
             }
 			Txbuffer[5] = '2';	     
 			Txbuffer[6] = '0';	     
-			Txbuffer[7] = '5';	     
+			Txbuffer[7] = '6';	     
 
 			break;
 		case COMMAND_BINARY_READ_PIN_BUFFFER:
