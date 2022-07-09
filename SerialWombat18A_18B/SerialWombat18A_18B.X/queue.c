@@ -1,6 +1,6 @@
 #include "serialWombat.h"
 #include <stdint.h>
-
+#include <string.h>
 
 typedef struct
 {
@@ -269,6 +269,34 @@ SW_QUEUE_RESULT_t QueuePeekByte(uint16_t address, uint8_t* data)
 			return (QueueBytePeekByte( address,  data));
 		}
 		break;
+	}
+	return (QUEUE_RESULT_INVALID_QUEUE);
+}
+
+SW_QUEUE_RESULT_t QueueCopy(uint16_t dstAddress, uint16_t srcAddress)
+{
+    if (srcAddress >= (SIZE_OF_USER_BUFFER - sizeof(queueByte_t)))
+	{
+		return (QUEUE_RESULT_INVALID_QUEUE);
+	}
+     if (dstAddress >= (SIZE_OF_USER_BUFFER - sizeof(queueByte_t) - 
+             ((queueByte_t*) &UserBuffer[srcAddress])->capacity)
+             )
+	{
+		return (SW_ERROR_QUEUE_RESULT_INSUFFICIENT_USER_SPACE);
+	}
+	uint16_t queueMarker = *((uint16_t*)&UserBuffer[srcAddress]);
+	switch (queueMarker)
+	{
+		case QUEUE_MARKER_QUEUE_BYTE:
+        case QUEUE_MARKER_QUEUE_SHIFT:
+		{
+            memcpy(&UserBuffer[dstAddress], & UserBuffer[srcAddress], 8 + ((queueByte_t*) &UserBuffer[srcAddress])->capacity);
+			return (QUEUE_RESULT_SUCCESS);
+		}
+		break;
+        
+
 	}
 	return (QUEUE_RESULT_INVALID_QUEUE);
 }

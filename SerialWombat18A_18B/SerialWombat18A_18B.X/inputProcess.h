@@ -33,8 +33,7 @@ typedef enum
     INPUT_FILTER_MODE_NONE = 0,
                 INPUT_FILTER_MODE_FIRST_ORDER = 1,
     INPUT_FILTER_MODE_AVERAGE = 2,
-            INPUT_FILTER_MODE_MINIMUM = 3,
-            INPUT_FILTER_MODE_MAXIMUM = 4,
+         
          
 }INPUT_FILTER_MODE_t;
 

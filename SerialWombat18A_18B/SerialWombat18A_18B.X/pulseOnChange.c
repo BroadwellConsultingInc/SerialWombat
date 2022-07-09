@@ -377,53 +377,9 @@ void initPulseOnChange (void)
 	}
 }
 
-void updatePulseOnChange()
+static bool activeCondition(pulseOnChange_t* pulseOnChange)
 {
-	debugPulseOnChange = (pulseOnChange_t*) CurrentPinRegister;
-	pulseOnChange_t* pulseOnChange = (pulseOnChange_t*) CurrentPinRegister;
-
-    
-    switch (pulseOnChange->state)
-    {
-        case STATE_WAITING_FOR_PULSE:
-        {
-            
-        }
-        break;
-        case   STATE_PULSING_ACTIVE:
-        {
-            if (pulseOnChange->counter)
-            {
-                -- pulseOnChange->counter;
-            }
-            else
-            {
-                CurrentPinLow();
-                pulseOnChange->counter = pulseOnChange->durationOff;
-                pulseOnChange->state = STATE_PULSING_INACTIVE;
-            }
-            return; // TODO future improvement: work on constant on
-        }
-        break;
-        case    STATE_PULSING_INACTIVE:
-        {
-            if (pulseOnChange->counter)
-            {
-                -- pulseOnChange->counter;
-            }
-            else
-            {
-                
-                pulseOnChange->counter = pulseOnChange->durationOn;
-                pulseOnChange->state = STATE_WAITING_FOR_PULSE;
-            }
-            return; // TODO future improvement: work on constant on
-            
-        }
-        break;
-    }
-    
-	bool oneTrue = false;
+bool oneTrue = false;
 	bool allTrue = true;
 
 	uint8_t i;
@@ -601,12 +557,80 @@ void updatePulseOnChange()
 		}
 
 	}
-    if ((pulseOnChange->orNotAnd && oneTrue) || (!pulseOnChange->orNotAnd && allTrue))
+        if ((pulseOnChange->orNotAnd && oneTrue) || (!pulseOnChange->orNotAnd && allTrue))
     {
-         pulseOnChange->counter = pulseOnChange->durationOn;
+            return(true);
+        }
+    return(false);
+}
+
+void updatePulseOnChange()
+{
+	debugPulseOnChange = (pulseOnChange_t*) CurrentPinRegister;
+	pulseOnChange_t* pulseOnChange = (pulseOnChange_t*) CurrentPinRegister;
+
+    
+    switch (pulseOnChange->state)
+    {
+        case STATE_WAITING_FOR_PULSE:
+        {
+          if (activeCondition(pulseOnChange))
+          {
+                       pulseOnChange->counter = pulseOnChange->durationOn;
                 pulseOnChange->state = STATE_PULSING_ACTIVE;
-                CurrentPinHigh();
+                SetCurrentPin(pulseOnChange->activeMode);
+          }
+          else
+          {
+              SetCurrentPin(pulseOnChange->inactiveMode);
+          }
+        }
+        break;
+        case   STATE_PULSING_ACTIVE:
+        {
+            if (pulseOnChange->counter)
+            {
+                -- pulseOnChange->counter;
+            }
+            else
+            {
+                
+                if (pulseOnChange->durationOff >0)
+                {
+                pulseOnChange->counter = pulseOnChange->durationOff;
+                
+                pulseOnChange->state = STATE_PULSING_INACTIVE;
+                }
+                else
+                {
+                    pulseOnChange->state = STATE_WAITING_FOR_PULSE;
+                }
+            }
+            return; // TODO future improvement: work on constant on
+        }
+        break;
+        case    STATE_PULSING_INACTIVE:
+        {
+                 SetCurrentPin(pulseOnChange->inactiveMode);
+            if (pulseOnChange->counter)
+            {
+                -- pulseOnChange->counter;
+            }
+            else
+            {
+                
+                pulseOnChange->counter = pulseOnChange->durationOn;
+                pulseOnChange->state = STATE_WAITING_FOR_PULSE;
+            }
+            return; // TODO future improvement: work on constant on
+            
+        }
+        break;
     }
+    
+	
+
+
     
    
 

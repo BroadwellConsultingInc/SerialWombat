@@ -20,25 +20,24 @@ void outputScaleInit(outputScale_t* outputScale)
 
 const uint16_t outputSamplePeriodMask[] = 
 {
-    0x3FF, // every 1024
-    0x1FF, // every 512
-    0xFF, // Every 256
-    0x7F, // Every 128
-    
-    0x3F, // Every 64
-    0x1F, // Every 32
-    0x0F, // Every 16
-    0x07, // Every 8
-    
-    0x03, // Every 4
+    0x00, // Every 1
     0x01, // Every 2
-    0x00, // Every 1
-    0x00, // Every 1
+    0x03, // Every 4
+    0x07, // Every 8
+    0x0F, // Every 16
+    0x1F, // Every 32
+    0x3F, // Every 64
+    0x7F, // Every 128
+    0xFF, // Every 256
+    0x1FF, // every 512
+    0x3FF, // every 1024
     
-    0x00, // Every 1
-    0x00, // Every 1
-    0x00, // Every 1
-    0x00, // Every 1
+    0x7FF, // Every 2048
+    0xfff, // Every 4096
+    0x1fff, // Every 8192
+    0x3fff, // Every 16384
+    0x7fff, // Every 32768
+    0xffff, // Every 32768
 };
 
 static uint32_t  inputScaling(uint32_t outputValue, outputScale_t* outputScale)
@@ -117,8 +116,10 @@ static uint32_t pid(uint32_t processVariable,outputScale_t* outputScale)
 
 }
 
+outputScale_t* debugOutputScale;
 uint16_t outputScaleProcess(outputScale_t* outputScale)
 {
+    debugOutputScale = outputScale;
 	uint32_t outputValue = GetBuffer(outputScale->sourcePin);
 
 	if (!outputScale->active)

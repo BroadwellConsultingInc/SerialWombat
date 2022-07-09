@@ -17,31 +17,32 @@ void inputProcessInit(inputProcess_t* inputProcess)
 
 const uint16_t inputProcessSamplePeriodMask[] = 
 {
-    0x3FF, // every 1024
-    0x1FF, // every 512
-    0xFF, // Every 256
-    0x7F, // Every 128
-    
-    0x3F, // Every 64
-    0x1F, // Every 32
-    0x0F, // Every 16
-    0x07, // Every 8
-    
-    0x03, // Every 4
+    0x00, // Every 1
     0x01, // Every 2
-    0x00, // Every 1
-    0x00, // Every 1
+    0x03, // Every 4
+    0x07, // Every 8
+    0x0F, // Every 16
+    0x1F, // Every 32
+    0x3F, // Every 64
+    0x7F, // Every 128
+    0xFF, // Every 256
+    0x1FF, // every 512
+    0x3FF, // every 1024
     
-    0x00, // Every 1
-    0x00, // Every 1
-    0x00, // Every 1
-    0x00, // Every 1
+    0x7FF, // Every 2048
+    0xfff, // Every 4096
+    0x1fff, // Every 8192
+    0x3fff, // Every 16384
+    0x7fff, // Every 32768
+    0xffff, // Every 32768
 };
 
 
-
+inputProcess_t* debugInputProcess;
 uint16_t inputProcessProcess(inputProcess_t* inputProcess, uint16_t inputValue)
 {
+    
+    debugInputProcess = inputProcess;
     
     if (inputProcess->active)
     {
@@ -82,6 +83,7 @@ uint16_t inputProcessProcess(inputProcess_t* inputProcess, uint16_t inputValue)
                 case INPUT_TRANSFORM_MODE_LINEAR_MXB:
                 {
                     int32_t temp = inputProcess->mxb.m * inputValue;
+                    temp /= 256;
                     temp += inputProcess->mxb.b;
                     if (temp > 65535)
                     {
@@ -243,7 +245,7 @@ void inputProcessCommProcess(inputProcess_t* inputProcess)
             inputProcess->queue = RXBUFFER16(4);
             inputProcess->queueFrequency = Rxbuffer[6];
             inputProcess->queueHighByte = (Rxbuffer[7] & 0x02) >0;
-            inputProcess->queueHighByte = (Rxbuffer[7] & 0x01) >0;
+            inputProcess->queueLowByte = (Rxbuffer[7] & 0x01) >0;
         }
         break;
         

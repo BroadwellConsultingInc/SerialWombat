@@ -522,7 +522,7 @@ Or similar
             }
 			Txbuffer[5] = '2';	     
 			Txbuffer[6] = '0';	     
-			Txbuffer[7] = '6';	     
+			Txbuffer[7] = '7';	     
 
 			break;
 		case COMMAND_BINARY_READ_PIN_BUFFFER:
@@ -876,6 +876,35 @@ Sample Response:
 
 			}
 			break;
+        case COMMAND_BINARY_QUEUE_CLONE:
+        {
+             uint16_t bytesFree = 0;
+                    uint16_t bytesAvailable = 0;
+            uint16_t dstQueue = RXBUFFER16(1);
+            uint16_t srcQueue = RXBUFFER16(3);
+            SW_QUEUE_RESULT_t result = QUEUE_RESULT_SUCCESS;
+            result = QueueCopy(dstQueue,srcQueue);
+            Txbuffer[1] = result;
+            if (result == QUEUE_RESULT_SUCCESS)
+            	{
+					result = (SW_QUEUE_RESULT_t) QueuePeekByte(RXBUFFER16(3),&Txbuffer[3]); 
+				}
+                
+                if (result == QUEUE_RESULT_SUCCESS)
+                {
+                   
+                    QueueGetBytesFilledInQueue(RXBUFFER16(3), &bytesAvailable);
+                    QueueGetBytesFreeInQueue(RXBUFFER16(3), &bytesFree);                    
+                }
+                else if (result == QUEUE_RESULT_EMPTY)
+                {
+                     QueueGetBytesFreeInQueue(RXBUFFER16(3), &bytesFree);  
+                }
+                TXBUFFER16(4,bytesAvailable);
+                TXBUFFER16(6,bytesFree);
+                
+        }
+        break;
 		case COMMAND_BINARY_READ_RAM:
 			{
 				/** \addtogroup ProtocolBinaryCommands

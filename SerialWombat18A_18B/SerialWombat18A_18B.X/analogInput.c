@@ -1,5 +1,5 @@
 /*
-Copyright 2020-2021 Broadwell Consulting Inc.
+Copyright 2020-2022 Broadwell Consulting Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
@@ -18,6 +18,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
  * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
  * OTHER DEALINGS IN THE SOFTWARE.
+ 
+ Serial Wombat is a registered trademark in the United States of Broadwell 
+ Consulting Inc.
 */
 #include "serialWombat.h"
 #include <stdint.h>

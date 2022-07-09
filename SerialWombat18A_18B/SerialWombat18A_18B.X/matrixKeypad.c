@@ -190,6 +190,8 @@ void initMatrixKeypad (void)
 				matrixKeypad->rowPins[2]  = Rxbuffer[5];
 				matrixKeypad->rowPins[3]  = Rxbuffer[6];
 				matrixKeypad->colPins[0] = Rxbuffer[7];
+                matrixKeypad->delayPeriod = 5;
+                matrixKeypad->delayRemaining = 0;
 
 				uint8_t i;
 				for (i = 0; i < 4; ++i)
@@ -416,6 +418,13 @@ void initMatrixKeypad (void)
         {
            
                 matrixKeypad->queueMask = RXBUFFER16(3);
+           
+        }
+        break;
+         case CONFIGURE_CHANNEL_MODE_8:
+        {
+           
+                matrixKeypad->delayPeriod = Rxbuffer[3];
            
         }
         break;
