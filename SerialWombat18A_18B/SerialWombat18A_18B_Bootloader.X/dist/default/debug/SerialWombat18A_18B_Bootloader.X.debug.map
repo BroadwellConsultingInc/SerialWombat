@@ -4,13 +4,13 @@ Tool Name:
   c:\program files\microchip\xc16\v1.70\bin\bin\..\bin/elf-ld.exe
 
 Command:
-  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00003938.00 \
-  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00003938.01 \
-  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00003938.02 \
-  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00003938.03 \
-  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00003938.04 \
-  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00003938.05 \
-  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00003938.06 \
+  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00008790.00 \
+  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00008790.01 \
+  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00008790.02 \
+  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00008790.03 \
+  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00008790.04 \
+  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00008790.05 \
+  -TC:\\Users\\JAB\\AppData\\Local\\Temp\\tmp00008790.06 \
   -p24FJ256GA702 \
   --mdfp=C:/Program Files/Microchip/MPLABX/v5.45/packs/Microchip/PIC24F-GA-GB_DFP/1.4.141/xc16 \
   -o \
@@ -936,7 +936,7 @@ __FDEVOPT1
 .comment
  *(.comment)
 
-.debug_info       0x000000       0xfd82
+.debug_info       0x000000       0xfda0
  *(.debug_info)
  .debug_info      0x000000       0x152d build/default/debug/_ext/275911920/adc1.o
  .debug_info      0x00152d        0x56b build/default/debug/_ext/275911920/clock.o
@@ -957,10 +957,10 @@ __FDEVOPT1
  .debug_info      0x00b52a        0xf33 build/default/debug/_ext/275911920/uart2.o
  .debug_info      0x00c45d        0x101 build/default/debug/_ext/1542527744/flash.o
  .debug_info      0x00c55e        0xbba build/default/debug/main_boot.o
- .debug_info      0x00d118       0x1747 build/default/debug/protocol_boot.o
- .debug_info      0x00e85f       0x114d build/default/debug/_ext/1497480854/pinDigitalHwSpecific.o
- .debug_info      0x00f9ac         0xea build/default/debug/_ext/1497480854/wombatasm.o
- .debug_info      0x00fa96        0x2ec build/default/debug/_ext/998979777/asciiConversion.o
+ .debug_info      0x00d118       0x1765 build/default/debug/protocol_boot.o
+ .debug_info      0x00e87d       0x114d build/default/debug/_ext/1497480854/pinDigitalHwSpecific.o
+ .debug_info      0x00f9ca         0xea build/default/debug/_ext/1497480854/wombatasm.o
+ .debug_info      0x00fab4        0x2ec build/default/debug/_ext/998979777/asciiConversion.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000       0x21cf

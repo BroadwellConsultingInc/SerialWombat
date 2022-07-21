@@ -14,7 +14,7 @@ void outputScaleInit(outputScale_t* outputScale)
     outputScale->commTimeout = 0;
     outputScale->commTimeoutCounter = 0;
     outputScale->active = 0;
-    outputScale->sampleRate = 10;
+    outputScale->sampleRate = 0;
 }
 
 
@@ -372,6 +372,7 @@ uint16_t outputScaleCommProcess(outputScale_t* outputScale)
 	{
 		outputScale->transformMode = OUTPUT_TRANSFORM_MODE_HYSTERESIS;
 		outputScale->hystersis.lastValue = RXBUFFER16(4);
+        outputScale->sampleRate = 0;
 	}
 	break;
 

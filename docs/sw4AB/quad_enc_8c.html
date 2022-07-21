@@ -158,14 +158,14 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <pre class="fragment">\brief Initialization routine for Quadrature Encoder pin mode
 </pre><hr  />
-<h2><a class="anchor" id="autotoc_md52"></a>
+<h2><a class="anchor" id="autotoc_md50"></a>
 Retrevial of Quadrature Encoder Position Value</h2>
 <p>Configure the QuadEnc pin mode using the CONFIGURE_CHANNEL_MODE_0 command before reading values. <br  />
  The Quadrature Encoder Position value is stored in the Primary Pin's 16-bit Public data area. Use the Read Pin Buffer command to retreive it.</p>
 <p>The Position value is a 16-bit unsigned number. Transitions that decrement a value of 0 will roll over to 65535. Transitions which incrment a value of 65535 will roll over to 0. <br  />
 </p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md54"></a>
+<h2><a class="anchor" id="autotoc_md52"></a>
 CONFIGURE_CHANNEL_MODE_0:</h2>
 <p>Initialize Quadrature Encoder Reader.</p>
 <table class="markdownTable">

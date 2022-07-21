@@ -92,6 +92,9 @@ Classes</h2></td></tr>
 Macros</h2></td></tr>
 <tr class="memitem:ac259c41e45c2d98a7d5a425b3099e996"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pin_registers_8h.html#ac259c41e45c2d98a7d5a425b3099e996">BYTES_PER_PIN_REGISTER</a>&#160;&#160;&#160;20</td></tr>
 <tr class="separator:ac259c41e45c2d98a7d5a425b3099e996"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fc08f11f6c83dbc94a75ca49d29fae8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pin_registers_8h.html#a0fc08f11f6c83dbc94a75ca49d29fae8">BUILD_BUG_ON</a>(condition)&#160;&#160;&#160;((void)sizeof(char[1 - 2*!!(condition)]))</td></tr>
+<tr class="memdesc:a0fc08f11f6c83dbc94a75ca49d29fae8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Awesome way to check structure sizes at build time.  <a href="pin_registers_8h.html#a0fc08f11f6c83dbc94a75ca49d29fae8">More...</a><br /></td></tr>
+<tr class="separator:a0fc08f11f6c83dbc94a75ca49d29fae8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0ef6855e78cbf62667df9363731c9aa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pin_registers_8h.html#ae0ef6855e78cbf62667df9363731c9aa">USE_BUFFERED_PIN_REGISTER</a></td></tr>
 <tr class="separator:ae0ef6855e78cbf62667df9363731c9aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a746aa3c2d8a5e19351392e2aa0e1f8d0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pin_registers_8h.html#a746aa3c2d8a5e19351392e2aa0e1f8d0">CurrentPinRegister</a>&#160;&#160;&#160;(&amp;<a class="el" href="pin_registers_8h.html#ad2c92c9515bb39bf6ebe01ab1bc891d4">pinRegisterBuffer</a>)</td></tr>
@@ -125,6 +128,27 @@ Variables</h2></td></tr>
 <tr class="separator:ad2c92c9515bb39bf6ebe01ab1bc891d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a0fc08f11f6c83dbc94a75ca49d29fae8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fc08f11f6c83dbc94a75ca49d29fae8">&#9670;&nbsp;</a></span>BUILD_BUG_ON</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define BUILD_BUG_ON</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">condition</td><td>)</td>
+          <td>&#160;&#160;&#160;((void)sizeof(char[1 - 2*!!(condition)]))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Awesome way to check structure sizes at build time. </p>
+<p>See <a href="https://scaryreasoner.wordpress.com/2009/02/28/checking-sizeof-at-compile-time/">https://scaryreasoner.wordpress.com/2009/02/28/checking-sizeof-at-compile-time/</a> </p>
+
+</div>
+</div>
 <a id="ac259c41e45c2d98a7d5a425b3099e996"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac259c41e45c2d98a7d5a425b3099e996">&#9670;&nbsp;</a></span>BYTES_PER_PIN_REGISTER</h2>
 

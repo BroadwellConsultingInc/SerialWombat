@@ -10,6 +10,7 @@ void inputProcessInit(inputProcess_t* inputProcess)
     inputProcess->excludeAbove = 65535;
     inputProcess->excludeBelow = 0;
     inputProcess->queue = 0xFFFF;
+    inputProcess->queueFrequency = 0;
     inputProcess->min = 65535;
     inputProcess->max = 0;
 }

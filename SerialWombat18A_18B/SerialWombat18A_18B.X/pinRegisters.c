@@ -162,6 +162,23 @@ uint32_t result = GetSourceVoltageADC();
      {  extern uint32_t FramesRun;
          return ( (FramesRun & 0x1000)? 0xFFFF:0);
      }
+    
+    else if (pin ==  SW_DATA_SOURCE_2HZ_SAW )
+     {  extern uint32_t FramesRun;
+         return ( FramesRun * 128 );
+     }
+     else if (pin ==  SW_DATA_SOURCE_1HZ_SAW )
+     {  extern uint32_t FramesRun;
+         return ( FramesRun * 64 );
+     }
+     else if (pin ==  SW_DATA_SOURCE_2SEC_SAW )
+     {  extern uint32_t FramesRun;
+         return ( FramesRun * 32 );
+     }
+     else if (pin ==  SW_DATA_SOURCE_8SEC_SAW )
+     {  extern uint32_t FramesRun;
+          return ( FramesRun *  8 );
+    }
      else if (pin == SW_DATA_SOURCE_LFSR)
      {
          return (wrandom(&lfsrSeed));

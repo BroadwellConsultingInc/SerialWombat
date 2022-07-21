@@ -11,3 +11,4 @@ F:\keep\GitHub\broadwellconsultinginc\SerialWombat\SW18ABPostProcessingUtility\S
 F:\keep\GitHub\broadwellconsultinginc\SerialWombat\SW18ABPostProcessingUtility\SW18ABPostProcessing\obj\Debug\netcoreapp3.1\SW18ABPostProcessing.dll
 F:\keep\GitHub\broadwellconsultinginc\SerialWombat\SW18ABPostProcessingUtility\SW18ABPostProcessing\obj\Debug\netcoreapp3.1\SW18ABPostProcessing.pdb
 F:\keep\GitHub\broadwellconsultinginc\SerialWombat\SW18ABPostProcessingUtility\SW18ABPostProcessing\obj\Debug\netcoreapp3.1\SW18ABPostProcessing.genruntimeconfig.cache
+F:\keep\GitHub\broadwellconsultinginc\SerialWombat\SW18ABPostProcessingUtility\SW18ABPostProcessing\obj\Debug\netcoreapp3.1\SW18ABPostProcessing.GeneratedMSBuildEditorConfig.editorconfig

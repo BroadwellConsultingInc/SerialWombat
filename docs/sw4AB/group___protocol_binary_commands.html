@@ -196,44 +196,15 @@ Binary Read RAM, 16 Bit address</h2>
 </blockquote>
 <hr  />
 <h2><a class="anchor" id="autotoc_md42"></a>
-Binary Read RAM, 16 Bit address</h2>
-<p>Reads a byte from an address in Microcontroller RAM. The SW4A and SW4B use 16 bit addresses. <br  />
-</p>
-<p>Note that the PIC16F15214 is a Microchip Enhanced Mid-Range chip with both a banked RAM area and a Linear RAM area at an offset address. <br  />
- See the datasheet for details.</p>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">0xA0 </td><td class="markdownTableBodyLeft">Least Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">Most Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55*  </td></tr>
-</table>
-<p>0x55 is recommended, but any byte is acceptable</p>
-<p>Response:</p>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">0xA0 </td><td class="markdownTableBodyLeft">Least Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">Most Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">Byte Read From Ram </td><td class="markdownTableBodyLeft">Echoed </td><td class="markdownTableBodyLeft">Echoed </td><td class="markdownTableBodyLeft">Echoed </td><td class="markdownTableBodyLeft">Echoed  </td></tr>
-</table>
-<p>Examples:</p>
-<p>Read the byte at RAM address 0x0247.</p>
-<blockquote class="doxtable">
-<p><code>0xA0 0x47 0x02 0x55 0x55 0x55 0x55 0x55</code> </p>
-</blockquote>
-<p>Assuming address 0x0247 held the value 0xAC , Response: </p><blockquote class="doxtable">
-<p><code>0xA0 0x47 0x02 0xAC 0x55 0x55 0x55 0x55</code> </p>
-</blockquote>
-<hr  />
-<h2><a class="anchor" id="autotoc_md44"></a>
-Binary Read Flash, 16 Bit address</h2>
-<p>Reads a byte from an address in Microcontroller RAM. The SW4A and SW4B use 16 bit addresses. <br  />
+Binary Read Flash, 16 Bit address, 16 Bit result</h2>
+<p>Reads two bytes from an address in Microcontroller Flash. The SW4A and SW4B use 16 bit addresses. <br  />
 </p>
 <p>See the Datasheet for the microchip PIC16F15214 for information on organization</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">0xA0 </td><td class="markdownTableBodyLeft">Least Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">Most Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55*  </td></tr>
+<td class="markdownTableBodyLeft">0xA1 </td><td class="markdownTableBodyLeft">Least Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">Most Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">0x00 </td><td class="markdownTableBodyLeft">0x00 </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55*  </td></tr>
 </table>
 <p>0x55 is recommended, but any byte is acceptable</p>
 <p>Response:</p>
@@ -241,18 +212,18 @@ Binary Read Flash, 16 Bit address</h2>
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">0xA0 </td><td class="markdownTableBodyLeft">Least Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">Most Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">Byte Read From Ram </td><td class="markdownTableBodyLeft">Echoed </td><td class="markdownTableBodyLeft">Echoed </td><td class="markdownTableBodyLeft">Echoed </td><td class="markdownTableBodyLeft">Echoed  </td></tr>
+<td class="markdownTableBodyLeft">0xA1 </td><td class="markdownTableBodyLeft">Least Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">Most Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">Echoed </td><td class="markdownTableBodyLeft">Echoed </td><td class="markdownTableBodyLeft">Low Byte Read From Flash </td><td class="markdownTableBodyLeft">High Byte Read From Flash </td><td class="markdownTableBodyLeft">Echoed  </td></tr>
 </table>
 <p>Examples:</p>
-<p>Read the byte at FLASH address 0x0847.</p>
+<p>Read the word at FLASH address 0x0846.</p>
 <blockquote class="doxtable">
-<p><code>0xA1 0x47 0x08 0x55 0x55 0x55 0x55 0x55</code> </p>
+<p><code>0xA1 0x46 0x08 0x55 0x55 0x55 0x55 0x55</code> </p>
 </blockquote>
-<p>Assuming address 0x0847 held the value 0xEF , Response: </p><blockquote class="doxtable">
-<p><code>0xA1 0x47 0x08 0xEF 0x55 0x55 0x55 0x55</code> </p>
+<p>Assuming address 0x0846 held the value 0x07EF , Response: </p><blockquote class="doxtable">
+<p><code>0xA1 0x46 0x08 0xEF 0x07 0x55 0x55 0x55</code> </p>
 </blockquote>
 <hr  />
-<h2><a class="anchor" id="autotoc_md46"></a>
+<h2><a class="anchor" id="autotoc_md44"></a>
 Binary Write RAM, 16 Bit address (</h2>
 <p>Reads a byte from an address in Microcontroller RAM. The SW4A and SW4B use 16 bit addresses. <br  />
 </p>
@@ -262,7 +233,7 @@ Binary Write RAM, 16 Bit address (</h2>
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">0xA0 </td><td class="markdownTableBodyLeft">Least Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">Most Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">0 (for 32-bit compatability) </td><td class="markdownTableBodyLeft">0 (for 32-bit compatability) </td><td class="markdownTableBodyLeft">Byte To write </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55*  </td></tr>
+<td class="markdownTableBodyLeft">0xA3 </td><td class="markdownTableBodyLeft">Least Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">Most Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">0 (for 32-bit compatability) </td><td class="markdownTableBodyLeft">0 (for 32-bit compatability) </td><td class="markdownTableBodyLeft">Byte To write </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55*  </td></tr>
 </table>
 <p>0x55 is recommended, but any byte is acceptable</p>
 <p>Response:</p>
@@ -273,7 +244,7 @@ Binary Write RAM, 16 Bit address (</h2>
 <p><code>0xA3 0x47 0x02 0x00 0x00 0x32 0x55 0x55</code> </p>
 </blockquote>
 <hr  />
-<h2><a class="anchor" id="autotoc_md48"></a>
+<h2><a class="anchor" id="autotoc_md46"></a>
 Binary Send 7 bytes out first UART</h2>
 <p>Queues 7 bytes to be sent out of the first avaialble Hardware UART. Assumes a UART pin mode has already been set up. The host should query avaialble space before using this command.</p>
 <table class="markdownTable">
@@ -290,7 +261,7 @@ Binary Send 7 bytes out first UART</h2>
 <p><code>0xB0 0x57 0x4F 0x4D 0x42 0x41 0x54 0x21</code> </p>
 </blockquote>
 <hr  />
-<h2><a class="anchor" id="autotoc_md50"></a>
+<h2><a class="anchor" id="autotoc_md48"></a>
 Binary Read 7 bytes from first UART</h2>
 <p>Read 7 bytes from the queue of the first avaialble Hardware UART. Assumes a UART pin mode has already been set up. The host should query avaialble bytes to determine the nubmer of bytes avaiable before using this command. This command should only be called if at least 7 bytes are available.</p>
 <table class="markdownTable">

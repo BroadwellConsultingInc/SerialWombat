@@ -112,6 +112,12 @@ $(function() {
 <li>COMMAND_BINARY_QUEUE_ADD_BYTES
 : <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8dacb1c98ab92740452f7e0c0cd590ae18d">protocol.h</a>
 </li>
+<li>COMMAND_BINARY_QUEUE_CLONE
+: <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da40a1aabd1c50f76be5c9429bb311e880">protocol.h</a>
+</li>
+<li>COMMAND_BINARY_QUEUE_GET_INFO
+: <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da5457789fdf5d0486326d21b13bfe6ed5">protocol.h</a>
+</li>
 <li>COMMAND_BINARY_QUEUE_INITIALIZE
 : <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8dae1e4dbd7bbec3f44ab53866eb059caa7">protocol.h</a>
 </li>
@@ -133,8 +139,17 @@ $(function() {
 <li>COMMAND_BINARY_READ_USER_BUFFER
 : <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da67605eb9e6dceeae1d092c18c5f46d26">protocol.h</a>
 </li>
+<li>COMMAND_BINARY_RW_PIN_MEMORY
+: <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da0f598d706e1e8258dfc02b7071328787">protocol.h</a>
+</li>
 <li>COMMAND_BINARY_SET_PIN_BUFFFER
 : <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da1d3d130d86e0693a1106fd6f545e8b87">protocol.h</a>
+</li>
+<li>COMMAND_BINARY_TEST_SEQUENCE
+: <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da71b9139eeec0a19080f6e681a26bb269">protocol.h</a>
+</li>
+<li>COMMAND_BINARY_WRITE_FLASH
+: <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da4ee4240181bad55f368825b9b167c67b">protocol.h</a>
 </li>
 <li>COMMAND_BINARY_WRITE_RAM
 : <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da6acd55ffe278405edece68f3821b449f">protocol.h</a>
@@ -147,6 +162,15 @@ $(function() {
 </li>
 <li>COMMAND_BOOTLOAD
 : <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da38cbeaa4f4246de7963f563ed9fe134f">protocol.h</a>
+</li>
+<li>COMMAND_CALIBRATE_ANALOG
+: <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da6c783cf16c8e91db67997e333eead52b">protocol.h</a>
+</li>
+<li>COMMAND_ENABLE_2ND_UART
+: <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da6d622a221939d11598cb27a5f873cc54">protocol.h</a>
+</li>
+<li>COMMAND_READ_LAST_ERROR_PACKET
+: <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da40a5aefffb2fa81d64fb3b6b308b2508">protocol.h</a>
 </li>
 <li>COMMAND_UART0_RX_7BYTES
 : <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da758098bbe9dda608e64b564313c5868e">protocol.h</a>
@@ -232,6 +256,12 @@ $(function() {
 <li>CONFIGURE_CHANNEL_MODE_HW_3
 : <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da866dc57814fb3fcdf9cf4dbfdd339c34">protocol.h</a>
 </li>
+<li>CONFIGURE_CHANNEL_MODE_INPUT_PROCESSING
+: <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da253dc2dad15cec9ffcb00cfcfc15c4ab">protocol.h</a>
+</li>
+<li>CONFIGURE_CHANNEL_MODE_SCALED_OUTPUT
+: <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8daeb418d93d00d4c7b26f16e01a04cb595">protocol.h</a>
+</li>
 <li>CONFIGURE_CHANNEL_MODE_t
 : <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8d">protocol.h</a>
 </li>
@@ -240,28 +270,28 @@ $(function() {
 </li>
 <li>copy_IOC_PortBuffer
 : <a class="el" href="process_pins_8c.html#abe9eed978726939153b6a751574d3654">processPins.c</a>
-, <a class="el" href="pulse_timer_8c.html#abe9eed978726939153b6a751574d3654">pulseTimer.c</a>
 , <a class="el" href="quad_enc_8c.html#abe9eed978726939153b6a751574d3654">quadEnc.c</a>
+, <a class="el" href="pulse_timer_8c.html#abe9eed978726939153b6a751574d3654">pulseTimer.c</a>
 </li>
 <li>copy_IOC_TimeBuffer
-: <a class="el" href="pulse_timer_8c.html#a1cac2db3007142bff108531f435e29b5">pulseTimer.c</a>
-, <a class="el" href="process_pins_8c.html#a1cac2db3007142bff108531f435e29b5">processPins.c</a>
+: <a class="el" href="process_pins_8c.html#a1cac2db3007142bff108531f435e29b5">processPins.c</a>
+, <a class="el" href="pulse_timer_8c.html#a1cac2db3007142bff108531f435e29b5">pulseTimer.c</a>
 </li>
 <li>CopyFromArrayToPinBuffer()
-: <a class="el" href="pin_registers_8c.html#adac46b87372baac07f69080d640a2a52">pinRegisters.c</a>
-, <a class="el" href="pin_registers_8h.html#aaa191f323bb890a581c1b24af9b32d37">pinRegisters.h</a>
+: <a class="el" href="pin_registers_8h.html#aaa191f323bb890a581c1b24af9b32d37">pinRegisters.h</a>
+, <a class="el" href="pin_registers_8c.html#adac46b87372baac07f69080d640a2a52">pinRegisters.c</a>
 </li>
 <li>CopyFromPinBufferToArray()
-: <a class="el" href="pin_registers_8h.html#ad5fa9d2dee2c4b11391ad3fe3946c505">pinRegisters.h</a>
-, <a class="el" href="pin_registers_8c.html#a3144eae8d27f5d98a10540dc8843c647">pinRegisters.c</a>
+: <a class="el" href="pin_registers_8c.html#a3144eae8d27f5d98a10540dc8843c647">pinRegisters.c</a>
+, <a class="el" href="pin_registers_8h.html#ad5fa9d2dee2c4b11391ad3fe3946c505">pinRegisters.h</a>
 </li>
 <li>CurrentPin
 : <a class="el" href="process_pins_8c.html#a3dbb8f5cd802b02453e098d16997e69b">processPins.c</a>
 , <a class="el" href="serial_wombat_8h.html#a3dbb8f5cd802b02453e098d16997e69b">serialWombat.h</a>
 </li>
 <li>CurrentPinAnalog()
-: <a class="el" href="pin_digital_hw_specific_8c.html#a61e4be3cb83e2456983ec676f82a8bfc">pinDigitalHwSpecific.c</a>
-, <a class="el" href="serial_wombat_8h.html#a3a3d278ee2758b7abb53e3e2d7a045c1">serialWombat.h</a>
+: <a class="el" href="serial_wombat_8h.html#a3a3d278ee2758b7abb53e3e2d7a045c1">serialWombat.h</a>
+, <a class="el" href="pin_digital_hw_specific_8c.html#a61e4be3cb83e2456983ec676f82a8bfc">pinDigitalHwSpecific.c</a>
 </li>
 <li>CurrentPinBitmap()
 : <a class="el" href="serial_wombat_8h.html#adc0c81f040112b3cbaf2c1b1d222a579">serialWombat.h</a>
@@ -271,12 +301,12 @@ $(function() {
 , <a class="el" href="serial_wombat_8h.html#a22286dddb9a45fa58fb7d123048e3ebf">serialWombat.h</a>
 </li>
 <li>CurrentPinInput()
-: <a class="el" href="pin_digital_hw_specific_8c.html#afd1dd835ddc2c14205bee3dee245f9a8">pinDigitalHwSpecific.c</a>
-, <a class="el" href="serial_wombat_8h.html#a6583b2c366beaa5b9869f20a0addc52c">serialWombat.h</a>
+: <a class="el" href="serial_wombat_8h.html#a6583b2c366beaa5b9869f20a0addc52c">serialWombat.h</a>
+, <a class="el" href="pin_digital_hw_specific_8c.html#afd1dd835ddc2c14205bee3dee245f9a8">pinDigitalHwSpecific.c</a>
 </li>
 <li>CurrentPinLow()
-: <a class="el" href="serial_wombat_8h.html#a2cbaf411931fb9450528471b575815d4">serialWombat.h</a>
-, <a class="el" href="pin_digital_hw_specific_8c.html#abdf5f8ccd9e7debf48aa6e5ae69311c0">pinDigitalHwSpecific.c</a>
+: <a class="el" href="pin_digital_hw_specific_8c.html#abdf5f8ccd9e7debf48aa6e5ae69311c0">pinDigitalHwSpecific.c</a>
+, <a class="el" href="serial_wombat_8h.html#a2cbaf411931fb9450528471b575815d4">serialWombat.h</a>
 </li>
 <li>CurrentPinMask
 : <a class="el" href="pin_digital_hw_specific_8h.html#abc6e27dc6f9eb6fde1d6e47f9d26b11e">pinDigitalHwSpecific.h</a>
@@ -288,26 +318,28 @@ $(function() {
 </li>
 <li>CurrentPinNoPullUp()
 : <a class="el" href="serial_wombat_8h.html#a5aebff93aa44f0e1a30c89658b1e44b2">serialWombat.h</a>
-, <a class="el" href="pin_digital_hw_specific_8c.html#a4ffc1ec4d49a1107066e666f761564be">pinDigitalHwSpecific.c</a>
 </li>
 <li>CurrentPinNoPullup()
 : <a class="el" href="serial_wombat_8h.html#a4933a3b862b6287e654a296241b7305f">serialWombat.h</a>
+</li>
+<li>CurrentPinNoPullUp()
+: <a class="el" href="pin_digital_hw_specific_8c.html#a4ffc1ec4d49a1107066e666f761564be">pinDigitalHwSpecific.c</a>
 </li>
 <li>CurrentPinNotAnalog()
 : <a class="el" href="serial_wombat_8h.html#a95420788c5c92ee1f18b09443eee83b9">serialWombat.h</a>
 , <a class="el" href="pin_digital_hw_specific_8c.html#a975b632c43ad0754eea112de349bdd94">pinDigitalHwSpecific.c</a>
 </li>
 <li>CurrentPinNotOpenDrain()
-: <a class="el" href="serial_wombat_8h.html#abd6ec57e5c750005d053220d5c49d2eb">serialWombat.h</a>
-, <a class="el" href="pin_digital_hw_specific_8c.html#a975d74ab0dda533968c318709660e7ef">pinDigitalHwSpecific.c</a>
+: <a class="el" href="pin_digital_hw_specific_8c.html#a975d74ab0dda533968c318709660e7ef">pinDigitalHwSpecific.c</a>
+, <a class="el" href="serial_wombat_8h.html#abd6ec57e5c750005d053220d5c49d2eb">serialWombat.h</a>
 </li>
 <li>CurrentPinOpenDrain()
 : <a class="el" href="serial_wombat_8h.html#a086bb3860241fb5bf117339976bdb112">serialWombat.h</a>
 , <a class="el" href="pin_digital_hw_specific_8c.html#a276171385137b4c5dea21815d2f656ca">pinDigitalHwSpecific.c</a>
 </li>
 <li>CurrentPinOutput()
-: <a class="el" href="pin_digital_hw_specific_8c.html#aab5357a99709558e61536d32bec5f8be">pinDigitalHwSpecific.c</a>
-, <a class="el" href="serial_wombat_8h.html#ac9899453809a6f5278f71301a778bc7d">serialWombat.h</a>
+: <a class="el" href="serial_wombat_8h.html#ac9899453809a6f5278f71301a778bc7d">serialWombat.h</a>
+, <a class="el" href="pin_digital_hw_specific_8c.html#aab5357a99709558e61536d32bec5f8be">pinDigitalHwSpecific.c</a>
 </li>
 <li>CurrentPinPort()
 : <a class="el" href="serial_wombat_8h.html#a523cf7d3a7bf51b7c1d2745e8f414e68">serialWombat.h</a>
