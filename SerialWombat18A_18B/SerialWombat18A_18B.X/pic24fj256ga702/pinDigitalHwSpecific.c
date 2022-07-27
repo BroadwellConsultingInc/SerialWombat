@@ -1,6 +1,6 @@
 #include "mcc_generated_files/system.h"
 #include "deviceSpecific.h"
-#include "serialwombat.h"
+#include "serialWombat.h"
 
 void or128(uint16_t* array, uint16_t value); 
 void and128(uint16_t* array, uint16_t value); 

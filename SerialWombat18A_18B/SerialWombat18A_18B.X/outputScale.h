@@ -26,7 +26,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #define _OUTPUT_SCALE_
 
 #include <stdint.h>
-#include "serialwombat.h"
+#include "serialWombat.h"
 
 typedef enum 
 {
