@@ -48,7 +48,7 @@
 */
 
 #include "adc1.h"
-#include "SerialWombat.h"
+#include "serialWombat.h"
 /**
   Section: Driver Interface
 */

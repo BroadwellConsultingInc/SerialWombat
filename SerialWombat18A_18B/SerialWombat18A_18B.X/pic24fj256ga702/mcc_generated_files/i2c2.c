@@ -46,7 +46,7 @@
 
 #include "i2c2.h"
 #include <stdbool.h>
-#include "SerialWombat.h"
+#include "serialWombat.h"
 
 
 //#define I2C_DEBUG_OUTPUT

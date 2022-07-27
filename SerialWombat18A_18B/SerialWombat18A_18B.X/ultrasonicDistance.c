@@ -22,7 +22,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 
 /* Serial Wombat is a trademark of Broadwell Consulting Inc. */
 
-#include "SerialWombat.h"
+#include "serialWombat.h"
 #include "inputProcess.h"
 #include <stdint.h>
 

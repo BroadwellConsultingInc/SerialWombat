@@ -1,4 +1,4 @@
-#include "SerialWombat.h"
+#include "serialWombat.h"
 #include "inputProcess.h"
 void inputProcessInit(inputProcess_t* inputProcess)
 {

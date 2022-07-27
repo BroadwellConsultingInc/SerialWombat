@@ -1,4 +1,4 @@
-#include "SerialWombat.h"
+#include "serialWombat.h"
 #include <stdint.h>
 
 typedef struct quadEnc_n{

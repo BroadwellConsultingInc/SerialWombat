@@ -1,7 +1,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <string.h>
-#include "SerialWombat.h"
+#include "serialWombat.h"
 #include "asciiConversion.h"
 uint32_t debug_discarded_bytes = 0;
 

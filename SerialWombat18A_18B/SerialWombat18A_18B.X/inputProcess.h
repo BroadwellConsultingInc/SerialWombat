@@ -26,7 +26,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #define _INPUT_PROCESS_
 
 #include <stdint.h>
-#include "serialWombat.h"
+#include "serialwombat.h"
 
 typedef enum
 {

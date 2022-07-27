@@ -1,4 +1,4 @@
-#include "SerialWombat.h"
+#include "serialWombat.h"
 #include "outputScale.h"
 void outputScaleInit(outputScale_t* outputScale)
 {

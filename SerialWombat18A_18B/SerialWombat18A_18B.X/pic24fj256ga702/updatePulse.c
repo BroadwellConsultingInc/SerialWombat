@@ -1,5 +1,5 @@
 #include <stdint.h>
-#include "SerialWombat.h"
+#include "serialWombat.h"
 
 void updatePulseOutput(uint8_t pin)
 {
