@@ -47,15 +47,15 @@ typedef enum
 typedef struct outputScale_n
 {
     union{
-        int16_t transform_i16[6];
-    uint16_t transform_u16[6];    
-    uint8_t transform_bytes[12];
+        int16_t transform_i16[7];
+    uint16_t transform_u16[7];    
+    uint8_t transform_bytes[14];
 	struct{
 		uint16_t highLimit;
 		uint16_t lowLimit;
-		uint16_t lastValue;
 		uint16_t outputHigh;
 		uint16_t outputLow;
+        uint16_t lastValue;
 	}hystersis;
 	struct{
 		int32_t integrator;
@@ -75,9 +75,9 @@ typedef struct outputScale_n
     uint16_t commTimeoutCounter;
     uint16_t commTimeoutValue;
     uint16_t targetValue;
+        uint16_t lastValue;
     uint8_t filterMode;
     uint8_t  transformMode;
-
     uint8_t sourcePin;
     uint8_t invert:1;
     uint8_t active:1;

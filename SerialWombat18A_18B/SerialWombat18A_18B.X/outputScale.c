@@ -15,6 +15,7 @@ void outputScaleInit(outputScale_t* outputScale)
     outputScale->commTimeoutCounter = 0;
     outputScale->active = 0;
     outputScale->sampleRate = 0;
+    outputScale->lastValue = GetBuffer(outputScale->sourcePin);
 }
 
 
@@ -198,35 +199,30 @@ uint16_t outputScaleProcess(outputScale_t* outputScale)
 					{
 						int32_t difference;
 
-                        if (outputScale->sourcePin == CurrentPin)
-                        {
-                            difference = (int32_t)outputScale->targetValue - CurrentPinRegister->generic.buffer;
-                        }
-                        else
-                        {
-						difference = (int32_t)outputValue - CurrentPinRegister->generic.buffer;
-                        }
+                       
+						difference = (int32_t)outputValue - outputScale->lastValue;
+                     
 
 						if (difference > 0)
 						{
 							if (difference > outputScale->filterConstant)
 							{
-								outputValue = CurrentPinRegister->generic.buffer + outputScale->filterConstant;
+								outputValue = outputScale->lastValue + outputScale->filterConstant;
 							}
 							else
 							{
-								outputValue = CurrentPinRegister->generic.buffer + difference;
+								outputValue = outputScale->lastValue + difference;
 							}
 						}
 						else 
 						{
 							if (difference < -((int32_t)outputScale->filterConstant))
 							{
-								outputValue = CurrentPinRegister->generic.buffer - outputScale->filterConstant;
+								outputValue = outputScale->lastValue - outputScale->filterConstant;
 							}
 							else
 							{
-								outputValue = CurrentPinRegister->generic.buffer + difference;
+								outputValue = outputScale->lastValue + difference;
 							}
 						}
 					}
@@ -234,21 +230,10 @@ uint16_t outputScaleProcess(outputScale_t* outputScale)
                     
                     case OUTPUT_FILTER_MODE_FIRST_ORDER:
 					{
-                        if (outputScale->sourcePin == CurrentPin)
-                        {
-                            outputValue = CurrentPinRegister->generic.buffer;
-                            outputValue *= outputScale->filterConstant;
-                            outputValue += (65535- outputScale->filterConstant) * (uint32_t) outputScale->targetValue;
-                            if (outputValue < 0xFFFF0000)
-                            {
-                                outputValue += 0x8000;
-                            }
-                            outputValue >>= 16;
-                        }
-                        else
-                        {
+                       
+                        
                             uint32_t result;
-                             result = CurrentPinRegister->generic.buffer;
+                             result = outputScale->lastValue;
                             result *= outputScale->filterConstant;
                             result += (65535- outputScale->filterConstant) * outputValue;
                             if (result < 0xFFFF0000)
@@ -256,7 +241,7 @@ uint16_t outputScaleProcess(outputScale_t* outputScale)
                                 result += 0x8000;
                             }
 						outputValue = result >>16;
-                        }
+                        
 
 						
 					}
@@ -265,11 +250,11 @@ uint16_t outputScaleProcess(outputScale_t* outputScale)
 		}
 		else
 		{
-			outputValue = CurrentPinRegister->generic.buffer;  // Don't change unless on sample period
+			outputValue = outputScale->lastValue;  // Don't change unless on sample period
 		}
 	}
 
-
+    outputScale->lastValue = outputValue;
 	if (outputScale->outputMin != 0 || outputScale->outputMax != 65535)
 	{
 
@@ -278,7 +263,7 @@ uint16_t outputScaleProcess(outputScale_t* outputScale)
 		outputValue += outputScale->outputMin;
 	}
 
-
+  
 
 	return(outputValue);
 }

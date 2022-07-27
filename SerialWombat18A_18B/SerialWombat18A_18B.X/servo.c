@@ -185,9 +185,12 @@ pulsetime = fixed time + variableTime * buffer / 65536.
 
 void updateServoHw()
 {   
-
-    CurrentPinRegister->generic.buffer = outputScaleProcess(&servo->outputScale);
-  
+    uint16_t driveValue;
+    driveValue = outputScaleProcess(&servo->outputScale);
+    if (servo->outputScale.sourcePin != CurrentPin)
+    {
+        CurrentPinRegister->generic.buffer = driveValue;
+    }
 	switch (servo->state)
 	{
 		case SERVO_STATE_WAITING:
@@ -204,7 +207,7 @@ void updateServoHw()
 
 					//	CCP1CON = 0x80; //Disable CCP1CON
 
-					uint32_t period =  (uint32_t) CurrentPinRegister->generic.buffer;
+					uint32_t period =  (uint32_t) driveValue;
 					if (servo->reverse)
 					{
 						period = 65535 - period;
