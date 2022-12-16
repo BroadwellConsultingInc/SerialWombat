@@ -80,6 +80,10 @@ The Serial Wombat 4A and 4B firmware runs on the PIC16F15214 microcontroller.  I
 You can compile the firmware yourself and program chips using a PICKIT or similar programming device, or you can buy preprogrammed kits from Broadwell Consulting Inc on Amazon.
 
 The Serial Wombat binary image / Hex File is made up of two separate projects: A bootloader project and a Serial Wombat firmware project.
+  
+An overview of the bootloadwer is available here:
+
+  [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/OfW4hHFVy3U/0.jpg)](https://www.youtube.com/watch?v=OfW4hHFVy3U)
 
 SW18AB FIRMWARE ARCHITECTURE
 =====================
