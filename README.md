@@ -85,7 +85,13 @@ SW18AB FIRMWARE ARCHITECTURE
 =====================
 The Serial Wombat 18AB firmware runs on the PIC24FJ256GA702 microcontroller.  It is designed for the free version of the XC16 compiler, and the MPLAB X development environment.
 
-You can compile the firmware yourself and program chips using a PICKIT4 or similar programming device, or you can buy preprogrammed kits from Broadwell Consulting Inc by backing our April 11 2022 Kickstarter project or in the future on Amazon.
+A video that goes over the Serial Wombat Code design and how to modify it is availale here:
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/PNPlAaIrR1o/0.jpg)](https://www.youtube.com/watch?v=PNPlAaIrR1o)
+
+
+
+You can compile the firmware yourself and program chips using a PICKIT4 or similar programming device, or you can buy preprogrammed kits from Broadwell Consulting Inc at https://www.SerialWombat.com .
 
 The Serial Wombat binary image / Hex File is made up of two separate projects: A bootloader project and a Serial Wombat firmware project.
 
