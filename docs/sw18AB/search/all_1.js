@@ -1,9 +1,9 @@
 var searchData=
 [
   ['action_3',['action',['../struct__pin__register2__t_1_1un4step__2n.html#acdc40328a9a2628d888ed70ca10eacc4',1,'_pin_register2_t::un4step_2n::action()'],['../struct__pin__register2__t_1_1rotary__enc__n.html#a89071218a87b53bf4970ea06c427df0c',1,'_pin_register2_t::rotary_enc_n::action()']]],
-  ['active_4',['active',['../struct__pin__register__t_1_1datalogger__n.html#a13578c3ccb66c49a9aa155766947d2f9',1,'_pin_register_t::datalogger_n::active()'],['../struct__pin__register__t_1_1un4step__n.html#a385a8d4dc6c447bc4b0deb439c37f0ad',1,'_pin_register_t::un4step_n::active()'],['../struct__pin__register2__t_1_1parallel__82n.html#a115ad74db3a62c2224f58b0234badccc',1,'_pin_register2_t::parallel_82n::active()']]],
+  ['active_4',['active',['../structinput_process__n.html#aab2545a954cdba82b45e8fa067937961',1,'inputProcess_n::active()'],['../structoutput_scale__n.html#a240241e4bd080c1f98f93622e41df553',1,'outputScale_n::active()'],['../struct__pin__register__t_1_1datalogger__n.html#a13578c3ccb66c49a9aa155766947d2f9',1,'_pin_register_t::datalogger_n::active()'],['../struct__pin__register__t_1_1un4step__n.html#a385a8d4dc6c447bc4b0deb439c37f0ad',1,'_pin_register_t::un4step_n::active()'],['../struct__pin__register2__t_1_1parallel__82n.html#a115ad74db3a62c2224f58b0234badccc',1,'_pin_register2_t::parallel_82n::active()']]],
   ['active_5fstate_5',['active_state',['../struct__pin__register__t_1_1button__counter__n.html#af594031329d9f7cb65f51331b6aca5f3',1,'_pin_register_t::button_counter_n']]],
-  ['activemode_6',['activemode',['../struct__pin__register__t_1_1debounce__n.html#aa32ed8d45d5dc6f963366d7d6f19aa1f',1,'_pin_register_t::debounce_n']]],
+  ['activemode_6',['activemode',['../struct__pin__register__t_1_1debounce__n.html#aa32ed8d45d5dc6f963366d7d6f19aa1f',1,'_pin_register_t::debounce_n::activemode()'],['../structpulse_on_change__n.html#ae9bd6c9d8691ea4f60a8146dff66e59d',1,'pulseOnChange_n::activeMode()']]],
   ['activepolarity_7',['activepolarity',['../struct__pin__register__t_1_1remote__n.html#af5a443ae0b04f1d7a8d1c8aa8c0338fe',1,'_pin_register_t::remote_n']]],
   ['activestate_8',['activestate',['../struct__pin__register__t_1_1slowpwm__n.html#a0d22b166cbecb8b21f1121457ee8da8c',1,'_pin_register_t::slowpwm_n::activestate()'],['../struct__pin__register__t_1_1pulse__n.html#a7a4ecf51df9b987b61a528373ce6082a',1,'_pin_register_t::pulse_n::activestate()']]],
   ['activetime_9',['activetime',['../struct__pin__register__t_1_1pulse__n.html#a33e696a668f60783b192886d3eb97ef0',1,'_pin_register_t::pulse_n']]],
@@ -21,13 +21,15 @@ var searchData=
   ['analoginput_5fn_21',['analogInput_n',['../structanalog_input__n.html',1,'']]],
   ['analoginput_5ft_22',['analogInput_t',['../analog_input_8c.html#a2f6f1bf60508b0fe0921e39fda908eea',1,'analogInput.c']]],
   ['andcount_23',['andCount',['../utilities_8c.html#aa7a3c6604172291d7bfb3f7f4ee5bfb7',1,'utilities.c']]],
-  ['ascii_5fto_5fval_24',['ascii_to_val',['../_serial_wombat18_a__18_b_2_serial_wombat18_a__18_b_8_x_2ascii_conversion_8c.html#a5530fcd80aeb42f86a24483846007815',1,'ascii_to_val(uint8_t a):&#160;asciiConversion.c'],['../utilities_8c.html#a5530fcd80aeb42f86a24483846007815',1,'ascii_to_val(uint8_t a):&#160;utilities.c'],['../utilities_8h.html#a960613faa389ec7dd967d91d063462d3',1,'ascii_to_val(uint8_t):&#160;asciiConversion.c'],['../_serial_wombat_common_2ascii_conversion_8c.html#a5530fcd80aeb42f86a24483846007815',1,'ascii_to_val(uint8_t a):&#160;asciiConversion.c'],['../ascii_conversion_8h.html#a5530fcd80aeb42f86a24483846007815',1,'ascii_to_val(uint8_t a):&#160;asciiConversion.c']]],
-  ['asciichar_25',['asciiChar',['../_serial_wombat_common_2ascii_conversion_8c.html#a3adc89a1d4348cffee293a01d45dd24b',1,'asciiChar():&#160;asciiConversion.c'],['../ascii_conversion_8h.html#a3adc89a1d4348cffee293a01d45dd24b',1,'asciiChar():&#160;asciiConversion.c']]],
-  ['asciiconversion_2eh_26',['asciiConversion.h',['../ascii_conversion_8h.html',1,'']]],
-  ['asciival_27',['asciiVal',['../_serial_wombat_common_2ascii_conversion_8c.html#a987ce56e287f8c0c2583518e3141d6a3',1,'asciiVal():&#160;asciiConversion.c'],['../ascii_conversion_8h.html#a987ce56e287f8c0c2583518e3141d6a3',1,'asciiVal():&#160;asciiConversion.c']]],
-  ['assign_5frxbuffer16_28',['ASSIGN_RXBUFFER16',['../utilities_8h.html#aba485171972f8d073934c8033d480965',1,'utilities.h']]],
-  ['average_29',['average',['../structanalog_input__n.html#a8fe8b9574604520a7f4cefbae19671a3',1,'analogInput_n']]],
-  ['averagecount_30',['averageCount',['../structanalog_input__n.html#a5962875dc0b16df8360a84b33f801a3c',1,'analogInput_n']]],
-  ['averagesum_31',['averageSum',['../structanalog_input__n.html#abcef5d078ec5f06c71fc12bb0dc73ada',1,'analogInput_n']]],
-  ['averagetotalsamples_32',['averageTotalSamples',['../structanalog_input__n.html#a581761a89bd70bf25b9a0543a9f5b5c3',1,'analogInput_n']]]
+  ['animationframes_24',['animationFrames',['../structws2812.html#ac3596897cfbeee3ebe285cb1a1ffe055',1,'ws2812']]],
+  ['animationledsindex_25',['animationLedsIndex',['../structws2812.html#a90d650ef6747213c3885f5a2db07704b',1,'ws2812']]],
+  ['ascii_5fto_5fval_26',['ascii_to_val',['../_serial_wombat18_a__18_b_2_serial_wombat18_a__18_b_8_x_2ascii_conversion_8c.html#a5530fcd80aeb42f86a24483846007815',1,'ascii_to_val(uint8_t a):&#160;asciiConversion.c'],['../utilities_8c.html#a5530fcd80aeb42f86a24483846007815',1,'ascii_to_val(uint8_t a):&#160;utilities.c'],['../utilities_8h.html#a960613faa389ec7dd967d91d063462d3',1,'ascii_to_val(uint8_t):&#160;asciiConversion.c'],['../_serial_wombat_common_2ascii_conversion_8c.html#a5530fcd80aeb42f86a24483846007815',1,'ascii_to_val(uint8_t a):&#160;asciiConversion.c'],['../ascii_conversion_8h.html#a5530fcd80aeb42f86a24483846007815',1,'ascii_to_val(uint8_t a):&#160;asciiConversion.c']]],
+  ['asciichar_27',['asciiChar',['../_serial_wombat_common_2ascii_conversion_8c.html#a3adc89a1d4348cffee293a01d45dd24b',1,'asciiChar():&#160;asciiConversion.c'],['../ascii_conversion_8h.html#a3adc89a1d4348cffee293a01d45dd24b',1,'asciiChar():&#160;asciiConversion.c']]],
+  ['asciiconversion_2eh_28',['asciiConversion.h',['../ascii_conversion_8h.html',1,'']]],
+  ['asciival_29',['asciiVal',['../_serial_wombat_common_2ascii_conversion_8c.html#a987ce56e287f8c0c2583518e3141d6a3',1,'asciiVal():&#160;asciiConversion.c'],['../ascii_conversion_8h.html#a987ce56e287f8c0c2583518e3141d6a3',1,'asciiVal():&#160;asciiConversion.c']]],
+  ['assign_5frxbuffer16_30',['ASSIGN_RXBUFFER16',['../utilities_8h.html#aba485171972f8d073934c8033d480965',1,'utilities.h']]],
+  ['autotrigger_31',['autotrigger',['../structultrasonic_distance__n.html#af91c9bad45a16e4d697f2699ab2e665c',1,'ultrasonicDistance_n']]],
+  ['average_32',['average',['../structinput_process__n.html#a09d2af2d5a20dd5d887e93ad5804c344',1,'inputProcess_n::average()'],['../structinput_process__n.html#ac3ff9206a81f7cdc36f716183dc06625',1,'inputProcess_n::average()']]],
+  ['averagecount_33',['averageCount',['../structtouch__n.html#a0d7bdef308385b4a24e1a28c4e91e352',1,'touch_n']]],
+  ['averagesum_34',['averageSum',['../structtouch__n.html#a8db52b9f78e50b712f350277ed2268a1',1,'touch_n']]]
 ];

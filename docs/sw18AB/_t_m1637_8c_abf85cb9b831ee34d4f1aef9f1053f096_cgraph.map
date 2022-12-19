@@ -1,0 +1,13 @@
+<map id="updateTM1637" name="updateTM1637">
+<area shape="rect" id="node1" title="update the TM1637 pin state machine" alt="" coords="5,130,112,157"/>
+<area shape="rect" id="node2" href="$_t_m1637_8c.html#a1092723aeececca6a22760db8a84b554" title=" " alt="" coords="389,75,515,102"/>
+<area shape="rect" id="node4" href="$_t_m1637_8c.html#aea8608df9859e2d3e6c6340ae8923e01" title=" " alt="" coords="160,39,339,80"/>
+<area shape="rect" id="node5" href="$_t_m1637_8c.html#acd70df2db09275c8ec0519ac7bbe632c" title=" " alt="" coords="163,105,336,131"/>
+<area shape="rect" id="node6" href="$_t_m1637_8c.html#a363789768c0ff185c0d791f0f7b49556" title=" " alt="" coords="203,155,296,182"/>
+<area shape="rect" id="node7" href="$_t_m1637_8c.html#a64e8449ecf922ae671e48939edf1de6d" title=" " alt="" coords="406,141,498,167"/>
+<area shape="rect" id="node8" href="$_t_m1637_8c.html#a57e2b72c59a8c0d24fa11c2189db7870" title="Create a TM1637 bitmap in the displayArray." alt="" coords="176,257,323,283"/>
+<area shape="rect" id="node3" href="$serial_wombat_8h.html#a06853f69b7a37d93fff459d96382f948" title=" " alt="" coords="565,109,627,135"/>
+<area shape="rect" id="node9" href="$_serial_wombat18_a__18_b_2_serial_wombat18_a__18_b_8_x_2pin_registers_8c.html#abc7f8feb8a974c4cc2ac61ac3d7f61cd" title=" " alt="" coords="414,206,490,233"/>
+<area shape="rect" id="node10" href="$_serial_wombat18_a__18_b_2_serial_wombat18_a__18_b_8_x_2ascii_conversion_8c.html#a5872bab298550ae88e7afb0404f6406b" title=" " alt="" coords="399,257,505,283"/>
+<area shape="rect" id="node11" href="$_serial_wombat18_a__18_b_2_serial_wombat18_a__18_b_8_x_2ascii_conversion_8c.html#a7b05d79ed8ec648df7aeb2a4a06faf11" title=" " alt="" coords="387,307,517,334"/>
+</map>

@@ -67,15 +67,19 @@ $(function() {
 <h3><a id="index_d"></a>- d -</h3><ul>
 <li>D4pin
 : <a class="el" href="struct__pin__register__t_1_1hd44780__n.html#a54c98f3accd59531f931c2a22b7101ea">_pin_register_t::hd44780_n</a>
+, <a class="el" href="structlcd__n.html#a24ce092d400a56b9ae7399c1055a0269">lcd_n</a>
 </li>
 <li>D5pin
 : <a class="el" href="struct__pin__register__t_1_1hd44780__n.html#a04e048c0428ea271d096405add257d3b">_pin_register_t::hd44780_n</a>
+, <a class="el" href="structlcd__n.html#a4f0b7c7c27e06dce71f43928392ad62a">lcd_n</a>
 </li>
 <li>D6pin
 : <a class="el" href="struct__pin__register__t_1_1hd44780__n.html#aaa06352de5e1dee7375c4a1ab0de1bdf">_pin_register_t::hd44780_n</a>
+, <a class="el" href="structlcd__n.html#ab5da1333ff9675c705daf41f9a475d32">lcd_n</a>
 </li>
 <li>D7pin
 : <a class="el" href="struct__pin__register__t_1_1hd44780__n.html#a93a2d4865fe2f28242ceba29714f6ec2">_pin_register_t::hd44780_n</a>
+, <a class="el" href="structlcd__n.html#a884c723b9357410a09c6b871c0dd9389">lcd_n</a>
 </li>
 <li>data
 : <a class="el" href="struct__pin__register__t_1_1remote__n.html#a99aaa96c26851ea07122278cce2d37ef">_pin_register_t::remote_n</a>
@@ -86,7 +90,7 @@ $(function() {
 : <a class="el" href="structsin__data__n.html#ae3468b19d1eb15a32e265de5f4b23116">sin_data_n</a>
 </li>
 <li>data2
-: <a class="el" href="struct__pin__register__t_1_1pwm__sine__n.html#ad1adf9f7ec0ed153cfe572321e957672">_pin_register_t::pwm_sine_n</a>
+: <a class="el" href="struct__pin__register__t_1_1pwm__sine__n.html#ade56eb652cf2ab02a094b234f2f49a5b">_pin_register_t::pwm_sine_n</a>
 , <a class="el" href="structsin__data__n.html#a526121b991d3d2abf75193545363fae6">sin_data_n</a>
 </li>
 <li>data2_signed
@@ -114,9 +118,24 @@ $(function() {
 , <a class="el" href="struct__pin__register__t_1_1quad_enc__n.html#a7ae06a2614c17178689dcb7d786e34e9">_pin_register_t::quadEnc_n</a>
 , <a class="el" href="structquad_enc__n.html#ac147fe9f66ca21d56294d3ad09dba338">quadEnc_n</a>
 </li>
+<li>debounceCurrentDifferenceCount
+: <a class="el" href="structtouch__n.html#aa7384f821a2a5ec9efed88c79908e25a">touch_n</a>
+</li>
+<li>debounceCurrentReportedLevel
+: <a class="el" href="structtouch__n.html#aa24b661397ee8c8e868487d434658d72">touch_n</a>
+</li>
 <li>debounceframes
 : <a class="el" href="struct__pin__register__t_1_1button__counter__n.html#a0c3f07f7d0e46d7d58671ac87470bafe">_pin_register_t::button_counter_n</a>
 , <a class="el" href="struct__pin__register__t_1_1debounce__n.html#ae65eab7e8db58089ada4518dd69532d5">_pin_register_t::debounce_n</a>
+</li>
+<li>debounceLastReading
+: <a class="el" href="structtouch__n.html#a709b389367f79bacd04c83a009f24dce">touch_n</a>
+</li>
+<li>debounceLastTransitionFrameCount
+: <a class="el" href="structtouch__n.html#acd565adab48d651d56ab6c0a1170e0bc">touch_n</a>
+</li>
+<li>debounceLimit
+: <a class="el" href="structtouch__n.html#aa7d0081067a2d5474f48b5b47e67806a">touch_n</a>
 </li>
 <li>debouncePeriod
 : <a class="el" href="structdebounce__n.html#a9d4f339b8ef1fd168d2b8a498e93d7cc">debounce_n</a>
@@ -128,6 +147,9 @@ $(function() {
 </li>
 <li>debounceTime
 : <a class="el" href="structprotected_output__n.html#a4f98a01a0bc31e142623a57ee83d4fb2">protectedOutput_n</a>
+</li>
+<li>debounceTransitions
+: <a class="el" href="structtouch__n.html#ac4b997c2485f1af9f86034b1b336186f">touch_n</a>
 </li>
 <li>decimalPointBitmap
 : <a class="el" href="structtm1637__n.html#aa4d9be24001572285d1f3b139f3ef99d">tm1637_n</a>
@@ -141,15 +163,35 @@ $(function() {
 <li>defaultPinValues
 : <a class="el" href="structwatchdog__n.html#a93b490b10185b751cb941466c4d5b72a">watchdog_n</a>
 </li>
+<li>defaultValue
+: <a class="el" href="structpulse_timer__n.html#a55923e0e1bee0999125502e09ef6b7ad">pulseTimer_n</a>
+</li>
 <li>delay
 : <a class="el" href="struct__pin__register__t_1_1datalogger__n.html#a66503d839bbba3340ceebf8c06a683e9">_pin_register_t::datalogger_n</a>
 , <a class="el" href="struct__pin__register__t_1_1parallel__8n.html#adb42d94733dd45b0ed95dfd9f7c31818">_pin_register_t::parallel_8n</a>
+, <a class="el" href="structtouch__n.html#a16d8c85fef228fa069ecb09c2ed59815">touch_n</a>
+, <a class="el" href="structws2812.html#a960d18ae89d71857c6cf9b828d363b08">ws2812</a>
 </li>
 <li>delay_time
 : <a class="el" href="struct__pin__register2__t_1_1ping2__n.html#a7861711abda120adf2fddb99483e4fdb">_pin_register2_t::ping2_n</a>
 </li>
 <li>delayBeforeSerialWombatReset
 : <a class="el" href="structwatchdog__n.html#a8dbb431adf2cdca02677d5d32158dc9f">watchdog_n</a>
+</li>
+<li>delayCount
+: <a class="el" href="structresistance_input__n.html#a522e4ce83376fb2d6487162a25a635e9">resistanceInput_n</a>
+</li>
+<li>delayCounter
+: <a class="el" href="structtouch__n.html#a583166e10a5a85fb34802bdc4699a8e8">touch_n</a>
+</li>
+<li>delayInuS
+: <a class="el" href="structthroughput_consumer__n.html#a2ee7715aac42ad8d126cc13590d9c9f4">throughputConsumer_n</a>
+</li>
+<li>delayPeriod
+: <a class="el" href="structmatrix_keypad__n.html#aa58a28ca33683290fe6e79ae5a5cf670">matrixKeypad_n</a>
+</li>
+<li>delayRemaining
+: <a class="el" href="structmatrix_keypad__n.html#a574b59bc808e97fcc78af26a16080c96">matrixKeypad_n</a>
 </li>
 <li>desiredpos
 : <a class="el" href="struct__pin__register2__t_1_1un4step__2n.html#a52749164bb2396eeca123766bbc0f329">_pin_register2_t::un4step_2n</a>
@@ -164,6 +206,9 @@ $(function() {
 <li>digit
 : <a class="el" href="struct__pin__register__t_1_1max7219__n.html#a63c94996d93a1c2712ace02528a1bde2">_pin_register_t::max7219_n</a>
 </li>
+<li>digitalOutput
+: <a class="el" href="structtouch__n.html#af33ff70168284b10d30dfc2ffeadbc2c">touch_n</a>
+</li>
 <li>dioPin
 : <a class="el" href="structtm1637__n.html#aaf21858327f4a65cccd3640c5558427a">tm1637_n</a>
 </li>
@@ -174,6 +219,12 @@ $(function() {
 <li>displayArray
 : <a class="el" href="structtm1637__n.html#a3a00560435d005b71a883547f8cbab2b">tm1637_n</a>
 </li>
+<li>displayControl
+: <a class="el" href="structlcd__n.html#a527de9e13ba45af58d4c3c47cc9f3398">lcd_n</a>
+</li>
+<li>displayMode
+: <a class="el" href="structlcd__n.html#ac5908a5b3f86bccc5451eb4ed91bf0ed">lcd_n</a>
+</li>
 <li>displayOrder
 : <a class="el" href="structtm1637__n.html#a256ae9fa9a0d5b34408415b422f796f7">tm1637_n</a>
 </li>
@@ -181,12 +232,25 @@ $(function() {
 : <a class="el" href="struct__pin__register2__t_1_1uart__rx__2n.html#afcd3c9ab16a91f6f762a3aa70191eea1">_pin_register2_t::uart_rx_2n</a>
 , <a class="el" href="struct__pin__register2__t_1_1uart__tx__2n.html#aaf34d46fe6eff4f19f627197eb2c9d84">_pin_register2_t::uart_tx_2n</a>
 , <a class="el" href="struct__pin__register__t_1_1button__counter__n.html#ac23f847b2f3e7662cc35eb1216ca714e">_pin_register_t::button_counter_n</a>
+, <a class="el" href="structuart_sw__n.html#aaa43784112df1c4db75a4f5b1982113c">uartSw_n</a>
+</li>
+<li>dmaQueuePosition
+: <a class="el" href="structws2812.html#a978111e01778081019ce10e30ba37a6b">ws2812</a>
 </li>
 <li>dot_time
 : <a class="el" href="struct__pin__register__t_1_1morse__n.html#a721c3a5eb8d0375d5c7ef161fe1078aa">_pin_register_t::morse_n</a>
 </li>
 <li>dout
 : <a class="el" href="struct__pin__register__t_1_1max7219__n.html#a0857433bb9c2742f2d1b3f7e77d4cbc2">_pin_register_t::max7219_n</a>
+</li>
+<li>driver
+: <a class="el" href="structultrasonic_distance__n.html#a19cce199ea6cbe97c43fecab451ae12c">ultrasonicDistance_n</a>
+</li>
+<li>durationOff
+: <a class="el" href="structpulse_on_change__n.html#a0e2663f355928223dd0f9e2844b7c29b">pulseOnChange_n</a>
+</li>
+<li>durationOn
+: <a class="el" href="structpulse_on_change__n.html#af9b7309129d3ec96c2395d30220f91d5">pulseOnChange_n</a>
 </li>
 </ul>
 </div><!-- contents -->

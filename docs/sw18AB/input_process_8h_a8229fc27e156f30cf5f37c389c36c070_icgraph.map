@@ -1,0 +1,10 @@
+<map id="inputProcessProcess" name="inputProcessProcess">
+<area shape="rect" id="node1" title=" " alt="" coords="467,107,613,133"/>
+<area shape="rect" id="node2" href="$analog_input_8c.html#a7291916adc66e2eba7acd935aeb79bd2" title=" " alt="" coords="269,5,398,32"/>
+<area shape="rect" id="node5" href="$pin_input_processor_8c.html#a446f8964182c5b3ae342006afee4361b" title=" " alt="" coords="250,56,417,83"/>
+<area shape="rect" id="node6" href="$pulse_timer_8c.html#a40e5ff6467ab663351f435d0ab2741d8" title=" " alt="" coords="270,107,397,133"/>
+<area shape="rect" id="node7" href="$resistance_input_8c.html#ae7ebbffe202100435806213f7bf21e2f" title=" " alt="" coords="256,157,411,184"/>
+<area shape="rect" id="node8" href="$ultrasonic_distance_8c.html#a95e285ea8ddfc2a073e4d9b990dea98f" title=" " alt="" coords="248,208,419,235"/>
+<area shape="rect" id="node3" href="$serial_wombat_8h.html#a4e12ac6db45a20bca0fa11303072dbda" title=" " alt="" coords="104,107,200,133"/>
+<area shape="rect" id="node4" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,107,56,133"/>
+</map>

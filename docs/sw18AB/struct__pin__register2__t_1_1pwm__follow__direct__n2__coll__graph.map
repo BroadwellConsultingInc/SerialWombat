@@ -1,0 +1,5 @@
+<map id="_pin_register2_t::pwm_follow_direct_n2" name="_pin_register2_t::pwm_follow_direct_n2">
+<area shape="rect" id="node1" title=" " alt="" coords="5,199,155,240"/>
+<area shape="rect" id="node2" href="$unionmixed32__n.html" title="Union of 32 bit types. Note that on the 18F a RAM pointer is 16 bits, so it&#39;s not included here." alt="" coords="37,109,123,136"/>
+<area shape="rect" id="node3" href="$structmixed32__n_1_1mixed32__uwords__n.html" title=" " alt="" coords="9,5,151,47"/>
+</map>

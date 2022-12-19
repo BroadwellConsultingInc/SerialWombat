@@ -1,0 +1,8 @@
+<map id="CurrentPinAnalog" name="CurrentPinAnalog">
+<area shape="rect" id="node1" title=" " alt="" coords="343,81,465,108"/>
+<area shape="rect" id="node2" href="$analog_input_8c.html#a4bd673f592ce7e7ee1c4d209c65830d6" title=" " alt="" coords="175,5,282,32"/>
+<area shape="rect" id="node4" href="$analog_input_8c.html#a1a2239ef900c9b23cf9b42c48384b6f1" title=" " alt="" coords="169,56,288,83"/>
+<area shape="rect" id="node5" href="$resistance_input_8c.html#a485d1d293352425f3d6dc44175f802b2" title=" " alt="" coords="163,107,295,133"/>
+<area shape="rect" id="node6" href="$touch_8c.html#a229490ab7cbf36c9355eca4d5437efa0" title=" " alt="" coords="191,157,266,184"/>
+<area shape="rect" id="node3" href="$protocol_8c.html#ad68aff3124fee3a4193383135f70c7c7" title=" " alt="" coords="5,107,115,133"/>
+</map>

@@ -1,0 +1,52 @@
+<map id="test_data_n" name="test_data_n">
+<area shape="rect" id="node1" title=" " alt="" coords="597,1135,688,1161"/>
+<area shape="rect" id="node2" href="$union__pin__register2__t.html" title=" " alt="" coords="412,673,527,700"/>
+<area shape="rect" id="node3" href="$struct__pin__register2__t_1_1pin__logic2__n.html" title=" " alt="" coords="41,17,179,58"/>
+<area shape="rect" id="node4" href="$struct__pin__register2__t_1_1uart__tx__2n.html" title=" " alt="" coords="38,82,182,123"/>
+<area shape="rect" id="node5" href="$struct__pin__register2__t_1_1pulse__n2.html" title=" " alt="" coords="23,148,197,175"/>
+<area shape="rect" id="node6" href="$struct__pin__register2__t_1_1uart__rx__2n.html" title=" " alt="" coords="38,199,182,241"/>
+<area shape="rect" id="node7" href="$struct__pin__register2__t_1_1hw__pulse__width2__n.html" title=" " alt="" coords="41,265,179,306"/>
+<area shape="rect" id="node8" href="$struct__pin__register2__t_1_1ping2__n.html" title=" " alt="" coords="27,331,193,357"/>
+<area shape="rect" id="node9" href="$struct__pin__register2__t_1_1remote__2n.html" title=" " alt="" coords="19,381,201,408"/>
+<area shape="rect" id="node10" href="$struct__pin__register2__t_1_1servo2__n.html" title=" " alt="" coords="23,432,197,459"/>
+<area shape="rect" id="node11" href="$struct__pin__register2__t_1_1ad__filter__1st__order__n2.html" title=" " alt="" coords="42,483,178,525"/>
+<area shape="rect" id="node12" href="$struct__pin__register2__t_1_1hysteresis.html" title=" " alt="" coords="19,549,201,576"/>
+<area shape="rect" id="node13" href="$struct__pin__register2__t_1_1pwm__queue__variable__period2__n.html" title=" " alt="" coords="21,601,199,642"/>
+<area shape="rect" id="node14" href="$struct__pin__register2__t_1_1pwm__follow__direct__n2.html" title=" " alt="" coords="35,666,185,707"/>
+<area shape="rect" id="node15" href="$struct__pin__register2__t_1_1ad__average__temp__n.html" title=" " alt="" coords="42,731,178,773"/>
+<area shape="rect" id="node16" href="$struct__pin__register2__t_1_1hd44780__n2.html" title=" " alt="" coords="14,797,206,824"/>
+<area shape="rect" id="node17" href="$struct__pin__register2__t_1_1rotary__enc__n.html" title=" " alt="" coords="33,849,187,890"/>
+<area shape="rect" id="node18" href="$struct__pin__register2__t_1_1diagnostics2__n.html" title=" " alt="" coords="5,915,215,941"/>
+<area shape="rect" id="node19" href="$struct__pin__register2__t_1_1generic2__n.html" title=" " alt="" coords="17,965,203,992"/>
+<area shape="rect" id="node20" href="$struct__pin__register2__t_1_1parallel__82n.html" title=" " alt="" coords="15,1016,205,1043"/>
+<area shape="rect" id="node21" href="$struct__pin__register2__t_1_1morse__temp__n.html" title=" " alt="" coords="31,1067,189,1109"/>
+<area shape="rect" id="node22" href="$struct__pin__register2__t_1_1un4step__2n.html" title=" " alt="" coords="15,1133,205,1160"/>
+<area shape="rect" id="node23" href="$struct__pin__register2__t_1_1keypad16__2n.html" title=" " alt="" coords="11,1184,209,1211"/>
+<area shape="rect" id="node24" href="$struct__pin__register2__t_1_1lookup2d__2n.html" title=" " alt="" coords="13,1235,207,1261"/>
+<area shape="rect" id="node25" href="$union__pin__register__t.html" title="A union representing all the possible pin modes, with meanings for each." alt="" coords="416,1933,523,1960"/>
+<area shape="rect" id="node26" href="$struct__pin__register__t_1_1uart__rx__n.html" title=" " alt="" coords="25,1285,195,1312"/>
+<area shape="rect" id="node27" href="$struct__pin__register__t_1_1morse__n.html" title=" " alt="" coords="27,1336,193,1363"/>
+<area shape="rect" id="node28" href="$struct__pin__register__t_1_1diagnostics__n.html" title=" " alt="" coords="13,1387,207,1413"/>
+<area shape="rect" id="node29" href="$struct__pin__register__t_1_1slowpwm__n.html" title=" " alt="" coords="19,1437,201,1464"/>
+<area shape="rect" id="node30" href="$struct__pin__register__t_1_1pwm__sine__n.html" title=" " alt="" coords="39,1489,181,1530"/>
+<area shape="rect" id="node31" href="$struct__pin__register__t_1_1spi__master__n.html" title=" " alt="" coords="44,1554,176,1595"/>
+<area shape="rect" id="node32" href="$struct__pin__register__t_1_1servo__n.html" title=" " alt="" coords="31,1620,189,1647"/>
+<area shape="rect" id="node33" href="$struct__pin__register__t_1_1counter__n.html" title=" " alt="" coords="24,1671,196,1697"/>
+<area shape="rect" id="node34" href="$struct__pin__register__t_1_1pwm__queue__variable__period__n.html" title=" " alt="" coords="25,1722,195,1763"/>
+<area shape="rect" id="node35" href="$struct__pin__register__t_1_1pwm__queue__fixed__period__n.html" title=" " alt="" coords="33,1787,187,1829"/>
+<area shape="rect" id="node36" href="$struct__pin__register__t_1_1sevenseg__n.html" title=" " alt="" coords="19,1853,201,1880"/>
+<area shape="rect" id="node37" href="$struct__pin__register__t_1_1un4step__n.html" title=" " alt="" coords="23,1904,197,1931"/>
+<area shape="rect" id="node38" href="$struct__pin__register__t_1_1ad__filter__1st__order__n.html" title=" " alt="" coords="45,1955,175,1997"/>
+<area shape="rect" id="node39" href="$struct__pin__register__t_1_1hysteresis__n.html" title=" " alt="" coords="15,2021,205,2048"/>
+<area shape="rect" id="node40" href="$struct__pin__register__t_1_1pulse__output__n.html" title=" " alt="" coords="37,2073,183,2114"/>
+<area shape="rect" id="node41" href="$struct__pin__register__t_1_1min__max__n.html" title=" " alt="" coords="42,2138,178,2179"/>
+<area shape="rect" id="node42" href="$struct__pin__register__t_1_1hw__pulse__width__n.html" title=" " alt="" coords="45,2203,175,2245"/>
+<area shape="rect" id="node43" href="$struct__pin__register__t_1_1pid__n.html" title=" " alt="" coords="37,2269,183,2296"/>
+<area shape="rect" id="node44" href="$struct__pin__register__t_1_1pulse__n.html" title=" " alt="" coords="30,2320,190,2347"/>
+<area shape="rect" id="node45" href="$struct__pin__register__t_1_1generic__n.html" title="A generic descriptor, typically used to access the buffer and mode variables." alt="" coords="25,2371,195,2397"/>
+<area shape="rect" id="node46" href="$struct__pin__register__t_1_1button__counter__n.html" title=" " alt="" coords="35,2422,185,2463"/>
+<area shape="rect" id="node47" href="$struct__pin__register__t_1_1datalogger__n.html" title=" " alt="" coords="15,2488,205,2515"/>
+<area shape="rect" id="node48" href="$struct__pin__register__t_1_1max7219__n.html" title=" " alt="" coords="19,2539,201,2565"/>
+<area shape="rect" id="node49" href="$struct__pin__register__t_1_1ad__average__n.html" title=" " alt="" coords="45,2590,175,2631"/>
+<area shape="rect" id="node50" href="$struct__pin__register__t_1_1rotary__encn.html" title=" " alt="" coords="19,2656,201,2683"/>
+</map>

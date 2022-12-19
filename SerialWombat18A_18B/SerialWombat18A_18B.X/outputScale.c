@@ -117,6 +117,40 @@ static uint32_t pid(uint32_t processVariable,outputScale_t* outputScale)
 
 }
 
+static uint16_t ramp(int32_t processVariable,outputScale_t* outputScale)
+{
+    int32_t newOutput = outputScale->ramp.lastRampOutput;
+    if (processVariable  + outputScale->ramp.slowIncrementDifference < outputScale->targetValue)
+    {
+        newOutput += outputScale->ramp.increment;
+    }
+    else if (processVariable  < outputScale->targetValue)
+    {
+        newOutput += outputScale->ramp.slowIncrement;
+    }
+    else if (processVariable - outputScale->ramp.slowIncrementDifference > outputScale->targetValue)
+    {
+        newOutput -= outputScale->ramp.increment;
+    }
+    else if (processVariable  > outputScale->targetValue)
+    {
+        newOutput -= outputScale->ramp.slowIncrement;
+    }
+   
+    if (newOutput > 65535)
+    {
+        newOutput = 65535;
+    }
+    else if (newOutput < 0 )
+    {
+        newOutput = 0;
+    }
+    
+    outputScale->ramp.lastRampOutput = newOutput;
+    
+    return ((uint16_t) newOutput);
+}
+
 outputScale_t* debugOutputScale;
 uint16_t outputScaleProcess(outputScale_t* outputScale)
 {
@@ -159,6 +193,12 @@ uint16_t outputScaleProcess(outputScale_t* outputScale)
             case OUTPUT_TRANSFORM_MODE_PID_CONTROL:
 			{
 				outputValue = pid(outputValue,outputScale);
+			}
+			break;
+            
+             case OUTPUT_TRANSFORM_MODE_RAMP:
+			{
+				outputValue = ramp(outputValue,outputScale);
 			}
 			break;
         }
@@ -339,6 +379,11 @@ uint16_t outputScaleCommProcess(outputScale_t* outputScale)
         }
         break;
 
+        case 49:
+        {
+            outputScale->transformMode = OUTPUT_TRANSFORM_MODE_NONE;
+        }
+        break;
 	case 50:
 	{
 		outputScale->transformMode = OUTPUT_TRANSFORM_MODE_HYSTERESIS;
@@ -360,6 +405,25 @@ uint16_t outputScaleCommProcess(outputScale_t* outputScale)
         outputScale->sampleRate = 0;
 	}
 	break;
+    
+        case 60: 
+        {
+            outputScale->transformMode = OUTPUT_TRANSFORM_MODE_RAMP;
+            outputScale->ramp.slowIncrement = RXBUFFER16(4);
+            outputScale->ramp.slowIncrementDifference = RXBUFFER16(6);
+            outputScale->ramp.increment = outputScale->ramp.slowIncrement;
+            outputScale->ramp.lastRampOutput = GetBuffer(CurrentPin);
+        }
+        break;
+         case 61: 
+        {
+            if(outputScale->transformMode == OUTPUT_TRANSFORM_MODE_RAMP)
+            {
+            outputScale->ramp.increment = RXBUFFER16(4);
+            
+            }
+        }
+        break;
 
 	case 100: 
 	{

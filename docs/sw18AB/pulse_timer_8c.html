@@ -70,12 +70,15 @@ $(function() {
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">pulseTimer.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="serial_wombat_8h_source.html">SerialWombat.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="serial_wombat_8h_source.html">serialWombat.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="input_process_8h_source.html">inputProcess.h</a>&quot;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
@@ -85,13 +88,33 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:adc2fcd963771a173a4965ac65f34431a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pulse_timer_8c.html#adc2fcd963771a173a4965ac65f34431a">COUNTS_TO_uS</a>(_a)&#160;&#160;&#160;((uint16_t)((uint32_t)( _a * (65536.0 * 1000000 / 57600 + .5)) &gt;&gt; 16))</td></tr>
+<tr class="memitem:adc2fcd963771a173a4965ac65f34431a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pulse_timer_8c.html#adc2fcd963771a173a4965ac65f34431a">COUNTS_TO_uS</a>(_a)&#160;&#160;&#160;((uint32_t)( _a * (uint32_t) (65536.0 * 1000000 / DMA_FREQUENCY + .5)) &gt;&gt; 16)</td></tr>
 <tr class="separator:adc2fcd963771a173a4965ac65f34431a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3658db3ddb49a6c5c6c9fed4c751b87b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pulse_timer_8c.html#a3658db3ddb49a6c5c6c9fed4c751b87b">COUNTS_TO_Hz</a>(_a)&#160;&#160;&#160;(((uint32_t)DMA_FREQUENCY * 2) / ( _a  ) + 1) &gt;&gt; 1;</td></tr>
+<tr class="separator:a3658db3ddb49a6c5c6c9fed4c751b87b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:acddf18001d2d6a3b46e838ff2dac486e"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structpulse_timer__n.html">pulseTimer_n</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pulse_timer_8c.html#acddf18001d2d6a3b46e838ff2dac486e">pulseTimer_t</a></td></tr>
 <tr class="separator:acddf18001d2d6a3b46e838ff2dac486e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a27e32476f60aa8c7f498428e37da3efd"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pulse_timer_8c.html#a27e32476f60aa8c7f498428e37da3efd">PULSE_TIMER_PUBLIC_DATA</a> { <br />
+&#160;&#160;<a class="el" href="pulse_timer_8c.html#a27e32476f60aa8c7f498428e37da3efda6a3e5fe324f1ecce9c21d34967e2c6d2">HIGH_TIME</a> = 0, 
+<a class="el" href="pulse_timer_8c.html#a27e32476f60aa8c7f498428e37da3efdabfa021152236d46ec37ccf3814fea4ee">LOW_TIME</a> = 1, 
+<a class="el" href="pulse_timer_8c.html#a27e32476f60aa8c7f498428e37da3efdae8ed35d9298f433e30ed0a87b152893e">PULSE_COUNT</a> = 2, 
+<a class="el" href="pulse_timer_8c.html#a27e32476f60aa8c7f498428e37da3efdae8d02fa65dfd9a1a03254f0bfadee9f3">PERIOD_ON_LTH_TRANSITION</a> = 3, 
+<br />
+&#160;&#160;<a class="el" href="pulse_timer_8c.html#a27e32476f60aa8c7f498428e37da3efda234d6c9bc495a3cfb8833237dad11e67">PERIOD_ON_HTL_TRANSITION</a> = 4, 
+<a class="el" href="pulse_timer_8c.html#a27e32476f60aa8c7f498428e37da3efdae74b8dfbf4cd8300fa758336fc022aec">FREQUENCY_ON_LTH_TRANSITION</a> = 5, 
+<a class="el" href="pulse_timer_8c.html#a27e32476f60aa8c7f498428e37da3efdadb0b4d9d72a193060245f3bb8f220911">FREQUENCY_ON_HTL_TRANSITION</a> = 6, 
+<a class="el" href="pulse_timer_8c.html#a27e32476f60aa8c7f498428e37da3efdadbed4c5568cd77efd550bf7d1a42787e">DUTYCYCLE_ON_LTH_TRANSITION</a> = 7, 
+<br />
+&#160;&#160;<a class="el" href="pulse_timer_8c.html#a27e32476f60aa8c7f498428e37da3efdae410ca4e9597d474c20bbb2d75ff77ca">DUTYCYCLE_ON_HTL_TRANSITION</a> = 8
+<br />
+ }</td></tr>
+<tr class="separator:a27e32476f60aa8c7f498428e37da3efd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -99,8 +122,31 @@ Functions</h2></td></tr>
 <tr class="separator:af182c5067864e0b5fbb72ad0896be4f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40e5ff6467ab663351f435d0ab2741d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pulse_timer_8c.html#a40e5ff6467ab663351f435d0ab2741d8">updatePulseTimer</a> ()</td></tr>
 <tr class="separator:a40e5ff6467ab663351f435d0ab2741d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a82ddc408a5b6583c340208bd0855df1e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="pulse_input_8c.html#acddf18001d2d6a3b46e838ff2dac486e">pulseTimer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pulse_timer_8c.html#a82ddc408a5b6583c340208bd0855df1e">debugPulseTimer</a></td></tr>
+<tr class="separator:a82ddc408a5b6583c340208bd0855df1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a3658db3ddb49a6c5c6c9fed4c751b87b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3658db3ddb49a6c5c6c9fed4c751b87b">&#9670;&nbsp;</a></span>COUNTS_TO_Hz</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define COUNTS_TO_Hz</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_a</td><td>)</td>
+          <td>&#160;&#160;&#160;(((uint32_t)DMA_FREQUENCY * 2) / ( _a  ) + 1) &gt;&gt; 1;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="adc2fcd963771a173a4965ac65f34431a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adc2fcd963771a173a4965ac65f34431a">&#9670;&nbsp;</a></span>COUNTS_TO_uS</h2>
 
@@ -112,7 +158,7 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">_a</td><td>)</td>
-          <td>&#160;&#160;&#160;((uint16_t)((uint32_t)( _a * (65536.0 * 1000000 / 57600 + .5)) &gt;&gt; 16))</td>
+          <td>&#160;&#160;&#160;((uint32_t)( _a * (uint32_t) (65536.0 * 1000000 / DMA_FREQUENCY + .5)) &gt;&gt; 16)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -131,6 +177,32 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a27e32476f60aa8c7f498428e37da3efd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27e32476f60aa8c7f498428e37da3efd">&#9670;&nbsp;</a></span>PULSE_TIMER_PUBLIC_DATA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="pulse_timer_8c.html#a27e32476f60aa8c7f498428e37da3efd">PULSE_TIMER_PUBLIC_DATA</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a27e32476f60aa8c7f498428e37da3efda6a3e5fe324f1ecce9c21d34967e2c6d2"></a>HIGH_TIME&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a27e32476f60aa8c7f498428e37da3efdabfa021152236d46ec37ccf3814fea4ee"></a>LOW_TIME&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a27e32476f60aa8c7f498428e37da3efdae8ed35d9298f433e30ed0a87b152893e"></a>PULSE_COUNT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a27e32476f60aa8c7f498428e37da3efdae8d02fa65dfd9a1a03254f0bfadee9f3"></a>PERIOD_ON_LTH_TRANSITION&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a27e32476f60aa8c7f498428e37da3efda234d6c9bc495a3cfb8833237dad11e67"></a>PERIOD_ON_HTL_TRANSITION&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a27e32476f60aa8c7f498428e37da3efdae74b8dfbf4cd8300fa758336fc022aec"></a>FREQUENCY_ON_LTH_TRANSITION&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a27e32476f60aa8c7f498428e37da3efdadb0b4d9d72a193060245f3bb8f220911"></a>FREQUENCY_ON_HTL_TRANSITION&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a27e32476f60aa8c7f498428e37da3efdadbed4c5568cd77efd550bf7d1a42787e"></a>DUTYCYCLE_ON_LTH_TRANSITION&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a27e32476f60aa8c7f498428e37da3efdae410ca4e9597d474c20bbb2d75ff77ca"></a>DUTYCYCLE_ON_HTL_TRANSITION&#160;</td><td class="fielddoc"></td></tr>
+</table>
 
 </div>
 </div>
@@ -163,6 +235,21 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a82ddc408a5b6583c340208bd0855df1e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82ddc408a5b6583c340208bd0855df1e">&#9670;&nbsp;</a></span>debugPulseTimer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="pulse_input_8c.html#acddf18001d2d6a3b46e838ff2dac486e">pulseTimer_t</a>* debugPulseTimer</td>
         </tr>
       </table>
 </div><div class="memdoc">

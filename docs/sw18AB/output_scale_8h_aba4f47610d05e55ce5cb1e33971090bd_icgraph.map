@@ -1,0 +1,7 @@
+<map id="outputScaleCommProcess" name="outputScaleCommProcess">
+<area shape="rect" id="node1" title=" " alt="" coords="300,56,477,83"/>
+<area shape="rect" id="node2" href="$hf_servo_8c.html#a3624f2f451087dd536761e67345f1ca9" title=" " alt="" coords="166,5,249,32"/>
+<area shape="rect" id="node4" href="$pwm_8c.html#a428d429e060d60c0b086eeb8310ed4b6" title=" " alt="" coords="171,56,243,83"/>
+<area shape="rect" id="node5" href="$servo_8c.html#ae2eb8d1771760b348fc5e76c34bd9a9b" title=" " alt="" coords="163,107,252,133"/>
+<area shape="rect" id="node3" href="$protocol_8c.html#ad68aff3124fee3a4193383135f70c7c7" title=" " alt="" coords="5,56,115,83"/>
+</map>

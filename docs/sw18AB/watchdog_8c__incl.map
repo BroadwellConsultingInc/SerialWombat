@@ -1,0 +1,12 @@
+<map id="watchdog.c" name="watchdog.c">
+<area shape="rect" id="node1" title=" " alt="" coords="122,5,210,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,229,71,256"/>
+<area shape="rect" id="node3" href="$serial_wombat_8h.html" title=" " alt="" coords="289,80,403,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="75,155,150,181"/>
+<area shape="rect" id="node5" href="$pin_modes_8h.html" title=" " alt="" coords="175,155,264,181"/>
+<area shape="rect" id="node6" title=" " alt="" coords="289,155,403,181"/>
+<area shape="rect" id="node7" href="$pin_registers_8h.html" title=" " alt="" coords="428,155,533,181"/>
+<area shape="rect" id="node8" href="$protocol_8h.html" title=" " alt="" coords="557,155,636,181"/>
+<area shape="rect" id="node9" href="$queue_8h.html" title=" " alt="" coords="660,155,728,181"/>
+<area shape="rect" id="node10" href="$serial_wombat_errors_8h.html" title=" " alt="" coords="752,155,900,181"/>
+</map>

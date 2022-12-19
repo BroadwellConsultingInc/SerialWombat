@@ -84,6 +84,10 @@ $(function() {
 <li>period
 : <a class="el" href="struct__pin__register__t_1_1ping__n.html#aeecd3dbb978e4fb2a7cd944c2b8256c9">_pin_register_t::ping_n</a>
 , <a class="el" href="struct__pin__register__t_1_1slowpwm__n.html#a71ada4d9f4aaedf43bbc68fe30410e22">_pin_register_t::slowpwm_n</a>
+, <a class="el" href="structhf_servo__n.html#aa2d7699ce006c5edbaefc4e5aa649ffd">hfServo_n</a>
+</li>
+<li>period_uS
+: <a class="el" href="structpwm__n.html#ae83c93dd14b3aeef5d4246d20f58ffeb">pwm_n</a>
 </li>
 <li>persistentdatacounter
 : <a class="el" href="struct__pin__register__t_1_1uart__rx__n.html#a95d4ea1a1559764201d5ba2433575b83">_pin_register_t::uart_rx_n</a>
@@ -98,6 +102,10 @@ $(function() {
 </li>
 <li>pid
 : <a class="el" href="union__pin__register__t.html#aa355f3cdb721325f8c367438325f879f">_pin_register_t</a>
+, <a class="el" href="structoutput_scale__n.html#aa83b6d8dbee762030e3a198bfbe0ad0e">outputScale_n</a>
+</li>
+<li>pin
+: <a class="el" href="structchange_rec__n.html#a54841e8c1746377a5d263711e3ca4d2d">changeRec_n</a>
 </li>
 <li>pin10
 : <a class="el" href="struct__pin__register__t_1_1sevenseg__n.html#ab02117f05075e8d4088365539e2fc0f4">_pin_register_t::sevenseg_n</a>
@@ -161,6 +169,9 @@ $(function() {
 <li>previousinput
 : <a class="el" href="struct__pin__register__t_1_1pid__n.html#a9bffd900e2183d7cf07c75c5a1caa632">_pin_register_t::pid_n</a>
 </li>
+<li>previousReading
+: <a class="el" href="structmatrix_keypad__n.html#aab3de543782a4201371e058d50e51f8c">matrixKeypad_n</a>
+</li>
 <li>processrxbeforeevenpins
 : <a class="el" href="structcommunication__settings__n.html#acc310a3a94614755133883f925a0b2b6">communication_settings_n</a>
 </li>
@@ -170,8 +181,8 @@ $(function() {
 <li>publicdata
 : <a class="el" href="struct__pin__register__t_1_1min__max__n.html#aa3e5d1ea1176a8f25087067736fb584f">_pin_register_t::min_max_n</a>
 </li>
-<li>publicDataSelection
-: <a class="el" href="structanalog_input__n.html#ab69204edc37782f642fcb69a17535e99">analogInput_n</a>
+<li>publicDataOutput
+: <a class="el" href="structpulse_timer__n.html#aa4f6748218e3d01467a5405f4e7bf021">pulseTimer_n</a>
 </li>
 <li>pulse
 : <a class="el" href="union__pin__register2__t.html#abe038c0e51e67b41d63770d2d8f55535">_pin_register2_t</a>
@@ -182,12 +193,26 @@ $(function() {
 </li>
 <li>PulseCounter
 : <a class="el" href="structpulse_timer__n.html#a877ab07e59663ce477d03cec9d79efc7">pulseTimer_n</a>
+, <a class="el" href="structultrasonic_distance__n.html#a172c8268427c34dbc338c60ee6ab1a93">ultrasonicDistance_n</a>
+</li>
+<li>PulseHighTime
+: <a class="el" href="structpulse_timer__n.html#a2065fcb5e4806ac2da6121d190fb51d7">pulseTimer_n</a>
+, <a class="el" href="structultrasonic_distance__n.html#a410509decdd2312e5ce67dc1372f27aa">ultrasonicDistance_n</a>
 </li>
 <li>PulseLowTime
 : <a class="el" href="structpulse_timer__n.html#ab488c7c87696f20ab3615c09f1a2c4fd">pulseTimer_n</a>
+, <a class="el" href="structultrasonic_distance__n.html#a72fc0e98a8476eaae76b7bb37663eb89">ultrasonicDistance_n</a>
 </li>
 <li>pulsetimeout
 : <a class="el" href="struct__pin__register__t_1_1ping__n.html#abdfadadd35233f3f3ead6ee943d096ba">_pin_register_t::ping_n</a>
+</li>
+<li>pulseTimeoutCounter
+: <a class="el" href="structpulse_timer__n.html#a2c9f36c0c84c08722cef64771c48f598">pulseTimer_n</a>
+, <a class="el" href="structultrasonic_distance__n.html#a4f9db4950b67e20f95097d850216bae2">ultrasonicDistance_n</a>
+</li>
+<li>pulseTimeoutSetting
+: <a class="el" href="structpulse_timer__n.html#a5ee36cec48fb0ce29c8ab413fd4ea0d3">pulseTimer_n</a>
+, <a class="el" href="structultrasonic_distance__n.html#aff60b50a7864d3b471f4fff656068b38">ultrasonicDistance_n</a>
 </li>
 <li>pwm_follow_direct
 : <a class="el" href="union__pin__register2__t.html#a4b73bdbb903d932db5cfb28e35a0fc50">_pin_register2_t</a>
@@ -203,8 +228,12 @@ $(function() {
 <li>pwm_sine
 : <a class="el" href="union__pin__register__t.html#a4babfb934dbdc7a6e05c98c0fbf87533">_pin_register_t</a>
 </li>
+<li>pwmDutyCycle
+: <a class="el" href="structpulse_on_change__n.html#adb198cdfcb348fbd889b0d64612c26eb">pulseOnChange_n</a>
+</li>
 <li>pwmPeriod
 : <a class="el" href="struct__pin__register__t_1_1pwm__follow__direct__n.html#a56ab14a3e92380922c4452934f1a146e">_pin_register_t::pwm_follow_direct_n</a>
+, <a class="el" href="structpulse_on_change__n.html#a36770f5e07a4210a328c4cbdece8bea2">pulseOnChange_n</a>
 </li>
 </ul>
 </div><!-- contents -->

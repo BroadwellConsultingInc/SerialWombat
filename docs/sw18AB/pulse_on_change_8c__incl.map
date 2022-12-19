@@ -1,0 +1,12 @@
+<map id="pulseOnChange.c" name="pulseOnChange.c">
+<area shape="rect" id="node1" title=" " alt="" coords="748,5,874,32"/>
+<area shape="rect" id="node2" href="$serial_wombat_8h.html" title=" " alt="" coords="389,80,502,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="297,229,362,256"/>
+<area shape="rect" id="node4" title=" " alt="" coords="774,155,848,181"/>
+<area shape="rect" id="node5" href="$pin_modes_8h.html" title=" " alt="" coords="24,155,113,181"/>
+<area shape="rect" id="node6" title=" " alt="" coords="138,155,252,181"/>
+<area shape="rect" id="node7" href="$pin_registers_8h.html" title=" " alt="" coords="277,155,382,181"/>
+<area shape="rect" id="node8" href="$protocol_8h.html" title=" " alt="" coords="406,155,485,181"/>
+<area shape="rect" id="node9" href="$queue_8h.html" title=" " alt="" coords="509,155,577,181"/>
+<area shape="rect" id="node10" href="$serial_wombat_errors_8h.html" title=" " alt="" coords="601,155,749,181"/>
+</map>

@@ -30,11 +30,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 
 typedef enum 
 {
-    OUTPUT_TRANSFORM_MODE_NONE,
-    OUTPUT_TRANSFORM_MODE_LINEAR,
-    OUTPUT_TRANSFORM_MODE_2D_LOOKUP,
-    OUTPUT_TRANSFORM_MODE_PID_CONTROL,
-    OUTPUT_TRANSFORM_MODE_HYSTERESIS,
+    OUTPUT_TRANSFORM_MODE_NONE = 0,
+    OUTPUT_TRANSFORM_MODE_LINEAR = 1,
+    OUTPUT_TRANSFORM_MODE_2D_LOOKUP = 2,
+    OUTPUT_TRANSFORM_MODE_PID_CONTROL = 3,
+    OUTPUT_TRANSFORM_MODE_HYSTERESIS = 4,
+            OUTPUT_TRANSFORM_MODE_RAMP = 5,
 }OUTPUT_TRANSFORM_MODE_t;
 
 typedef enum
@@ -64,6 +65,13 @@ typedef struct outputScale_n
 		uint16_t ki;
 		uint16_t kd;
 	}pid;
+    
+    struct{
+        int16_t increment;
+        uint16_t lastRampOutput;
+        int16_t slowIncrement;
+        uint16_t slowIncrementDifference;
+    }ramp;
     };
     uint16_t inputMin;
     uint16_t inputMax;

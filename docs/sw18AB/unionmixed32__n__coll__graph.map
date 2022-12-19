@@ -1,0 +1,4 @@
+<map id="mixed32_n" name="mixed32_n">
+<area shape="rect" id="node1" title="Union of 32 bit types. Note that on the 18F a RAM pointer is 16 bits, so it&#39;s not included here." alt="" coords="34,109,119,136"/>
+<area shape="rect" id="node2" href="$structmixed32__n_1_1mixed32__uwords__n.html" title=" " alt="" coords="5,5,148,47"/>
+</map>

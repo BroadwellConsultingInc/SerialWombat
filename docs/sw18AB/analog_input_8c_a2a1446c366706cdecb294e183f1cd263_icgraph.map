@@ -1,0 +1,9 @@
+<map id="GetADCConversion" name="GetADCConversion">
+<area shape="rect" id="node1" title=" " alt="" coords="439,56,572,83"/>
+<area shape="rect" id="node2" href="$_serial_wombat_common_2pin_registers_8c.html#abc7f8feb8a974c4cc2ac61ac3d7f61cd" title=" " alt="" coords="288,5,364,32"/>
+<area shape="rect" id="node3" href="$analog_input_8c.html#a4bd673f592ce7e7ee1c4d209c65830d6" title=" " alt="" coords="273,56,379,83"/>
+<area shape="rect" id="node5" href="$analog_input_8c.html#a7291916adc66e2eba7acd935aeb79bd2" title=" " alt="" coords="261,107,391,133"/>
+<area shape="rect" id="node4" href="$protocol_8c.html#ad68aff3124fee3a4193383135f70c7c7" title=" " alt="" coords="104,56,213,83"/>
+<area shape="rect" id="node6" href="$serial_wombat_8h.html#a4e12ac6db45a20bca0fa11303072dbda" title=" " alt="" coords="111,107,207,133"/>
+<area shape="rect" id="node7" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,107,56,133"/>
+</map>

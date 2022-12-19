@@ -82,6 +82,7 @@ $(function() {
 <code>#include &quot;<a class="el" href="pin_registers_8h_source.html">pinRegisters.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="protocol_8h_source.html">protocol.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="queue_8h_source.html">queue.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="serial_wombat_errors_8h_source.html">serialWombatErrors.h</a>&quot;</code><br />
 </div>
 <p><a href="serial_wombat_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -102,27 +103,76 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a864855f9b7396b3a518a57030f961dc8"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serial_wombat_8h.html#a864855f9b7396b3a518a57030f961dc8">SW_ERROR_t</a> { <br />
-&#160;&#160;<a class="el" href="serial_wombat_8h.html#a864855f9b7396b3a518a57030f961dc8af89ac796a333b43ba0619c7392831c4f">SW_ERROR_UNNUMBERED_ERROR</a> = 0, 
-<a class="el" href="serial_wombat_8h.html#a864855f9b7396b3a518a57030f961dc8aa95c2495e09c4bf9467480e65bbf5028">SW_ERROR_PINS_MUST_BE_ON_SAME_PORT</a> = 1, 
-<a class="el" href="serial_wombat_8h.html#a864855f9b7396b3a518a57030f961dc8a7298253904f4dee1e4a3a30ce37fc919">SW_ERROR_ASCII_NUMBER_TOO_BIG_16</a> = 2, 
-<a class="el" href="serial_wombat_8h.html#a864855f9b7396b3a518a57030f961dc8a68ae99db245bdbb90a3aa36f1aa83a92">SW_ERROR_UNKNOWN_PIN_MODE</a> = 3, 
+<tr class="memitem:ac99635cf191c8a2e2d4790bf8ecc34aa"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aa">SW_DATA_SOURCE_t</a> { <br />
+&#160;&#160;<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa53e71a290ca5d334b0345bf28716b458">SW_DATA_SOURCE_PIN_0</a> = 0, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaafb2c7a7fb5c0fb6f5770b76ddae3edd0">SW_DATA_SOURCE_PIN_1</a> = 1, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa65dee3ceda09218f36d8b20a682e4654">SW_DATA_SOURCE_PIN_2</a> = 2, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa2af562b3dc6f894310851cb587461545">SW_DATA_SOURCE_PIN_3</a> = 3, 
 <br />
-&#160;&#160;<a class="el" href="serial_wombat_8h.html#a864855f9b7396b3a518a57030f961dc8ab3d5f6941cd87a9b8b749e9c35af91ec">SW_ERROR_RESET_STRING_INCORRECT</a> = 4, 
-<a class="el" href="serial_wombat_8h.html#a864855f9b7396b3a518a57030f961dc8aaf961e1291c7c8714d01ebe5f6964c04">SW_ERROR_INVALID_COMMAND</a> = 5, 
-<a class="el" href="serial_wombat_8h.html#a864855f9b7396b3a518a57030f961dc8a6985731330124f850b65c238f4082929">SW_ERROR_INSUFFICIENT_SPACE</a> = 6, 
-<a class="el" href="serial_wombat_8h.html#a864855f9b7396b3a518a57030f961dc8a5e62fddcee086b4cf27a2beebb0a009e">SW_ERROR_WUB_COUNT_GT_4</a> = 7, 
+&#160;&#160;<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaaaec0fa7a5c1316adae9c6de2c4f6706b">SW_DATA_SOURCE_PIN_4</a> = 4, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaaccf98a369de8b2425001e393403e50da">SW_DATA_SOURCE_PIN_5</a> = 5, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaabdd97aec3396981024b9dd74c3e6756e">SW_DATA_SOURCE_PIN_6</a> = 6, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa728e69af28c38c2a3a9084a6f83d66fe">SW_DATA_SOURCE_PIN_7</a> = 7, 
 <br />
-&#160;&#160;<a class="el" href="serial_wombat_8h.html#a864855f9b7396b3a518a57030f961dc8a3f9a71c41c21478992f9957be1609082">SW_ERROR_WUB_INVALID_ADDRESS</a> = 8, 
-<a class="el" href="serial_wombat_8h.html#a864855f9b7396b3a518a57030f961dc8ae3fa094fe365678e157df4ba03b24171">SW_ERROR_WUB_CONTINUE_OUTOFBOUNDS</a> = 9, 
-<a class="el" href="serial_wombat_8h.html#a864855f9b7396b3a518a57030f961dc8a7e0f9fe872f668e75c58c73c12c7ab28">SW_ERROR_RF_ODD_ADDRESS</a> = 10, 
-<a class="el" href="serial_wombat_8h.html#a864855f9b7396b3a518a57030f961dc8a7f7a1f7b714af490097ce01c2a5b4ff7">SW_ERROR_FLASH_WRITE_INVALID_ADDRESS</a> = 11, 
+&#160;&#160;<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa0b019005d934e355b707f635fce43932">SW_DATA_SOURCE_PIN_8</a> = 8, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa19f29c6cdafbeb0ed42a4e93aee76b3d">SW_DATA_SOURCE_PIN_9</a> = 9, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaaabdc43ea3e3ae71091ee90a8db4db790">SW_DATA_SOURCE_PIN_10</a> = 10, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa70cdbdcf77ad88126b86495f32bd136e">SW_DATA_SOURCE_PIN_11</a> = 11, 
 <br />
-&#160;&#160;<a class="el" href="serial_wombat_8h.html#a864855f9b7396b3a518a57030f961dc8ab36a95a606a2fcebe8a452cda60ceeed">SW_ERROR_INVALID_PIN_COMMAND</a> = 12, 
-<a class="el" href="serial_wombat_8h.html#a864855f9b7396b3a518a57030f961dc8af0f26ad9dd0d66ec53ffd67dbe3fe651">SW_ERROR_PIN_CONFIG_WRONG_ORDER</a> = 13
+&#160;&#160;<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaaac249d9e947d979df75f35ef6939d723">SW_DATA_SOURCE_PIN_12</a> = 12, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa522523fe1256d55a5056912645e44c48">SW_DATA_SOURCE_PIN_13</a> = 13, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa4a55b06a20e23f42ebccafd573e0bf76">SW_DATA_SOURCE_PIN_14</a> = 14, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa42bca93fadf3cee5b70b5d9d4215d74d">SW_DATA_SOURCE_PIN_15</a> = 15, 
+<br />
+&#160;&#160;<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaaea989f259eaaa56bfa27e16a45d25c78">SW_DATA_SOURCE_PIN_16</a> = 16, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa10917b6931efd4d25127e950bff21b26">SW_DATA_SOURCE_PIN_17</a> = 17, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaacde98a0b06bb756381635b6941450eca">SW_DATA_SOURCE_PIN_18</a> = 18, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa4a6b95ec6e0947573dfb2cd8438ae8af">SW_DATA_SOURCE_PIN_19</a> = 19, 
+<br />
+&#160;&#160;<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaac2aa53101bc91773b4024583ac98cac9">SW_DATA_SOURCE_INCREMENTING_NUMBER</a> = 65, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaaa579e51d0a709985603e86ea921c241b">SW_DATA_SOURCE_1024mvCounts</a> = 66, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaad65065998eede50c67e4fd01aeac1a3f">SW_DATA_SOURCE_FRAMES_RUN_LSW</a> = 67, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa08b333b3ab9947c8d2b2db395d335615">SW_DATA_SOURCE_FRAMES_RUN_MSW</a> = 68, 
+<br />
+&#160;&#160;<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa9a754eab3b7199fbd56ffacdddd0f956">SW_DATA_SOURCE_OVERRUN_FRAMES</a> = 69, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa6a4c40a1be066c8c147e31605246da4c">SW_DATA_SOURCE_TEMPERATURE</a> = 70, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa34752139d4e2f67f06c470bca9dfb79e">SW_DATA_SOURCE_PACKETS_RECEIVED</a> = 71, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaaf4cac77bf411db3751a36f1902a4015d">SW_DATA_SOURCE_ERRORS</a> = 72, 
+<br />
+&#160;&#160;<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa633dd83b7f93e493530e80ea22ec4c44">SW_DATA_SOURCE_FRAMES_DROPPED</a> = 73, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa43efc450fa905c10374748174c88a907">SW_DATA_SOURCE_SYSTEM_UTILIZATION</a> = 74, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa513982d9dbf9c8a373cd0ffe8ef85ad7">SW_DATA_SOURCE_VCC_mVOLTS</a> = 75, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa69c1a77b8e2eaeda71797c5b9bad25ac">SW_DATA_SOURCE_VBG_COUNTS_VS_VREF</a> = 76, 
+<br />
+&#160;&#160;<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa225787891771cc022609dea86661bc76">SW_DATA_SOURCE_RESET_REGISTER</a> = 77, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaaeea1d6ff075e9bb3542e46545520fafb">SW_DATA_SOURCE_LFSR</a> = 78, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa09ecaa6cf230339382f127348e8d534b">SW_DATA_SOURCE_PIN_0_MV</a> = 100, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa40b4d6ed96c05e6ab7ba0bd8724e43d9">SW_DATA_SOURCE_PIN_1_MV</a> = 101, 
+<br />
+&#160;&#160;<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa752e0a4c7953e4b946b07e27abc708d5">SW_DATA_SOURCE_PIN_2_MV</a> = 102, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa0212640f4092369b2830d375b2a418dd">SW_DATA_SOURCE_PIN_3_MV</a> = 103, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa76ebeaa0c237a211268c52e798645380">SW_DATA_SOURCE_PIN_4_MV</a> = 104, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa1a46b9c16be49dae3cc8077899b5b48d">SW_DATA_SOURCE_PIN_16_MV</a> = 116, 
+<br />
+&#160;&#160;<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa1a0e3205a7b7587c262f88fecdb20396">SW_DATA_SOURCE_PIN_17_MV</a> = 117, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaad4d3042eb0347c1edc9112bf3ea0836d">SW_DATA_SOURCE_PIN_18_MV</a> = 118, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa45c23cac6544fa5edaa3684a1e1a058e">SW_DATA_SOURCE_PIN_19_MV</a> = 119, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa4fe601a006b20d2193e426c167a2ce2f">SW_DATA_SOURCE_2HZ_SQUARE</a> = 164, 
+<br />
+&#160;&#160;<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa8ad71448ab78f7c9f37451ee159f5283">SW_DATA_SOURCE_2HZ_SAW</a> = 165, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaad368970203f4ef892c72e05486910460">SW_DATA_SOURCE_1HZ_SQUARE</a> = 167, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaaa871aa24120ae258b4450f688784eb6f">SW_DATA_SOURCE_1HZ_SAW</a> = 168, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa8958c7c010d9ab702f7faf94f4cf6ca2">SW_DATA_SOURCE_2SEC_SQUARE</a> = 170, 
+<br />
+&#160;&#160;<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaae5a1a27f05c5ab7e4e5a0d861fcdb3de">SW_DATA_SOURCE_2SEC_SAW</a> = 171, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa428925fbfc6f4b5932501ceef2e0dff5">SW_DATA_SOURCE_8SEC_SQUARE</a> = 173, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaad0e07c59910fee04c191715d568e6774">SW_DATA_SOURCE_8SEC_SAW</a> = 174, 
+<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaa495312c46d1484fc98184ed5eac264c1">SW_DATA_SOURCE_65SEC_SQUARE</a> = 176, 
+<br />
+&#160;&#160;<a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aaaed647af3461e5800d48d4844a0aba2fa">SW_DATA_SOURCE_65SEC_SAW</a> = 177
 <br />
  }</td></tr>
-<tr class="separator:a864855f9b7396b3a518a57030f961dc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:ac99635cf191c8a2e2d4790bf8ecc34aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -182,7 +232,7 @@ Functions</h2></td></tr>
 <tr class="separator:a4e12ac6db45a20bca0fa11303072dbda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3aea9deb2a0bfea9ff05a898f4822e31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serial_wombat_8h.html#a3aea9deb2a0bfea9ff05a898f4822e31">reset</a> (void)</td></tr>
 <tr class="separator:a3aea9deb2a0bfea9ff05a898f4822e31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67d45a479305051a083becec0369b252"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serial_wombat_8h.html#a67d45a479305051a083becec0369b252">error</a> (<a class="el" href="serial_wombat_8h.html#a864855f9b7396b3a518a57030f961dc8">SW_ERROR_t</a> errorCode)</td></tr>
+<tr class="memitem:a67d45a479305051a083becec0369b252"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serial_wombat_8h.html#a67d45a479305051a083becec0369b252">error</a> (<a class="el" href="serial_wombat_errors_8h.html#a864855f9b7396b3a518a57030f961dc8">SW_ERROR_t</a> errorCode)</td></tr>
 <tr class="separator:a67d45a479305051a083becec0369b252"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
@@ -191,10 +241,14 @@ Variables</h2></td></tr>
 <tr class="separator:a3dbb8f5cd802b02453e098d16997e69b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3746253bc322a22526b13c0677428983"><td class="memItemLeft" align="right" valign="top"><a class="el" href="pin_registers_8h.html#a05c2f507909227f1b5c27ed8aa88f9a6">pinRegister_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serial_wombat_8h.html#a3746253bc322a22526b13c0677428983">PinUpdateRegisters</a> [NUMBER_OF_TOTAL_PINS]</td></tr>
 <tr class="separator:a3746253bc322a22526b13c0677428983"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98f9330c013b24244f5b39affb54294b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serial_wombat_8h.html#a98f9330c013b24244f5b39affb54294b">RunForeground</a></td></tr>
+<tr class="separator:a98f9330c013b24244f5b39affb54294b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fcf4eadb6a8c5082f8256123d87e4d5"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serial_wombat_8h.html#a3fcf4eadb6a8c5082f8256123d87e4d5">Rxbuffer</a> [<a class="el" href="serial_wombat_8h.html#a6a78846c178be785134ba4046833045f">RXBUFFER_LENGTH</a>]</td></tr>
 <tr class="separator:a3fcf4eadb6a8c5082f8256123d87e4d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a221b63b4bf17e5c7d2df2056c59cc711"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serial_wombat_8h.html#a221b63b4bf17e5c7d2df2056c59cc711">Txbuffer</a> [<a class="el" href="serial_wombat_8h.html#adacdf40a0c312a6521597507378d80a6">TXBUFFER_LENGTH</a>]</td></tr>
 <tr class="separator:a221b63b4bf17e5c7d2df2056c59cc711"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebe751c02616ab9c5173ab102458c85d"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="serial_wombat_8h.html#aebe751c02616ab9c5173ab102458c85d">FramesRun</a></td></tr>
+<tr class="separator:aebe751c02616ab9c5173ab102458c85d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="ae060640fc88cee4aec8e57a4575114cf"></a>
@@ -282,44 +336,104 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="a864855f9b7396b3a518a57030f961dc8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a864855f9b7396b3a518a57030f961dc8">&#9670;&nbsp;</a></span>SW_ERROR_t</h2>
+<a id="ac99635cf191c8a2e2d4790bf8ecc34aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac99635cf191c8a2e2d4790bf8ecc34aa">&#9670;&nbsp;</a></span>SW_DATA_SOURCE_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="serial_wombat_8h.html#a864855f9b7396b3a518a57030f961dc8">SW_ERROR_t</a></td>
+          <td class="memname">enum <a class="el" href="serial_wombat_8h.html#ac99635cf191c8a2e2d4790bf8ecc34aa">SW_DATA_SOURCE_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8af89ac796a333b43ba0619c7392831c4f"></a>SW_ERROR_UNNUMBERED_ERROR&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8aa95c2495e09c4bf9467480e65bbf5028"></a>SW_ERROR_PINS_MUST_BE_ON_SAME_PORT&#160;</td><td class="fielddoc"><p>Pins must be on the same microcontroller part (e.g. PORTA, PORTB, etc.). See datasheet of micro for port assignments. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa53e71a290ca5d334b0345bf28716b458"></a>SW_DATA_SOURCE_PIN_0&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaafb2c7a7fb5c0fb6f5770b76ddae3edd0"></a>SW_DATA_SOURCE_PIN_1&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa65dee3ceda09218f36d8b20a682e4654"></a>SW_DATA_SOURCE_PIN_2&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa2af562b3dc6f894310851cb587461545"></a>SW_DATA_SOURCE_PIN_3&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaaaec0fa7a5c1316adae9c6de2c4f6706b"></a>SW_DATA_SOURCE_PIN_4&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaaccf98a369de8b2425001e393403e50da"></a>SW_DATA_SOURCE_PIN_5&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaabdd97aec3396981024b9dd74c3e6756e"></a>SW_DATA_SOURCE_PIN_6&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa728e69af28c38c2a3a9084a6f83d66fe"></a>SW_DATA_SOURCE_PIN_7&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa0b019005d934e355b707f635fce43932"></a>SW_DATA_SOURCE_PIN_8&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa19f29c6cdafbeb0ed42a4e93aee76b3d"></a>SW_DATA_SOURCE_PIN_9&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaaabdc43ea3e3ae71091ee90a8db4db790"></a>SW_DATA_SOURCE_PIN_10&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa70cdbdcf77ad88126b86495f32bd136e"></a>SW_DATA_SOURCE_PIN_11&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaaac249d9e947d979df75f35ef6939d723"></a>SW_DATA_SOURCE_PIN_12&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa522523fe1256d55a5056912645e44c48"></a>SW_DATA_SOURCE_PIN_13&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa4a55b06a20e23f42ebccafd573e0bf76"></a>SW_DATA_SOURCE_PIN_14&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa42bca93fadf3cee5b70b5d9d4215d74d"></a>SW_DATA_SOURCE_PIN_15&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaaea989f259eaaa56bfa27e16a45d25c78"></a>SW_DATA_SOURCE_PIN_16&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa10917b6931efd4d25127e950bff21b26"></a>SW_DATA_SOURCE_PIN_17&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaacde98a0b06bb756381635b6941450eca"></a>SW_DATA_SOURCE_PIN_18&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa4a6b95ec6e0947573dfb2cd8438ae8af"></a>SW_DATA_SOURCE_PIN_19&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaac2aa53101bc91773b4024583ac98cac9"></a>SW_DATA_SOURCE_INCREMENTING_NUMBER&#160;</td><td class="fielddoc"><p>An number that increments each time it is accessed. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8a7298253904f4dee1e4a3a30ce37fc919"></a>SW_ERROR_ASCII_NUMBER_TOO_BIG_16&#160;</td><td class="fielddoc"><p>A number bigger than 65535 was provided to convert to a 16 bit value. </p>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaaa579e51d0a709985603e86ea921c241b"></a>SW_DATA_SOURCE_1024mvCounts&#160;</td><td class="fielddoc"><p>The number of ADC counts that result from a 1.024V reading. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8a68ae99db245bdbb90a3aa36f1aa83a92"></a>SW_ERROR_UNKNOWN_PIN_MODE&#160;</td><td class="fielddoc"><p>A Pin mode was indicated that is not avaialble on this model or version of Serial Wombat chip. </p>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaad65065998eede50c67e4fd01aeac1a3f"></a>SW_DATA_SOURCE_FRAMES_RUN_LSW&#160;</td><td class="fielddoc"><p>The number of frames run since reset, least significant 16 bits. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8ab3d5f6941cd87a9b8b749e9c35af91ec"></a>SW_ERROR_RESET_STRING_INCORRECT&#160;</td><td class="fielddoc"><p>A Packet starting with 'R' was received but didn't have the correct following bytes to cause a reset. </p>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa08b333b3ab9947c8d2b2db395d335615"></a>SW_DATA_SOURCE_FRAMES_RUN_MSW&#160;</td><td class="fielddoc"><p>The number of frames run since reset, most significant 16 bits. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8aaf961e1291c7c8714d01ebe5f6964c04"></a>SW_ERROR_INVALID_COMMAND&#160;</td><td class="fielddoc"><p>The first byte of a received packet does not correspond with a command supported by this model of Serial Wombat chip. </p>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa9a754eab3b7199fbd56ffacdddd0f956"></a>SW_DATA_SOURCE_OVERRUN_FRAMES&#160;</td><td class="fielddoc"><p>The number of frames that ran more than 1mS. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8a6985731330124f850b65c238f4082929"></a>SW_ERROR_INSUFFICIENT_SPACE&#160;</td><td class="fielddoc"><p>There was not sufficient space in the queue or user area to complete the command. </p>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa6a4c40a1be066c8c147e31605246da4c"></a>SW_DATA_SOURCE_TEMPERATURE&#160;</td><td class="fielddoc"><p>The internal core temperature expressed in 100ths deg C. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8a5e62fddcee086b4cf27a2beebb0a009e"></a>SW_ERROR_WUB_COUNT_GT_4&#160;</td><td class="fielddoc"><p>A count greater than 4 was provided as a number of bytes to write to count user buffer. </p>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa34752139d4e2f67f06c470bca9dfb79e"></a>SW_DATA_SOURCE_PACKETS_RECEIVED&#160;</td><td class="fielddoc"><p>The nubmer of incoming command packets that have been processed since reset (rolls over at 65535) </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8a3f9a71c41c21478992f9957be1609082"></a>SW_ERROR_WUB_INVALID_ADDRESS&#160;</td><td class="fielddoc"><p>An attempt to write to a user buffer address outside the user buffer was attempted. </p>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaaf4cac77bf411db3751a36f1902a4015d"></a>SW_DATA_SOURCE_ERRORS&#160;</td><td class="fielddoc"><p>The number of incoming packets that have caused errors since reset (rolls over at 65535) <br  />
+ </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8ae3fa094fe365678e157df4ba03b24171"></a>SW_ERROR_WUB_CONTINUE_OUTOFBOUNDS&#160;</td><td class="fielddoc"><p>A call to Write User Buffer Continue would have written out of bounds. </p>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa633dd83b7f93e493530e80ea22ec4c44"></a>SW_DATA_SOURCE_FRAMES_DROPPED&#160;</td><td class="fielddoc"><p>The number of times since reset that a frame ran so far behind that it crossed two subsequent 1ms boundaries, causing a permanent lost frame. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8a7e0f9fe872f668e75c58c73c12c7ab28"></a>SW_ERROR_RF_ODD_ADDRESS&#160;</td><td class="fielddoc"><p>Addresses Read From Flash must be even. </p>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa43efc450fa905c10374748174c88a907"></a>SW_DATA_SOURCE_SYSTEM_UTILIZATION&#160;</td><td class="fielddoc"><p>A number between 0 and 65535 that scales to the average length of pin processing frames between 0 and 1000mS. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8a7f7a1f7b714af490097ce01c2a5b4ff7"></a>SW_ERROR_FLASH_WRITE_INVALID_ADDRESS&#160;</td><td class="fielddoc"><p>An attempt to write or erase flash was made to a protected or non-existant area. </p>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa513982d9dbf9c8a373cd0ffe8ef85ad7"></a>SW_DATA_SOURCE_VCC_mVOLTS&#160;</td><td class="fielddoc"><p>The system source voltage in mV. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8ab36a95a606a2fcebe8a452cda60ceeed"></a>SW_ERROR_INVALID_PIN_COMMAND&#160;</td><td class="fielddoc"><p>The pin command 0xC1, 0xC2, etc is not suported by this pin mode (May vary by model) </p>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa69c1a77b8e2eaeda71797c5b9bad25ac"></a>SW_DATA_SOURCE_VBG_COUNTS_VS_VREF&#160;</td><td class="fielddoc"><p>A/D conversion of VBG against VRef . Used for mfg calibration. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8af0f26ad9dd0d66ec53ffd67dbe3fe651"></a>SW_ERROR_PIN_CONFIG_WRONG_ORDER&#160;</td><td class="fielddoc"><p>The called pin command 0xC1, 0xC2 was called before other required prior commands (e.g. 0xC0) </p>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa225787891771cc022609dea86661bc76"></a>SW_DATA_SOURCE_RESET_REGISTER&#160;</td><td class="fielddoc"><p>Hardware dependent reset reason register contents. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaaeea1d6ff075e9bb3542e46545520fafb"></a>SW_DATA_SOURCE_LFSR&#160;</td><td class="fielddoc"><p>A Linear FeedBack Shift register (32,7,5,3,2,1) based pseudo-random number generator. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa09ecaa6cf230339382f127348e8d534b"></a>SW_DATA_SOURCE_PIN_0_MV&#160;</td><td class="fielddoc"><p>The public data of Pin 0 expressed as mV. Only applicable to Analog Input mode. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa40b4d6ed96c05e6ab7ba0bd8724e43d9"></a>SW_DATA_SOURCE_PIN_1_MV&#160;</td><td class="fielddoc"><p>The public data of Pin 1 expressed as mV. Only applicable to Analog Input mode. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa752e0a4c7953e4b946b07e27abc708d5"></a>SW_DATA_SOURCE_PIN_2_MV&#160;</td><td class="fielddoc"><p>The public data of Pin 2 expressed as mV. Only applicable to Analog Input mode. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa0212640f4092369b2830d375b2a418dd"></a>SW_DATA_SOURCE_PIN_3_MV&#160;</td><td class="fielddoc"><p>The public data of Pin 3 expressed as mV. Only applicable to Analog Input mode. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa76ebeaa0c237a211268c52e798645380"></a>SW_DATA_SOURCE_PIN_4_MV&#160;</td><td class="fielddoc"><p>The public data of Pin 4 expressed as mV. Only applicable to Analog Input mode. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa1a46b9c16be49dae3cc8077899b5b48d"></a>SW_DATA_SOURCE_PIN_16_MV&#160;</td><td class="fielddoc"><p>The public data of Pin 16 expressed as mV. Only applicable to Analog Input mode. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa1a0e3205a7b7587c262f88fecdb20396"></a>SW_DATA_SOURCE_PIN_17_MV&#160;</td><td class="fielddoc"><p>The public data of Pin 17 expressed as mV. Only applicable to Analog Input mode. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaad4d3042eb0347c1edc9112bf3ea0836d"></a>SW_DATA_SOURCE_PIN_18_MV&#160;</td><td class="fielddoc"><p>The public data of Pin 18 expressed as mV. Only applicable to Analog Input mode. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa45c23cac6544fa5edaa3684a1e1a058e"></a>SW_DATA_SOURCE_PIN_19_MV&#160;</td><td class="fielddoc"><p>The public data of Pin 19 expressed as mV. Only applicable to Analog Input mode. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa4fe601a006b20d2193e426c167a2ce2f"></a>SW_DATA_SOURCE_2HZ_SQUARE&#160;</td><td class="fielddoc"><p>Square wave that alternates between 0 and 65535 every 256 frames. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa8ad71448ab78f7c9f37451ee159f5283"></a>SW_DATA_SOURCE_2HZ_SAW&#160;</td><td class="fielddoc"><p>Sawtooth wave that goes from 0 to 65535 to 0 every 512 frames. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaad368970203f4ef892c72e05486910460"></a>SW_DATA_SOURCE_1HZ_SQUARE&#160;</td><td class="fielddoc"><p>Square wave that alternates between 0 and 65535 every 512 frames. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaaa871aa24120ae258b4450f688784eb6f"></a>SW_DATA_SOURCE_1HZ_SAW&#160;</td><td class="fielddoc"><p>Sawtooth wave that goes from 0 to 65535 to 0 every 1024 frames. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa8958c7c010d9ab702f7faf94f4cf6ca2"></a>SW_DATA_SOURCE_2SEC_SQUARE&#160;</td><td class="fielddoc"><p>Square wave that alternates between 0 and 65535 every 1024 frames. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaae5a1a27f05c5ab7e4e5a0d861fcdb3de"></a>SW_DATA_SOURCE_2SEC_SAW&#160;</td><td class="fielddoc"><p>Sawtooth wave that goes from 0 to 65535 to 0 every 2048 frames. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa428925fbfc6f4b5932501ceef2e0dff5"></a>SW_DATA_SOURCE_8SEC_SQUARE&#160;</td><td class="fielddoc"><p>Square wave that alternates between 0 and 65535 every 4096 frames. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaad0e07c59910fee04c191715d568e6774"></a>SW_DATA_SOURCE_8SEC_SAW&#160;</td><td class="fielddoc"><p>Sawtooth wave that goes from 0 to 65535 to 0 every 8192 frames. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaa495312c46d1484fc98184ed5eac264c1"></a>SW_DATA_SOURCE_65SEC_SQUARE&#160;</td><td class="fielddoc"><p>Square wave that alternates between 0 and 65535 every 32768 frames. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ac99635cf191c8a2e2d4790bf8ecc34aaaed647af3461e5800d48d4844a0aba2fa"></a>SW_DATA_SOURCE_65SEC_SAW&#160;</td><td class="fielddoc"><p>Sawtooth wave that goes from 0 to 65535 to 0 every 65536 frames. </p>
 </td></tr>
 </table>
 
@@ -633,7 +747,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">void error </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="serial_wombat_8h.html#a864855f9b7396b3a518a57030f961dc8">SW_ERROR_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="serial_wombat_errors_8h.html#a864855f9b7396b3a518a57030f961dc8">SW_ERROR_t</a>&#160;</td>
           <td class="paramname"><em>errorCode</em></td><td>)</td>
           <td></td>
         </tr>
@@ -883,6 +997,20 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="aebe751c02616ab9c5173ab102458c85d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebe751c02616ab9c5173ab102458c85d">&#9670;&nbsp;</a></span>FramesRun</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t FramesRun</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a3746253bc322a22526b13c0677428983"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3746253bc322a22526b13c0677428983">&#9670;&nbsp;</a></span>PinUpdateRegisters</h2>
 
@@ -891,6 +1019,20 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="pin_registers_8h.html#a05c2f507909227f1b5c27ed8aa88f9a6">pinRegister_t</a> PinUpdateRegisters[NUMBER_OF_TOTAL_PINS]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a98f9330c013b24244f5b39affb54294b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98f9330c013b24244f5b39affb54294b">&#9670;&nbsp;</a></span>RunForeground</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool RunForeground</td>
         </tr>
       </table>
 </div><div class="memdoc">

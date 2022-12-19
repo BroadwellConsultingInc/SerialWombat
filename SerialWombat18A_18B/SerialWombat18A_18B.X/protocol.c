@@ -527,13 +527,85 @@ Or similar
 			break;
 		case COMMAND_BINARY_READ_PIN_BUFFFER:
 			{
+/** \addtogroup ProtocolBinaryCommands
+\{
+
+----
+
+Binary Read Pin Public Data Buffer Command
+---------------------
+
+Reads the public data from three consecutive pins starting with a specified pin
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0x81|Pin Number|0x55*|'U'*|'U'*|'U'*|'U'*|'U'*|
+ *0x55 is recommended, but any byte is acceptable
+
+Response:
+
+Reads the public data from three consecutive pins starting with a specified pin
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0x81|Pin Number requested |Specified Pin Public Data low byte|Specified Pin Public Data High byte|Specified Pin + 1 Public Data low byte|Specified Pin + 1 Public Data High byte|Specified Pin + 2 Public Data low byte|Specified Pin + 2 Public Data High byte|
+
+Examples:
+
+> `0x81 0x01 0x55 0x55 0x55 0x55 0x55 0x55`
+
+Will read the 16-bit public data from pins 1, 2 and 3.  Assuming pin1's public data was 0x481B, pin 2's was 0x38FC, and pin 3's was 0x0314:
+
+Response:
+> `0x81 0x1 0x1B 0x48 0xFC 0x38 0x14 0x03`
+
+\}
+**/
 				uint16_t temp = GetBuffer(Rxbuffer[1]);
 				TXBUFFER16(2,temp);		
 
 			}
 			break;
 		case COMMAND_BINARY_SET_PIN_BUFFFER:
-			{
+		{
+/** \addtogroup ProtocolBinaryCommands
+\{
+
+----
+
+Binary Set Pin Public Data Buffer Command
+---------------------
+
+Sets the public data  for 2 pins.  (Pin number can be set to 255 to not set a pin).
+
+The values returned are the values for the public data before it was changed.  This can be useful when 
+reading an input's public data value.  For instance, when reading the position of a pin set to Rotary encoder mode,
+the value before being set could be read, then the value set back to 32768 for center.  
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0x82|Pin Number to set|Value Low Byte|Value High Byte|Second Pin to set|Second Value Low Byte|Second Value High Byte|'U'*|
+ *0x55 is recommended, but any byte is acceptable
+
+Response:
+
+Reads the public data from three consecutive pins starting with a specified pin
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0x81|Pin Number requested |Specified Pin Public Data low byte|Specified Pin Public Data High byte|2nd pin number|2nd pin low byte|2nd pin high byte|Echo of sent Byte 7|
+
+Examples:
+
+> `0x81 0x01 0x55 0x55 0x55 0x55 0x55 0x55`
+
+Will read the 16-bit public data from pins 1, 2 and 3.  Assuming pin1's public data was 0x481B, pin 2's was 0x38FC, and pin 3's was 0x0314:
+
+Response:
+> `0x81 0x1 0x1B 0x48 0xFC 0x38 0x14 0x03`
+
+\}
+**/
+            uint16_t temp = GetBuffer(Rxbuffer[1]);
+			TXBUFFER16(2,temp);		
+			temp = GetBuffer(Rxbuffer[4] );
+			TXBUFFER16(5,temp);		
 				SetBuffer(Rxbuffer[1],RXBUFFER16(2));
 				SetBuffer(Rxbuffer[4],RXBUFFER16(5));
 			}

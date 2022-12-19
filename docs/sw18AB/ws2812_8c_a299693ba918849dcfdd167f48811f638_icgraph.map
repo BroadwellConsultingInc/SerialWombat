@@ -1,0 +1,8 @@
+<map id="SendResetSignal" name="SendResetSignal">
+<area shape="rect" id="node1" title=" " alt="" coords="420,31,543,57"/>
+<area shape="rect" id="node2" href="$ws2812_8c.html#a82002a17871d682de6aa45c29cd8cee2" title=" " alt="" coords="272,5,361,32"/>
+<area shape="rect" id="node4" href="$ws2812_8c.html#a6762daf42262e26a12e964bf2b9e7421" title="update the WS2812 pin state machine" alt="" coords="261,56,372,83"/>
+<area shape="rect" id="node3" href="$protocol_8c.html#ad68aff3124fee3a4193383135f70c7c7" title=" " alt="" coords="104,5,213,32"/>
+<area shape="rect" id="node5" href="$serial_wombat_8h.html#a4e12ac6db45a20bca0fa11303072dbda" title=" " alt="" coords="111,56,207,83"/>
+<area shape="rect" id="node6" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,56,56,83"/>
+</map>

@@ -546,7 +546,6 @@ void SetPin(uint8_t pin, uint8_t pinState)
 			}
 			else
 			{
-				TRISA &= pinMask;
 				or128(OutputArrayA,pinMask);
 				LATA |= pinMask;
 				TRISA &= ~pinMask;

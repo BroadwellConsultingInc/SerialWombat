@@ -1,7 +1,29 @@
 var searchData=
 [
-  ['new_5fval_1538',['new_val',['../struct__pin__register2__t_1_1morse__temp__n.html#ad11fe797cbbd9d9983ab05ac0ccfe8aa',1,'_pin_register2_t::morse_temp_n']]],
-  ['new_5fvalue_1539',['new_value',['../struct__pin__register2__t_1_1rotary__enc__n.html#a580fbb71413a26fa185a8a6898771ef9',1,'_pin_register2_t::rotary_enc_n']]],
-  ['newdata_1540',['newdata',['../struct__pin__register__t_1_1remote__n.html#acc56a09b1ca61b52bc34a8a93f5ee484',1,'_pin_register_t::remote_n']]],
-  ['numofsegments_1541',['numofsegments',['../struct__pin__register__t_1_1max7219__n.html#aa8b92c852f9c1c8effe628f8cd629eb3',1,'_pin_register_t::max7219_n']]]
+  ['oc1interruptcount_2221',['OC1InterruptCount',['../timing_resource_8c.html#aedccd31b147228d905cf1b255ebefa35',1,'timingResource.c']]],
+  ['oc2interruptcount_2222',['OC2InterruptCount',['../timing_resource_8c.html#a50c8ee10dfad0c184f0656f2eab62abc',1,'timingResource.c']]],
+  ['oc3interruptcount_2223',['OC3InterruptCount',['../timing_resource_8c.html#a31e55f87ad4da5e5c4567f5e194778cb',1,'timingResource.c']]],
+  ['offcolor_2224',['offColor',['../structws2812.html#a13f7eb80b7660d056937463c28db3fa8',1,'ws2812']]],
+  ['offset_2225',['offset',['../structlinear__n.html#a6ce3f696b272714787d4176e0d61196a',1,'linear_n::offset()'],['../struct__pin__register__t_1_1pwm__follow__direct__n.html#a4bf2ee424ebdc36431cf82256bced1b7',1,'_pin_register_t::pwm_follow_direct_n::offset()'],['../struct__pin__register2__t_1_1hd44780__n2.html#ad4e8baaf07a49326ddc2268bb7e5d106',1,'_pin_register2_t::hd44780_n2::offset()']]],
+  ['old_5fbuffer_2226',['old_buffer',['../struct__pin__register__t_1_1slowpwm__n.html#ac15b4a9fe5dd64b1443847dbf2a17164',1,'_pin_register_t::slowpwm_n']]],
+  ['old_5fvalue_2227',['old_value',['../struct__pin__register2__t_1_1rotary__enc__n.html#ad1d538f8d8a681ca64336ef958334958',1,'_pin_register2_t::rotary_enc_n']]],
+  ['oldhigh_2228',['oldhigh',['../struct__pin__register__t_1_1hw__pulse__width__n.html#ad494880a3e5705b97ce0ab28a0d6aec3',1,'_pin_register_t::hw_pulse_width_n']]],
+  ['oldlow_2229',['oldlow',['../struct__pin__register__t_1_1hw__pulse__width__n.html#a5d30e5f571f56170ab90a49864be4f67',1,'_pin_register_t::hw_pulse_width_n']]],
+  ['oncolor_2230',['onColor',['../structws2812.html#a5142a3ae0e84b62f41b12ab8bbd8f3cf',1,'ws2812']]],
+  ['ornotand_2231',['orNotAnd',['../structpulse_on_change__n.html#a093ee51cb3955e8c0fb1568109db249c',1,'pulseOnChange_n']]],
+  ['output_2232',['output',['../struct__pin__register__t_1_1uart__rx__n.html#ae17ddc17f20d4c9287ca6e20bf646764',1,'_pin_register_t::uart_rx_n::output()'],['../struct__pin__register__t_1_1uart__tx__n.html#a5d84f58fbf9a54dc6eb6cb5515cb74e6',1,'_pin_register_t::uart_tx_n::output()']]],
+  ['outputarraya_2233',['OutputArrayA',['../utilities_8h.html#a6ccc98d51ea5cafa68813070402d3bec',1,'utilities.h']]],
+  ['outputarrayb_2234',['OutputArrayB',['../utilities_8h.html#a19dfc66bdf6a52e964d84af584c7d10a',1,'utilities.h']]],
+  ['outputbuffer_2235',['outputBuffer',['../structtm1637__n.html#a9d4fae9077549a2f96c00848dee676f5',1,'tm1637_n']]],
+  ['outputhigh_2236',['outputHigh',['../structoutput_scale__n.html#a68834a57902c451a743be31bd2ff324e',1,'outputScale_n']]],
+  ['outputlow_2237',['outputLow',['../structoutput_scale__n.html#a4071cb52e18574c1b3e58808b5735f00',1,'outputScale_n']]],
+  ['outputmax_2238',['outputMax',['../structoutput_scale__n.html#a6b32f254e7133051a14d8234a67f633d',1,'outputScale_n']]],
+  ['outputmin_2239',['outputMin',['../structoutput_scale__n.html#a62f3b1032ab7a225d6b1e93259b5d056',1,'outputScale_n']]],
+  ['outputmode_2240',['outputmode',['../struct__pin__register__t_1_1debounce__n.html#a0639aa147dfbe19c91dbeca2422eaf01',1,'_pin_register_t::debounce_n']]],
+  ['outputpin_2241',['outputpin',['../struct__pin__register__t_1_1lookup2d__n.html#aae5ceec62f5d6e3f2e844f5cdc02b914',1,'_pin_register_t::lookup2d_n']]],
+  ['outputsampleperiodmask_2242',['outputSamplePeriodMask',['../output_scale_8c.html#a25f40bcc4805e80496011dac86aed480',1,'outputScale.c']]],
+  ['outputscale_2243',['outputScale',['../structhf_servo__n.html#ad5f71d8a89e5fe891591e51655fa01f1',1,'hfServo_n::outputScale()'],['../structpwm__n.html#a446651611fe5848a9040308c4d8876af',1,'pwm_n::outputScale()'],['../structservo__n.html#aced062929de8e0869398f825f606be4e',1,'servo_n::outputScale()']]],
+  ['outputstate_2244',['outputState',['../structtm1637__n.html#ae58ba5a6047fecc681aae036791a5ad2',1,'tm1637_n']]],
+  ['overall_5fresult_2245',['overall_result',['../utilities_8c.html#a80fb5e88ab89f1b9728ffe03103a4496',1,'utilities.c']]],
+  ['overflowframes_2246',['OverflowFrames',['../main_8c.html#a108f40d45779940e61ae40349097ea17',1,'main.c']]]
 ];

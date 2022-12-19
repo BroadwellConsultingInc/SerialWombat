@@ -1,0 +1,6 @@
+<map id="initServoHwSimple" name="initServoHwSimple">
+<area shape="rect" id="node1" title="A simple, no&#45;parameter call to initialize the Servo. Used in ASCII pin configuration commands." alt="" coords="5,31,135,57"/>
+<area shape="rect" id="node2" href="$serial_wombat_8h.html#a2cbaf411931fb9450528471b575815d4" title=" " alt="" coords="183,5,290,32"/>
+<area shape="rect" id="node3" href="$output_scale_8c.html#a448c14a979a0c6be9a77b2d19232b4e0" title=" " alt="" coords="183,56,291,83"/>
+<area shape="rect" id="node4" href="$_serial_wombat18_a__18_b_2_serial_wombat18_a__18_b_8_x_2pin_registers_8c.html#abc7f8feb8a974c4cc2ac61ac3d7f61cd" title=" " alt="" coords="339,56,415,83"/>
+</map>

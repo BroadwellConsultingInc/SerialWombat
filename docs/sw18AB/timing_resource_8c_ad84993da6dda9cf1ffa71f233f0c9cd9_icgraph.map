@@ -1,0 +1,14 @@
+<map id="timingResourceDefault" name="timingResourceDefault">
+<area shape="rect" id="node1" title=" " alt="" coords="729,56,881,83"/>
+<area shape="rect" id="node2" href="$timing_resource_8c.html#a81928312727a48fbdda5d48baf19f7d8" title=" " alt="" coords="489,5,681,32"/>
+<area shape="rect" id="node6" href="$timing_resource_8c.html#af387c38cd66d282646e8d2f8cb3a915f" title=" " alt="" coords="104,56,283,83"/>
+<area shape="rect" id="node7" href="$timing_resource_8c.html#a799df9877251a6e763686d479b9e239f" title=" " alt="" coords="506,157,665,184"/>
+<area shape="rect" id="node3" href="$touch_8c.html#a094697be7cd7077b4ed1d31f7e9eb817" title=" " alt="" coords="338,5,434,32"/>
+<area shape="rect" id="node4" href="$serial_wombat_8h.html#a4e12ac6db45a20bca0fa11303072dbda" title=" " alt="" coords="145,107,241,133"/>
+<area shape="rect" id="node5" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,81,56,108"/>
+<area shape="rect" id="node8" href="$hf_servo_8c.html#a3624f2f451087dd536761e67345f1ca9" title=" " alt="" coords="345,157,427,184"/>
+<area shape="rect" id="node10" href="$pwm_8c.html#a428d429e060d60c0b086eeb8310ed4b6" title=" " alt="" coords="350,208,422,235"/>
+<area shape="rect" id="node11" href="$servo_8c.html#ae2eb8d1771760b348fc5e76c34bd9a9b" title=" " alt="" coords="341,259,431,285"/>
+<area shape="rect" id="node12" href="$servo_8c.html#af8edbcbd4cc3b7d2f6be55ca07a5daf4" title="Periodic call to service the Servo State Machine for a pin." alt="" coords="331,107,441,133"/>
+<area shape="rect" id="node9" href="$protocol_8c.html#ad68aff3124fee3a4193383135f70c7c7" title=" " alt="" coords="139,208,248,235"/>
+</map>

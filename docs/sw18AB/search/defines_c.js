@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['off_5f_5f_2026',['OFF__',['../_t_m1637_8c.html#a80714ee76f0094210e51a5cb192ca5e0',1,'TM1637.c']]],
-  ['output_5farray_5fa_5fdma_5findex_2027',['OUTPUT_ARRAY_A_DMA_INDEX',['../utilities_8h.html#a10b9044413b4b78204493947b1ed513b',1,'utilities.h']]],
-  ['output_5farray_5fb_5fdma_5findex_2028',['OUTPUT_ARRAY_B_DMA_INDEX',['../utilities_8h.html#ad3f38b2bf04593979edc821cf0875e91',1,'utilities.h']]],
-  ['output_5fcharacter_2029',['OUTPUT_CHARACTER',['../uarttx_8c.html#a1bb3302ae08c1ceb8bcae750bc9c0a15',1,'uarttx.c']]],
-  ['output_5fi2c_5fdebug_2030',['OUTPUT_I2C_DEBUG',['../protocol_8c.html#a5469d175c557b6519337a0f370486d7c',1,'protocol.c']]]
+  ['near_2988',['near',['../types_8h.html#a5f8c71de251bfd53efeee45aaf0a8470',1,'types.h']]],
+  ['num_5fchange_5frec_2989',['NUM_CHANGE_REC',['../pulse_on_change_8c.html#aef6b2feef7c309a40dac2ce9fddc287c',1,'pulseOnChange.c']]],
+  ['number_5fof_5fcolors_2990',['NUMBER_OF_COLORS',['../ws2812_8c.html#a426fad069a360c3f0d23e52a0ff41926',1,'ws2812.c']]],
+  ['number_5fof_5fphysical_5fpins_2991',['NUMBER_OF_PHYSICAL_PINS',['../utilities_8h.html#a7919853acaa274ca53f22b625de7de9f',1,'utilities.h']]],
+  ['number_5fof_5fvirtual_5fpins_2992',['NUMBER_OF_VIRTUAL_PINS',['../utilities_8h.html#aaf1d5202e0401ef1a319bd3154633ba3',1,'utilities.h']]]
 ];

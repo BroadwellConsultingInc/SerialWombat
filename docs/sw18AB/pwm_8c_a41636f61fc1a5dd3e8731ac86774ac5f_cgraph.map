@@ -1,0 +1,12 @@
+<map id="initPWMSimple" name="initPWMSimple">
+<area shape="rect" id="node1" title=" " alt="" coords="5,44,117,71"/>
+<area shape="rect" id="node2" href="$timing_resource_8c.html#ac5b7961d583164137d06047cea518b37" title=" " alt="" coords="165,19,344,45"/>
+<area shape="rect" id="node3" href="$pwm_8c.html#a5c776e1b0271e68feb798f9a31326d5c" title=" " alt="" coords="207,69,302,96"/>
+<area shape="rect" id="node4" href="$output_scale_8c.html#af93255b311aaaf0ca43a1ff0cb3e2a23" title=" " alt="" coords="400,12,539,39"/>
+<area shape="rect" id="node6" href="$timing_resource_8c.html#aea60293acde1f45b0ee32a6ce168eca6" title=" " alt="" coords="397,69,542,96"/>
+<area shape="rect" id="node9" href="$timing_resource_8c.html#a9891ad2074beb0f4d910bebf8c08058f" title=" " alt="" coords="392,132,547,159"/>
+<area shape="rect" id="node5" href="$_serial_wombat18_a__18_b_2_serial_wombat18_a__18_b_8_x_2pin_registers_8c.html#abc7f8feb8a974c4cc2ac61ac3d7f61cd" title=" " alt="" coords="623,5,699,32"/>
+<area shape="rect" id="node7" href="$serial_wombat_8h.html#a22286dddb9a45fa58fb7d123048e3ebf" title=" " alt="" coords="607,56,716,83"/>
+<area shape="rect" id="node8" href="$serial_wombat_8h.html#a2cbaf411931fb9450528471b575815d4" title=" " alt="" coords="608,107,715,133"/>
+<area shape="rect" id="node10" href="$utilities_8h.html#ade41a363ae4796354b427b2487e485ad" title=" " alt="" coords="595,157,728,184"/>
+</map>

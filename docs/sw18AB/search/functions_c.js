@@ -1,11 +1,15 @@
 var searchData=
 [
-  ['random_1242',['random',['../utilities_8c.html#a094c4236495f559be7f85324190263da',1,'random(void):&#160;utilities.c'],['../utilities_8h.html#a094c4236495f559be7f85324190263da',1,'random(void):&#160;utilities.c']]],
-  ['random_5fseed_1243',['random_seed',['../utilities_8c.html#a5732fad331d53e96950fec35ca90505c',1,'random_seed(uint32_t seed):&#160;utilities.c'],['../utilities_8h.html#aa3be73537d68821de31216cec3f43dea',1,'random_seed(uint32_t):&#160;utilities.c']]],
-  ['read_5fad_1244',['read_ad',['../utilities_8c.html#abe191813118210711f163d8c9b7f65f5',1,'read_ad(uint8_t vpin):&#160;utilities.c'],['../utilities_8h.html#ae525043045fc51e39198d6e5fe457545',1,'read_ad(uint8_t virtual_pin):&#160;utilities.c']]],
-  ['read_5ffree_5frunning_5ftimer_1245',['read_free_running_timer',['../utilities_8c.html#aff502991a4aa9480e28904c8963c5d7b',1,'read_free_running_timer():&#160;utilities.c'],['../utilities_8h.html#a6b720b6025dfec1923812e39ff2b11e8',1,'read_free_running_timer(void):&#160;utilities.c']]],
-  ['read_5fpin_1246',['read_pin',['../utilities_8h.html#a190786bbe82ea53fec6b183c3f135c0a',1,'utilities.h']]],
-  ['readpin_1247',['ReadPin',['../serial_wombat_8h.html#a570eee3fe7803695758bfbd8bd9a336b',1,'serialWombat.h']]],
-  ['reset_1248',['reset',['../main_8c.html#ad20897c5c8bd47f5d4005989bead0e55',1,'reset():&#160;main.c'],['../serial_wombat_8h.html#a3aea9deb2a0bfea9ff05a898f4822e31',1,'reset(void):&#160;main.c']]],
-  ['rx_5fdec_5fascii_5fto_5fval16_1249',['rx_dec_ascii_to_val16',['../utilities_8c.html#a31a2db0ab1922e08fbfec655a7ba9ff9',1,'rx_dec_ascii_to_val16(uint8_t rxbuffer_index, uint8_t count):&#160;utilities.c'],['../utilities_8h.html#a3fe9d4dba6b22f012677993fb85c5e79',1,'rx_dec_ascii_to_val16(uint8_t rxbufferindex, uint8_t counter):&#160;utilities.c']]]
+  ['queue0bit_1786',['queue0Bit',['../ws2812_8c.html#a43dcd6b5263da289e378fd7faff6b4ad',1,'ws2812.c']]],
+  ['queue1bit_1787',['queue1Bit',['../ws2812_8c.html#a1ef5796080009f89ce630a3afd31487d',1,'ws2812.c']]],
+  ['queueaddbyte_1788',['QueueAddByte',['../queue_8c.html#a64bc806fa1142618603f4266f9c235e5',1,'QueueAddByte(uint16_t address, uint8_t data):&#160;queue.c'],['../queue_8h.html#a64bc806fa1142618603f4266f9c235e5',1,'QueueAddByte(uint16_t address, uint8_t data):&#160;queue.c']]],
+  ['queuebyteinitialize_1789',['QueueByteInitialize',['../queue_8c.html#a942de92009649597d2ee2b8dc4d47f2c',1,'QueueByteInitialize(uint16_t address, uint16_t capacity):&#160;queue.c'],['../queue_8h.html#a942de92009649597d2ee2b8dc4d47f2c',1,'QueueByteInitialize(uint16_t address, uint16_t capacity):&#160;queue.c']]],
+  ['queuebyteshiftinitialize_1790',['QueueByteShiftInitialize',['../queue_8c.html#a2362e4c7cfc9febfee6d3f29557884be',1,'QueueByteShiftInitialize(uint16_t address, uint16_t capacity):&#160;queue.c'],['../queue_8h.html#a2362e4c7cfc9febfee6d3f29557884be',1,'QueueByteShiftInitialize(uint16_t address, uint16_t capacity):&#160;queue.c']]],
+  ['queuebytesinqueue_1791',['QueueBytesInQueue',['../queue_8h.html#a09d577df0df70b8ea95c010851054c99',1,'queue.h']]],
+  ['queuecopy_1792',['QueueCopy',['../queue_8c.html#a7e55606ea7dac9d4df4681c9a54a6623',1,'QueueCopy(uint16_t dstAddress, uint16_t srcAddress):&#160;queue.c'],['../queue_8h.html#a45a91b5c49268c8c2cc67d101b569b45',1,'QueueCopy(uint16_t dstAddress, uint16_t sourceAddress):&#160;queue.c']]],
+  ['queuegetbytesfilledinqueue_1793',['QueueGetBytesFilledInQueue',['../queue_8c.html#a245a1aead2b5f1150e13b44c990a65f6',1,'QueueGetBytesFilledInQueue(uint16_t address, uint16_t *bytesInQueue):&#160;queue.c'],['../queue_8h.html#a2da34e61b35585f3c128dd9a1c012795',1,'QueueGetBytesFilledInQueue(uint16_t address, uint16_t *bytesFilledInQueue):&#160;queue.c']]],
+  ['queuegetbytesfreeinqueue_1794',['QueueGetBytesFreeInQueue',['../queue_8c.html#a1032ff196130d8d3af68580401867dc0',1,'QueueGetBytesFreeInQueue(uint16_t address, uint16_t *bytesFreeInQueue):&#160;queue.c'],['../queue_8h.html#a1032ff196130d8d3af68580401867dc0',1,'QueueGetBytesFreeInQueue(uint16_t address, uint16_t *bytesFreeInQueue):&#160;queue.c']]],
+  ['queuepeekbyte_1795',['QueuePeekByte',['../queue_8c.html#a9fbd21545f1e7c12f306135bc0fdb5cb',1,'QueuePeekByte(uint16_t address, uint8_t *data):&#160;queue.c'],['../queue_8h.html#a9fbd21545f1e7c12f306135bc0fdb5cb',1,'QueuePeekByte(uint16_t address, uint8_t *data):&#160;queue.c']]],
+  ['queuereadbyte_1796',['QueueReadByte',['../queue_8c.html#a2b7844a663fe7bfa340bd913aa30c38c',1,'QueueReadByte(uint16_t address, uint8_t *data):&#160;queue.c'],['../queue_8h.html#a2b7844a663fe7bfa340bd913aa30c38c',1,'QueueReadByte(uint16_t address, uint8_t *data):&#160;queue.c']]],
+  ['queuergb_1797',['QueueRGB',['../ws2812_8c.html#a29e12d4b3988a4e7764931928ffeb141',1,'ws2812.c']]]
 ];

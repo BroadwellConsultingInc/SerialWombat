@@ -1,0 +1,5 @@
+<map id="updateWatchdog" name="updateWatchdog">
+<area shape="rect" id="node1" title="Periodic call to service the Analog Input State Machine for a pin." alt="" coords="5,31,125,57"/>
+<area shape="rect" id="node2" href="$main_8c.html#ad20897c5c8bd47f5d4005989bead0e55" title=" " alt="" coords="199,5,250,32"/>
+<area shape="rect" id="node3" href="$serial_wombat_8h.html#aca2cd83c8bf0ecc3527ba8d389855373" title=" " alt="" coords="173,56,276,83"/>
+</map>

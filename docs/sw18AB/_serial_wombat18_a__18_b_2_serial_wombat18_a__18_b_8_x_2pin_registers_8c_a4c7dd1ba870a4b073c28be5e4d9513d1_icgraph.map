@@ -1,0 +1,25 @@
+<map id="wrandom" name="wrandom">
+<area shape="rect" id="node1" title=" " alt="" coords="897,461,972,488"/>
+<area shape="rect" id="node2" href="$pin_registers_8h.html#abc7f8feb8a974c4cc2ac61ac3d7f61cd" title=" " alt="" coords="773,461,849,488"/>
+<area shape="rect" id="node3" href="$pulse_on_change_8c.html#a5161a992d676a8c7fee32363ae3b1f13" title=" " alt="" coords="163,5,296,32"/>
+<area shape="rect" id="node5" href="$output_scale_8h.html#a448c14a979a0c6be9a77b2d19232b4e0" title=" " alt="" coords="593,157,701,184"/>
+<area shape="rect" id="node11" href="$output_scale_8h.html#af93255b311aaaf0ca43a1ff0cb3e2a23" title=" " alt="" coords="578,360,717,387"/>
+<area shape="rect" id="node18" href="$_t_m1637_8c.html#a57e2b72c59a8c0d24fa11c2189db7870" title="Create a TM1637 bitmap in the displayArray." alt="" coords="574,436,721,463"/>
+<area shape="rect" id="node20" href="$pin_input_processor_8c.html#a446f8964182c5b3ae342006afee4361b" title=" " alt="" coords="349,487,516,513"/>
+<area shape="rect" id="node21" href="$protected_output_8c.html#a49e137290578de111f95a03c6e432dd6" title=" " alt="" coords="569,537,725,564"/>
+<area shape="rect" id="node22" href="$pulse_input_d_m_a_8c.html#aabefc4619a00d035bfee5cd2a5d8dc68" title=" " alt="" coords="595,639,699,665"/>
+<area shape="rect" id="node23" href="$ws2812_8c.html#a6762daf42262e26a12e964bf2b9e7421" title="update the WS2812 pin state machine" alt="" coords="592,588,703,615"/>
+<area shape="rect" id="node4" href="$protocol_8c.html#ad68aff3124fee3a4193383135f70c7c7" title=" " alt="" coords="5,107,115,133"/>
+<area shape="rect" id="node6" href="$hf_servo_8c.html#a3624f2f451087dd536761e67345f1ca9" title=" " alt="" coords="188,132,271,159"/>
+<area shape="rect" id="node7" href="$pwm_8c.html#a428d429e060d60c0b086eeb8310ed4b6" title=" " alt="" coords="193,208,265,235"/>
+<area shape="rect" id="node8" href="$servo_8c.html#ae2eb8d1771760b348fc5e76c34bd9a9b" title=" " alt="" coords="185,81,274,108"/>
+<area shape="rect" id="node9" href="$servo_8c.html#a8b3fda87565cf3fa8eee2c89f95e9b8f" title="A simple, no&#45;parameter call to initialize the Servo. Used in ASCII pin configuration commands." alt="" coords="368,81,497,108"/>
+<area shape="rect" id="node10" href="$output_scale_8h.html#aba4f47610d05e55ce5cb1e33971090bd" title=" " alt="" coords="344,183,521,209"/>
+<area shape="rect" id="node12" href="$hf_servo_8c.html#aa2f458d9af36555fbeae87aa741b0dc7" title=" " alt="" coords="380,385,485,412"/>
+<area shape="rect" id="node15" href="$pwm_8c.html#a5c776e1b0271e68feb798f9a31326d5c" title=" " alt="" coords="385,284,480,311"/>
+<area shape="rect" id="node17" href="$servo_8c.html#af8edbcbd4cc3b7d2f6be55ca07a5daf4" title="Periodic call to service the Servo State Machine for a pin." alt="" coords="377,335,488,361"/>
+<area shape="rect" id="node13" href="$serial_wombat_8h.html#a4e12ac6db45a20bca0fa11303072dbda" title=" " alt="" coords="181,436,277,463"/>
+<area shape="rect" id="node14" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="35,436,85,463"/>
+<area shape="rect" id="node16" href="$pwm_8c.html#a41636f61fc1a5dd3e8731ac86774ac5f" title=" " alt="" coords="173,284,285,311"/>
+<area shape="rect" id="node19" href="$_t_m1637_8c.html#abf85cb9b831ee34d4f1aef9f1053f096" title="update the TM1637 pin state machine" alt="" coords="379,436,486,463"/>
+</map>

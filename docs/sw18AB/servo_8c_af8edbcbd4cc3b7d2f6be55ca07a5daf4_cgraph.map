@@ -1,0 +1,13 @@
+<map id="updateServoHw" name="updateServoHw">
+<area shape="rect" id="node1" title="Periodic call to service the Servo State Machine for a pin." alt="" coords="5,157,116,184"/>
+<area shape="rect" id="node2" href="$serial_wombat_8h.html#a2cbaf411931fb9450528471b575815d4" title=" " alt="" coords="213,5,319,32"/>
+<area shape="rect" id="node3" href="$output_scale_8c.html#af93255b311aaaf0ca43a1ff0cb3e2a23" title=" " alt="" coords="197,56,335,83"/>
+<area shape="rect" id="node5" href="$timing_resource_8c.html#a994ccab3364b56fe69c863c1f7f2d563" title=" " alt="" coords="165,107,367,133"/>
+<area shape="rect" id="node6" href="$timing_resource_8c.html#a984ab39344b065e2abfdac02c4196251" title=" " alt="" coords="164,157,368,184"/>
+<area shape="rect" id="node7" href="$timing_resource_8c.html#a799df9877251a6e763686d479b9e239f" title=" " alt="" coords="187,208,345,235"/>
+<area shape="rect" id="node9" href="$timing_resource_8c.html#a9891ad2074beb0f4d910bebf8c08058f" title=" " alt="" coords="189,259,343,285"/>
+<area shape="rect" id="node11" href="$timing_resource_8c.html#a2a9bab33afd71607bf727eafd7b43ccd" title=" " alt="" coords="177,309,355,336"/>
+<area shape="rect" id="node4" href="$_serial_wombat18_a__18_b_2_serial_wombat18_a__18_b_8_x_2pin_registers_8c.html#abc7f8feb8a974c4cc2ac61ac3d7f61cd" title=" " alt="" coords="454,56,530,83"/>
+<area shape="rect" id="node8" href="$timing_resource_8c.html#ad84993da6dda9cf1ffa71f233f0c9cd9" title=" " alt="" coords="416,208,568,235"/>
+<area shape="rect" id="node10" href="$utilities_8h.html#ade41a363ae4796354b427b2487e485ad" title=" " alt="" coords="425,259,559,285"/>
+</map>

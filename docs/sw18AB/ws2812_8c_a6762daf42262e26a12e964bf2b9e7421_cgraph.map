@@ -1,0 +1,12 @@
+<map id="updateWS2812" name="updateWS2812">
+<area shape="rect" id="node1" title="update the WS2812 pin state machine" alt="" coords="5,132,116,159"/>
+<area shape="rect" id="node2" href="$_serial_wombat18_a__18_b_2_serial_wombat18_a__18_b_8_x_2pin_registers_8c.html#abc7f8feb8a974c4cc2ac61ac3d7f61cd" title=" " alt="" coords="204,5,280,32"/>
+<area shape="rect" id="node3" href="$ws2812_8c.html#a29e12d4b3988a4e7764931928ffeb141" title=" " alt="" coords="198,56,286,83"/>
+<area shape="rect" id="node6" href="$ws2812_8c.html#a299693ba918849dcfdd167f48811f638" title=" " alt="" coords="181,107,303,133"/>
+<area shape="rect" id="node7" href="$ws2812_8c.html#aecd650d0d9cfb0b0cc4ccb51321d08b3" title=" " alt="" coords="203,157,281,184"/>
+<area shape="rect" id="node8" href="$ws2812_8c.html#acacc6a83fc821882447777d160c23e35" title=" " alt="" coords="203,208,281,235"/>
+<area shape="rect" id="node9" href="$ws2812_8c.html#a49542c426f9d170293ee6abbce781752" title=" " alt="" coords="164,259,320,285"/>
+<area shape="rect" id="node4" href="$ws2812_8c.html#a43dcd6b5263da289e378fd7faff6b4ad" title=" " alt="" coords="405,31,485,57"/>
+<area shape="rect" id="node5" href="$ws2812_8c.html#a1ef5796080009f89ce630a3afd31487d" title=" " alt="" coords="405,81,485,108"/>
+<area shape="rect" id="node10" href="$ws2812_8c.html#aabd8dfa99ddc14769de44eea813d87ad" title=" " alt="" coords="368,259,523,285"/>
+</map>

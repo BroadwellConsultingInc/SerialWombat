@@ -1,0 +1,14 @@
+<map id="protocol.c" name="protocol.c">
+<area shape="rect" id="node1" title=" " alt="" coords="174,5,252,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="282,229,347,256"/>
+<area shape="rect" id="node3" title=" " alt="" coords="30,155,105,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="180,80,246,107"/>
+<area shape="rect" id="node5" href="$serial_wombat_8h.html" title=" " alt="" coords="295,80,408,107"/>
+<area shape="rect" id="node12" href="$ascii_conversion_8h.html" title=" " alt="" coords="657,80,780,107"/>
+<area shape="rect" id="node6" href="$pin_modes_8h.html" title=" " alt="" coords="180,155,270,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="294,155,409,181"/>
+<area shape="rect" id="node8" href="$pin_registers_8h.html" title=" " alt="" coords="434,155,539,181"/>
+<area shape="rect" id="node9" href="$protocol_8h.html" title=" " alt="" coords="563,155,642,181"/>
+<area shape="rect" id="node10" href="$queue_8h.html" title=" " alt="" coords="666,155,734,181"/>
+<area shape="rect" id="node11" href="$serial_wombat_errors_8h.html" title=" " alt="" coords="758,155,906,181"/>
+</map>

@@ -77,13 +77,17 @@ $(function() {
 <div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &lt;string.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="serial_wombat_8h_source.html">SerialWombat.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="serial_wombat_8h_source.html">serialWombat.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ascii_conversion_8h_source.html">asciiConversion.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a5469d175c557b6519337a0f370486d7c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a5469d175c557b6519337a0f370486d7c">OUTPUT_I2C_DEBUG</a>(_value)&#160;&#160;&#160;{}</td></tr>
 <tr class="separator:a5469d175c557b6519337a0f370486d7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48bebc6315be42778c637ea55fb483b7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a48bebc6315be42778c637ea55fb483b7">CRCCCITT_POLYNOMIAL</a>&#160;&#160;&#160;((unsigned short)0x1021)</td></tr>
+<tr class="separator:a48bebc6315be42778c637ea55fb483b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acee39326b9ce6e9f35c0f0cf3b361bce"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#acee39326b9ce6e9f35c0f0cf3b361bce">CRCCCITT_SEED_VALUE</a>&#160;&#160;&#160;((unsigned short)0x84CF)</td></tr>
+<tr class="separator:acee39326b9ce6e9f35c0f0cf3b361bce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -91,10 +95,12 @@ Functions</h2></td></tr>
 <tr class="separator:ad68aff3124fee3a4193383135f70c7c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeef4069466ce88efeceefe295a3e7a09"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#aeef4069466ce88efeceefe295a3e7a09">uartStartTX</a> ()</td></tr>
 <tr class="separator:aeef4069466ce88efeceefe295a3e7a09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a67d45a479305051a083becec0369b252"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a67d45a479305051a083becec0369b252">error</a> (<a class="el" href="serial_wombat_8h.html#a864855f9b7396b3a518a57030f961dc8">SW_ERROR_t</a> errorCode)</td></tr>
+<tr class="memitem:a67d45a479305051a083becec0369b252"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a67d45a479305051a083becec0369b252">error</a> (<a class="el" href="serial_wombat_errors_8h.html#a864855f9b7396b3a518a57030f961dc8">SW_ERROR_t</a> errorCode)</td></tr>
 <tr class="separator:a67d45a479305051a083becec0369b252"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9bbbfa5ff3b2110f3d8c3f6dc12111c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a9bbbfa5ff3b2110f3d8c3f6dc12111c8">ProcessRx</a> (void)</td></tr>
 <tr class="separator:a9bbbfa5ff3b2110f3d8c3f6dc12111c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc6352270ca78fc487f04066df5434bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#abc6352270ca78fc487f04066df5434bc">crcAppSpace</a> (uint32_t address_w, uint32_t length_w)</td></tr>
+<tr class="separator:abc6352270ca78fc487f04066df5434bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -102,6 +108,8 @@ Variables</h2></td></tr>
 <tr class="separator:a27bbbe9a8f987f6547e2884fdf5b29c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19649e6b68af5ff030039327dec275d2"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a19649e6b68af5ff030039327dec275d2">SW_I2CAddress</a> = 0x6B</td></tr>
 <tr class="separator:a19649e6b68af5ff030039327dec275d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56dc151af4f2204c4eb7100ed7bd17fd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a56dc151af4f2204c4eb7100ed7bd17fd">UART2ndInterface</a> = false</td></tr>
+<tr class="separator:a56dc151af4f2204c4eb7100ed7bd17fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2922a6afd10ecda4f7b9de326393aa9c"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a2922a6afd10ecda4f7b9de326393aa9c">UartRxbufferCounter</a> = 0</td></tr>
 <tr class="separator:a2922a6afd10ecda4f7b9de326393aa9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8db28eeba2dedf6d8dec0c0e63ece047"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a8db28eeba2dedf6d8dec0c0e63ece047">UartTxbufferCounter</a> = 0</td></tr>
@@ -120,8 +128,6 @@ Variables</h2></td></tr>
 <tr class="separator:adfe3bc2dde2e2c7de2ce22d190c3445e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a340dde3262302ea74cf19ec71718a574"><td class="memItemLeft" align="right" valign="top">volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a340dde3262302ea74cf19ec71718a574">RX_ClockStretching</a> = 0</td></tr>
 <tr class="separator:a340dde3262302ea74cf19ec71718a574"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1fe3d41e7eba43eec5fc76f7e6162a07"><td class="memItemLeft" align="right" valign="top">volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a1fe3d41e7eba43eec5fc76f7e6162a07">debugBreakpointVariable</a> = 0</td></tr>
-<tr class="separator:a1fe3d41e7eba43eec5fc76f7e6162a07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbab656d2dc6981c7d44038d4600c9ae"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#acbab656d2dc6981c7d44038d4600c9ae">lastUserBufferIndex</a> = 0xFFFF</td></tr>
 <tr class="separator:acbab656d2dc6981c7d44038d4600c9ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9fdd0f13960d5071700d6462acb889e6"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a9fdd0f13960d5071700d6462acb889e6">lastQueueIndex</a> = 0xFFFF</td></tr>
@@ -130,12 +136,48 @@ Variables</h2></td></tr>
 <tr class="separator:a4fe470bdc9281428d7e40ab5fa6e01b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabf19b957854978128703718f32dcdde"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#aabf19b957854978128703718f32dcdde">testSequenceArmed</a> = 0</td></tr>
 <tr class="separator:aabf19b957854978128703718f32dcdde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4783ddff22b296a59b79902558aad711"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a4783ddff22b296a59b79902558aad711">lastErrorPacket</a> [8]</td></tr>
+<tr class="separator:a4783ddff22b296a59b79902558aad711"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f7e4e1452b96caba5deaadb60fab491"><td class="memItemLeft" align="right" valign="top"><a class="el" href="pin_registers_8h.html#a05c2f507909227f1b5c27ed8aa88f9a6">pinRegister_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a2f7e4e1452b96caba5deaadb60fab491">PinRegisterCopyBuffer</a></td></tr>
+<tr class="separator:a2f7e4e1452b96caba5deaadb60fab491"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb4523beaac1b5ae8a16b9047a5f81c1"><td class="memItemLeft" align="right" valign="top">timingResourceManager_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#adb4523beaac1b5ae8a16b9047a5f81c1">TimingResourceManagerCopyBuffer</a></td></tr>
+<tr class="separator:adb4523beaac1b5ae8a16b9047a5f81c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af984966ce16dfe9ae56c8d6fd0162491"><td class="memItemLeft" align="right" valign="top">volatile unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#af984966ce16dfe9ae56c8d6fd0162491">crcResultCRCCCITT</a> = 0</td></tr>
+<tr class="separator:af984966ce16dfe9ae56c8d6fd0162491"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6b926ca8ea00cae32b94cd1248c716a3"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a6b926ca8ea00cae32b94cd1248c716a3">Errors</a> = 0</td></tr>
 <tr class="separator:a6b926ca8ea00cae32b94cd1248c716a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ac2d4c8ab03252f9615d29dbe2c2283"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a2ac2d4c8ab03252f9615d29dbe2c2283">PacketsProcessed</a> = 0</td></tr>
 <tr class="separator:a2ac2d4c8ab03252f9615d29dbe2c2283"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a48bebc6315be42778c637ea55fb483b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48bebc6315be42778c637ea55fb483b7">&#9670;&nbsp;</a></span>CRCCCITT_POLYNOMIAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CRCCCITT_POLYNOMIAL&#160;&#160;&#160;((unsigned short)0x1021)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acee39326b9ce6e9f35c0f0cf3b361bce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acee39326b9ce6e9f35c0f0cf3b361bce">&#9670;&nbsp;</a></span>CRCCCITT_SEED_VALUE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CRCCCITT_SEED_VALUE&#160;&#160;&#160;((unsigned short)0x84CF)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a5469d175c557b6519337a0f370486d7c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5469d175c557b6519337a0f370486d7c">&#9670;&nbsp;</a></span>OUTPUT_I2C_DEBUG</h2>
 
@@ -155,6 +197,34 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="abc6352270ca78fc487f04066df5434bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc6352270ca78fc487f04066df5434bc">&#9670;&nbsp;</a></span>crcAppSpace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void crcAppSpace </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>address_w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>length_w</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a67d45a479305051a083becec0369b252"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a67d45a479305051a083becec0369b252">&#9670;&nbsp;</a></span>error()</h2>
 
@@ -164,7 +234,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">void error </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="serial_wombat_8h.html#a864855f9b7396b3a518a57030f961dc8">SW_ERROR_t</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="serial_wombat_errors_8h.html#a864855f9b7396b3a518a57030f961dc8">SW_ERROR_t</a>&#160;</td>
           <td class="paramname"><em>errorCode</em></td><td>)</td>
           <td></td>
         </tr>
@@ -227,6 +297,20 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a id="af984966ce16dfe9ae56c8d6fd0162491"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af984966ce16dfe9ae56c8d6fd0162491">&#9670;&nbsp;</a></span>crcResultCRCCCITT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile unsigned short crcResultCRCCCITT = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a27bbbe9a8f987f6547e2884fdf5b29c2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a27bbbe9a8f987f6547e2884fdf5b29c2">&#9670;&nbsp;</a></span>debug_discarded_bytes</h2>
 
@@ -241,20 +325,6 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a1fe3d41e7eba43eec5fc76f7e6162a07"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1fe3d41e7eba43eec5fc76f7e6162a07">&#9670;&nbsp;</a></span>debugBreakpointVariable</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">volatile uint8_t debugBreakpointVariable = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a6b926ca8ea00cae32b94cd1248c716a3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6b926ca8ea00cae32b94cd1248c716a3">&#9670;&nbsp;</a></span>Errors</h2>
 
@@ -263,6 +333,20 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">uint16_t Errors = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4783ddff22b296a59b79902558aad711"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4783ddff22b296a59b79902558aad711">&#9670;&nbsp;</a></span>lastErrorPacket</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t lastErrorPacket[8]</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -319,6 +403,20 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">uint16_t PacketsProcessed = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2f7e4e1452b96caba5deaadb60fab491"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f7e4e1452b96caba5deaadb60fab491">&#9670;&nbsp;</a></span>PinRegisterCopyBuffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="pin_registers_8h.html#a05c2f507909227f1b5c27ed8aa88f9a6">pinRegister_t</a> PinRegisterCopyBuffer</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -423,6 +521,20 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="adb4523beaac1b5ae8a16b9047a5f81c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb4523beaac1b5ae8a16b9047a5f81c1">&#9670;&nbsp;</a></span>TimingResourceManagerCopyBuffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">timingResourceManager_t TimingResourceManagerCopyBuffer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="adfe3bc2dde2e2c7de2ce22d190c3445e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adfe3bc2dde2e2c7de2ce22d190c3445e">&#9670;&nbsp;</a></span>TX_ClockStretching</h2>
 
@@ -445,6 +557,20 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">uint8_t Txbuffer[<a class="el" href="serial_wombat_8h.html#adacdf40a0c312a6521597507378d80a6">TXBUFFER_LENGTH</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a56dc151af4f2204c4eb7100ed7bd17fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56dc151af4f2204c4eb7100ed7bd17fd">&#9670;&nbsp;</a></span>UART2ndInterface</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool UART2ndInterface = false</td>
         </tr>
       </table>
 </div><div class="memdoc">

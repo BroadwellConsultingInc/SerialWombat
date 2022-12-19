@@ -99,9 +99,7 @@ Typedefs</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:a8d8fee83ede5371d8e03d74c7815ccfe"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pulse_input_d_m_a_8c.html#a8d8fee83ede5371d8e03d74c7815ccfe">transformType_t</a> { <a class="el" href="pulse_input_d_m_a_8c.html#a8d8fee83ede5371d8e03d74c7815ccfea39bc5b598289fa8119026ecdc90438da">TRANSFORM_TYPE_DIRECT</a> = 0, 
-<a class="el" href="pulse_input_d_m_a_8c.html#a8d8fee83ede5371d8e03d74c7815ccfeada23d8e52004da1cd9e03ca3d3875ab8">TRANSFORM_TYPE_LINEAR</a> = 1, 
-<a class="el" href="pulse_output_8c.html#a8d8fee83ede5371d8e03d74c7815ccfea39bc5b598289fa8119026ecdc90438da">TRANSFORM_TYPE_DIRECT</a> = 0, 
-<a class="el" href="pulse_output_8c.html#a8d8fee83ede5371d8e03d74c7815ccfeada23d8e52004da1cd9e03ca3d3875ab8">TRANSFORM_TYPE_LINEAR</a> = 1
+<a class="el" href="pulse_input_d_m_a_8c.html#a8d8fee83ede5371d8e03d74c7815ccfeada23d8e52004da1cd9e03ca3d3875ab8">TRANSFORM_TYPE_LINEAR</a> = 1
  }</td></tr>
 <tr class="separator:a8d8fee83ede5371d8e03d74c7815ccfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -170,8 +168,6 @@ Functions</h2></td></tr>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a8d8fee83ede5371d8e03d74c7815ccfea39bc5b598289fa8119026ecdc90438da"></a>TRANSFORM_TYPE_DIRECT&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a8d8fee83ede5371d8e03d74c7815ccfeada23d8e52004da1cd9e03ca3d3875ab8"></a>TRANSFORM_TYPE_LINEAR&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a8d8fee83ede5371d8e03d74c7815ccfea39bc5b598289fa8119026ecdc90438da"></a>TRANSFORM_TYPE_DIRECT&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a8d8fee83ede5371d8e03d74c7815ccfeada23d8e52004da1cd9e03ca3d3875ab8"></a>TRANSFORM_TYPE_LINEAR&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -194,7 +190,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <pre class="fragment">\brief Initialization routine for Servo.
 </pre><hr  />
-<h2><a class="anchor" id="autotoc_md32"></a>
+<h2><a class="anchor" id="autotoc_md50"></a>
 CONFIGURE_CHANNEL_MODE_0:</h2>
 <p>Initialize Servo. This command causes the pulse width to default to 500uS to 2500uS.</p>
 <table class="markdownTable">
@@ -212,7 +208,7 @@ CONFIGURE_CHANNEL_MODE_0:</h2>
 <p><code>0xC0 0x02 0x03 0x02 0x80 0x40 0x00 0x55</code> </p>
 </blockquote>
 <hr  />
-<h2><a class="anchor" id="autotoc_md34"></a>
+<h2><a class="anchor" id="autotoc_md52"></a>
 CONFIGURE_CHANNEL_MODE_1:</h2>
 <p>Set Pulse widths. This command must come after a servo CONFIGURE_CHANNEL_MODE_0 command for the same pin. Units are microseconds</p>
 <table class="markdownTable">

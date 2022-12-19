@@ -70,13 +70,15 @@ $(function() {
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">analogInput.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="serial_wombat_8h_source.html">serialWombat.h</a>&quot;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="input_process_8h_source.html">inputProcess.h</a>&quot;</code><br />
 <code>#include &quot;pic24fj256ga702/mcc_generated_files/mcc.h&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
@@ -102,6 +104,13 @@ Functions</h2></td></tr>
 <tr class="separator:a4bd673f592ce7e7ee1c4d209c65830d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7291916adc66e2eba7acd935aeb79bd2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analog_input_8c.html#a7291916adc66e2eba7acd935aeb79bd2">updateAnalogInput</a> ()</td></tr>
 <tr class="separator:a7291916adc66e2eba7acd935aeb79bd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a2239ef900c9b23cf9b42c48384b6f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analog_input_8c.html#a1a2239ef900c9b23cf9b42c48384b6f1">initAnalogSimple</a> ()</td></tr>
+<tr class="separator:a1a2239ef900c9b23cf9b42c48384b6f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a51737e66b106e66f65a8a0792d9ded28"><td class="memItemLeft" align="right" valign="top"><a class="el" href="analog_input_8c.html#a2f6f1bf60508b0fe0921e39fda908eea">analogInput_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="analog_input_8c.html#a51737e66b106e66f65a8a0792d9ded28">debugAnalog</a></td></tr>
+<tr class="separator:a51737e66b106e66f65a8a0792d9ded28"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a5935a00aaeee75b0d1a642710b0794d4"></a>
@@ -279,6 +288,23 @@ CONFIGURE_CHANNEL_MODE_4:</h2>
 
 </div>
 </div>
+<a id="a1a2239ef900c9b23cf9b42c48384b6f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a2239ef900c9b23cf9b42c48384b6f1">&#9670;&nbsp;</a></span>initAnalogSimple()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initAnalogSimple </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a7291916adc66e2eba7acd935aeb79bd2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7291916adc66e2eba7acd935aeb79bd2">&#9670;&nbsp;</a></span>updateAnalogInput()</h2>
 
@@ -290,6 +316,21 @@ CONFIGURE_CHANNEL_MODE_4:</h2>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a51737e66b106e66f65a8a0792d9ded28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51737e66b106e66f65a8a0792d9ded28">&#9670;&nbsp;</a></span>debugAnalog</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="analog_input_8c.html#a2f6f1bf60508b0fe0921e39fda908eea">analogInput_t</a>* debugAnalog</td>
         </tr>
       </table>
 </div><div class="memdoc">

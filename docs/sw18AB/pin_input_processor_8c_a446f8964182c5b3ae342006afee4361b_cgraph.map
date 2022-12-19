@@ -1,0 +1,7 @@
+<map id="updatePinInputProcessor" name="updatePinInputProcessor">
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,172,57"/>
+<area shape="rect" id="node2" href="$_serial_wombat18_a__18_b_2_serial_wombat18_a__18_b_8_x_2pin_registers_8c.html#abc7f8feb8a974c4cc2ac61ac3d7f61cd" title=" " alt="" coords="255,5,331,32"/>
+<area shape="rect" id="node3" href="$input_process_8c.html#a8229fc27e156f30cf5f37c389c36c070" title=" " alt="" coords="220,56,367,83"/>
+<area shape="rect" id="node4" href="$queue_8c.html#a64bc806fa1142618603f4266f9c235e5" title=" " alt="" coords="454,31,565,57"/>
+<area shape="rect" id="node5" href="$queue_8c.html#a1032ff196130d8d3af68580401867dc0" title=" " alt="" coords="415,81,604,108"/>
+</map>

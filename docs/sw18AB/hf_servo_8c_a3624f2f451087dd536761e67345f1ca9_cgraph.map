@@ -1,0 +1,13 @@
+<map id="initHfServo" name="initHfServo">
+<area shape="rect" id="node1" title=" " alt="" coords="5,157,88,184"/>
+<area shape="rect" id="node2" href="$serial_wombat_8h.html#a2cbaf411931fb9450528471b575815d4" title=" " alt="" coords="172,5,279,32"/>
+<area shape="rect" id="node3" href="$protocol_8c.html#a67d45a479305051a083becec0369b252" title=" " alt="" coords="201,56,249,83"/>
+<area shape="rect" id="node5" href="$output_scale_8c.html#aba4f47610d05e55ce5cb1e33971090bd" title=" " alt="" coords="137,107,314,133"/>
+<area shape="rect" id="node6" href="$output_scale_8c.html#a448c14a979a0c6be9a77b2d19232b4e0" title=" " alt="" coords="385,132,493,159"/>
+<area shape="rect" id="node8" href="$output_scale_8c.html#ac6aae43fb54ea71b09ffabafa35362d1" title=" " alt="" coords="140,208,311,235"/>
+<area shape="rect" id="node9" href="$timing_resource_8c.html#ac5b7961d583164137d06047cea518b37" title=" " alt="" coords="136,259,315,285"/>
+<area shape="rect" id="node10" href="$timing_resource_8c.html#a799df9877251a6e763686d479b9e239f" title=" " alt="" coords="146,309,305,336"/>
+<area shape="rect" id="node4" href="$_serial_wombat18_a__18_b_2_serial_wombat18_a__18_b_8_x_2ascii_conversion_8c.html#a5872bab298550ae88e7afb0404f6406b" title=" " alt="" coords="385,56,492,83"/>
+<area shape="rect" id="node7" href="$_serial_wombat18_a__18_b_2_serial_wombat18_a__18_b_8_x_2pin_registers_8c.html#abc7f8feb8a974c4cc2ac61ac3d7f61cd" title=" " alt="" coords="563,132,639,159"/>
+<area shape="rect" id="node11" href="$timing_resource_8c.html#ad84993da6dda9cf1ffa71f233f0c9cd9" title=" " alt="" coords="363,309,515,336"/>
+</map>

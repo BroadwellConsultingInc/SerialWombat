@@ -68,32 +68,66 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">servo.c File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="serial_wombat_8h_source.html">SerialWombat.h</a>&quot;</code><br />
-<code>#include &lt;stdint.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="serial_wombat_8h_source.html">serialWombat.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="output_scale_8h_source.html">outputScale.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structservo__n.html">servo_n</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ac1922f2b035c7e4dbaec60873bc46e1b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="servo_8c.html#ac1922f2b035c7e4dbaec60873bc46e1b">servo</a>&#160;&#160;&#160;((<a class="el" href="servo_8c.html#a4080d93cf990ded8c4d9b54e07e61c36">servoPin_t</a>*) <a class="el" href="pin_registers_8h.html#a746aa3c2d8a5e19351392e2aa0e1f8d0">CurrentPinRegister</a>)</td></tr>
+<tr class="separator:ac1922f2b035c7e4dbaec60873bc46e1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:a4080d93cf990ded8c4d9b54e07e61c36"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="structservo__n.html">servo_n</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="servo_8c.html#a4080d93cf990ded8c4d9b54e07e61c36">servoPin_t</a></td></tr>
 <tr class="separator:a4080d93cf990ded8c4d9b54e07e61c36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a0152e5113fa66edde43149b0aab22f93"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="servo_8c.html#a0152e5113fa66edde43149b0aab22f93">SERVO_STATE_t</a> { <a class="el" href="servo_8c.html#a0152e5113fa66edde43149b0aab22f93a010616ff176f0439c8cd6b74052de7d1">SERVO_STATE_WAITING</a> = 0, 
+<a class="el" href="servo_8c.html#a0152e5113fa66edde43149b0aab22f93a4ee84afb2c6c723ae6d65f797c43e1d1">SERVO_STATE_GENERATING_PULSE</a> = 1
+ }</td></tr>
+<tr class="separator:a0152e5113fa66edde43149b0aab22f93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aa82c1241c9848dfe3ad36cd19ff2d3de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="servo_8c.html#aa82c1241c9848dfe3ad36cd19ff2d3de">init_servo</a> (void)</td></tr>
-<tr class="separator:aa82c1241c9848dfe3ad36cd19ff2d3de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c9a633fe8f83cfc40674ef3652528b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="servo_8c.html#a0c9a633fe8f83cfc40674ef3652528b6">update_servo</a> ()</td></tr>
-<tr class="separator:a0c9a633fe8f83cfc40674ef3652528b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b3fda87565cf3fa8eee2c89f95e9b8f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="servo_8c.html#a8b3fda87565cf3fa8eee2c89f95e9b8f">initServoHwSimple</a> ()</td></tr>
+<tr class="memdesc:a8b3fda87565cf3fa8eee2c89f95e9b8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">A simple, no-parameter call to initialize the Servo. Used in ASCII pin configuration commands.  <a href="servo_8c.html#a8b3fda87565cf3fa8eee2c89f95e9b8f">More...</a><br /></td></tr>
+<tr class="separator:a8b3fda87565cf3fa8eee2c89f95e9b8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2eb8d1771760b348fc5e76c34bd9a9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="servo_8c.html#ae2eb8d1771760b348fc5e76c34bd9a9b">initServoHw</a> (void)</td></tr>
+<tr class="separator:ae2eb8d1771760b348fc5e76c34bd9a9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8edbcbd4cc3b7d2f6be55ca07a5daf4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="servo_8c.html#af8edbcbd4cc3b7d2f6be55ca07a5daf4">updateServoHw</a> ()</td></tr>
+<tr class="memdesc:af8edbcbd4cc3b7d2f6be55ca07a5daf4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Periodic call to service the Servo State Machine for a pin.  <a href="servo_8c.html#af8edbcbd4cc3b7d2f6be55ca07a5daf4">More...</a><br /></td></tr>
+<tr class="separator:af8edbcbd4cc3b7d2f6be55ca07a5daf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="ac1922f2b035c7e4dbaec60873bc46e1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1922f2b035c7e4dbaec60873bc46e1b">&#9670;&nbsp;</a></span>servo</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define servo&#160;&#160;&#160;((<a class="el" href="servo_8c.html#a4080d93cf990ded8c4d9b54e07e61c36">servoPin_t</a>*) <a class="el" href="pin_registers_8h.html#a746aa3c2d8a5e19351392e2aa0e1f8d0">CurrentPinRegister</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="a4080d93cf990ded8c4d9b54e07e61c36"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4080d93cf990ded8c4d9b54e07e61c36">&#9670;&nbsp;</a></span>servoPin_t</h2>
@@ -109,15 +143,34 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="aa82c1241c9848dfe3ad36cd19ff2d3de"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa82c1241c9848dfe3ad36cd19ff2d3de">&#9670;&nbsp;</a></span>init_servo()</h2>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a0152e5113fa66edde43149b0aab22f93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0152e5113fa66edde43149b0aab22f93">&#9670;&nbsp;</a></span>SERVO_STATE_t</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void init_servo </td>
+          <td class="memname">enum <a class="el" href="servo_8c.html#a0152e5113fa66edde43149b0aab22f93">SERVO_STATE_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0152e5113fa66edde43149b0aab22f93a010616ff176f0439c8cd6b74052de7d1"></a>SERVO_STATE_WAITING&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a0152e5113fa66edde43149b0aab22f93a4ee84afb2c6c723ae6d65f797c43e1d1"></a>SERVO_STATE_GENERATING_PULSE&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ae2eb8d1771760b348fc5e76c34bd9a9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2eb8d1771760b348fc5e76c34bd9a9b">&#9670;&nbsp;</a></span>initServoHw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initServoHw </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -125,23 +178,91 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<pre class="fragment">\brief Initialization routine for Servo.
+</pre><hr  />
+<h2><a class="anchor" id="autotoc_md66"></a>
+CONFIGURE_CHANNEL_MODE_0:</h2>
+<p>Initialize Servo. This command causes the pulse width to default to 500uS to 2500uS.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">0xC0 </td><td class="markdownTableBodyLeft">Pin To Set </td><td class="markdownTableBodyLeft">0x03 (servo mode) </td><td class="markdownTableBodyLeft">Pin To Set (Required for compatability with SW19) </td><td class="markdownTableBodyLeft">Position Value Low Byte </td><td class="markdownTableBodyLeft">Position Value High Byte </td><td class="markdownTableBodyLeft">0x00 or 0x01 (Normal or Reverse) </td><td class="markdownTableBodyLeft">0x55*  </td></tr>
+</table>
+<p>*0x55 is recommended, but any byte is acceptable</p>
+<p>Response:</p>
+<p>Command is echoed back.</p>
+<p>Examples:</p>
+<p>Set pin 2 to Servo, Position 0x4080, no reverse</p>
+<blockquote class="doxtable">
+<p><code>0xC0 0x02 0x03 0x02 0x80 0x40 0x00 0x55</code> </p>
+</blockquote>
+<hr  />
+<h2><a class="anchor" id="autotoc_md68"></a>
+CONFIGURE_CHANNEL_MODE_1:</h2>
+<p>Set Pulse widths. This command must come after a servo CONFIGURE_CHANNEL_MODE_0 command for the same pin. Units are microseconds</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">0xC1 </td><td class="markdownTableBodyLeft">Pin To Set </td><td class="markdownTableBodyLeft">0x03 (servo mode) </td><td class="markdownTableBodyLeft">Fixed pulse time low byte </td><td class="markdownTableBodyLeft">Fixed pulse time high byte </td><td class="markdownTableBodyLeft">Variable pulse time low byte </td><td class="markdownTableBodyLeft">variable pulse time high byte </td><td class="markdownTableBodyLeft">0x55*  </td></tr>
+</table>
+<p>*0x55 is recommended, but any byte is acceptable</p>
+<p>Response:</p>
+<p>Command is echoed back.</p>
+<p>Examples:</p>
+<p>Set pin 2 Servo Pulse width to range between 750 and 1750 uS. <br  />
+ Fixed period is 750 = 0x02EE, variable period is (1750 - 750) = 1000 = 0x03E8</p>
+<blockquote class="doxtable">
+<p><code>0xC1 0x02 0x03 0xEE 0x02 0xE8 0x03 0x55</code> </p>
+</blockquote>
 
 </div>
 </div>
-<a id="a0c9a633fe8f83cfc40674ef3652528b6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c9a633fe8f83cfc40674ef3652528b6">&#9670;&nbsp;</a></span>update_servo()</h2>
+<a id="a8b3fda87565cf3fa8eee2c89f95e9b8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b3fda87565cf3fa8eee2c89f95e9b8f">&#9670;&nbsp;</a></span>initServoHwSimple()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void update_servo </td>
+          <td class="memname">void initServoHwSimple </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>A simple, no-parameter call to initialize the Servo. Used in ASCII pin configuration commands. </p>
+<p>Initializes servo to 500-2500 uS pulse, not reversed. </p>
+
+</div>
+</div>
+<a id="af8edbcbd4cc3b7d2f6be55ca07a5daf4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8edbcbd4cc3b7d2f6be55ca07a5daf4">&#9670;&nbsp;</a></span>updateServoHw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void updateServoHw </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Periodic call to service the Servo State Machine for a pin. </p>
+<p>This function expects to get called every mS. <br  />
+</p>
+<p>On most calls increments inactiveCount and returns.</p>
+<p>When inactive count &gt;= 20 and the CCP1 compare register isn't busy (indicated by CCP1SetLowMask == 0xFF) the function sets the output high, sets the CCP1SetLowMask variable to set the pin low when its port is &amp;'d with the CCP1SetLowMask, and calculates a time in the future based on the calculated pulse width + TMR1 reading.</p>
+<p>When the interrupt goes off it and's the LAT register with CCP1SetLowMask, setting the value low again.</p>
+<p>This algorithm assumes that only one pin is using the CCP1 at a time, which is enforced by the check for CCP1SetLowMask == 0xFF.</p>
+<p>pulsetime = fixed time + variableTime * buffer / 65536. <br  />
+ </p>
 
 </div>
 </div>

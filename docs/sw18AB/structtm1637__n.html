@@ -96,6 +96,9 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:aa4d9be24001572285d1f3b139f3ef99d"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtm1637__n.html#aa4d9be24001572285d1f3b139f3ef99d">decimalPointBitmap</a></td></tr>
 <tr class="memdesc:aa4d9be24001572285d1f3b139f3ef99d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Least significant is first digit's decimal.  <a href="structtm1637__n.html#aa4d9be24001572285d1f3b139f3ef99d">More...</a><br /></td></tr>
 <tr class="separator:aa4d9be24001572285d1f3b139f3ef99d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a413ee8bc5b8e1d68bfdcee627db68f24"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtm1637__n.html#a413ee8bc5b8e1d68bfdcee627db68f24">blinkBitmap</a></td></tr>
+<tr class="memdesc:a413ee8bc5b8e1d68bfdcee627db68f24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Digits to blink at 2Hz Least significant is first digit's decimal.  <a href="structtm1637__n.html#a413ee8bc5b8e1d68bfdcee627db68f24">More...</a><br /></td></tr>
+<tr class="separator:a413ee8bc5b8e1d68bfdcee627db68f24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa157a49a9d6bcdfed5eb1f6daea50ce1"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtm1637__n.html#aa157a49a9d6bcdfed5eb1f6daea50ce1">lastDigit</a>:4</td></tr>
 <tr class="memdesc:aa157a49a9d6bcdfed5eb1f6daea50ce1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The last digit to send.  <a href="structtm1637__n.html#aa157a49a9d6bcdfed5eb1f6daea50ce1">More...</a><br /></td></tr>
 <tr class="separator:aa157a49a9d6bcdfed5eb1f6daea50ce1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -106,8 +109,26 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a6d7495b0324649cede630e2768684f03"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtm1637__n.html#a6d7495b0324649cede630e2768684f03">mode</a>:4</td></tr>
 <tr class="memdesc:a6d7495b0324649cede630e2768684f03"><td class="mdescLeft">&#160;</td><td class="mdescRight">See type TM1637_MODE_t.  <a href="structtm1637__n.html#a6d7495b0324649cede630e2768684f03">More...</a><br /></td></tr>
 <tr class="separator:a6d7495b0324649cede630e2768684f03"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2181ea6ac3d37d41d0e3272e89aedd5c"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtm1637__n.html#a2181ea6ac3d37d41d0e3272e89aedd5c">suppressLeadingZeros</a>:1</td></tr>
+<tr class="separator:a2181ea6ac3d37d41d0e3272e89aedd5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a id="a413ee8bc5b8e1d68bfdcee627db68f24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a413ee8bc5b8e1d68bfdcee627db68f24">&#9670;&nbsp;</a></span>blinkBitmap</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t tm1637_n::blinkBitmap</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Digits to blink at 2Hz Least significant is first digit's decimal. </p>
+
+</div>
+</div>
 <a id="a4709f61640b06815dbcf1a0c6b58ebde"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4709f61640b06815dbcf1a0c6b58ebde">&#9670;&nbsp;</a></span>brightness</h2>
 
@@ -293,6 +314,20 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Used for the byte-by-byte transfer state machine. </p>
+
+</div>
+</div>
+<a id="a2181ea6ac3d37d41d0e3272e89aedd5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2181ea6ac3d37d41d0e3272e89aedd5c">&#9670;&nbsp;</a></span>suppressLeadingZeros</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t tm1637_n::suppressLeadingZeros</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

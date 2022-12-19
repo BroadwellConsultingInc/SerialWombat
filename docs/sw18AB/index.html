@@ -66,7 +66,7 @@ $(function() {
 <div class="title">Serial Wombat </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md11"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md14"></a>
 What's a Serial Wombat?</h1>
 <p>A Serial Wombat:</p>
 <ul>
@@ -94,7 +94,7 @@ What's a Serial Wombat?</h1>
 <li>Configure the Wombat to monitor for short circuits of a FET driver and shut off an output within milliseconds of a short condition, preventing damage</li>
 </ul>
 <p>The Serial Wombat has a built in bootloader. This means that when a new version of firmware comes out, you can download it into the chip yourself without needing an embedded programmer.</p>
-<h1><a class="anchor" id="autotoc_md12"></a>
+<h1><a class="anchor" id="autotoc_md15"></a>
 Serial Wombat Overview</h1>
 <p>The Serial Wombat is designed to provide low-to-medium speed Digital I/O (up to about 50kHz) and analog to digital data aquisition, while taking advantage of the potential available in an external microcontroller.</p>
 <p>The Serial Wombat's internal firmware does a lot more than just set pins high or low. Each pin is assigned an independed state machine capable of doing lots of different things, which preprocess data or manipulate outputs to achieve higher level functionality on behalf of the host.</p>
@@ -109,7 +109,7 @@ Serial Wombat Overview</h1>
 <li>Some events happen too fast to be communicated in real-time to the host. For example, a rotary encoder knob (such as the ones on many car radios) which is turned by a human typically can change states at around every 500 microseconds. This is far too often to be polled by the host. However, it can be easily monitored by the Wombat. The Wombat then simply tells the host the net number of "clicks" clockwise or counter-clockwise have happened since the last time the host asked.</li>
 </ul>
 <p>Many of these problems can also be solved by programming directly on an Arduino or Raspberry Pi. However, this often takes a substantial time investment, and may rely on libraries that are specific to a particular platform. The Serial Wombat is designed to allow many common embedded problems without needing a hardware specific library. The Wombat will work good with any platform that has a UART. Some problems, such as the Aquarium example above, can be solved by simply sending a few commands to the Wombat from a terminal such as Putty or Hyperterminal.</p>
-<h1><a class="anchor" id="autotoc_md13"></a>
+<h1><a class="anchor" id="autotoc_md16"></a>
 Principals</h1>
 <p>The Serial Wombat design is based on the following principles:</p>
 <ul>
@@ -123,7 +123,7 @@ Principals</h1>
 <li>The Serial Wombat should use software as possible to eliminate physical components. Examples include digital filtering of analog inputs and debouncing of switch inputs, as well as ability to individually set internal pin pull-ups and pull-downs.</li>
 <li>The Serial Wombat should be expandable. The user should be able to develop firmware to run in the microcontroller in partnership with the existing Serial Wombat pin modes.</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md14"></a>
+<h1><a class="anchor" id="autotoc_md17"></a>
 Why the PIC24FJ256GA702?</h1>
 <p>Of all of the microcontrollers in the world, why the PIC24FJ256GA702?</p>
 <p>This micro has a few properties that make it particularly well suited to become the new Serial Wombat:</p>

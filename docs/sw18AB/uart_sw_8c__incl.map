@@ -1,0 +1,13 @@
+<map id="uartSw.c" name="uartSw.c">
+<area shape="rect" id="node1" title=" " alt="" coords="404,5,477,32"/>
+<area shape="rect" id="node2" href="$serial_wombat_8h.html" title=" " alt="" coords="308,87,421,114"/>
+<area shape="rect" id="node11" title=" " alt="" coords="446,80,587,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="178,244,244,271"/>
+<area shape="rect" id="node4" title=" " alt="" coords="27,169,102,196"/>
+<area shape="rect" id="node5" href="$pin_modes_8h.html" title=" " alt="" coords="126,169,216,196"/>
+<area shape="rect" id="node6" title=" " alt="" coords="240,169,355,196"/>
+<area shape="rect" id="node7" href="$pin_registers_8h.html" title=" " alt="" coords="380,169,485,196"/>
+<area shape="rect" id="node8" href="$protocol_8h.html" title=" " alt="" coords="509,169,588,196"/>
+<area shape="rect" id="node9" href="$queue_8h.html" title=" " alt="" coords="612,169,680,196"/>
+<area shape="rect" id="node10" href="$serial_wombat_errors_8h.html" title=" " alt="" coords="704,169,852,196"/>
+</map>

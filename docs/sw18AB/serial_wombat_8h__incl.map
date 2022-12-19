@@ -1,0 +1,11 @@
+<map id="serialWombat.h" name="serialWombat.h">
+<area shape="rect" id="node1" title=" " alt="" coords="308,5,421,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="179,155,244,181"/>
+<area shape="rect" id="node3" title=" " alt="" coords="27,80,102,107"/>
+<area shape="rect" id="node4" href="$pin_modes_8h.html" title=" " alt="" coords="127,80,216,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="241,80,355,107"/>
+<area shape="rect" id="node6" href="$pin_registers_8h.html" title=" " alt="" coords="380,80,485,107"/>
+<area shape="rect" id="node7" href="$protocol_8h.html" title=" " alt="" coords="509,80,588,107"/>
+<area shape="rect" id="node8" href="$queue_8h.html" title=" " alt="" coords="612,80,680,107"/>
+<area shape="rect" id="node9" href="$serial_wombat_errors_8h.html" title=" " alt="" coords="704,80,852,107"/>
+</map>

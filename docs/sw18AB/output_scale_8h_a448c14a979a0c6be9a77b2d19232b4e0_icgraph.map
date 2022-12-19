@@ -1,0 +1,9 @@
+<map id="outputScaleInit" name="outputScaleInit">
+<area shape="rect" id="node1" title=" " alt="" coords="525,56,633,83"/>
+<area shape="rect" id="node2" href="$hf_servo_8c.html#a3624f2f451087dd536761e67345f1ca9" title=" " alt="" coords="166,5,249,32"/>
+<area shape="rect" id="node4" href="$pwm_8c.html#a428d429e060d60c0b086eeb8310ed4b6" title=" " alt="" coords="171,56,243,83"/>
+<area shape="rect" id="node5" href="$servo_8c.html#ae2eb8d1771760b348fc5e76c34bd9a9b" title=" " alt="" coords="163,107,252,133"/>
+<area shape="rect" id="node6" href="$servo_8c.html#a8b3fda87565cf3fa8eee2c89f95e9b8f" title="A simple, no&#45;parameter call to initialize the Servo. Used in ASCII pin configuration commands." alt="" coords="324,107,453,133"/>
+<area shape="rect" id="node7" href="$output_scale_8h.html#aba4f47610d05e55ce5cb1e33971090bd" title=" " alt="" coords="300,56,477,83"/>
+<area shape="rect" id="node3" href="$protocol_8c.html#ad68aff3124fee3a4193383135f70c7c7" title=" " alt="" coords="5,56,115,83"/>
+</map>

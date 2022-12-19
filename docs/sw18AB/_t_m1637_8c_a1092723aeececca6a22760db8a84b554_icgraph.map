@@ -1,0 +1,8 @@
+<map id="tm1637ClockByte" name="tm1637ClockByte">
+<area shape="rect" id="node1" title=" " alt="" coords="629,71,755,98"/>
+<area shape="rect" id="node2" href="$_t_m1637_8c.html#aea8608df9859e2d3e6c6340ae8923e01" title=" " alt="" coords="403,5,581,47"/>
+<area shape="rect" id="node3" href="$_t_m1637_8c.html#abf85cb9b831ee34d4f1aef9f1053f096" title="update the TM1637 pin state machine" alt="" coords="248,71,355,98"/>
+<area shape="rect" id="node6" href="$_t_m1637_8c.html#acd70df2db09275c8ec0519ac7bbe632c" title=" " alt="" coords="405,122,579,149"/>
+<area shape="rect" id="node4" href="$serial_wombat_8h.html#a4e12ac6db45a20bca0fa11303072dbda" title=" " alt="" coords="104,71,200,98"/>
+<area shape="rect" id="node5" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,71,56,98"/>
+</map>

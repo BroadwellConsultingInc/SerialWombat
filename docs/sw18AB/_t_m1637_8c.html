@@ -173,12 +173,15 @@ Functions</h2></td></tr>
 <tr class="memdesc:a57e2b72c59a8c0d24fa11c2189db7870"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a TM1637 bitmap in the displayArray.  <a href="_t_m1637_8c.html#a57e2b72c59a8c0d24fa11c2189db7870">More...</a><br /></td></tr>
 <tr class="separator:a57e2b72c59a8c0d24fa11c2189db7870"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf85cb9b831ee34d4f1aef9f1053f096"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_t_m1637_8c.html#abf85cb9b831ee34d4f1aef9f1053f096">updateTM1637</a> ()</td></tr>
+<tr class="memdesc:abf85cb9b831ee34d4f1aef9f1053f096"><td class="mdescLeft">&#160;</td><td class="mdescRight">update the TM1637 pin state machine  <a href="_t_m1637_8c.html#abf85cb9b831ee34d4f1aef9f1053f096">More...</a><br /></td></tr>
 <tr class="separator:abf85cb9b831ee34d4f1aef9f1053f096"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a1a66b328826a6d93dc39b95fa5ab7cfa"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_t_m1637_8c.html#a1a66b328826a6d93dc39b95fa5ab7cfa">seven_seg_table</a> []</td></tr>
 <tr class="separator:a1a66b328826a6d93dc39b95fa5ab7cfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9442e692b4150d2bf3edf357342de9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_t_m1637_8c.html#aa4d8d765c34cc75b16017c98a5be587e">tm1637_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_t_m1637_8c.html#ab9442e692b4150d2bf3edf357342de9b">debugTM1637</a></td></tr>
+<tr class="separator:ab9442e692b4150d2bf3edf357342de9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a1e20f703b5435f2ee5e04881c44a4bcf"></a>
@@ -526,9 +529,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<pre class="fragment">\brief Initialization routine for Analog Input
+<pre class="fragment">\brief Initialization routine for TM1637 Seven Segment 
 </pre><hr  />
-<h2><a class="anchor" id="autotoc_md38"></a>
+<h2><a class="anchor" id="autotoc_md74"></a>
 CONFIGURE_CHANNEL_MODE_0:</h2>
 <p>Initialize TM1637 Output</p>
 <table class="markdownTable">
@@ -553,7 +556,7 @@ CONFIGURE_CHANNEL_MODE_0:</h2>
 <p><code>0xC0 0x13 0x0A 0x12 0x04 0x02 0x13 0x05</code> </p>
 </blockquote>
 <hr  />
-<h2><a class="anchor" id="autotoc_md40"></a>
+<h2><a class="anchor" id="autotoc_md76"></a>
 CONFIGURE_CHANNEL_MODE_1:</h2>
 <p>Change Display order of Digits 0-4. If "012345" is displayed on the display after the 0xC0 command is sent and the digits appear in the wrong order, then use this command and CONFIGURE_CHANNEL_MODE_2 to change the display order.</p>
 <p>This command is also useful to map the bottom 4 digits of a 5 digit (16 bit) decimal display to the 4 digits of a 4-place display.</p>
@@ -574,7 +577,7 @@ CONFIGURE_CHANNEL_MODE_1:</h2>
 <p><code>0xC2 0x13 0x0A 0x03 0x55 0x55 0x55 0x55</code> </p>
 </blockquote>
 <hr  />
-<h2><a class="anchor" id="autotoc_md42"></a>
+<h2><a class="anchor" id="autotoc_md78"></a>
 CONFIGURE_CHANNEL_MODE_2:</h2>
 <p>Change Display order of Digit 5. See CONFIGURE_CHANNEL_MODE_1</p>
 <table class="markdownTable">
@@ -584,24 +587,24 @@ CONFIGURE_CHANNEL_MODE_2:</h2>
 <td class="markdownTableBodyLeft">0xC2 </td><td class="markdownTableBodyLeft">Pin To Set (TO TM1637 Clock) </td><td class="markdownTableBodyLeft">0x0A (TM1637 ) </td><td class="markdownTableBodyLeft">Mapping for 5 digit </td><td class="markdownTableBodyLeft">Unused/0x55* </td><td class="markdownTableBodyLeft">Unused/0x55* </td><td class="markdownTableBodyLeft">Unused/0x55* </td><td class="markdownTableBodyLeft">Unused/0x55*  </td></tr>
 </table>
 <p>*0x55 is recommended, but any byte is acceptable</p>
-<h2><a class="anchor" id="autotoc_md43"></a>
+<h2><a class="anchor" id="autotoc_md79"></a>
 CONFIGURE_CHANNEL_MODE_3:</h2>
-<p>Set TM1637 Brightness</p>
+<p>Set TM1637 Brightness and Leading Zero Suppression</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">0xC3 </td><td class="markdownTableBodyLeft">Pin To Set (TO TM1637 Clock) </td><td class="markdownTableBodyLeft">0x0A (TM1637 ) </td><td class="markdownTableBodyLeft">Brightness (0-7) </td><td class="markdownTableBodyLeft">Unused/0x55* </td><td class="markdownTableBodyLeft">Unused/0x55* </td><td class="markdownTableBodyLeft">Unused/0x55* </td><td class="markdownTableBodyLeft">Unused/0x55*  </td></tr>
+<td class="markdownTableBodyLeft">0xC3 </td><td class="markdownTableBodyLeft">Pin To Set (TO TM1637 Clock) </td><td class="markdownTableBodyLeft">0x0A (TM1637 ) </td><td class="markdownTableBodyLeft">Brightness (0-7) or 0x55 for unchanged </td><td class="markdownTableBodyLeft">Leading Zero Supression (0,1, or 0x55 for unchanged) </td><td class="markdownTableBodyLeft">Unused/0x55* </td><td class="markdownTableBodyLeft">Unused/0x55* </td><td class="markdownTableBodyLeft">Unused/0x55*  </td></tr>
 </table>
 <p>*0x55 is recommended, but any byte is acceptable</p>
 <p>Response:</p>
 <p>Command is echoed back.</p>
 <p>Examples:</p>
-<p>Set pin 19 TM1637 Brightness to level 3</p>
+<p>Set pin 19 TM1637 Brightness to level 3, leading zero supression</p>
 <blockquote class="doxtable">
-<p><code>0xC3 0x13 0x0A 0x03 0x55 0x55 0x55 0x55</code> </p>
+<p><code>0xC3 0x13 0x0A 0x03 0x01 0x55 0x55 0x55</code> </p>
 </blockquote>
-<h2><a class="anchor" id="autotoc_md44"></a>
+<h2><a class="anchor" id="autotoc_md80"></a>
 CONFIGURE_CHANNEL_MODE_4:</h2>
 <p>Set output values for TM1637. 0xC4 and 0xC5 are used to set 6 output bytes when in the Char array (2), Raw Segment (3), and animation (4) modes. <br  />
 </p>
@@ -646,8 +649,8 @@ CONFIGURE_CHANNEL_MODE_4:</h2>
 <blockquote class="doxtable">
 <p><code>0xC5 0x13 0x0A 0x00 0x55 0x55 0x55 0x55</code> </p>
 </blockquote>
-<h2><a class="anchor" id="autotoc_md45"></a>
-CONFIGURE_CHANNEL_MODE_5:</h2>
+<h2><a class="anchor" id="autotoc_md81"></a>
+CONFIGURE_CHANNEL_MODE_6:</h2>
 <p>Set TM1637 Decimal Points</p>
 <p>The bottom 6 LSB are used as decimal points for digits 0-5 (before location translation)</p>
 <p>Note that the way TM1637 displays are wired varies a lot from display to display, so this command may not work as expected. Consult the TM1637 and LED module datasheets.</p>
@@ -655,7 +658,7 @@ CONFIGURE_CHANNEL_MODE_5:</h2>
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">0xC3 </td><td class="markdownTableBodyLeft">Pin To Set (TO TM1637 Clock) </td><td class="markdownTableBodyLeft">0x0A (TM1637 ) </td><td class="markdownTableBodyLeft">Decimal Point Bitmap </td><td class="markdownTableBodyLeft">Unused/0x55* </td><td class="markdownTableBodyLeft">Unused/0x55* </td><td class="markdownTableBodyLeft">Unused/0x55* </td><td class="markdownTableBodyLeft">Unused/0x55*  </td></tr>
+<td class="markdownTableBodyLeft">0xC6 </td><td class="markdownTableBodyLeft">Pin To Set (TO TM1637 Clock) </td><td class="markdownTableBodyLeft">0x0A (TM1637 ) </td><td class="markdownTableBodyLeft">Decimal Point Bitmap </td><td class="markdownTableBodyLeft">Unused/0x55* </td><td class="markdownTableBodyLeft">Unused/0x55* </td><td class="markdownTableBodyLeft">Unused/0x55* </td><td class="markdownTableBodyLeft">Unused/0x55*  </td></tr>
 </table>
 <p>*0x55 is recommended, but any byte is acceptable</p>
 <p>Response:</p>
@@ -664,6 +667,42 @@ CONFIGURE_CHANNEL_MODE_5:</h2>
 <p>Set pin 19 TM1637 Decimal Point third digit decimal on</p>
 <blockquote class="doxtable">
 <p><code>0xC6 0x13 0x0A 0x04 0x55 0x55 0x55 0x55</code> </p>
+</blockquote>
+<h2><a class="anchor" id="autotoc_md82"></a>
+CONFIGURE_CHANNEL_MODE_7:</h2>
+<p>Set TM1637 Digit Blink</p>
+<p>The bottom 6 LSB are used as indicators that the digits indicated as 1's should blink</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">0xC7 </td><td class="markdownTableBodyLeft">Pin To Set (TO TM1637 Clock) </td><td class="markdownTableBodyLeft">0x0A (TM1637 ) </td><td class="markdownTableBodyLeft">Blink Bitmap </td><td class="markdownTableBodyLeft">Unused/0x55* </td><td class="markdownTableBodyLeft">Unused/0x55* </td><td class="markdownTableBodyLeft">Unused/0x55* </td><td class="markdownTableBodyLeft">Unused/0x55*  </td></tr>
+</table>
+<p>*0x55 is recommended, but any byte is acceptable</p>
+<p>Response:</p>
+<p>Command is echoed back.</p>
+<p>Examples:</p>
+<p>Set pin 19 Blink 2nd and 3rd digit</p>
+<blockquote class="doxtable">
+<p><code>0xC7 0x13 0x0A 0x06 0x55 0x55 0x55 0x55</code> </p>
+</blockquote>
+<h2><a class="anchor" id="autotoc_md83"></a>
+CONFIGURE_CHANNEL_MODE_8:</h2>
+<p>Write 1 byte to string mode.</p>
+<p>Moves 1 byte into rightmost digit, and shifts all other digits 1 leftward. Used for compatibility with Arduino Print::write function.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">0xC8 </td><td class="markdownTableBodyLeft">Pin To Set (TO TM1637 Clock) </td><td class="markdownTableBodyLeft">0x0A (TM1637 ) </td><td class="markdownTableBodyLeft">Byte to Write </td><td class="markdownTableBodyLeft">Unused/0x55* </td><td class="markdownTableBodyLeft">Unused/0x55* </td><td class="markdownTableBodyLeft">Unused/0x55* </td><td class="markdownTableBodyLeft">Unused/0x55*  </td></tr>
+</table>
+<p>*0x55 is recommended, but any byte is acceptable</p>
+<p>Response:</p>
+<p>Command is echoed back.</p>
+<p>Examples:</p>
+<p>Write an ascii 7 to TM1637 on pin 19.\</p>
+<blockquote class="doxtable">
+<p><code>0xC8 0x13 0x0A 0x37 0x55 0x55 0x55 0x55</code> </p>
 </blockquote>
 
 </div>
@@ -809,7 +848,8 @@ CONFIGURE_CHANNEL_MODE_5:</h2>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>\update the TM1637 pin state machine</p>
+
+<p>update the TM1637 pin state machine </p>
 <p>This state machine is used to update the TM1637 display.</p>
 <p>It progresses through the following states after initialization:</p>
 <p>Setup: The segments to be displayed are rendered and put in digit order by <a class="el" href="_t_m1637_8c.html#a57e2b72c59a8c0d24fa11c2189db7870" title="Create a TM1637 bitmap in the displayArray.">tm1637UpdateRender()</a>. The displayArray is then compared with lastDisplay to see if anything has changed since the display is last written. If not, then the update gets skipped to save Serial Wombat chip CPU cycles.</p>
@@ -821,6 +861,20 @@ CONFIGURE_CHANNEL_MODE_5:</h2>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a id="ab9442e692b4150d2bf3edf357342de9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9442e692b4150d2bf3edf357342de9b">&#9670;&nbsp;</a></span>debugTM1637</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_t_m1637_8c.html#aa4d8d765c34cc75b16017c98a5be587e">tm1637_t</a>* debugTM1637</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a1a66b328826a6d93dc39b95fa5ab7cfa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1a66b328826a6d93dc39b95fa5ab7cfa">&#9670;&nbsp;</a></span>seven_seg_table</h2>
 

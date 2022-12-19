@@ -1,0 +1,10 @@
+<map id="timingResourcePWM" name="timingResourcePWM">
+<area shape="rect" id="node1" title=" " alt="" coords="476,31,621,57"/>
+<area shape="rect" id="node2" href="$hf_servo_8c.html#aa2f458d9af36555fbeae87aa741b0dc7" title=" " alt="" coords="323,5,428,32"/>
+<area shape="rect" id="node5" href="$pwm_8c.html#a5c776e1b0271e68feb798f9a31326d5c" title=" " alt="" coords="328,56,423,83"/>
+<area shape="rect" id="node3" href="$serial_wombat_8h.html#a4e12ac6db45a20bca0fa11303072dbda" title=" " alt="" coords="171,5,267,32"/>
+<area shape="rect" id="node4" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="35,5,85,32"/>
+<area shape="rect" id="node6" href="$pwm_8c.html#a428d429e060d60c0b086eeb8310ed4b6" title=" " alt="" coords="183,56,255,83"/>
+<area shape="rect" id="node8" href="$pwm_8c.html#a41636f61fc1a5dd3e8731ac86774ac5f" title=" " alt="" coords="163,107,275,133"/>
+<area shape="rect" id="node7" href="$protocol_8c.html#ad68aff3124fee3a4193383135f70c7c7" title=" " alt="" coords="5,56,115,83"/>
+</map>

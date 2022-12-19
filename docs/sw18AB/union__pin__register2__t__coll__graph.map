@@ -1,0 +1,29 @@
+<map id="_pin_register2_t" name="_pin_register2_t">
+<area shape="rect" id="node1" title=" " alt="" coords="852,643,967,669"/>
+<area shape="rect" id="node2" href="$struct__pin__register2__t_1_1pin__logic2__n.html" title=" " alt="" coords="506,13,645,54"/>
+<area shape="rect" id="node3" href="$struct__pin__register2__t_1_1uart__tx__2n.html" title=" " alt="" coords="503,78,647,119"/>
+<area shape="rect" id="node4" href="$struct__pin__register2__t_1_1pulse__n2.html" title=" " alt="" coords="488,144,663,171"/>
+<area shape="rect" id="node5" href="$struct__pin__register2__t_1_1uart__rx__2n.html" title=" " alt="" coords="503,195,647,237"/>
+<area shape="rect" id="node6" href="$struct__pin__register2__t_1_1hw__pulse__width2__n.html" title=" " alt="" coords="506,430,645,471"/>
+<area shape="rect" id="node7" href="$unionmixed32__n.html" title="Union of 32 bit types. Note that on the 18F a RAM pointer is 16 bits, so it&#39;s not included here." alt="" coords="241,319,327,345"/>
+<area shape="rect" id="node13" href="$struct__pin__register2__t_1_1servo2__n.html" title=" " alt="" coords="489,261,662,288"/>
+<area shape="rect" id="node17" href="$struct__pin__register2__t_1_1pwm__follow__direct__n2.html" title=" " alt="" coords="501,313,650,354"/>
+<area shape="rect" id="node27" href="$struct__pin__register2__t_1_1lookup2d__2n.html" title=" " alt="" coords="478,379,673,405"/>
+<area shape="rect" id="node8" href="$structmixed32__n_1_1mixed32__uwords__n.html" title=" " alt="" coords="5,311,148,353"/>
+<area shape="rect" id="node9" href="$unionmixed24__n.html" title="Union of 24 bit types. Specific to C18 compiler." alt="" coords="241,447,327,473"/>
+<area shape="rect" id="node10" href="$unionmixed16__n.html" title="Union of 16 bit types. Also includes pointers for the 18F." alt="" coords="241,552,327,579"/>
+<area shape="rect" id="node11" href="$struct__pin__register2__t_1_1ping2__n.html" title=" " alt="" coords="492,496,659,523"/>
+<area shape="rect" id="node16" href="$struct__pin__register2__t_1_1pwm__queue__variable__period2__n.html" title=" " alt="" coords="487,547,664,589"/>
+<area shape="rect" id="node12" href="$struct__pin__register2__t_1_1remote__2n.html" title=" " alt="" coords="484,613,667,640"/>
+<area shape="rect" id="node14" href="$struct__pin__register2__t_1_1ad__filter__1st__order__n2.html" title=" " alt="" coords="507,665,643,706"/>
+<area shape="rect" id="node15" href="$struct__pin__register2__t_1_1hysteresis.html" title=" " alt="" coords="484,731,667,757"/>
+<area shape="rect" id="node18" href="$struct__pin__register2__t_1_1ad__average__temp__n.html" title=" " alt="" coords="507,782,643,823"/>
+<area shape="rect" id="node19" href="$struct__pin__register2__t_1_1hd44780__n2.html" title=" " alt="" coords="479,848,671,875"/>
+<area shape="rect" id="node20" href="$struct__pin__register2__t_1_1rotary__enc__n.html" title=" " alt="" coords="498,899,653,941"/>
+<area shape="rect" id="node21" href="$struct__pin__register2__t_1_1diagnostics2__n.html" title=" " alt="" coords="471,965,680,992"/>
+<area shape="rect" id="node22" href="$struct__pin__register2__t_1_1generic2__n.html" title=" " alt="" coords="483,1016,668,1043"/>
+<area shape="rect" id="node23" href="$struct__pin__register2__t_1_1parallel__82n.html" title=" " alt="" coords="480,1067,671,1093"/>
+<area shape="rect" id="node24" href="$struct__pin__register2__t_1_1morse__temp__n.html" title=" " alt="" coords="496,1118,655,1159"/>
+<area shape="rect" id="node25" href="$struct__pin__register2__t_1_1un4step__2n.html" title=" " alt="" coords="481,1184,670,1211"/>
+<area shape="rect" id="node26" href="$struct__pin__register2__t_1_1keypad16__2n.html" title=" " alt="" coords="476,1235,675,1261"/>
+</map>

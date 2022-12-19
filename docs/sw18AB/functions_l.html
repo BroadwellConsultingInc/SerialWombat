@@ -86,13 +86,17 @@ $(function() {
 : <a class="el" href="structtm1637__n.html#a640cfc06770f2eefa375c86a8fa588f4">tm1637_n</a>
 </li>
 <li>lastDMA
-: <a class="el" href="struct__pin__register__t_1_1pulse__output__n.html#aebf7ee2b163f3a8f8bf17220e2b9c709">_pin_register_t::pulse_output_n</a>
+: <a class="el" href="struct__pin__register__t_1_1bitstream_output__n.html#a923bcfed0f648d245413e0a8c93089e7">_pin_register_t::bitstreamOutput_n</a>
+, <a class="el" href="struct__pin__register__t_1_1pulse__output__n.html#aebf7ee2b163f3a8f8bf17220e2b9c709">_pin_register_t::pulse_output_n</a>
 </li>
 <li>lastentry
 : <a class="el" href="structgeneric__queue__n_1_1ram__rle__byte__queue__n.html#ae01223480881acd4ef43f6849de4a5e4">generic_queue_n::ram_rle_byte_queue_n</a>
 , <a class="el" href="structgeneric__queue__n_1_1ram__rle__word__queue__n.html#ae310aa301b580f433c4b284c0b22ac37">generic_queue_n::ram_rle_word_queue_n</a>
 , <a class="el" href="structram__rle__byte__queue__n.html#a92f2a3596bb23d3a584801d24030deaf">ram_rle_byte_queue_n</a>
 , <a class="el" href="structram__rle__word__queue__n.html#abd98fd6476956ad471c99c3e18057c6a">ram_rle_word_queue_n</a>
+</li>
+<li>lastInput
+: <a class="el" href="structinput_process__n.html#a03ce86a3140dc49e164dd55c14dcfe02">inputProcess_n</a>
 </li>
 <li>lastlastval
 : <a class="el" href="structgeneric__queue__n_1_1ram__rle__byte__queue__n.html#a1aec1c4789c090a963642c35fe4d9cb0">generic_queue_n::ram_rle_byte_queue_n</a>
@@ -111,11 +115,21 @@ $(function() {
 , <a class="el" href="struct__pin__register__t_1_1uart__rx__n.html#a4915c2d72704ab60c80105fafd582d81">_pin_register_t::uart_rx_n</a>
 , <a class="el" href="struct__pin__register__t_1_1uart__tx__n.html#ad2777b5015fb02abf3db1dacd7b83192">_pin_register_t::uart_tx_n</a>
 </li>
+<li>lastProcessVariable
+: <a class="el" href="structoutput_scale__n.html#a2982c2f0453e227606a6dd1600cb9022">outputScale_n</a>
+</li>
+<li>lastRampOutput
+: <a class="el" href="structoutput_scale__n.html#ad3200fff9fce1319ea69aa96260fa7d9">outputScale_n</a>
+</li>
 <li>lastReading
 : <a class="el" href="structdebounce__n.html#acbbd20feb9d9b6466beda384eec6cef8">debounce_n</a>
 </li>
+<li>lastSample
+: <a class="el" href="structresistance_input__n.html#ad1f3a841af5c98b3f1e9b341de33d81f">resistanceInput_n</a>
+</li>
 <li>lastTimerTime
 : <a class="el" href="structpulse_timer__n.html#adc4688521f54cf020a34cdbe052f0558">pulseTimer_n</a>
+, <a class="el" href="structultrasonic_distance__n.html#ad9f002ce00ab8ffb9ba2e2b228827e55">ultrasonicDistance_n</a>
 </li>
 <li>lastval
 : <a class="el" href="struct__pin__register__t_1_1pulse__n.html#ac75f3833fc6695f8795baae24e66b1f4">_pin_register_t::pulse_n</a>
@@ -126,6 +140,10 @@ $(function() {
 </li>
 <li>lastvalue
 : <a class="el" href="struct__pin__register__t_1_1remote__n.html#a7f7aa4644a9fb17988245579087ea1db">_pin_register_t::remote_n</a>
+</li>
+<li>lastValue
+: <a class="el" href="structoutput_scale__n.html#ac0409dd08dca31f488f10b047a841aa2">outputScale_n</a>
+, <a class="el" href="structpwm__n.html#a64a75dde53a60e8a5eb677dafef1c067">pwm_n</a>
 </li>
 <li>leading1
 : <a class="el" href="structgeneric__queue__n_1_1ram__string__queue__n.html#a559ca4a19fa458c1fe48f011974c3edb">generic_queue_n::ram_string_queue_n</a>
@@ -163,7 +181,6 @@ $(function() {
 </li>
 <li>linear
 : <a class="el" href="structpulse_in__n.html#a54983c6ce6f05141af6083f94515d7df">pulseIn_n</a>
-, <a class="el" href="structpulse_out__n.html#ae733622d4c4531c6298b8c4ecb7fbb66">pulseOut_n</a>
 </li>
 <li>local_temp32_2
 : <a class="el" href="struct__pin__register2__t_1_1hw__pulse__width2__n.html#ab1ca44f88bfaf2d0b03d0eeb96858a53">_pin_register2_t::hw_pulse_width2_n</a>
@@ -175,14 +192,12 @@ $(function() {
 : <a class="el" href="union__pin__register2__t.html#ac558096b39c65c3d227ca3dc32411cc8">_pin_register2_t</a>
 , <a class="el" href="union__pin__register__t.html#af2a39755de2bb75a05419bac9b4d52dc">_pin_register_t</a>
 </li>
-<li>lookup2D
-: <a class="el" href="structpulse_out__n.html#ab364b45a6d9d7b757d504e392b3ce329">pulseOut_n</a>
-</li>
 <li>lookup2D_t
 : <a class="el" href="structpulse_in__n.html#aaaffb8b23ac416bdb42a14dc76b39537">pulseIn_n</a>
 </li>
 <li>low
 : <a class="el" href="struct__pin__register2__t_1_1hw__pulse__width2__n.html#a5e0c7b07d27662a5b8abcf7947fe54aa">_pin_register2_t::hw_pulse_width2_n</a>
+, <a class="el" href="structinput_process__n.html#a45d219434ddf2da1726c15a5fa50c4ed">inputProcess_n</a>
 </li>
 <li>low_time
 : <a class="el" href="struct__pin__register__t_1_1ping__n.html#aa71aefd6af2a65918184338d040a980c">_pin_register_t::ping_n</a>
@@ -193,12 +208,18 @@ $(function() {
 <li>lowbyte
 : <a class="el" href="unionmixed16__n.html#af5954de7b8210ffb91ea18c16a5762e0">mixed16_n</a>
 </li>
+<li>lowCapDigOutput
+: <a class="el" href="structtouch__n.html#a82085711230f998825f00e3d21d37699">touch_n</a>
+</li>
 <li>lowcommandpin
 : <a class="el" href="struct__pin__register__t_1_1hysteresis__n.html#a491685a9d2bee029559467c7b5b3f439">_pin_register_t::hysteresis_n</a>
 </li>
 <li>lowlimit
 : <a class="el" href="struct__pin__register2__t_1_1hysteresis.html#acb59e2ed32b885c31495ecb649885de4">_pin_register2_t::hysteresis</a>
 , <a class="el" href="struct__pin__register__t_1_1hysteresis__n.html#a03715cf8990eea23f1846c117483360e">_pin_register_t::hysteresis_n</a>
+</li>
+<li>lowLimit
+: <a class="el" href="structoutput_scale__n.html#ab96bdf8e4e94c7210215be0e7d2f3e19">outputScale_n</a>
 </li>
 <li>lowPeriod
 : <a class="el" href="struct__pin__register__t_1_1servo__n.html#a07dbfa8b7e619e608acc219687134852">_pin_register_t::servo_n</a>

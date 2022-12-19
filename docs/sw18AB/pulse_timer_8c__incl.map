@@ -1,0 +1,13 @@
+<map id="pulseTimer.c" name="pulseTimer.c">
+<area shape="rect" id="node1" title=" " alt="" coords="418,5,514,32"/>
+<area shape="rect" id="node2" href="$serial_wombat_8h.html" title=" " alt="" coords="456,155,569,181"/>
+<area shape="rect" id="node3" title=" " alt="" coords="544,304,609,331"/>
+<area shape="rect" id="node11" href="$input_process_8h.html" title=" " alt="" coords="503,80,612,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="843,229,918,256"/>
+<area shape="rect" id="node5" href="$pin_modes_8h.html" title=" " alt="" coords="42,229,132,256"/>
+<area shape="rect" id="node6" title=" " alt="" coords="156,229,271,256"/>
+<area shape="rect" id="node7" href="$pin_registers_8h.html" title=" " alt="" coords="296,229,401,256"/>
+<area shape="rect" id="node8" href="$protocol_8h.html" title=" " alt="" coords="425,229,504,256"/>
+<area shape="rect" id="node9" href="$queue_8h.html" title=" " alt="" coords="528,229,596,256"/>
+<area shape="rect" id="node10" href="$serial_wombat_errors_8h.html" title=" " alt="" coords="620,229,768,256"/>
+</map>

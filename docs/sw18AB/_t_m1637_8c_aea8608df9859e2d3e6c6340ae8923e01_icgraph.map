@@ -1,0 +1,6 @@
+<map id="tm1637SendDisplayControlCommand" name="tm1637SendDisplayControlCommand">
+<area shape="rect" id="node1" title=" " alt="" coords="403,5,581,47"/>
+<area shape="rect" id="node2" href="$_t_m1637_8c.html#abf85cb9b831ee34d4f1aef9f1053f096" title="update the TM1637 pin state machine" alt="" coords="248,13,355,39"/>
+<area shape="rect" id="node3" href="$serial_wombat_8h.html#a4e12ac6db45a20bca0fa11303072dbda" title=" " alt="" coords="104,13,200,39"/>
+<area shape="rect" id="node4" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,13,56,39"/>
+</map>

@@ -1,25 +1,11 @@
 var searchData=
 [
-  ['idle_1451',['idle',['../struct__pin__register__t_1_1remote__n.html#a1a381179a7c24bb03e2670b958640d6d',1,'_pin_register_t::remote_n']]],
-  ['idle_5fenabled_1452',['idle_enabled',['../structexecutive__settings__n.html#a35a77f9de2324bacc43332608bbcaa13',1,'executive_settings_n']]],
-  ['idlecounter_1453',['idleCounter',['../structtm1637__n.html#a799f3db3247da3690ae40c802a65c890',1,'tm1637_n']]],
-  ['inactive_1454',['inactive',['../struct__pin__register__t_1_1datalogger__n.html#a5f7ac3838e05a8f136be8680ed2c9c70',1,'_pin_register_t::datalogger_n::inactive()'],['../struct__pin__register__t_1_1un4step__n.html#a4f0e1dbe0adfcf9bf8bfdba470287993',1,'_pin_register_t::un4step_n::inactive()'],['../struct__pin__register2__t_1_1parallel__82n.html#aaf2563cdfddb682ab8b9aeba9184a921',1,'_pin_register2_t::parallel_82n::inactive()']]],
-  ['inactivemode_1455',['inactivemode',['../struct__pin__register__t_1_1debounce__n.html#a59b90e1f1c86e7aed0d43e198b7f42f0',1,'_pin_register_t::debounce_n']]],
-  ['inactiveperiod_1456',['inactivePeriod',['../structservo__n.html#adecb87613428028b3677abd4cb47beaf',1,'servo_n']]],
-  ['inactivestate_1457',['inactivestate',['../struct__pin__register__t_1_1slowpwm__n.html#af906654b7cca8cc09e8d9a74521f3192',1,'_pin_register_t::slowpwm_n::inactivestate()'],['../struct__pin__register__t_1_1pulse__n.html#affcdd26b5aa5cbb3a3b6d03a0db2a08b',1,'_pin_register_t::pulse_n::inactivestate()']]],
-  ['inactivetime_1458',['inactivetime',['../struct__pin__register__t_1_1pulse__n.html#a82a3ec9f8baa6c24f864d0e2a03fab06',1,'_pin_register_t::pulse_n']]],
-  ['increment_1459',['increment',['../structquad_enc__n.html#a9e81eb65940fedc520a1b08d550b9fc0',1,'quadEnc_n::increment()'],['../struct__pin__register__t_1_1rotary__encn.html#a29396a8b516afbff35137ec0d33c6ea6',1,'_pin_register_t::rotary_encn::increment()'],['../struct__pin__register__t_1_1counter__n.html#af5e2c4ea57fcd412307c90ca825a4360',1,'_pin_register_t::counter_n::increment()'],['../struct__pin__register__t_1_1quad_enc__n.html#af30ea1aa8f21106d529efb5d23e84dea',1,'_pin_register_t::quadEnc_n::increment()']]],
-  ['incrementingvalue_1460',['incrementingValue',['../_serial_wombat18_a__18_b_2_serial_wombat18_a__18_b_8_x_2pin_registers_8c.html#acc46cad336a747a53b4127833390ab8b',1,'incrementingValue():&#160;pinRegisters.c'],['../_serial_wombat_common_2pin_registers_8c.html#acc46cad336a747a53b4127833390ab8b',1,'incrementingValue():&#160;pinRegisters.c']]],
-  ['init_5fcall_5fcount_1461',['init_call_count',['../structtest__data__n.html#ad7e924eefebbc655d1bda36f4a203e14',1,'test_data_n']]],
-  ['initstate_1462',['initstate',['../struct__pin__register__t_1_1watchdog__n.html#a514d4004800b745be67f78b28036daa1',1,'_pin_register_t::watchdog_n']]],
-  ['input_1463',['input',['../struct__pin__register2__t_1_1hysteresis.html#aef48be136edf8f42b8ff831c4f393401',1,'_pin_register2_t::hysteresis']]],
-  ['inputarraya_1464',['InputArrayA',['../utilities_8h.html#a2c77bf11c38fa9ade3e441efd9998d92',1,'utilities.h']]],
-  ['inputarrayb_1465',['InputArrayB',['../utilities_8h.html#a764cbf9d46f4e5641e546bab809f3d7f',1,'utilities.h']]],
-  ['integrator_1466',['integrator',['../struct__pin__register__t_1_1pid__n.html#a9f72173710937e3362e4c29db0e1a780',1,'_pin_register_t::pid_n']]],
-  ['interpolate_1467',['interpolate',['../struct__pin__register__t_1_1lookup2d__n.html#ae03390041cbbdb266f5a91becf54f4b8',1,'_pin_register_t::lookup2d_n']]],
-  ['interruptdriven_1468',['interruptDriven',['../structquad_enc__n.html#a7677f2cda865113adfa6ed0d224ae2ea',1,'quadEnc_n']]],
-  ['inversefifo_1469',['inverseFIFO',['../struct__pin__register__t_1_1max7219__n.html#a5dce583cd74b29b4f6336811d400b912',1,'_pin_register_t::max7219_n']]],
-  ['invert_1470',['invert',['../struct__pin__register__t_1_1uart__rx__n.html#ae248840fa486de65059de6e6a3341654',1,'_pin_register_t::uart_rx_n::invert()'],['../struct__pin__register__t_1_1uart__tx__n.html#aa13e8263fc9bc4077a16a13770c43032',1,'_pin_register_t::uart_tx_n::invert()']]],
-  ['invertpolarity_1471',['invertPolarity',['../structdebounce__n.html#a21e77c35edb7ca55f59b12d32821d029',1,'debounce_n::invertPolarity()'],['../structservo__n.html#a20f7f7a64017e44202df9a45886d4345',1,'servo_n::invertPolarity()']]],
-  ['istrue_1472',['istrue',['../struct__pin__register2__t_1_1pin__logic2__n.html#ae65f15024d7316922ea69bb9f44a20ea',1,'_pin_register2_t::pin_logic2_n']]]
+  ['k_2141',['k',['../struct__pin__register__t_1_1pwm__sine__n.html#a4bde89125289034007f605909ce816bc',1,'_pin_register_t::pwm_sine_n::k()'],['../struct__pin__register__t_1_1ad__filter__1st__order__n.html#a414b60ec0bbea024bee6329cbc5eaa57',1,'_pin_register_t::ad_filter_1st_order_n::k()'],['../structsin__data__n.html#a96da66686fd3a12a9ba096375b937cb3',1,'sin_data_n::k()']]],
+  ['k_5fsigned_2142',['k_signed',['../struct__pin__register__t_1_1pwm__sine__n.html#a23dbdaeba04b7dd6a214d6a43320be94',1,'_pin_register_t::pwm_sine_n']]],
+  ['k_5funsigned_2143',['k_unsigned',['../struct__pin__register__t_1_1pwm__sine__n.html#a79be8d449c097fb29fd08af154ca2525',1,'_pin_register_t::pwm_sine_n']]],
+  ['kd_2144',['kd',['../structoutput_scale__n.html#aa5a1c325e0c7d87ac2afeaa652db3f11',1,'outputScale_n']]],
+  ['keypad16_2145',['keypad16',['../union__pin__register__t.html#abd4e8360e4c6e3f26505b03fccca6527',1,'_pin_register_t::keypad16()'],['../union__pin__register2__t.html#ab5333e458eed1916f7a3e61a6a03777e',1,'_pin_register2_t::keypad16()']]],
+  ['ki_2146',['ki',['../structoutput_scale__n.html#afb41510f8d380ce336286b4a6c01c3ee',1,'outputScale_n']]],
+  ['kinv_2147',['kinv',['../struct__pin__register__t_1_1ad__filter__1st__order__n.html#a97d170ce35dd3e40a66b14b4b55aa131',1,'_pin_register_t::ad_filter_1st_order_n']]],
+  ['kp_2148',['kp',['../structoutput_scale__n.html#ae7550405bb4301ab1551eb190670807d',1,'outputScale_n']]]
 ];

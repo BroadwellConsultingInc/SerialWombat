@@ -1,0 +1,6 @@
+<map id="timingResourceHighPulseBusy" name="timingResourceHighPulseBusy">
+<area shape="rect" id="node1" title=" " alt="" coords="407,5,608,32"/>
+<area shape="rect" id="node2" href="$servo_8c.html#af8edbcbd4cc3b7d2f6be55ca07a5daf4" title="Periodic call to service the Servo State Machine for a pin." alt="" coords="248,5,359,32"/>
+<area shape="rect" id="node3" href="$serial_wombat_8h.html#a4e12ac6db45a20bca0fa11303072dbda" title=" " alt="" coords="104,5,200,32"/>
+<area shape="rect" id="node4" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,5,56,32"/>
+</map>

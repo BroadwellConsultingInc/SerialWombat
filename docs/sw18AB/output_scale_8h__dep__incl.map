@@ -1,0 +1,8 @@
+<map id="outputScale.h" name="outputScale.h">
+<area shape="rect" id="node1" title=" " alt="" coords="233,5,335,32"/>
+<area shape="rect" id="node2" href="$hf_servo_8c.html" title=" " alt="" coords="5,80,80,107"/>
+<area shape="rect" id="node3" href="$liquid_crystal_8c.html" title=" " alt="" coords="104,80,208,107"/>
+<area shape="rect" id="node4" href="$output_scale_8c.html" title=" " alt="" coords="233,80,335,107"/>
+<area shape="rect" id="node5" href="$pwm_8c.html" title=" " alt="" coords="359,80,419,107"/>
+<area shape="rect" id="node6" href="$servo_8c.html" title=" " alt="" coords="443,80,506,107"/>
+</map>

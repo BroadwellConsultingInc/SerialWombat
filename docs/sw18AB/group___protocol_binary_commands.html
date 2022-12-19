@@ -66,20 +66,78 @@ $(function() {
 <div class="title">ProtocolBinaryCommands</div>  </div>
 </div><!--header-->
 <div class="contents">
-<h2><a class="anchor" id="autotoc_md22"></a>
+<hr  />
+<h2><a class="anchor" id="autotoc_md26"></a>
+Binary Read Pin Public Data Buffer Command</h2>
+<p>Reads the public data from three consecutive pins starting with a specified pin </p><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">0x81 </td><td class="markdownTableBodyLeft">Pin Number </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">'U'* </td><td class="markdownTableBodyLeft">'U'* </td><td class="markdownTableBodyLeft">'U'* </td><td class="markdownTableBodyLeft">'U'* </td><td class="markdownTableBodyLeft">'U'*  </td></tr>
+</table>
+<p>0x55 is recommended, but any byte is acceptable</p>
+<p>Response:</p>
+<p>Reads the public data from three consecutive pins starting with a specified pin </p><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">0x81 </td><td class="markdownTableBodyLeft">Pin Number requested </td><td class="markdownTableBodyLeft">Specified Pin Public Data low byte </td><td class="markdownTableBodyLeft">Specified Pin Public Data High byte </td><td class="markdownTableBodyLeft">Specified Pin + 1 Public Data low byte </td><td class="markdownTableBodyLeft">Specified Pin + 1 Public Data High byte </td><td class="markdownTableBodyLeft">Specified Pin + 2 Public Data low byte </td><td class="markdownTableBodyLeft">Specified Pin + 2 Public Data High byte  </td></tr>
+</table>
+<p>Examples:</p>
+<blockquote class="doxtable">
+<p><code>0x81 0x01 0x55 0x55 0x55 0x55 0x55 0x55</code> </p>
+</blockquote>
+<p>Will read the 16-bit public data from pins 1, 2 and 3. Assuming pin1's public data was 0x481B, pin 2's was 0x38FC, and pin 3's was 0x0314:</p>
+<p>Response: </p><blockquote class="doxtable">
+<p><code>0x81 0x1 0x1B 0x48 0xFC 0x38 0x14 0x03</code> </p>
+</blockquote>
+<hr  />
+<h2><a class="anchor" id="autotoc_md28"></a>
+Binary Set Pin Public Data Buffer Command</h2>
+<p>Sets the public data for 2 pins. (Pin number can be set to 255 to not set a pin).</p>
+<p>The values returned are the values for the public data before it was changed. This can be useful when reading an input's public data value. For instance, when reading the position of a pin set to Rotary encoder mode, the value before being set could be read, then the value set back to 32768 for center. <br  />
+ </p><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">0x82 </td><td class="markdownTableBodyLeft">Pin Number to set </td><td class="markdownTableBodyLeft">Value Low Byte </td><td class="markdownTableBodyLeft">Value High Byte </td><td class="markdownTableBodyLeft">Second Pin to set </td><td class="markdownTableBodyLeft">Second Value Low Byte </td><td class="markdownTableBodyLeft">Second Value High Byte </td><td class="markdownTableBodyLeft">'U'*  </td></tr>
+</table>
+<p>0x55 is recommended, but any byte is acceptable</p>
+<p>Response:</p>
+<p>Reads the public data from three consecutive pins starting with a specified pin </p><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">0x81 </td><td class="markdownTableBodyLeft">Pin Number requested </td><td class="markdownTableBodyLeft">Specified Pin Public Data low byte </td><td class="markdownTableBodyLeft">Specified Pin Public Data High byte </td><td class="markdownTableBodyLeft">2nd pin number </td><td class="markdownTableBodyLeft">2nd pin low byte </td><td class="markdownTableBodyLeft">2nd pin high byte </td><td class="markdownTableBodyLeft">Echo of sent Byte 7  </td></tr>
+</table>
+<p>Examples:</p>
+<blockquote class="doxtable">
+<p><code>0x81 0x01 0x55 0x55 0x55 0x55 0x55 0x55</code> </p>
+</blockquote>
+<p>Will read the 16-bit public data from pins 1, 2 and 3. Assuming pin1's public data was 0x481B, pin 2's was 0x38FC, and pin 3's was 0x0314:</p>
+<p>Response: </p><blockquote class="doxtable">
+<p><code>0x81 0x1 0x1B 0x48 0xFC 0x38 0x14 0x03</code> </p>
+</blockquote>
+<h2><a class="anchor" id="autotoc_md29"></a>
 Initialize Queue</h2>
 <p>Initialize a queue in user memory Queue types are as follows: <br  />
- 0 - Byte data queue in RAM</p>
+ 0 - Byte data queue in RAM 1 - Byte data using shifted QUEUE in RAM (Write only, no read, used for Displays and similar)</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft">0x90 </td><td class="markdownTableBodyLeft">Queue Address LSB </td><td class="markdownTableBodyLeft">Queue Address MSB </td><td class="markdownTableBodyLeft">Size LSB </td><td class="markdownTableBodyLeft">Size MSB </td><td class="markdownTableBodyLeft">Queue Type </td><td class="markdownTableBodyLeft">Varies </td><td class="markdownTableBodyLeft">Varies  </td></tr>
 </table>
+<p>Response: </p><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">0x90 </td><td class="markdownTableBodyLeft">Queue Address LSB </td><td class="markdownTableBodyLeft">Queue Address MSB </td><td class="markdownTableBodyLeft">Used Size LSB </td><td class="markdownTableBodyLeft">Used Size MSB </td><td class="markdownTableBodyLeft">Queue Type </td><td class="markdownTableBodyLeft">Varies </td><td class="markdownTableBodyLeft">Varies  </td></tr>
+</table>
 <p>Examples:</p>
 <p><code>0x90 0x0010 0x0020 0 0 0</code></p>
 <p>Initializes a ram queue of 32 bytes at address 0x0010 in user memory.</p>
-<h2><a class="anchor" id="autotoc_md23"></a>
+<h2><a class="anchor" id="autotoc_md30"></a>
 Add bytes to queue</h2>
 <p>Add bytes to a ram queue of bytes. Updates the internal last queue variable with the queue being added to.</p>
 <table class="markdownTable">
@@ -88,10 +146,12 @@ Add bytes to queue</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft">0x90 </td><td class="markdownTableBodyLeft">Queue Address LSB </td><td class="markdownTableBodyLeft">Queue Address MSB </td><td class="markdownTableBodyLeft">Count of bytes to add (0-4) </td><td class="markdownTableBodyLeft">Byte to Add </td><td class="markdownTableBodyLeft">Byte to Add </td><td class="markdownTableBodyLeft">Byte to Add </td><td class="markdownTableBodyLeft">Byte to Add  </td></tr>
 </table>
+<p>Response: </p><pre class="fragment">             |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+</pre><p> |:------------&mdash;|:------------&mdash;|:------------&mdash;|:------------&mdash;|:------------&mdash;|:------------&mdash;|:------------&mdash;|:------------&mdash;| |0x90 |Queue Address LSB |Queue Address MSB |Number added| Queue Result Code | Free bytes after add LSB | Free Bytes after add MSB| 0x55|</p>
 <p>Examples:</p>
 <p><code>0x90 0x0010 4 0x31 0x32 0x33 0x34</code></p>
 <p>Add bytes 0x31, 0x32, 0x33, and 0x34 to queue located at 0x0010.</p>
-<h2><a class="anchor" id="autotoc_md24"></a>
+<h2><a class="anchor" id="autotoc_md31"></a>
 Add bytes to queue</h2>
 <p>Add 7 bytes to the last written ram queue of bytes. <br  />
 </p>
@@ -101,10 +161,12 @@ Add bytes to queue</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft">0x92 </td><td class="markdownTableBodyLeft">Byte to Add </td><td class="markdownTableBodyLeft">Byte to Add </td><td class="markdownTableBodyLeft">Byte to Add </td><td class="markdownTableBodyLeft">Byte to Add </td><td class="markdownTableBodyLeft">Byte to Add </td><td class="markdownTableBodyLeft">Byte to Add </td><td class="markdownTableBodyLeft">Byte to Add  </td></tr>
 </table>
+<p>Response: </p><pre class="fragment">          |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+</pre><p> |:------------&mdash;|:------------&mdash;|:------------&mdash;|:------------&mdash;|:------------&mdash;|:------------&mdash;|:------------&mdash;|:------------&mdash;| |0x91 |Queue Address LSB |Queue Address MSB |Number added| Queue Result Code | Free bytes after add LSB | Free Bytes after add MSB| 0x55|</p>
 <p>Examples:</p>
 <p><code>0x92 0x35 0x36 0x37 0x38 0x39 0x3A 0x3B</code></p>
 <p>Add bytes 0x35, 0x36, 0x37, 0x38, 0x39, 0x3A and 0x3B to queue last added to.</p>
-<h2><a class="anchor" id="autotoc_md25"></a>
+<h2><a class="anchor" id="autotoc_md32"></a>
 Read Bytes from Queue</h2>
 <p>Read up to 6 bytes from a given queue</p>
 <table class="markdownTable">
@@ -113,32 +175,50 @@ Read Bytes from Queue</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft">0x93 </td><td class="markdownTableBodyLeft">Queue Address LSB </td><td class="markdownTableBodyLeft">Queue Address MSB </td><td class="markdownTableBodyLeft">Maximum bytes to read </td><td class="markdownTableBodyLeft">Unused </td><td class="markdownTableBodyLeft">Unused </td><td class="markdownTableBodyLeft">Unused </td><td class="markdownTableBodyLeft">Unused  </td></tr>
 </table>
-<p>Response: </p><table class="markdownTable">
+<p>Response : </p><table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft">0x93 </td><td class="markdownTableBodyLeft">Number of Bytes read from Queue </td><td class="markdownTableBodyLeft">Data Byte </td><td class="markdownTableBodyLeft">Data Byte </td><td class="markdownTableBodyLeft">Data Byte </td><td class="markdownTableBodyLeft">Data Byte </td><td class="markdownTableBodyLeft">Data Byte </td><td class="markdownTableBodyLeft">Data Byte  </td></tr>
 </table>
-<p>Examples:</p>
+<pre class="fragment">             Note:  If Byte 1 is 5 or less, then byte 7 will contain the last queue result.
+</pre><p> Examples:</p>
 <p><code>0x93 0x0170 0x04 0x20 0x20 0x20 0x20</code></p>
-<p>Read up to 4 bytes from queue at address 0x0170</p>
+<p>Read up to 6 bytes from queue at address 0x0170</p>
 <p>Sample Response: <code>0x93 0x02 0x34 0x35 0x20 0x20 0x20 0x20</code></p>
-<p>Two bytes were available in the queue. 0x34, and 0x35</p>
-<hr  />
-<h2><a class="anchor" id="autotoc_md27"></a>
+<p>Two bytes were available in the queue. 0x34, and 0x35 </p><pre class="fragment">               TODO:  Make rx[1] equal to total bytes avaialble or 255
+</pre><h2><a class="anchor" id="autotoc_md33"></a>
+Peek the first byte from the queue without removing it.  Get the number of available bytes to read and free space.</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">0x94 </td><td class="markdownTableBodyLeft">Queue Address LSB </td><td class="markdownTableBodyLeft">Queue Address MSB </td><td class="markdownTableBodyLeft">Unused </td><td class="markdownTableBodyLeft">Unused </td><td class="markdownTableBodyLeft">Unused </td><td class="markdownTableBodyLeft">Unused </td><td class="markdownTableBodyLeft">Unused  </td></tr>
+</table>
+<p>Response : </p><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">0x94 </td><td class="markdownTableBodyLeft">Queue Address LSB </td><td class="markdownTableBodyLeft">Queue Address MSB </td><td class="markdownTableBodyLeft">Peeked Byte </td><td class="markdownTableBodyLeft">Bytes Available to Read LSB </td><td class="markdownTableBodyLeft">Bytes Available to Read MSB </td><td class="markdownTableBodyLeft">Free Bytes LSB </td><td class="markdownTableBodyLeft">Free Bytes MSB  </td></tr>
+</table>
+<p>Note: Ignore peeked value if Bytes Available == 0. Example: <br  />
+</p>
+<p><code>0x94 0x70 0x01 0x55 0x55 0x55 0x55 0x55</code></p>
+<p>Peek byte from queue at address 0x0170</p>
+<p>Sample Response:</p>
+<p><code>0x94 0x70 0x01 0x37 0x80 0x01 0xF4 0x01</code> </p><pre class="fragment">    Next byte is 0x37 .  384 bytes available to read, 500 bytes Free
+</pre><hr  />
+<h2><a class="anchor" id="autotoc_md35"></a>
 Binary Read RAM, 16 Bit address</h2>
 <p>Reads a byte from an address in Microcontroller RAM. The SW4A and SW4B use 16 bit addresses. <br  />
 </p>
 <p>Note that the PIC16F15214 is a Microchip Enhanced Mid-Range chip with both a banked RAM area and a Linear RAM area at an offset address. <br  />
  See the datasheet for details.</p>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">0xA0 </td><td class="markdownTableBodyLeft">Least Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">Most Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55*  </td></tr>
-</table>
-<p>0x55 is recommended, but any byte is acceptable</p>
-<p>Response:</p>
+<pre class="fragment">              |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+              |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+              |0xA0|Least Significant byte of 16-bit address |Most Significant byte of 16-bit address | 0x55* | 0x55* | 0x55* |  0x55* | 0x55* |
+              0x55 is recommended, but any byte is acceptable
+</pre><p>Response:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
@@ -154,7 +234,7 @@ Binary Read RAM, 16 Bit address</h2>
 <p><code>0xA0 0x47 0x02 0xAC 0x55 0x55 0x55 0x55</code> </p>
 </blockquote>
 <hr  />
-<h2><a class="anchor" id="autotoc_md29"></a>
+<h2><a class="anchor" id="autotoc_md37"></a>
 Binary Read Flash, 32 Bit address, 32 Bit result</h2>
 <p>Reads two bytes from an address in Microcontroller Flash. The SW18AB uses 32 bit addresses. Due to 24 bit architecture the high byte of a 32 bit word is 0. Multiply the Word Address by 2 to get the byte address. <br  />
 </p>
@@ -181,25 +261,127 @@ Binary Read Flash, 32 Bit address, 32 Bit result</h2>
 <p><code>0xA1 0x46 0x08 0x01 0x00 0xEF 0x07 0x55</code> </p>
 </blockquote>
 <hr  />
-<h2><a class="anchor" id="autotoc_md31"></a>
+<h2><a class="anchor" id="autotoc_md39"></a>
 Binary Write RAM, 16 Bit address (</h2>
 <p>Reads a byte from an address in Microcontroller RAM. The SW4A and SW4B use 16 bit addresses. <br  />
 </p>
 <p>Note that the PIC16F15214 is a Microchip Enhanced Mid-Range chip with both a banked RAM area and a Linear RAM area at an offset address. <br  />
  See the datasheet for details.</p>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">0xA3 </td><td class="markdownTableBodyLeft">Least Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">Most Significant byte of 16-bit address </td><td class="markdownTableBodyLeft">0 (for 32-bit compatability) </td><td class="markdownTableBodyLeft">0 (for 32-bit compatability) </td><td class="markdownTableBodyLeft">Byte To write </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55*  </td></tr>
-</table>
-<p>0x55 is recommended, but any byte is acceptable</p>
-<p>Response:</p>
+<pre class="fragment">              |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+              |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+              |0xA3|Least Significant byte of 16-bit address |Most Significant byte of 16-bit address | 0 (for 32-bit compatability) | 0 (for 32-bit compatability) | Byte To write |  0x55* | 0x55* |
+              0x55 is recommended, but any byte is acceptable
+</pre><p>Response:</p>
 <p>Echoed Back.</p>
 <p>Examples:</p>
 <p>Write 0x32 the byte at RAM address 0x0247.</p>
 <blockquote class="doxtable">
 <p><code>0xA3 0x47 0x02 0x00 0x00 0x32 0x55 0x55</code> </p>
+</blockquote>
+<hr  />
+<h2><a class="anchor" id="autotoc_md41"></a>
+Enable 2nd Command Interface</h2>
+<pre class="fragment">   This command is only supported on the SW18AB chip.
+</pre><p> When in I2C mode by address pin, this enables the UART command interface in parallel with I2C on pins WP7 (TX out) and W9 (RX in). This allows monitoring of the Serial Wombat Chip by a PC or other tool while the chip is also being commanded over I2C</p>
+<p>Note that enabling then disabling this feature will leave the UART interface interally connected to pins 7 and 9, however commands will no longer be processed through this interface. A reset is required to fully disconnect internally.</p>
+<p>The last 6 bytes must match exactly in order to prevent accidental enabling.</p>
+<pre class="fragment">              |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+              |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+              |0xA5|1 = enable, 0 = disable |0xB2 |0xA5 |0x61 |0x73 |0xF8 |0xA2|
+</pre><p>Response:</p>
+<p>Echoed Back or error message.</p>
+<p>Examples:</p>
+<p>Enable 2nd command interface.</p>
+<blockquote class="doxtable">
+<p><code>0xA5 0x01 0xB2 0xA5 0x61 0x73 0xF8 0xA2</code> </p>
+</blockquote>
+<hr  />
+<h2><a class="anchor" id="autotoc_md43"></a>
+Binary Send 7 bytes out first UART</h2>
+<p>Queues 7 bytes to be sent out of the first avaialble Hardware UART. Assumes a UART pin mode has already been set up. The host should query avaialble space before using this command.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">0xB0 </td><td class="markdownTableBodyLeft">1st Byte to Send </td><td class="markdownTableBodyLeft">2nd Byte To send </td><td class="markdownTableBodyLeft">3rd Byte To send </td><td class="markdownTableBodyLeft">4th Byte To send </td><td class="markdownTableBodyLeft">5th Byte To send </td><td class="markdownTableBodyLeft">6th Byte To send </td><td class="markdownTableBodyLeft">7th Byte To send  </td></tr>
+</table>
+<p>Response:</p>
+<p>Packet is echoed back to the host.</p>
+<p>Examples:</p>
+<p>Send <em>WOMBAT!</em> out of the UART</p>
+<blockquote class="doxtable">
+<p><code>0xB0 0x57 0x4F 0x4D 0x42 0x41 0x54 0x21</code> </p>
+</blockquote>
+<hr  />
+<h2><a class="anchor" id="autotoc_md45"></a>
+Binary Read 7 bytes from first UART</h2>
+<p>Read 7 bytes from the queue of the first avaialble Hardware UART. Assumes a UART pin mode has already been set up. The host should query avaialble bytes to determine the nubmer of bytes avaiable before using this command. This command should only be called if at least 7 bytes are available.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">0xB1 </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55*  </td></tr>
+</table>
+<p>0x55 is recommended, but any byte is acceptable</p>
+<p>Response:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">0xB1 </td><td class="markdownTableBodyLeft">1st byte read from UART queue </td><td class="markdownTableBodyLeft">2nd byte read from UART queue </td><td class="markdownTableBodyLeft">3rd byte read from UART queue </td><td class="markdownTableBodyLeft">4th byte read from UART queue </td><td class="markdownTableBodyLeft">5th byte read from UART queue </td><td class="markdownTableBodyLeft">6th byte read from UART queue </td><td class="markdownTableBodyLeft">7th byte read from UART queue  </td></tr>
+</table>
+<p>Examples:</p>
+<p>Assuming <em>GHIJKLM</em> are the first 7 bytes in the UART RX QUEUE:</p>
+<p>Sent: </p><blockquote class="doxtable">
+<p><code>0xB1 0x55 0x55 0x55 0x55 0x55 0x55 0x55</code> </p>
+</blockquote>
+<p>Received:</p>
+<blockquote class="doxtable">
+<p><code>0xB1 0x47 0x48 0x49 0x4A 0x4B 0x4C 0x4D</code> </p>
+</blockquote>
+<hr  />
+<h2><a class="anchor" id="autotoc_md47"></a>
+Binary Send 7 bytes out first UART</h2>
+<p>Queues 7 bytes to be sent out of the first avaialble Hardware UART. Assumes a UART pin mode has already been set up. The host should query avaialble space before using this command.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">0xB2 </td><td class="markdownTableBodyLeft">1st Byte to Send </td><td class="markdownTableBodyLeft">2nd Byte To send </td><td class="markdownTableBodyLeft">3rd Byte To send </td><td class="markdownTableBodyLeft">4th Byte To send </td><td class="markdownTableBodyLeft">5th Byte To send </td><td class="markdownTableBodyLeft">6th Byte To send </td><td class="markdownTableBodyLeft">7th Byte To send  </td></tr>
+</table>
+<p>Response:</p>
+<p>Packet is echoed back to the host.</p>
+<p>Examples:</p>
+<p>Send <em>WOMBAT!</em> out of the UART</p>
+<blockquote class="doxtable">
+<p><code>0xB2 0x57 0x4F 0x4D 0x42 0x41 0x54 0x21</code> </p>
+</blockquote>
+<hr  />
+<h2><a class="anchor" id="autotoc_md49"></a>
+Binary Read 7 bytes from first UART</h2>
+<p>Read 7 bytes from the queue of the first avaialble Hardware UART. Assumes a UART pin mode has already been set up. The host should query avaialble bytes to determine the nubmer of bytes avaiable before using this command. This command should only be called if at least 7 bytes are available.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">0xB3 </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55* </td><td class="markdownTableBodyLeft">0x55*  </td></tr>
+</table>
+<p>0x55 is recommended, but any byte is acceptable</p>
+<p>Response:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyLeft">0xB1 </td><td class="markdownTableBodyLeft">1st byte read from UART queue </td><td class="markdownTableBodyLeft">2nd byte read from UART queue </td><td class="markdownTableBodyLeft">3rd byte read from UART queue </td><td class="markdownTableBodyLeft">4th byte read from UART queue </td><td class="markdownTableBodyLeft">5th byte read from UART queue </td><td class="markdownTableBodyLeft">6th byte read from UART queue </td><td class="markdownTableBodyLeft">7th byte read from UART queue  </td></tr>
+</table>
+<p>Examples:</p>
+<p>Assuming <em>GHIJKLM</em> are the first 7 bytes in the UART RX QUEUE:</p>
+<p>Sent: </p><blockquote class="doxtable">
+<p><code>0xB3 0x55 0x55 0x55 0x55 0x55 0x55 0x55</code> </p>
+</blockquote>
+<p>Received:</p>
+<blockquote class="doxtable">
+<p><code>0xB3 0x47 0x48 0x49 0x4A 0x4B 0x4C 0x4D</code> </p>
 </blockquote>
 </div><!-- contents -->
 <!-- start footer part -->

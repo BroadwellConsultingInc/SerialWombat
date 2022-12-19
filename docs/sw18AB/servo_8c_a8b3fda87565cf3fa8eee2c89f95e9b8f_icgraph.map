@@ -1,0 +1,5 @@
+<map id="initServoHwSimple" name="initServoHwSimple">
+<area shape="rect" id="node1" title="A simple, no&#45;parameter call to initialize the Servo. Used in ASCII pin configuration commands." alt="" coords="300,5,429,32"/>
+<area shape="rect" id="node2" href="$servo_8c.html#ae2eb8d1771760b348fc5e76c34bd9a9b" title=" " alt="" coords="163,5,252,32"/>
+<area shape="rect" id="node3" href="$protocol_8c.html#ad68aff3124fee3a4193383135f70c7c7" title=" " alt="" coords="5,5,115,32"/>
+</map>

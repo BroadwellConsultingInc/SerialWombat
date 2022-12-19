@@ -1,0 +1,13 @@
+<map id="timingResource.c" name="timingResource.c">
+<area shape="rect" id="node1" title=" " alt="" coords="39,5,161,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="106,229,171,256"/>
+<area shape="rect" id="node3" title=" " alt="" coords="27,155,101,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="102,80,170,107"/>
+<area shape="rect" id="node5" href="$serial_wombat_8h.html" title=" " alt="" coords="291,80,405,107"/>
+<area shape="rect" id="node6" href="$pin_modes_8h.html" title=" " alt="" coords="177,155,266,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="291,155,405,181"/>
+<area shape="rect" id="node8" href="$pin_registers_8h.html" title=" " alt="" coords="430,155,535,181"/>
+<area shape="rect" id="node9" href="$protocol_8h.html" title=" " alt="" coords="559,155,638,181"/>
+<area shape="rect" id="node10" href="$queue_8h.html" title=" " alt="" coords="662,155,730,181"/>
+<area shape="rect" id="node11" href="$serial_wombat_errors_8h.html" title=" " alt="" coords="754,155,902,181"/>
+</map>

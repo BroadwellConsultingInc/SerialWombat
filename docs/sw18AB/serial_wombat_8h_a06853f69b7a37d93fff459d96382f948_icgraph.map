@@ -1,0 +1,14 @@
+<map id="SetPin" name="SetPin">
+<area shape="rect" id="node1" title=" " alt="" coords="803,132,864,159"/>
+<area shape="rect" id="node2" href="$uart_hw_8c.html#aa3fa4ef94d54bb730dd8d73ef9d43a11" title=" " alt="" coords="647,5,737,32"/>
+<area shape="rect" id="node3" href="$protocol_8c.html#ad68aff3124fee3a4193383135f70c7c7" title=" " alt="" coords="437,29,547,56"/>
+<area shape="rect" id="node4" href="$liquid_crystal_8c.html#a12bb0d40bd250d6a88faf23710715f78" title=" " alt="" coords="647,107,737,133"/>
+<area shape="rect" id="node5" href="$liquid_crystal_8c.html#a937037ff4f7aebaa3532c1e16bef6eb4" title=" " alt="" coords="644,157,740,184"/>
+<area shape="rect" id="node6" href="$_t_m1637_8c.html#a1092723aeececca6a22760db8a84b554" title=" " alt="" coords="629,208,755,235"/>
+<area shape="rect" id="node12" href="$_t_m1637_8c.html#a64e8449ecf922ae671e48939edf1de6d" title=" " alt="" coords="446,271,538,297"/>
+<area shape="rect" id="node7" href="$_t_m1637_8c.html#aea8608df9859e2d3e6c6340ae8923e01" title=" " alt="" coords="403,103,581,145"/>
+<area shape="rect" id="node8" href="$_t_m1637_8c.html#abf85cb9b831ee34d4f1aef9f1053f096" title="update the TM1637 pin state machine" alt="" coords="248,195,355,221"/>
+<area shape="rect" id="node11" href="$_t_m1637_8c.html#acd70df2db09275c8ec0519ac7bbe632c" title=" " alt="" coords="405,220,579,247"/>
+<area shape="rect" id="node9" href="$serial_wombat_8h.html#a4e12ac6db45a20bca0fa11303072dbda" title=" " alt="" coords="104,195,200,221"/>
+<area shape="rect" id="node10" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,195,56,221"/>
+</map>

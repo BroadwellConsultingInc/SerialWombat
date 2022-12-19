@@ -1,0 +1,7 @@
+<map id="timingResourcePWMClaim" name="timingResourcePWMClaim">
+<area shape="rect" id="node1" title=" " alt="" coords="323,56,501,83"/>
+<area shape="rect" id="node2" href="$hf_servo_8c.html#a3624f2f451087dd536761e67345f1ca9" title=" " alt="" coords="177,5,260,32"/>
+<area shape="rect" id="node4" href="$pwm_8c.html#a428d429e060d60c0b086eeb8310ed4b6" title=" " alt="" coords="183,56,255,83"/>
+<area shape="rect" id="node5" href="$pwm_8c.html#a41636f61fc1a5dd3e8731ac86774ac5f" title=" " alt="" coords="163,107,275,133"/>
+<area shape="rect" id="node3" href="$protocol_8c.html#ad68aff3124fee3a4193383135f70c7c7" title=" " alt="" coords="5,31,115,57"/>
+</map>

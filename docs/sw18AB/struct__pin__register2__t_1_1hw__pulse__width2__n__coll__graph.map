@@ -1,0 +1,7 @@
+<map id="_pin_register2_t::hw_pulse_width2_n" name="_pin_register2_t::hw_pulse_width2_n">
+<area shape="rect" id="node1" title=" " alt="" coords="134,213,273,255"/>
+<area shape="rect" id="node2" href="$unionmixed32__n.html" title="Union of 32 bit types. Note that on the 18F a RAM pointer is 16 bits, so it&#39;s not included here." alt="" coords="34,109,119,136"/>
+<area shape="rect" id="node3" href="$structmixed32__n_1_1mixed32__uwords__n.html" title=" " alt="" coords="5,5,148,47"/>
+<area shape="rect" id="node4" href="$unionmixed24__n.html" title="Union of 24 bit types. Specific to C18 compiler." alt="" coords="161,109,246,136"/>
+<area shape="rect" id="node5" href="$unionmixed16__n.html" title="Union of 16 bit types. Also includes pointers for the 18F." alt="" coords="270,109,355,136"/>
+</map>

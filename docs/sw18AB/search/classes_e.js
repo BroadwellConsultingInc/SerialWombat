@@ -1,11 +1,23 @@
 var searchData=
 [
-  ['ram_5fqueue_5fn_1109',['ram_queue_n',['../structgeneric__queue__n_1_1ram__queue__n.html',1,'generic_queue_n::ram_queue_n'],['../structram__queue__n.html',1,'ram_queue_n']]],
-  ['ram_5frle_5fbyte_5fqueue_5fn_1110',['ram_rle_byte_queue_n',['../structgeneric__queue__n_1_1ram__rle__byte__queue__n.html',1,'generic_queue_n::ram_rle_byte_queue_n'],['../structram__rle__byte__queue__n.html',1,'ram_rle_byte_queue_n']]],
-  ['ram_5frle_5fword_5fqueue_5fn_1111',['ram_rle_word_queue_n',['../structram__rle__word__queue__n.html',1,'ram_rle_word_queue_n'],['../structgeneric__queue__n_1_1ram__rle__word__queue__n.html',1,'generic_queue_n::ram_rle_word_queue_n']]],
-  ['ram_5fstring_5fqueue_5fn_1112',['ram_string_queue_n',['../structram__string__queue__n.html',1,'ram_string_queue_n'],['../structgeneric__queue__n_1_1ram__string__queue__n.html',1,'generic_queue_n::ram_string_queue_n']]],
-  ['remote_5f2n_1113',['remote_2n',['../struct__pin__register2__t_1_1remote__2n.html',1,'_pin_register2_t']]],
-  ['remote_5fn_1114',['remote_n',['../struct__pin__register__t_1_1remote__n.html',1,'_pin_register_t']]],
-  ['rotary_5fenc_5fn_1115',['rotary_enc_n',['../struct__pin__register2__t_1_1rotary__enc__n.html',1,'_pin_register2_t']]],
-  ['rotary_5fencn_1116',['rotary_encn',['../struct__pin__register__t_1_1rotary__encn.html',1,'_pin_register_t']]]
+  ['parallel_5f82n_1584',['parallel_82n',['../struct__pin__register2__t_1_1parallel__82n.html',1,'_pin_register2_t']]],
+  ['parallel_5f8n_1585',['parallel_8n',['../struct__pin__register__t_1_1parallel__8n.html',1,'_pin_register_t']]],
+  ['pid_5fn_1586',['pid_n',['../struct__pin__register__t_1_1pid__n.html',1,'_pin_register_t']]],
+  ['pin_5flogic2_5fn_1587',['pin_logic2_n',['../struct__pin__register2__t_1_1pin__logic2__n.html',1,'_pin_register2_t']]],
+  ['ping2_5fn_1588',['ping2_n',['../struct__pin__register2__t_1_1ping2__n.html',1,'_pin_register2_t']]],
+  ['ping_5fn_1589',['ping_n',['../struct__pin__register__t_1_1ping__n.html',1,'_pin_register_t']]],
+  ['protectedoutput_5fn_1590',['protectedOutput_n',['../structprotected_output__n.html',1,'']]],
+  ['pulse_5fn_1591',['pulse_n',['../struct__pin__register__t_1_1pulse__n.html',1,'_pin_register_t']]],
+  ['pulse_5fn2_1592',['pulse_n2',['../struct__pin__register2__t_1_1pulse__n2.html',1,'_pin_register2_t']]],
+  ['pulse_5foutput_5fn_1593',['pulse_output_n',['../struct__pin__register__t_1_1pulse__output__n.html',1,'_pin_register_t']]],
+  ['pulsein_5fn_1594',['pulseIn_n',['../structpulse_in__n.html',1,'']]],
+  ['pulseonchange_5fn_1595',['pulseOnChange_n',['../structpulse_on_change__n.html',1,'']]],
+  ['pulsetimer_5fn_1596',['pulseTimer_n',['../structpulse_timer__n.html',1,'']]],
+  ['pwm_5ffollow_5fdirect_5fn_1597',['pwm_follow_direct_n',['../struct__pin__register__t_1_1pwm__follow__direct__n.html',1,'_pin_register_t']]],
+  ['pwm_5ffollow_5fdirect_5fn2_1598',['pwm_follow_direct_n2',['../struct__pin__register2__t_1_1pwm__follow__direct__n2.html',1,'_pin_register2_t']]],
+  ['pwm_5fn_1599',['pwm_n',['../structpwm__n.html',1,'']]],
+  ['pwm_5fqueue_5ffixed_5fperiod_5fn_1600',['pwm_queue_fixed_period_n',['../struct__pin__register__t_1_1pwm__queue__fixed__period__n.html',1,'_pin_register_t']]],
+  ['pwm_5fqueue_5fvariable_5fperiod2_5fn_1601',['pwm_queue_variable_period2_n',['../struct__pin__register2__t_1_1pwm__queue__variable__period2__n.html',1,'_pin_register2_t']]],
+  ['pwm_5fqueue_5fvariable_5fperiod_5fn_1602',['pwm_queue_variable_period_n',['../struct__pin__register__t_1_1pwm__queue__variable__period__n.html',1,'_pin_register_t']]],
+  ['pwm_5fsine_5fn_1603',['pwm_sine_n',['../struct__pin__register__t_1_1pwm__sine__n.html',1,'_pin_register_t']]]
 ];

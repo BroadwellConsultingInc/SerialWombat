@@ -1,0 +1,13 @@
+<map id="pwm.c" name="pwm.c">
+<area shape="rect" id="node1" title=" " alt="" coords="437,5,497,32"/>
+<area shape="rect" id="node2" href="$serial_wombat_8h.html" title=" " alt="" coords="455,155,569,181"/>
+<area shape="rect" id="node3" title=" " alt="" coords="543,304,609,331"/>
+<area shape="rect" id="node11" href="$output_scale_8h.html" title=" " alt="" coords="505,80,607,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="843,229,917,256"/>
+<area shape="rect" id="node5" href="$pin_modes_8h.html" title=" " alt="" coords="42,229,131,256"/>
+<area shape="rect" id="node6" title=" " alt="" coords="156,229,271,256"/>
+<area shape="rect" id="node7" href="$pin_registers_8h.html" title=" " alt="" coords="295,229,401,256"/>
+<area shape="rect" id="node8" href="$protocol_8h.html" title=" " alt="" coords="425,229,503,256"/>
+<area shape="rect" id="node9" href="$queue_8h.html" title=" " alt="" coords="527,229,595,256"/>
+<area shape="rect" id="node10" href="$serial_wombat_errors_8h.html" title=" " alt="" coords="619,229,767,256"/>
+</map>

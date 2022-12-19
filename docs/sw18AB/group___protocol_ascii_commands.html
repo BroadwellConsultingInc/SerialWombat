@@ -66,7 +66,7 @@ $(function() {
 <div class="title">ProtocolAsciiCommands</div>  </div>
 </div><!--header-->
 <div class="contents">
-<h2><a class="anchor" id="autotoc_md15"></a>
+<h2><a class="anchor" id="autotoc_md18"></a>
 ASCII Echo</h2>
 <p>This command simply sends back what was sent and takes no action. Echos back response unless error.</p>
 <table class="markdownTable">
@@ -78,7 +78,7 @@ ASCII Echo</h2>
 <p>Examples:</p>
 <p><code>!1234567</code></p>
 <p>Will respond <code>!1234567</code></p>
-<h2><a class="anchor" id="autotoc_md16"></a>
+<h2><a class="anchor" id="autotoc_md19"></a>
 ASCII Enable / Disable Line Breaks</h2>
 <p>This command causes the Serial Wombat to echo back input and add a carraige return / line feed before and after every returned message.</p>
 <p>This is very useful when you're typing commands in a terminal, but will cause problems if you are talking to the Serial Wombat with a program, particularly if you are using Binary commands.</p>
@@ -93,34 +93,34 @@ ASCII Enable / Disable Line Breaks</h2>
 <p>Enables Line Breaks.</p>
 <p><code>^LINEBK0</code></p>
 <p>Disables Line Breaks (default).</p>
-<h2><a class="anchor" id="autotoc_md17"></a>
+<h2><a class="anchor" id="autotoc_md20"></a>
 ASCII Set Public Data</h2>
 <p>This command allows the public data of a pin to be set. Maximum allowable data value is 65535 . Echos back response unless error.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">'D' </td><td class="markdownTableBodyLeft">Pin X 10's </td><td class="markdownTableBodyLeft">Pin X 1's </td><td class="markdownTableBodyLeft">Public Data 10000's </td><td class="markdownTableBodyLeft">Public Data 1000's </td><td class="markdownTableBodyLeft">Public Data 100's </td><td class="markdownTableBodyLeft">Public Data 10's </td><td class="markdownTableBodyLeft">Public Data 1's  </td></tr>
+<td class="markdownTableBodyLeft">'d' </td><td class="markdownTableBodyLeft">Pin X 10's </td><td class="markdownTableBodyLeft">Pin X 1's </td><td class="markdownTableBodyLeft">Public Data 10000's </td><td class="markdownTableBodyLeft">Public Data 1000's </td><td class="markdownTableBodyLeft">Public Data 100's </td><td class="markdownTableBodyLeft">Public Data 10's </td><td class="markdownTableBodyLeft">Public Data 1's  </td></tr>
 </table>
 <p>Examples:</p>
-<p><code>D0213143</code></p>
+<p><code>d0213143</code></p>
 <p>Sets pin 2 Public Data to 13143.</p>
-<h2><a class="anchor" id="autotoc_md18"></a>
+<h2><a class="anchor" id="autotoc_md21"></a>
 ASCII Get Public Data</h2>
 <p>This command allows the public data of a pin to be set. Maximum allowable data value is 65535 . Echos back response unless error.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">'G' </td><td class="markdownTableBodyLeft">Pin X 10's </td><td class="markdownTableBodyLeft">Pin X 1's </td><td class="markdownTableBodyLeft">'U'* </td><td class="markdownTableBodyLeft">'U'* </td><td class="markdownTableBodyLeft">'U'* </td><td class="markdownTableBodyLeft">'U'* </td><td class="markdownTableBodyLeft">'U'*  </td></tr>
+<td class="markdownTableBodyLeft">'G' </td><td class="markdownTableBodyLeft">Pin X 100's </td><td class="markdownTableBodyLeft">Pin X 10's </td><td class="markdownTableBodyLeft">Pin X 1's </td><td class="markdownTableBodyLeft">'U'* </td><td class="markdownTableBodyLeft">'U'* </td><td class="markdownTableBodyLeft">'U'* </td><td class="markdownTableBodyLeft">'U'*  </td></tr>
 </table>
 <p>'U' is recommended, but any byte is acceptable</p>
 <p>Examples:</p>
-<p><code>G02UUUUU</code></p>
+<p><code>G002UUUUU</code></p>
 <p>Gets pin 2 Public Data In Ascii Sample Response:</p>
 <p><code>G0226132</code></p>
 <p>Public data for Pin 2 is 26132.</p>
-<h2><a class="anchor" id="autotoc_md19"></a>
+<h2><a class="anchor" id="autotoc_md22"></a>
 ASCII Set Pin Command</h2>
 <p>This command allows the digital state of up to 5 consecutive pins to be set. <br  />
 </p>
@@ -128,7 +128,7 @@ ASCII Set Pin Command</h2>
 <tr class="markdownTableHead">
 <th class="markdownTableHeadLeft">BYTE 0 </th><th class="markdownTableHeadLeft">BYTE 1 </th><th class="markdownTableHeadLeft">BYTE 2 </th><th class="markdownTableHeadLeft">BYTE 3 </th><th class="markdownTableHeadLeft">BYTE 4 </th><th class="markdownTableHeadLeft">BYTE 5 </th><th class="markdownTableHeadLeft">BYTE 6 </th><th class="markdownTableHeadLeft">BYTE 7  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyLeft">'P' </td><td class="markdownTableBodyLeft">Pin X 10's </td><td class="markdownTableBodyLeft">Pin X 1's </td><td class="markdownTableBodyLeft">Pin X Setting </td><td class="markdownTableBodyLeft">Pin X+1 Setting </td><td class="markdownTableBodyLeft">Pin X+2 Setting </td><td class="markdownTableBodyLeft">Pin X+3 Setting </td><td class="markdownTableBodyLeft">Pin X+4 Setting  </td></tr>
+<td class="markdownTableBodyLeft">'p' </td><td class="markdownTableBodyLeft">Pin X 10's </td><td class="markdownTableBodyLeft">Pin X 1's </td><td class="markdownTableBodyLeft">Pin X Setting </td><td class="markdownTableBodyLeft">Pin X+1 Setting </td><td class="markdownTableBodyLeft">Pin X+2 Setting </td><td class="markdownTableBodyLeft">Pin X+3 Setting </td><td class="markdownTableBodyLeft">Pin X+4 Setting  </td></tr>
 </table>
 <p>Possible Pin Settings:</p><ul>
 <li>'l' Make the pin an Output Low</li>
@@ -139,14 +139,14 @@ ASCII Set Pin Command</h2>
 <li>'s' Make the pin a Servo Controller</li>
 <li>'u' Make the pin an Input (with a weak Pull Up)</li>
 <li>'w' Make the pin a PWM Output</li>
-<li>'x' No change Echos back response unless error.</li>
+<li>'x' or ' ' or 'U' No change Echos back response unless error.</li>
 </ul>
 <p>Examples:</p>
-<p><code>P021xxxx</code></p>
+<p><code>p021xxxx</code></p>
 <p>Sets pin 2 high, and doesn't change any other pins</p>
 <p><code>P0910xii</code></p>
 <p>Sets pin 9 High, pin 10 Low, doesn't change pin 11, and sets pins 12 and 13 to inputs</p>
-<h2><a class="anchor" id="autotoc_md20"></a>
+<h2><a class="anchor" id="autotoc_md23"></a>
 ASCII Reset Command</h2>
 <p>This command causes an internal reset of the Serial Wombat, similar to one caused by pulling the reset pin low.</p>
 <table class="markdownTable">
@@ -155,9 +155,10 @@ ASCII Reset Command</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyLeft">'R' </td><td class="markdownTableBodyLeft">'e' </td><td class="markdownTableBodyLeft">'S' </td><td class="markdownTableBodyLeft">'e' </td><td class="markdownTableBodyLeft">'T' </td><td class="markdownTableBodyLeft">'!' </td><td class="markdownTableBodyLeft">'#' </td><td class="markdownTableBodyLeft">'*'  </td></tr>
 </table>
-<p>No response, as Wombat enters reset upon receipt. Example:</p>
+<pre class="fragment">          No response, as Wombat enters reset upon receipt.
+</pre><p> Example:</p>
 <p><code>ReSeT!#*</code></p>
-<h2><a class="anchor" id="autotoc_md21"></a>
+<h2><a class="anchor" id="autotoc_md24"></a>
 ASCII Version Command</h2>
 <p>Sends back V followed by 7 characters indicating the firmware version number </p><table class="markdownTable">
 <tr class="markdownTableHead">

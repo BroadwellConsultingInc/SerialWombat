@@ -1,0 +1,10 @@
+<map id="SetCurrentPin" name="SetCurrentPin">
+<area shape="rect" id="node1" title=" " alt="" coords="465,107,568,133"/>
+<area shape="rect" id="node2" href="$protected_output_8c.html#aadb8d74b571040a03cd4bbe488e8cff8" title=" " alt="" coords="272,5,407,32"/>
+<area shape="rect" id="node3" href="$protocol_8c.html#ad68aff3124fee3a4193383135f70c7c7" title=" " alt="" coords="104,56,213,83"/>
+<area shape="rect" id="node4" href="$watchdog_8c.html#a85d2f9ed84d8f76e89ebb88efd259aef" title="Initialization routine for Watchdog pin mode." alt="" coords="290,107,389,133"/>
+<area shape="rect" id="node5" href="$protected_output_8c.html#a49e137290578de111f95a03c6e432dd6" title=" " alt="" coords="261,157,417,184"/>
+<area shape="rect" id="node8" href="$watchdog_8c.html#a1c38ae281a8a132599b5619660e7d306" title="Periodic call to service the Analog Input State Machine for a pin." alt="" coords="279,208,399,235"/>
+<area shape="rect" id="node6" href="$serial_wombat_8h.html#a4e12ac6db45a20bca0fa11303072dbda" title=" " alt="" coords="111,183,207,209"/>
+<area shape="rect" id="node7" href="$main_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,183,56,209"/>
+</map>

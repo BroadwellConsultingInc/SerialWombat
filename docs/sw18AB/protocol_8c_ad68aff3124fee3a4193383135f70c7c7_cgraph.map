@@ -1,0 +1,52 @@
+<map id="ProcessSetPin" name="ProcessSetPin">
+<area shape="rect" id="node1" title=" " alt="" coords="5,639,115,665"/>
+<area shape="rect" id="node2" href="$protocol_8c.html#a67d45a479305051a083becec0369b252" title=" " alt="" coords="441,461,489,488"/>
+<area shape="rect" id="node4" href="$analog_input_8c.html#a4bd673f592ce7e7ee1c4d209c65830d6" title=" " alt="" coords="191,56,297,83"/>
+<area shape="rect" id="node10" href="$debounce_8c.html#a5d35deded3b86b5c653e7e669d043011" title=" " alt="" coords="195,309,293,336"/>
+<area shape="rect" id="node13" href="$hf_servo_8c.html#a3624f2f451087dd536761e67345f1ca9" title=" " alt="" coords="203,765,285,792"/>
+<area shape="rect" id="node21" href="$liquid_crystal_8c.html#ac90c9ed8e564a2be983c5b14e7ca6f24" title=" " alt="" coords="187,1069,301,1096"/>
+<area shape="rect" id="node24" href="$matrix_keypad_8c.html#ab5c05bc2a79fc172795424b0da603532" title=" " alt="" coords="185,867,303,893"/>
+<area shape="rect" id="node26" href="$pin_input_processor_8c.html#afb777c5b23e9c36588937dc1cdee876b" title=" " alt="" coords="171,5,317,32"/>
+<area shape="rect" id="node27" href="$protected_output_8c.html#aadb8d74b571040a03cd4bbe488e8cff8" title=" " alt="" coords="177,411,311,437"/>
+<area shape="rect" id="node28" href="$serial_wombat_8h.html#aca2cd83c8bf0ecc3527ba8d389855373" title=" " alt="" coords="414,360,517,387"/>
+<area shape="rect" id="node29" href="$pulse_on_change_8c.html#a5161a992d676a8c7fee32363ae3b1f13" title=" " alt="" coords="177,512,311,539"/>
+<area shape="rect" id="node30" href="$pulse_input_8c.html#af182c5067864e0b5fbb72ad0896be4f2" title=" " alt="" coords="192,208,296,235"/>
+<area shape="rect" id="node31" href="$pwm_8c.html#a428d429e060d60c0b086eeb8310ed4b6" title=" " alt="" coords="208,715,280,741"/>
+<area shape="rect" id="node33" href="$quad_enc_8c.html#aec23a06fd2f1d9a94642d7b6a802d8d3" title=" " alt="" coords="197,1323,291,1349"/>
+<area shape="rect" id="node37" href="$resistance_input_8c.html#a485d1d293352425f3d6dc44175f802b2" title=" " alt="" coords="178,107,310,133"/>
+<area shape="rect" id="node38" href="$servo_8c.html#ae2eb8d1771760b348fc5e76c34bd9a9b" title=" " alt="" coords="199,816,289,843"/>
+<area shape="rect" id="node40" href="$throughput_consumer_8c.html#ae4c972723fa3bf2d7ac5db405982e07a" title=" " alt="" coords="163,613,325,640"/>
+<area shape="rect" id="node41" href="$_t_m1637_8c.html#ae381ccec4f8ef1f4aded040a4181ec1f" title=" " alt="" coords="201,1221,287,1248"/>
+<area shape="rect" id="node42" href="$touch_8c.html#a229490ab7cbf36c9355eca4d5437efa0" title=" " alt="" coords="207,157,281,184"/>
+<area shape="rect" id="node43" href="$uart_hw_8c.html#aa3fa4ef94d54bb730dd8d73ef9d43a11" title=" " alt="" coords="199,1171,289,1197"/>
+<area shape="rect" id="node44" href="$serial_wombat_8h.html#a06853f69b7a37d93fff459d96382f948" title=" " alt="" coords="435,1323,496,1349"/>
+<area shape="rect" id="node45" href="$uart_sw_8c.html#a9d7ed56ad53b43b8a963e8e87f0da0d1" title=" " alt="" coords="199,1120,289,1147"/>
+<area shape="rect" id="node46" href="$ultrasonic_distance_8c.html#a403fadd1a4c45a41ca84220cd9319c76" title=" " alt="" coords="170,259,318,285"/>
+<area shape="rect" id="node47" href="$watchdog_8c.html#a85d2f9ed84d8f76e89ebb88efd259aef" title="Initialization routine for Watchdog pin mode." alt="" coords="195,461,293,488"/>
+<area shape="rect" id="node48" href="$ws2812_8c.html#a82002a17871d682de6aa45c29cd8cee2" title=" " alt="" coords="199,664,289,691"/>
+<area shape="rect" id="node49" href="$serial_wombat_8h.html#a078ce3a9778ef2fec3b089b75cde086e" title=" " alt="" coords="197,1373,291,1400"/>
+<area shape="rect" id="node50" href="$serial_wombat_8h.html#af8cffca1205920034a1169151a4e8627" title=" " alt="" coords="205,1424,283,1451"/>
+<area shape="rect" id="node3" href="$_serial_wombat18_a__18_b_2_serial_wombat18_a__18_b_8_x_2ascii_conversion_8c.html#a5872bab298550ae88e7afb0404f6406b" title=" " alt="" coords="606,461,713,488"/>
+<area shape="rect" id="node5" href="$serial_wombat_8h.html#a3a3d278ee2758b7abb53e3e2d7a045c1" title=" " alt="" coords="404,157,527,184"/>
+<area shape="rect" id="node6" href="$serial_wombat_8h.html#a6583b2c366beaa5b9869f20a0addc52c" title=" " alt="" coords="410,208,521,235"/>
+<area shape="rect" id="node7" href="$analog_input_8c.html#a2a1446c366706cdecb294e183f1cd263" title=" " alt="" coords="399,5,532,32"/>
+<area shape="rect" id="node8" href="$input_process_8c.html#aab857005113550d759f4ee816d6a7c3e" title=" " alt="" coords="373,56,557,83"/>
+<area shape="rect" id="node9" href="$input_process_8c.html#ac8e7ad14178ccabbcebee3b38cf9acce" title=" " alt="" coords="408,107,523,133"/>
+<area shape="rect" id="node11" href="$serial_wombat_8h.html#a5aebff93aa44f0e1a30c89658b1e44b2" title=" " alt="" coords="397,259,534,285"/>
+<area shape="rect" id="node12" href="$serial_wombat_8h.html#a833da4fe7512329a03c7e281a7a78577" title=" " alt="" coords="405,309,526,336"/>
+<area shape="rect" id="node14" href="$serial_wombat_8h.html#a2cbaf411931fb9450528471b575815d4" title=" " alt="" coords="606,1019,713,1045"/>
+<area shape="rect" id="node15" href="$output_scale_8c.html#aba4f47610d05e55ce5cb1e33971090bd" title=" " alt="" coords="377,715,554,741"/>
+<area shape="rect" id="node16" href="$output_scale_8c.html#a448c14a979a0c6be9a77b2d19232b4e0" title=" " alt="" coords="605,740,713,767"/>
+<area shape="rect" id="node18" href="$output_scale_8c.html#ac6aae43fb54ea71b09ffabafa35362d1" title=" " alt="" coords="380,917,551,944"/>
+<area shape="rect" id="node19" href="$timing_resource_8c.html#ac5b7961d583164137d06047cea518b37" title=" " alt="" coords="376,664,555,691"/>
+<area shape="rect" id="node20" href="$timing_resource_8c.html#a799df9877251a6e763686d479b9e239f" title=" " alt="" coords="386,816,545,843"/>
+<area shape="rect" id="node17" href="$_serial_wombat18_a__18_b_2_serial_wombat18_a__18_b_8_x_2pin_registers_8c.html#abc7f8feb8a974c4cc2ac61ac3d7f61cd" title=" " alt="" coords="761,563,837,589"/>
+<area shape="rect" id="node22" href="$serial_wombat_8h.html#aff77be586e4e93183b680d801f02fbb6" title=" " alt="" coords="433,1171,497,1197"/>
+<area shape="rect" id="node23" href="$_serial_wombat18_a__18_b_2_serial_wombat18_a__18_b_8_x_2pin_registers_8c.html#a5e6471a03082c3ef92965db2ce18c449" title=" " alt="" coords="428,1272,503,1299"/>
+<area shape="rect" id="node25" href="$serial_wombat_8h.html#a86e3f970166f3dede046694cefc877bf" title=" " alt="" coords="431,1221,500,1248"/>
+<area shape="rect" id="node32" href="$pwm_8c.html#a5c776e1b0271e68feb798f9a31326d5c" title=" " alt="" coords="418,563,513,589"/>
+<area shape="rect" id="node34" href="$serial_wombat_8h.html#adc0c81f040112b3cbaf2c1b1d222a579" title=" " alt="" coords="403,1424,527,1451"/>
+<area shape="rect" id="node35" href="$serial_wombat_8h.html#a523cf7d3a7bf51b7c1d2745e8f414e68" title=" " alt="" coords="412,1373,519,1400"/>
+<area shape="rect" id="node36" href="$serial_wombat_8h.html#aa58b7c5d93ff1b28e0c2f30dbc7d80b6" title=" " alt="" coords="409,1475,522,1501"/>
+<area shape="rect" id="node39" href="$servo_8c.html#a8b3fda87565cf3fa8eee2c89f95e9b8f" title="A simple, no&#45;parameter call to initialize the Servo. Used in ASCII pin configuration commands." alt="" coords="401,1019,530,1045"/>
+</map>
