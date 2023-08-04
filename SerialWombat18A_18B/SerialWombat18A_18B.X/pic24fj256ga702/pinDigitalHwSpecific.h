@@ -1,3 +1,24 @@
+/*
+Copyright 2021-2023 Broadwell Consulting Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a 
+ * copy of this software and associated documentation files (the "Software"), 
+ * to deal in the Software without restriction, including without limitation 
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+ * and/or sell copies of the Software, and to permit persons to whom the 
+ * Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in 
+ * all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR 
+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
+ * OTHER DEALINGS IN THE SOFTWARE.
+*/
 #ifndef PIN_DIGITAL_HW_SPECIFIC_H
 #define PIN_DIGITAL_HW_SPECIFIC_H
 #include <stdint.h>
@@ -100,12 +121,17 @@ void timingResourcesLowPulse(TIMING_RESOURCE_t resource, uint16_t pulseTime_uS);
 void timingResourcePWM(TIMING_RESOURCE_t resource, uint32_t period_uS, uint16_t dutyCycle);
 bool timingResourceHighPulseBusy(TIMING_RESOURCE_t resource );
 void timingResourceService(TIMING_RESOURCE_t resource);
+TIMING_RESOURCE_t timingResourceGenericClaim(TIMING_RESOURCE_t request);
 void timingResourceRelease(TIMING_RESOURCE_t resource);
 void timingResourceManagerInit();
 
 TIMING_RESOURCE_t timingResourceInterruptClaim(TIMING_RESOURCE_t resource, uint16_t counts, uint16_t uS, void (*callBack)(void));
 void timingResourceInterruptActivate(TIMING_RESOURCE_t resource);
 void timingResourceBusyWait(uint16_t uS);
+TIMING_RESOURCE_t timingResourceCounterClaim(TIMING_RESOURCE_t resource);
+uint32_t timingResourceReadCounter(TIMING_RESOURCE_t resource);
+void timingResourceResetCounter(TIMING_RESOURCE_t resource);
+void timingResourceDefault(TIMING_RESOURCE_t resource);
 
 typedef struct DMABitStream_n{
 uint8_t nextLocationToQueue;

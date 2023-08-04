@@ -81,8 +81,17 @@ void CLOCK_Initialize(void)
     // CLC1MD enabled; CLC2MD enabled; 
     PMD8 = 0x00;
     // CF no clock failure; NOSC FRCPLL; SOSCEN disabled; POSCEN disabled; CLKLOCK unlocked; OSWEN Switch is Complete; IOLOCK not-active; 
+//#define CRYSTAL_8MHZ
+#ifdef CRYSTAL_8MHZ
+#warning CRYSTAL SELECTED!
+    __builtin_write_OSCCONH((uint8_t) (0x03));
+    __builtin_write_OSCCONL((uint8_t) (0x01));
+    
+#else
+    
     __builtin_write_OSCCONH((uint8_t) (0x01));
     __builtin_write_OSCCONL((uint8_t) (0x01));
+#endif
     // Wait for Clock switch to occur
     while (OSCCONbits.OSWEN != 0);
     while (OSCCONbits.LOCK != 1);

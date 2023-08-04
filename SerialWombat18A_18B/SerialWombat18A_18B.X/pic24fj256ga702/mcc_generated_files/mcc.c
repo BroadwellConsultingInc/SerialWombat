@@ -62,17 +62,26 @@
 #pragma config BSLIM = 0x1FF6 //Boot Segment Flash Page Address Limit bits  Address 0x4800, AVT 0x4004
 
 // FOSCSEL
+//#define CRYSTAL_8MHZ
+// FOSCSEL
+#ifdef CRYSTAL_8MHZ
+#pragma config FNOSC = PRIPLL    //Oscillator Source Selection->FRC
+#pragma config POSCMD = XT    //Primary Oscillator Mode Select bits->Primary Oscillator disabled
+#pragma config FCKSM = CSECME    //Clock Switching Mode bits->Clock switching is enabled,Fail-safe Clock Monitor is disabled
+
+#else
 #pragma config FNOSC = FRC    //Oscillator Source Selection->FRC
+#pragma config POSCMD = NONE    //Primary Oscillator Mode Select bits->Primary Oscillator disabled
+#pragma config FCKSM = CSECME    //Clock Switching Mode bits->Clock switching is enabled,Fail-safe Clock Monitor is disabled
+#endif
 #pragma config PLLMODE = PLL4X    //PLL Mode Selection->4x PLL selected
 #pragma config IESO = ON    //Two-speed Oscillator Start-up Enable bit->Start up device with FRC, then switch to user-selected oscillator source
 
 // FOSC
-#pragma config POSCMD = NONE    //Primary Oscillator Mode Select bits->Primary Oscillator disabled
 #pragma config OSCIOFCN = ON    //OSC2 Pin Function bit->OSC2 is general purpose digital I/O pin
 #pragma config SOSCSEL = OFF    //SOSC Power Selection Configuration bits->Digital (SCLKI) mode
 #pragma config PLLSS = PLL_FRC    //PLL Secondary Selection Configuration bit->PLL is fed by the on-chip Fast RC (FRC) oscillator
 #pragma config IOL1WAY = OFF   //Peripheral pin select configuration bit->Allow only one reconfiguration
-#pragma config FCKSM = CSECME    //Clock Switching Mode bits->Clock switching is enabled,Fail-safe Clock Monitor is disabled
 
 // FWDT
 #pragma config WDTPS = PS32768    //Watchdog Timer Postscaler bits->1:32768

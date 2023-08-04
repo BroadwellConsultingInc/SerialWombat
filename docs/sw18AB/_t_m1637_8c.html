@@ -531,7 +531,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <pre class="fragment">\brief Initialization routine for TM1637 Seven Segment 
 </pre><hr  />
-<h2><a class="anchor" id="autotoc_md74"></a>
+<h2><a class="anchor" id="autotoc_md94"></a>
 CONFIGURE_CHANNEL_MODE_0:</h2>
 <p>Initialize TM1637 Output</p>
 <table class="markdownTable">
@@ -556,7 +556,7 @@ CONFIGURE_CHANNEL_MODE_0:</h2>
 <p><code>0xC0 0x13 0x0A 0x12 0x04 0x02 0x13 0x05</code> </p>
 </blockquote>
 <hr  />
-<h2><a class="anchor" id="autotoc_md76"></a>
+<h2><a class="anchor" id="autotoc_md96"></a>
 CONFIGURE_CHANNEL_MODE_1:</h2>
 <p>Change Display order of Digits 0-4. If "012345" is displayed on the display after the 0xC0 command is sent and the digits appear in the wrong order, then use this command and CONFIGURE_CHANNEL_MODE_2 to change the display order.</p>
 <p>This command is also useful to map the bottom 4 digits of a 5 digit (16 bit) decimal display to the 4 digits of a 4-place display.</p>
@@ -577,7 +577,7 @@ CONFIGURE_CHANNEL_MODE_1:</h2>
 <p><code>0xC2 0x13 0x0A 0x03 0x55 0x55 0x55 0x55</code> </p>
 </blockquote>
 <hr  />
-<h2><a class="anchor" id="autotoc_md78"></a>
+<h2><a class="anchor" id="autotoc_md98"></a>
 CONFIGURE_CHANNEL_MODE_2:</h2>
 <p>Change Display order of Digit 5. See CONFIGURE_CHANNEL_MODE_1</p>
 <table class="markdownTable">
@@ -587,7 +587,7 @@ CONFIGURE_CHANNEL_MODE_2:</h2>
 <td class="markdownTableBodyLeft">0xC2 </td><td class="markdownTableBodyLeft">Pin To Set (TO TM1637 Clock) </td><td class="markdownTableBodyLeft">0x0A (TM1637 ) </td><td class="markdownTableBodyLeft">Mapping for 5 digit </td><td class="markdownTableBodyLeft">Unused/0x55* </td><td class="markdownTableBodyLeft">Unused/0x55* </td><td class="markdownTableBodyLeft">Unused/0x55* </td><td class="markdownTableBodyLeft">Unused/0x55*  </td></tr>
 </table>
 <p>*0x55 is recommended, but any byte is acceptable</p>
-<h2><a class="anchor" id="autotoc_md79"></a>
+<h2><a class="anchor" id="autotoc_md99"></a>
 CONFIGURE_CHANNEL_MODE_3:</h2>
 <p>Set TM1637 Brightness and Leading Zero Suppression</p>
 <table class="markdownTable">
@@ -604,7 +604,7 @@ CONFIGURE_CHANNEL_MODE_3:</h2>
 <blockquote class="doxtable">
 <p><code>0xC3 0x13 0x0A 0x03 0x01 0x55 0x55 0x55</code> </p>
 </blockquote>
-<h2><a class="anchor" id="autotoc_md80"></a>
+<h2><a class="anchor" id="autotoc_md100"></a>
 CONFIGURE_CHANNEL_MODE_4:</h2>
 <p>Set output values for TM1637. 0xC4 and 0xC5 are used to set 6 output bytes when in the Char array (2), Raw Segment (3), and animation (4) modes. <br  />
 </p>
@@ -649,7 +649,7 @@ CONFIGURE_CHANNEL_MODE_4:</h2>
 <blockquote class="doxtable">
 <p><code>0xC5 0x13 0x0A 0x00 0x55 0x55 0x55 0x55</code> </p>
 </blockquote>
-<h2><a class="anchor" id="autotoc_md81"></a>
+<h2><a class="anchor" id="autotoc_md101"></a>
 CONFIGURE_CHANNEL_MODE_6:</h2>
 <p>Set TM1637 Decimal Points</p>
 <p>The bottom 6 LSB are used as decimal points for digits 0-5 (before location translation)</p>
@@ -668,7 +668,7 @@ CONFIGURE_CHANNEL_MODE_6:</h2>
 <blockquote class="doxtable">
 <p><code>0xC6 0x13 0x0A 0x04 0x55 0x55 0x55 0x55</code> </p>
 </blockquote>
-<h2><a class="anchor" id="autotoc_md82"></a>
+<h2><a class="anchor" id="autotoc_md102"></a>
 CONFIGURE_CHANNEL_MODE_7:</h2>
 <p>Set TM1637 Digit Blink</p>
 <p>The bottom 6 LSB are used as indicators that the digits indicated as 1's should blink</p>
@@ -686,7 +686,7 @@ CONFIGURE_CHANNEL_MODE_7:</h2>
 <blockquote class="doxtable">
 <p><code>0xC7 0x13 0x0A 0x06 0x55 0x55 0x55 0x55</code> </p>
 </blockquote>
-<h2><a class="anchor" id="autotoc_md83"></a>
+<h2><a class="anchor" id="autotoc_md103"></a>
 CONFIGURE_CHANNEL_MODE_8:</h2>
 <p>Write 1 byte to string mode.</p>
 <p>Moves 1 byte into rightmost digit, and shifts all other digits 1 leftward. Used for compatibility with Arduino Print::write function.</p>

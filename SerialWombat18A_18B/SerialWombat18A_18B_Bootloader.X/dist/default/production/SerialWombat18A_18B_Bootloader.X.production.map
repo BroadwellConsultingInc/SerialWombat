@@ -120,9 +120,9 @@ section                    address   length (PC units)   length (bytes) (dec)
 .NVM_flash                  0x2876               0x168           0x21c  (540)
 .text                       0x29de               0x3ee           0x5e5  (1509)
 .dinit                      0x2dcc                0xa0            0xf0  (240)
-.text                       0x2e6c               0x224           0x336  (822)
+.text                       0x2e6c               0x210           0x318  (792)
 
-                 Total "pgm" memory used (bytes):         0x4758  (18264) 75%
+                 Total "pgm" memory used (bytes):         0x473a  (18234) 75%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x4000]
@@ -498,8 +498,8 @@ External Symbols in Program Memory (by address):
                   0x002fcc                  _CLOCK_Initialize
                   0x003014                  _PIN_MANAGER_Initialize
                   0x00305c                  _INTERRUPT_Initialize
-                  0x00307e                  _CVR_Initialize
-                  0x00308c                  _OSCILLATOR_Initialize
+                  0x00306a                  _CVR_Initialize
+                  0x003078                  _OSCILLATOR_Initialize
                   0x02af00                  __FSEC.sec
 
 External Symbols in Program Memory (by name):
@@ -517,7 +517,7 @@ External Symbols in Program Memory (by name):
                   0x0018ca                  _CRC_Initialize
                   0x0018f6                  _CRC_SeedSet
                   0x0019be                  _CRC_Task
-                  0x00307e                  _CVR_Initialize
+                  0x00306a                  _CVR_Initialize
                   0x0010a6                  _ConfigurePinAnalog
                   0x0012c8                  _CurrentPinAnalog
                   0x001092                  _CurrentPinBitmap
@@ -587,7 +587,7 @@ External Symbols in Program Memory (by name):
                   0x002b82                  _I2C2_TransmitProcess
                   0x00305c                  _INTERRUPT_Initialize
                   0x001424                  _InitializePinLow
-                  0x00308c                  _OSCILLATOR_Initialize
+                  0x003078                  _OSCILLATOR_Initialize
                   0x003014                  _PIN_MANAGER_Initialize
                   0x001302                  _PinHigh
                   0x001184                  _PinInput
@@ -2708,7 +2708,7 @@ __c30_signature
 .dinit            0x002dcc         0xa0
  .dinit           0x002dcc         0xa0 data_init
 
-.text             0x002e6c        0x224
+.text             0x002e6c        0x210
  .text            0x002e6c         0x94 build/default/production/_ext/275911920/tmr2.o
                   0x002e6c                  _TMR2_CallBack
                   0x002e8a                  _TMR2_Initialize
@@ -2752,11 +2752,11 @@ __c30_signature
                   0x002fcc                  _CLOCK_Initialize
  .text            0x003014         0x48 build/default/production/_ext/275911920/pin_manager.o
                   0x003014                  _PIN_MANAGER_Initialize
- .text            0x00305c         0x22 build/default/production/_ext/275911920/interrupt_manager.o
+ .text            0x00305c          0xe build/default/production/_ext/275911920/interrupt_manager.o
                   0x00305c                  _INTERRUPT_Initialize
- .text            0x00307e          0x8 build/default/production/_ext/275911920/cvr.o
-                  0x00307e                  _CVR_Initialize
- .text            0x003086          0x6 build/default/production/_ext/275911920/traps.o
-                  0x003086                  _TRAPS_halt_on_error
- .text            0x00308c          0x4 build/default/production/_ext/275911920/mcc.o
-                  0x00308c                  _OSCILLATOR_Initialize
+ .text            0x00306a          0x8 build/default/production/_ext/275911920/cvr.o
+                  0x00306a                  _CVR_Initialize
+ .text            0x003072          0x6 build/default/production/_ext/275911920/traps.o
+                  0x003072                  _TRAPS_halt_on_error
+ .text            0x003078          0x4 build/default/production/_ext/275911920/mcc.o
+                  0x003078                  _OSCILLATOR_Initialize

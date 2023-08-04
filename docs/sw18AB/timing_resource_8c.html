@@ -106,6 +106,14 @@ Functions</h2></td></tr>
 <tr class="separator:a226557d5e42f7e29ddaff30606138459"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb54d1f36316e5022bef82de273d7a24"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timing_resource_8c.html#abb54d1f36316e5022bef82de273d7a24">timingResourceBusyWait</a> (uint16_t uS)</td></tr>
 <tr class="separator:abb54d1f36316e5022bef82de273d7a24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c2fd52e59797133b36afa0618eb10fd"><td class="memItemLeft" align="right" valign="top">TIMING_RESOURCE_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timing_resource_8c.html#a5c2fd52e59797133b36afa0618eb10fd">timingResourceCounterClaim</a> (TIMING_RESOURCE_t resource)</td></tr>
+<tr class="separator:a5c2fd52e59797133b36afa0618eb10fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb20b4474a72d4e2e58de64aabb5f97d"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timing_resource_8c.html#aeb20b4474a72d4e2e58de64aabb5f97d">timingResourceReadCounter</a> (TIMING_RESOURCE_t resource)</td></tr>
+<tr class="separator:aeb20b4474a72d4e2e58de64aabb5f97d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8371c4d533f49cea7a6930948c59dbf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timing_resource_8c.html#aa8371c4d533f49cea7a6930948c59dbf">timingResourceResetCounter</a> (TIMING_RESOURCE_t resource)</td></tr>
+<tr class="separator:aa8371c4d533f49cea7a6930948c59dbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab425f802a7b809cf2671d0b86fdbbeba"><td class="memItemLeft" align="right" valign="top">TIMING_RESOURCE_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timing_resource_8c.html#ab425f802a7b809cf2671d0b86fdbbeba">timingResourceGenericClaim</a> (TIMING_RESOURCE_t resource)</td></tr>
+<tr class="separator:ab425f802a7b809cf2671d0b86fdbbeba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -117,6 +125,15 @@ Variables</h2></td></tr>
 <tr class="separator:ac871883780b8c03e5a6b1847c1162dff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a818bf519613e7faa9cab6b14546651f7"><td class="memItemLeft" align="right" valign="top">volatile uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timing_resource_8c.html#a818bf519613e7faa9cab6b14546651f7">CCT3InterruptCount</a> = 0</td></tr>
 <tr class="separator:a818bf519613e7faa9cab6b14546651f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3889b030113eeb2c939f44e4c4f500c"><td class="memItemLeft" align="right" valign="top">volatile uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timing_resource_8c.html#ae3889b030113eeb2c939f44e4c4f500c">vgaNextLine</a></td></tr>
+<tr class="memdesc:ae3889b030113eeb2c939f44e4c4f500c"><td class="mdescLeft">&#160;</td><td class="mdescRight">For this we're going to use global variables for items used in the interrupt.  <a href="timing_resource_8c.html#ae3889b030113eeb2c939f44e4c4f500c">More...</a><br /></td></tr>
+<tr class="separator:ae3889b030113eeb2c939f44e4c4f500c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abebb1c844ce528931faf92b749d1c294"><td class="memItemLeft" align="right" valign="top">volatile uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timing_resource_8c.html#abebb1c844ce528931faf92b749d1c294">vgaNextColor</a></td></tr>
+<tr class="memdesc:abebb1c844ce528931faf92b749d1c294"><td class="mdescLeft">&#160;</td><td class="mdescRight">Global to store the next color output (0 to 7). Used so we can figure next color at the end of a line where we have some free processing time.  <a href="timing_resource_8c.html#abebb1c844ce528931faf92b749d1c294">More...</a><br /></td></tr>
+<tr class="separator:abebb1c844ce528931faf92b749d1c294"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9d2b8f6bc54f01548f3f345d0c0d334"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timing_resource_8c.html#ad9d2b8f6bc54f01548f3f345d0c0d334">vgaEnable</a></td></tr>
+<tr class="memdesc:ad9d2b8f6bc54f01548f3f345d0c0d334"><td class="mdescLeft">&#160;</td><td class="mdescRight">This global variable signals to interrupt routines to go into VGA specific code. This is required for high performance operation; A calling a registered function pointer takes too long.  <a href="timing_resource_8c.html#ad9d2b8f6bc54f01548f3f345d0c0d334">More...</a><br /></td></tr>
+<tr class="separator:ad9d2b8f6bc54f01548f3f345d0c0d334"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae76cb3152d5f2b345e0c5f4f0a411f9c"><td class="memItemLeft" align="right" valign="top">volatile uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timing_resource_8c.html#ae76cb3152d5f2b345e0c5f4f0a411f9c">CCT4InterruptCount</a> = 0</td></tr>
 <tr class="separator:ae76cb3152d5f2b345e0c5f4f0a411f9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aedccd31b147228d905cf1b255ebefa35"><td class="memItemLeft" align="right" valign="top">volatile uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="timing_resource_8c.html#aedccd31b147228d905cf1b255ebefa35">OC1InterruptCount</a> = 0</td></tr>
@@ -163,6 +180,24 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a5c2fd52e59797133b36afa0618eb10fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c2fd52e59797133b36afa0618eb10fd">&#9670;&nbsp;</a></span>timingResourceCounterClaim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TIMING_RESOURCE_t timingResourceCounterClaim </td>
+          <td>(</td>
+          <td class="paramtype">TIMING_RESOURCE_t&#160;</td>
+          <td class="paramname"><em>resource</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ad84993da6dda9cf1ffa71f233f0c9cd9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad84993da6dda9cf1ffa71f233f0c9cd9">&#9670;&nbsp;</a></span>timingResourceDefault()</h2>
 
@@ -171,6 +206,24 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">void timingResourceDefault </td>
+          <td>(</td>
+          <td class="paramtype">TIMING_RESOURCE_t&#160;</td>
+          <td class="paramname"><em>resource</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab425f802a7b809cf2671d0b86fdbbeba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab425f802a7b809cf2671d0b86fdbbeba">&#9670;&nbsp;</a></span>timingResourceGenericClaim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TIMING_RESOURCE_t timingResourceGenericClaim </td>
           <td>(</td>
           <td class="paramtype">TIMING_RESOURCE_t&#160;</td>
           <td class="paramname"><em>resource</em></td><td>)</td>
@@ -354,6 +407,24 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="aeb20b4474a72d4e2e58de64aabb5f97d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb20b4474a72d4e2e58de64aabb5f97d">&#9670;&nbsp;</a></span>timingResourceReadCounter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t timingResourceReadCounter </td>
+          <td>(</td>
+          <td class="paramtype">TIMING_RESOURCE_t&#160;</td>
+          <td class="paramname"><em>resource</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a799df9877251a6e763686d479b9e239f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a799df9877251a6e763686d479b9e239f">&#9670;&nbsp;</a></span>timingResourceRelease()</h2>
 
@@ -362,6 +433,24 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">void timingResourceRelease </td>
+          <td>(</td>
+          <td class="paramtype">TIMING_RESOURCE_t&#160;</td>
+          <td class="paramname"><em>resource</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa8371c4d533f49cea7a6930948c59dbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8371c4d533f49cea7a6930948c59dbf">&#9670;&nbsp;</a></span>timingResourceResetCounter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void timingResourceResetCounter </td>
           <td>(</td>
           <td class="paramtype">TIMING_RESOURCE_t&#160;</td>
           <td class="paramname"><em>resource</em></td><td>)</td>
@@ -528,6 +617,54 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad9d2b8f6bc54f01548f3f345d0c0d334"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9d2b8f6bc54f01548f3f345d0c0d334">&#9670;&nbsp;</a></span>vgaEnable</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool vgaEnable</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This global variable signals to interrupt routines to go into VGA specific code. This is required for high performance operation; A calling a registered function pointer takes too long. </p>
+
+</div>
+</div>
+<a id="abebb1c844ce528931faf92b749d1c294"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abebb1c844ce528931faf92b749d1c294">&#9670;&nbsp;</a></span>vgaNextColor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint8_t vgaNextColor</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Global to store the next color output (0 to 7). Used so we can figure next color at the end of a line where we have some free processing time. </p>
+
+</div>
+</div>
+<a id="ae3889b030113eeb2c939f44e4c4f500c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3889b030113eeb2c939f44e4c4f500c">&#9670;&nbsp;</a></span>vgaNextLine</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile uint16_t vgaNextLine</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>For this we're going to use global variables for items used in the interrupt. </p>
 
 </div>
 </div>

@@ -1,5 +1,5 @@
 /*
-Copyright 2020-2022 Broadwell Consulting Inc.
+Copyright 2021-2023 Broadwell Consulting Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
@@ -38,6 +38,8 @@ typedef struct resistanceInput_n{
 }resistanceInput_t;
 
 #define resistanceInput ((resistanceInput_t*) CurrentPinRegister)
+
+void initResistanceInputSimple(void);
 
 /*!
     \brief Initialization routine for Analog Input
@@ -91,19 +93,7 @@ void initResistanceInput (void)
 	{
 		case CONFIGURE_CHANNEL_MODE_0:
 			{
-				CurrentPinInput();
-				CurrentPinAnalog();
-				CurrentPinRegister->generic.mode = PIN_MODE_RESISTANCE_INPUT;
-                    inputProcessInit(&resistanceInput->inputProcess);
-                    resistanceInput->inputProcess.active = true;
-                    resistanceInput->delayCount = 5;
-                if (ADC1Semaphore == CurrentPin)
-				{
-					ADC1Semaphore = RESOURCE_AVAILABLE;
-                    CTMUCON1L = 0;
-                    CTMUCON1H = 0;
-				}
-
+				 initResistanceInputSimple();
 			}
 			break;
 
@@ -213,3 +203,20 @@ void updateResistanceInput()
 
 }
 
+void initResistanceInputSimple()
+{
+				CurrentPinInput();
+				CurrentPinAnalog();
+				CurrentPinRegister->generic.mode = PIN_MODE_RESISTANCE_INPUT;
+                    inputProcessInit(&resistanceInput->inputProcess);
+                    resistanceInput->inputProcess.active = true;
+                    resistanceInput->delayCount = 5;
+                if (ADC1Semaphore == CurrentPin)
+				{
+					ADC1Semaphore = RESOURCE_AVAILABLE;
+                    CTMUCON1L = 0;
+                    CTMUCON1H = 0;
+				}
+
+
+}

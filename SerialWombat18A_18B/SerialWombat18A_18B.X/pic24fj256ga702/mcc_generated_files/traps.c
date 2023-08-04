@@ -98,6 +98,8 @@ inline static void use_failsafe_stack(void)
 void ERROR_HANDLER _OscillatorFail(void)
 {
     INTCON1bits.OSCFAIL = 0;  //Clear the trap flag
+    
+   
     TRAPS_halt_on_error(TRAPS_OSC_FAIL);
 }
 /** Stack Error Trap Vector**/

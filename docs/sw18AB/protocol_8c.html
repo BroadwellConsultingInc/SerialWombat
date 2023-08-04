@@ -82,6 +82,8 @@ $(function() {
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:a4ca92a141e204ee4e06b0c080418fabb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a4ca92a141e204ee4e06b0c080418fabb">PROTOCOL_MAX_CAPTURED_PACKETS</a>&#160;&#160;&#160;256</td></tr>
+<tr class="separator:a4ca92a141e204ee4e06b0c080418fabb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5469d175c557b6519337a0f370486d7c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a5469d175c557b6519337a0f370486d7c">OUTPUT_I2C_DEBUG</a>(_value)&#160;&#160;&#160;{}</td></tr>
 <tr class="separator:a5469d175c557b6519337a0f370486d7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48bebc6315be42778c637ea55fb483b7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a48bebc6315be42778c637ea55fb483b7">CRCCCITT_POLYNOMIAL</a>&#160;&#160;&#160;((unsigned short)0x1021)</td></tr>
@@ -101,6 +103,8 @@ Functions</h2></td></tr>
 <tr class="separator:a9bbbfa5ff3b2110f3d8c3f6dc12111c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc6352270ca78fc487f04066df5434bc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#abc6352270ca78fc487f04066df5434bc">crcAppSpace</a> (uint32_t address_w, uint32_t length_w)</td></tr>
 <tr class="separator:abc6352270ca78fc487f04066df5434bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa36b9a272ff6386f962d1579127c611c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#aa36b9a272ff6386f962d1579127c611c">processCapturedCommands</a> ()</td></tr>
+<tr class="separator:aa36b9a272ff6386f962d1579127c611c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -136,6 +140,10 @@ Variables</h2></td></tr>
 <tr class="separator:a4fe470bdc9281428d7e40ab5fa6e01b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabf19b957854978128703718f32dcdde"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#aabf19b957854978128703718f32dcdde">testSequenceArmed</a> = 0</td></tr>
 <tr class="separator:aabf19b957854978128703718f32dcdde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1955769534aa444e63836c9fb78ad647"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a1955769534aa444e63836c9fb78ad647">protocolCapturingPackets</a> = false</td></tr>
+<tr class="separator:a1955769534aa444e63836c9fb78ad647"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a885220c1ff00f612ab3bdb2f87cb4db9"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a885220c1ff00f612ab3bdb2f87cb4db9">protocolCapturedPackets</a> = 0</td></tr>
+<tr class="separator:a885220c1ff00f612ab3bdb2f87cb4db9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4783ddff22b296a59b79902558aad711"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a4783ddff22b296a59b79902558aad711">lastErrorPacket</a> [8]</td></tr>
 <tr class="separator:a4783ddff22b296a59b79902558aad711"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f7e4e1452b96caba5deaadb60fab491"><td class="memItemLeft" align="right" valign="top"><a class="el" href="pin_registers_8h.html#a05c2f507909227f1b5c27ed8aa88f9a6">pinRegister_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8c.html#a2f7e4e1452b96caba5deaadb60fab491">PinRegisterCopyBuffer</a></td></tr>
@@ -196,6 +204,20 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a4ca92a141e204ee4e06b0c080418fabb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ca92a141e204ee4e06b0c080418fabb">&#9670;&nbsp;</a></span>PROTOCOL_MAX_CAPTURED_PACKETS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define PROTOCOL_MAX_CAPTURED_PACKETS&#160;&#160;&#160;256</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="abc6352270ca78fc487f04066df5434bc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abc6352270ca78fc487f04066df5434bc">&#9670;&nbsp;</a></span>crcAppSpace()</h2>
@@ -236,6 +258,23 @@ Variables</h2></td></tr>
           <td>(</td>
           <td class="paramtype"><a class="el" href="serial_wombat_errors_8h.html#a864855f9b7396b3a518a57030f961dc8">SW_ERROR_t</a>&#160;</td>
           <td class="paramname"><em>errorCode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa36b9a272ff6386f962d1579127c611c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa36b9a272ff6386f962d1579127c611c">&#9670;&nbsp;</a></span>processCapturedCommands()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void processCapturedCommands </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -417,6 +456,34 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="pin_registers_8h.html#a05c2f507909227f1b5c27ed8aa88f9a6">pinRegister_t</a> PinRegisterCopyBuffer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a885220c1ff00f612ab3bdb2f87cb4db9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a885220c1ff00f612ab3bdb2f87cb4db9">&#9670;&nbsp;</a></span>protocolCapturedPackets</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t protocolCapturedPackets = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1955769534aa444e63836c9fb78ad647"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1955769534aa444e63836c9fb78ad647">&#9670;&nbsp;</a></span>protocolCapturingPackets</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool protocolCapturingPackets = false</td>
         </tr>
       </table>
 </div><div class="memdoc">

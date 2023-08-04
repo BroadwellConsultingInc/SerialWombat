@@ -89,9 +89,6 @@ $(function() {
 <li>pin_low()
 : <a class="el" href="utilities_8h.html#a2953dd1e5a85ee9f4b932a3a2f60e5c0">utilities.h</a>
 </li>
-<li>PIN_MODE_AD_DIRECT_ENABLE
-: <a class="el" href="utilities_8h.html#ad875168bba686b0dd5d42560c95bf982">utilities.h</a>
-</li>
 <li>PIN_MODE_ANALOG_THROUGHPUT
 : <a class="el" href="pin_modes_8h.html#ace9769c8acaf8eaf1b4312a5706f6d04a46cb713cef8b91d547b9f5957daa445d">pinModes.h</a>
 </li>
@@ -103,9 +100,6 @@ $(function() {
 </li>
 <li>PIN_MODE_COUNTER
 : <a class="el" href="pin_modes_8h.html#ace9769c8acaf8eaf1b4312a5706f6d04a05fbd9c04241a878d3b8651ecb6cac70">pinModes.h</a>
-</li>
-<li>PIN_MODE_COUNTER_ENABLE
-: <a class="el" href="utilities_8h.html#a765d5e41a1bbac1ec6e5a4aee79786ef">utilities.h</a>
 </li>
 <li>PIN_MODE_DEBOUNCE
 : <a class="el" href="pin_modes_8h.html#ace9769c8acaf8eaf1b4312a5706f6d04ac238d3648eb7eaf80f7d5de3d59e8777">pinModes.h</a>
@@ -122,8 +116,14 @@ $(function() {
 <li>PIN_MODE_HF_SERVO
 : <a class="el" href="pin_modes_8h.html#ace9769c8acaf8eaf1b4312a5706f6d04a7e6877c29645f402d183c8d9e3c9b3d6">pinModes.h</a>
 </li>
-<li>PIN_MODE_HYSTERESIS
-: <a class="el" href="pin_modes_8h.html#ace9769c8acaf8eaf1b4312a5706f6d04a027c63b0ef48e343534af54d7728af3a">pinModes.h</a>
+<li>PIN_MODE_HS_CLOCK
+: <a class="el" href="pin_modes_8h.html#ace9769c8acaf8eaf1b4312a5706f6d04ad7d3628be381ba32858b7a7fe8a6a1bd">pinModes.h</a>
+</li>
+<li>PIN_MODE_HS_COUNTER
+: <a class="el" href="pin_modes_8h.html#ace9769c8acaf8eaf1b4312a5706f6d04aa3715218308b61a7ddbe90520029f050">pinModes.h</a>
+</li>
+<li>PIN_MODE_I2C_CONTROLLER
+: <a class="el" href="pin_modes_8h.html#ace9769c8acaf8eaf1b4312a5706f6d04ab9a1e22b7c4e69552c1d966bb57892ce">pinModes.h</a>
 </li>
 <li>PIN_MODE_INPUT_PROCESSOR
 : <a class="el" href="pin_modes_8h.html#ace9769c8acaf8eaf1b4312a5706f6d04ac8b35584664f8b44895b408d51cb1afc">pinModes.h</a>
@@ -134,11 +134,11 @@ $(function() {
 <li>PIN_MODE_MATRIX_KEYPAD
 : <a class="el" href="pin_modes_8h.html#ace9769c8acaf8eaf1b4312a5706f6d04aede8b4979a3ece80061a803adac4e312">pinModes.h</a>
 </li>
-<li>PIN_MODE_PIN_THROUGHPUT_ENABLE
-: <a class="el" href="utilities_8h.html#a8d92ebe21a8a26505a8de9c1bdfa27b6">utilities.h</a>
-</li>
 <li>PIN_MODE_PROTECTEDOUTPUT
 : <a class="el" href="pin_modes_8h.html#ace9769c8acaf8eaf1b4312a5706f6d04a1d02dba4e2f84e5872ce8f5cf166eaf7">pinModes.h</a>
+</li>
+<li>PIN_MODE_PS2_KEYBOARD
+: <a class="el" href="pin_modes_8h.html#ace9769c8acaf8eaf1b4312a5706f6d04a8e09fbd0f66206b4dcc760e36f5e344d">pinModes.h</a>
 </li>
 <li>PIN_MODE_PULSE_ON_CHANGE
 : <a class="el" href="pin_modes_8h.html#ace9769c8acaf8eaf1b4312a5706f6d04a034a98f985c45dd4de6475b547632030">pinModes.h</a>
@@ -148,9 +148,6 @@ $(function() {
 </li>
 <li>PIN_MODE_PWM
 : <a class="el" href="pin_modes_8h.html#ace9769c8acaf8eaf1b4312a5706f6d04abdce35ac73e5bc7e07d09d21ffddc54c">pinModes.h</a>
-</li>
-<li>PIN_MODE_PWM_DIRECT_ENABLE
-: <a class="el" href="utilities_8h.html#ab6d0478241ddc6e9323c5778b32e7430">utilities.h</a>
 </li>
 <li>PIN_MODE_QUADRATURE_ENC
 : <a class="el" href="pin_modes_8h.html#ace9769c8acaf8eaf1b4312a5706f6d04af2a7134c1f29aaaba3d7c95f982a72ad">pinModes.h</a>
@@ -181,6 +178,9 @@ $(function() {
 </li>
 <li>PIN_MODE_ULTRASONIC_DISTANCE
 : <a class="el" href="pin_modes_8h.html#ace9769c8acaf8eaf1b4312a5706f6d04acc200ab586dc6928cbd9aaa830ab1add">pinModes.h</a>
+</li>
+<li>PIN_MODE_VGA
+: <a class="el" href="pin_modes_8h.html#ace9769c8acaf8eaf1b4312a5706f6d04af85948198e0af77371baf2ad3164154c">pinModes.h</a>
 </li>
 <li>PIN_MODE_WATCHDOG
 : <a class="el" href="pin_modes_8h.html#ace9769c8acaf8eaf1b4312a5706f6d04a8ee1fa6ebf82d5b84fc5ac42c5fca3fd">pinModes.h</a>
@@ -362,13 +362,17 @@ $(function() {
 <li>PPSOutputVal_t
 : <a class="el" href="utilities_8h.html#a94449a5bde867ae6449534b4c96f3139">utilities.h</a>
 </li>
+<li>processCapturedCommands()
+: <a class="el" href="main_8c.html#aa36b9a272ff6386f962d1579127c611c">main.c</a>
+, <a class="el" href="protocol_8c.html#aa36b9a272ff6386f962d1579127c611c">protocol.c</a>
+</li>
 <li>ProcessPins()
 : <a class="el" href="main_8c.html#adf39a12c5300f3abc4343a92bf68a344">main.c</a>
 , <a class="el" href="serial_wombat_8h.html#a4e12ac6db45a20bca0fa11303072dbda">serialWombat.h</a>
 </li>
 <li>ProcessRx()
-: <a class="el" href="serial_wombat_8h.html#a9bbbfa5ff3b2110f3d8c3f6dc12111c8">serialWombat.h</a>
-, <a class="el" href="protocol_8c.html#a9bbbfa5ff3b2110f3d8c3f6dc12111c8">protocol.c</a>
+: <a class="el" href="protocol_8c.html#a9bbbfa5ff3b2110f3d8c3f6dc12111c8">protocol.c</a>
+, <a class="el" href="serial_wombat_8h.html#a9bbbfa5ff3b2110f3d8c3f6dc12111c8">serialWombat.h</a>
 </li>
 <li>ProcessSetPin()
 : <a class="el" href="protocol_8c.html#ad68aff3124fee3a4193383135f70c7c7">protocol.c</a>
@@ -378,6 +382,147 @@ $(function() {
 </li>
 <li>protectedOutput_t
 : <a class="el" href="protected_output_8c.html#af4bfa22273121d61b3cfb21e4ea990ab">protectedOutput.c</a>
+</li>
+<li>PROTOCOL_MAX_CAPTURED_PACKETS
+: <a class="el" href="protocol_8c.html#a4ca92a141e204ee4e06b0c080418fabb">protocol.c</a>
+</li>
+<li>protocolCapturedPackets
+: <a class="el" href="protocol_8c.html#a885220c1ff00f612ab3bdb2f87cb4db9">protocol.c</a>
+</li>
+<li>protocolCapturingPackets
+: <a class="el" href="protocol_8c.html#a1955769534aa444e63836c9fb78ad647">protocol.c</a>
+</li>
+<li>ps2kb_processAscii()
+: <a class="el" href="_p_s2_keyboard_8c.html#ae1e44dc47295dd6fd3311df0bde640ec">PS2Keyboard.c</a>
+</li>
+<li>ps2kb_processCurrentlyPressed()
+: <a class="el" href="_p_s2_keyboard_8c.html#ab6b4e0d53f82aa0c02f17f7439d1c9b0">PS2Keyboard.c</a>
+</li>
+<li>ps2kb_processData()
+: <a class="el" href="_p_s2_keyboard_8c.html#a43ebda77f6e55885c16e11713520d94c">PS2Keyboard.c</a>
+</li>
+<li>ps2kb_processMakeCodes()
+: <a class="el" href="_p_s2_keyboard_8c.html#a5c7a4aeb707955dc05ada0d1dc47b735">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_QUEUE_LENGTH
+: <a class="el" href="_p_s2_keyboard_8c.html#a03dfcd5cadcd5b09c971479086826c20">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_IDLE
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a889c644bf81be7c0c189b37c77f43491">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_DATA0_FALL
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705ac9da8955f8ddfe9548eb779b43442cd3">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_DATA0_RISE
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705ab90ac4149615cac3fcbf01e98c50d788">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_DATA1_FALL
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a4a986031e440bed1fc50f94f54b40993">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_DATA1_RISE
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a1fa668ca0a5baec41c5a056fd2af7a55">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_DATA2_FALL
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a6fc3fe18fcb5b1d433edfb3fc6273666">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_DATA2_RISE
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705acdbea82a2017287f365ba77adb3f9945">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_DATA3_FALL
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a09ef0e32c8d9f8552abbfc008e458524">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_DATA3_RISE
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a3cb28dd56d073db699a0e9cb63dec839">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_DATA4_FALL
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a0f2fcd0ee6eac509a20253ce8981b4a4">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_DATA4_RISE
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705adf9265a3086525ec7954350cd602f8b0">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_DATA5_FALL
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a845782d1fad90efe6705305f01d6a621">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_DATA5_RISE
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a7e4221a4da58026d5bff89a32204981b">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_DATA6_FALL
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a15d5df4491379e084cd4bbceeaf7bf2c">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_DATA6_RISE
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705abc3d1edd2c8e7650f38d4fb1c4210ff3">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_DATA7_FALL
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a310a0796176a8b7cfb4229379b21115f">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_DATA7_RISE
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a352bb97d729b43af0c5a325f628f2a99">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_IDLE0
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a570a7d2af040a3969a085ec5145f764b">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_IDLE1
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a1b420723e5516455bd10d8497a4268c2">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_IDLE2
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a4455dd122b6af729df955f14f37eff4d">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_IDLE3
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a0509ab9c6f348ec42f18fa2912ae91f6">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_IDLE4
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a3d004c46ca87d95bd708b0844d32649d">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_IDLE5
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a5825f08bfd9dce356212f22e7f1bf8c1">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_IDLE6
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a4f97cc0e1fc833a2fd55ae1cd021cde3">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_IDLE7
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a9aaff1e75c65cd6e57960a1c8fdd71fd">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_IDLE8
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a3275745f424d668ca60398822e4bd411">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_IDLE9
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705ac78fe4336ba8df445181c932247ecd89">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_PARITY_FALL
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a696051305085622dbf48a0f0a5967152">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_PARITY_RISE
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a208ec87260442dbe4eb256d0fdc39e3a">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_START_RISE
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a2ecc4ed8d42c4bc303dd017e8583f446">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_STOP_FALL
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705a9ebbb8fdc80e4c585dd1d537d097a0cb">PS2Keyboard.c</a>
+</li>
+<li>PS2KB_STATE_WAITING_FOR_STOP_RISE
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705ae54cb6286ac8186b96271684c583a831">PS2Keyboard.c</a>
+</li>
+<li>PS2KEYBOARD_QUEUEDATA_ALL_CODES
+: <a class="el" href="_p_s2_keyboard_8c.html#a6f15db6598b73bfa43fa8d28df9f13bea91b905e2fbbe5b91e9c9e63e270df48e">PS2Keyboard.c</a>
+</li>
+<li>PS2KEYBOARD_QUEUEDATA_ASCII
+: <a class="el" href="_p_s2_keyboard_8c.html#a6f15db6598b73bfa43fa8d28df9f13beabe25715d76e18f0a085c4f2dc200e958">PS2Keyboard.c</a>
+</li>
+<li>PS2KEYBOARD_QUEUEDATA_CURRENTLY_PRESSED
+: <a class="el" href="_p_s2_keyboard_8c.html#a6f15db6598b73bfa43fa8d28df9f13beaae4979911697da823bb3ad8490eb4e8c">PS2Keyboard.c</a>
+</li>
+<li>PS2KEYBOARD_QUEUEDATA_MAKE_CODES
+: <a class="el" href="_p_s2_keyboard_8c.html#a6f15db6598b73bfa43fa8d28df9f13bea9bcf715d48ed221325ae5b20c91a3570">PS2Keyboard.c</a>
+</li>
+<li>PS2KEYBOARD_QUEUEDATA_t
+: <a class="el" href="_p_s2_keyboard_8c.html#a6f15db6598b73bfa43fa8d28df9f13be">PS2Keyboard.c</a>
+</li>
+<li>PS2Keyboard_t
+: <a class="el" href="_p_s2_keyboard_8c.html#a41e32716dd403c5a4dff274d7994b6a8">PS2Keyboard.c</a>
+</li>
+<li>PS2KeyboardState_t
+: <a class="el" href="_p_s2_keyboard_8c.html#a53cf3919f6a8a6542eac33059dcf0705">PS2Keyboard.c</a>
 </li>
 <li>PULSE_ABOVE_PIN
 : <a class="el" href="pulse_on_change_8c.html#afff60ad812f482b6cbd593b5639c2708a65c167ea0fd01100543e09c2de042788">pulseOnChange.c</a>
@@ -392,7 +537,8 @@ $(function() {
 : <a class="el" href="pulse_on_change_8c.html#afff60ad812f482b6cbd593b5639c2708abea0f759a51064bfa0104d0d7a4af307">pulseOnChange.c</a>
 </li>
 <li>PULSE_COUNT
-: <a class="el" href="pulse_timer_8c.html#a27e32476f60aa8c7f498428e37da3efdae8ed35d9298f433e30ed0a87b152893e">pulseTimer.c</a>
+: <a class="el" href="_h_s_counter_8c.html#a728ad0eb973a583e39d4a514c01e204dae8ed35d9298f433e30ed0a87b152893e">HSCounter.c</a>
+, <a class="el" href="pulse_timer_8c.html#a27e32476f60aa8c7f498428e37da3efdae8ed35d9298f433e30ed0a87b152893e">pulseTimer.c</a>
 </li>
 <li>PULSE_CROSS_VALUE
 : <a class="el" href="pulse_on_change_8c.html#afff60ad812f482b6cbd593b5639c2708a9b9082859d86cc81d0407c66f5c202b1">pulseOnChange.c</a>
@@ -449,8 +595,8 @@ $(function() {
 : <a class="el" href="pulse_input_d_m_a_8c.html#a638d9f32fb7fcf9d9e34701d429c66e8">pulseInputDMA.c</a>
 </li>
 <li>pulseTimer_t
-: <a class="el" href="pulse_timer_8c.html#acddf18001d2d6a3b46e838ff2dac486e">pulseTimer.c</a>
-, <a class="el" href="pulse_input_8c.html#acddf18001d2d6a3b46e838ff2dac486e">pulseInput.c</a>
+: <a class="el" href="pulse_input_8c.html#acddf18001d2d6a3b46e838ff2dac486e">pulseInput.c</a>
+, <a class="el" href="pulse_timer_8c.html#acddf18001d2d6a3b46e838ff2dac486e">pulseTimer.c</a>
 </li>
 <li>put_buffer()
 : <a class="el" href="utilities_8c.html#a6173e45aa6e2c69797c73cbd7c5e62c4">utilities.c</a>

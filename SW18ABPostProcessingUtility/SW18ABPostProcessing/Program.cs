@@ -13,6 +13,7 @@ namespace SW18ABPostProcessing
             baseAddr *= 2;
             length *= 2;
             HexData m = new HexData(args[0],true);
+            Console.WriteLine($"Reading file {args[0]}");
             byte x =(byte) m.Memory[(UInt32)0x55E00];
             m.Fill32(baseAddr, baseAddr + length, 0x00FFFFFF);
             m.Memory[(UInt32)(0x1F800 * 2)] = (byte)0x23;
@@ -32,10 +33,11 @@ namespace SW18ABPostProcessing
             sw.Close();
 
             m.Crop(baseAddr,baseAddr + length);
-
+            Console.WriteLine($"Writing {path}\\CRCed_App.hex");
             sw = new StreamWriter($"{path}\\CRCed_App.hex");
             sw.Write(m.toHexFileString(baseAddr, baseAddr + length + 1));
             sw.Close();
+            Console.WriteLine($"Writing {path}\\CRCed_App_rle.c");
             sw = new StreamWriter($"{path}\\CRCed_App_rle.c");
             sw.Write(m.toSW18BootloaderArray(baseAddr, baseAddr + length));
             sw.Close();

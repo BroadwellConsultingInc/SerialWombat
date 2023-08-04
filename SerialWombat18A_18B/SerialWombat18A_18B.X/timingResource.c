@@ -1,5 +1,5 @@
 /*
-Copyright 2021 Broadwell Consulting Inc.
+Copyright 2021-2023 Broadwell Consulting Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
@@ -1129,17 +1129,72 @@ void __attribute__ ( ( interrupt, no_auto_psv ) ) _CCT2Interrupt (  )
 }
 
 volatile uint16_t CCT3InterruptCount = 0;
+extern volatile uint16_t vgaNextLine;
+extern volatile uint8_t vgaNextColor;
+extern bool vgaEnable;
 void __attribute__ ( ( interrupt, no_auto_psv ) ) _CCT3Interrupt (  )
 {
-    
-    if (timingResources[TIMING_RESOURCE_MCCP3].callBack != NULL)
-    {
-        timingResources[TIMING_RESOURCE_MCCP3].callBack();
-    }
-    IFS2bits.CCT3IF = 0;
-    IEC2bits.CCT3IE = 0;
-    ++ CCT3InterruptCount;
-    timingResources[TIMING_RESOURCE_MCCP3].resourceHolder = 0xFF;
+	if (vgaEnable)
+	{
+		while(CCP3TMRL < 0x80); // Delay for a bit to allow any interrupt jitter to settle out. 
+
+		// Load 32 bits of zero (black) into the SPI before turning on the DMA.  This handles the porch and black
+		// section of the screen without using up bytes in the RAM buffer 
+		SPI1BUFL = 0;
+		SPI1BUFL = 0;
+		SPI1BUFL = 0;
+		SPI1BUFL = 0;
+
+		// Set up R/G/B by connecting SDO to pins 16/15/14 or grounding them  using the PPS
+		if (vgaNextColor & 0x4)
+		{
+			RPOR6bits.RP12R = 7;
+		}
+		else
+		{
+			RPOR6bits.RP12R = 0;
+		}
+		if (vgaNextColor & 0x2)
+		{
+			RPOR5bits.RP11R = 7;
+		}
+		else
+		{
+			RPOR5bits.RP11R = 0;
+
+		}
+		if (vgaNextColor & 0x1)
+		{
+			RPOR5bits.RP10R = 7;
+		}
+		else 
+		{
+			RPOR5bits.RP10R = 0;
+		}
+
+
+
+		// Enable DMA channel 5 
+		DMACH5bits.CHEN = 1;
+		DMACH5bits.CHREQ = 1;
+		//IFS0bits.OC2IF = 0;
+		IFS3bits.DMA5IF = 0;
+		IEC3bits.DMA5IE = 1;
+		IFS2bits.CCT3IF = 0;
+		return;
+	}
+	else
+	{
+
+		if (timingResources[TIMING_RESOURCE_MCCP3].callBack != NULL)
+		{
+			timingResources[TIMING_RESOURCE_MCCP3].callBack();
+		}
+		IFS2bits.CCT3IF = 0;
+		IEC2bits.CCT3IE = 0;
+		++ CCT3InterruptCount;
+		timingResources[TIMING_RESOURCE_MCCP3].resourceHolder = 0xFF;
+	}
 }
 
 volatile uint16_t CCT4InterruptCount = 0;
@@ -1156,9 +1211,12 @@ void __attribute__ ( ( interrupt, no_auto_psv ) ) _CCT4Interrupt (  )
     timingResources[TIMING_RESOURCE_MCCP4].resourceHolder = 0xFF;
 }
 
+
 volatile uint16_t OC1InterruptCount = 0;
 void __attribute__ ( ( interrupt, no_auto_psv ) ) _OC1Interrupt (  )
 {
+    
+    vgaNextLine = 0;
     
     if (timingResources[TIMING_RESOURCE_OC1].callBack != NULL)
     {
@@ -1168,6 +1226,10 @@ void __attribute__ ( ( interrupt, no_auto_psv ) ) _OC1Interrupt (  )
 	IEC0bits.OC1IE = 0;
     ++ OC1InterruptCount;
     timingResources[TIMING_RESOURCE_OC1].resourceHolder = 0xFF;
+     
+    
+            
+                
 }
 
 volatile uint16_t OC2InterruptCount = 0;
@@ -1182,6 +1244,7 @@ void __attribute__ ( ( interrupt, no_auto_psv ) ) _OC2Interrupt (  )
 	IEC0bits.OC2IE = 0;
     ++ OC2InterruptCount;
     timingResources[TIMING_RESOURCE_OC2].resourceHolder = 0xFF;
+
 }
 
 volatile uint16_t OC3InterruptCount = 0;
@@ -1215,5 +1278,152 @@ void timingResourceBusyWait(uint16_t uS)
             while (!IFS6bits.CCT1IF);
              CCP1CON1L = 0;
         timingResources[TIMING_RESOURCE_MCCP1].resourceHolder = 0xFF;
+        return;
     }
+    if (timingResources[TIMING_RESOURCE_MCCP2].resourceHolder == 0xFF )
+    {
+        timingResources[TIMING_RESOURCE_MCCP2].resourceHolder = CurrentPin;
+        
+             CCP2CON1L = 0;
+            CCP2TMRL = 0;
+            IFS6bits.CCT2IF = 0;
+            CCP2PRL = uS;
+            IEC6bits.CCT2IE = 0;
+            CCP2CON1L = 0x8080;
+            
+            while (!IFS6bits.CCT2IF);
+             CCP2CON1L = 0;
+        timingResources[TIMING_RESOURCE_MCCP2].resourceHolder = 0xFF;
+        return;
+    }
+     if (timingResources[TIMING_RESOURCE_MCCP3].resourceHolder == 0xFF )
+    {
+        timingResources[TIMING_RESOURCE_MCCP3].resourceHolder = CurrentPin;
+        
+             CCP3CON1L = 0;
+            CCP3TMRL = 0;
+            IFS2bits.CCT3IF = 0;
+            CCP3PRL = uS;
+            IEC2bits.CCT3IE = 0;
+            CCP3CON1L = 0x8080;
+            
+            while (!IFS2bits.CCT3IF);
+             CCP3CON1L = 0;
+        timingResources[TIMING_RESOURCE_MCCP3].resourceHolder = 0xFF;
+        return;
+    }
+    //TODO add other resources
+}
+
+
+
+TIMING_RESOURCE_t timingResourceCounterClaim(TIMING_RESOURCE_t resource)
+{
+	if (!pinIsPPSCapable(CurrentPin))
+	{
+		return (TIMING_RESOURCE_NONE);
+	}
+
+	if ((resource == TIMING_RESOURCE_MCCP1 || resource == TIMING_RESOURCE_ALL || resource == TIMING_RESOURCE_ANY_HARDWARE) && (timingResources[TIMING_RESOURCE_MCCP1].resourceHolder == 0xFF || timingResources[TIMING_RESOURCE_MCCP1].resourceHolder == CurrentPin))
+	{
+		timingResources[TIMING_RESOURCE_MCCP1].resourceHolder = CurrentPin;
+		RPINR12bits.TCKIAR = pinPPSInputMap[CurrentPin];
+		CCP1CON1L = 0x0720;
+		CCP1CON1Lbits.CCPON = 1;
+		return (TIMING_RESOURCE_MCCP1);
+	}
+	if ((resource == TIMING_RESOURCE_MCCP2 || resource == TIMING_RESOURCE_ALL || resource == TIMING_RESOURCE_ANY_HARDWARE) && (timingResources[TIMING_RESOURCE_MCCP2].resourceHolder == 0xFF || timingResources[TIMING_RESOURCE_MCCP2].resourceHolder == CurrentPin))
+	{
+		timingResources[TIMING_RESOURCE_MCCP2].resourceHolder = CurrentPin;
+		RPINR12bits.TCKIBR = pinPPSInputMap[CurrentPin];
+		CCP2CON1L = 0x0620;
+		CCP2CON1Lbits.CCPON = 1;
+		return (TIMING_RESOURCE_MCCP2);
+	}
+
+	return (TIMING_RESOURCE_NONE);
+}
+
+uint32_t timingResourceReadCounter(TIMING_RESOURCE_t resource)
+{
+	uint16_t L = 0;
+	uint32_t h = 0;
+	switch (resource)
+	{
+		case TIMING_RESOURCE_MCCP1:
+			{
+				h = CCP1TMRH;
+				L = CCP1TMRL;
+				while( h != CCP1TMRH)
+				{
+					h = CCP1TMRH;
+					L = CCP1TMRL;
+				}
+			}
+			break;
+		case TIMING_RESOURCE_MCCP2:
+			{
+				h = CCP2TMRH;
+				L = CCP2TMRL;
+				while( h != CCP2TMRH)
+				{
+					h = CCP2TMRH;
+					L = CCP2TMRL;
+				}
+			}
+			break;
+        default:
+        {
+            return (0);
+        }
+        break;
+	}
+	h<<=16;
+	h+= L;
+	return (h);
+
+}
+
+void timingResourceResetCounter(TIMING_RESOURCE_t resource)
+{
+	switch (resource)
+	{
+		case TIMING_RESOURCE_MCCP1:
+			{
+                CCP1CON1Lbits.CCPON = 0;
+				CCP1TMRL = 0;    
+				CCP1TMRH = 0;    
+                CCP1CON1Lbits.CCPON = 1;
+			}
+			break;
+		case TIMING_RESOURCE_MCCP2:
+			{
+                CCP2CON1Lbits.CCPON = 0;
+				CCP2TMRL = 0;    
+				CCP2TMRH = 0;    
+                CCP2CON1Lbits.CCPON = 1;
+
+			}
+			break;
+        default:
+            
+            break;
+	}
+}
+
+TIMING_RESOURCE_t timingResourceGenericClaim(TIMING_RESOURCE_t resource)
+{
+    if (resource < TIMING_RESOURCE_NUMBER_OF_RESOURCES)
+    {
+        if (timingResources[resource].resourceHolder == CurrentPin || 
+               timingResources[resource].resourceHolder == TIMING_RESOURCE_NONE )
+        {
+            timingResources[resource].resourceHolder = CurrentPin;
+            return (resource);
+        }
+       
+           
+        
+    }
+     return(TIMING_RESOURCE_NONE);
 }

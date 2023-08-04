@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['keypad_5fstate_5ft_2553',['KEYPAD_STATE_t',['../matrix_keypad_8c.html#a3795ae6cf8249419f2365280c02a040e',1,'matrixKeypad.c']]]
+  ['input_5ffilter_5fmode_5ft_2744',['INPUT_FILTER_MODE_t',['../input_process_8h.html#ac191fc9ff2ed8a05f82b9b5cabd9b9c8',1,'inputProcess.h']]],
+  ['input_5ftransform_5fmode_5ft_2745',['INPUT_TRANSFORM_MODE_t',['../input_process_8h.html#a16cef9996394c84c7e4b1a50d7c7c765',1,'inputProcess.h']]]
 ];

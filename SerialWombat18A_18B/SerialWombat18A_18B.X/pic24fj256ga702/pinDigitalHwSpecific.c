@@ -1,3 +1,25 @@
+/*
+Copyright 2021-2023 Broadwell Consulting Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a 
+ * copy of this software and associated documentation files (the "Software"), 
+ * to deal in the Software without restriction, including without limitation 
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+ * and/or sell copies of the Software, and to permit persons to whom the 
+ * Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in 
+ * all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR 
+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
+ * OTHER DEALINGS IN THE SOFTWARE.
+*/
+
 #include "mcc_generated_files/system.h"
 #include "deviceSpecific.h"
 #include "serialWombat.h"
@@ -579,64 +601,7 @@ void CurrentPinAnalog()
 void SetPinQuick(uint8_t pin, uint8_t pinState)
 {
     SetPin(pin,pinState);
-    /*
-	uint16_t pinMask = 0;
-	uint8_t inB = 1;
-	if (pin < NUMBER_OF_PHYSICAL_PINS)
-	{
-		pinMask = PinBitmapB[pin];
-		if (pinMask == 0)
-		{
-			pinMask = PinBitmapA[pin];
-			inB = 0;
-		}
-	}
-
-	if (pinState == DIGITAL_LOW)
-	{
-		
-		pinMask = ~pinMask;
-		if (inB)
-		{
-			andCount(&OutputArrayB[OUTPUT_ARRAY_B_DMA_INDEX],pinMask, PIN_QUICK_SET_DMA_COUNTS);
-			LATB &= pinMask;
-			TRISB &= pinMask;
-		}
-		else
-		{
-			andCount(&OutputArrayA[OUTPUT_ARRAY_A_DMA_INDEX],pinMask, PIN_QUICK_SET_DMA_COUNTS);
-			LATA &= pinMask;
-			TRISA &= pinMask;
-		}
-	}
-	else if (pinState == DIGITAL_HIGH)
-	{
-	
-		if (inB)
-		{
-			orCount(&OutputArrayB[OUTPUT_ARRAY_B_DMA_INDEX],pinMask, PIN_QUICK_SET_DMA_COUNTS);
-			LATB |= pinMask;
-			TRISB &= ~pinMask;
-		}
-		else
-		{
-			orCount(&OutputArrayA[OUTPUT_ARRAY_A_DMA_INDEX],pinMask, PIN_QUICK_SET_DMA_COUNTS);
-			LATA |= pinMask;
-			TRISA &= ~pinMask;
-		}
-	}
-	else if (pinState == DIGITAL_INPUT)
-	{
-		if (inB)
-		{
-			TRISB |= pinMask;
-		}
-		else
-		{
-			TRISA |= pinMask;
-		}
-	}
-     */
+    
 }
 
 void SetCurrentPin(uint8_t pinState)

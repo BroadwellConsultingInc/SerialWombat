@@ -1,5 +1,5 @@
 /*
-Copyright 2020-2021 Broadwell Consulting Inc.
+Copyright 2021-2023 Broadwell Consulting Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
@@ -78,6 +78,7 @@ typedef struct outputScale_n
     uint16_t outputMin;
     uint16_t outputMax;
     uint16_t filterConstant;
+    uint16_t filterConstant2;
     uint16_t currentOutput;
     uint16_t commTimeout;
     uint16_t commTimeoutCounter;

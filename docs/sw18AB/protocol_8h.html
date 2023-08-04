@@ -84,6 +84,8 @@ Macros</h2></td></tr>
 <tr class="separator:af395f559bb6d6280361709f4794751aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa800863e72986167f1c5004c5f09f943"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8h.html#aa800863e72986167f1c5004c5f09f943">RXBUFFER32</a>(_a)&#160;&#160;&#160;((uint32_t)<a class="el" href="serial_wombat_8h.html#a3fcf4eadb6a8c5082f8256123d87e4d5">Rxbuffer</a>[_a] + (((uint32_t)<a class="el" href="serial_wombat_8h.html#a3fcf4eadb6a8c5082f8256123d87e4d5">Rxbuffer</a>[_a+1]) &lt;&lt;8)+ (((uint32_t)<a class="el" href="serial_wombat_8h.html#a3fcf4eadb6a8c5082f8256123d87e4d5">Rxbuffer</a>[_a+2]) &lt;&lt;16)+ (((uint32_t)<a class="el" href="serial_wombat_8h.html#a3fcf4eadb6a8c5082f8256123d87e4d5">Rxbuffer</a>[_a+3]) &lt;&lt;24))</td></tr>
 <tr class="separator:aa800863e72986167f1c5004c5f09f943"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d09f2435561d3065420c25dee83f4b7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="protocol_8h.html#a6d09f2435561d3065420c25dee83f4b7">TXBUFFER32</a>(_index,  _value)&#160;&#160;&#160;{<a class="el" href="serial_wombat_8h.html#a221b63b4bf17e5c7d2df2056c59cc711">Txbuffer</a>[_index] = (uint8_t)(_value &amp; 0xFF);  <a class="el" href="serial_wombat_8h.html#a221b63b4bf17e5c7d2df2056c59cc711">Txbuffer</a>[_index + 1] = (uint8_t)(_value &gt;&gt;8);<a class="el" href="serial_wombat_8h.html#a221b63b4bf17e5c7d2df2056c59cc711">Txbuffer</a>[_index + 2] = (uint8_t)(_value &gt;&gt;16);<a class="el" href="serial_wombat_8h.html#a221b63b4bf17e5c7d2df2056c59cc711">Txbuffer</a>[_index + 3] = (uint8_t)(_value &gt;&gt;24);}</td></tr>
+<tr class="separator:a6d09f2435561d3065420c25dee83f4b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -133,37 +135,38 @@ Enumerations</h2></td></tr>
 <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da71b9139eeec0a19080f6e681a26bb269">COMMAND_BINARY_TEST_SEQUENCE</a> = 0xB4, 
 <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da0f598d706e1e8258dfc02b7071328787">COMMAND_BINARY_RW_PIN_MEMORY</a> = 0xB5, 
 <br />
-&#160;&#160;<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8daa12c3a9a471de8571c33951d09f6c7b5">CONFIGURE_CHANNEL_MODE_0</a> = 200, 
+&#160;&#160;<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8dab3063014a8bcaacce5daab505c857e6e">COMMAND_CAPTURE_STARTUP_SEQUENCE</a> = 0xB6, 
+<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8daa12c3a9a471de8571c33951d09f6c7b5">CONFIGURE_CHANNEL_MODE_0</a> = 200, 
 <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da5c59e662d0434b73181c1bea3e61d804">CONFIGURE_CHANNEL_MODE_1</a> = 201, 
 <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8dacba3af3ea0dc9dac84759061557ca545">CONFIGURE_CHANNEL_MODE_2</a> = 202, 
-<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da9e31036e1f8c06e64ed10939bcf969a2">CONFIGURE_CHANNEL_MODE_3</a> = 203, 
 <br />
-&#160;&#160;<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da59b4095ce3e59fa06ab6749a08f350f1">CONFIGURE_CHANNEL_MODE_4</a> = 204, 
+&#160;&#160;<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da9e31036e1f8c06e64ed10939bcf969a2">CONFIGURE_CHANNEL_MODE_3</a> = 203, 
+<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da59b4095ce3e59fa06ab6749a08f350f1">CONFIGURE_CHANNEL_MODE_4</a> = 204, 
 <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da89ba280b3651cd56890c21af81ac5061">CONFIGURE_CHANNEL_MODE_5</a> = 205, 
 <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8dae9bcf55f0fd03b3144b88765390022c0">CONFIGURE_CHANNEL_MODE_6</a> = 206, 
-<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8dacadae6c26db2b80ec971c91f1a0b5071">CONFIGURE_CHANNEL_MODE_7</a> = 207, 
 <br />
-&#160;&#160;<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8daa71799d06bac932b9ba99db66dfb7af8">CONFIGURE_CHANNEL_MODE_8</a> = 208, 
+&#160;&#160;<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8dacadae6c26db2b80ec971c91f1a0b5071">CONFIGURE_CHANNEL_MODE_7</a> = 207, 
+<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8daa71799d06bac932b9ba99db66dfb7af8">CONFIGURE_CHANNEL_MODE_8</a> = 208, 
 <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da643c7153b91648aaf7967a69ee87e41e">CONFIGURE_CHANNEL_MODE_9</a> = 209, 
 <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da44b2bd57d8999e8b475537f46ce4299b">CONFIGURE_CHANNEL_MODE_10</a> = 210, 
-<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8daeb418d93d00d4c7b26f16e01a04cb595">CONFIGURE_CHANNEL_MODE_SCALED_OUTPUT</a> = 210, 
 <br />
-&#160;&#160;<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da253dc2dad15cec9ffcb00cfcfc15c4ab">CONFIGURE_CHANNEL_MODE_INPUT_PROCESSING</a> = 211, 
+&#160;&#160;<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8daeb418d93d00d4c7b26f16e01a04cb595">CONFIGURE_CHANNEL_MODE_SCALED_OUTPUT</a> = 210, 
+<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da253dc2dad15cec9ffcb00cfcfc15c4ab">CONFIGURE_CHANNEL_MODE_INPUT_PROCESSING</a> = 211, 
 <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da56f33d777e2d270d3bec2c455dcf0d73">CONFIGURE_CHANNEL_MODE_11</a> = 211, 
 <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da743b3291fcb184adad944d16885635b3">CONFIGURE_CHANNEL_MODE_12</a> = 212, 
-<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8dacb4049987452ce7c4806fbfdd056f497">CONFIGURE_CHANNEL_MODE_13</a> = 213, 
 <br />
-&#160;&#160;<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da90beea40ac248abb1f8577a6686716c3">CONFIGURE_CHANNEL_MODE_14</a> = 214, 
+&#160;&#160;<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8dacb4049987452ce7c4806fbfdd056f497">CONFIGURE_CHANNEL_MODE_13</a> = 213, 
+<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da90beea40ac248abb1f8577a6686716c3">CONFIGURE_CHANNEL_MODE_14</a> = 214, 
 <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da736bbba0530ddacac99755d2770ab4e4">CONFIGURE_CHANNEL_MODE_15</a> = 215, 
 <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da542f18ef48a6434fcac4e546af9664f9">CONFIGURE_CHANNEL_MODE_16</a> = 216, 
-<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8dab42bbc21e5dc692d7124acf746e620fc">CONFIGURE_CHANNEL_MODE_17</a> = 217, 
 <br />
-&#160;&#160;<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8dacbb9452ae64e56efdcf19c21e6884243">CONFIGURE_CHANNEL_MODE_18</a> = 218, 
+&#160;&#160;<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8dab42bbc21e5dc692d7124acf746e620fc">CONFIGURE_CHANNEL_MODE_17</a> = 217, 
+<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8dacbb9452ae64e56efdcf19c21e6884243">CONFIGURE_CHANNEL_MODE_18</a> = 218, 
 <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da3c7d68b590fc8626a4cfbe927c738ca0">CONFIGURE_CHANNEL_MODE_DISABLE</a> = 219, 
 <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da4d76990512d90d5e419c7b1a21365933">CONFIGURE_CHANNEL_MODE_HW_0</a> = 220, 
-<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da7ceea50a6dcb3644006554ce300c1f1f">CONFIGURE_CHANNEL_MODE_HW_1</a> = 221, 
 <br />
-&#160;&#160;<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da324c63bb9d214ddab2a83c1802ae2b30">CONFIGURE_CHANNEL_MODE_HW_2</a> = 222, 
+&#160;&#160;<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da7ceea50a6dcb3644006554ce300c1f1f">CONFIGURE_CHANNEL_MODE_HW_1</a> = 221, 
+<a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da324c63bb9d214ddab2a83c1802ae2b30">CONFIGURE_CHANNEL_MODE_HW_2</a> = 222, 
 <a class="el" href="protocol_8h.html#ace29c9fb35853bfa82dece6814f3fb8da866dc57814fb3fcdf9cf4dbfdd339c34">CONFIGURE_CHANNEL_MODE_HW_3</a> = 223
 <br />
  }</td></tr>
@@ -234,6 +237,34 @@ Enumerations</h2></td></tr>
 
 </div>
 </div>
+<a id="a6d09f2435561d3065420c25dee83f4b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d09f2435561d3065420c25dee83f4b7">&#9670;&nbsp;</a></span>TXBUFFER32</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TXBUFFER32</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_index, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">_value&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;{<a class="el" href="serial_wombat_8h.html#a221b63b4bf17e5c7d2df2056c59cc711">Txbuffer</a>[_index] = (uint8_t)(_value &amp; 0xFF);  <a class="el" href="serial_wombat_8h.html#a221b63b4bf17e5c7d2df2056c59cc711">Txbuffer</a>[_index + 1] = (uint8_t)(_value &gt;&gt;8);<a class="el" href="serial_wombat_8h.html#a221b63b4bf17e5c7d2df2056c59cc711">Txbuffer</a>[_index + 2] = (uint8_t)(_value &gt;&gt;16);<a class="el" href="serial_wombat_8h.html#a221b63b4bf17e5c7d2df2056c59cc711">Txbuffer</a>[_index + 3] = (uint8_t)(_value &gt;&gt;24);}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="ace29c9fb35853bfa82dece6814f3fb8d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ace29c9fb35853bfa82dece6814f3fb8d">&#9670;&nbsp;</a></span>CONFIGURE_CHANNEL_MODE_t</h2>
@@ -283,6 +314,7 @@ Enumerations</h2></td></tr>
 <tr><td class="fieldname"><a id="ace29c9fb35853bfa82dece6814f3fb8da43847c08da7becb5fe0ebfce9cfb43c5"></a>COMMAND_UART1_RX_7BYTES&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ace29c9fb35853bfa82dece6814f3fb8da71b9139eeec0a19080f6e681a26bb269"></a>COMMAND_BINARY_TEST_SEQUENCE&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ace29c9fb35853bfa82dece6814f3fb8da0f598d706e1e8258dfc02b7071328787"></a>COMMAND_BINARY_RW_PIN_MEMORY&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ace29c9fb35853bfa82dece6814f3fb8dab3063014a8bcaacce5daab505c857e6e"></a>COMMAND_CAPTURE_STARTUP_SEQUENCE&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ace29c9fb35853bfa82dece6814f3fb8daa12c3a9a471de8571c33951d09f6c7b5"></a>CONFIGURE_CHANNEL_MODE_0&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ace29c9fb35853bfa82dece6814f3fb8da5c59e662d0434b73181c1bea3e61d804"></a>CONFIGURE_CHANNEL_MODE_1&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ace29c9fb35853bfa82dece6814f3fb8dacba3af3ea0dc9dac84759061557ca545"></a>CONFIGURE_CHANNEL_MODE_2&#160;</td><td class="fielddoc"></td></tr>

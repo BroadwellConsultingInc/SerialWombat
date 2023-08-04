@@ -61,6 +61,7 @@ typedef enum
             COMMAND_UART1_RX_7BYTES = 0xB3,
             COMMAND_BINARY_TEST_SEQUENCE = 0xB4,
             COMMAND_BINARY_RW_PIN_MEMORY = 0xB5,
+            COMMAND_CAPTURE_STARTUP_SEQUENCE = 0xB6,
 	CONFIGURE_CHANNEL_MODE_0 = 200, // 0xC8
 	CONFIGURE_CHANNEL_MODE_1 = 201,
 	CONFIGURE_CHANNEL_MODE_2 = 202,
@@ -92,4 +93,5 @@ typedef enum
 #define RXBUFFER16(_a) ((uint16_t)Rxbuffer[_a] + (((uint16_t)Rxbuffer[_a+1]) <<8))
 #define TXBUFFER16(_index, _value) {Txbuffer[_index] = (uint8_t)(_value & 0xFF);  Txbuffer[_index + 1] = (uint8_t)(_value >>8);}
 #define RXBUFFER32(_a) ((uint32_t)Rxbuffer[_a] + (((uint32_t)Rxbuffer[_a+1]) <<8)+ (((uint32_t)Rxbuffer[_a+2]) <<16)+ (((uint32_t)Rxbuffer[_a+3]) <<24))
+#define TXBUFFER32(_index, _value) {Txbuffer[_index] = (uint8_t)(_value & 0xFF);  Txbuffer[_index + 1] = (uint8_t)(_value >>8);Txbuffer[_index + 2] = (uint8_t)(_value >>16);Txbuffer[_index + 3] = (uint8_t)(_value >>24);}
 #endif

@@ -66,11 +66,13 @@ typedef enum {
 	SW_ERROR_DATA_NOT_AVAILABLE = 41,
             SW_ERROR_TM1637_WRONG_MODE = 42, ///< The TM1637 pin is configured for the wrong TM1637 mode to process the command
            SW_ERROR_RUB_INVALID_ADDRESS = 43, ///<An attempt to read user buffer address outside the user buffer was attempted.
-            SW_ERROR_UNKNOWN_OUTPUTSCALE_COMMAND = 44, // The command index for an output scaling command is not supported on this firmware
-            SW_ERROR_UNKNOWN_INPUT_PROCESS_COMMAND = 45, // The command index for an inputProcess command is not supported on this firmware
-	    SW_ERROR_PULSE_ON_CHANGE_ENTRY_OUT_OF_RANGE = 46, // The pulse on change entry number exceeded the number of entries
+            SW_ERROR_UNKNOWN_OUTPUTSCALE_COMMAND = 44, ///< The command index for an output scaling command is not supported on this firmware
+            SW_ERROR_UNKNOWN_INPUT_PROCESS_COMMAND = 45, ///< The command index for an inputProcess command is not supported on this firmware
+	    SW_ERROR_PULSE_ON_CHANGE_ENTRY_OUT_OF_RANGE = 46, ///< The pulse on change entry number exceeded the number of entries
 	    SW_ERROR_PULSE_ON_CHANGE_UNKNOWN_MODE = 47, // The pulse on change Mode requested is unknown
-            SW_ERROR_UNKNOWN_QUEUE_TYPE = 48, // This Queue type is not supported on this firwmare
+            SW_ERROR_UNKNOWN_QUEUE_TYPE = 48, ///< This Queue type is not supported on this firwmare
+            SW_ERROR_CAPTURE_PACKET_WRONG = 49, ///< The capture packet did not have the correct protection bytes
+	    SW_ERROR_PS2KB_WRONG_MODE = 50, ///< The command issued is not available for the current Queue mode
 }SW_ERROR_t;
 
 #endif

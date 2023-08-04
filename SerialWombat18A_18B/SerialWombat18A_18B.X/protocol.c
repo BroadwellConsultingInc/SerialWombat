@@ -1,3 +1,24 @@
+/*
+Copyright 2021-2023 Broadwell Consulting Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a 
+ * copy of this software and associated documentation files (the "Software"), 
+ * to deal in the Software without restriction, including without limitation 
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+ * and/or sell copies of the Software, and to permit persons to whom the 
+ * Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in 
+ * all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR 
+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
+ * OTHER DEALINGS IN THE SOFTWARE.
+*/
 #include <stdint.h>
 #include <stdbool.h>
 #include <string.h>
@@ -24,7 +45,11 @@ uint8_t testSequenceNumber = 0;
 bool testSequenceArmed = 0;
 void ProcessSetPin(void);
 
+#define PROTOCOL_MAX_CAPTURED_PACKETS 256
+bool protocolCapturingPackets = false;
+uint16_t protocolCapturedPackets = 0;
 uint8_t lastErrorPacket[8];
+static void storeCapturedPackets(void);
 
 pinRegister_t PinRegisterCopyBuffer;
 timingResourceManager_t TimingResourceManagerCopyBuffer;
@@ -87,6 +112,29 @@ void ProcessRxbuffer( void )
 	Txbuffer[5] = Rxbuffer[5];
 	Txbuffer[6] = Rxbuffer[6];
 	Txbuffer[7] = Rxbuffer[7];
+    
+    if (protocolCapturingPackets  && Rxbuffer[0] != COMMAND_CAPTURE_STARTUP_SEQUENCE  && Rxbuffer[0] != COMMAND_ASCII_RESET)
+    {
+        if (protocolCapturedPackets < PROTOCOL_MAX_CAPTURED_PACKETS)
+        {
+            uint16_t index = SIZE_OF_USER_BUFFER - PROTOCOL_MAX_CAPTURED_PACKETS * 12 + protocolCapturedPackets * 12;
+            UserBuffer[index ] = Rxbuffer[0];
+            UserBuffer[index + 1] = Rxbuffer[1];
+            UserBuffer[index + 2] = Rxbuffer[2];
+            UserBuffer[index + 3] = 0 ;  // Unimplemented in flash
+            UserBuffer[index + 4 ] = Rxbuffer[3];
+            UserBuffer[index + 5] = Rxbuffer[4];
+            UserBuffer[index + 6] = Rxbuffer[5];
+            UserBuffer[index + 7] = 0 ;  // Unimplemented in flash
+            UserBuffer[index + 8 ] = Rxbuffer[6];
+            UserBuffer[index + 9] = Rxbuffer[7];
+            UserBuffer[index + 10] = 0x55;
+            UserBuffer[index + 11] = 0 ;  // Unimplemented in flash
+            
+            ++protocolCapturedPackets;
+        }
+    
+    }
 	switch (Rxbuffer[0])
 	{
 		case COMMAND_ASCII_ECHO:
@@ -336,6 +384,7 @@ Public data for Pin 2 is 26132.
 			  - 'a' Make the pin an Analog Input
 			  - 'd' Make the pin an Input (with a weak Pull Down)
 			  - 'i' Make the pin an Input (without a weak Pull Up or Pull Down)
+			  - 'r' Make the pin a Resistance Input
 			  - 's' Make the pin a Servo Controller
 			  - 'u' Make the pin an Input (with a weak Pull Up)
 			  - 'w' Make the pin a PWM Output
@@ -407,6 +456,12 @@ Sets pin 9 High, pin 10 Low, doesn't change pin 11, and sets pins 12 and 13 to i
 									SetPinPullUp(pinToSet,0);
                                     SetPinPullDown(pinToSet,1);
 									PinInput(pinToSet);
+								}
+								break;
+							case 'r':  //Resistance Input
+								{
+									void initResistanceInputSimple(void);
+									initResistanceInputSimple();
 								}
 								break;
 							case 's':  //Servo
@@ -521,8 +576,8 @@ Or similar
                Txbuffer[4] = 'A';//SERIAL_WOMBAT_HARDWARE_IDENTIFIER;	 
             }
 			Txbuffer[5] = '2';	     
-			Txbuffer[6] = '0';	     
-			Txbuffer[7] = '8';	     
+			Txbuffer[6] = '1';	     
+			Txbuffer[7] = '0';	     
 
 			break;
 		case COMMAND_BINARY_READ_PIN_BUFFFER:
@@ -1091,10 +1146,10 @@ Response:
 					// Erase block - 32 bit address at rxbuffer[2], 16 bit length at rxbuffer[6]
 					// Up to caller to assure the block is aligned.
                     // Called once per block.
-					// Address is in bytes not words to match hex file
+					// RXbuffer Address is in bytes not words to match hex file
                     // User should delay appropriate time to allow erase completion before requesting response over I2C
                    
-                    uint32_t address = RXBUFFER32(2)/2;
+                    uint32_t address = RXBUFFER32(2)/2;  // Convert to Words
                     if (address < 0x4000)  // Beginning of Application
                     {
                         error(SW_ERROR_FLASH_WRITE_INVALID_ADDRESS);
@@ -1286,7 +1341,84 @@ Write 0x32 the byte at RAM address 0x0247.
             }
         }
         break;
-            
+        case COMMAND_CAPTURE_STARTUP_SEQUENCE:
+        {
+            //TODO
+            /*
+             One command to start capture.  One command to stop capture
+             One command to store Capture
+             Data is stored to End of USer buffer in Erase Blocks chunks.
+             At completion of each number of commands that fit in a single Erase block, the block is compared and written if necessary
+             This needs to happen before the sending of the response packet
+             Each write block is 1024 Instructions, or  2048 words, or 4096 bytes of which 75% are useful = 3072 bytes
+             or 384 messages.  
+             
+             One command to capture some number of bytes from the user buffer to flash
+             
+             One command to restore some number of bytes from flash to user buffer
+             */
+            //TODO add protection
+            switch (Rxbuffer[1])
+            {
+                case 0: // Start Capture
+                {
+                    if (Rxbuffer[2] != 'C' || Rxbuffer[3] != 'A' || Rxbuffer[4] != 'P'
+                            || Rxbuffer[5] != 'T'  || Rxbuffer[6] != 'U' || Rxbuffer[7] != 'R')
+                    {
+                        error(SW_ERROR_CAPTURE_PACKET_WRONG);
+                        return;
+                    }
+                    protocolCapturingPackets = true;
+ protocolCapturedPackets = 0;
+ uint16_t index = SIZE_OF_USER_BUFFER - PROTOCOL_MAX_CAPTURED_PACKETS *12;
+            int i;
+            for (i = 0; i < PROTOCOL_MAX_CAPTURED_PACKETS; ++i)
+            {
+                UserBuffer[index + i * 12] = 0x55;
+                UserBuffer[index + i * 12 + 1] = 0x55;
+                UserBuffer[index + i * 12  + 2] = 0x55;
+                UserBuffer[index + i * 12  + 3] = 0; //Unimplemented flash
+                UserBuffer[index + i * 12  + 4] = 0x55;
+                UserBuffer[index + i * 12  + 5] = 0x55;
+                UserBuffer[index + i * 12  + 6] = 0x55;
+                UserBuffer[index + i * 12  + 7] = 0; //Unimplemented flash
+                UserBuffer[index + i * 12  + 8] = 0x55;
+                UserBuffer[index + i * 12  + 9] = 0x55;
+                UserBuffer[index + i * 12  + 10] = 0x55;
+                UserBuffer[index + i * 12  + 11] = 0; //Unimplemented flash
+             
+            }
+                }
+                break;
+                
+                case 1: // Stop Capture
+                {
+                     if (Rxbuffer[2] != 'C' || Rxbuffer[3] != 'A' || Rxbuffer[4] != 'P'
+                            || Rxbuffer[5] != 'T'  || Rxbuffer[6] != 'U' || Rxbuffer[7] != 'R')
+                    {
+                        error(SW_ERROR_CAPTURE_PACKET_WRONG);
+                        return;
+                    }
+                    protocolCapturingPackets = false;
+                }
+                break;
+                
+                case 2:  // Store Capture
+                {
+                     if (Rxbuffer[2] != 'C' || Rxbuffer[3] != 'A' || Rxbuffer[4] != 'P'
+                            || Rxbuffer[5] != 'T'  || Rxbuffer[6] != 'U' || Rxbuffer[7] != 'R')
+                    {
+                        error(SW_ERROR_CAPTURE_PACKET_WRONG);
+                        return;
+                    }
+                    storeCapturedPackets();
+                   
+				}
+				break;
+               
+            }
+        }
+        break;
         case COMMAND_CALIBRATE_ANALOG:
         {
             
@@ -2102,6 +2234,34 @@ void ProcessSetPin()
         }
         break;
         
+        case PIN_MODE_HS_CLOCK:
+        {
+            extern void initHSClock(void);
+            initHSClock();
+        }
+        break;
+        
+        case PIN_MODE_HS_COUNTER:
+        {
+            extern void initHSCounter(void);
+            initHSCounter();
+        }
+        break;
+        
+        case PIN_MODE_VGA:
+        {
+            extern void initVGA(void);
+            initVGA();
+        }
+        break;
+
+	case PIN_MODE_PS2_KEYBOARD:
+	{
+		extern void initPS2Keyboard(void);
+		initPS2Keyboard();
+	}
+	break;
+        
        
         default:
         {
@@ -2177,4 +2337,155 @@ CRCCON1bits.CRCGO = 1; // resume CRC calculation
 while(!_CRCIF); // wait until shifts are done
 crcResultCRCCCITT = CRCWDATL; // get CRC result (must be 0x9B4D)
 
+}
+
+
+
+void processCapturedCommands()
+{
+
+    uint16_t x = 0;
+    uint32_t address = 0x27000;
+    for (x = 0; x < PROTOCOL_MAX_CAPTURED_PACKETS; ++x )
+    {
+                    uint8_t tblpag = TBLPAG;
+
+					TBLPAG = address >>16;
+					uint16_t result = __builtin_tblrdl(address );
+					Rxbuffer[0] = (uint8_t)result;         
+					Rxbuffer[1] = (uint8_t)(result>>8);         
+					result = __builtin_tblrdh(address );
+					Rxbuffer[2] = (uint8_t)(result);         
+
+                    address += 2;
+
+					TBLPAG = address >>16;
+					result = __builtin_tblrdl(address );
+					Rxbuffer[3] = (uint8_t)result;         
+					Rxbuffer[4] = (uint8_t)(result>>8);         
+					result = __builtin_tblrdh(address );
+					Rxbuffer[5] = (uint8_t)(result);         
+
+                    address += 2;
+
+					TBLPAG = address >>16;
+					result = __builtin_tblrdl(address );
+					Rxbuffer[6] = (uint8_t)result;         
+					Rxbuffer[7] = (uint8_t)(result >> 8);         
+					
+                    address += 2;
+
+
+
+					TBLPAG = tblpag;
+                    
+                    if (Rxbuffer[0] == 0x55 || Rxbuffer[0] == 0 || Rxbuffer[0] == 0xFF || Rxbuffer[0] == ' ')
+                    {
+                        return;
+                    }
+                    ProcessRxbuffer();
+
+    }
+    
+}
+
+static void storeCapturedPackets()
+{
+                        //TODO check that Capturing packets is false, verify that data is different from what's in the flash now before erasing / writing
+                    
+                    // Erase block - 32 bit address at rxbuffer[2], 16 bit length at rxbuffer[6]
+					// Up to caller to assure the block is aligned.
+                    // Called once per block.
+					// RXbuffer Address is in bytes not words to match hex file
+                    // User should delay appropriate time to allow erase completion before requesting response over I2C
+                   
+    bool writeRequired = false;
+    // Check to see if write is necessary.  Perhaps this sequence is already stored.
+    {
+        uint16_t x = 0;
+    uint32_t address = 0x27000;
+    uint8_t buffer[12];
+
+    for (x = 0; x < PROTOCOL_MAX_CAPTURED_PACKETS  && ! writeRequired; ++x )
+    {
+                    uint8_t tblpag = TBLPAG;
+
+					TBLPAG = address >>16;
+					uint16_t result = __builtin_tblrdl(address );
+					buffer[0] = (uint8_t)result;         
+					buffer[1] = (uint8_t)(result>>8);         
+					result = __builtin_tblrdh(address );
+					buffer[2] = (uint8_t)(result);       
+                    buffer[3] = 0;
+
+                    address += 2;
+
+					TBLPAG = address >>16;
+					result = __builtin_tblrdl(address );
+					buffer[4] = (uint8_t)result;         
+					buffer[5] = (uint8_t)(result>>8);         
+					result = __builtin_tblrdh(address );
+					buffer[6] = (uint8_t)(result);         
+                    buffer[7] = 0;
+
+                    address += 2;
+
+					TBLPAG = address >>16;
+					result = __builtin_tblrdl(address );
+					buffer[8] = (uint8_t)result;         
+					buffer[9] = (uint8_t)(result >>8);   
+                    buffer[10] = 0x55;
+					buffer[11] = 0;
+
+                    address += 2;
+
+
+
+					TBLPAG = tblpag;
+              
+                    uint8_t y;
+                    for (y = 0; y < 12; ++y)
+                    {
+                        uint8_t ubVal = UserBuffer[SIZE_OF_USER_BUFFER - PROTOCOL_MAX_CAPTURED_PACKETS *12 + 12 * x + y];
+                        if (buffer[y] != ubVal )
+                        {
+                            writeRequired = true;
+                        }
+                    }
+                    
+
+    }
+    }
+    
+    //Write the sequence
+    if (writeRequired)
+    {
+                    uint32_t address = 0x27000;  // Convert to Words
+                    uint16_t i = 0;
+                    
+                    NVMADRU = (uint16_t)(address >>16);
+                    NVMADR = (uint16_t)(address & 0xFFFF);
+                            NVMCON = 0x4003;
+                    __builtin_disi(6);
+                    __builtin_write_NVM();
+                  
+				
+					// Write block - 32 bit address at rxbuffer[2], 16 bit length at rxbuffer[6]
+					// up to caller to assure block is aligned, right length.
+					// All bytes are included, even if they are not implemented.
+					// Address is in bytes not words to match hex file
+                    // Called once per block.
+                    // User should delay appropriate time to allow erase completion before requesting response over I2C
+                    
+                     for (address = 0x27000; address < 0x27800; address += 0x80)
+                    {
+                        INTERRUPT_GlobalDisable();
+                        FLASH_Unlock(FLASH_UNLOCK_KEY);
+
+                    FLASH_WriteRow24(address, (uint32_t*)&UserBuffer[SIZE_OF_USER_BUFFER - PROTOCOL_MAX_CAPTURED_PACKETS *12 + 256 * i]);
+                    INTERRUPT_GlobalEnable();
+                    ++i;
+                    }
+                    
+    }
 }

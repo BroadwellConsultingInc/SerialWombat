@@ -138,7 +138,9 @@ Enumerations</h2></td></tr>
 <a class="el" href="serial_wombat_errors_8h.html#a864855f9b7396b3a518a57030f961dc8a60bb63b6c8eb66c0c2b06a57d40ab1cb">SW_ERROR_PULSE_ON_CHANGE_ENTRY_OUT_OF_RANGE</a> = 46, 
 <a class="el" href="serial_wombat_errors_8h.html#a864855f9b7396b3a518a57030f961dc8afd9b7d0a0139d2b2f1eaab785e711a2f">SW_ERROR_PULSE_ON_CHANGE_UNKNOWN_MODE</a> = 47, 
 <br />
-&#160;&#160;<a class="el" href="serial_wombat_errors_8h.html#a864855f9b7396b3a518a57030f961dc8aeb9e0f12d84d0854ae87b8c21bc3b463">SW_ERROR_UNKNOWN_QUEUE_TYPE</a> = 48
+&#160;&#160;<a class="el" href="serial_wombat_errors_8h.html#a864855f9b7396b3a518a57030f961dc8aeb9e0f12d84d0854ae87b8c21bc3b463">SW_ERROR_UNKNOWN_QUEUE_TYPE</a> = 48, 
+<a class="el" href="serial_wombat_errors_8h.html#a864855f9b7396b3a518a57030f961dc8ac0ed39d1f75409fd5bdfe5efc2a42694">SW_ERROR_CAPTURE_PACKET_WRONG</a> = 49, 
+<a class="el" href="serial_wombat_errors_8h.html#a864855f9b7396b3a518a57030f961dc8af646bdfb97588bd3e99f44ea3d1bee41">SW_ERROR_PS2KB_WRONG_MODE</a> = 50
 <br />
  }</td></tr>
 <tr class="separator:a864855f9b7396b3a518a57030f961dc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -238,11 +240,19 @@ Enumerations</h2></td></tr>
 </td></tr>
 <tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8a42b44bb2482369759d98132d2e8d2ddd"></a>SW_ERROR_RUB_INVALID_ADDRESS&#160;</td><td class="fielddoc"><p>An attempt to read user buffer address outside the user buffer was attempted. </p>
 </td></tr>
-<tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8a8005ba5ddc2ab0d94d05c0e9c3aa1d64"></a>SW_ERROR_UNKNOWN_OUTPUTSCALE_COMMAND&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8a07956bfda2655e351f71b2a2839f4883"></a>SW_ERROR_UNKNOWN_INPUT_PROCESS_COMMAND&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8a60bb63b6c8eb66c0c2b06a57d40ab1cb"></a>SW_ERROR_PULSE_ON_CHANGE_ENTRY_OUT_OF_RANGE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8a8005ba5ddc2ab0d94d05c0e9c3aa1d64"></a>SW_ERROR_UNKNOWN_OUTPUTSCALE_COMMAND&#160;</td><td class="fielddoc"><p>The command index for an output scaling command is not supported on this firmware. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8a07956bfda2655e351f71b2a2839f4883"></a>SW_ERROR_UNKNOWN_INPUT_PROCESS_COMMAND&#160;</td><td class="fielddoc"><p>The command index for an inputProcess command is not supported on this firmware. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8a60bb63b6c8eb66c0c2b06a57d40ab1cb"></a>SW_ERROR_PULSE_ON_CHANGE_ENTRY_OUT_OF_RANGE&#160;</td><td class="fielddoc"><p>The pulse on change entry number exceeded the number of entries. </p>
+</td></tr>
 <tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8afd9b7d0a0139d2b2f1eaab785e711a2f"></a>SW_ERROR_PULSE_ON_CHANGE_UNKNOWN_MODE&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8aeb9e0f12d84d0854ae87b8c21bc3b463"></a>SW_ERROR_UNKNOWN_QUEUE_TYPE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8aeb9e0f12d84d0854ae87b8c21bc3b463"></a>SW_ERROR_UNKNOWN_QUEUE_TYPE&#160;</td><td class="fielddoc"><p>This Queue type is not supported on this firwmare. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8ac0ed39d1f75409fd5bdfe5efc2a42694"></a>SW_ERROR_CAPTURE_PACKET_WRONG&#160;</td><td class="fielddoc"><p>The capture packet did not have the correct protection bytes. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a864855f9b7396b3a518a57030f961dc8af646bdfb97588bd3e99f44ea3d1bee41"></a>SW_ERROR_PS2KB_WRONG_MODE&#160;</td><td class="fielddoc"><p>The command issued is not available for the current Queue mode. </p>
+</td></tr>
 </table>
 
 </div>

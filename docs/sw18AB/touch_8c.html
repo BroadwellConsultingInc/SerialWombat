@@ -260,12 +260,12 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <pre class="fragment">\brief Initialization routine for Capacitive Touch sensor
 </pre><hr  />
-<h2><a class="anchor" id="autotoc_md84"></a>
+<h2><a class="anchor" id="autotoc_md104"></a>
 Retrevial of Raw A/D conversions</h2>
 <p>Configure the A/D using the CONFIGURE_CHANNEL_MODE_0 command before reading values. <br  />
  Raw A/D conversions are stored in the Pin's 16-bit Public data area. Use the Read Pin Buffer command to retreive it.</p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md86"></a>
+<h2><a class="anchor" id="autotoc_md106"></a>
 CONFIGURE_CHANNEL_MODE_0:</h2>
 <p>Initialize Cap Touch to Analog mode and set charge time</p>
 <table class="markdownTable">
@@ -283,7 +283,7 @@ CONFIGURE_CHANNEL_MODE_0:</h2>
 <p><code>0xC0 0x00 0x16 0x80 0x20 0x55 0x55 0x55</code> </p>
 </blockquote>
 <hr  />
-<h2><a class="anchor" id="autotoc_md88"></a>
+<h2><a class="anchor" id="autotoc_md108"></a>
 CONFIGURE_CHANNEL_MODE_1:</h2>
 <p>Configure high and low limits (Hysteresis) for digital mode.</p>
 <p>Must not be called before 0xC0 command.</p>
@@ -302,7 +302,7 @@ CONFIGURE_CHANNEL_MODE_1:</h2>
 <p><code>0xC1 0x00 0x16 0x30 0xC8 0x20 0xF0 0x55</code> </p>
 </blockquote>
 <hr  />
-<h2><a class="anchor" id="autotoc_md90"></a>
+<h2><a class="anchor" id="autotoc_md110"></a>
 CONFIGURE_CHANNEL_MODE_2:</h2>
 <p>Set the values reported as public data for Low (touch present) and High (touch absent) coniditions when in digital mode</p>
 <p>Must not be called before 0xC0 command.</p>
@@ -321,7 +321,7 @@ CONFIGURE_CHANNEL_MODE_2:</h2>
 <p><code>0xC2 0x00 0x16 0x10 0x27 0xD0 0x07 0x55</code> </p>
 </blockquote>
 <hr  />
-<h2><a class="anchor" id="autotoc_md92"></a>
+<h2><a class="anchor" id="autotoc_md112"></a>
 CONFIGURE_CHANNEL_MODE_3:</h2>
 <p>Set the values reported as public data for Low (touch present) and High (touch absent) coniditions when in digital mode</p>
 <p>Must not be called before 0xC0 command. Commands 0xC1 and 0xC2 should be called before this command.</p>
@@ -341,7 +341,7 @@ CONFIGURE_CHANNEL_MODE_3:</h2>
 <p><code>0xC3 0x00 0x16 0x01 0x00 0x03 0x00 0x55</code> </p>
 </blockquote>
 <hr  />
-<h2><a class="anchor" id="autotoc_md94"></a>
+<h2><a class="anchor" id="autotoc_md114"></a>
 CONFIGURE_CHANNEL_MODE_4:</h2>
 <p>Get digital status.</p>
 <p>Must not be called before 0xC0 command. Commands 0xC1 and 0xC2 and 0xC3 should be called before this command.</p>

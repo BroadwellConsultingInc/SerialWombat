@@ -1,5 +1,5 @@
 /*
-Copyright 2022 Broadwell Consulting Inc.
+Copyright 2022-2023 Broadwell Consulting Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
@@ -52,7 +52,7 @@ typedef enum
     PULSE_NUM_MODES 
 }PULSE_ON_CHANGE_MODE_t;
 
-#define NUM_CHANGE_REC 8
+#define NUM_CHANGE_REC 4
 typedef struct changeRec_n{
 	uint16_t value0;
 	uint16_t value1;
@@ -291,6 +291,7 @@ void initPulseOnChange (void)
 				pulseOnChange->counter = 0;
                 pulseOnChange->state =  STATE_WAITING_FOR_PULSE;
                 CurrentPinRegister->generic.mode = PIN_MODE_PULSE_ON_CHANGE;
+                CurrentPinRegister->pulse_output.resource = TIMING_RESOURCE_NONE;
 
 			}
 			break;
@@ -305,6 +306,17 @@ void initPulseOnChange (void)
 			{
 				pulseOnChange->pwmPeriod = RXBUFFER16(3);
 				pulseOnChange->pwmDutyCycle = RXBUFFER16(5);
+                
+                if (pulseOnChange->pwmPeriod > 0)
+                {
+                    InitializePinLow(CurrentPin);
+                    CurrentPinRegister->pulse_output.resource = timingResourcePWMClaim(TIMING_RESOURCE_ANY,pulseOnChange->pwmPeriod); 
+                    timingResourcePWM(CurrentPinRegister->pulse_output.resource, pulseOnChange->pwmPeriod, 0);
+                }
+                else
+                {
+                        timingResourceRelease(TIMING_RESOURCE_ANY);
+                }
 			}
 			break;
 		case CONFIGURE_CHANNEL_MODE_3:
@@ -578,11 +590,25 @@ void updatePulseOnChange()
           {
                        pulseOnChange->counter = pulseOnChange->durationOn;
                 pulseOnChange->state = STATE_PULSING_ACTIVE;
+                if (pulseOnChange->pwmPeriod > 0)
+                {
+                    timingResourcePWM(CurrentPinRegister->pulse_output.resource, pulseOnChange->pwmPeriod, pulseOnChange->pwmDutyCycle);
+                }
+                else
+                {
                 SetCurrentPin(pulseOnChange->activeMode);
+                }
           }
           else
           {
+              if (pulseOnChange->pwmPeriod > 0)
+                {
+                    timingResourcePWM(CurrentPinRegister->pulse_output.resource, pulseOnChange->pwmPeriod, 0);
+                }
+                else
+                {
               SetCurrentPin(pulseOnChange->inactiveMode);
+                }
           }
         }
         break;
@@ -606,12 +632,19 @@ void updatePulseOnChange()
                     pulseOnChange->state = STATE_WAITING_FOR_PULSE;
                 }
             }
-            return; // TODO future improvement: work on constant on
+           // return; // TODO future improvement: work on constant on
         }
         break;
         case    STATE_PULSING_INACTIVE:
         {
-                 SetCurrentPin(pulseOnChange->inactiveMode);
+                  if (pulseOnChange->pwmPeriod > 0)
+                {
+                    timingResourcePWM(CurrentPinRegister->pulse_output.resource, pulseOnChange->pwmPeriod, 0);
+                }
+                else
+                {
+                SetCurrentPin(pulseOnChange->inactiveMode);
+                }
             if (pulseOnChange->counter)
             {
                 -- pulseOnChange->counter;
@@ -622,15 +655,16 @@ void updatePulseOnChange()
                 pulseOnChange->counter = pulseOnChange->durationOn;
                 pulseOnChange->state = STATE_WAITING_FOR_PULSE;
             }
-            return; // TODO future improvement: work on constant on
+           // return; // TODO future improvement: work on constant on
             
         }
         break;
     }
-    
+       if (pulseOnChange->pwmPeriod > 0)
+       {
 	
-
-
+            timingResourceService(CurrentPinRegister->pulse_output.resource);
+       }
     
    
 

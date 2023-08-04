@@ -1,3 +1,24 @@
+/*
+Copyright 2021-2023 Broadwell Consulting Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a 
+ * copy of this software and associated documentation files (the "Software"), 
+ * to deal in the Software without restriction, including without limitation 
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+ * and/or sell copies of the Software, and to permit persons to whom the 
+ * Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in 
+ * all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR 
+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
+ * OTHER DEALINGS IN THE SOFTWARE.
+*/
 #if (!defined (_utilities_h))
 #define _utilities_h
 #define NUMBER_OF_PHYSICAL_PINS 19
@@ -16,11 +37,6 @@
 #define PHYSICALEQUALSVIRTUALPIN
 
 #define SIZE_OF_USER_BUFFER 4096
-#define USER_MEMORY_ENABLE
-#define PIN_MODE_AD_DIRECT_ENABLE
-#define PIN_MODE_PWM_DIRECT_ENABLE 
-#define PIN_MODE_COUNTER_ENABLE
-#define PIN_MODE_PIN_THROUGHPUT_ENABLE
 
 
 
@@ -166,52 +182,7 @@ extern void error(void);
 
 extern void print_pin(int pin,unsigned char high,unsigned char low);
 #endif
-#if 0
-        #define PIN_MODE_DIRECT      0
-        #define PIN_MODE_CONTROLLED  1
-        #define PIN_MODE_SEVENSEG     2
-        #define PIN_MODE_MORSE       4
-        #define PIN_MODE_HYSTERESIS  5
-        #define PIN_MODE_AD_DIRECT     6 
-        #define PIN_MODE_AD_1ST_ORDER  7 
-        #define PIN_MODE_KEYPAD_SCAN_ROW 8
- 	#define PIN_MODE_WATCHDOG        9
-        #define PIN_MODE_DIAGNOSTIC      10
-        #define PIN_MODE_ROTARY_ENC      11
-        #define PIN_MODE_DEBOUNCE        12
-        #define PIN_MODE_COUNTER         13
-        #define PIN_MODE_PIN_THROUGHPUT  14
-        #define PIN_MODE_AD_AVERAGE      15
-        #define PIN_MODE_PULSE     16
-        #define PIN_MODE_SERVO     17
-        #define PIN_MODE_PWM_DIRECT       18 
-        #define PIN_MODE_PWM_FOLLOW_DIRECT    19 
-        #define PIN_MODE_PWM_QUEUE_FIXED_PERIOD 20 
-        #define PIN_MODE_PWM_QUEUE_VARIABLE_PERIOD 21 
-        #define PIN_MODE_STEPPER_UN4 23
-        #define PIN_MODE_HW_PULSE_WIDTH 24
-        #define PIN_MODE_LOOKUP_2D 25
-        #define PIN_MODE_SPI_MASTER 26
-        #define PIN_MODE_HD44780_GENERIC 27
-        #define PIN_MODE_UART_RX 28
-        #define PIN_MODE_UART_TX 29
-        #define PIN_MODE_REMOTE 30
-        #define PIN_MODE_DATALOGGER 31
-	#define PIN_MODE_MIN_MAX 32
-	#define PIN_MODE_SLOW_PWM 33
-	#define PIN_MODE_DMA_WIGGLE 34
-	#define PIN_MODE_QUADRATURE_ENC 35
-	#define PIN_MODE_ANALOG_OUT_DIRECT 36
-	#define PIN_MODE_ANALOG_OUT_FOLLOW 37
-	#define PIN_MODE_THROUGHPUT_ANALOG 38
-	#define PIN_MODE_MAX7219 39
-	#define PIN_MODE_TEST 0xE9
-        #define PIN_MODE_USER_0            0xF0
-        #define PIN_MODE_USER_1            0xF1
-        #define PIN_MODE_USER_2            0xF2
-        #define PIN_MODE_USER_3 0xF3 
-        #define PIN_MODE_USER_4 0xF4 
-#endif
+
 typedef enum 
 {
 	PPS_OUTPUT_None = 0, //(Pin Disabled) —

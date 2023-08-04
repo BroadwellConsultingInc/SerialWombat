@@ -100,6 +100,8 @@ Typedefs</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a2a1446c366706cdecb294e183f1cd263"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="resistance_input_8c.html#a2a1446c366706cdecb294e183f1cd263">GetADCConversion</a> (uint8_t pin)</td></tr>
 <tr class="separator:a2a1446c366706cdecb294e183f1cd263"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37e1632b749cb5d77babcb8548d5ccf8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="resistance_input_8c.html#a37e1632b749cb5d77babcb8548d5ccf8">initResistanceInputSimple</a> (void)</td></tr>
+<tr class="separator:a37e1632b749cb5d77babcb8548d5ccf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a485d1d293352425f3d6dc44175f802b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="resistance_input_8c.html#a485d1d293352425f3d6dc44175f802b2">initResistanceInput</a> (void)</td></tr>
 <tr class="separator:a485d1d293352425f3d6dc44175f802b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae7ebbffe202100435806213f7bf21e2f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="resistance_input_8c.html#ae7ebbffe202100435806213f7bf21e2f">updateResistanceInput</a> ()</td></tr>
@@ -176,12 +178,12 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <pre class="fragment">\brief Initialization routine for Analog Input
 </pre><hr  />
-<h2><a class="anchor" id="autotoc_md62"></a>
+<h2><a class="anchor" id="autotoc_md82"></a>
 Retrevial of Raw A/D conversions</h2>
 <p>Configure the A/D using the CONFIGURE_CHANNEL_MODE_0 command before reading values. <br  />
  Raw A/D conversions are stored in the Pin's 16-bit Public data area. Use the Read Pin Buffer command to retreive it.</p>
 <hr  />
-<h2><a class="anchor" id="autotoc_md64"></a>
+<h2><a class="anchor" id="autotoc_md84"></a>
 CONFIGURE_CHANNEL_MODE_0:</h2>
 <p>Initialize Resistance Input. Disables averaged and filtered values.</p>
 <table class="markdownTable">
@@ -200,6 +202,24 @@ CONFIGURE_CHANNEL_MODE_0:</h2>
 </blockquote>
 <hr  />
  
+</div>
+</div>
+<a id="a37e1632b749cb5d77babcb8548d5ccf8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37e1632b749cb5d77babcb8548d5ccf8">&#9670;&nbsp;</a></span>initResistanceInputSimple()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initResistanceInputSimple </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
 </div>
 </div>
 <a id="ae7ebbffe202100435806213f7bf21e2f"></a>

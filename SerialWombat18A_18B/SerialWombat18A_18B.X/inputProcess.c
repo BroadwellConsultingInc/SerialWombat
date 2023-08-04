@@ -1,3 +1,24 @@
+/*
+Copyright 2022-2023 Broadwell Consulting Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a 
+ * copy of this software and associated documentation files (the "Software"), 
+ * to deal in the Software without restriction, including without limitation 
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+ * and/or sell copies of the Software, and to permit persons to whom the 
+ * Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in 
+ * all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR 
+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
+ * OTHER DEALINGS IN THE SOFTWARE.
+*/
 #include "serialWombat.h"
 #include "inputProcess.h"
 void inputProcessInit(inputProcess_t* inputProcess)
@@ -74,8 +95,10 @@ uint16_t inputProcessProcess(inputProcess_t* inputProcess, uint16_t inputValue)
                     }
                     else
                     {
-                        uint32_t temp = 65536/(inputProcess->scaleRange.high - inputProcess->scaleRange.low);
-                        temp *= inputValue - inputProcess->scaleRange.low;
+                        uint32_t temp = inputValue - inputProcess->scaleRange.low;
+                        temp *= 65536;
+                        temp /= (inputProcess->scaleRange.high - inputProcess->scaleRange.low);
+                        inputValue = temp;
                     }
                     
                 }
@@ -256,11 +279,13 @@ void inputProcessCommProcess(inputProcess_t* inputProcess)
             inputProcess->scaleRange.low = RXBUFFER16(4);
             inputProcess->scaleRange.high= RXBUFFER16(6);
         }
+        break;
         
          case 7:
         {
             inputProcess->mxb.m =(int32_t) RXBUFFER32(4);
         }
+         break;
         case 8:
 		{
             inputProcess->transformMode = INPUT_TRANSFORM_MODE_LINEAR_MXB;
