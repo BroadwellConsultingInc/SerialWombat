@@ -51,7 +51,7 @@
 
 //#define I2C_DEBUG_OUTPUT
 #ifdef I2C_DEBUG_OUTPUT
-#define OUTPUT_I2C_DEBUG(_value) {LATB = (_value <<11);  LATBbits.LATB10= 1;Nop();Nop();Nop();Nop(); LATBbits.LATB10 = 0;}
+#define OUTPUT_I2C_DEBUG(_value) {LATB = (_value <<7);  LATBbits.LATB6= 1;Nop();Nop();Nop();Nop(); LATBbits.LATB6 = 0;}
 #warning I2C_DEBUG_OUTPUT ENABLED!   PORT B DMA Disabled!
 #else
 #define OUTPUT_I2C_DEBUG(_value){}
@@ -162,7 +162,8 @@ void I2C2_Initialize(void) {
     I2C2CONL = 0x8000;
 
     I2C2CONHbits.AHEN = 1; 
-    I2C2CONHbits.PCIE = 1; //JABSTOP  enable stop interrupt
+    I2C2CONHbits.DHEN = 1;  //JAB 20230811
+    I2C2CONHbits.PCIE = 1; // STOP interrupt
     // BCL disabled; D_nA disabled; R_nW disabled; P disabled; S disabled; I2COV disabled; IWCOL disabled; 
     I2C2STAT = 0x00;
     // ADD 49; 
@@ -203,7 +204,6 @@ void __attribute__((interrupt, no_auto_psv)) _SI2C2Interrupt(void)
 	static bool prior_address_match = false;
 	static bool not_busy = true;
 	uint8_t dummy;
-
 	// NOTE: The periph driver will always acknowledge 
 	//       any address match.
 	DebugLastPoint = 99;
@@ -214,15 +214,19 @@ void __attribute__((interrupt, no_auto_psv)) _SI2C2Interrupt(void)
 	{
         if (wombatI2CRxDataCount < 8)
         {
+            OUTPUT_I2C_DEBUG(0x0D);
             //Short frame.  Discard it.
             wombatI2CRxDataCount = 0;
         }
+        i2c2_periph_state = S_PERIPH_IDLE; //JAB 20230811
+        OUTPUT_I2C_DEBUG(0x0E);
 		return;
 
 	}
 	switch (i2c2_periph_state) {
 		case S_PERIPH_IDLE:
 		case S_PERIPH_RECEIVE_MODE:
+             
 
 			/* When at S_PERIPH_RECEIVE_MODE this mode there
 			   will be two types of incoming transactions:
@@ -254,6 +258,7 @@ void __attribute__((interrupt, no_auto_psv)) _SI2C2Interrupt(void)
 						DebugLastPoint = 11;
 						OUTPUT_I2C_DEBUG(0x03);
 						OUTPUT_I2C_DEBUG(wombatI2CRxDataCount);
+                        INTERRUPT_GlobalDisable();
 						dummy = I2C2_RECEIVE_REG; 
 
 						I2C2CONLbits.ACKDT = 0; 
@@ -268,15 +273,17 @@ void __attribute__((interrupt, no_auto_psv)) _SI2C2Interrupt(void)
 						}
 						else
 						{
+
 							I2C2_RELEASE_SCL_CLOCK_CONTROL_BIT = 1;
 							DebugLastPoint = 13;
 							OUTPUT_I2C_DEBUG(0x05);
 						}
-
+                        INTERRUPT_GlobalEnable();
 						wombatI2CTxDataCount = 0;
 						// LATBbits.LATB10 = 0;
 					} else 
 					{
+                       
 						nextInterruptAddress = false;
 						//LATBbits.LATB13 = 1;
 						dummy = I2C2_RECEIVE_REG; 
@@ -301,19 +308,22 @@ void __attribute__((interrupt, no_auto_psv)) _SI2C2Interrupt(void)
 						nextInterruptAddress = true;
 						DebugLastPoint = 5;
 						OUTPUT_I2C_DEBUG(0x09);
+                        INTERRUPT_GlobalDisable();
 						dummy = I2C2_RECEIVE_REG;
 						I2C2CONLbits.ACKDT = 0; 
 						wombatI2CTxDataCount= 0;
 						if (ResponsePending && !ResponseAvailable) 
 						{ 
+                            INTERRUPT_GlobalEnable();
 							TX_ClockStretching = CLOCK_STRETCHING_MAX;
 							DebugLastPoint = 51;
 							OUTPUT_I2C_DEBUG(0x0A);
 							return;
 						}
 						else
-						{
+						{                         
 							I2C2_RELEASE_SCL_CLOCK_CONTROL_BIT = 1;
+                            INTERRUPT_GlobalEnable();
 							DebugLastPoint = 52;
 							OUTPUT_I2C_DEBUG(0x0B);
 						}
@@ -321,7 +331,7 @@ void __attribute__((interrupt, no_auto_psv)) _SI2C2Interrupt(void)
 					else 
 					{
 						DebugLastPoint = 6;
-						OUTPUT_I2C_DEBUG(12);
+						OUTPUT_I2C_DEBUG(0x0C);
 						// read the receive register only when
 						// we are ready for the next transaction.
 						// this one is a dummy read
@@ -344,7 +354,7 @@ void __attribute__((interrupt, no_auto_psv)) _SI2C2Interrupt(void)
 			else
 			{
 				DebugLastPoint = 100;
-				OUTPUT_I2C_DEBUG(18);
+				OUTPUT_I2C_DEBUG(0x12);
 			}
 
 			// this if statement is to make sure we only save incoming
@@ -434,12 +444,12 @@ void __attribute__((interrupt, no_auto_psv)) _SI2C2Interrupt(void)
 				if (wombatI2CTxDataCount < 8)
 				{
 					DebugLastPoint = 17;
-					OUTPUT_I2C_DEBUG(26);
+					OUTPUT_I2C_DEBUG(0x1A);
 				}
 				else
 				{
 					DebugLastPoint = 177;
-					OUTPUT_I2C_DEBUG(27);
+					OUTPUT_I2C_DEBUG(0x1B);
 				}
 			}
 			break;
@@ -486,12 +496,27 @@ inline void __attribute__((always_inline)) I2C2_TransmitProcess(void) {
 
 inline void __attribute__((always_inline)) I2C2_ReceiveProcess(void) {
 OUTPUT_I2C_DEBUG(wombatI2CRxDataCount);
+
+
 if (discardI2CData || nextInterruptAddress)
 {
     OUTPUT_I2C_DEBUG(31);
     OUTPUT_I2C_DEBUG(31);
     OUTPUT_I2C_DEBUG(31);
     discardI2CData = false;
+}
+else if (!I2C2STATbits.ACKTIM)
+{
+    OUTPUT_I2C_DEBUG(0x14);
+    OUTPUT_I2C_DEBUG(0x14);
+    OUTPUT_I2C_DEBUG(0x14);
+    return;
+}if (!I2C2STATbits.ACKTIM)
+{
+    OUTPUT_I2C_DEBUG(0x14);
+    OUTPUT_I2C_DEBUG(0x14);
+    OUTPUT_I2C_DEBUG(0x14);
+    return;
 }
 else if (wombatI2CRxDataCount < 8) 
 {
@@ -505,13 +530,16 @@ else if (wombatI2CRxDataCount < 8)
         } else {
             ResponsePending = false;
         }
+         I2C2_RELEASE_SCL_CLOCK_CONTROL_BIT = 1;
+       
     }
     else
     {
         uint8_t dummy;
                   dummy = I2C2_RECEIVE_REG; 
+                   I2C2_RELEASE_SCL_CLOCK_CONTROL_BIT = 1;
     }
-
+   
 
 }
 

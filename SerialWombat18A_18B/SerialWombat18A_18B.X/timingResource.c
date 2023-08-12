@@ -1069,8 +1069,8 @@ void timingResourceInterruptActivate(TIMING_RESOURCE_t resource)
 				OC1RS = 0x00;
 				OC1R = timingResources[TIMING_RESOURCE_OC2].highTime_uS;
 				OC1TMR = 0;       
-				IFS0bits.OC1IF = 0;
-				IEC0bits.OC1IE = 1;
+				IFS0bits.OC2IF = 0;
+				IEC0bits.OC2IE = 1;
 				OC1CON1 = 0x1C02;
 				
         }
@@ -1135,7 +1135,8 @@ extern bool vgaEnable;
 void __attribute__ ( ( interrupt, no_auto_psv ) ) _CCT3Interrupt (  )
 {
 	if (vgaEnable)
-	{
+	{ 
+        IFS2bits.CCT3IF = 0;
 		while(CCP3TMRL < 0x80); // Delay for a bit to allow any interrupt jitter to settle out. 
 
 		// Load 32 bits of zero (black) into the SPI before turning on the DMA.  This handles the porch and black
@@ -1145,6 +1146,13 @@ void __attribute__ ( ( interrupt, no_auto_psv ) ) _CCT3Interrupt (  )
 		SPI1BUFL = 0;
 		SPI1BUFL = 0;
 
+        // Enable DMA channel 5 
+		DMACH5bits.CHEN = 1;
+		DMACH5bits.CHREQ = 1;
+		//IFS0bits.OC2IF = 0;
+		IFS3bits.DMA5IF = 0;
+		IEC3bits.DMA5IE = 1;
+        
 		// Set up R/G/B by connecting SDO to pins 16/15/14 or grounding them  using the PPS
 		if (vgaNextColor & 0x4)
 		{
@@ -1172,15 +1180,6 @@ void __attribute__ ( ( interrupt, no_auto_psv ) ) _CCT3Interrupt (  )
 			RPOR5bits.RP10R = 0;
 		}
 
-
-
-		// Enable DMA channel 5 
-		DMACH5bits.CHEN = 1;
-		DMACH5bits.CHREQ = 1;
-		//IFS0bits.OC2IF = 0;
-		IFS3bits.DMA5IF = 0;
-		IEC3bits.DMA5IE = 1;
-		IFS2bits.CCT3IF = 0;
 		return;
 	}
 	else
@@ -1216,7 +1215,13 @@ volatile uint16_t OC1InterruptCount = 0;
 void __attribute__ ( ( interrupt, no_auto_psv ) ) _OC1Interrupt (  )
 {
     
-    vgaNextLine = 0;
+ 
+    if (vgaEnable)
+    {
+           vgaNextLine = 0;
+          IFS0bits.OC1IF = 0;
+          return;
+    }
     
     if (timingResources[TIMING_RESOURCE_OC1].callBack != NULL)
     {

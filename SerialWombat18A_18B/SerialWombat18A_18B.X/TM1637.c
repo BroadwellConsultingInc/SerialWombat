@@ -272,7 +272,6 @@ typedef enum {
     TM1637_OUTPUT_STATE_IDLE = 0xF4
 }TM1637_OUTPUT_STATE_t;
 
-//TODO update documentation
 /*!
     \brief Initialization routine for TM1637 Seven Segment 
 

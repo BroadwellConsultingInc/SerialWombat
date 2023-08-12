@@ -36,8 +36,8 @@ used for certain things.  Pins must be:
 VGA VSYNC (VGA Pin 14) -> 100 ohm Resistor -> SW Pin 18
 VGA HSYNC (VGA Pin 13) -> 100 ohm Resistor ->SW Pin 17
 VGA Red	 (VGA Pin 1) -> 280 ohm Resistor -> SW Pin 16
-VGA Blue (VGA Pin 2) -> 280 ohm Resistor -> SW Pin 15
-VGA Green (VGA Pin 3) -> 280 ohm Resistor -> SW Pin 14
+VGA Green (VGA Pin 2) -> 280 ohm Resistor -> SW Pin 15
+VGA Blue (VGA Pin 3) -> 280 ohm Resistor -> SW Pin 14
 
 Thank you to Nick Gammon who published a very informative article on driving a VGA monitor here:
 http://www.gammon.com.au/forum/?id=11608
@@ -391,20 +391,20 @@ void initVGA (void)
 					// The end of the DMA will fire an interrupt that will point the DMA to the next (or same) line
 
 					PinLow(VGA_HSYNC_PIN);
-					SetPPSOutput(VGA_HSYNC_PIN, 18);  // CCP3
+						SetPPSOutput(VGA_HSYNC_PIN, 18);  // CCP3
 
 					vga_SPI1_Initialize();
 					PinLow(VGA_G_PIN);
 					PinLow(VGA_B_PIN);
 					PinLow(VGA_R_PIN);
-					SetPPSOutput(VGA_G_PIN,0x0007);    //SPI pin
+						SetPPSOutput(VGA_G_PIN,0x0007);    //SPI pin
 					OC1CON1 = 0x0006;
 					CCP3CON1L = 0x8405;
 
 					VGAStartDMA(vgaZeroBuffer);
 
 					IPC10bits.CCT3IP = 6; // 2nd highest
-					IPC0bits.OC1IP = 7;
+					IPC0bits.OC1IP = 6;
 					IPC1bits.OC2IP = 6; // 2nd highest
 					IPC15bits.DMA5IP = 6; // 2nd highest
 					IEC2bits.CCT3IE = 1;
@@ -588,7 +588,7 @@ void VGA_dma_interrupt()
 			vgaLineCopy = 3;
 			++vgaDisplayLine;
 		}
-        IEC0bits.OC1IE = 1;
+     //   IEC0bits.OC1IE = 1;
 	}
 	else
 	{

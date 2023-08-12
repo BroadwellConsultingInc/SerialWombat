@@ -87,7 +87,7 @@ int main(void)
 	SYSTEM_Initialize();
     while (!HLVDCONbits.BGVST); // Wait for Band Gap to stabilize.
 
-    SPI3CON1L = 0x8020;  // Make SPI3 Leader, CS enabled as high data source for PPS
+    SPI3CON1L = 0x8020;  // Make SPI3 Leader, CS enabled as high data source for PPS  //TODO Is this debug code?
         SPI3CON1H = 0x0010;
 
         timingResourceManagerInit();
@@ -96,6 +96,7 @@ int main(void)
     processCapturedCommands();
     
     INTERRUPT_GlobalEnable();
+    
     
 	while (1)
 	{

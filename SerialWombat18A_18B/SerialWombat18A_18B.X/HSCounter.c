@@ -50,7 +50,6 @@ typedef struct HSCounter_n{
 
 ----
 
-//TODO
 
 CONFIGURE_CHANNEL_MODE_0:
 ---------------------

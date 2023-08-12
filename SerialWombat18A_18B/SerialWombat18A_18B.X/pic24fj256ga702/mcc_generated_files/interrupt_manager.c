@@ -78,7 +78,7 @@ void INTERRUPT_Initialize (void)
   //BDB          IPC12bits.MI2C2IP = 1;
     //    SICI: SI2C2 - I2C2 Periph Events
     //    Priority: 1
-  //BDB          IPC12bits.SI2C2IP = 1;
+           IPC12bits.SI2C2IP = 4;
     IPC0bits.T1IP = 5; // Raise above default 4.  //TODO is this necessary or desirable?  I don't remember why I did this
 
 }

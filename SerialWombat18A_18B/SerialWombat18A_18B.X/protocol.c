@@ -56,7 +56,7 @@ timingResourceManager_t TimingResourceManagerCopyBuffer;
 volatile unsigned short crcResultCRCCCITT = 0;
 //#define I2C_DEBUG_OUTPUT
 #ifdef I2C_DEBUG_OUTPUT
-#define OUTPUT_I2C_DEBUG(_value) {LATB = (_value <<11);  LATBbits.LATB10= 1;Nop();Nop();Nop();Nop(); LATBbits.LATB10 = 0;}
+#define OUTPUT_I2C_DEBUG(_value) {LATB = (_value <<7);  LATBbits.LATB6= 1;Nop();Nop();Nop();Nop(); LATBbits.LATB6 = 0;}
 #warning I2C_DEBUG_OUTPUT ENABLED!   PORT B DMA Disabled!
 #else
 #define OUTPUT_I2C_DEBUG(_value){}
@@ -1957,6 +1957,9 @@ void ProcessRx(void)
 	if (SW_I2CAddress != 0)  // Use I2C
 	{
 
+#ifdef I2C_DEBUG_OUTPUT
+        TRISB = 0;
+#endif
 		extern volatile uint8_t wombatI2CRxData[8];
 		extern volatile uint8_t wombatI2CTxData[8];
 		extern volatile uint8_t wombatI2CRxDataCount;
@@ -1981,13 +1984,12 @@ void ProcessRx(void)
 				// The fact that the host is trying to send us another packet means it doesn't care about the response
 				// from the packet we're about to process.
 				TX_ClockStretching = 0; 
-
 				I2C2CONLbits.SCLREL	 = 1; // Release clock stretch in hardware
 			}
 
 			ProcessRxbuffer();
 		
-			INTERRUPT_GlobalDisable();
+			IEC3bits.SI2C2IE = 0; //INTERRUPT_GlobalDisable();
 			memcpy((void*)wombatI2CTxData,(const void*)Txbuffer,8);
 			ResponseAvailable = true;
 			ResponsePending = false;
@@ -1997,13 +1999,11 @@ void ProcessRx(void)
 				OUTPUT_I2C_DEBUG(28);
 				// If we're in the middle of stretching a 2nd request to send us data to from the host, release.  
 				RX_ClockStretching = 0;
-
 				ResponseAvailable = false;
 			}
 
 			if (TX_ClockStretching && ResponseAvailable)
 			{
-
 				OUTPUT_I2C_DEBUG(29);
 				// If we were clock stretching waiting for a response to the last packet to be generated,
 				// it's ready now, so stop stretching the clock.
@@ -2015,10 +2015,8 @@ void ProcessRx(void)
 				//I2C2TRN =   wombatI2CTxData[ 0 ];   
 				wombatI2CTxDataCount = 0;
 
-
-
 			}
-			INTERRUPT_GlobalEnable();
+			IEC3bits.SI2C2IE = 1; //INTERRUPT_GlobalEnable();
 			OUTPUT_I2C_DEBUG(0x11);
 			OUTPUT_I2C_DEBUG(0x11);
 		}
@@ -2391,7 +2389,7 @@ void processCapturedCommands()
 
 static void storeCapturedPackets()
 {
-                        //TODO check that Capturing packets is false, verify that data is different from what's in the flash now before erasing / writing
+                        //TODO check that Capturing packets is false, 
                     
                     // Erase block - 32 bit address at rxbuffer[2], 16 bit length at rxbuffer[6]
 					// Up to caller to assure the block is aligned.
