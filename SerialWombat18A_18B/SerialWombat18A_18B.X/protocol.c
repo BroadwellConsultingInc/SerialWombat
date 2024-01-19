@@ -138,6 +138,7 @@ void ProcessRxbuffer( void )
 	switch (Rxbuffer[0])
 	{
 		case COMMAND_ASCII_ECHO:
+        case COMMAND_DIAGNOSTIC_MESSAGE:
         {
 
         }
@@ -577,7 +578,7 @@ Or similar
             }
 			Txbuffer[5] = '2';	     
 			Txbuffer[6] = '1';	     
-			Txbuffer[7] = '0';	     
+			Txbuffer[7] = '1';	     
 
 			break;
 		case COMMAND_BINARY_READ_PIN_BUFFFER:
@@ -1417,6 +1418,19 @@ Write 0x32 the byte at RAM address 0x0247.
 				break;
                
             }
+        }
+        break;
+        case COMMAND_ADJUST_FREQUENCY:
+        {
+            if (RXBUFFER16(1) > 0)
+            {
+                OSCTUN +=((uint8_t)(RXBUFFER16(1)));
+            }
+            if (RXBUFFER16(3) > 0)
+            {
+                OSCTUN -=((uint8_t) (RXBUFFER16(3)));
+            }
+            TXBUFFER16(5,OSCCON);
         }
         break;
         case COMMAND_CALIBRATE_ANALOG:

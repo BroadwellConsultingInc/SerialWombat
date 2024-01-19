@@ -38,17 +38,17 @@ typedef enum {
 		DUTYCYCLE_ON_HTL_TRANSITION = 8,
 }PULSE_TIMER_PUBLIC_DATA;
 typedef struct pulseTimer_n{
-    inputProcess_t inputProcess;
-    uint16_t PulseCounter;
+	inputProcess_t inputProcess;
+	uint16_t PulseCounter;
 	uint16_t PulseLowTime;
-    uint16_t PulseHighTime;
+	uint16_t PulseHighTime;
 	uint16_t lastTimerTime;
-    uint16_t pulseTimeoutSetting;
-    uint16_t pulseTimeoutCounter;
+	uint16_t pulseTimeoutSetting;
+	uint16_t pulseTimeoutCounter;
 	uint8_t readState:1;
 	uint8_t units: 1; // 0 = uS, 1 = mS
-    uint8_t publicDataOutput;
-	
+	uint8_t publicDataOutput;
+
 }pulseTimer_t;
 
 #define COUNTS_TO_uS(_a) ((uint32_t)( _a * (uint32_t) (65536.0 * 1000000 / DMA_FREQUENCY + .5)) >> 16)
@@ -56,9 +56,9 @@ typedef struct pulseTimer_n{
 
 void initPulseTimer()
 {
-    BUILD_BUG_ON( sizeof(pulseTimer_t) >  BYTES_AVAILABLE_INPUT_DMA ); 
+	BUILD_BUG_ON( sizeof(pulseTimer_t) >  BYTES_AVAILABLE_INPUT_DMA ); 
 	pulseTimer_t* pulseTimer = (pulseTimer_t*) CurrentPinRegister;
-if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_PULSE_TIMER)
+	if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_PULSE_TIMER)
 	{
 		error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
 		return;
@@ -83,7 +83,7 @@ if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode 
 				{
 					CurrentPinNoPullUp();
 				}
-                inputProcessInit(&pulseTimer->inputProcess);
+				inputProcessInit(&pulseTimer->inputProcess);
 
 			}
 			break;
@@ -140,22 +140,22 @@ if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode 
 				}
 			}
 			break;
-        case CONFIGURE_CHANNEL_MODE_4:
-        {
-            pulseTimer->pulseTimeoutSetting = RXBUFFER16(3);
-        }
-        break;
+		case CONFIGURE_CHANNEL_MODE_4:
+			{
+				pulseTimer->pulseTimeoutSetting = RXBUFFER16(3);
+			}
+			break;
 
 		case CONFIGURE_CHANNEL_MODE_INPUT_PROCESSING:
 			{
 				inputProcessCommProcess(&pulseTimer->inputProcess);
 			}
 			break;
-                    default:
-        {
-            error(SW_ERROR_INVALID_COMMAND);      
-        }
-        break;
+		default:
+			{
+				error(SW_ERROR_INVALID_COMMAND);      
+			}
+			break;
 	}
 
 
@@ -165,26 +165,26 @@ void updatePulseTimer()
 {
 	//  pulseIn_t* pulse = (pulseIn_t*) CurrentPinRegister;
 	pulseTimer_t* pulseTimer = (pulseTimer_t*) CurrentPinRegister;
-    debugPulseTimer = pulseTimer;
+	debugPulseTimer = pulseTimer;
 	uint8_t sample;
 
-    if (pulseTimer->pulseTimeoutSetting > 0 )
-    {
-        if (pulseTimer->pulseTimeoutCounter < 65535)
-        {
-        ++ pulseTimer->pulseTimeoutCounter;
-        }
-        
-        if (pulseTimer->publicDataOutput == FREQUENCY_ON_LTH_TRANSITION ||
-              pulseTimer->publicDataOutput == FREQUENCY_ON_HTL_TRANSITION  )
-        {
-               if (pulseTimer->pulseTimeoutCounter > pulseTimer->pulseTimeoutSetting)
-                            {
-                                CurrentPinRegister->generic.buffer = inputProcessProcess(&pulseTimer->inputProcess,0);
-                            }
-                           
-        }
-    }
+	if (pulseTimer->pulseTimeoutSetting > 0 )
+	{
+		if (pulseTimer->pulseTimeoutCounter < 65535)
+		{
+			++ pulseTimer->pulseTimeoutCounter;
+		}
+
+		if (pulseTimer->publicDataOutput == FREQUENCY_ON_LTH_TRANSITION ||
+				pulseTimer->publicDataOutput == FREQUENCY_ON_HTL_TRANSITION  )
+		{
+			if (pulseTimer->pulseTimeoutCounter > pulseTimer->pulseTimeoutSetting)
+			{
+				CurrentPinRegister->generic.buffer = inputProcessProcess(&pulseTimer->inputProcess,0);
+			}
+
+		}
+	}
 	if (pulseTimer->units == 0)
 	{
 		sample =  PulseInGetOldestDMABit(CurrentPin);
@@ -202,74 +202,99 @@ void updatePulseTimer()
 			if (pulseTimer->readState)
 			{
 				//Last pin was high
-				++pulseTimer->lastTimerTime;
+				/*
+                while(sample == pulseTimer->readState)
+                {
+                    ++pulseTimer->lastTimerTime;
+                		sample = PulseInGetOldestDMABit(CurrentPin);
+                }*/
+                ++pulseTimer->lastTimerTime; // The bit we sampled above
+                if (pulseTimer->units == 0)
+                {
+                pulseTimer->lastTimerTime += PulseInDiscardUntilLow(CurrentPin);
+                sample = PulseInGetOldestDMABit(CurrentPin);
+                }
+                else
+                {
+                    sample = 2;
+                }
+                        
 			}
 			else
 			{
 				//Last pin was low
 				pulseTimer->PulseLowTime = pulseTimer->lastTimerTime;
-	pulseTimer->lastTimerTime = 0;
+				pulseTimer->lastTimerTime = 1;
 				pulseTimer->readState = 1;
-                		switch (pulseTimer->publicDataOutput)
+				switch (pulseTimer->publicDataOutput)
 				{
 					case LOW_TIME:
 						{
-CurrentPinRegister->generic.buffer = inputProcessProcess(&pulseTimer->inputProcess,COUNTS_TO_uS(pulseTimer->PulseLowTime));
+							CurrentPinRegister->generic.buffer = inputProcessProcess(&pulseTimer->inputProcess,COUNTS_TO_uS(pulseTimer->PulseLowTime));
 						}
 						break;
 
 
-						
+
 
 					case PERIOD_ON_LTH_TRANSITION:
 						{
- uint32_t period = pulseTimer->PulseHighTime + pulseTimer->PulseLowTime;
-period = COUNTS_TO_uS( period);
-                            if (period > 65535)
-                            {
-                                period = 65535;
-                            }
-                            CurrentPinRegister->generic.buffer = inputProcessProcess(&pulseTimer->inputProcess,period);
+							uint32_t period = pulseTimer->PulseHighTime + pulseTimer->PulseLowTime;
+							period = COUNTS_TO_uS( period);
+							if (period > 65535)
+							{
+								period = 65535;
+							}
+							CurrentPinRegister->generic.buffer = inputProcessProcess(&pulseTimer->inputProcess,period);
 						}
 						break;
 
-					
+
 
 					case FREQUENCY_ON_LTH_TRANSITION:
 						{
-uint32_t period = pulseTimer->PulseHighTime + pulseTimer->PulseLowTime;
-                            
-                            uint32_t freq = COUNTS_TO_Hz(period);
-                            if (freq > 65535)
-                            {
-                                freq = 65535;
-                            }
+							uint32_t period = pulseTimer->PulseHighTime + pulseTimer->PulseLowTime;
 
-                            CurrentPinRegister->generic.buffer = inputProcessProcess(&pulseTimer->inputProcess,(uint16_t)freq);
-                            
+							uint32_t freq = COUNTS_TO_Hz(period);
+							if (freq > 65535)
+							{
+								freq = 65535;
+							}
+
+							CurrentPinRegister->generic.buffer = inputProcessProcess(&pulseTimer->inputProcess,(uint16_t)freq);
+
 						}
 						break;
 
 
 					case DUTYCYCLE_ON_LTH_TRANSITION:
 						{
-                            uint32_t period = pulseTimer->PulseHighTime + pulseTimer->PulseLowTime;
-                            uint32_t duty = pulseTimer->PulseHighTime ;
-                            duty <<=16;
-                            duty /= period;
-                            CurrentPinRegister->generic.buffer = inputProcessProcess(&pulseTimer->inputProcess,duty);
+							uint32_t period = pulseTimer->PulseHighTime + pulseTimer->PulseLowTime;
+							uint32_t duty = pulseTimer->PulseHighTime ;
+							duty <<=16;
+							duty /= period;
+							CurrentPinRegister->generic.buffer = inputProcessProcess(&pulseTimer->inputProcess,duty);
 						}
 						break;
-                        					case PULSE_COUNT:
-case HIGH_TIME:
-    case FREQUENCY_ON_HTL_TRANSITION:
-    case PERIOD_ON_HTL_TRANSITION:
-        case DUTYCYCLE_ON_HTL_TRANSITION:
-                    default:
-                    {
-                    }
-                    break;
+					case PULSE_COUNT:
+					case HIGH_TIME:
+					case FREQUENCY_ON_HTL_TRANSITION:
+					case PERIOD_ON_HTL_TRANSITION:
+					case DUTYCYCLE_ON_HTL_TRANSITION:
+					default:
+						{
+						}
+						break;
 				}
+                
+                		if (pulseTimer->units == 0)
+	{
+		sample =  PulseInGetOldestDMABit(CurrentPin);
+	}
+	else
+	{
+		sample = 2;
+	}
 			}
 		}
 		else
@@ -279,80 +304,103 @@ case HIGH_TIME:
 			{
 
 				pulseTimer->PulseHighTime =  pulseTimer->lastTimerTime;
-				
-				pulseTimer->lastTimerTime = 0;
+
+				pulseTimer->lastTimerTime = 1;
 				pulseTimer->readState = 0;
 				++pulseTimer->PulseCounter;
-                pulseTimer->pulseTimeoutCounter = 0;
-                	switch (pulseTimer->publicDataOutput)
+				pulseTimer->pulseTimeoutCounter = 0;
+				switch (pulseTimer->publicDataOutput)
 				{
 					case HIGH_TIME:
 						{
-                            CurrentPinRegister->generic.buffer = inputProcessProcess(&pulseTimer->inputProcess,COUNTS_TO_uS( pulseTimer->PulseHighTime));
+							CurrentPinRegister->generic.buffer = inputProcessProcess(&pulseTimer->inputProcess,COUNTS_TO_uS( pulseTimer->PulseHighTime));
 						}
 						break;
 
 					case PERIOD_ON_HTL_TRANSITION:
 						{
-                            uint32_t period = pulseTimer->PulseHighTime + pulseTimer->PulseLowTime;
-                            
-                            period = COUNTS_TO_uS( period);
-                            if (period > 65535)
-                            {
-                                period = 65535;
-                            }
-                           CurrentPinRegister->generic.buffer = inputProcessProcess(&pulseTimer->inputProcess,period);
+							uint32_t period = pulseTimer->PulseHighTime + pulseTimer->PulseLowTime;
+
+							period = COUNTS_TO_uS( period);
+							if (period > 65535)
+							{
+								period = 65535;
+							}
+							CurrentPinRegister->generic.buffer = inputProcessProcess(&pulseTimer->inputProcess,period);
 						}
 						break;
 
 					case FREQUENCY_ON_HTL_TRANSITION:
 						{
-                            uint32_t period = pulseTimer->PulseHighTime + pulseTimer->PulseLowTime;
-                            
-                            uint32_t freq = COUNTS_TO_Hz(period);
-                            if (freq > 65535)
-                            {
-                                freq = 65535;
-                            }
+							uint32_t period = pulseTimer->PulseHighTime + pulseTimer->PulseLowTime;
 
-                             CurrentPinRegister->generic.buffer = inputProcessProcess(&pulseTimer->inputProcess,(uint16_t)freq);
-                            
+							uint32_t freq = COUNTS_TO_Hz(period);
+							if (freq > 65535)
+							{
+								freq = 65535;
+							}
+
+							CurrentPinRegister->generic.buffer = inputProcessProcess(&pulseTimer->inputProcess,(uint16_t)freq);
+
 						}
 						break;
 
 					case DUTYCYCLE_ON_HTL_TRANSITION:
 						{
-                            uint32_t period = pulseTimer->PulseHighTime + pulseTimer->PulseLowTime;
-                            uint32_t duty = pulseTimer->PulseHighTime ;
-                            duty <<=16;
-                            duty /= period;
-                            CurrentPinRegister->generic.buffer = inputProcessProcess(&pulseTimer->inputProcess,duty);
+							uint32_t period = pulseTimer->PulseHighTime + pulseTimer->PulseLowTime;
+							uint32_t duty = pulseTimer->PulseHighTime ;
+							duty <<=16;
+							duty /= period;
+							CurrentPinRegister->generic.buffer = inputProcessProcess(&pulseTimer->inputProcess,duty);
 						}
 						break;
-                        					case PULSE_COUNT:
-                                            {
-                                                CurrentPinRegister->generic.buffer = pulseTimer->PulseCounter;
-                                            }
-                                            break;
-                                            
-case LOW_TIME:
-    case PERIOD_ON_LTH_TRANSITION:
-        case DUTYCYCLE_ON_LTH_TRANSITION:
-            					case FREQUENCY_ON_LTH_TRANSITION:
-                    default:
-                    {
-                    }
-                    break;
-				}
+					case PULSE_COUNT:
+						{
+							CurrentPinRegister->generic.buffer = pulseTimer->PulseCounter;
+						}
+						break;
 
+					case LOW_TIME:
+					case PERIOD_ON_LTH_TRANSITION:
+					case DUTYCYCLE_ON_LTH_TRANSITION:
+					case FREQUENCY_ON_LTH_TRANSITION:
+					default:
+						{
+						}
+						break;
+				}
+                if (pulseTimer->units == 0)
+	{
+		sample =  PulseInGetOldestDMABit(CurrentPin);
+	}
+	else
+	{
+		sample = 2;
+	} 
 			}
 			else
 			{
 				//Last pin was low
-				++pulseTimer->lastTimerTime;
+                /*
+				 while(sample == pulseTimer->readState)
+                {
+                    ++pulseTimer->lastTimerTime;
+                		sample = PulseInGetOldestDMABit(CurrentPin);
+                }
+                 */
+                pulseTimer->lastTimerTime ++;  // The bit we sampled to get here
+                if (pulseTimer->units == 0)
+                {
+                 pulseTimer->lastTimerTime += PulseInDiscardUntilHigh(CurrentPin);
+                sample = PulseInGetOldestDMABit(CurrentPin);
+                }
+                else
+                {
+                    sample = 2;
+                }
 			}
 		}
-		sample = PulseInGetOldestDMABit(CurrentPin);
+
 	} while ( pulseTimer->units == 0 && sample != 2 );
 }
 

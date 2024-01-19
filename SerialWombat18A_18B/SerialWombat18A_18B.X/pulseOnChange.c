@@ -614,7 +614,7 @@ void updatePulseOnChange()
         break;
         case   STATE_PULSING_ACTIVE:
         {
-            if (pulseOnChange->counter)
+            if (pulseOnChange->counter  && pulseOnChange->counter != 0xFFFF)
             {
                 -- pulseOnChange->counter;
             }
@@ -637,14 +637,6 @@ void updatePulseOnChange()
         break;
         case    STATE_PULSING_INACTIVE:
         {
-                  if (pulseOnChange->pwmPeriod > 0)
-                {
-                    timingResourcePWM(CurrentPinRegister->pulse_output.resource, pulseOnChange->pwmPeriod, 0);
-                }
-                else
-                {
-                SetCurrentPin(pulseOnChange->inactiveMode);
-                }
             if (pulseOnChange->counter)
             {
                 -- pulseOnChange->counter;
@@ -654,7 +646,17 @@ void updatePulseOnChange()
                 
                 pulseOnChange->counter = pulseOnChange->durationOn;
                 pulseOnChange->state = STATE_WAITING_FOR_PULSE;
+                return;
             }
+                  if (pulseOnChange->pwmPeriod > 0)
+                {
+                    timingResourcePWM(CurrentPinRegister->pulse_output.resource, pulseOnChange->pwmPeriod, 0);
+                }
+                else
+                {
+                SetCurrentPin(pulseOnChange->inactiveMode);
+                }
+            
            // return; // TODO future improvement: work on constant on
             
         }

@@ -45,7 +45,7 @@ pinRegister_t* CurrentPinRegister;
 
 void pinRegisterSizeCheck()
 {
-    BUILD_BUG_ON( sizeof(pinRegister_t) != 72 );
+    BUILD_BUG_ON( sizeof(pinRegister_t) != 96 );
 }
 
 void SetBuffer(uint8_t pin, uint16_t value)

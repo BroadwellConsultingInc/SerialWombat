@@ -564,10 +564,10 @@ uint8_t  PulseInGetOldestDMABit(uint8_t pin)
     }
 }
 
-void PulseInDiscardUntilLow(uint8_t pin)
+uint8_t PulseInDiscardUntilLow(uint8_t pin)
 {
      uint16_t* baseAddress;
-
+     uint8_t count = 0;
 	int nextDMAHWTransfer ; // The next DMA location that will be transferred by Hardware.  Don't overwrite this one.  We need to catch up to this.
     pinRegister_t* pinPtr = &PinUpdateRegisters[pin];
 	uint16_t bitmap = pinBitmap[pin];
@@ -590,15 +590,54 @@ void PulseInDiscardUntilLow(uint8_t pin)
      
         if( (baseAddress[pinPtr->pulse_input.lastDMA] & bitmap)  ==  0)
         {
-            return;
+            return count;
         }
         ++pinPtr->pulse_input.lastDMA;
         if (pinPtr->pulse_input.lastDMA >= SIZE_OF_DMA_ARRAY)
         {
             pinPtr->pulse_input.lastDMA = 0;
         }
+        ++count;
     }
-    return;
+    return count;
+}
+
+uint8_t PulseInDiscardUntilHigh(uint8_t pin)
+{
+     uint16_t* baseAddress;
+     uint8_t count = 0;
+	int nextDMAHWTransfer ; // The next DMA location that will be transferred by Hardware.  Don't overwrite this one.  We need to catch up to this.
+    pinRegister_t* pinPtr = &PinUpdateRegisters[pin];
+	uint16_t bitmap = pinBitmap[pin];
+   
+	if (pinPort[pin] == 0)
+	{
+		baseAddress = InputArrayA;
+         while (DMACNT2 == 0); // Wait for reload
+		nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMACNT2 ; 
+	}
+	else
+	{
+		baseAddress = InputArrayB;
+         while (DMACNT3 == 0); // Wait for reload
+		nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMACNT3 ;
+	}
+    
+    while (pinPtr->pulse_input.lastDMA != nextDMAHWTransfer)
+    {
+     
+        if(baseAddress[pinPtr->pulse_input.lastDMA] & bitmap) 
+        {
+            return count;
+        }
+        ++pinPtr->pulse_input.lastDMA;
+        if (pinPtr->pulse_input.lastDMA >= SIZE_OF_DMA_ARRAY)
+        {
+            pinPtr->pulse_input.lastDMA = 0;
+        }
+        ++count;
+    }
+    return count;
 }
 
 /// \return number of bits Skipped
