@@ -576,9 +576,9 @@ Or similar
             {
                Txbuffer[4] = 'A';//SERIAL_WOMBAT_HARDWARE_IDENTIFIER;	 
             }
-			Txbuffer[5] = '2';	     
+			Txbuffer[5] = '9';	     
 			Txbuffer[6] = '1';	     
-			Txbuffer[7] = '1';	     
+			Txbuffer[7] = '2';	     
 
 			break;
 		case COMMAND_BINARY_READ_PIN_BUFFFER:
@@ -2070,6 +2070,12 @@ void ProcessSetPin()
 		}
 		break;
 
+        case PIN_MODE_HBRIDGE:
+        {
+            void inithBridge(void);
+            inithBridge();
+        }
+        break;
         case PIN_MODE_THROUGHPUT_CONSUMER:
         {
             void initThroughputConsumer();
@@ -2266,7 +2272,14 @@ void ProcessSetPin()
             initVGA();
         }
         break;
-
+        
+        case PIN_MODE_QUEUED_PULSE_OUTPUT:
+        {
+            extern void initQueuedPulseOutput(void);
+            initQueuedPulseOutput();
+        }
+        break;
+        
 	case PIN_MODE_PS2_KEYBOARD:
 	{
 		extern void initPS2Keyboard(void);

@@ -73,6 +73,7 @@ typedef enum {
             SW_ERROR_UNKNOWN_QUEUE_TYPE = 48, ///< This Queue type is not supported on this firwmare
             SW_ERROR_CAPTURE_PACKET_WRONG = 49, ///< The capture packet did not have the correct protection bytes
 	    SW_ERROR_PS2KB_WRONG_MODE = 50, ///< The command issued is not available for the current Queue mode
+            SW_ERROR_NOT_WORD_ALIGNED = 51, ///< The parameter must be on a word aligned address or index
 }SW_ERROR_t;
 
 #endif

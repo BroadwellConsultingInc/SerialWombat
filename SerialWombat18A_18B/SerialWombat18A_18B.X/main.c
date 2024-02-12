@@ -176,6 +176,12 @@ void ProcessPins()
 					updateQuadEnc();
 				}
 				break;
+            case PIN_MODE_HBRIDGE:
+            {
+                void updatehBridge(void);
+                updatehBridge();
+            }
+            break;
 			case PIN_MODE_SERVO:
 				{
 					void updateServoHw(void);
@@ -335,6 +341,13 @@ void ProcessPins()
 					updatePS2Keyboard();
 				}
 				break;
+                
+        case PIN_MODE_QUEUED_PULSE_OUTPUT:
+        {
+            extern void updateQueuedPulseOutput(void);
+            updateQueuedPulseOutput();
+        }
+        break;
 		}
 	}
 }

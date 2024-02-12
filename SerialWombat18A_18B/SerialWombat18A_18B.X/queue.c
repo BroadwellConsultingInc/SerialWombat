@@ -255,6 +255,39 @@ SW_QUEUE_RESULT_t QueueReadByte(uint16_t address, uint8_t* data)
 	return (QUEUE_RESULT_INVALID_QUEUE);
 }
 
+SW_QUEUE_RESULT_t QueueRead16Word(uint16_t address, uint16_t* data)
+{
+	if (address >= (SIZE_OF_USER_BUFFER - sizeof(queueByte_t)))
+	{
+		return (QUEUE_RESULT_INVALID_QUEUE);
+	}
+	uint16_t queueMarker = *((uint16_t*)&UserBuffer[address]);
+	switch (queueMarker)
+	{
+		case QUEUE_MARKER_QUEUE_BYTE:
+		{
+            uint8_t dl;
+            uint8_t dh;
+			SW_QUEUE_RESULT_t result = QueueByteReadByte( address,  &dl);
+            if (result != QUEUE_RESULT_SUCCESS)
+            {
+                return result;
+            }
+            result =  QueueByteReadByte( address,  &dh);
+            if (result != QUEUE_RESULT_SUCCESS)
+            {
+                return result;
+            }
+            *data = dl;
+            *data |= ((uint16_t)dh) <<8;
+            
+            return result;
+		}
+		break;
+	}
+	return (QUEUE_RESULT_INVALID_QUEUE);
+}
+
 SW_QUEUE_RESULT_t QueuePeekByte(uint16_t address, uint8_t* data)
 {
 	if (address >= (SIZE_OF_USER_BUFFER - sizeof(queueByte_t)))

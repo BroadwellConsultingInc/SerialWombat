@@ -121,6 +121,67 @@ uint16_t inputProcessProcess(inputProcess_t* inputProcess, uint16_t inputValue)
                     inputValue = (uint16_t) temp;
                 }
                 break;
+
+		case INPUT_TRANSFORM_MODE_INTEGRATOR:
+		{
+            int32_t sum = inputProcess->integrator.currentValue;
+            extern uint32_t FramesRun;
+            if ((FramesRun & 0x3F) == 0)
+            {
+			
+			if (inputValue <= inputProcess->integrator.negMaxIndex)
+			{
+				sum -= inputProcess->integrator.maxInc;
+			}
+			else if (inputValue <= inputProcess->integrator.negMidIndex)
+			{
+				uint16_t indexChange = inputProcess->integrator.negMidIndex - inputProcess->integrator.negMaxIndex;
+				uint16_t incChange = inputProcess->integrator.maxInc-inputProcess->integrator.midInc;
+				uint32_t index = inputValue - inputProcess->integrator.negMaxIndex;
+				uint32_t change = index*incChange / indexChange + inputProcess->integrator.midInc;
+				sum -= change;
+			}
+			else if (inputValue < inputProcess->integrator.negDeadZone)
+			{
+				uint16_t indexChange = inputProcess->integrator.negDeadZone - inputProcess->integrator.negMidIndex ;
+				uint16_t incChange = inputProcess->integrator.midInc;
+				uint32_t index = inputValue - inputProcess->integrator.negMidIndex;
+				uint32_t change = index*incChange / indexChange + 0;
+				sum -= change;
+			}
+			else if (inputValue <= inputProcess->integrator.posDeadZone)
+			{
+				// In dead zone.  Do nothing
+			}
+			else if (inputValue < inputProcess->integrator.posMidIndex)
+			{
+				uint16_t indexChange = inputProcess->integrator.posMidIndex - inputProcess->integrator.posDeadZone ;
+				uint16_t incChange = inputProcess->integrator.midInc;
+				uint32_t  index =  inputValue - inputProcess->integrator.posDeadZone;
+				uint32_t change = index*incChange / indexChange + 0;
+				sum += change;
+			}
+			else if (inputValue < inputProcess->integrator.posMaxIndex)
+			{
+				uint16_t indexChange = inputProcess->integrator.posMaxIndex - inputProcess->integrator.posMidIndex ;
+				uint16_t incChange = inputProcess->integrator.maxInc-inputProcess->integrator.midInc;
+				uint16_t index =  inputValue - inputProcess->integrator.posMidIndex;
+				uint32_t change = index*incChange / indexChange + inputProcess->integrator.midInc;
+				sum += change;
+			}
+			else // inputValue > posMidIndex
+			{
+				sum += inputProcess->integrator.maxInc;
+			}
+			if (sum > 0xFFFF) {sum = 0xFFFF;}
+			if (sum < 0){sum = 0;}
+			inputProcess->integrator.currentValue = sum;
+            
+            
+			}
+            inputValue = inputProcess->integrator.currentValue;
+		}
+		break;
                 
                 case INPUT_TRANSFORM_MODE_NONE:
                 default:
@@ -323,7 +384,54 @@ void inputProcessCommProcess(inputProcess_t* inputProcess)
             TXBUFFER16(6,inputProcess->firstOrder.filteredValue);    
         }
         break;
+
+	case 12:
+	{
+		inputProcess->integrator.maxInc = 0;
+		inputProcess->integrator.midInc = 0;
+		inputProcess->integrator.negMaxIndex = RXBUFFER16(4);
+		inputProcess->integrator.negMidIndex = RXBUFFER16(6);
+		    inputProcess->transformMode = INPUT_TRANSFORM_MODE_INTEGRATOR;
+
+	}
+	break;
+
+	case 13:
+	{
+		inputProcess->integrator.maxInc = 0;
+		inputProcess->integrator.midInc = 0;
+		inputProcess->integrator.negDeadZone = RXBUFFER16(4);
+		inputProcess->integrator.posDeadZone = RXBUFFER16(6);
+		    inputProcess->transformMode = INPUT_TRANSFORM_MODE_INTEGRATOR;
+
+	}
+	break ;
+
+	case 14:
+	{
+		inputProcess->integrator.maxInc = 0;
+		inputProcess->integrator.midInc = 0;
+		inputProcess->integrator.posMidIndex = RXBUFFER16(4);
+		inputProcess->integrator.posMaxIndex = RXBUFFER16(6);
+		    inputProcess->transformMode = INPUT_TRANSFORM_MODE_INTEGRATOR;
+	}
+	break ;
+
+        case 15:
+    {
         
+        inputProcess->integrator.currentValue = RXBUFFER16(4);
+            inputProcess->transformMode = INPUT_TRANSFORM_MODE_INTEGRATOR;
+    }
+    break;
+	case 16:
+	{
+		inputProcess->integrator.midInc = RXBUFFER16(4);
+		inputProcess->integrator.maxInc = RXBUFFER16(6);
+		    inputProcess->transformMode = INPUT_TRANSFORM_MODE_INTEGRATOR;
+	}
+	break ;
+
         default:
         {
             

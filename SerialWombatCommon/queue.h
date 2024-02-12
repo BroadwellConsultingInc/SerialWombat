@@ -18,6 +18,7 @@ SW_QUEUE_RESULT_t QueueByteShiftInitialize(uint16_t address, uint16_t capacity);
 SW_QUEUE_RESULT_t QueueBytesInQueue(uint16_t address,uint16_t* bytesInQueue );
 SW_QUEUE_RESULT_t QueueAddByte(uint16_t address, uint8_t data);
 SW_QUEUE_RESULT_t QueueReadByte(uint16_t address, uint8_t* data);
+SW_QUEUE_RESULT_t QueueRead16Word(uint16_t address, uint16_t* data);
 SW_QUEUE_RESULT_t QueuePeekByte(uint16_t address, uint8_t* data);
 SW_QUEUE_RESULT_t QueueGetBytesFilledInQueue(uint16_t address, uint16_t* bytesFilledInQueue);
 SW_QUEUE_RESULT_t QueueGetBytesFreeInQueue(uint16_t address, uint16_t* bytesFreeInQueue);

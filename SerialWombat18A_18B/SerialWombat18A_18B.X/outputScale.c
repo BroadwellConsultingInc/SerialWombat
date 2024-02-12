@@ -22,6 +22,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 
 #include "serialWombat.h"
 #include "outputScale.h"
+#include "swMath.h"
+#include <string.h> //for memcpy
 void outputScaleInit(outputScale_t* outputScale)
 {
     outputScale->sourcePin = CurrentPin;
@@ -38,6 +40,7 @@ void outputScaleInit(outputScale_t* outputScale)
     outputScale->active = 0;
     outputScale->sampleRate = 0;
     outputScale->lastValue = GetBuffer(outputScale->sourcePin);
+    outputScale->outputScaleMode = OUTPUT_SCALE_2POINT;
 }
 
 
@@ -108,40 +111,96 @@ static uint32_t hystersis(uint32_t outputValue,outputScale_t* outputScale)
 	return (outputScale->hystersis.lastValue);
 }
 
+int32_t pidLastError = 0;
+int32_t pidLastIntegrator = 0;
+int32_t pidLastIntegratorEffort = 0;
+int32_t pidLastProportionalEffort = 0;
+int32_t pidLastDerivativeEffort = 0;
+int32_t pidLastEffort = 0;
 static uint32_t pid(uint32_t processVariable,outputScale_t* outputScale)
 {
-	uint32_t output;
 	int32_t error = outputScale->targetValue - processVariable;
+    pidLastError = error;
+
+    outputScale->pid.integrator += error;
+    pidLastIntegratorEffort = outputScale->pid.integrator * outputScale->pid.ki;
+	pidLastIntegratorEffort /= 16384;
+    if (pidLastIntegratorEffort > 65535)
+    {
+        //Prevent Windup that doesn't accomplish anything
+        outputScale->pid.integrator = ((uint32_t)65535) * 16384 / outputScale->pid.ki;
+    }
+    pidLastIntegrator = outputScale->pid.integrator;
+	pidLastDerivativeEffort = error - outputScale->pid.lastError;
+	outputScale->pid.lastError = error;
+	pidLastDerivativeEffort *= outputScale->pid.kd;
+	pidLastDerivativeEffort /= 256;
+	pidLastProportionalEffort = error * outputScale->pid.kp / 256;
+    pidLastEffort = pidLastProportionalEffort + pidLastIntegratorEffort + pidLastDerivativeEffort;
+
+    pidLastEffort += 32768; // If bidirectional
+    
+    if (pidLastEffort > 65535) { pidLastEffort = 65535;}
+    if (pidLastEffort < 0 ) { pidLastEffort = 0;}
+	
+
+	
+	return ((uint16_t) pidLastEffort);
+
+
+
+}
+/* old PID
+static uint32_t pid(uint32_t processVariable,outputScale_t* outputScale)
+{
+	int32_t output;
+	int32_t error = outputScale->targetValue - processVariable;
+    pidLastError = error;
 	int32_t integratorTemp = error * outputScale->pid.ki;
 	integratorTemp /= 16384;
     outputScale->pid.integrator += integratorTemp;
+    pidLastIntegrator = outputScale->pid.integrator;
 	int32_t derivative = processVariable - outputScale->pid.lastProcessVariable;
 	outputScale->pid.lastProcessVariable = processVariable;
 	derivative *= outputScale->pid.kd;
 	derivative/= 16384;
 	error +=  outputScale->pid.integrator;
 	error -= derivative;
+    
 	if (error >65535)
 	{
 		error = 65535;
 	}
-	if ( error < 0)
-	{
-	     error = 0;
-	}
-
-	uint32_t erroru = error;
-
-	output = erroru * outputScale->pid.kp;
-    if (output > 0xFFFFFF)
+	if (error < -65535)
     {
-        output = 0xFFFFFF;
+        error = - 65535;
     }
-	return (output >>8);
+
+   
+	
+
+	output = error * outputScale->pid.kp;
+
+    
+    //If Bidirectional
+    
+   
+    output /= 8;
+    output += 0x8000; // If bidirectional
+
+    if (output > 65535)
+    {
+        output = 65535;
+    }
+    if (output < 0)
+    {
+        output = 0;
+    }
+	return (output);
 
 
 
-}
+}*/
 
 static uint16_t ramp(int32_t processVariable,outputScale_t* outputScale)
 {
@@ -322,13 +381,56 @@ uint16_t outputScaleProcess(outputScale_t* outputScale)
 	}
 
     outputScale->lastValue = outputValue;
+    switch (outputScale->outputScaleMode)
+    {
+        case OUTPUT_SCALE_2POINT:
+        {
 	if (outputScale->outputMin != 0 || outputScale->outputMax != 65535)
 	{
 
 		outputValue *= (outputScale->outputMax - outputScale->outputMin);
 		outputValue >>= 16;
 		outputValue += outputScale->outputMin;
+    }
 	}
+        break;
+        case OUTPUT_SCALE_XY_LINEAR_INTERPOLATION:
+        {
+            int count = 0;
+            uint16_t* data = (uint16_t*)&UserBuffer[outputScale-> linearTableIndex];
+            while (outputValue > data[2]  && count  < 16)
+            {
+                data += 2; // Move forward two entries (one x, one y)
+                ++ count;
+            }
+            if (count < 16)
+            {
+                //We found a match
+                // At this point  data points to the point below, data[2] 
+                // points to the point above.
+                if (outputValue == data[0])
+                {
+                    //Exact match.  Set to y value
+                    outputValue = data[1];
+                }
+                else if (outputValue == data[2])
+                {
+                    //Exact match.  Set to y value
+                    outputValue = data[3];
+                }
+                else
+                {
+                    //Interpolate
+                    outputValue = xyInterpolationU16(outputValue,data[0],data[1],data[2],data[3]);
+                }
+                
+            }
+            
+            
+            
+        }
+        break;
+    }
 
   
 
@@ -392,6 +494,7 @@ uint16_t outputScaleCommProcess(outputScale_t* outputScale)
         {
             outputScale->outputMin = RXBUFFER16(4);
             outputScale->outputMax = RXBUFFER16(6);
+            outputScale->outputScaleMode = OUTPUT_SCALE_2POINT;
         }
         break;
         
@@ -416,6 +519,27 @@ uint16_t outputScaleCommProcess(outputScale_t* outputScale)
         case 9:  //Request last value
         {
             TXBUFFER16(4,outputScale->lastValue);
+        }
+        break;
+        
+        case 10: // Set up linear interpolation output
+        {
+            if ((RXBUFFER16(4) & 0x01)  == 1)
+            {
+                error(SW_ERROR_NOT_WORD_ALIGNED);
+                return 0;
+            }
+            if (RXBUFFER16(4) < SIZE_OF_USER_BUFFER - 64) 
+            {
+                 outputScale->outputScaleMode = OUTPUT_SCALE_XY_LINEAR_INTERPOLATION;
+            outputScale->linearTableIndex = RXBUFFER16(4);
+            }
+            else
+            {
+                error(SW_ERROR_RUB_INVALID_ADDRESS);
+                return 0 ;
+            }
+            
         }
         break;
 
@@ -486,6 +610,38 @@ uint16_t outputScaleCommProcess(outputScale_t* outputScale)
 		outputScale->pid.integrator = 0;
 	}
 	break;
+    
+        case 103:
+        {
+            memcpy(&Txbuffer[4], &pidLastError, 4);
+        }
+        break;
+        case 104:
+        {
+            memcpy(&Txbuffer[4], &pidLastIntegrator, 4);
+        }
+        break;
+        case 105:
+        {
+            memcpy(&Txbuffer[4], &pidLastIntegratorEffort, 4);
+        }
+        break;
+        case 106:
+        {
+            memcpy(&Txbuffer[4], &pidLastProportionalEffort, 4);
+        }
+        break;
+        case 107:
+        {
+            memcpy(&Txbuffer[4], &pidLastDerivativeEffort, 4);
+        }
+        break;
+        case 108:
+        {
+            int32_t output = pidLastEffort - 32768; //If bidirectional
+            memcpy(&Txbuffer[4], &output, 4); 
+        }
+        break;
     }
     return(0);
 }

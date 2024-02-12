@@ -36,6 +36,8 @@ typedef enum {
 		FREQUENCY_ON_HTL_TRANSITION = 6,
 		DUTYCYCLE_ON_LTH_TRANSITION = 7,
 		DUTYCYCLE_ON_HTL_TRANSITION = 8,
+            HIGH_AND_LOW_TIME = 9,
+            PUBLIC_TIMER_PUBLIC_DATA_NUMBER_ENTRIES
 }PULSE_TIMER_PUBLIC_DATA;
 typedef struct pulseTimer_n{
 	inputProcess_t inputProcess;
@@ -130,7 +132,7 @@ void initPulseTimer()
 
 		case CONFIGURE_CHANNEL_MODE_3:
 			{
-				if (Rxbuffer[3] <= DUTYCYCLE_ON_HTL_TRANSITION)
+				if (Rxbuffer[3] < PUBLIC_TIMER_PUBLIC_DATA_NUMBER_ENTRIES)
 				{
 					pulseTimer->publicDataOutput = Rxbuffer[3];
 				}
@@ -229,8 +231,20 @@ void updatePulseTimer()
 				switch (pulseTimer->publicDataOutput)
 				{
 					case LOW_TIME:
+                    case HIGH_AND_LOW_TIME:
 						{
-							CurrentPinRegister->generic.buffer = inputProcessProcess(&pulseTimer->inputProcess,COUNTS_TO_uS(pulseTimer->PulseLowTime));
+                            uint32_t output = COUNTS_TO_uS(pulseTimer->PulseLowTime );
+                            if (pulseTimer->publicDataOutput == HIGH_AND_LOW_TIME)
+                            {
+                                // The only reason to use this mode is for queueing.  
+                                 // Modify the value to us and make leading bit is a 0 to indicate Low time.
+                                
+                                if (output > 0x7FFF)
+                                {
+                                   output = 0x7FFF;  // Saturate
+                                }
+                            }
+							CurrentPinRegister->generic.buffer = inputProcessProcess(&pulseTimer->inputProcess,output);
 						}
 						break;
 
@@ -312,8 +326,21 @@ void updatePulseTimer()
 				switch (pulseTimer->publicDataOutput)
 				{
 					case HIGH_TIME:
+                    case HIGH_AND_LOW_TIME:
 						{
-							CurrentPinRegister->generic.buffer = inputProcessProcess(&pulseTimer->inputProcess,COUNTS_TO_uS( pulseTimer->PulseHighTime));
+                             uint32_t output = COUNTS_TO_uS(pulseTimer->PulseHighTime );
+                            if (pulseTimer->publicDataOutput == HIGH_AND_LOW_TIME)
+                            {
+                                // The only reason to use this mode is for queueing.  
+                                 // Modify the value to us and make leading bit is a 1 to indicate High time.
+                                
+                                if (output > 0x7FFF)
+                                {
+                                   output = 0x7FFF;  // Saturate
+                                }
+                                output |= 0x8000;
+                            }
+							CurrentPinRegister->generic.buffer = inputProcessProcess(&pulseTimer->inputProcess,output);
 						}
 						break;
 

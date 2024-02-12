@@ -45,6 +45,14 @@ typedef enum
     OUTPUT_FILTER_MODE_FIRST_ORDER = 2,         
 }OUTPUT_FILTER_MODE_t;
 
+
+typedef enum
+{
+    OUTPUT_SCALE_2POINT = 0,
+            OUTPUT_SCALE_XY_LINEAR_INTERPOLATION = 1,
+    
+    
+}OUTPUT_SCALE_MODE_t;
 typedef struct outputScale_n
 {
     union{
@@ -60,7 +68,7 @@ typedef struct outputScale_n
 	}hystersis;
 	struct{
 		int32_t integrator;
-		uint16_t lastProcessVariable;
+		int32_t lastError;
 		uint16_t kp;
 		uint16_t ki;
 		uint16_t kd;
@@ -75,7 +83,10 @@ typedef struct outputScale_n
     };
     uint16_t inputMin;
     uint16_t inputMax;
+    union{
     uint16_t outputMin;
+    uint16_t linearTableIndex;
+    };
     uint16_t outputMax;
     uint16_t filterConstant;
     uint16_t filterConstant2;
@@ -91,6 +102,7 @@ typedef struct outputScale_n
     uint8_t invert:1;
     uint8_t active:1;
     uint8_t sampleRate:4;
+    uint8_t outputScaleMode:1;
     
 }outputScale_t;
 

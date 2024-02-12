@@ -42,6 +42,7 @@ typedef enum
     INPUT_TRANSFORM_MODE_NONE = 0,
             INPUT_TRANSFORM_MODE_SCALE_RANGE = 1,
             INPUT_TRANSFORM_MODE_LINEAR_MXB = 2,
+            INPUT_TRANSFORM_MODE_INTEGRATOR = 3,
 }INPUT_TRANSFORM_MODE_t;
 
 typedef struct inputProcess_n
@@ -58,17 +59,28 @@ typedef struct inputProcess_n
             uint16_t average;
 		}average;
 		union{
-		int16_t transform_i16[6];
-		uint16_t transform_u16[6];    
-		uint8_t transform_bytes[12];
+		int16_t transform_i16[9];
+		uint16_t transform_u16[9];    
+		uint8_t transform_bytes[18];
 		struct{
 			int32_t m;
 			int32_t b;
 		}mxb;
-        struct{
-            uint16_t low;
-            uint16_t high;
-        }scaleRange;
+		struct {
+			uint16_t maxInc;
+			uint16_t midInc;
+			uint16_t negMaxIndex;
+			uint16_t negMidIndex;
+			uint16_t negDeadZone;
+			uint16_t posMaxIndex;
+			uint16_t posMidIndex;
+			uint16_t posDeadZone;
+			uint16_t currentValue;
+		}integrator;
+		struct{
+		    uint16_t low;
+		    uint16_t high;
+		}scaleRange;
 	};
 	uint16_t lastInput;
 	uint16_t excludeBelow;

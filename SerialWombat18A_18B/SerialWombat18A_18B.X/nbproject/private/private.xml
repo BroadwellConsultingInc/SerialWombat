@@ -3,21 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/pic24fj256ga702/mcc_generated_files/dma.c</file>
+            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/outputScale.c</file>
             <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/protocol.c</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/timingResource.c</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/ws2812.c</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/vga.c</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/pic24fj256ga702/pinDigitalHwSpecific.c</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/pulseOnChange.c</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/queue.c</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/pic24fj256ga702/mcc_generated_files/i2c2.c</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/HSCounter.c</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/pic24fj256ga702/mcc_generated_files/interrupt_manager.c</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/uartSw.c</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/main.c</file>
+            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/inputProcess.h</file>
+            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/inputProcess.c</file>
+            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/hBridge.c</file>
+            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/queuedPulseOutput.c</file>
+            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/swMath.c</file>
+            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/pulseTimer.c</file>
             <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/TM1637.c</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/uartHw.c</file>
+            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/main.c</file>
+            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/pinInputProcessor.c</file>
+            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/outputScale.h</file>
+            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/quadEnc.c</file>
         </group>
     </open-files>
 </project-private>
