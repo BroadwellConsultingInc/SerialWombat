@@ -28,10 +28,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 
 typedef struct hBridge_n{
     outputScale_t outputScale;
-    uint32_t period_uS;
+    //uint16_t directionChangeDelay;
+    //uint16_t directionChangeCounter;
+    uint16_t period_uS;
     uint16_t lastValue;
     uint8_t secondPin;
     uint8_t trmResource;
+    uint8_t driver;
 	uint8_t invert:1;  ///< Inverts the duty cycle %, not the signal.
 }hBridge_t;
 

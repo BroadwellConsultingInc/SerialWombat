@@ -41,6 +41,7 @@ void outputScaleInit(outputScale_t* outputScale)
     outputScale->sampleRate = 0;
     outputScale->lastValue = GetBuffer(outputScale->sourcePin);
     outputScale->outputScaleMode = OUTPUT_SCALE_2POINT;
+    outputScale->targetPin = 255;
 }
 
 
@@ -138,7 +139,10 @@ static uint32_t pid(uint32_t processVariable,outputScale_t* outputScale)
 	pidLastProportionalEffort = error * outputScale->pid.kp / 256;
     pidLastEffort = pidLastProportionalEffort + pidLastIntegratorEffort + pidLastDerivativeEffort;
 
+    if (outputScale->pid.add32768)
+    {
     pidLastEffort += 32768; // If bidirectional
+    }
     
     if (pidLastEffort > 65535) { pidLastEffort = 65535;}
     if (pidLastEffort < 0 ) { pidLastEffort = 0;}
@@ -150,57 +154,7 @@ static uint32_t pid(uint32_t processVariable,outputScale_t* outputScale)
 
 
 }
-/* old PID
-static uint32_t pid(uint32_t processVariable,outputScale_t* outputScale)
-{
-	int32_t output;
-	int32_t error = outputScale->targetValue - processVariable;
-    pidLastError = error;
-	int32_t integratorTemp = error * outputScale->pid.ki;
-	integratorTemp /= 16384;
-    outputScale->pid.integrator += integratorTemp;
-    pidLastIntegrator = outputScale->pid.integrator;
-	int32_t derivative = processVariable - outputScale->pid.lastProcessVariable;
-	outputScale->pid.lastProcessVariable = processVariable;
-	derivative *= outputScale->pid.kd;
-	derivative/= 16384;
-	error +=  outputScale->pid.integrator;
-	error -= derivative;
-    
-	if (error >65535)
-	{
-		error = 65535;
-	}
-	if (error < -65535)
-    {
-        error = - 65535;
-    }
 
-   
-	
-
-	output = error * outputScale->pid.kp;
-
-    
-    //If Bidirectional
-    
-   
-    output /= 8;
-    output += 0x8000; // If bidirectional
-
-    if (output > 65535)
-    {
-        output = 65535;
-    }
-    if (output < 0)
-    {
-        output = 0;
-    }
-	return (output);
-
-
-
-}*/
 
 static uint16_t ramp(int32_t processVariable,outputScale_t* outputScale)
 {
@@ -241,6 +195,10 @@ uint16_t outputScaleProcess(outputScale_t* outputScale)
 {
     debugOutputScale = outputScale;
 	uint32_t outputValue = GetBuffer(outputScale->sourcePin);
+    if (outputScale->targetPin != 255)
+    {
+        outputScale->targetValue = GetBuffer(outputScale->targetPin);
+    }
     
    
 	if (!outputScale->active)
@@ -456,7 +414,14 @@ uint16_t outputScaleCommProcess(outputScale_t* outputScale)
             }
             else 
             {
-                outputScaleInit(outputScale);
+                if (Rxbuffer[6] == 0 )
+                {
+                    // Do not reset outputscaling
+                }
+                else
+                {
+                    outputScaleInit(outputScale);
+                }
             }
         }
         break;
@@ -591,7 +556,6 @@ uint16_t outputScaleCommProcess(outputScale_t* outputScale)
 
 	case 100: 
 	{
-		outputScale->transformMode = OUTPUT_TRANSFORM_MODE_PID_CONTROL;
 		outputScale->pid.kp = RXBUFFER16(4);
 		outputScale->pid.ki = RXBUFFER16(6);
 	}
@@ -599,14 +563,13 @@ uint16_t outputScaleCommProcess(outputScale_t* outputScale)
 
 	case 101: 
 	{
-		outputScale->transformMode = OUTPUT_TRANSFORM_MODE_PID_CONTROL;
 		outputScale->pid.kd = RXBUFFER16(4);
+        
 	}
 	break;
 
 	case 102:
 	{
-		outputScale->transformMode = OUTPUT_TRANSFORM_MODE_PID_CONTROL;
 		outputScale->pid.integrator = 0;
 	}
 	break;
@@ -638,8 +601,32 @@ uint16_t outputScaleCommProcess(outputScale_t* outputScale)
         break;
         case 108:
         {
-            int32_t output = pidLastEffort - 32768; //If bidirectional
+            int32_t output = pidLastEffort;
+            if (outputScale->pid.add32768)
+            {
+                output -= 32768;
+            }
             memcpy(&Txbuffer[4], &output, 4); 
+        }
+        break;
+        case 109:
+        {
+            outputScale->transformMode = OUTPUT_TRANSFORM_MODE_PID_CONTROL;
+            outputScale->targetPin = Rxbuffer[4];
+            outputScale->pid.add32768 = Rxbuffer[5] > 0;
+        }
+        break;
+         case 110:
+        {
+            outputScale->targetValue = RXBUFFER16(4);
+            outputScale->pid.integrator = 0;
+        }
+        break;
+        
+         case 111:
+        {
+           //Get last target value
+            TXBUFFER16(4,outputScale->targetValue);
         }
         break;
     }
