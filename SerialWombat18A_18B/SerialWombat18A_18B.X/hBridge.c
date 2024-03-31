@@ -26,10 +26,24 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #include <stdint.h>
 #include "outputScale.h"
 
+typedef enum
+    {
+        RelayAndPWM = 0,
+        LG9110_HG7881 = 1,
+        DRV8833 = 2,
+        DRV8871 = 3,
+        L298N = 4,
+        MX1508 = 5,
+        BTS7960 = 6,
+        IBT4 = 7,
+        A4990 = 8,
+        TB67H420FTG = 9,
+
+    }HBridge_Driver_t;
+    
 typedef struct hBridge_n{
-    outputScale_t outputScale;
-    //uint16_t directionChangeDelay;
-    //uint16_t directionChangeCounter;
+    uint16_t directionChangeDelay;
+    uint16_t directionChangeCounter;
     uint16_t period_uS;
     uint16_t lastValue;
     uint8_t secondPin;
@@ -38,12 +52,19 @@ typedef struct hBridge_n{
 	uint8_t invert:1;  ///< Inverts the duty cycle %, not the signal.
 }hBridge_t;
 
+typedef struct hBridge2ndPin_n{
+        outputScale_t outputScale;
+
+}hBridge2_t;
+
 void updatehBridge(void);
 
 
 
 #define hBridge  ((hBridge_t*) CurrentPinRegister)
+#define hBridge2  ((hBridge2_t*)&(PinUpdateRegisters[(hBridge->secondPin)]))
 hBridge_t* debughBridge;
+hBridge2_t* debughBridge2;
 void inithBridge (void)
 {
     debughBridge = hBridge;
@@ -57,12 +78,18 @@ void inithBridge (void)
 	{
 		case CONFIGURE_CHANNEL_MODE_0:
 			{
+                if (Rxbuffer[3] >= NUMBER_OF_PHYSICAL_PINS  || Rxbuffer[3] == CurrentPin)
+                {
+                    error (SW_ERROR_INVALID_PARAMETER_3);
+                    return;
+                }
 				CurrentPinRegister->generic.mode = PIN_MODE_HBRIDGE;
 				CurrentPinRegister->generic.buffer = 32768;
 				
 				hBridge->secondPin = Rxbuffer[3];
+                debughBridge2 = hBridge2;
 				
-				hBridge->outputScale.sourcePin = CurrentPin;
+				hBridge2->outputScale.sourcePin = CurrentPin;
 
                 InitializePinLow(CurrentPin);
                 InitializePinLow(hBridge->secondPin);
@@ -71,7 +98,7 @@ void inithBridge (void)
                 hBridge->trmResource =  timingResourcePWMClaim(TIMING_RESOURCE_ANY,1000); 
                 hBridge->lastValue = 0;
                 hBridge->period_uS = 1000;
-                outputScaleInit(&hBridge->outputScale);
+                outputScaleInit(&hBridge2->outputScale);
 		updatehBridge();
                
 			}
@@ -79,6 +106,7 @@ void inithBridge (void)
             case CONFIGURE_CHANNEL_MODE_HW_0:
 			{
 				
+    debughBridge2 = hBridge2;
 					hBridge->period_uS = RXBUFFER32(3);
                     timingResourceRelease(hBridge->trmResource);
                     hBridge->trmResource = timingResourcePWMClaim(TIMING_RESOURCE_ANY,hBridge->period_uS); 
@@ -88,7 +116,8 @@ void inithBridge (void)
             
              case CONFIGURE_CHANNEL_MODE_10:
         {
-            outputScaleCommProcess(&hBridge->outputScale);
+                debughBridge2 = hBridge2;
+outputScaleCommProcess(&hBridge2->outputScale);
         }
         break;
          default:
@@ -107,7 +136,7 @@ void updatehBridge(void)
 
 	uint16_t outputValue;
 
-	outputValue = outputScaleProcess(&hBridge->outputScale);
+	outputValue = outputScaleProcess(&hBridge2->outputScale);
 	CurrentPinRegister->generic.buffer = outputValue; 
 
 	if (outputValue == 0)

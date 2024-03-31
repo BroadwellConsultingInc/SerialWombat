@@ -22,6 +22,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #include "serialWombat.h"
 #include <stdint.h>
 #include "pic24fj256ga702/mcc_generated_files/mcc.h"
+#include "inputProcess.h"
 
 
 typedef enum {
@@ -53,7 +54,7 @@ typedef struct touch_n{
 	uint8_t digitalOutput:1;
 	uint8_t invert:1;
 
-
+    inputProcess_t inputProcess;
 }touch_t;
 
 #define touch ((touch_t*) CurrentPinRegister)
@@ -226,6 +227,7 @@ Response is logic high, 11 transistions, 7000 mS (1B58) since transition:
 
 void initTouch (void)
 {
+    	BUILD_BUG_ON( sizeof(touch_t) >  BYTES_PER_PIN_REGISTER ); 
 if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_TOUCH)
 	{
 		error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
@@ -267,7 +269,8 @@ if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode 
 				{
 					TMR3Semaphore = RESOURCE_AVAILABLE;
 				}
-
+                inputProcessInit(&touch->inputProcess);
+                    touch->inputProcess.active = true;
                 
                 
 			}
@@ -310,6 +313,12 @@ if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode 
 					}
 			}
 			break;
+            
+            case CONFIGURE_CHANNEL_MODE_INPUT_PROCESSING:
+			{
+				inputProcessCommProcess(&touch->inputProcess);
+			}
+			break;    
             
                default:
         {
@@ -482,10 +491,15 @@ void updateTouch()
 					CTMUCON1Hbits.EDG1STAT = 0; // Disable current source
 					IFS0bits.AD1IF = 0; // Clear ADC interrupt flag
 					CTMUCON1Lbits.CTMUEN = 0; // Disable the CTMU
-					touch->averageSum += ADC1BUF0;
-					++touch->averageCount;
-					if (touch->averageCount >= 8)
+					
+                    if (touch->inputProcess.active)
+                    {
+                        CurrentPinRegister->generic.buffer = inputProcessProcess(&touch->inputProcess,ADC1BUF0);
+                    }
+					else if (touch->averageCount >= 8)
 					{
+                        touch->averageSum += ADC1BUF0;
+                        ++touch->averageCount;
 						CurrentPinRegister->generic.buffer = touch->averageSum / 8;
 						touch->averageSum = 0;
 						touch->averageCount = 0;

@@ -169,7 +169,10 @@ void updateQueuedPulseOutput(void)
 		if (queuedPulseOutput->remainingCounts)
 		{
 			-- queuedPulseOutput->remainingCounts;
+            if (queuedPulseOutput->remainingCounts)
+            {
 			return;
+            }
 		}
 		int32_t value = -1;
 		if (! queuedPulseOutput->paused)

@@ -1,5 +1,5 @@
 /*
-Copyright 2021-2023 Broadwell Consulting Inc.
+Copyright 2021-2024 Broadwell Consulting Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
@@ -66,6 +66,28 @@ void reset ()
  * 0x2A008 - Temperature reading2 reported
  *  0x2A00A - Temperature reading2 actual
  * 0x02A00C - 
+ 
+ */
+
+/*!
+ Version Changes:
+V2.1.2
+	- Added H Bridge Pin Mode
+	- Added Input Processor Integrator function
+	- Reworked and improved PID output scaling function
+	- Added ability to read last error, last integrator, last output power, last proportional power, last integrator power, last derviative power through protocol
+	- Added output scaling linear interpolation transform
+	- Beginning of MAX7219Matrix mode added (not officlaly released)
+	- Improved PS2Keyboard efficiency
+	- Improved quadrature encoder hardware mode efficiency
+	- Improved Ultrasonic Distance sensor efficiency
+	- Added  queue interface for 16 bit unsigned numbers
+	- Added queued pulse output pin mode
+	- Added new file swmath for math functions - currently linear interpolation
+	- Fixed bug in PWM / Pulse generation on CCP2 / CCP3
+   - Added target pin for public data change on Quad Enc
+   - Added frequency measurement on Quad Enc
+
  
  */
 uint16_t OverflowFrames = 0;
@@ -348,6 +370,13 @@ void ProcessPins()
             updateQueuedPulseOutput();
         }
         break;
+        
+            case PIN_MODE_MAX7219MATRIX:
+            {
+                extern void updateMax7219Matrix(void);
+                updateMax7219Matrix();
+            }
+            break;
 		}
 	}
 }

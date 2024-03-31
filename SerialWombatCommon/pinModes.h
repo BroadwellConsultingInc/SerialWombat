@@ -60,6 +60,7 @@ typedef enum
 	PIN_MODE_PS2_KEYBOARD = 32,
     PIN_MODE_I2C_CONTROLLER = 33,
             PIN_MODE_QUEUED_PULSE_OUTPUT = 34,
+	    PIN_MODE_MAX7219MATRIX = 35,
 }
 pinMode_t;
 

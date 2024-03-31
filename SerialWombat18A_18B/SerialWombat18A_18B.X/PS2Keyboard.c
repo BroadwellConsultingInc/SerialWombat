@@ -941,6 +941,10 @@ void updatePS2Keyboard(void)
 				PS2Keyboard->data = 0; //Starting new frame
 				++currentState;
 			}
+            else
+            {
+                PulseInDiscardUntilHigh(CurrentPin);
+            }
 		}
 		else if (currentState >= PS2KB_STATE_WAITING_FOR_IDLE0)
 		{

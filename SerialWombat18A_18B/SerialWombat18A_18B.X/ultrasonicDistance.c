@@ -230,6 +230,7 @@ void updateUltrasonicDistance()
 			{
 				//Last pin was high
 				++ud->lastTimerTime;
+                ud->lastTimerTime += PulseInDiscardUntilLow(CurrentPin);
 			}
 			else
 			{
@@ -299,6 +300,7 @@ void updateUltrasonicDistance()
 			{
 				//Last pin was low
 				++ud->lastTimerTime;
+                ud->lastTimerTime += PulseInDiscardUntilHigh(CurrentPin);
 			}
 		}
 		sample = PulseInGetOldestDMABit(CurrentPin);

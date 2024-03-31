@@ -28,18 +28,25 @@ typedef struct quadEnc_n{
                uint16_t max;
                uint16_t min;
            uint16_t increment;
-           uint8_t lastNextDMA;
+           uint16_t frequencySamplePeriod;
+           uint16_t frequencyCounter;
+           uint16_t frequencyElapsedTime;
+           uint16_t lastFrequency;
            uint16_t currentState:1;
            uint16_t interruptDriven:1;
+           
+           uint8_t lastNextDMA;
            uint8_t secondPin; 
            uint8_t readState;
+           uint8_t targetPin;  // Where to make the changes
 }quadEnc_t;
 
 
-
+quadEnc_t* debugQuadEnc;
 void initQuadEnc(void)
 {
     quadEnc_t* quadEnc = (quadEnc_t*) CurrentPinRegister;
+    debugQuadEnc = quadEnc;
     if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_QUADRATURE_ENC)
 	{
 		error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
@@ -60,13 +67,19 @@ void initQuadEnc(void)
 		return;
 	}
          CurrentPinRegister->generic.mode =PIN_MODE_QUADRATURE_ENC;
-        SetMode(quadEnc->secondPin, PIN_MODE_CONTROLLED);
+
         CurrentPinRegister->generic.buffer = 0; 
         quadEnc->debouncesamples = RXBUFFER16(3) ; 
         quadEnc->debouncecounter = 0;
         quadEnc->secondPin = Rxbuffer[5] ;
         quadEnc->readState = Rxbuffer[6] & 0x03;
         quadEnc->interruptDriven = Rxbuffer[6] < 4;
+        quadEnc->targetPin = CurrentPin;
+        quadEnc->frequencySamplePeriod = 1000;
+        quadEnc->lastFrequency = 0;
+        quadEnc->frequencyCounter = 0;
+        quadEnc->frequencyElapsedTime = 0;
+        SetMode(quadEnc->secondPin, PIN_MODE_CONTROLLED);
 	CurrentPinInput();
 	PinInput(quadEnc->secondPin);
         
@@ -155,6 +168,8 @@ void initQuadEnc(void)
 		}
         }
         break;
+        
+        
             
 	}        
 
@@ -201,15 +216,58 @@ void initQuadEnc(void)
 
     }
     break;
-    
+ 
+            case CONFIGURE_CHANNEL_MODE_3:
+    {
+        quadEnc->targetPin = Rxbuffer[3]; 
+        if (quadEnc->targetPin == 255)
+        {
+            quadEnc->targetPin = CurrentPin;
+        }
+    }
+            break;
+            
+                  case CONFIGURE_CHANNEL_MODE_4:
+    {
+        quadEnc->frequencySamplePeriod = RXBUFFER16(3);
+        quadEnc->frequencyCounter = 0;
+        quadEnc->frequencyElapsedTime = 0;
+        quadEnc->lastFrequency = 0;
+    }
+            break;
+            
+                   case CONFIGURE_CHANNEL_MODE_5:
+    {
+        TXBUFFER16(3,quadEnc->lastFrequency);
+    }
+            break;
      default:
         {
             error(SW_ERROR_INVALID_COMMAND);      
         }
         break;
     }
-} 
+}
 
+static void increment(bool positive) {
+    quadEnc_t* quadEnc = (quadEnc_t*) CurrentPinRegister;
+    debugQuadEnc = quadEnc;
+    int32_t sum;
+    if (positive) {
+        sum = GetBuffer(quadEnc->targetPin) + quadEnc->increment;
+    } else {
+        sum = GetBuffer(quadEnc->targetPin) - quadEnc->increment;
+    }
+
+
+    if (quadEnc->max > 0 && sum > quadEnc->max) {
+        sum = quadEnc->max;
+    }
+    if (quadEnc->min < 65535 && sum < quadEnc->min) {
+        sum = quadEnc->min  ;
+    }
+    SetBuffer(quadEnc->targetPin,(uint16_t) sum);
+}
 quadEnc_t* debugQuadEnc;
 void updateQuadEnc(void)
 {
@@ -217,7 +275,7 @@ void updateQuadEnc(void)
 	quadEnc_t* quadEnc = (quadEnc_t*) CurrentPinRegister;
     debugQuadEnc = quadEnc;
 	uint16_t bitmap = CurrentPinBitmap();
-	uint16_t buffer = CurrentPinRegister->generic.buffer;
+	//uint16_t buffer = CurrentPinRegister->generic.buffer;
 	uint16_t sample = 0;
     uint16_t secondBitmap = pinBitmap[quadEnc->secondPin];
     uint8_t inputSample0;
@@ -228,6 +286,16 @@ void updateQuadEnc(void)
     
     if (quadEnc->interruptDriven)
         {
+        if (currentState)
+        {
+            //Currently high.  discard all subsequent high samples
+            PulseInDiscardUntilLow(CurrentPin);
+        }
+        else
+        {
+            //Currently low.  discard all subsequent low samples
+            PulseInDiscardUntilHigh(CurrentPin);            
+        }
            processSamples =  PulseInGetOldestDMASample(CurrentPin,&sample);
            inputSample0 = (sample & bitmap) > 0;
          inputSample1 = (sample & secondBitmap ) > 0;
@@ -239,12 +307,6 @@ void updateQuadEnc(void)
     }
     while (processSamples )
     {
-        
-        
-       
-        
-
-
 			//Process data
 			if (inputSample0)
 			{
@@ -253,16 +315,20 @@ void updateQuadEnc(void)
 				{
 					//Was low!
 					++ quadEnc->debouncecounter;
-                  
+                   if (quadEnc->interruptDriven)
+                    {
+                         quadEnc->debouncecounter+=  PulseInDiscardUntilLow(CurrentPin);
+                    }
 					if (quadEnc->debouncecounter >= quadEnc->debouncesamples)
 					{    
-
+                        ++quadEnc->frequencyCounter;
 						currentState = 1;
 
 						if (1 == quadEnc->readState || 2 == quadEnc->readState)
 						{
 							if (inputSample1)
 							{
+                                /*
 								int32_t sum;
 								sum = buffer + quadEnc->increment;
 
@@ -272,9 +338,12 @@ void updateQuadEnc(void)
 									sum = quadEnc->max ;
 								}
 								buffer = (uint16_t) sum;
+                                 */
+                                increment(1);
 							}
 							else
 							{
+                                /*
 								int32_t sum;
 								sum = buffer - quadEnc->increment;
 
@@ -283,7 +352,8 @@ void updateQuadEnc(void)
 									sum = quadEnc->min ;
 								}
 								buffer = (uint16_t) sum;
-
+                                 */
+                                increment(0);
 							}
 						}
                         quadEnc->debouncecounter = 0;
@@ -306,6 +376,10 @@ void updateQuadEnc(void)
 				{
                     //Was High
 					++ quadEnc->debouncecounter;
+                    if (quadEnc->interruptDriven)
+                    {
+                         quadEnc->debouncecounter+=  PulseInDiscardUntilHigh(CurrentPin);
+                    }
   					if (quadEnc->debouncecounter > quadEnc->debouncesamples)
 					{    
 						
@@ -315,6 +389,7 @@ void updateQuadEnc(void)
 						{
 							if (inputSample1)
 							{
+                                /*
 								int32_t sum;
 								sum = buffer - quadEnc->increment;
 
@@ -323,9 +398,12 @@ void updateQuadEnc(void)
 									sum = quadEnc->max ;
 								}
 								buffer = (uint16_t) sum;
+                                 */
+                                increment(0);
 							}
 							else
 							{
+                                /*
 								int32_t sum;
 								sum = buffer + quadEnc->increment;
 
@@ -334,6 +412,8 @@ void updateQuadEnc(void)
 									sum = quadEnc->min ;
 								}
 								buffer = (uint16_t) sum;
+                                 */
+                                increment(1);
 
 							}
 						}
@@ -359,5 +439,18 @@ void updateQuadEnc(void)
 		}
 	
 	quadEnc->currentState = currentState;
-	CurrentPinRegister->generic.buffer = buffer;
+	
+    if (quadEnc->frequencySamplePeriod > 0)
+    {
+        ++ quadEnc->frequencyElapsedTime;
+        if (quadEnc->frequencyElapsedTime >= quadEnc->frequencySamplePeriod)
+        {
+            quadEnc->lastFrequency = quadEnc->frequencyCounter;
+           
+            quadEnc->frequencyCounter = 0;
+            quadEnc->frequencyElapsedTime = 0;
+            SetBuffer(quadEnc->secondPin,quadEnc->lastFrequency);
+        }
+    }
+        
 }

@@ -576,7 +576,7 @@ Or similar
             {
                Txbuffer[4] = 'A';//SERIAL_WOMBAT_HARDWARE_IDENTIFIER;	 
             }
-			Txbuffer[5] = '9';	     
+			Txbuffer[5] = '2';	     
 			Txbuffer[6] = '1';	     
 			Txbuffer[7] = '2';	     
 
@@ -2284,6 +2284,14 @@ void ProcessSetPin()
 	{
 		extern void initPS2Keyboard(void);
 		initPS2Keyboard();
+	}
+	break;
+
+	case PIN_MODE_MAX7219MATRIX:
+	{
+		extern void initMax7219Matrix(void);
+		initMax7219Matrix();
+
 	}
 	break;
         
