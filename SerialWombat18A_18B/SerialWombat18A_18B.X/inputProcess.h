@@ -76,6 +76,7 @@ typedef struct inputProcess_n
 			uint16_t posMidIndex;
 			uint16_t posDeadZone;
 			uint16_t currentValue;
+            uint8_t updateFrequencyMask;
 		}integrator;
 		struct{
 		    uint16_t low;

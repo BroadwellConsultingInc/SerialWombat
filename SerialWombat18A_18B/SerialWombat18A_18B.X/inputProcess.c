@@ -126,7 +126,7 @@ uint16_t inputProcessProcess(inputProcess_t* inputProcess, uint16_t inputValue)
 		{
             int32_t sum = inputProcess->integrator.currentValue;
             extern uint32_t FramesRun;
-            if ((FramesRun & 0x3F) == 0)
+            if ((inputProcess->integrator.updateFrequencyMask & FramesRun ) == 0)
             {
 			
 			if (inputValue <= inputProcess->integrator.negMaxIndex)
@@ -137,7 +137,7 @@ uint16_t inputProcessProcess(inputProcess_t* inputProcess, uint16_t inputValue)
 			{
 				uint16_t indexChange = inputProcess->integrator.negMidIndex - inputProcess->integrator.negMaxIndex;
 				uint16_t incChange = inputProcess->integrator.maxInc-inputProcess->integrator.midInc;
-				uint32_t index = inputValue - inputProcess->integrator.negMaxIndex;
+				uint32_t index = inputProcess->integrator.negMidIndex - inputValue  ;
 				uint32_t change = index*incChange / indexChange + inputProcess->integrator.midInc;
 				sum -= change;
 			}
@@ -389,6 +389,7 @@ void inputProcessCommProcess(inputProcess_t* inputProcess)
 	{
 		inputProcess->integrator.maxInc = 0;
 		inputProcess->integrator.midInc = 0;
+        inputProcess->integrator.updateFrequencyMask = 0;
 		inputProcess->integrator.negMaxIndex = RXBUFFER16(4);
 		inputProcess->integrator.negMidIndex = RXBUFFER16(6);
 		    inputProcess->transformMode = INPUT_TRANSFORM_MODE_INTEGRATOR;
@@ -431,6 +432,12 @@ void inputProcessCommProcess(inputProcess_t* inputProcess)
 		    inputProcess->transformMode = INPUT_TRANSFORM_MODE_INTEGRATOR;
 	}
 	break ;
+    
+        case 17:
+        {
+            inputProcess->integrator.updateFrequencyMask = Rxbuffer[4];
+        }
+        break;
 
         default:
         {
