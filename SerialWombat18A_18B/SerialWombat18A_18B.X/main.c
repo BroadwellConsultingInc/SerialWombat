@@ -364,6 +364,12 @@ void ProcessPins()
 				}
 				break;
                 
+            case PIN_MODE_I2C_CONTROLLER:
+            {
+                extern void updateI2CController();
+                updateI2CController();
+            }
+                
         case PIN_MODE_QUEUED_PULSE_OUTPUT:
         {
             extern void updateQueuedPulseOutput(void);

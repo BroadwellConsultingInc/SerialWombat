@@ -797,6 +797,36 @@ void InitializePinLow(uint8_t pin)
 	
 }
 
+void InitializePinHigh(uint8_t pin)
+{
+    PinHigh(pin);
+	uint16_t pinMask = 0;
+	bool inB ;
+
+	if (pin >= NUMBER_OF_PHYSICAL_PINS)
+	{
+		return;
+	}
+
+	pinMask = pinBitmap[pin];
+	
+		inB = pinPort[pin];
+
+	
+		pinMask = ~pinMask;
+        {
+
+			if (inB)
+			{
+				and128(OutputArrayB,pinMask);
+			}
+			else
+			{
+				and128(OutputArrayA,pinMask);
+			}
+		}
+}
+
 void CurrentPinLow()
 {
     PinLow(CurrentPin);

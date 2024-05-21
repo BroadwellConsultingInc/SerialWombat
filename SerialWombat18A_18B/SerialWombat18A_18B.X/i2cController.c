@@ -1,5 +1,5 @@
 /*
-Copyright 2023 Broadwell Consulting Inc.
+Copyright 2024 Broadwell Consulting Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
@@ -21,15 +21,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 */
 #include "serialWombat.h"
 #include <stdint.h>
-#include "pic24fj256ga702/mcc_generated_files/mcc.h"
-#include "pic24fj256ga702/mcc_generated_files/i2c2Controller.h"
-
+#include "swI2cRoutines.h"
 
 
 
 
 typedef struct i2cController_n{
-	uint8_t dummy;  // No pin mode data for this mode except the standard generic items.  
+	swI2cRoutines_t SWI2C; 
 }i2cController_t;
 
 
@@ -93,27 +91,133 @@ Disable pin 19  HS Clock
 
 */
 
-void initi2cController (void)
+void initI2CController (void)
 {
-if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_I2C_CONTROLLER)
+	i2cController_t* i2cController = (i2cController_t*)CurrentPinRegister;
+	if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_I2C_CONTROLLER)
 	{
 		error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
 		return;
 	}
+	SWI2C = &i2cController->SWI2C;
 	switch(Rxbuffer[0])
 	{
 		case CONFIGURE_CHANNEL_MODE_0:
 			{
-                if (CurrentPin != 4)
-                {
-                    error(SW_ERROR_PIN_NOT_CAPABLE);
-                }
+				SWI2C->sdaPin = Rxbuffer[3];	
                 
-                I2C2_Controller_Initialize();
-                
+                InitializePinHigh(CurrentPin);
+                InitializePinHigh(SWI2C->sdaPin);
+                PinOD(CurrentPin);
+                PinOD(SWI2C->sdaPin);
+				SWI2C->bytesPerSWFrame = Rxbuffer[4];
+				if (Rxbuffer[5])
+				{
+					//TODO Turn on Pull Ups
+				}
+				else
+				{
+					//Turn off Pull Ups
+				}	
+				CurrentPinRegister->generic.mode = PIN_MODE_I2C_CONTROLLER;
 			}
 			break;
- 
+
+		case CONFIGURE_CHANNEL_MODE_SWI2C: 
+			{
+				switch (Rxbuffer[3])
+				{
+					case 0:
+						{
+							SWI2C->sdaPin = Rxbuffer[4];	
+							SWI2C->bytesPerSWFrame = Rxbuffer[5];
+							if (Rxbuffer[6])
+							{
+								//TODO Turn on Pull Ups
+							}
+							else
+							{
+								//Turn off Pull Ups
+							}	
+						}
+						break;
+
+					case 1:
+						{
+							SWI2C_beginTransmission( Rxbuffer[4]);
+						}
+						break;
+					case 2:
+						{
+							SWI2C_endTransmission( Rxbuffer[4]);
+						}
+						break;
+					case 3:
+						{
+							SWI2C_writeByte( Rxbuffer[4]);
+						}
+						break;
+					case 4:
+						{
+							SWI2C_requestFrom( Rxbuffer[4], Rxbuffer[5], Rxbuffer[6]);
+							SWI2C->isize = Rxbuffer[7];
+						}
+						break;
+
+					case 5:
+						{
+							SWI2C->iaddress = RXBUFFER32(4);
+
+						}
+						break;
+
+
+					case 6:
+						{
+							//TODO copy from User Memory
+							// index in RXBUFFER16(4), length in 6, maximum 8
+
+						}
+						break;
+					case 7:
+						{
+							SWI2C->busy = Rxbuffer[4];
+						}
+						break;
+					case 8:
+						{
+							Txbuffer[4] = SWI2C->busy;
+							Txbuffer[5] = SWI2C->bytesTransmitted;
+							Txbuffer[6] = SWI2C->bytesReceived;
+							Txbuffer[7] = SWI2C->nackResult;
+						}
+						break;
+					case 9:
+						{ // Read 4 bytes starting at 0
+							Txbuffer[4] = SWI2C->rx[0]; 
+							Txbuffer[5] = SWI2C->rx[1]; 
+							Txbuffer[6] = SWI2C->rx[2]; 
+							Txbuffer[7] = SWI2C->rx[3]; 
+						}
+						break;
+					case 10:
+						{ // Read 4 bytes starting at 4
+							Txbuffer[4] = SWI2C->rx[4]; 
+							Txbuffer[5] = SWI2C->rx[5]; 
+							Txbuffer[6] = SWI2C->rx[6]; 
+							Txbuffer[7] = SWI2C->rx[7]; 
+						}
+						break;
+
+
+					default:
+						{
+							error(SW_ERROR_INVALID_PARAMETER_3);
+						}
+						break;
+				}
+			}
+			break;
 
 		default:
 			{
@@ -121,14 +225,17 @@ if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode 
 			}
 			break;
 	}
+
 }
 
 
 /// \brief The function that updates I2CController
 ///
-void updatei2cController()
+void updateI2CController()
 { 
-
+i2cController_t* i2cController = (i2cController_t*)CurrentPinRegister;
+    SWI2C = &i2cController->SWI2C;
+    updateSWI2C();
 }
 
 

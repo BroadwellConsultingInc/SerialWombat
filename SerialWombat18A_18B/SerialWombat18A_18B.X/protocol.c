@@ -576,9 +576,9 @@ Or similar
             {
                Txbuffer[4] = 'A';//SERIAL_WOMBAT_HARDWARE_IDENTIFIER;	 
             }
-			Txbuffer[5] = '2';	     
+			Txbuffer[5] = '9';	     
 			Txbuffer[6] = '1';	     
-			Txbuffer[7] = '2';	     
+			Txbuffer[7] = '3';	     
 
 			break;
 		case COMMAND_BINARY_READ_PIN_BUFFFER:
@@ -2273,6 +2273,12 @@ void ProcessSetPin()
         }
         break;
         
+        case PIN_MODE_I2C_CONTROLLER:
+        {
+            extern void initI2CController(void);
+            initI2CController();
+        }
+        break;
         case PIN_MODE_QUEUED_PULSE_OUTPUT:
         {
             extern void initQueuedPulseOutput(void);
