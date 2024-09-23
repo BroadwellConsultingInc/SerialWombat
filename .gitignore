@@ -12,3 +12,11 @@
 *.md~
 *.flag
 *.vsidx
+/SerialWombat18A_18B/SerialWombat18A_18B.X/.generated_files
+/SerialWombat18A_18B/SerialWombat18A_18B_Bootloader.X/.generated_files
+/SerialWombat18A_18B/SerialWombat18A_18B_Bootloader.X/dist/default/debug
+/SerialWombat18A_18B/SerialWombat18A_18B_JumpToApp.X/.generated_files
+/SerialWombat18A_18B/SerialWombat18A_18B_JumpToApp.X/dist/default/debug
+/SerialWombat18A_18B/SerialWombat18A_18B.X/dist/default/debug
+/SerialWombat18A_18B/SerialWombat18A_18B.X/dist
+/SerialWombat18A_18B/SerialWombat18A_18B_JumpToApp.X/dist

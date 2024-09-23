@@ -1,5 +1,5 @@
 /*
-Copyright 2021-2023 Broadwell Consulting Inc.
+Copyright 2021-2024 Broadwell Consulting Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
@@ -576,7 +576,7 @@ Or similar
             {
                Txbuffer[4] = 'A';//SERIAL_WOMBAT_HARDWARE_IDENTIFIER;	 
             }
-			Txbuffer[5] = '9';	     
+			Txbuffer[5] = '2';	     
 			Txbuffer[6] = '1';	     
 			Txbuffer[7] = '3';	     
 
@@ -1031,6 +1031,68 @@ Sample Response:
                 TXBUFFER16(4,bytesAvailable);
                 TXBUFFER16(6,bytesFree);
                 
+        }
+        break;
+        
+        case COMMAND_BINARY_CONFIG_DATALOGGER:
+        {
+            extern uint16_t FrameDataQueue[NUMBER_OF_TOTAL_PINS / 8 + 1]; // Queue from 0 to 19, 8 pins per word, lsb and msb queueing
+extern uint16_t  FrameQueueFrequencyMask ;  // FramesRun is anded with this value.  Zero result causes queueing
+extern bool FrameQueueFrameNumber ;  // Whether or not to add the frame # to the queue before data when queueing
+extern bool FrameQueueEnable ;     // Overall turn on and off for efficiency
+extern uint16_t FrameDataQueueIndex ;  // Location in User Data Area of Queue (Should be initialized before use)
+extern bool FrameQueueChanges ;
+extern bool FrameQueueFirstRun;
+            switch (Rxbuffer[1])
+            {
+                case 0: // Initialize Frame Queue Data Logger
+                {
+                    FrameQueueEnable = false;
+                    memset(FrameDataQueue,0,sizeof(FrameDataQueue));
+                    FrameDataQueueIndex = RXBUFFER16(2);
+                    extern const uint16_t inputProcessSamplePeriodMask[];
+                    FrameQueueFrequencyMask = inputProcessSamplePeriodMask[Rxbuffer[4]];
+                    FrameQueueFrameNumber = Rxbuffer[5] > 0;
+                    FrameQueueChanges = Rxbuffer[6] > 0;
+                }
+                break;
+                     case 1: // Enable/disable Frame Queue Data Logger
+                {
+                    
+                    FrameQueueEnable = Rxbuffer[2] > 0;
+                    FrameQueueFirstRun = 1;
+                }
+                break;
+                     case 2: // Enable/disable individual pin
+                {
+                    if (Rxbuffer[2] >= NUMBER_OF_TOTAL_PINS)
+                    {
+                        error(SW_ERROR_CMD_BYTE_2);
+                        return;
+                    }
+                    if (Rxbuffer[3] > 0)
+                    {
+                        //LSB
+                        FrameDataQueue[Rxbuffer[2]/8] |= (((uint16_t)1)<<(2* (Rxbuffer[2] % 8)));
+                    }
+                    else
+                    {
+                        FrameDataQueue[Rxbuffer[2]/8] &= ~(((uint16_t)1)<<(2* (Rxbuffer[2] % 8)));
+                        
+                    }
+                    if (Rxbuffer[4] > 0)
+                    {
+                        //MSB
+                        FrameDataQueue[Rxbuffer[2]/8] |= (((uint16_t)1)<<(1+2* (Rxbuffer[2] % 8)));
+                    }
+                    else
+                    {
+                        //MSB
+                        FrameDataQueue[Rxbuffer[2]/8] &= ~(((uint16_t)1)<<(1 + 2* (Rxbuffer[2] % 8)));
+                    }
+                }
+                break;
+            }            
         }
         break;
 		case COMMAND_BINARY_READ_RAM:
@@ -2285,6 +2347,14 @@ void ProcessSetPin()
             initQueuedPulseOutput();
         }
         break;
+
+	case PIN_MODE_FREQUENCY_OUTPUT:
+	{
+		extern void initFrequencyOutput(void);
+		initFrequencyOutput();
+
+	}
+	break;
         
 	case PIN_MODE_PS2_KEYBOARD:
 	{

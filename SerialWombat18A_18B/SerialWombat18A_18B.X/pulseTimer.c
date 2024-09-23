@@ -233,7 +233,15 @@ void updatePulseTimer()
 					case LOW_TIME:
                     case HIGH_AND_LOW_TIME:
 						{
-                            uint32_t output = COUNTS_TO_uS(pulseTimer->PulseLowTime );
+                            uint32_t output;
+                            if (pulseTimer->units == 0)
+                            {
+                                output = COUNTS_TO_uS(pulseTimer->PulseLowTime );
+                            }
+                            else
+                            {
+                                output = pulseTimer->PulseLowTime;
+                            }
                             if (pulseTimer->publicDataOutput == HIGH_AND_LOW_TIME)
                             {
                                 // The only reason to use this mode is for queueing.  
@@ -254,7 +262,10 @@ void updatePulseTimer()
 					case PERIOD_ON_LTH_TRANSITION:
 						{
 							uint32_t period = pulseTimer->PulseHighTime + pulseTimer->PulseLowTime;
+                            if (pulseTimer->PulseLowTime)
+                            {
 							period = COUNTS_TO_uS( period);
+                            }
 							if (period > 65535)
 							{
 								period = 65535;
@@ -269,7 +280,15 @@ void updatePulseTimer()
 						{
 							uint32_t period = pulseTimer->PulseHighTime + pulseTimer->PulseLowTime;
 
-							uint32_t freq = COUNTS_TO_Hz(period);
+							uint32_t freq;
+                            if (pulseTimer->units == 0)
+                            {
+                                freq = COUNTS_TO_Hz(period);
+                            }
+                            else
+                            {
+                                freq = 1000 / period;
+                            }
 							if (freq > 65535)
 							{
 								freq = 65535;
@@ -328,7 +347,15 @@ void updatePulseTimer()
 					case HIGH_TIME:
                     case HIGH_AND_LOW_TIME:
 						{
-                             uint32_t output = COUNTS_TO_uS(pulseTimer->PulseHighTime );
+                             uint32_t output;
+                             if (pulseTimer->units == 0)
+                             {
+                                 output = COUNTS_TO_uS(pulseTimer->PulseHighTime );
+                             }
+                             else
+                             {
+                                 output = pulseTimer->PulseHighTime;
+                             }
                             if (pulseTimer->publicDataOutput == HIGH_AND_LOW_TIME)
                             {
                                 // The only reason to use this mode is for queueing.  
@@ -348,7 +375,10 @@ void updatePulseTimer()
 						{
 							uint32_t period = pulseTimer->PulseHighTime + pulseTimer->PulseLowTime;
 
-							period = COUNTS_TO_uS( period);
+                            if (pulseTimer->units == 0)
+                            {
+                                period = COUNTS_TO_uS( period);
+                            }
 							if (period > 65535)
 							{
 								period = 65535;
@@ -361,7 +391,15 @@ void updatePulseTimer()
 						{
 							uint32_t period = pulseTimer->PulseHighTime + pulseTimer->PulseLowTime;
 
-							uint32_t freq = COUNTS_TO_Hz(period);
+							uint32_t freq;
+                            if (pulseTimer->units == 0)
+                            {
+                                freq = COUNTS_TO_Hz(period);
+                            }
+                            else
+                            {
+                                freq = 1000 / period;
+                            }
 							if (freq > 65535)
 							{
 								freq = 65535;

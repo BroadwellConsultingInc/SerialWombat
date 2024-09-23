@@ -35,6 +35,7 @@ uint8_t FrameTimingPin = 0xFF;
 
 uint8_t UserBuffer[SIZE_OF_USER_BUFFER];
 void processCapturedCommands();
+void ProcessFrameDataQueue();
 
 void reset ()
 {
@@ -88,6 +89,10 @@ V2.1.2
    - Added target pin for public data change on Quad Enc
    - Added frequency measurement on Quad Enc
 
+ V2.1.3
+   - Added Frequency Output
+   - Added Frame based data logging to queue 
+   - Added some infrastructure to support Software I2C Writer
  
  */
 uint16_t OverflowFrames = 0;
@@ -95,6 +100,16 @@ uint32_t FramesRun = 0;
 uint16_t SystemUtilizationAverage = 0x8000;
 uint16_t SystemUtilizationCount = 0;
 uint32_t SystemUtilizationSum = 0;
+
+uint16_t FrameDataQueue[NUMBER_OF_TOTAL_PINS / 8 + 1]; // Queue from 0 to 19, 8 pins per word, lsb and msb queueing
+uint16_t  FrameQueueFrequencyMask = 0;  // FramesRun is anded with this value.  Zero result causes queueing
+bool FrameQueueFrameNumber = false;  // Whether or not to add the frame # to the queue before data when queueing
+bool FrameQueueEnable = false;     // Overall turn on and off for efficiency
+bool FrameQueueChanges = false;
+bool FrameQueueFirstRun;
+uint16_t FrameDataQueueIndex = 0xFFFF;  // Location in User Data Area of Queue (Should be initialized before use)
+uint16_t FrameDataLastValue[NUMBER_OF_TOTAL_PINS];
+
 int main(void)
 {
     INTERRUPT_GlobalDisable();
@@ -132,6 +147,10 @@ int main(void)
 			RunForeground = false;
             ++FramesRun;
 			ProcessPins();
+            if (FrameQueueEnable)
+            {
+                ProcessFrameDataQueue();
+            }
             if (RunForeground)
 			{
 					++OverflowFrames;
@@ -376,6 +395,13 @@ void ProcessPins()
             updateQueuedPulseOutput();
         }
         break;
+
+	case PIN_MODE_FREQUENCY_OUTPUT:
+	{
+		extern void updateFrequencyOutput(void);
+		updateFrequencyOutput();
+	}
+	break;
         
             case PIN_MODE_MAX7219MATRIX:
             {
@@ -388,5 +414,163 @@ void ProcessPins()
 }
 
 
+void ProcessFrameDataQueue()
+{
+	uint8_t pin;
+	if ((FramesRun & FrameQueueFrequencyMask) == 0 || FrameQueueChanges )
+	{
+		uint8_t arrayIndex = 0;
+		uint16_t mask = 0x01;
+		int bytesToQueue = 0;
 
+		// Find out how many bytes to queue to see if there's space
+		for (pin = 0; pin <  NUMBER_OF_TOTAL_PINS; )
+		{
+
+			if (FrameDataQueue[arrayIndex] & mask)
+			{
+				// Queue Low byte
+				++bytesToQueue;
+			}
+			mask <<= 1;
+			if (FrameDataQueue[arrayIndex] & mask)
+			{
+				// Queue High byte
+				++bytesToQueue;
+			}
+			mask <<= 1;
+			++ pin;
+
+			// Every 8 pins advance the array index and reset the mask.
+			if ((pin & 0x07) == 0)
+			{
+				++ arrayIndex;
+				mask = 0x01;
+			}
+		}
+		if (FrameQueueFrameNumber)
+		{
+			bytesToQueue += 2;
+		}
+
+		// Check to see if the queue is valid and initialized, and get the remaining free bytes
+		uint16_t bytesFree;
+		SW_QUEUE_RESULT_t result =  QueueGetBytesFreeInQueue(FrameDataQueueIndex, &bytesFree);
+		if (result != QUEUE_RESULT_SUCCESS)
+		{
+			//Something's wrong with this queue.  Give up.
+			return;
+		}
+		if (bytesFree < bytesToQueue )
+		{
+			// Not enough free space to queue all the data this frame.  Give up.
+			return;
+		}
+       arrayIndex = 0;
+		mask = 0x01;
+
+		if (FrameQueueChanges)  
+		{
+			//We only queue on frame data changes for enabled pins
+			bool changeFound = 0;
+			if (FrameQueueFirstRun) 
+			{
+				//This is the first run after initialization of the logger.  Log data by marking change Found
+				changeFound = 1;
+				FrameQueueFirstRun = 0;
+			}
+			for (pin = 0; pin <  NUMBER_OF_TOTAL_PINS; )
+			{
+				//Scan through the pins seeing if they're of interest to the data
+				// logger.  If so, check to see if that pin has changed since last check
+				if (FrameDataQueue[arrayIndex] & mask)
+				{
+					// Check low byte
+					if ((GetBuffer(pin) & 0xFF) != (FrameDataLastValue[pin] & 0xFF) )
+					{
+						changeFound = 1;
+						break;
+					}
+				}
+				mask <<= 1;
+
+				// Check high byte
+				if (FrameDataQueue[arrayIndex] & mask)
+				{
+					if ((GetBuffer(pin) >> 8) != (FrameDataLastValue[pin] >> 8) )
+					{
+						changeFound = 1;
+						break;
+					}
+				}
+				mask <<= 1;
+				++ pin;
+
+				// Every 8 pins advance the array index and reset the mask.
+				if ((pin & 0x07) == 0)
+				{
+					++ arrayIndex;
+					mask = 0x01;
+				}
+			}
+			if (! changeFound)
+			{
+				// No changes found.  Don't queue anything.  Return
+				return;
+			}
+
+			// If we're here, something changed.
+		}
+
+		// Start queueing data
+		if (FrameQueueFrameNumber)
+		{
+			// If configured, store the 16 bit frame counter.  This allows relative timing
+			// and indication of missed packets.
+			QueueAddByte(FrameDataQueueIndex,(uint8_t)FramesRun);
+			QueueAddByte(FrameDataQueueIndex,(uint8_t)(FramesRun>>8));
+		}
+
+
+		arrayIndex = 0;
+		mask = 0x01;
+		// Iterate through each pin.  Each pin gets 2 bits.  The lower bit indicates that
+		// the low byte of the pin's public data should be stored.
+		// The higher bit indicates that the high byte of the pin's public data should be stored.
+		for (pin = 0; pin <  NUMBER_OF_TOTAL_PINS; )
+		{
+
+			if (FrameDataQueue[arrayIndex] & mask)
+			{
+				// Queue Low byte
+				QueueAddByte(FrameDataQueueIndex,(uint8_t)GetBuffer(pin));
+			}
+			mask <<= 1;
+			if (FrameDataQueue[arrayIndex] & mask)
+			{
+				// Queue High byte
+				QueueAddByte(FrameDataQueueIndex,(uint8_t)(GetBuffer(pin)>>8));
+			}
+			mask <<= 1;
+			++ pin;
+
+			// Every 8 pins advance the array index and reset the mask.
+			if ((pin & 0x07) == 0)
+			{
+				++ arrayIndex;
+				mask = 0x01;
+			}
+		}
+
+		if (FrameQueueChanges)  
+		{
+			//Store current values for comparision the next time in here
+			for (int pin = 0; pin <  NUMBER_OF_TOTAL_PINS; ++pin)
+			{
+
+				FrameDataLastValue[pin] = GetBuffer(pin) ;
+			}
+		}
+	}
+}
 

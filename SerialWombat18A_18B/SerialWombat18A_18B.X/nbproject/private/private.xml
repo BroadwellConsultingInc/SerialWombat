@@ -5,17 +5,10 @@
         <group>
             <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/protocol.c</file>
             <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/pinRegisters.c</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/pic24fj256ga702/mcc_generated_files/system.c</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/inputProcess.h</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/inputProcess.c</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/pic24fj256ga702/mcc_generated_files/uart1.c</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombatCommon/pinRegisters.h</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/pic24fj256ga702/mcc_generated_files/i2c2.c</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/HSCounter.c</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/pic24fj256ga702/mcc_generated_files/interrupt_manager.c</file>
+            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/timingResource.c</file>
+            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/ultrasonicDistance.c</file>
+            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/frequencyOutput.c</file>
             <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/main.c</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/utilities.h</file>
-            <file>file:/F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/quadEnc.c</file>
         </group>
     </open-files>
 </project-private>

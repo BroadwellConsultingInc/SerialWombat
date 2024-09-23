@@ -457,6 +457,10 @@ void timingResourcePWM(TIMING_RESOURCE_t resource, uint32_t period_uS, uint16_t 
 							OC1CON1 = 0x0006;
 						}
 					}
+                    else
+                    {
+                        CurrentPinLow();
+                    }
 					SetPPSOutput(CurrentPin,13);  // Connect pin to OC1
 				}
 			}
@@ -522,6 +526,10 @@ void timingResourcePWM(TIMING_RESOURCE_t resource, uint32_t period_uS, uint16_t 
 						}
 						SetPPSOutput(CurrentPin,14);  // Connect pin to OC1
 					}
+                    else
+                    {
+                        CurrentPinLow();
+                    }
 				}
 
 			}
@@ -593,6 +601,10 @@ void timingResourcePWM(TIMING_RESOURCE_t resource, uint32_t period_uS, uint16_t 
 						}
 						SetPPSOutput(CurrentPin,15);  // Connect pin to OC3
 					}
+                    else
+                    {
+                        CurrentPinLow();
+                    }
 				}
 			}
 			break;
@@ -657,6 +669,10 @@ void timingResourcePWM(TIMING_RESOURCE_t resource, uint32_t period_uS, uint16_t 
 							CCP2CON1L = 0x8085;
 						}
 					}
+                    else
+                    {
+                        CurrentPinLow();
+                    }
 					uint32_t highTime = ((uint32_t) CCP2PRL) * dutyCycle;
 					highTime >>= 16;
                     while(CCP2RBL != highTime)
@@ -729,6 +745,10 @@ void timingResourcePWM(TIMING_RESOURCE_t resource, uint32_t period_uS, uint16_t 
 							CCP3CON1L = 0x8085;
 						}
 					}
+                    else
+                    {
+                        CurrentPinLow();
+                    }
 					uint32_t highTime = ((uint32_t) CCP3PRL) * dutyCycle;
 					highTime >>= 16;
                     while (CCP3RBL != highTime)
@@ -800,6 +820,10 @@ void timingResourcePWM(TIMING_RESOURCE_t resource, uint32_t period_uS, uint16_t 
 							CCP4CON1L = 0x8085;
 						}
 					}
+                    else
+                    {
+                        CurrentPinLow();
+                    }
 					uint32_t highTime = ((uint32_t) CCP4PRL) * dutyCycle;
 					highTime >>= 16;
 					CCP4RB = highTime;

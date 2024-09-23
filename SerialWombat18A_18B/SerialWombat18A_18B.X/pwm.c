@@ -110,7 +110,10 @@ void updatePWM(void)
     uint16_t outputValue;
     
     outputValue = outputScaleProcess(&pwm->outputScale);
+     if (pwm->outputScale.sourcePin != CurrentPin)
+    {
 	CurrentPinRegister->generic.buffer = outputValue;  
+     }
         
     timingResourcePWM(CurrentPinRegister->pulse_output.resource, pwm->period_uS, outputValue);
     timingResourceService(CurrentPinRegister->pulse_output.resource);
