@@ -270,7 +270,7 @@ if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode 
 					TMR3Semaphore = RESOURCE_AVAILABLE;
 				}
                 inputProcessInit(&touch->inputProcess);
-                    touch->inputProcess.active = true;
+                    touch->inputProcess.active = false;
                 
                 
 			}
@@ -496,10 +496,13 @@ void updateTouch()
                     {
                         CurrentPinRegister->generic.buffer = inputProcessProcess(&touch->inputProcess,ADC1BUF0);
                     }
-					else if (touch->averageCount >= 8)
-					{
+					else
+					{	
                         touch->averageSum += ADC1BUF0;
                         ++touch->averageCount;
+						
+						if (touch->averageCount >= 8)
+					{
 						CurrentPinRegister->generic.buffer = touch->averageSum / 8;
 						touch->averageSum = 0;
 						touch->averageCount = 0;
@@ -508,6 +511,7 @@ void updateTouch()
 						{
 							touchProcessDigital();
 						}
+					}
 					}
 					touch->delayCounter = 0;
 					touch->state = TOUCH_STATE_IDLE;
