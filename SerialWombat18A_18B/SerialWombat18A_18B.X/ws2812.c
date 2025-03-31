@@ -1,5 +1,5 @@
 /*
-Copyright 2021 Broadwell Consulting Inc.
+Copyright 2021-2024 Broadwell Consulting Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
@@ -22,7 +22,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #include "serialWombat.h"
 #include <stdint.h>
 #include "asciiConversion.h"
-
+#include "outputScale.h"
 
 typedef enum 
 {
@@ -34,6 +34,7 @@ typedef enum
 }ws2812_mode_t;
 
 typedef struct ws2812{
+    outputScale_t outputScale;
     uint32_t offColor;
     uint32_t onColor;
     uint16_t* dmaQueuePosition;
@@ -50,6 +51,7 @@ typedef struct ws2812{
     uint8_t currentAnimationFrame;
     uint8_t bgSourcePin;
      uint8_t bgOnLEDs;
+     
 }ws2812_t;
 
 
@@ -406,7 +408,7 @@ Set pin 19 bargraph min 1000, max 64000
 
 void initWS2812 (void)
 {
-
+        BUILD_BUG_ON( sizeof(ws2812_t) >  BYTES_PER_PIN_REGISTER );
     debugWS2812 = (ws2812_t*) CurrentPinRegister;
     
     if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_WS2812)

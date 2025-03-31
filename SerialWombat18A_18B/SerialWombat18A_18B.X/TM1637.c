@@ -1,5 +1,5 @@
 /*
-Copyright 2021 Broadwell Consulting Inc.
+Copyright 2021-2024 Broadwell Consulting Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
@@ -22,7 +22,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #include "serialWombat.h"
 #include <stdint.h>
 #include "asciiConversion.h"
-
+#include "outputScale.h"
 
 
 
@@ -183,6 +183,7 @@ typedef enum {
 }TM1637_MODE_t;
 
 typedef struct tm1637_n{
+    outputScale_t outputScale;
 	uint8_t outputBuffer[6];  ///< Used to hold user data for output.  Can be raw data, characters, pin to draw data from, or animation parameters based on mode
 	uint8_t displayOrder[6];  ///< Used to reorder rendered bytes into displayArray
 	uint8_t displayArray[6];  ///< Final rendered, ordered bitmap that is sent to the TM1637
@@ -523,6 +524,7 @@ Write an ascii 7 to TM1637 on pin 19.\
 
 void initTM1637 (void)
 {
+        BUILD_BUG_ON( sizeof(tm1637_t) >  BYTES_PER_PIN_REGISTER );
 if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_TM1637)
 	{
 		error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
@@ -545,10 +547,13 @@ if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode 
 				SetMode(tm1637->dioPin, PIN_MODE_CONTROLLED);
 				tm1637->lastDigit  = Rxbuffer[4] - 1;
 				tm1637->mode = Rxbuffer[5];
+                
+                      outputScaleInit(&tm1637->outputScale);
+                      
                 if (tm1637->mode == TM1637_MODE_BUFFER_DEC ||
                         tm1637->mode == TM1637_MODE_BUFFER_HEX)
                 {
-                    tm1637->outputBuffer[0] = Rxbuffer[6];
+                    tm1637->outputScale.sourcePin = Rxbuffer[6];
                 }
                 else
                 {
@@ -573,6 +578,7 @@ if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode 
 				}
                 CurrentPinRegister->generic.mode =PIN_MODE_TM1637;
 				tm1637_hwinit();
+              
 			}
 			break;
 
@@ -672,7 +678,11 @@ if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode 
 			}
 			break;
             
-
+case CONFIGURE_CHANNEL_MODE_10:
+        {
+            outputScaleCommProcess(&tm1637->outputScale);
+        }
+        break;
 		default:
 			{
 				error(SW_ERROR_INVALID_PIN_COMMAND);
@@ -701,8 +711,10 @@ void tm1637UpdateRender()
 	
 	if (tm1637->mode == TM1637_MODE_BUFFER_DEC)
 	{
+         uint16_t displayValue;
+    displayValue = outputScaleProcess(&tm1637->outputScale);
 		renderArray[0] = '0';
-		uint16ToAscii5(GetBuffer(tm1637->outputBuffer[0]) ,&renderArray[1]);  
+		uint16ToAscii5(displayValue ,&renderArray[1]);  
         uint8_t i;
          for (i = 0; i < 6; ++i)
          {
@@ -730,9 +742,11 @@ void tm1637UpdateRender()
 	}
 	else if (tm1637->mode == TM1637_MODE_BUFFER_HEX)
 	{
+          uint16_t displayValue;
+    displayValue = outputScaleProcess(&tm1637->outputScale);
 		renderArray[0] = ' ';
 		renderArray[1] = ' ';
-		 uint16ToAsciiHex4(GetBuffer(tm1637->outputBuffer[0]), &renderArray[2]) ;
+		 uint16ToAsciiHex4(displayValue, &renderArray[2]) ;
          uint8_t i;
          for (i = 0; i < 6; ++i)
          {

@@ -62,9 +62,9 @@ void initQuadEnc(void)
 			{
 
 
-				if (pinPort[Rxbuffer[5]] != CurrentPinPort())
+				if (pinPort[Rxbuffer[5]] != CurrentPinPort() && Rxbuffer[6] < 4) 
 				{
-					//Pins must be on same port
+					//Pins must be on same port to be interrupt driven
 					CurrentPinRegister->generic.mode = PIN_MODE_CONTROLLED;
 					error(SW_ERROR_PINS_MUST_BE_ON_SAME_PORT);
 					return;

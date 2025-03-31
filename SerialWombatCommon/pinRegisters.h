@@ -33,7 +33,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #define BYTES_PER_PIN_REGISTER 20
 #else
 #define BYTES_PER_PIN_REGISTER 96
-#define BYTES_AVAIALABLE_OUTPUT_PULSE 58
 #define BYTES_AVAILABLE_INPUT_DMA (BYTES_PER_PIN_REGISTER - 5)
 #endif
 
@@ -55,18 +54,7 @@ typedef union _pin_register_t{
 		uint8_t mode;     // Do not move
 	} generic;
 #ifndef _PIC14EX
-	struct pulse_output_n
-	{
-		uint8_t bytes[BYTES_AVAIALABLE_OUTPUT_PULSE];
-        uint8_t resource;
-		uint8_t lastDMA;
-		uint16_t highRemaining;
-		uint16_t lowRemaining;
-		uint16_t highReload;
-		uint16_t lowReload;
-		uint16_t buffer;
-		uint16_t mode;
-	} pulse_output;
+	
     
     struct pulse_input_n
     {
@@ -87,6 +75,10 @@ typedef union _pin_register_t{
 
 
 extern pinRegister_t PinUpdateRegisters[NUMBER_OF_TOTAL_PINS];
+
+extern uint16_t virtualPinHardwareSim[NUMBER_OF_VIRTUAL_PINS];
+
+#define setVirtualPinHardware(_pin, _value) { if (_pin >= FIRST_VIRTUAL_PIN && _pin < (FIRST_VIRTUAL_PIN + NUMBER_OF_VIRTUAL_PINS){virutalPinHardwareSim[_pin - FIRST_VIRTUAL_PIN] = _value;}}
 
 #ifdef _PIC14EX 
 #define USE_BUFFERED_PIN_REGISTER

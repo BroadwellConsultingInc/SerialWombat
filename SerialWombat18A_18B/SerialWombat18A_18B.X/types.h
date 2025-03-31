@@ -195,7 +195,7 @@ typedef union _pin_register_t{
 
       struct bitstreamOutput_n
       {
-        uint8_t bytes[27]
+        uint8_t bytes[27];
 	uint8_t lastDMA;
 	uint16_t buffer;
 	uint16_t mode;

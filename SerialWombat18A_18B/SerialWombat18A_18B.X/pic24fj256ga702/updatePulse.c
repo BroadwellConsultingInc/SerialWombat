@@ -1,6 +1,36 @@
 #include <stdint.h>
 #include "serialWombat.h"
 
+
+
+void updatePulseOutput(uint8_t pin, pulse_output_t* pulse)
+{
+    bool recycle = true;
+    while (recycle)
+    {
+        recycle = false;
+    if (pulse->highRemaining > 0)
+    {
+        pulse->highRemaining = updateBitStreamOutput(pin, 1, pulse->highRemaining,&pulse->bitStream);
+        pulse->lowRemaining = pulse->lowReload;
+    }
+    if (pulse->highRemaining == 0)
+    {
+        pulse->lowRemaining = updateBitStreamOutput(pin, 0, pulse->lowRemaining,&pulse->bitStream);
+        if (pulse->lowRemaining == 0)
+        {
+            pulse->highRemaining = pulse->highReload;
+            if (pulse->lowRemaining)
+            {
+            recycle = true;
+            }
+        }
+    }
+    }
+
+}
+
+#ifdef OLDVERISON
 void updatePulseOutput(uint8_t pin)
 {
 	pinRegister_t* pinPtr = &PinUpdateRegisters[pin];
@@ -170,7 +200,7 @@ void updatePulseOutput(uint8_t pin)
 	
 	pinPtr->pulse_output.lastDMA = nextLocationToQueue;
 }
-
+#endif
 uint16_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint16_t count, DMABitStream_t* bitStream )
 {
 	uint16_t bitmap = pinBitmap[pin];
@@ -741,4 +771,4 @@ bool  PulseInGetOldestDMASample(uint8_t pin, uint16_t* value)
     }
 }
     
-    
+

@@ -26,7 +26,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #include "serialWombat.h"
 
 
-
+#ifdef NOTDMAONLY
 timingResourceManager_t timingResources[TIMING_RESOURCE_NUMBER_OF_RESOURCES];
 
 void timingResourceDefault(TIMING_RESOURCE_t resource)
@@ -36,6 +36,7 @@ void timingResourceDefault(TIMING_RESOURCE_t resource)
 
 	switch (resource)
 	{
+#ifdef PIC24
 		case TIMING_RESOURCE_OC1:
 			{
 				OC1CON1 = 0;
@@ -122,7 +123,7 @@ void timingResourceDefault(TIMING_RESOURCE_t resource)
 			}
 			break;
 
-
+#endif
 		case TIMING_RESOURCE_PORT_DMA:
 			{
 
@@ -134,7 +135,9 @@ void timingResourceDefault(TIMING_RESOURCE_t resource)
 			break;
 	}
 }
+#endif
 
+#ifdef NOTDMAONLY
 void timingResourceManagerInit()
 {
     uint8_t i;
@@ -143,29 +146,29 @@ void timingResourceManagerInit()
         timingResourceDefault(i);      
     }
 }
+#endif
 
-TIMING_RESOURCE_t timingResourceHighPulseClaim(TIMING_RESOURCE_t resource)
+TIMING_RESOURCE_t timingResourceHighPulseClaim(TIMING_RESOURCE_t resource, pulse_output_t* pulse)
 {
-	uint8_t i;
-
-
 	if (!pinIsPPSCapable(CurrentPin))
 	{
-		if (resource < TIMING_RESOURCE_PORT_DMA || resource == TIMING_RESOURCE_ANY_HARDWARE)
+		if (resource < TIMING_RESOURCE_PORT_DMA || resource == TIMING_RESOURCE_ANY_HARDWARE_OC)
 		{
 			return TIMING_RESOURCE_NONE;
 		}
 		else
 		{
+		    initializeBitStreamOutput(CurrentPin,  0, &pulse->bitStream );
 			return(TIMING_RESOURCE_PORT_DMA);
 		}
 	}
-
+#ifdef PIC24
 	if (resource == TIMING_RESOURCE_PORT_DMA)
 	{
+	    initializeBitStreamOutput(CurrentPin,  0, &pulse->bitStream );
 		return(TIMING_RESOURCE_PORT_DMA);
 	}
-
+    	uint8_t i;
 	//i = (TIMING_RESOURCE_PORT_DMA);
 	for (i = 0; i < TIMING_RESOURCE_PORT_DMA; ++i)
 	{
@@ -175,12 +178,13 @@ TIMING_RESOURCE_t timingResourceHighPulseClaim(TIMING_RESOURCE_t resource)
 			return(i);
 		}
 	}
+#endif
 	return(TIMING_RESOURCE_NONE);
 }
-
+#ifdef NOTDMAONLY
 TIMING_RESOURCE_t timingResourcePWMClaim(TIMING_RESOURCE_t resource, uint32_t period_uS)
 {
-	uint8_t i;
+
 
    	if (resource == TIMING_RESOURCE_PORT_DMA)
 	{
@@ -192,7 +196,7 @@ TIMING_RESOURCE_t timingResourcePWMClaim(TIMING_RESOURCE_t resource, uint32_t pe
 	{
         // If we can't connect a timing resource to the current pin, give em a DMA port unless they
         // specifically call out hardware.
-		if (resource < TIMING_RESOURCE_PORT_DMA || resource == TIMING_RESOURCE_ANY_HARDWARE)
+		if (resource < TIMING_RESOURCE_PORT_DMA || resource == TIMING_RESOURCE_ANY_HARDWARE_OC)
 		{
 			return TIMING_RESOURCE_NONE;
 		}
@@ -201,7 +205,7 @@ TIMING_RESOURCE_t timingResourcePWMClaim(TIMING_RESOURCE_t resource, uint32_t pe
 			return(TIMING_RESOURCE_PORT_DMA);
 		}
 	}
-    
+#ifdef PIC24 
 	if (period_uS > 65500)
 	{
 		return (TIMING_RESOURCE_PORT_DMA);  // Use software for long period PWM (up to 1.13 s)
@@ -241,7 +245,7 @@ TIMING_RESOURCE_t timingResourcePWMClaim(TIMING_RESOURCE_t resource, uint32_t pe
     }
     
 	
-
+	uint8_t i;
 
 	for (i = 0; i < TIMING_RESOURCE_PORT_DMA; ++i)
 	{
@@ -254,26 +258,34 @@ TIMING_RESOURCE_t timingResourcePWMClaim(TIMING_RESOURCE_t resource, uint32_t pe
 	}
     
     // Nothing was free.
-    if (resource == TIMING_RESOURCE_ANY_HARDWARE)
+    if (resource == TIMING_RESOURCE_ANY_HARDWARE_OC)
     {
         // They specifically didn't want DMA, so give em nothing.
         return(TIMING_RESOURCE_NONE);
     }
-    
+#endif 
     // Otherwise, you can always fall back on the good old DMA.
     return (TIMING_RESOURCE_PORT_DMA);
     
 }
-
+#endif
+#ifdef NOTDMAONLY
 void timingResourceRelease(TIMING_RESOURCE_t resource)
 {
 	uint8_t i;
 
+#ifdef PIC24
 	if (pinIsPPSCapable(CurrentPin))
 	{
 		SetPPSOutput(CurrentPin,0);
 	}
+#endif
 
+	if (resource == TIMING_RESOURCE_PORT_DMA)
+	{
+	    extern void deactivateOutputDMA(uint8_t pin);
+	    deactivateOutputDMA(CurrentPin);
+	}
 	if (resource == TIMING_RESOURCE_ALL)
 	{
 		for (i = 0; i < TIMING_RESOURCE_NUMBER_OF_RESOURCES; ++i)
@@ -289,13 +301,16 @@ void timingResourceRelease(TIMING_RESOURCE_t resource)
 		timingResourceDefault(resource);
 	}
 }
-
-void timingResourcesHighPulse(TIMING_RESOURCE_t resource, uint16_t pulseTime_uS)
+#endif
+void timingResourcesHighPulse(pulse_output_t* pulse, uint16_t pulseTime_uS)
 {
+#ifdef NOTDMAONLY
+    uint8_t resource = pulse->resource;
 
 
 	switch (resource)
 	{
+#ifdef PIC24
 		case TIMING_RESOURCE_OC1:
 			{
 				OC1CON1 = 0x1C00;
@@ -377,14 +392,19 @@ void timingResourcesHighPulse(TIMING_RESOURCE_t resource, uint16_t pulseTime_uS)
 			break;
 
 
+#endif
 		case TIMING_RESOURCE_PORT_DMA:
 			{
-				CurrentPinRegister->pulse_output.highReload = 
+#endif
+				pulse->highReload =
 					(((uint32_t)pulseTime_uS) * DMA_FREQUENCY) / 1000000;
-				CurrentPinRegister->pulse_output.lowReload = 65534;
-				CurrentPinRegister->pulse_output.highRemaining = 0;
-				CurrentPinRegister->pulse_output.lowRemaining = 0;
-				SetPPSOutput(CurrentPin,0); 
+				pulse->lowReload = 65535;
+				pulse->highRemaining = pulse->highReload;
+				pulse->lowRemaining = pulse->lowReload;
+#ifdef NOTDMAONLY
+#ifdef PIC24
+				SetPPSOutput(CurrentPin,0);
+#endif
 
 			}
 			break;
@@ -396,13 +416,16 @@ void timingResourcesHighPulse(TIMING_RESOURCE_t resource, uint16_t pulseTime_uS)
 			break;
 
 	}
+#endif
 }
 
-void timingResourcePWM(TIMING_RESOURCE_t resource, uint32_t period_uS, uint16_t dutyCycle)
-{
-	switch (resource)
-	{
 
+void timingResourcePWM(pulse_output_t *pulse , uint32_t period_uS, uint16_t dutyCycle)
+{
+#ifdef NOTDMAONLY
+	switch (pulse->resource)
+	{
+#ifdef PIC24
 		case TIMING_RESOURCE_OC1:
 			{
 
@@ -831,14 +854,58 @@ void timingResourcePWM(TIMING_RESOURCE_t resource, uint32_t period_uS, uint16_t 
 				}
 			}
 			break;
-
+#endif
 		case TIMING_RESOURCE_PORT_DMA:
 			{
+#endif
 				if (dutyCycle == 0xFFFF)
 				{
+				    deactivateOutputDMA(CurrentPin);
 					CurrentPinHigh();
+					return;
 				}
-				else
+				else if (dutyCycle == 0)
+				{
+
+				                        deactivateOutputDMA(CurrentPin);
+				                        CurrentPinLow();
+				                        return;
+
+				}
+#ifdef SW8B_HW_PWM_ENABLE
+				else if (period_uS == 1000)
+				{
+				    uint32_t output = (uint32_t)12000 * dutyCycle;
+				    output >>= 16;
+				    switch (CurrentPin)
+				    {
+				    case 0:
+				        TIM2->CH1CVR = (uint16_t)output;   // Not the right register probably
+				        break;
+				    case 1:
+				        break;
+				    case 2:
+				        break;
+
+				    case 3:
+				        break;
+				    case 4:
+				        break;
+
+				    case 5:
+
+				        break;
+
+				    case 6:
+
+				        break;
+				    case 7:
+
+				    break;
+				    }
+				    return;
+				}
+#endif
 				{
 					
 					period_uS *= 3775;
@@ -848,24 +915,24 @@ void timingResourcePWM(TIMING_RESOURCE_t resource, uint32_t period_uS, uint16_t 
 					uint32_t high = period_uS * dutyCycle;
 					high >>= 16;
 
-                    if (CurrentPinRegister->pulse_output.highReload != high ||
-                           CurrentPinRegister->pulse_output.lowReload != (period_uS - high) )
+                    if (pulse->highReload != high ||
+                            pulse->lowReload != (period_uS - high) )
                     {
-                    CurrentPinLow();
-					CurrentPinRegister->pulse_output.highReload = 
+                //    CurrentPinLow();  TODO commenting this out may break SW18AB
+                    pulse->highReload =
 						high;
-					CurrentPinRegister->pulse_output.lowReload = period_uS - high;
-					if (CurrentPinRegister->pulse_output.highRemaining > CurrentPinRegister->pulse_output.highReload)
+                    pulse->lowReload = period_uS - high;
+					if (pulse->highRemaining > pulse->highReload)
 					{
-						CurrentPinRegister->pulse_output.highRemaining = CurrentPinRegister->pulse_output.highReload;
+					    pulse->highRemaining = pulse->highReload;
 					}
-					if (CurrentPinRegister->pulse_output.lowRemaining > CurrentPinRegister->pulse_output.lowReload)
+					if (pulse->lowRemaining >pulse->lowReload)
 					{
-						CurrentPinRegister->pulse_output.lowRemaining = CurrentPinRegister->pulse_output.lowReload;
+					    pulse->lowRemaining = pulse->lowReload;
 					}
                     }
 				}
-
+#ifdef NOTDMAONLY
 			}
 			break;
 
@@ -876,13 +943,17 @@ void timingResourcePWM(TIMING_RESOURCE_t resource, uint32_t period_uS, uint16_t 
 			break;
 
 	}
+#endif
 }
-bool timingResourceHighPulseBusy(TIMING_RESOURCE_t resource)
+
+bool timingResourceHighPulseBusy(pulse_output_t* pulse)
 {
-	
+#ifdef NOTDMAONLY
+	uint8_t resource = pulse->resource;
 
 	switch (resource)
 	{
+#ifdef PIC24
 		case TIMING_RESOURCE_OC1:
 			{
 				return(! IFS0bits.OC1IF);
@@ -931,16 +1002,17 @@ bool timingResourceHighPulseBusy(TIMING_RESOURCE_t resource)
 			   }
 			   break;
 	
-
+#endif
 		case TIMING_RESOURCE_PORT_DMA:
 			{
-				
-                        if (CurrentPinRegister->pulse_output.highRemaining == 0 &&
-                                CurrentPinRegister->pulse_output.lowRemaining < 65400)
+#endif
+                        if (pulse->highRemaining == 0 &&
+                               ( pulse->lowRemaining < (pulse->lowReload - SIZE_OF_DMA_ARRAY) || (pulse->lowReload < SIZE_OF_DMA_ARRAY)))
                         {
                             return (false);
                         }
                         return (true);
+#ifdef NOTDMAONLY
         }
         break;
         default:
@@ -948,17 +1020,19 @@ bool timingResourceHighPulseBusy(TIMING_RESOURCE_t resource)
         break;
     }
     return(false);
+#endif
 }
 
-void timingResourceService(TIMING_RESOURCE_t resource)
+#ifdef NOTDMAONLY
+void timingResourceService(pulse_output_t* pulse)
 {
    
 
-	switch (resource)
+	switch (pulse->resource)
 	{
         case TIMING_RESOURCE_PORT_DMA:
         {
-            updatePulseOutput(CurrentPin);
+            updatePulseOutput(CurrentPin, pulse);
         }
         break;
         default:
@@ -968,9 +1042,13 @@ void timingResourceService(TIMING_RESOURCE_t resource)
     }
  
 }
+#endif
+
+
 
 TIMING_RESOURCE_t timingResourceInterruptClaim(TIMING_RESOURCE_t resource, uint16_t counts, uint16_t uS, timingResourceCallback_t callback)
 {
+#ifdef PIC24
     // If they asked for something specific, give them that if possible.
     if (resource < TIMING_RESOURCE_PORT_DMA)
     {
@@ -1026,16 +1104,18 @@ TIMING_RESOURCE_t timingResourceInterruptClaim(TIMING_RESOURCE_t resource, uint1
 			}
 		}
     
-    
+#endif 
     // Nothing is avaiable at this time.
     return(TIMING_RESOURCE_NONE);
 }
+
 
 
 void timingResourceInterruptActivate(TIMING_RESOURCE_t resource)
 {
     switch (resource)
     {
+#ifdef PIC24
         case TIMING_RESOURCE_MCCP1:
         {
             CCP1CON1L = 0;
@@ -1120,7 +1200,7 @@ void timingResourceInterruptActivate(TIMING_RESOURCE_t resource)
 				
         }
         break;
-        
+#endif 
         default:
         {
             // Do nothing.
@@ -1131,6 +1211,7 @@ void timingResourceInterruptActivate(TIMING_RESOURCE_t resource)
 }
 
 
+#ifdef PIC24 //CCP Interrupt stuff
 volatile uint16_t CCT1InterruptCount = 0;
 void __attribute__ ( ( interrupt, no_auto_psv ) ) _CCT1Interrupt (  )
 {
@@ -1296,10 +1377,11 @@ void __attribute__ ( ( interrupt, no_auto_psv ) ) _OC3Interrupt (  )
     ++ OC3InterruptCount;
     timingResources[TIMING_RESOURCE_OC3].resourceHolder = 0xFF;
 }
-
+#endif
 
 void timingResourceBusyWait(uint16_t uS)
 {
+#ifdef PIC24
     if (timingResources[TIMING_RESOURCE_MCCP1].resourceHolder == 0xFF )
     {
         timingResources[TIMING_RESOURCE_MCCP1].resourceHolder = CurrentPin;
@@ -1348,7 +1430,13 @@ void timingResourceBusyWait(uint16_t uS)
         timingResources[TIMING_RESOURCE_MCCP3].resourceHolder = 0xFF;
         return;
     }
-    //TODO add other resources
+#else
+     uint32_t end = TIM1->CNT + 12 * uS;
+
+     while (TIM1->CNT < end);
+
+#endif
+    //TODO add other resources, add busy wait in SW
 }
 
 
@@ -1360,7 +1448,7 @@ TIMING_RESOURCE_t timingResourceCounterClaim(TIMING_RESOURCE_t resource)
 		return (TIMING_RESOURCE_NONE);
 	}
 
-	if ((resource == TIMING_RESOURCE_MCCP1 || resource == TIMING_RESOURCE_ALL || resource == TIMING_RESOURCE_ANY_HARDWARE) && (timingResources[TIMING_RESOURCE_MCCP1].resourceHolder == 0xFF || timingResources[TIMING_RESOURCE_MCCP1].resourceHolder == CurrentPin))
+	if ((resource == TIMING_RESOURCE_MCCP1 || resource == TIMING_RESOURCE_ALL || resource == TIMING_RESOURCE_ANY_HARDWARE_OC) && (timingResources[TIMING_RESOURCE_MCCP1].resourceHolder == 0xFF || timingResources[TIMING_RESOURCE_MCCP1].resourceHolder == CurrentPin))
 	{
 		timingResources[TIMING_RESOURCE_MCCP1].resourceHolder = CurrentPin;
 		RPINR12bits.TCKIAR = pinPPSInputMap[CurrentPin];
@@ -1368,7 +1456,7 @@ TIMING_RESOURCE_t timingResourceCounterClaim(TIMING_RESOURCE_t resource)
 		CCP1CON1Lbits.CCPON = 1;
 		return (TIMING_RESOURCE_MCCP1);
 	}
-	if ((resource == TIMING_RESOURCE_MCCP2 || resource == TIMING_RESOURCE_ALL || resource == TIMING_RESOURCE_ANY_HARDWARE) && (timingResources[TIMING_RESOURCE_MCCP2].resourceHolder == 0xFF || timingResources[TIMING_RESOURCE_MCCP2].resourceHolder == CurrentPin))
+	if ((resource == TIMING_RESOURCE_MCCP2 || resource == TIMING_RESOURCE_ALL || resource == TIMING_RESOURCE_ANY_HARDWARE_OC) && (timingResources[TIMING_RESOURCE_MCCP2].resourceHolder == 0xFF || timingResources[TIMING_RESOURCE_MCCP2].resourceHolder == CurrentPin))
 	{
 		timingResources[TIMING_RESOURCE_MCCP2].resourceHolder = CurrentPin;
 		RPINR12bits.TCKIBR = pinPPSInputMap[CurrentPin];
@@ -1462,4 +1550,65 @@ TIMING_RESOURCE_t timingResourceGenericClaim(TIMING_RESOURCE_t resource)
         
     }
      return(TIMING_RESOURCE_NONE);
+}
+
+
+inline bool IC1_IsCaptureBufferEmpty( void )
+{
+    return( ! IC1CON1bits.ICBNE );
+}
+
+inline uint16_t IC1_CaptureDataRead( void )
+{
+    return(IC1BUF);
+}
+
+
+TIMING_RESOURCE_t timingResourceInputCaptureClaim(TIMING_RESOURCE_t resource)
+{
+    CurrentPinInput();	
+
+    if(timingResources[TIMING_RESOURCE_IC1].resourceHolder == CurrentPin)
+    {
+	    return(TIMING_RESOURCE_IC1);
+    }
+    if(timingResources[TIMING_RESOURCE_IC2].resourceHolder == CurrentPin)
+    {
+	    return(TIMING_RESOURCE_IC2);
+    }
+    if(timingResources[TIMING_RESOURCE_IC3].resourceHolder == CurrentPin)
+    {
+	    return(TIMING_RESOURCE_IC3);
+    }
+
+    if (!pinIsPPSCapable(CurrentPin))
+    {
+	    return (TIMING_RESOURCE_NONE);
+    }
+
+    if(timingResources[TIMING_RESOURCE_IC1].resourceHolder == 0xFF)
+    {
+	    // ICSIDL disabled; ICM Edge Detect Capture; ICTSEL TMR2; ICI Every; 
+	    IC1CON1 = 0x401;
+	    // SYNCSEL TMR2; TRIGSTAT disabled; IC32 disabled; ICTRIG Sync; 
+	    IC1CON2 = 0x0C;
+	    IC1CON1bits.ICM = 1;
+	    RPINR7bits.IC1R = pinPPSInputMap[CurrentPin];  
+	    while (! IC1_IsCaptureBufferEmpty())
+	    {
+		    IC1_CaptureDataRead();
+	    }
+	    return(TIMING_RESOURCE_IC1);
+    }
+    if(timingResources[TIMING_RESOURCE_IC2].resourceHolder == 0xFF)
+    {
+	    RPINR7bits.IC2R = pinPPSInputMap[CurrentPin];  
+	    return(TIMING_RESOURCE_IC2);
+    }
+    if(timingResources[TIMING_RESOURCE_IC3].resourceHolder == 0xFF)
+    {
+	    RPINR8bits.IC3R = pinPPSInputMap[CurrentPin];  
+	    return(TIMING_RESOURCE_IC3);
+    }
+    return (TIMING_RESOURCE_NONE);
 }

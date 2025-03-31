@@ -1,5 +1,5 @@
 /*
-Copyright 2020 Broadwell Consulting Inc.
+Copyright 2020-2024 Broadwell Consulting Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
@@ -41,6 +41,7 @@ typedef enum
 	COMMAND_BINARY_READ_USER_BUFFER = 0x83,
 	COMMAND_BINARY_WRITE_USER_BUFFER = 0x84,
 	COMMAND_BINARY_WRITE_USER_BUFFER_CONTINUE = 0x85,
+	COMMAND_BINARY_READ_ALL_PINS_GT_0 = 0x8F,
 	COMMAND_BINARY_QUEUE_INITIALIZE= 0x90,
 	COMMAND_BINARY_QUEUE_ADD_BYTES= 0x91,
 	COMMAND_BINARY_QUEUE_ADD_7BYTES= 0x92,
@@ -65,6 +66,7 @@ typedef enum
             COMMAND_BINARY_RW_PIN_MEMORY = 0xB5,
             COMMAND_CAPTURE_STARTUP_SEQUENCE = 0xB6,
             COMMAND_ADJUST_FREQUENCY = 0xB7,
+	    COMMAND_SET_PIN_HW = 0xB8,
 	CONFIGURE_CHANNEL_MODE_0 = 200, // 0xC8
 	CONFIGURE_CHANNEL_MODE_1 = 201,
 	CONFIGURE_CHANNEL_MODE_2 = 202,

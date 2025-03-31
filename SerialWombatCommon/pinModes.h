@@ -62,6 +62,9 @@ typedef enum
             PIN_MODE_QUEUED_PULSE_OUTPUT = 34,
 	    PIN_MODE_MAX7219MATRIX = 35,
 	    PIN_MODE_FREQUENCY_OUTPUT = 36,
+	    PIN_MODE_IR_RX = 37,
+	    PIN_MODE_IR_TX = 38,
+	    PIN_MODE_RC_PPM = 38,
 }
 pinMode_t;
 

@@ -95,6 +95,20 @@ V2.1.2
    - Added some infrastructure to support Software I2C Writer
  
  */
+
+/* PIC24FJ256GA702 Resource usage overview:
+ 
+ TMR1 - Used to generate Pin DMA 57600 clock.  Frequency 16MHz clock 
+ TMR2 - Used to generate 1mS Frame Timer.  2MHz clock
+ TMR3 - Allocatable resource through Timer Resource module semaphore - Used by Touch
+ 
+ DMA0 - Memory to LATA
+ DMA1 - Memory to LATB
+ DMA2 - PORTA to Memory
+ DMA3 - PORTB to Memory
+ DMA4 - Available
+ 
+ */
 uint16_t OverflowFrames = 0;
 uint32_t FramesRun = 0;
 uint16_t SystemUtilizationAverage = 0x8000;
@@ -116,16 +130,25 @@ int main(void)
     RCON = 0;
     INTCON2 |= 0x100; // Set Alternate vector table.  Bits in .h file are wrong in INTCON2bits so use bit or
 	// initialize the device
+    memset(UserBuffer,0, sizeof(UserBuffer));
     for (CurrentPin = 0; CurrentPin <  NUMBER_OF_TOTAL_PINS; ++CurrentPin)
 	{
-        SetMode(CurrentPin, PIN_MODE_DIGITAL_IO);
+        Rxbuffer[0] = CONFIGURE_CHANNEL_MODE_0;
+        Rxbuffer[1] = CurrentPin;
+        Rxbuffer[2] = PIN_MODE_DIGITAL_IO;
+        Rxbuffer[3] = 2; // Input
+        void ProcessRxbuffer(void);
+        ProcessRxbuffer();
     }
-    memset(UserBuffer,0, sizeof(UserBuffer));
+
 	SYSTEM_Initialize();
+
     while (!HLVDCONbits.BGVST); // Wait for Band Gap to stabilize.
 
     SPI3CON1L = 0x8020;  // Make SPI3 Leader, CS enabled as high data source for PPS  //TODO Is this debug code?
         SPI3CON1H = 0x0010;
+
+        
 
         timingResourceManagerInit();
     
@@ -191,6 +214,9 @@ void ProcessPins()
 		{
 			case PIN_MODE_DIGITAL_IO:
 				{
+					void updateDigitalIO(void);
+					updateDigitalIO();
+					/*
 					if (CurrentPinRead())
 					{
 						CurrentPinRegister->generic.buffer = 65535;
@@ -199,6 +225,7 @@ void ProcessPins()
 					{
 						CurrentPinRegister->generic.buffer = 0;
 					}
+					*/
 				}
 				break;
 			case PIN_MODE_ANALOGINPUT:
@@ -455,7 +482,8 @@ void ProcessFrameDataQueue()
 
 		// Check to see if the queue is valid and initialized, and get the remaining free bytes
 		uint16_t bytesFree;
-		SW_QUEUE_RESULT_t result =  QueueGetBytesFreeInQueue(FrameDataQueueIndex, &bytesFree);
+        queueAddress = &UserBuffer[FrameDataQueueIndex];
+		SW_QUEUE_RESULT_t result =  QueueGetBytesFreeInQueue( &bytesFree);
 		if (result != QUEUE_RESULT_SUCCESS)
 		{
 			//Something's wrong with this queue.  Give up.
@@ -527,8 +555,8 @@ void ProcessFrameDataQueue()
 		{
 			// If configured, store the 16 bit frame counter.  This allows relative timing
 			// and indication of missed packets.
-			QueueAddByte(FrameDataQueueIndex,(uint8_t)FramesRun);
-			QueueAddByte(FrameDataQueueIndex,(uint8_t)(FramesRun>>8));
+			QueueAddByte((uint8_t)FramesRun);
+			QueueAddByte((uint8_t)(FramesRun>>8));
 		}
 
 
@@ -543,13 +571,13 @@ void ProcessFrameDataQueue()
 			if (FrameDataQueue[arrayIndex] & mask)
 			{
 				// Queue Low byte
-				QueueAddByte(FrameDataQueueIndex,(uint8_t)GetBuffer(pin));
+				QueueAddByte((uint8_t)GetBuffer(pin));
 			}
 			mask <<= 1;
 			if (FrameDataQueue[arrayIndex] & mask)
 			{
 				// Queue High byte
-				QueueAddByte(FrameDataQueueIndex,(uint8_t)(GetBuffer(pin)>>8));
+				QueueAddByte((uint8_t)(GetBuffer(pin)>>8));
 			}
 			mask <<= 1;
 			++ pin;
@@ -565,7 +593,8 @@ void ProcessFrameDataQueue()
 		if (FrameQueueChanges)  
 		{
 			//Store current values for comparision the next time in here
-			for (int pin = 0; pin <  NUMBER_OF_TOTAL_PINS; ++pin)
+            int pin;
+			for (pin = 0; pin <  NUMBER_OF_TOTAL_PINS; ++pin)
 			{
 
 				FrameDataLastValue[pin] = GetBuffer(pin) ;

@@ -1,0 +1,233 @@
+.text
+	|	0x000000a0	|	__riscv_save_0               	|	FUNC	|	0xa	|	HIDEEN
+	|	0x000000a0	|	__riscv_save_1               	|	FUNC	|	0xa	|	HIDEEN
+	|	0x000000a0	|	__riscv_save_2               	|	FUNC	|	0xa	|	HIDEEN
+	|	0x000000aa	|	__riscv_restore_0            	|	FUNC	|	0xa	|	HIDEEN
+	|	0x000000aa	|	__riscv_restore_1            	|	FUNC	|	0xa	|	HIDEEN
+	|	0x000000aa	|	__riscv_restore_2            	|	FUNC	|	0xa	|	HIDEEN
+	|	0x000000b4	|	__mulsi3                     	|	FUNC	|	0x14	|	HIDEEN
+	|	0x000000cc	|	__divsi3                     	|	FUNC	|	0x58	|	HIDEEN
+	|	0x000000d4	|	__udivsi3                    	|	FUNC	|	0x2c	|	HIDEEN
+	|	0x00000100	|	__umodsi3                    	|	FUNC	|	0x8	|	HIDEEN
+	|	0x00000124	|	__modsi3                     	|	FUNC	|	0x24	|	HIDEEN
+	|	0x0000014a	|	memset                       	|	FUNC	|	0xa8	|	
+	|	0x000001f2	|	initAnalogInput              	|	FUNC	|	0xe4	|	
+	|	0x000002d6	|	updateAnalogInput            	|	FUNC	|	0x36	|	
+	|	0x0000030c	|	initDebounce                 	|	FUNC	|	0xb6	|	
+	|	0x000003c2	|	updateDebounce               	|	FUNC	|	0x7e	|	
+	|	0x00000440	|	initDigitalIO                	|	FUNC	|	0x110	|	
+	|	0x00000550	|	inputProcessInit             	|	FUNC	|	0x24	|	
+	|	0x00000574	|	inputProcessProcess          	|	FUNC	|	0x144	|	
+	|	0x000006b8	|	inputProcessCommProcess      	|	FUNC	|	0x102	|	
+	|	0x000007ba	|	outputScaleInit              	|	FUNC	|	0x4a	|	
+	|	0x00000804	|	outputScaleProcess           	|	FUNC	|	0x1a4	|	
+	|	0x000009a8	|	outputScaleCommProcess       	|	FUNC	|	0x164	|	
+	|	0x00000b0c	|	updatePWM                    	|	FUNC	|	0x40	|	
+	|	0x00000b4c	|	initPWM                      	|	FUNC	|	0xc0	|	
+	|	0x00000c0c	|	increment                    	|	FUNC	|	0x30	|	
+	|	0x00000c3c	|	initQuadEnc                  	|	FUNC	|	0x194	|	
+	|	0x00000dd0	|	updateQuadEnc                	|	FUNC	|	0x170	|	
+	|	0x00000f40	|	initServoHwSimple            	|	FUNC	|	0x2e	|	
+	|	0x00000f6e	|	initServoHw                  	|	FUNC	|	0xb8	|	
+	|	0x00001026	|	updateServoHw                	|	FUNC	|	0x124	|	
+	|	0x0000114a	|	xyInterpolationU16           	|	FUNC	|	0x42	|	
+	|	0x0000118c	|	initUARTSw                   	|	FUNC	|	0x20a	|	
+	|	0x00001396	|	updateUARTSwRx               	|	FUNC	|	0xc4	|	
+	|	0x0000145a	|	updateUARTSw                 	|	FUNC	|	0x1a	|	
+	|	0x00001474	|	orCount                      	|	FUNC	|	0x32	|	
+	|	0x000014a6	|	andCount                     	|	FUNC	|	0x36	|	
+	|	0x000014dc	|	deactivateOutputDMA          	|	FUNC	|	0x3c	|	
+	|	0x00001518	|	SysTick_Handler              	|	FUNC	|	0x5a	|	
+	|	0x00001572	|	CurrentPinBitmap             	|	FUNC	|	0x1c	|	
+	|	0x0000158e	|	ReadPin                      	|	FUNC	|	0x1c	|	
+	|	0x000015aa	|	PinOutput                    	|	FUNC	|	0x34	|	
+	|	0x000015de	|	PinInput                     	|	FUNC	|	0x34	|	
+	|	0x00001612	|	ConfigurePinAnalog           	|	FUNC	|	0x40	|	
+	|	0x00001652	|	CurrentPinRead               	|	FUNC	|	0xe	|	
+	|	0x00001660	|	CurrentPinInput              	|	FUNC	|	0xe	|	
+	|	0x0000166e	|	CurrentPinAnalog             	|	FUNC	|	0x10	|	
+	|	0x0000167e	|	PinLow                       	|	FUNC	|	0x20	|	
+	|	0x0000169e	|	PinHigh                      	|	FUNC	|	0x20	|	
+	|	0x000016be	|	SetPin                       	|	FUNC	|	0x20	|	
+	|	0x000016de	|	SetCurrentPin                	|	FUNC	|	0x10	|	
+	|	0x000016ee	|	SetPinPullUp                 	|	FUNC	|	0x3c	|	
+	|	0x0000172a	|	SetPinPullDown               	|	FUNC	|	0x3c	|	
+	|	0x00001766	|	SetPinOpenDrain              	|	FUNC	|	0x3a	|	
+	|	0x000017a0	|	PinPullUp                    	|	FUNC	|	0x14	|	
+	|	0x000017b4	|	PinNoPullUp                  	|	FUNC	|	0xc	|	
+	|	0x000017c0	|	PinPullDown                  	|	FUNC	|	0x14	|	
+	|	0x000017d4	|	PinNoPullDown                	|	FUNC	|	0xc	|	
+	|	0x000017e0	|	PinOD                        	|	FUNC	|	0xc	|	
+	|	0x000017ec	|	PinNoOD                      	|	FUNC	|	0xc	|	
+	|	0x000017f8	|	CurrentPinHigh               	|	FUNC	|	0xe	|	
+	|	0x00001806	|	InitializePinLow             	|	FUNC	|	0xa	|	
+	|	0x00001810	|	InitializePinHigh            	|	FUNC	|	0xa	|	
+	|	0x0000181a	|	CurrentPinLow                	|	FUNC	|	0xe	|	
+	|	0x00001828	|	CurrentPinPullUp             	|	FUNC	|	0xe	|	
+	|	0x00001836	|	CurrentPinNoPullUp           	|	FUNC	|	0x10	|	
+	|	0x00001846	|	updateBitStreamOutput        	|	FUNC	|	0x186	|	
+	|	0x000019cc	|	updatePulseOutput            	|	FUNC	|	0x34	|	
+	|	0x00001a00	|	initializeBitStreamOutput    	|	FUNC	|	0x3c	|	
+	|	0x00001a3c	|	PulseInGetOldestDMABit       	|	FUNC	|	0x64	|	
+	|	0x00001aa0	|	PulseInDiscardUntilLow       	|	FUNC	|	0x72	|	
+	|	0x00001b12	|	PulseInDiscardUntilHigh      	|	FUNC	|	0x72	|	
+	|	0x00001b84	|	PulseInSkipDMABits           	|	FUNC	|	0x64	|	
+	|	0x00001be8	|	PulseInGetOldestDMASample    	|	FUNC	|	0x60	|	
+	|	0x00001c48	|	uint16ToAscii5               	|	FUNC	|	0xb4	|	
+	|	0x00001cfc	|	NMI_Handler                  	|	FUNC	|	0x2	|	
+	|	0x00001cfe	|	HardFault_Handler            	|	FUNC	|	0x2	|	
+	|	0x00001d00	|	USARTx_CFG                   	|	FUNC	|	0xac	|	
+	|	0x00001dac	|	IIC_Init                     	|	FUNC	|	0xe4	|	
+	|	0x00001e90	|	TIM1_INT_Init                	|	FUNC	|	0x70	|	
+	|	0x00001f00	|	ADC_MultiChannel_Init        	|	FUNC	|	0x116	|	
+	|	0x00002016	|	DMA_Tx_Init                  	|	FUNC	|	0x66	|	
+	|	0x0000207c	|	main                         	|	FUNC	|	0xaa	|	
+	|	0x00002126	|	GetADCConversion             	|	FUNC	|	0x1a	|	
+	|	0x00002140	|	GetSourceVoltage_mV          	|	FUNC	|	0x18	|	
+	|	0x00002158	|	SetBuffer                    	|	FUNC	|	0x1a	|	
+	|	0x00002172	|	wrandom                      	|	FUNC	|	0x32	|	
+	|	0x000021a4	|	GetBuffer                    	|	FUNC	|	0x194	|	
+	|	0x00002338	|	SetMode                      	|	FUNC	|	0x1a	|	
+	|	0x00002352	|	error                        	|	FUNC	|	0x60	|	
+	|	0x000023b2	|	ProcessSetPin                	|	FUNC	|	0x8c	|	
+	|	0x0000243e	|	ProcessRxbuffer              	|	FUNC	|	0x59e	|	
+	|	0x000029dc	|	ProcessRx                    	|	FUNC	|	0x222	|	
+	|	0x00002bfe	|	processCapturedCommands      	|	FUNC	|	0x2	|	
+	|	0x00002c00	|	I2C1_EV_IRQHandler           	|	FUNC	|	0x130	|	
+	|	0x00002d30	|	I2C1_ER_IRQHandler           	|	FUNC	|	0x32	|	
+	|	0x00002d62	|	QueueByteInitialize          	|	FUNC	|	0x10	|	
+	|	0x00002d72	|	QueueGetBytesFilledInQueue   	|	FUNC	|	0xa	|	
+	|	0x00002d7c	|	QueueGetBytesFreeInQueue     	|	FUNC	|	0xe	|	
+	|	0x00002d8a	|	QueueAddByte                 	|	FUNC	|	0x20	|	
+	|	0x00002daa	|	QueueReadByte                	|	FUNC	|	0x36	|	
+	|	0x00002de0	|	QueuePeekByte                	|	FUNC	|	0x12	|	
+	|	0x00002df2	|	QueueCopy                    	|	FUNC	|	0x4	|	
+	|	0x00002df6	|	reset                        	|	FUNC	|	0x2	|	
+	|	0x00002df8	|	swSetup                      	|	FUNC	|	0x1a	|	
+	|	0x00002e12	|	ProcessPins                  	|	FUNC	|	0x76	|	
+	|	0x00002e88	|	swLoop                       	|	FUNC	|	0x74	|	
+	|	0x00002efc	|	TIM1_UP_IRQHandler           	|	FUNC	|	0x48	|	
+	|	0x00002f44	|	SystemInit                   	|	FUNC	|	0x136	|	
+	|	0x0000307a	|	SystemCoreClockUpdate        	|	FUNC	|	0x6c	|	
+	|	0x000030e6	|	timingResourceHighPulseClaim 	|	FUNC	|	0x30	|	
+	|	0x00003116	|	timingResourcesHighPulse     	|	FUNC	|	0x30	|	
+	|	0x00003146	|	timingResourcePWM            	|	FUNC	|	0x88	|	
+	|	0x000031ce	|	timingResourceHighPulseBusy  	|	FUNC	|	0x20	|	
+	|	0x00003278	|	ADC_DeInit                   	|	FUNC	|	0x26	|	
+	|	0x0000329e	|	ADC_Init                     	|	FUNC	|	0x4e	|	
+	|	0x000032ec	|	ADC_Cmd                      	|	FUNC	|	0x10	|	
+	|	0x000032fc	|	ADC_DMACmd                   	|	FUNC	|	0x12	|	
+	|	0x0000330e	|	ADC_ResetCalibration         	|	FUNC	|	0xa	|	
+	|	0x00003318	|	ADC_GetResetCalibrationStatus	|	FUNC	|	0x8	|	
+	|	0x00003320	|	ADC_StartCalibration         	|	FUNC	|	0xa	|	
+	|	0x0000332a	|	ADC_GetCalibrationStatus     	|	FUNC	|	0x8	|	
+	|	0x00003332	|	ADC_SoftwareStartConvCmd     	|	FUNC	|	0x18	|	
+	|	0x0000334a	|	ADC_RegularChannelConfig     	|	FUNC	|	0xba	|	
+	|	0x00003404	|	DMA_DeInit                   	|	FUNC	|	0x92	|	
+	|	0x00003496	|	DMA_Init                     	|	FUNC	|	0x38	|	
+	|	0x000034ce	|	DMA_Cmd                      	|	FUNC	|	0x14	|	
+	|	0x000034e2	|	FLASH_Unlock                 	|	FUNC	|	0x1a	|	
+	|	0x000034fc	|	FLASH_Lock                   	|	FUNC	|	0xe	|	
+	|	0x0000350a	|	SystemReset_StartMode        	|	FUNC	|	0x46	|	
+	|	0x00003550	|	GPIO_Init                    	|	FUNC	|	0x7c	|	
+	|	0x000035cc	|	I2C_Init                     	|	FUNC	|	0xe2	|	
+	|	0x000036ae	|	I2C_Cmd                      	|	FUNC	|	0x18	|	
+	|	0x000036c6	|	I2C_ITConfig                 	|	FUNC	|	0x12	|	
+	|	0x000036d8	|	I2C_SendData                 	|	FUNC	|	0x4	|	
+	|	0x000036dc	|	I2C_ReceiveData              	|	FUNC	|	0x8	|	
+	|	0x000036e4	|	I2C_ReadRegister             	|	FUNC	|	0x14	|	
+	|	0x000036f8	|	I2C_GetFlagStatus            	|	FUNC	|	0x32	|	
+	|	0x0000372a	|	I2C_GetITStatus              	|	FUNC	|	0x20	|	
+	|	0x0000374a	|	I2C_ClearITPendingBit        	|	FUNC	|	0xc	|	
+	|	0x00003756	|	NVIC_PriorityGroupConfig     	|	FUNC	|	0x6	|	
+	|	0x0000375c	|	NVIC_Init                    	|	FUNC	|	0x54	|	
+	|	0x000037b0	|	RCC_AdjustHSICalibrationValue	|	FUNC	|	0x12	|	
+	|	0x000037c2	|	RCC_ADCCLKConfig             	|	FUNC	|	0x14	|	
+	|	0x000037d6	|	RCC_GetClocksFreq            	|	FUNC	|	0xa2	|	
+	|	0x00003878	|	RCC_AHBPeriphClockCmd        	|	FUNC	|	0x1e	|	
+	|	0x00003896	|	RCC_APB2PeriphClockCmd       	|	FUNC	|	0x1e	|	
+	|	0x000038b4	|	RCC_APB1PeriphClockCmd       	|	FUNC	|	0x1e	|	
+	|	0x000038d2	|	RCC_APB2PeriphResetCmd       	|	FUNC	|	0x1e	|	
+	|	0x000038f0	|	RCC_ClearFlag                	|	FUNC	|	0x10	|	
+	|	0x00003900	|	TIM_TimeBaseInit             	|	FUNC	|	0x4e	|	
+	|	0x0000394e	|	TIM_Cmd                      	|	FUNC	|	0x18	|	
+	|	0x00003966	|	TIM_ITConfig                 	|	FUNC	|	0x12	|	
+	|	0x00003978	|	TIM_GetITStatus              	|	FUNC	|	0x18	|	
+	|	0x00003990	|	TIM_ClearITPendingBit        	|	FUNC	|	0xc	|	
+	|	0x0000399c	|	USART_Init                   	|	FUNC	|	0xce	|	
+	|	0x00003a6a	|	USART_Cmd                    	|	FUNC	|	0x16	|	
+	|	0x00003a80	|	USART_ITConfig               	|	FUNC	|	0x36	|	
+	|	0x00003ab6	|	Delay_Init                   	|	FUNC	|	0x34	|	
+	|	0x00003aea	|	memcpy                       	|	FUNC	|	0xd2	|	
+	|	0x00003bec	|	outputSamplePeriodMask       	|	OBJECT	|	0x22	|	
+	|	0x00003c54	|	swBaudDivisor                	|	OBJECT	|	0x12	|	
+	|	0x00003c84	|	pinBitmap                    	|	OBJECT	|	0x10	|	
+
+.fini
+
+.dalign
+
+.dlalign
+
+.data
+	|	0x20000004	|	lfsrSeed                     	|	OBJECT	|	0x4	|	
+	|	0x20000008	|	lastQueueIndex               	|	OBJECT	|	0x2	|	
+	|	0x2000000a	|	lastUserBufferIndex          	|	OBJECT	|	0x2	|	
+	|	0x2000000c	|	FrameTimingPin               	|	OBJECT	|	0x1	|	
+	|	0x2000000e	|	SystemUtilizationAverage     	|	OBJECT	|	0x2	|	
+	|	0x20000010	|	AHBPrescTable                	|	OBJECT	|	0x10	|	
+	|	0x20000020	|	SystemCoreClock              	|	OBJECT	|	0x4	|	
+	|	0x20000024	|	ADCPrescTable                	|	OBJECT	|	0x14	|	
+	|	0x20000038	|	APBAHBPrescTable             	|	OBJECT	|	0x10	|	
+
+.bss
+	|	0x20000048	|	debugAnalog                  	|	OBJECT	|	0x4	|	
+	|	0x2000004c	|	debugInputProcess            	|	OBJECT	|	0x4	|	
+	|	0x20000050	|	debugOutputScale             	|	OBJECT	|	0x4	|	
+	|	0x20000054	|	debugServo                   	|	OBJECT	|	0x4	|	
+	|	0x20000058	|	DMACNT0                      	|	OBJECT	|	0x1	|	
+	|	0x2000005a	|	FramesDropped                	|	OBJECT	|	0x2	|	
+	|	0x2000005c	|	InputArrayA                  	|	OBJECT	|	0x80	|	
+	|	0x200000dc	|	OutputArrayA                 	|	OBJECT	|	0x100	|	
+	|	0x200001dc	|	System1msCount               	|	OBJECT	|	0x4	|	
+	|	0x200001e0	|	dmaInterrupts                	|	OBJECT	|	0x4	|	
+	|	0x200001e4	|	ADCBuffer                    	|	OBJECT	|	0x12	|	
+	|	0x200001f8	|	CurrentPinRegister           	|	OBJECT	|	0x4	|	
+	|	0x200001fc	|	PinUpdateRegisters           	|	OBJECT	|	0x300	|	
+	|	0x200004fc	|	incrementingValue            	|	OBJECT	|	0x2	|	
+	|	0x200004fe	|	Errors                       	|	OBJECT	|	0x2	|	
+	|	0x20000500	|	PacketsProcessed             	|	OBJECT	|	0x2	|	
+	|	0x20000504	|	Rxbuffer                     	|	OBJECT	|	0x8	|	
+	|	0x2000050c	|	Txbuffer                     	|	OBJECT	|	0x8	|	
+	|	0x20000514	|	addrRequested                	|	OBJECT	|	0x1	|	
+	|	0x20000515	|	btfRequested                 	|	OBJECT	|	0x1	|	
+	|	0x20000518	|	debugUnknownI2C              	|	OBJECT	|	0x4	|	
+	|	0x2000051c	|	debugi2cStar1                	|	OBJECT	|	0x2	|	
+	|	0x2000051e	|	debugi2cStar2                	|	OBJECT	|	0x2	|	
+	|	0x20000520	|	i2cIntereruptCount           	|	OBJECT	|	0x4	|	
+	|	0x20000524	|	i2cTxCount                   	|	OBJECT	|	0x1	|	
+	|	0x20000528	|	i2c_com_state                	|	OBJECT	|	0x4	|	
+	|	0x2000052c	|	lastErrorPacket              	|	OBJECT	|	0x8	|	
+	|	0x20000534	|	rxneRequested                	|	OBJECT	|	0x1	|	
+	|	0x20000535	|	testSequenceArmed            	|	OBJECT	|	0x1	|	
+	|	0x20000536	|	testSequenceNumber           	|	OBJECT	|	0x1	|	
+	|	0x20000537	|	txRequested                  	|	OBJECT	|	0x1	|	
+	|	0x20000538	|	wombatI2CRxData              	|	OBJECT	|	0x8	|	
+	|	0x20000540	|	wombatI2CRxDataCount         	|	OBJECT	|	0x1	|	
+	|	0x20000544	|	wombatI2CTxData              	|	OBJECT	|	0x8	|	
+	|	0x2000054c	|	CurrentPin                   	|	OBJECT	|	0x1	|	
+	|	0x20000550	|	FramesRun                    	|	OBJECT	|	0x4	|	
+	|	0x20000554	|	OverflowFrames               	|	OBJECT	|	0x2	|	
+	|	0x20000556	|	RunForeground                	|	OBJECT	|	0x1	|	
+	|	0x20000558	|	SystemUtilizationCount       	|	OBJECT	|	0x2	|	
+	|	0x2000055c	|	SystemUtilizationSum         	|	OBJECT	|	0x4	|	
+	|	0x20000560	|	UserBuffer                   	|	OBJECT	|	0xc0	|	
+	|	0x20000620	|	NVIC_Priority_Group          	|	OBJECT	|	0x4	|	
+	|	0x20000624	|	p_ms                         	|	OBJECT	|	0x2	|	
+	|	0x20000626	|	p_us                         	|	OBJECT	|	0x1	|	
+
+.stack
+
+.stayinboot
+	|	0x20000000	|	stayInBoot                   	|	OBJECT	|	0x2	|	
+

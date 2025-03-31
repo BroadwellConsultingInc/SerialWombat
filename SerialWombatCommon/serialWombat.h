@@ -1,5 +1,5 @@
 /*
-Copyright 2020-2024 Broadwell Consulting Inc.
+Copyright 2020-2025 Broadwell Consulting Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
@@ -28,6 +28,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #define SERIALWOMBAT_H
 #include <stdint.h>
 #include <stdbool.h>
+#include <stddef.h>
 #include "pinModes.h"
 #include "deviceSpecific.h"
 #include "pinRegisters.h"

@@ -1,5 +1,5 @@
 /*
-Copyright 2021-2023 Broadwell Consulting Inc.
+Copyright 2021-2024 Broadwell Consulting Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
@@ -25,6 +25,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 
 
 pinRegister_t PinUpdateRegisters[NUMBER_OF_TOTAL_PINS];
+uint16_t virtualPinHardwareSim[NUMBER_OF_VIRTUAL_PINS];
 
 #ifdef USE_BUFFERED_PIN_REGISTER
 

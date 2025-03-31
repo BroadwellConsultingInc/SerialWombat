@@ -424,8 +424,8 @@ bool ReadPin(uint8_t pin)
 }
 void PinOutput(uint8_t pin)
 {
-	uint16_t bitmap = CurrentPinBitmap();
-	uint8_t port = CurrentPinPort();
+	uint16_t bitmap = pinBitmap[pin];
+	uint8_t port = pinPort[pin];
 	if (port == 0)
 	{
 		TRISA &= ~bitmap;
@@ -876,3 +876,12 @@ const uint8_t WombatPinToADCChannel[NUMBER_OF_PHYSICAL_PINS] =
     9,
 };
 
+void InitializePinInput(uint8_t pin)
+{
+    // TODO anything to do here for SW18AB?
+}
+
+void deactivateOutputDMA(uint8_t pin)
+{
+    // TODO anything to do here for SW18AB?
+}

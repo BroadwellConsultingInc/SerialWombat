@@ -576,9 +576,9 @@ Or similar
             {
                Txbuffer[4] = 'A';//SERIAL_WOMBAT_HARDWARE_IDENTIFIER;	 
             }
-			Txbuffer[5] = '2';	     
+			Txbuffer[5] = '9';	     
 			Txbuffer[6] = '1';	     
-			Txbuffer[7] = '4';	     
+			Txbuffer[7] = '5';	     
 
 			break;
 		case COMMAND_BINARY_READ_PIN_BUFFFER:
@@ -642,19 +642,19 @@ the value before being set could be read, then the value set back to 32768 for c
 
 Response:
 
-Reads the public data from three consecutive pins starting with a specified pin
+Reads the public data from  the two set pins
 |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0x81|Pin Number requested |Specified Pin Public Data low byte|Specified Pin Public Data High byte|2nd pin number|2nd pin low byte|2nd pin high byte|Echo of sent Byte 7|
+|0x82|Pin Number To set |Specified Pin Public Data low byte|Specified Pin Public Data High byte|2nd pin number|2nd pin low byte|2nd pin high byte|Echo of sent Byte 7|
 
 Examples:
 
-> `0x81 0x01 0x55 0x55 0x55 0x55 0x55 0x55`
+> `0x82 0x01 0xCD 0xAB 0x07 0x34 0x12 0x55`
 
-Will read the 16-bit public data from pins 1, 2 and 3.  Assuming pin1's public data was 0x481B, pin 2's was 0x38FC, and pin 3's was 0x0314:
+Will set the 16-bit public data of pin 1 to 0xABCD and public data of pin 7 to 0x1234.  Assuming prior to  change pin1's public data was 0x481B, pin 7's was 0x38FC
 
 Response:
-> `0x81 0x1 0x1B 0x48 0xFC 0x38 0x14 0x03`
+> `0x81 0x1 0x1B 0x48 0x07 0xFC 0x38 0x55`
 
 \}
 **/
@@ -667,6 +667,39 @@ Response:
 			}
 			break;
 
+/** \addtogroup ProtocolBinaryCommands
+\{
+
+----
+
+Binary Read User Buffer
+---------------------
+
+Reads up to 7 bytes from the User Buffer User RAM area starting at an index specified.  Values past the end of User Buffer if an index less than 7 bytes from
+the end of the User Buffer may return random data.
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0x83|Index Low Byte|Index High Byte|'U'*|'U'*|'U'*|'U'*|'U'*|
+ *0x55 is recommended, but any byte is acceptable
+
+Response:
+
+Reads 7 bytes from the  from  the specified index
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0x83|Byte at Index |Byte at Index + 1 |Byte at Index + 2 |Byte at Index + 3 |Byte at Index + 4 |Byte at Index + 5 |Byte at Index + 6 |
+
+Examples:
+
+> `0x83 0x0A 0x01 0x55 0x55 0x55 0x55 0x55`
+
+Read 7 bytes from User buffer starting at index 266 (0x010A)
+
+Sample Response,  last 7 bytes will vary:
+> `0x83 0x43 0x1F 0x48 0x07 0xFC 0x38 0x22`
+
+\}
+**/
 		case COMMAND_BINARY_READ_USER_BUFFER:
 			{
 				uint16_t address = RXBUFFER16(1);
@@ -686,6 +719,36 @@ Response:
 			}
 			break;
 
+/** \addtogroup ProtocolBinaryCommands
+\{
+
+----
+
+Binary Write User Buffer
+---------------------
+
+Writes up to 4 bytes to the User Buffer User RAM area starting at an index specified.  Commands which attempt to write past the end of the User Buffer will return an error message and have no effect .
+
+This command also stores the index of the next byte in user buffer not written
+for use by the COMMAND_BINARY_WRITE_USER_BUFFER_CONTINUE command.
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0x84|Index Low Byte|Index High Byte|Number of Bytes to Write|byte to write|byte to write|byte to write|byte to write|
+ 0x55 is recommended for unused bytes, but any byte is acceptable
+
+Response:
+
+Command is echoed back
+
+Examples:
+
+> `0x84 0x64 0x00 0x03 0x17 0x18 0x19 0x55`
+
+Write 3 bytes (0x17,0x18,0x19) to User buffer starting at index 100 (0x0064)
+
+
+\}
+**/
 		case COMMAND_BINARY_WRITE_USER_BUFFER:
 			{
 				lastUserBufferIndex = RXBUFFER16(1);
@@ -711,6 +774,36 @@ Response:
 
 			}
 			break;
+
+/** \addtogroup ProtocolBinaryCommands
+\{
+
+----
+
+Binary Write User Buffer Continue
+---------------------
+
+Writes 7 bytes to the User Buffer User RAM area at the next index after the last index written by the COMMAND_BINARY_WRITE_USER_BUFFER command.  Commands which attempt to write past the end of the User Buffer will return an error message and have no effect .
+
+This command also stores the index of the next byte in user buffer not written
+for use by subsequent COMMAND_BINARY_WRITE_USER_BUFFER_CONTINUE commands.
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0x85|byte to write |byte to write |byte to write |byte to write |byte to write|byte to write|byte to write|
+
+Response:
+
+Command is echoed back
+
+Examples:
+
+> `0x85 0x27 0x00 0x03 0x17 0x18 0x19 0x1A`
+
+Write 7 bytes (0x27, 0x00, 0x03,0x17,0x18,0x19, 0x1A) to User buffer starting at the index following the end of the last write command
+
+
+\}
+**/
 		case COMMAND_BINARY_WRITE_USER_BUFFER_CONTINUE:
 			{
 				if (lastUserBufferIndex < SIZE_OF_USER_BUFFER)
@@ -730,8 +823,68 @@ Response:
 				}
 			}
 			break;
+/** \addtogroup ProtocolBinaryCommands
+\{
 
-		case COMMAND_BINARY_QUEUE_INITIALIZE:
+----
+
+Binary Read All Pins Greater than Zero 
+---------------------
+
+Allows a single command to poll all pins' public data to determine if
+they are zero or greater than zero.  This command allows efficient polling
+of Serial Wombat chips configured with a large number of inputs such
+as GPIO input or debounced buttons.  Returns bits where 0 means the
+pin's public data is 0, and 1 means greater than 0.  The lower pin 
+numbers are in less significant bits.  Unimplemented pins return 0
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0x8F|'U'*|'U'*|'U'*|'U'*|'U'*|'U'*|'U'*|
+ *0x55 is recommended, but any byte is acceptable
+
+Response:
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0x8F|pins 0 to 7 status|pins 8 to 15 status|pins 16 to 23 status|pins 24 to 31 status|pins 32 to 39 status|pins 40 to 47 status|pins 48 to 55 status|
+
+
+Examples:
+
+> `0x8F 0x55 0x55 0x55 0x55 0x55 0x55 0x55`
+
+Requests pin public data status
+
+Response assuming all pins except 1, 14 and 19 are zero:
+> `0x8F 0x02 0x40 0x04 0x00 0x00 0x00 0x00`
+
+
+\}
+**/
+		case COMMAND_BINARY_READ_ALL_PINS_GT_0:
+			{
+				Txbuffer[1] = Txbuffer[2] = Txbuffer[3] = Txbuffer[4] =
+					Txbuffer[5] = Txbuffer[6] = Txbuffer[7] = 0;
+				uint8_t* ptr = &Txbuffer[0];
+                uint8_t i;
+				for (i = 0; i < NUMBER_OF_TOTAL_PINS; ++i)
+				{
+					if ((i & 0x07 ) == 0)
+					{
+						++ptr;
+
+					}
+					if (GetBuffer(i) > 0)
+					{
+						*ptr |= (1 << (i & 0x07));
+					}
+				}
+
+			}
+			break;
+#ifdef QUEUE_ENABLE
+	case COMMAND_BINARY_QUEUE_INITIALIZE:
 			{
 				/** \addtogroup ProtocolBinaryCommands
 				  \{
@@ -766,15 +919,17 @@ Initializes a ram queue of 32 bytes at address 0x0010 in user memory.
                 {
                     case 0:
                     {
-               result = QueueByteInitialize(RXBUFFER16(1),RXBUFFER16(3));	
+					lastQueueAddress = queueAddress = &UserBuffer[RXBUFFER16(1)];
+               result = QueueByteInitialize(RXBUFFER16(3));	
                     }
                 break;
                     case 1:
                     {
-                        result = QueueByteShiftInitialize(RXBUFFER16(1),RXBUFFER16(3));
+                        lastQueueAddress = queueAddress = &UserBuffer[RXBUFFER16(1)];
+               result = QueueByteShiftInitialize(RXBUFFER16(3));
                     }
-                    break;
-                    
+                break;
+
                     default:
                     {
                         error(SW_ERROR_UNKNOWN_QUEUE_TYPE);
@@ -824,12 +979,13 @@ Add bytes 0x31, 0x32, 0x33, and 0x34 to queue located at 0x0010.
 				 **/
 				uint8_t i;
                 bool success = true;
-				lastQueueIndex = RXBUFFER16(1);
+
                 uint8_t successCount = 0;
                 SW_QUEUE_RESULT_t result = 0;
+                lastQueueAddress =  queueAddress = &UserBuffer[RXBUFFER16(1)];
 				for (i = 0; i < Rxbuffer[3] && success ; ++i)
 				{
-					result =QueueAddByte(lastQueueIndex,Rxbuffer[4 + i]);
+					result =QueueAddByte(Rxbuffer[4 + i]);
                     success = result == QUEUE_RESULT_SUCCESS;
                     if (success)
                     {
@@ -839,7 +995,7 @@ Add bytes 0x31, 0x32, 0x33, and 0x34 to queue located at 0x0010.
 				Txbuffer[3] = successCount;
                 Txbuffer[4] = result;
                 uint16_t freeBytes;
-                QueueGetBytesFreeInQueue(lastQueueIndex, &freeBytes);
+                QueueGetBytesFreeInQueue(&freeBytes);
                 TXBUFFER16(5,freeBytes);
 			}
 			break;
@@ -874,9 +1030,10 @@ Add bytes 0x35, 0x36, 0x37, 0x38, 0x39, 0x3A and 0x3B to queue last added to.
                 bool success = true;
                 uint8_t successCount = 0;
                 SW_QUEUE_RESULT_t result = 0;
+                queueAddress = lastQueueAddress;
 				for (i = 0; i < 7 && success ; ++i)
 				{
-					result =QueueAddByte(lastQueueIndex,Rxbuffer[1 + i]);
+					result =QueueAddByte(Rxbuffer[1 + i]);
                     success = result == QUEUE_RESULT_SUCCESS;
                     if (success)
                     {
@@ -886,7 +1043,7 @@ Add bytes 0x35, 0x36, 0x37, 0x38, 0x39, 0x3A and 0x3B to queue last added to.
 				Txbuffer[3] = successCount;
                 Txbuffer[4] = result;
                 uint16_t freeBytes;
-                QueueGetBytesFreeInQueue(lastQueueIndex, &freeBytes);
+                QueueGetBytesFreeInQueue(&freeBytes);
                 TXBUFFER16(5,freeBytes);
 
 			}
@@ -930,9 +1087,10 @@ Two bytes were available in the queue.  0x34, and 0x35
 				SW_QUEUE_RESULT_t result = QUEUE_RESULT_SUCCESS;
 				uint8_t i;
                 Txbuffer[1] = 0;
+                lastQueueAddress = queueAddress = &UserBuffer[RXBUFFER16(1)];
 				for (i = 0; i < Rxbuffer[3] && result == QUEUE_RESULT_SUCCESS; ++i)
 				{
-					result = (SW_QUEUE_RESULT_t) QueueReadByte(RXBUFFER16(1),&Txbuffer[2 + i]); 
+					result = (SW_QUEUE_RESULT_t) QueueReadByte(&Txbuffer[2 + i]);
                     if (result == QUEUE_RESULT_SUCCESS)
                     {
                         ++Txbuffer[1];
@@ -1006,6 +1164,40 @@ Sample Response:
 			break;
         case COMMAND_BINARY_QUEUE_CLONE:
         {
+				/** \addtogroup ProtocolBinaryCommands
+				  \{
+
+                 Make a copy of a queue.  Useful for debugging 
+				  ---------------------
+				
+				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+				  |0x95 |New Queue Index LSB|new Queue Index MSB|Old Queue Index LSB |Old Queue Index MSB|Unused|Unused|Unused|
+
+
+Response :
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0x95 |Result Code of Queue Creation| Undefined | Peeked Byte| Bytes Available to Read LSB |Bytes Available to Read MSB |Free Bytes LSB | Free Bytes MSB|
+                 
+               
+                 Note:  Ignore peeked value if Bytes Available == 0.
+       Example:  
+
+`0x95 0x70 0x01 0x00 0x04 0x55 0x55 0x55`
+
+
+Copy Queue at index 0x400 to Index 0x0170
+
+Sample Response:
+
+         
+`0x95 0x00 0x55 0x37 0x80 0x01 0xF4 0x01` 
+
+        Success, Next byte is 0x37 .  384 bytes available to read, 500 bytes Free
+
+\}
+				 **/
              uint16_t bytesFree = 0;
                     uint16_t bytesAvailable = 0;
             uint16_t dstQueue = RXBUFFER16(1);
@@ -1033,9 +1225,76 @@ Sample Response:
                 
         }
         break;
-        
+#endif        
         case COMMAND_BINARY_CONFIG_DATALOGGER:
         {
+				/** \addtogroup ProtocolBinaryCommands
+				  \{
+
+                Configure the Serial Wombat 18AB Data Logger.  Available in Firmware 2.1.13 and up.  This command has sub commands based on Byte 1.  A Ram Queue must be created at the specified index prior to calling this command
+-------------------
+
+Sub Command 0:
+
+				
+				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0x96 |0|Queue Index LSB|Queue Index MSB |Sample Period Mask|Whether to queue Frame number|Queue on Change|Unused|
+
+
+Response :
+
+Command is echoed back
+
+Sub Command 1:
+
+				
+				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0x96 |1|Enable(1) or disable (0) Data Logging|Unused|Unused|Unused|Unused|Unused|
+
+
+Response :
+
+Command is echoed back
+
+Sub Command 2:
+
+				
+				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0x96 |2|Pin To Configure|Log Pin's LSB|Log Pin's MSB|Unused|Unused|Unused|
+
+
+Response :
+
+Command is echoed back
+
+Example (5 commands):  
+Configure the data logger using a queue already set up at index 0x80 to 
+store the frame number and queue every 8 frames (3 in packet = 2 to the 3rd power = 8) .
+
+Configure pin 5 to log LSB, 
+
+Configure pin 6 to log MSB, 
+
+Configure pin 7 to log both MSB and LSB
+
+Start Data Logging
+
+
+`0x96 0x00 0x80 0x00 0x03 0x01 0x00 0x55 `
+`0x96 0x02 0x05 0x01 0x00 0x55 0x55 0x55 `
+`0x96 0x02 0x06 0x00 0x01 0x55 0x55 0x55 `
+`0x96 0x02 0x07 0x01 0x01 0x55 0x55 0x55 `
+`0x96 0x01 0x01 0x55 0x55 0x55 0x55 0x55 `
+
+
+Sample Response:
+Commands are echoed back
+
+\}
+				 **/
             extern uint16_t FrameDataQueue[NUMBER_OF_TOTAL_PINS / 8 + 1]; // Queue from 0 to 19, 8 pins per word, lsb and msb queueing
 extern uint16_t  FrameQueueFrequencyMask ;  // FramesRun is anded with this value.  Zero result causes queueing
 extern bool FrameQueueFrameNumber ;  // Whether or not to add the frame # to the queue before data when queueing
@@ -1495,6 +1754,36 @@ Write 0x32 the byte at RAM address 0x0247.
             TXBUFFER16(5,OSCCON);
         }
         break;
+
+	case COMMAND_SET_PIN_HW:
+	{
+
+		if (Rxbuffer[2] == 1)
+		{
+			PinPullUp(Rxbuffer[1]);
+		}
+		else if (Rxbuffer[2] == 0)
+		{
+			PinNoPullUp(Rxbuffer[1]);
+		}
+		if (Rxbuffer[3] == 1)
+		{
+			PinPullDown(Rxbuffer[1]);
+		}
+		else if (Rxbuffer[3] == 0)
+		{
+			PinNoPullDown(Rxbuffer[1]);
+		}
+		if (Rxbuffer[4] == 1)
+		{
+			PinOD(Rxbuffer[1]);
+		}
+		else if (Rxbuffer[4] == 0)
+		{
+			PinNoOD(Rxbuffer[1]);
+		}
+
+	}
         case COMMAND_CALIBRATE_ANALOG:
         {
             
@@ -2175,6 +2464,9 @@ void ProcessSetPin()
         
         case PIN_MODE_DIGITAL_IO:
         {
+		void initDigitalIO(void);
+		initDigitalIO();
+		/*
             uint8_t pin = Rxbuffer[1];
             CurrentPinRegister->generic.mode = PIN_MODE_DIGITAL_IO;
             SetPin(pin,Rxbuffer[3]);
@@ -2202,7 +2494,7 @@ void ProcessSetPin()
             {
                 PinNoOD(pin);
             }
-                    
+                 */   
         }
         break;
         

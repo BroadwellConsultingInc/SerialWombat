@@ -107,7 +107,7 @@ void initHfServo (void)
 		case CONFIGURE_CHANNEL_MODE_0:
 			{
 				timingResourceRelease(TIMING_RESOURCE_ALL);
-				uint8_t resource =timingResourcePWMClaim(TIMING_RESOURCE_ANY_HARDWARE,2000);
+				uint8_t resource =timingResourcePWMClaim(TIMING_RESOURCE_ANY_HARDWARE_OC,2000);
 				if (resource == TIMING_RESOURCE_NONE)
 				{
 					error (SW_ERROR_HW_RESOURCE_IN_USE );
