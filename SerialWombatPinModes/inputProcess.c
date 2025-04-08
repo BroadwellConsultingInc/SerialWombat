@@ -29,14 +29,10 @@ void inputProcessInit(inputProcess_t* inputProcess)
     inputProcess->firstOrder.filterconstant = 0xFF80;
 	inputProcess->initialized = 0;
 	inputProcess->transformMode = INPUT_TRANSFORM_MODE_NONE;
-#ifdef INPUTPROCESSEXCLUDEPRESENT
     inputProcess->excludeAbove = 65535;
     inputProcess->excludeBelow = 0;
-#endif
-#ifdef INPUTPROCESSQUEUEPRESENT
     inputProcess->queue = 0xFFFF;
     inputProcess->queueFrequency = 0;
-#endif
     inputProcess->min = 65535;
     inputProcess->max = 0;
 }
@@ -69,16 +65,17 @@ inputProcess_t* debugInputProcess;
 uint16_t inputProcessProcess(inputProcess_t* inputProcess, uint16_t inputValue)
 {
     
+#ifdef INPUT_PROCESS_ENABLE
     debugInputProcess = inputProcess;
     
     if (inputProcess->active)
     {
-#ifdef INPUTPROCESSEXCLUDEPRESENT
+
         if (inputValue > inputProcess->excludeAbove || inputValue < inputProcess->excludeBelow)
         {
             inputValue = inputProcess->lastInput;
         }
-#endif
+
         
         inputProcess->lastInput = inputValue;
         
@@ -128,7 +125,7 @@ uint16_t inputProcessProcess(inputProcess_t* inputProcess, uint16_t inputValue)
                     inputValue = (uint16_t) temp;
                 }
                 break;
-#ifdef INPUTPROCESSINTEGRATORPRESENT
+
 		case INPUT_TRANSFORM_MODE_INTEGRATOR:
 		{
             int32_t sum = inputProcess->integrator.currentValue;
@@ -189,7 +186,7 @@ uint16_t inputProcessProcess(inputProcess_t* inputProcess, uint16_t inputValue)
             inputValue = inputProcess->integrator.currentValue;
 		}
 		break;
-#endif
+
                 case INPUT_TRANSFORM_MODE_NONE:
                 default:
                 {
@@ -265,29 +262,33 @@ uint16_t inputProcessProcess(inputProcess_t* inputProcess, uint16_t inputValue)
     {
         inputProcess->max = inputValue;
     }
-#ifdef INPUTPROCESSQUEUEPRESENT
+
+
     if (inputProcess->queue != 0xFFFF )
     {
         extern uint32_t FramesRun;
 		if ((FramesRun & inputProcessSamplePeriodMask[inputProcess->queueFrequency])  == 0)
 		{
+		    queueAddress = &UserBuffer[inputProcess->queue];
             uint16_t bytesAvailable;
-            if (QueueGetBytesFreeInQueue(inputProcess->queue,&bytesAvailable) == QUEUE_RESULT_SUCCESS)
+            if (QueueGetBytesFreeInQueue(&bytesAvailable) == QUEUE_RESULT_SUCCESS)
             {
                 if (bytesAvailable >= 2)
                 {
+
                     if (inputProcess->queueLowByte)
                     {
-                        QueueAddByte(inputProcess->queue, (uint8_t)inputValue);
+                        QueueAddByte((uint8_t)inputValue);
                     }
                     if (inputProcess->queueHighByte)
                     {
-                        QueueAddByte(inputProcess->queue, (uint8_t)(inputValue>>8));                        
+                        QueueAddByte( (uint8_t)(inputValue>>8));
                     }
                 }
             }
         }
     }
+
 #endif
     return (inputValue);
 	
@@ -314,14 +315,12 @@ void inputProcessCommProcess(inputProcess_t* inputProcess)
             inputProcess->firstOrder.filterconstant = RXBUFFER16(6);
         }
         break;
-#ifdef INPUTPROCESSEXCLUDEPRESENT
         case 2:
         {
             inputProcess->excludeBelow = RXBUFFER16(4);
             inputProcess->excludeAbove = RXBUFFER16(6);
         }
         break;
-#endif
         
         case 3:
         {
@@ -451,7 +450,7 @@ void inputProcessCommProcess(inputProcess_t* inputProcess)
 #endif
         default:
         {
-            //TODO add error
+            error(SW_ERROR_UNKNOWN_INPUT_PROCESS_COMMAND);
         }
         break;
 

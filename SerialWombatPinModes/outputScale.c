@@ -90,24 +90,8 @@ static uint16_t  inputScaling(uint32_t outputValue, outputScale_t* outputScale)
 	// output a full 0 to 65535
 	if (outputScale->inputMin != 0 || outputScale->inputMax != 65535) //TODO can the generic interpolation function be used?
 	{
-		if (outputValue <= outputScale->inputMin)
-		{
-			outputValue = 0;
-		}
-		else if (outputValue >= outputScale->inputMax)
-		{
-			outputValue = 65535;
-		}
-		else
-		{
-			outputValue -= outputScale->inputMin;
-			outputValue <<= 16;
-			outputValue /= outputScale->inputMax - outputScale->inputMin;
-			if (outputValue > 65535)
-			{
-				outputValue = 65535;
-			}
-		}
+	    outputValue = xyInterpolationU16(outputValue,outputScale->inputMin,0,outputScale->inputMax,65535);
+
 	}
 
 	return((uint16_t)outputValue);
@@ -245,6 +229,7 @@ uint16_t outputScaleProcess(outputScale_t* outputScale)
 	// This step allows one pin to control another
 	debugOutputScale = outputScale;
 	uint32_t outputValue = GetBuffer(outputScale->sourcePin);
+#ifdef OUTPUT_SCALE_ENABLE
 
 	// If output scale system is inactive just return the output value
 	if (!outputScale->active)
@@ -298,21 +283,27 @@ uint16_t outputScaleProcess(outputScale_t* outputScale)
 						// all enumerated types aren't included in switch statement
 					}
 					break;
+
 				case OUTPUT_TRANSFORM_MODE_HYSTERESIS:
 					{
+#ifdef OUTPUT_SCALE_HYSTERESIS_ENABLE
 						outputValue = hystersis(outputValue,outputScale);
+#endif
 					}
 					break;
 
 				case OUTPUT_TRANSFORM_MODE_PID_CONTROL:
 					{
+#ifdef OUTPUT_SCALE_PID_ENABLE
 						outputValue = pid(outputValue,outputScale);
+#endif
 					}
 					break;
-
 				case OUTPUT_TRANSFORM_MODE_RAMP:
 					{
+#ifdef OUTPUT_SCALE_RAMP_ENABLE
 						outputValue = ramp(outputValue,outputScale);
+#endif
 					}
 					break;
 			}
@@ -356,7 +347,7 @@ uint16_t outputScaleProcess(outputScale_t* outputScale)
 						// all enumerated types aren't included in switch statement
 					}
 					break;
-
+#ifdef OUTPUT_SCALE_OUTPUT_FILTER_CHANGE_LIMIT_ENABLE
 				case OUTPUT_FILTER_MODE_CHANGE_LIMIT:
 					{
 						int32_t difference;
@@ -389,7 +380,8 @@ uint16_t outputScaleProcess(outputScale_t* outputScale)
 						}
 					}
 					break;
-
+#endif
+#ifdef OUTPUT_SCALE_OUTPUT_FILTER_MODE_FIRST_ORDER_ENABLE
 				case OUTPUT_FILTER_MODE_FIRST_ORDER:
 					{
 
@@ -408,6 +400,7 @@ uint16_t outputScaleProcess(outputScale_t* outputScale)
 
 					}
 					break;
+#endif
 			}
 		}
 		else
@@ -478,7 +471,7 @@ uint16_t outputScaleProcess(outputScale_t* outputScale)
 	}
 
 
-
+#endif
 	return(outputValue);
 }
 
@@ -512,6 +505,7 @@ uint16_t outputScaleCommProcess(outputScale_t* outputScale)
 		 // inactive and set source pin[5]
 		 // Whether to reinitialize output scaling to defaults when going inactive[6]
         {
+#ifdef OUTPUT_SCALE_ENABLE
             outputScale->active = Rxbuffer[4];
             if (outputScale->active)
             {
@@ -528,9 +522,16 @@ uint16_t outputScaleCommProcess(outputScale_t* outputScale)
                     outputScaleInit(outputScale);
                 }
             }
+#else
+            if (Rxbuffer[4])
+            {
+                error (SW_ERROR_OUTPUT_SCALE_NOT_AVAILABLE);
+            }
+#endif
         }
         break;
         //Set timeout and timeout setting
+#ifdef OUTPUT_SCALE_ENABLE
         case 1:
         {
             outputScale->commTimeout = RXBUFFER16(4);
@@ -618,6 +619,7 @@ uint16_t outputScaleCommProcess(outputScale_t* outputScale)
             outputScale->transformMode = OUTPUT_TRANSFORM_MODE_NONE;
         }
         break;
+#ifdef OUTPUT_SCALE_HYSTERESIS_ENABLE
 	case 50: // Set Hysteresis high values
 	{
 		outputScale->transformMode = OUTPUT_TRANSFORM_MODE_HYSTERESIS;
@@ -640,7 +642,9 @@ uint16_t outputScaleCommProcess(outputScale_t* outputScale)
         outputScale->sampleRate = 0;
 	}
 	break;
-    
+#endif
+
+#ifdef OUTPUT_SCALE_RAMP_ENABLE
         case 60:  // Set Ramp parameters (1 of 2)
         {
             outputScale->transformMode = OUTPUT_TRANSFORM_MODE_RAMP;
@@ -661,7 +665,8 @@ uint16_t outputScaleCommProcess(outputScale_t* outputScale)
             }
         }
         break;
-
+#endif
+#ifdef OUTPUT_SCALE_PID_ENABLE
 	case 100:  // Set PID kp and ki
 	{
 		outputScale->pid.kp = RXBUFFER16(4);
@@ -737,6 +742,11 @@ uint16_t outputScaleCommProcess(outputScale_t* outputScale)
             TXBUFFER16(4,outputScale->targetValue);
         }
         break;
+#endif
+#endif
+         default:
+             error(SW_ERROR_UNKNOWN_OUTPUTSCALE_COMMAND);
+             break;
     }
     return(0);
 }

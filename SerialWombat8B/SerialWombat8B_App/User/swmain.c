@@ -38,6 +38,13 @@ uint8_t FrameTimingPin = 0xFF;
 uint8_t UserBuffer[SIZE_OF_USER_BUFFER];
 
 
+
+// PASTE INITIALIZATION ARRAY BELOW HERE
+
+
+
+// PASTE INITIALZIATION ARRAY ABOVE HERE
+
 void reset ()
 {
     #ifdef __DEBUG    
@@ -93,6 +100,19 @@ void swSetup(void)
 #endif
     
 //    INTERRUPT_GlobalEnable();
+
+#ifdef SW_INITCOUNT
+        {
+            int i;
+            for (i = 0; i < SW_INITCOUNT; ++i)
+            {
+                memcpy(Rxbuffer,&initializationArray[i][0],8);
+                void ProcessRxbuffer(void);
+                ProcessRxbuffer();
+            }
+        }
+
+#endif
 }
 
 

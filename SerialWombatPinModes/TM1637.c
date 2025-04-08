@@ -533,16 +533,16 @@ if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode 
 		case CONFIGURE_CHANNEL_MODE_0:
 			{
                 uint8_t i;
-                /* TODO make a function to check for this
-				if (pinPort[Rxbuffer[3]] != CurrentPinPort())
+
+				if (PINS_ON_DIFFERENT_PORTS(CurrentPin,Rxbuffer[3]))
 				{
 					//Pins must be on same port
 					CurrentPinRegister->generic.mode = PIN_MODE_CONTROLLED;
 					error(SW_ERROR_PINS_MUST_BE_ON_SAME_PORT);
 					return;
 				}
-				*/
 				
+
 				tm1637->dioPin = Rxbuffer[3];
 				SetMode(tm1637->dioPin, PIN_MODE_CONTROLLED);
 				tm1637->lastDigit  = Rxbuffer[4] - 1;

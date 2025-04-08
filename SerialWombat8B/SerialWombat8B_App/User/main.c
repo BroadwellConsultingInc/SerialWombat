@@ -172,14 +172,6 @@ static void ADC_MultiChannel_Init(void) //TODO optimize
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC |RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOD, ENABLE);
     RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
     RCC_ADCCLKConfig(RCC_PCLK2_Div8);
-/*
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;
-    GPIO_Init(GPIOC, &GPIO_InitStructure);
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;
-    GPIO_Init(GPIOD, &GPIO_InitStructure);
-    */
 
     ADC_DeInit(ADC1);
 
@@ -262,18 +254,7 @@ int main(void)
 
 
         TIM_Cmd( TIM1, ENABLE );//5S
-//        {
-//            //TODO REMOVE DEBUG
-//            RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC |RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOD, ENABLE);
-//               RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
-//               RCC_ADCCLKConfig(RCC_PCLK2_Div8);
-//
-//               GPIO_InitTypeDef GPIO_InitStructure = {0};
-//                  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2|GPIO_Pin_1;
-//                  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
-//                  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_30MHz;
-//                  GPIO_Init(GPIOA, &GPIO_InitStructure);
-//        }
+
         AFIO->PCFR1 &= ~AFIO_PCFR1_PA12_REMAP;
      ADC_MultiChannel_Init();
         //TODO make ADC conditional compile
@@ -311,7 +292,7 @@ uint16_t GetADCConversion(uint8_t pin)
     {
          return 0xFFFF;
     }
-    return ADCBuffer[pin]; //TODO
+    return ADCBuffer[pin];
 }
 
 uint16_t GetSourceVoltage_mV()

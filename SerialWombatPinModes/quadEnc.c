@@ -62,7 +62,7 @@ void initQuadEnc(void)
 
 			{
 
-#ifdef TODO //Generalize with function
+#ifdef TODO //Generalize with function, make only applicable to interrupt
 				if (pinPort[Rxbuffer[5]] != CurrentPinPort() && Rxbuffer[6] < 4) 
 				{
 					//Pins must be on same port to be interrupt driven

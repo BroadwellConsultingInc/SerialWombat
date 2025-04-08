@@ -207,7 +207,6 @@ Example:
 						Rxbuffer[6] == '#' &&  Rxbuffer[7] == '*')
 				{
 				 	reset();
-
 				}
 				else
 				{

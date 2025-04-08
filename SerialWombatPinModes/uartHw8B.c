@@ -147,11 +147,8 @@ void initUARTHw()
 
 	switch (Rxbuffer[0])
 	{
-		//TODO add pin mode check for _1 and up,  must be RX hardware pin
 		case CONFIGURE_CHANNEL_MODE_0:
 			{
-
-
 				if (Rxbuffer[3] >8)
 				{
 					error(SW_ERROR_INVALID_PARAMETER_3);

@@ -212,4 +212,9 @@ void initializeBitStreamOutput(uint8_t pin, uint8_t level,  DMABitStream_t* bitS
 uint16_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint16_t count, DMABitStream_t* bitStream );
 uint16_t removeBitStreamOutput(uint8_t pin, uint16_t count, uint16_t margin, DMABitStream_t* bitStream );
 
+#ifdef PIC24
+#else
+#define PINS_ON_DIFFERENT_PORTS(_a,_b) (0 == 1)
+#endif
+
 #endif

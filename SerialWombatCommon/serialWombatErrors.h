@@ -77,6 +77,7 @@ typedef enum {
 	    SW_ERROR_PIN_IS_NOT_OUTPUT = 52, ///< A scaled output command was called against a pin that isn't an output
 	    SW_ERROR_PIN_IS_NOT_INPUT = 53, ///< A processed input command was called against a pin that isn't an input
 	    SW_ERROR_BOOT_STRING_INCORRECT = 54, ///<A Packet starting with 'B' was received but didn't have the correct following bytes to cause entry to boot
+	    SW_ERROR_OUTPUT_SCALE_NOT_AVAILABLE = 55, ///<Output Scaling was not included in this build of the Serial Wombat Firmware
 }SW_ERROR_t;
 
 #endif

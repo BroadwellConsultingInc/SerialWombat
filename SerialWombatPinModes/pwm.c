@@ -63,15 +63,6 @@ void initPWM (void)
                 pwm->period_uS = 1000;
                 outputScaleInit(&pwm->outputScale);
 				updatePWM();
-
-
-				{ //TODO Remove Debug
-				    PinOutput(6);
-				    PinLow(6);
-				    PinOutput(7);
-				    PinLow(7);
-				}
-               
 			}
 			break;
             case CONFIGURE_CHANNEL_MODE_HW_0:

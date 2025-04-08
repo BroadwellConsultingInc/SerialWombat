@@ -158,7 +158,6 @@ uint16_t CurrentPinBitmap(void)
 bool PinIsAnalogCapable(uint8_t pin);
 void ConfigurePinAnalog(uint8_t pin, bool makeAnalog)
 {
-    //TODO update for pin remapping for non analog pins merged with others
 	PinInput(pin);
 	 GPIO_InitTypeDef GPIO_InitStructure = {0};
 	GPIO_InitStructure.GPIO_Pin = pinBitmap[pin];
@@ -470,10 +469,14 @@ void updatePulseOutput(uint8_t pin, pulse_output_t* pulse)
         if (pulse->lowRemaining == 0)
         {
             pulse->highRemaining = pulse->highReload;
-
-            recycle = true;
+            pulse->lowRemaining = pulse->lowReload;
+            if (pulse->highReload > 0 || pulse->lowReload > 0)
+            {
+                recycle = true;
+            }
         }
     }
+
     }
 
 }
@@ -525,14 +528,14 @@ uint16_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint16_t count, DMABi
 {
 	uint16_t bitmap = pinBitmap[pin];
 	uint16_t invbitmap = ~bitmap;
-	volatile uint8_t nextLocationToQueue = bitStream->nextLocationToQueue; //TODO remove volatile debug
+	uint8_t nextLocationToQueue = bitStream->nextLocationToQueue;
 	//uint16_t* baseAddress;
 
-	volatile int nextDMAHWTransfer ; // The next DMA location that will be transferred by Hardware.  Don't overwrite this one.  We need to catch up to this.
+	int nextDMAHWTransfer ; // The next DMA location that will be transferred by Hardware.  Don't overwrite this one.  We need to catch up to this.
 
 
 	//baseAddress = OutputArrayA;
-		nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMACNT0 ; //TODO remove volatile debug
+		nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMACNT0 ;
 
     if (bitStream->initialize)
     {
@@ -551,7 +554,7 @@ uint16_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint16_t count, DMABi
 	//8: Done
 
 
-	volatile uint8_t state = 1; //TODO remove volatile debug
+	uint8_t state = 1;
 	uint8_t output = 100;
 	output += count * 2;
 	output += level;
