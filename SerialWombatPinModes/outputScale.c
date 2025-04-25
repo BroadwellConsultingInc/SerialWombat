@@ -88,10 +88,9 @@ static uint16_t  inputScaling(uint32_t outputValue, outputScale_t* outputScale)
 {
 	// Scale the input.  This allows a sub-range of the input to drive the 
 	// output a full 0 to 65535
-	if (outputScale->inputMin != 0 || outputScale->inputMax != 65535) //TODO can the generic interpolation function be used?
+	if (outputScale->inputMin != 0 || outputScale->inputMax != 65535)
 	{
 	    outputValue = xyInterpolationU16(outputValue,outputScale->inputMin,0,outputScale->inputMax,65535);
-
 	}
 
 	return((uint16_t)outputValue);

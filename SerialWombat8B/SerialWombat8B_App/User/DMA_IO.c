@@ -28,40 +28,40 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #include "serialWombat.h"
 #include "deviceSpecific.h"
 #include "debug.h"
- uint16_t OutputArrayA[SIZE_OF_DMA_ARRAY];  // High bytes are Set bits, low bytes are clear bits
-
+ uint32_t OutputArrayAHigh[SIZE_OF_DMA_ARRAY];  // High bytes are Set bits, low bytes are clear bits
+ //uint8_t OutputArrayALow[SIZE_OF_DMA_ARRAY];  // High bytes are Set bits, low bytes are clear bits
 
 //void or128(uint16_t* array, uint16_t value);
 //void and128(uint16_t* array, uint16_t value);
 
- volatile uint8_t DMACNT0 = SIZE_OF_DMA_ARRAY ; // Simulates the constantly running DMA counter on the PIC24, used to indicate the next byte to be sent out .  Decrement each time we move data, roll over from 1 to 128
-#define DMACNT2 DMACNT0  // Simulates the constantly running DMA counter on the PIC24, used to indicate the next location that will be written by reading the port
- uint32_t dmaInterrupts = 0;
+
  volatile uint8_t InputArrayA[SIZE_OF_DMA_ARRAY];
 
 
-  void orCount(uint8_t buffer, uint16_t bitmap, uint16_t count)
+  void __attribute__((optimize("O3"))) orCount(uint8_t buffer, uint16_t bitmap, uint16_t count)
  {
      int i;
-     uint16_t b = bitmap << 8;
-     uint16_t bi = ~bitmap;
+     uint32_t b = bitmap ;
+     uint32_t bi = ~((uint32_t) bitmap << 16);
 
      for (i = 0; i < count; ++i)
      {
-         OutputArrayA[i+ buffer] |= b;
-         OutputArrayA[i+ buffer] &= bi;
+         OutputArrayAHigh[i+ buffer] |= b;
+         OutputArrayAHigh[i+ buffer] &= bi;
      }
  }
- void andCount(uint8_t buffer, uint16_t bitmap, uint16_t count)
+ void __attribute__((optimize("O3"))) andCount(uint8_t buffer, uint16_t bitmap, uint16_t count)
  {
      int i;
-          uint16_t b = (bitmap << 8) | 0xFF;
-          uint16_t bi = ~bitmap;
-          for (i = 0; i < count; ++i)
-          {
-              OutputArrayA[i+ buffer] &= b;
-              OutputArrayA[i+ buffer] |= bi;
-          }
+     bitmap = ~bitmap;
+     uint32_t b =((uint32_t) bitmap <<16);
+        uint32_t bi = ~((uint32_t) bitmap );
+
+        for (i = 0; i < count; ++i)
+        {
+            OutputArrayAHigh[i+ buffer] |= b;
+            OutputArrayAHigh[i+ buffer] &= bi;
+        }
  }
 // PWM Failure test:
  // 0xC8 0x07 0x10 0x07 0 0 0 0x55
@@ -71,16 +71,21 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  void deactivateOutputDMA(uint8_t pin)
  {
      int i;
-     uint16_t b = ~pinBitmap[pin] & 0xFF;
-     b |= ((uint16_t)(~pinBitmap[pin])) << 8;
+     uint32_t bitmap = pinBitmap[pin];
+     uint32_t b = ~bitmap ;
+     uint32_t bi = ~((uint32_t) bitmap << 16);
+     bi &= b;
      for (i = 0; i < SIZE_OF_DMA_ARRAY; ++i){
-      OutputArrayA[i] &= b;
+         OutputArrayAHigh[i] &= bi;
      }
+
  }
- void SysTick_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 
  volatile uint16_t FramesDropped = 0;
  volatile uint32_t System1msCount = 0;
+ /*
+
+
 
 uint8_t highCount = 0;
 uint8_t lastValue = 0;
@@ -103,8 +108,17 @@ uint8_t lastValue = 0;
 
      SysTick->SR = 0;
  }
+*/
 
-
+void systemInitDMAIO()
+{
+    uint8_t i;
+    for (i = 0; i < SIZE_OF_DMA_ARRAY; ++i)
+    {
+        OutputArrayAHigh[i] = 0;
+        InputArrayA[i]=0;
+    }
+}
 
 
 
@@ -452,9 +466,19 @@ const uint8_t WombatPinToADCChannel[NUMBER_OF_PHYSICAL_PINS] =
 };
 
 
-void updatePulseOutput(uint8_t pin, pulse_output_t* pulse)
+void __attribute__((optimize("O3"))) updatePulseOutput(uint8_t pin, pulse_output_t* pulse)
 {
     bool recycle = true;
+    if (pulse->highReload == 0)
+    {
+        updateBitStreamOutput(pin, 0, SIZE_OF_DMA_ARRAY,&pulse->bitStream);
+        return;
+    }
+    else if (pulse->lowReload == 0) {
+        updateBitStreamOutput(pin, 1, SIZE_OF_DMA_ARRAY,&pulse->bitStream);
+                return;
+    }
+
     while (recycle)
     {
         recycle = false;
@@ -535,7 +559,7 @@ uint16_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint16_t count, DMABi
 
 
 	//baseAddress = OutputArrayA;
-		nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMACNT0 ;
+		nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMA1_Channel5->CNTR ;
 
     if (bitStream->initialize)
     {
@@ -735,7 +759,7 @@ uint16_t removeBitStreamOutput(uint8_t pin, uint16_t count, uint16_t margin, DMA
 	int nextDMAHWTransfer ; // The next DMA location that will be transferred by Hardware.  Don't overwrite this one.  We need to catch up to this.
 
 
-		nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMACNT0 ; 
+		nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMA1_Channel5->CNTR ;
 
     
     int16_t available;
@@ -846,8 +870,8 @@ uint8_t  PulseInGetOldestDMABit(uint8_t pin)
    
 
 		baseAddress = InputArrayA;
-         while (DMACNT2 == 0); // Wait for reload
-		nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMACNT2 ; 
+         while (DMA1_Channel2->CNTR == 0); // Wait for reload
+		 nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMA1_Channel2->CNTR ;
 
     
     if (pinPtr->pulse_input.lastDMA == nextDMAHWTransfer)
@@ -876,8 +900,8 @@ uint8_t PulseInDiscardUntilLow(uint8_t pin)
    
 
 		baseAddress = InputArrayA;
-         while (DMACNT2 == 0); // Wait for reload
-		nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMACNT2 ; 
+		while (DMA1_Channel2->CNTR == 0); // Wait for reload
+		nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMA1_Channel2->CNTR ;
 
     
     while (pinPtr->pulse_input.lastDMA != nextDMAHWTransfer)
@@ -907,8 +931,8 @@ uint8_t PulseInDiscardUntilHigh(uint8_t pin)
    
 
 		baseAddress = InputArrayA;
-         while (DMACNT2 == 0); // Wait for reload
-		nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMACNT2 ; 
+		 while (DMA1_Channel2->CNTR == 0); // Wait for reload
+		nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMA1_Channel2->CNTR ;
 
     
     while (pinPtr->pulse_input.lastDMA != nextDMAHWTransfer)
@@ -937,8 +961,8 @@ uint8_t  PulseInSkipDMABits(uint8_t pin, uint8_t count)
     pinRegister_t* pinPtr = &PinUpdateRegisters[pin];
    
 
-         while (DMACNT2 == 0); // Wait for reload
-		nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMACNT2 ; 
+     while (DMA1_Channel2->CNTR == 0); // Wait for reload
+    nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMA1_Channel2->CNTR ;
 
     
     if (pinPtr->pulse_input.lastDMA == nextDMAHWTransfer)
@@ -996,8 +1020,8 @@ bool  PulseInGetOldestDMASample(uint8_t pin, uint16_t* value)
    
 
 		baseAddress = InputArrayA;
-         while (DMACNT2 == 0); // Wait for reload
-		nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMACNT2 ; 
+		while (DMA1_Channel2->CNTR == 0); // Wait for reload
+		nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMA1_Channel2->CNTR ;
 
     
     if (pinPtr->pulse_input.lastDMA == nextDMAHWTransfer)

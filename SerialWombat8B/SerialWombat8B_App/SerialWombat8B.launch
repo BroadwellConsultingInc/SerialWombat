@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="com.mounriver.debug.gdbjtag.openocd.launchConfigurationType">
-<stringAttribute key="com.mounriver.debug.gdbjtag.openocd.PERIPHERALS" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#13;&#10;&lt;peripherals&gt;&#13;&#10;&lt;peripheral name=&quot;GPIOA&quot;/&gt;&#13;&#10;&lt;peripheral name=&quot;GPIOD&quot;/&gt;&#13;&#10;&lt;peripheral name=&quot;AFIO&quot;/&gt;&#13;&#10;&lt;peripheral name=&quot;RCC&quot;/&gt;&#13;&#10;&lt;/peripherals&gt;&#13;&#10;"/>
+<stringAttribute key="com.mounriver.debug.gdbjtag.openocd.PERIPHERALS" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;no&quot;?&gt;&#13;&#10;&lt;peripherals&gt;&#13;&#10;&lt;peripheral name=&quot;DMA1&quot;/&gt;&#13;&#10;&lt;/peripherals&gt;&#13;&#10;"/>
 <booleanAttribute key="com.mounriver.debug.gdbjtag.openocd.doContinue" value="true"/>
 <booleanAttribute key="com.mounriver.debug.gdbjtag.openocd.doDebugInRam" value="false"/>
 <booleanAttribute key="com.mounriver.debug.gdbjtag.openocd.doFirstReset" value="true"/>

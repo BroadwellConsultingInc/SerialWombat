@@ -858,7 +858,8 @@ void timingResourcePWM(pulse_output_t *pulse , uint32_t period_uS, uint16_t duty
 		case TIMING_RESOURCE_PORT_DMA:
 			{
 #endif
-				if (dutyCycle == 0xFFFF)
+				/*
+			    if (dutyCycle == 0xFFFF)
 				{
 				    deactivateOutputDMA(CurrentPin);
 					CurrentPinHigh();
@@ -872,6 +873,7 @@ void timingResourcePWM(pulse_output_t *pulse , uint32_t period_uS, uint16_t duty
 				                        return;
 
 				}
+				*/
 #ifdef SW8B_HW_PWM_ENABLE
 				else if (period_uS == 1000)
 				{

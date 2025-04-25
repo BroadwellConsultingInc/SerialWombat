@@ -64,16 +64,6 @@ uint16_t SystemUtilizationAverage = 0x8000;
 uint16_t SystemUtilizationCount = 0;
 uint32_t SystemUtilizationSum = 0;
 
-#ifdef TODO // Remove Datalogger
-uint16_t FrameDataQueue[NUMBER_OF_TOTAL_PINS / 8 + 1]; // Queue from 0 to 19, 8 pins per word, lsb and msb queueing
-uint16_t  FrameQueueFrequencyMask = 0;  // FramesRun is anded with this value.  Zero result causes queueing
-bool FrameQueueFrameNumber = false;  // Whether or not to add the frame # to the queue before data when queueing
-bool FrameQueueEnable = false;     // Overall turn on and off for efficiency
-bool FrameQueueChanges = false;
-bool FrameQueueFirstRun;
-uint16_t FrameDataQueueIndex = 0xFFFF;  // Location in User Data Area of Queue (Should be initialized before use)
-uint16_t FrameDataLastValue[NUMBER_OF_TOTAL_PINS];
-#endif
 
 void swSetup(void)
 {
@@ -82,6 +72,8 @@ void swSetup(void)
     memset(UserBuffer,0, sizeof(UserBuffer));
     memset(PinUpdateRegisters,0,sizeof(PinUpdateRegisters));
 
+    void systemInitDMAIO(void);
+    systemInitDMAIO();
 
 //	SYSTEM_Initialize();
 
@@ -137,7 +129,7 @@ void swLoop()
 			}
             else
             {
-                uint32_t t = TIM1->CNT;
+                uint32_t t = SysTick->CNT;
 
                 SystemUtilizationSum += t;
 
@@ -145,7 +137,7 @@ void swLoop()
                 if (SystemUtilizationCount == 1024)
                 {
                     SystemUtilizationSum <<= 6;
-                    SystemUtilizationSum/= TIM1->ATRLR;//SysTick->CMP;
+                    SystemUtilizationSum/= SysTick->CMP;//SysTick->CMP;
                     SystemUtilizationAverage = SystemUtilizationSum;
                     SystemUtilizationCount = 0;
                     SystemUtilizationSum = 0;
@@ -487,11 +479,12 @@ void ProcessPins()
 
 
 
-void TIM1_UP_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
-void TIM1_UP_IRQHandler(void)
-
+//void TIM1_UP_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
+//void TIM1_UP_IRQHandler(void)
+void SysTick_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
+void SysTick_Handler(void)
 {
-    if(TIM_GetITStatus(TIM1, TIM_IT_Update)==SET)
+    //if(TIM_GetITStatus(TIM1, TIM_IT_Update)==SET)
        {
         extern bool RunForeground;
         extern uint16_t FramesDropped;
@@ -504,6 +497,7 @@ void TIM1_UP_IRQHandler(void)
                 RunForeground = true;
 
        }
-       TIM_ClearITPendingBit( TIM1, TIM_IT_Update );
+     //  TIM_ClearITPendingBit( TIM1, TIM_IT_Update );
+    SysTick->SR = 0;
 }
 

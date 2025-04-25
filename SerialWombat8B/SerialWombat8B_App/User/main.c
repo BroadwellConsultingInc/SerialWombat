@@ -91,7 +91,7 @@ static void IIC_Init()
 
 
       // RCC_APB1PeriphClockCmd( RCC_APB1Periph_I2C1, ENABLE );
-       RCC->APB1PCENR =RCC_APB1Periph_I2C1;
+       RCC->APB1PCENR |=RCC_APB1Periph_I2C1;
 
 
        {  // Set SDA and SCL pins to Alternate function
@@ -138,7 +138,7 @@ static void IIC_Init()
 }
 
 
-void TIM1_INT_Init( u16 arr, u16 psc)
+static void TIM1_INT_Init( u16 arr, u16 psc)
 {
 
     NVIC_InitTypeDef NVIC_InitStructure={0};
@@ -162,6 +162,33 @@ void TIM1_INT_Init( u16 arr, u16 psc)
     NVIC_Init(&NVIC_InitStructure);
 
     TIM_ITConfig(TIM1, TIM_IT_Update, ENABLE);
+
+}
+
+static void TIM2_INT_Init( u16 arr, u16 psc)
+{
+
+    NVIC_InitTypeDef NVIC_InitStructure={0};
+    TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStructure={0};
+
+    RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM2, ENABLE );
+
+    TIM_TimeBaseInitStructure.TIM_Period = arr;
+    TIM_TimeBaseInitStructure.TIM_Prescaler = psc;
+    TIM_TimeBaseInitStructure.TIM_ClockDivision = TIM_CKD_DIV1;
+    TIM_TimeBaseInitStructure.TIM_CounterMode = TIM_CounterMode_Up;
+    TIM_TimeBaseInitStructure.TIM_RepetitionCounter = 1;
+    TIM_TimeBaseInit( TIM2, &TIM_TimeBaseInitStructure);
+
+    TIM_ClearITPendingBit( TIM2, TIM_IT_Update );
+
+    NVIC_InitStructure.NVIC_IRQChannel =TIM2_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority =0;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority =1;
+    NVIC_InitStructure.NVIC_IRQChannelCmd =ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
+
+
 
 }
 static void ADC_MultiChannel_Init(void) //TODO optimize
@@ -230,12 +257,64 @@ static void DMA_Tx_Init(DMA_Channel_TypeDef *DMA_CHx, uint32_t peripheralAddress
     DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_HalfWord;
     DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_HalfWord;
     DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;
-    DMA_InitStructure.DMA_Priority = DMA_Priority_VeryHigh;
+    DMA_InitStructure.DMA_Priority = DMA_Priority_Medium;
     DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;
     DMA_Init(DMA_CHx, &DMA_InitStructure);
 }
 
+
+
 uint16_t ADCBuffer[9]; //8 channels plus vref
+
+
+
+static void TIM2_DMA_Init(DMA_Channel_TypeDef *DMA_CHx, u32 ppadr, u32 memadr, u16 bufsize)
+{
+    DMA_InitTypeDef DMA_InitStructure = {0};
+
+    RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
+
+    DMA_DeInit(DMA_CHx);
+    DMA_InitStructure.DMA_PeripheralBaseAddr = ppadr;
+    DMA_InitStructure.DMA_MemoryBaseAddr = memadr;
+    DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralDST;
+    DMA_InitStructure.DMA_BufferSize = bufsize;
+    DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+    DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
+    DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Word;
+    DMA_InitStructure.DMA_MemoryDataSize = DMA_MemoryDataSize_Word;
+    DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;
+    DMA_InitStructure.DMA_Priority = DMA_Priority_VeryHigh;
+    DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;
+    DMA_Init(DMA_CHx, &DMA_InitStructure);
+
+    DMA_Cmd(DMA_CHx, ENABLE);
+}
+
+static void TIM2_DMA_InitP2M(DMA_Channel_TypeDef *DMA_CHx, u32 ppadr, u32 memadr, u16 bufsize)
+{
+    DMA_InitTypeDef DMA_InitStructure = {0};
+
+    RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA1, ENABLE);
+
+    DMA_DeInit(DMA_CHx);
+    DMA_InitStructure.DMA_PeripheralBaseAddr = ppadr;
+    DMA_InitStructure.DMA_MemoryBaseAddr = memadr;
+    DMA_InitStructure.DMA_DIR = DMA_DIR_PeripheralSRC;
+    DMA_InitStructure.DMA_BufferSize = bufsize;
+    DMA_InitStructure.DMA_PeripheralInc = DMA_PeripheralInc_Disable;
+    DMA_InitStructure.DMA_MemoryInc = DMA_MemoryInc_Enable;
+    DMA_InitStructure.DMA_PeripheralDataSize = DMA_PeripheralDataSize_Byte;
+    DMA_InitStructure.DMA_MemoryDataSize = DMA_PeripheralDataSize_Byte;
+    DMA_InitStructure.DMA_Mode = DMA_Mode_Circular;
+    DMA_InitStructure.DMA_Priority = DMA_Priority_VeryHigh;
+    DMA_InitStructure.DMA_M2M = DMA_M2M_Disable;
+    DMA_Init(DMA_CHx, &DMA_InitStructure);
+
+    DMA_Cmd(DMA_CHx, ENABLE);
+}
+
+
 /*********************************************************************
  * @fn      main
  *
@@ -250,12 +329,47 @@ int main(void)
     Delay_Init();
 
 
-    TIM1_INT_Init( 24000-1, 1-1);
+   // TIM1_INT_Init( 24000-1, 1-1);
 
 
-        TIM_Cmd( TIM1, ENABLE );//5S
 
-        AFIO->PCFR1 &= ~AFIO_PCFR1_PA12_REMAP;
+
+
+
+
+
+        TIM2_INT_Init( 833-1, 1-1);
+
+
+        TIM_OCInitTypeDef TIM_OCInitStructure={0};
+        TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_Timing;
+
+
+
+            TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+            TIM_OCInitStructure.TIM_Pulse = 400;
+            TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
+            TIM_OC1Init( TIM2, &TIM_OCInitStructure );
+            //TIM_OC2Init( TIM2, &TIM_OCInitStructure );
+
+            TIM_CtrlPWMOutputs(TIM2, ENABLE );
+            TIM_OC1PreloadConfig( TIM2, TIM_OCPreload_Disable );
+            TIM_ARRPreloadConfig( TIM2, ENABLE );
+
+            extern volatile uint8_t InputArrayA[SIZE_OF_DMA_ARRAY];
+            extern uint32_t OutputArrayAHigh[SIZE_OF_DMA_ARRAY];  // High bytes are Set bits, low bytes are clear bits
+            TIM2_DMA_Init(DMA1_Channel5, (u32)&GPIOD->BSHR, (u32)OutputArrayAHigh, SIZE_OF_DMA_ARRAY );
+            TIM2_DMA_InitP2M(DMA1_Channel2, (u32)&GPIOD->INDR, (u32)InputArrayA, SIZE_OF_DMA_ARRAY);
+
+
+            TIM_Cmd( TIM2, ENABLE );
+            TIM2->DMAINTENR |= (TIM_DMA_CC1 | TIM_DMA_Update);
+
+
+
+
+
+            AFIO->PCFR1 &= ~AFIO_PCFR1_PA12_REMAP;
      ADC_MultiChannel_Init();
         //TODO make ADC conditional compile
       DMA_Tx_Init(DMA1_Channel1, (u32)&ADC1->RDATAR, (u32)ADCBuffer, 9);
@@ -269,12 +383,12 @@ int main(void)
 
     NVIC_EnableIRQ(SysTicK_IRQn);
        SysTick->SR &= ~(1 << 0);
-       SysTick->CMP = SystemCoreClock/57600-1;
+       SysTick->CMP = SystemCoreClock/1000-1;
        SysTick->CNT = 0;
        SysTick->CTLR = 0xF;
 
 
-
+   // TIM_Cmd( TIM1, ENABLE );// Kick off executive
     while(1)
     {
         extern void swLoop();

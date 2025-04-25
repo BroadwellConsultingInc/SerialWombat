@@ -1,0 +1,2484 @@
+Archive member included to satisfy reference by file (symbol)
+
+c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32ecxw/ilp32e\libgcc.a(save-restore.o)
+                              ./User/SerialWombatPinModes/MAX7219Matrix.o (__riscv_save_2)
+c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32ecxw/ilp32e\libgcc.a(muldi3.o)
+                              ./User/SerialWombatPinModes/inputProcess.o (__mulsi3)
+c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32ecxw/ilp32e\libgcc.a(div.o)
+                              ./User/SerialWombatPinModes/frequencyOutput.o (__divsi3)
+c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libg_nano.a(lib_a-memcpy.o)
+                              ./User/protocol.o (memcpy)
+c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libg_nano.a(lib_a-memmove.o)
+                              ./User/SerialWombatPinModes/matrixKeypad.o (memmove)
+c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libg_nano.a(lib_a-memset.o)
+                              ./User/SerialWombatPinModes/PS2Keyboard.o (memset)
+
+Discarded input sections
+
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/Font5x7.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/Font5x7.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/Font5x7.o
+ .rodata.Font5x7Columns
+                0x0000000000000000      0x4fb ./User/SerialWombatPinModes/Font5x7.o
+ .rodata.Font5x7Rows
+                0x0000000000000000      0x7f8 ./User/SerialWombatPinModes/Font5x7.o
+ .debug_info    0x0000000000000000       0xe2 ./User/SerialWombatPinModes/Font5x7.o
+ .debug_abbrev  0x0000000000000000       0x84 ./User/SerialWombatPinModes/Font5x7.o
+ .debug_aranges
+                0x0000000000000000       0x18 ./User/SerialWombatPinModes/Font5x7.o
+ .debug_line    0x0000000000000000      0x12b ./User/SerialWombatPinModes/Font5x7.o
+ .debug_str     0x0000000000000000      0x1f1 ./User/SerialWombatPinModes/Font5x7.o
+ .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/Font5x7.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/MAX7219Matrix.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/MAX7219Matrix.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/MAX7219Matrix.o
+ .text.max7219ClockAllDisplays
+                0x0000000000000000       0xb4 ./User/SerialWombatPinModes/MAX7219Matrix.o
+ .text.max7219_hwinit
+                0x0000000000000000       0x84 ./User/SerialWombatPinModes/MAX7219Matrix.o
+ .text.initMax7219Matrix
+                0x0000000000000000      0x35c ./User/SerialWombatPinModes/MAX7219Matrix.o
+ .text.updateMax7219Matrix
+                0x0000000000000000      0x1cc ./User/SerialWombatPinModes/MAX7219Matrix.o
+ .bss.debugLastClockedOut
+                0x0000000000000000        0x2 ./User/SerialWombatPinModes/MAX7219Matrix.o
+ .debug_info    0x0000000000000000      0xe25 ./User/SerialWombatPinModes/MAX7219Matrix.o
+ .debug_abbrev  0x0000000000000000      0x295 ./User/SerialWombatPinModes/MAX7219Matrix.o
+ .debug_loc     0x0000000000000000      0x29c ./User/SerialWombatPinModes/MAX7219Matrix.o
+ .debug_aranges
+                0x0000000000000000       0x38 ./User/SerialWombatPinModes/MAX7219Matrix.o
+ .debug_ranges  0x0000000000000000       0xf0 ./User/SerialWombatPinModes/MAX7219Matrix.o
+ .debug_line    0x0000000000000000      0xcbd ./User/SerialWombatPinModes/MAX7219Matrix.o
+ .debug_str     0x0000000000000000     0x160d ./User/SerialWombatPinModes/MAX7219Matrix.o
+ .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/MAX7219Matrix.o
+ .debug_frame   0x0000000000000000       0xd0 ./User/SerialWombatPinModes/MAX7219Matrix.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/PS2Keyboard.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/PS2Keyboard.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/PS2Keyboard.o
+ .text.initPS2Keyboard
+                0x0000000000000000      0x44a ./User/SerialWombatPinModes/PS2Keyboard.o
+ .text.ps2kb_processAscii
+                0x0000000000000000       0xd8 ./User/SerialWombatPinModes/PS2Keyboard.o
+ .text.ps2kb_processCurrentlyPressed
+                0x0000000000000000       0x92 ./User/SerialWombatPinModes/PS2Keyboard.o
+ .text.ps2kb_processMakeCodes
+                0x0000000000000000       0x6e ./User/SerialWombatPinModes/PS2Keyboard.o
+ .text.ps2kb_processData
+                0x0000000000000000      0x146 ./User/SerialWombatPinModes/PS2Keyboard.o
+ .text.updatePS2Keyboard
+                0x0000000000000000      0x1da ./User/SerialWombatPinModes/PS2Keyboard.o
+ .bss.debugKeyboard
+                0x0000000000000000        0x4 ./User/SerialWombatPinModes/PS2Keyboard.o
+ .rodata.KBSCSet2
+                0x0000000000000000      0x100 ./User/SerialWombatPinModes/PS2Keyboard.o
+ .debug_info    0x0000000000000000     0x1117 ./User/SerialWombatPinModes/PS2Keyboard.o
+ .debug_abbrev  0x0000000000000000      0x35e ./User/SerialWombatPinModes/PS2Keyboard.o
+ .debug_loc     0x0000000000000000      0xa88 ./User/SerialWombatPinModes/PS2Keyboard.o
+ .debug_aranges
+                0x0000000000000000       0x48 ./User/SerialWombatPinModes/PS2Keyboard.o
+ .debug_ranges  0x0000000000000000      0x150 ./User/SerialWombatPinModes/PS2Keyboard.o
+ .debug_line    0x0000000000000000     0x1993 ./User/SerialWombatPinModes/PS2Keyboard.o
+ .debug_str     0x0000000000000000     0x1d15 ./User/SerialWombatPinModes/PS2Keyboard.o
+ .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/PS2Keyboard.o
+ .debug_frame   0x0000000000000000       0xe4 ./User/SerialWombatPinModes/PS2Keyboard.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/TM1637.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/TM1637.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/TM1637.o
+ .text.tm1637Start
+                0x0000000000000000       0x22 ./User/SerialWombatPinModes/TM1637.o
+ .text.tm1637Stop
+                0x0000000000000000       0x4c ./User/SerialWombatPinModes/TM1637.o
+ .text.tm1637ClockByte
+                0x0000000000000000       0x84 ./User/SerialWombatPinModes/TM1637.o
+ .text.tm1637_hwinit
+                0x0000000000000000       0x2a ./User/SerialWombatPinModes/TM1637.o
+ .text.tm1637SendInitialAddress
+                0x0000000000000000       0xf0 ./User/SerialWombatPinModes/TM1637.o
+ .text.tm1637SendDisplayControlCommand
+                0x0000000000000000       0x90 ./User/SerialWombatPinModes/TM1637.o
+ .text.initTM1637
+                0x0000000000000000      0x28e ./User/SerialWombatPinModes/TM1637.o
+ .rodata.initTM1637
+                0x0000000000000000       0x20 ./User/SerialWombatPinModes/TM1637.o
+ .text.tm1637UpdateRender
+                0x0000000000000000      0x53a ./User/SerialWombatPinModes/TM1637.o
+ .text.updateTM1637
+                0x0000000000000000      0x4f4 ./User/SerialWombatPinModes/TM1637.o
+ .bss.debugTM1637
+                0x0000000000000000        0x4 ./User/SerialWombatPinModes/TM1637.o
+ .rodata.seven_seg_table
+                0x0000000000000000       0x7f ./User/SerialWombatPinModes/TM1637.o
+ .debug_info    0x0000000000000000     0x12c9 ./User/SerialWombatPinModes/TM1637.o
+ .debug_abbrev  0x0000000000000000      0x2f4 ./User/SerialWombatPinModes/TM1637.o
+ .debug_loc     0x0000000000000000      0x98d ./User/SerialWombatPinModes/TM1637.o
+ .debug_aranges
+                0x0000000000000000       0x60 ./User/SerialWombatPinModes/TM1637.o
+ .debug_ranges  0x0000000000000000      0x140 ./User/SerialWombatPinModes/TM1637.o
+ .debug_line    0x0000000000000000     0x20b7 ./User/SerialWombatPinModes/TM1637.o
+ .debug_str     0x0000000000000000     0x17d8 ./User/SerialWombatPinModes/TM1637.o
+ .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/TM1637.o
+ .debug_frame   0x0000000000000000      0x16c ./User/SerialWombatPinModes/TM1637.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/analogInput.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/analogInput.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/analogInput.o
+ .text.initAnalogSimple
+                0x0000000000000000       0x36 ./User/SerialWombatPinModes/analogInput.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/asciiConversion.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/asciiConversion.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/asciiConversion.o
+ .text.ascii_to_val
+                0x0000000000000000       0x54 ./User/SerialWombatPinModes/asciiConversion.o
+ .text.uint16ToAscii5NoHWMath
+                0x0000000000000000      0x320 ./User/SerialWombatPinModes/asciiConversion.o
+ .text.uint16ToAsciiHex4
+                0x0000000000000000       0x54 ./User/SerialWombatPinModes/asciiConversion.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/debounce.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/debounce.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/debounce.o
+ .text.initDebounce
+                0x0000000000000000       0xfa ./User/SerialWombatPinModes/debounce.o
+ .text.updateDebounce
+                0x0000000000000000       0x94 ./User/SerialWombatPinModes/debounce.o
+ .debug_info    0x0000000000000000      0xc04 ./User/SerialWombatPinModes/debounce.o
+ .debug_abbrev  0x0000000000000000      0x1d6 ./User/SerialWombatPinModes/debounce.o
+ .debug_loc     0x0000000000000000       0x19 ./User/SerialWombatPinModes/debounce.o
+ .debug_aranges
+                0x0000000000000000       0x28 ./User/SerialWombatPinModes/debounce.o
+ .debug_ranges  0x0000000000000000       0x18 ./User/SerialWombatPinModes/debounce.o
+ .debug_line    0x0000000000000000      0x598 ./User/SerialWombatPinModes/debounce.o
+ .debug_str     0x0000000000000000     0x17cc ./User/SerialWombatPinModes/debounce.o
+ .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/debounce.o
+ .debug_frame   0x0000000000000000       0x6c ./User/SerialWombatPinModes/debounce.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/digitalIO.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/digitalIO.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/digitalIO.o
+ .text.updateDigitalIO
+                0x0000000000000000       0x88 ./User/SerialWombatPinModes/digitalIO.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/frequencyOutput.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/frequencyOutput.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/frequencyOutput.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/hBridge.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/hBridge.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/hBridge.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/inputProcess.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/inputProcess.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/inputProcess.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/liquidCrystal.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/liquidCrystal.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/liquidCrystal.o
+ .text.lcd_setdata
+                0x0000000000000000       0xd2 ./User/SerialWombatPinModes/liquidCrystal.o
+ .text.lcd_setdata2
+                0x0000000000000000       0xf2 ./User/SerialWombatPinModes/liquidCrystal.o
+ .text.initLiquidCrystal
+                0x0000000000000000      0x53e ./User/SerialWombatPinModes/liquidCrystal.o
+ .rodata.initLiquidCrystal
+                0x0000000000000000       0x20 ./User/SerialWombatPinModes/liquidCrystal.o
+ .text.updateLiquidCrystal
+                0x0000000000000000      0x2e6 ./User/SerialWombatPinModes/liquidCrystal.o
+ .rodata.updateLiquidCrystal
+                0x0000000000000000      0x178 ./User/SerialWombatPinModes/liquidCrystal.o
+ .bss.debugLiquidCrystal
+                0x0000000000000000        0x4 ./User/SerialWombatPinModes/liquidCrystal.o
+ .debug_info    0x0000000000000000     0x161a ./User/SerialWombatPinModes/liquidCrystal.o
+ .debug_abbrev  0x0000000000000000      0x2c2 ./User/SerialWombatPinModes/liquidCrystal.o
+ .debug_loc     0x0000000000000000      0x416 ./User/SerialWombatPinModes/liquidCrystal.o
+ .debug_aranges
+                0x0000000000000000       0x38 ./User/SerialWombatPinModes/liquidCrystal.o
+ .debug_ranges  0x0000000000000000      0x370 ./User/SerialWombatPinModes/liquidCrystal.o
+ .debug_line    0x0000000000000000     0x1367 ./User/SerialWombatPinModes/liquidCrystal.o
+ .debug_str     0x0000000000000000     0x1601 ./User/SerialWombatPinModes/liquidCrystal.o
+ .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/liquidCrystal.o
+ .debug_frame   0x0000000000000000       0xb8 ./User/SerialWombatPinModes/liquidCrystal.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/matrixKeypad.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/matrixKeypad.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/matrixKeypad.o
+ .text.initMatrixKeypad
+                0x0000000000000000      0x64e ./User/SerialWombatPinModes/matrixKeypad.o
+ .rodata.initMatrixKeypad
+                0x0000000000000000       0x20 ./User/SerialWombatPinModes/matrixKeypad.o
+ .text.updateMatrixKeypad
+                0x0000000000000000      0x3b6 ./User/SerialWombatPinModes/matrixKeypad.o
+ .bss.debugMatrixKeypad
+                0x0000000000000000        0x4 ./User/SerialWombatPinModes/matrixKeypad.o
+ .debug_info    0x0000000000000000      0xea7 ./User/SerialWombatPinModes/matrixKeypad.o
+ .debug_abbrev  0x0000000000000000      0x2d8 ./User/SerialWombatPinModes/matrixKeypad.o
+ .debug_loc     0x0000000000000000      0x5c4 ./User/SerialWombatPinModes/matrixKeypad.o
+ .debug_aranges
+                0x0000000000000000       0x28 ./User/SerialWombatPinModes/matrixKeypad.o
+ .debug_ranges  0x0000000000000000      0x130 ./User/SerialWombatPinModes/matrixKeypad.o
+ .debug_line    0x0000000000000000     0x1876 ./User/SerialWombatPinModes/matrixKeypad.o
+ .debug_str     0x0000000000000000     0x182f ./User/SerialWombatPinModes/matrixKeypad.o
+ .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/matrixKeypad.o
+ .debug_frame   0x0000000000000000       0x6c ./User/SerialWombatPinModes/matrixKeypad.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/outputScale.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/outputScale.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/outputScale.o
+ .text.outputScaleResetTimeout
+                0x0000000000000000        0x6 ./User/SerialWombatPinModes/outputScale.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/pinInputProcessor.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/pinInputProcessor.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/pinInputProcessor.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/protectedOutput.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/protectedOutput.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/protectedOutput.o
+ .text.initProtectedOutput
+                0x0000000000000000       0xa6 ./User/SerialWombatPinModes/protectedOutput.o
+ .text.updateProtectedOutput
+                0x0000000000000000       0xae ./User/SerialWombatPinModes/protectedOutput.o
+ .debug_info    0x0000000000000000      0x8b0 ./User/SerialWombatPinModes/protectedOutput.o
+ .debug_abbrev  0x0000000000000000      0x184 ./User/SerialWombatPinModes/protectedOutput.o
+ .debug_loc     0x0000000000000000       0x1e ./User/SerialWombatPinModes/protectedOutput.o
+ .debug_aranges
+                0x0000000000000000       0x28 ./User/SerialWombatPinModes/protectedOutput.o
+ .debug_ranges  0x0000000000000000       0x18 ./User/SerialWombatPinModes/protectedOutput.o
+ .debug_line    0x0000000000000000      0x502 ./User/SerialWombatPinModes/protectedOutput.o
+ .debug_str     0x0000000000000000     0x1582 ./User/SerialWombatPinModes/protectedOutput.o
+ .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/protectedOutput.o
+ .debug_frame   0x0000000000000000       0x64 ./User/SerialWombatPinModes/protectedOutput.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/pulseOnChange.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/pulseOnChange.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/pulseOnChange.o
+ .text.initPulseOnChange
+                0x0000000000000000      0x1fe ./User/SerialWombatPinModes/pulseOnChange.o
+ .text.updatePulseOnChange
+                0x0000000000000000      0x1fa ./User/SerialWombatPinModes/pulseOnChange.o
+ .rodata.updatePulseOnChange
+                0x0000000000000000       0x2c ./User/SerialWombatPinModes/pulseOnChange.o
+ .bss.debugPulseOnChange
+                0x0000000000000000        0x4 ./User/SerialWombatPinModes/pulseOnChange.o
+ .debug_info    0x0000000000000000      0xd7a ./User/SerialWombatPinModes/pulseOnChange.o
+ .debug_abbrev  0x0000000000000000      0x280 ./User/SerialWombatPinModes/pulseOnChange.o
+ .debug_loc     0x0000000000000000      0x1c8 ./User/SerialWombatPinModes/pulseOnChange.o
+ .debug_aranges
+                0x0000000000000000       0x28 ./User/SerialWombatPinModes/pulseOnChange.o
+ .debug_ranges  0x0000000000000000       0xa8 ./User/SerialWombatPinModes/pulseOnChange.o
+ .debug_line    0x0000000000000000      0xacc ./User/SerialWombatPinModes/pulseOnChange.o
+ .debug_str     0x0000000000000000     0x19ed ./User/SerialWombatPinModes/pulseOnChange.o
+ .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/pulseOnChange.o
+ .debug_frame   0x0000000000000000       0x80 ./User/SerialWombatPinModes/pulseOnChange.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/pulseTimer.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/pulseTimer.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/pulseTimer.o
+ .text.initPulseTimer
+                0x0000000000000000      0x1f8 ./User/SerialWombatPinModes/pulseTimer.o
+ .rodata.initPulseTimer
+                0x0000000000000000       0x2c ./User/SerialWombatPinModes/pulseTimer.o
+ .text.updatePulseTimer
+                0x0000000000000000      0x31a ./User/SerialWombatPinModes/pulseTimer.o
+ .rodata.updatePulseTimer
+                0x0000000000000000       0x50 ./User/SerialWombatPinModes/pulseTimer.o
+ .bss.debugPulseTimer
+                0x0000000000000000        0x4 ./User/SerialWombatPinModes/pulseTimer.o
+ .debug_info    0x0000000000000000      0xe5f ./User/SerialWombatPinModes/pulseTimer.o
+ .debug_abbrev  0x0000000000000000      0x22e ./User/SerialWombatPinModes/pulseTimer.o
+ .debug_loc     0x0000000000000000      0x29c ./User/SerialWombatPinModes/pulseTimer.o
+ .debug_aranges
+                0x0000000000000000       0x28 ./User/SerialWombatPinModes/pulseTimer.o
+ .debug_ranges  0x0000000000000000       0xb0 ./User/SerialWombatPinModes/pulseTimer.o
+ .debug_line    0x0000000000000000      0xcd8 ./User/SerialWombatPinModes/pulseTimer.o
+ .debug_str     0x0000000000000000     0x1950 ./User/SerialWombatPinModes/pulseTimer.o
+ .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/pulseTimer.o
+ .debug_frame   0x0000000000000000       0x84 ./User/SerialWombatPinModes/pulseTimer.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/pwm.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/pwm.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/pwm.o
+ .text.initPWMSimple
+                0x0000000000000000       0x9c ./User/SerialWombatPinModes/pwm.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/quadEnc.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/quadEnc.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/quadEnc.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/queuedPulseOutput.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/queuedPulseOutput.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/queuedPulseOutput.o
+ .text.initQueuedPulseOutput
+                0x0000000000000000      0x1e8 ./User/SerialWombatPinModes/queuedPulseOutput.o
+ .text.updateQueuedPulseOutput
+                0x0000000000000000      0x25c ./User/SerialWombatPinModes/queuedPulseOutput.o
+ .bss.debugQueuedPulseOutput
+                0x0000000000000000        0x4 ./User/SerialWombatPinModes/queuedPulseOutput.o
+ .debug_info    0x0000000000000000      0xc10 ./User/SerialWombatPinModes/queuedPulseOutput.o
+ .debug_abbrev  0x0000000000000000      0x22e ./User/SerialWombatPinModes/queuedPulseOutput.o
+ .debug_loc     0x0000000000000000      0x17b ./User/SerialWombatPinModes/queuedPulseOutput.o
+ .debug_aranges
+                0x0000000000000000       0x28 ./User/SerialWombatPinModes/queuedPulseOutput.o
+ .debug_ranges  0x0000000000000000      0x158 ./User/SerialWombatPinModes/queuedPulseOutput.o
+ .debug_line    0x0000000000000000      0xb64 ./User/SerialWombatPinModes/queuedPulseOutput.o
+ .debug_str     0x0000000000000000     0x1755 ./User/SerialWombatPinModes/queuedPulseOutput.o
+ .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/queuedPulseOutput.o
+ .debug_frame   0x0000000000000000       0xa8 ./User/SerialWombatPinModes/queuedPulseOutput.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/servo.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/servo.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/servo.o
+ .text.initServoHwSimple
+                0x0000000000000000       0x42 ./User/SerialWombatPinModes/servo.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/swMath.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/swMath.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/swMath.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/throughputConsumer.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/throughputConsumer.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/throughputConsumer.o
+ .text.initThroughputConsumer
+                0x0000000000000000       0xc6 ./User/SerialWombatPinModes/throughputConsumer.o
+ .text.updateThroughputConsumer
+                0x0000000000000000       0x56 ./User/SerialWombatPinModes/throughputConsumer.o
+ .debug_info    0x0000000000000000      0x8f6 ./User/SerialWombatPinModes/throughputConsumer.o
+ .debug_abbrev  0x0000000000000000      0x196 ./User/SerialWombatPinModes/throughputConsumer.o
+ .debug_loc     0x0000000000000000       0x5d ./User/SerialWombatPinModes/throughputConsumer.o
+ .debug_aranges
+                0x0000000000000000       0x28 ./User/SerialWombatPinModes/throughputConsumer.o
+ .debug_ranges  0x0000000000000000       0x18 ./User/SerialWombatPinModes/throughputConsumer.o
+ .debug_line    0x0000000000000000      0x3dd ./User/SerialWombatPinModes/throughputConsumer.o
+ .debug_str     0x0000000000000000     0x1586 ./User/SerialWombatPinModes/throughputConsumer.o
+ .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/throughputConsumer.o
+ .debug_frame   0x0000000000000000       0x64 ./User/SerialWombatPinModes/throughputConsumer.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/uartHw8B.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/uartHw8B.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/uartHw8B.o
+ .text.initUARTHw
+                0x0000000000000000      0x25a ./User/SerialWombatPinModes/uartHw8B.o
+ .text.updateUARTHw
+                0x0000000000000000        0x2 ./User/SerialWombatPinModes/uartHw8B.o
+ .rodata.baudDivisor
+                0x0000000000000000       0x24 ./User/SerialWombatPinModes/uartHw8B.o
+ .debug_info    0x0000000000000000     0x1787 ./User/SerialWombatPinModes/uartHw8B.o
+ .debug_abbrev  0x0000000000000000      0x30e ./User/SerialWombatPinModes/uartHw8B.o
+ .debug_loc     0x0000000000000000       0x48 ./User/SerialWombatPinModes/uartHw8B.o
+ .debug_aranges
+                0x0000000000000000       0x28 ./User/SerialWombatPinModes/uartHw8B.o
+ .debug_ranges  0x0000000000000000       0x38 ./User/SerialWombatPinModes/uartHw8B.o
+ .debug_line    0x0000000000000000      0x7fd ./User/SerialWombatPinModes/uartHw8B.o
+ .debug_str     0x0000000000000000     0x1e40 ./User/SerialWombatPinModes/uartHw8B.o
+ .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/uartHw8B.o
+ .debug_frame   0x0000000000000000       0x60 ./User/SerialWombatPinModes/uartHw8B.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/uartSw.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/uartSw.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/uartSw.o
+ .text.initUARTSw
+                0x0000000000000000      0x358 ./User/SerialWombatPinModes/uartSw.o
+ .rodata.initUARTSw
+                0x0000000000000000       0x18 ./User/SerialWombatPinModes/uartSw.o
+ .text.updateUARTSwTx
+                0x0000000000000000      0x170 ./User/SerialWombatPinModes/uartSw.o
+ .text.updateUARTSwRx
+                0x0000000000000000      0x1d2 ./User/SerialWombatPinModes/uartSw.o
+ .text.updateUARTSw
+                0x0000000000000000       0x40 ./User/SerialWombatPinModes/uartSw.o
+ .text.queueCONFIGURE_CHANNEL_MODE_1_transmit
+                0x0000000000000000       0x9a ./User/SerialWombatPinModes/uartSw.o
+ .text.queueCONFIGURE_CHANNEL_MODE_2_receive
+                0x0000000000000000       0x6e ./User/SerialWombatPinModes/uartSw.o
+ .text.queueCONFIGURE_CHANNEL_MODE_3_peekRX
+                0x0000000000000000       0x5a ./User/SerialWombatPinModes/uartSw.o
+ .bss.debuguartSw
+                0x0000000000000000        0x4 ./User/SerialWombatPinModes/uartSw.o
+ .rodata.swBaudDivisor
+                0x0000000000000000       0x12 ./User/SerialWombatPinModes/uartSw.o
+ .debug_info    0x0000000000000000     0x102d ./User/SerialWombatPinModes/uartSw.o
+ .debug_abbrev  0x0000000000000000      0x275 ./User/SerialWombatPinModes/uartSw.o
+ .debug_loc     0x0000000000000000      0x2e4 ./User/SerialWombatPinModes/uartSw.o
+ .debug_aranges
+                0x0000000000000000       0x50 ./User/SerialWombatPinModes/uartSw.o
+ .debug_ranges  0x0000000000000000       0xd8 ./User/SerialWombatPinModes/uartSw.o
+ .debug_line    0x0000000000000000     0x12c4 ./User/SerialWombatPinModes/uartSw.o
+ .debug_str     0x0000000000000000     0x190d ./User/SerialWombatPinModes/uartSw.o
+ .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/uartSw.o
+ .debug_frame   0x0000000000000000      0x130 ./User/SerialWombatPinModes/uartSw.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/ultrasonicDistance.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/ultrasonicDistance.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/ultrasonicDistance.o
+ .text.initUltrasonicDistance
+                0x0000000000000000      0x21e ./User/SerialWombatPinModes/ultrasonicDistance.o
+ .rodata.initUltrasonicDistance
+                0x0000000000000000       0x2c ./User/SerialWombatPinModes/ultrasonicDistance.o
+ .text.updateUltrasonicDistance
+                0x0000000000000000      0x29c ./User/SerialWombatPinModes/ultrasonicDistance.o
+ .bss.debugUltrasonicDistance
+                0x0000000000000000        0x4 ./User/SerialWombatPinModes/ultrasonicDistance.o
+ .debug_info    0x0000000000000000      0xe0e ./User/SerialWombatPinModes/ultrasonicDistance.o
+ .debug_abbrev  0x0000000000000000      0x207 ./User/SerialWombatPinModes/ultrasonicDistance.o
+ .debug_loc     0x0000000000000000       0xed ./User/SerialWombatPinModes/ultrasonicDistance.o
+ .debug_aranges
+                0x0000000000000000       0x28 ./User/SerialWombatPinModes/ultrasonicDistance.o
+ .debug_ranges  0x0000000000000000       0x38 ./User/SerialWombatPinModes/ultrasonicDistance.o
+ .debug_line    0x0000000000000000      0xc04 ./User/SerialWombatPinModes/ultrasonicDistance.o
+ .debug_str     0x0000000000000000     0x1946 ./User/SerialWombatPinModes/ultrasonicDistance.o
+ .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/ultrasonicDistance.o
+ .debug_frame   0x0000000000000000       0x60 ./User/SerialWombatPinModes/ultrasonicDistance.o
+ .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/watchdog.o
+ .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/watchdog.o
+ .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/watchdog.o
+ .text          0x0000000000000000        0x0 ./User/DMA_IO.o
+ .data          0x0000000000000000        0x0 ./User/DMA_IO.o
+ .bss           0x0000000000000000        0x0 ./User/DMA_IO.o
+ .text.orCount  0x0000000000000000       0xf4 ./User/DMA_IO.o
+ .text.andCount
+                0x0000000000000000       0xf8 ./User/DMA_IO.o
+ .text.pinIsHWOutput
+                0x0000000000000000       0x1e ./User/DMA_IO.o
+ .text.ConfigurePinAnalog
+                0x0000000000000000       0x78 ./User/DMA_IO.o
+ .text.PinIsAnalogCapable
+                0x0000000000000000        0x4 ./User/DMA_IO.o
+ .text.PinOutput
+                0x0000000000000000       0x54 ./User/DMA_IO.o
+ .text.SetPin   0x0000000000000000      0x11a ./User/DMA_IO.o
+ .text.SetPinQuick
+                0x0000000000000000      0x11a ./User/DMA_IO.o
+ .text.SetPinPullUp
+                0x0000000000000000       0x82 ./User/DMA_IO.o
+ .text.SetPinPullDown
+                0x0000000000000000       0x68 ./User/DMA_IO.o
+ .text.SetPinOpenDrain
+                0x0000000000000000       0x66 ./User/DMA_IO.o
+ .text.CurrentPinPullUp
+                0x0000000000000000       0xa6 ./User/DMA_IO.o
+ .text.CurrentPinNoPullUp
+                0x0000000000000000       0x64 ./User/DMA_IO.o
+ .text.CurrentPinPullDown
+                0x0000000000000000       0x9c ./User/DMA_IO.o
+ .text.CurrentPinNoPullDown
+                0x0000000000000000       0x64 ./User/DMA_IO.o
+ .text.removeBitStreamOutput
+                0x0000000000000000       0x9a ./User/DMA_IO.o
+ .text.PulseInGetOldestDMABit
+                0x0000000000000000       0x6e ./User/DMA_IO.o
+ .text.PulseInSkipDMABits
+                0x0000000000000000       0x6c ./User/DMA_IO.o
+ .bss.highCount
+                0x0000000000000000        0x1 ./User/DMA_IO.o
+ .bss.lastValue
+                0x0000000000000000        0x1 ./User/DMA_IO.o
+ .rodata.WombatPinToADCChannel
+                0x0000000000000000        0x8 ./User/DMA_IO.o
+ .text          0x0000000000000000        0x0 ./User/ch32v00x_it.o
+ .data          0x0000000000000000        0x0 ./User/ch32v00x_it.o
+ .bss           0x0000000000000000        0x0 ./User/ch32v00x_it.o
+ .text          0x0000000000000000        0x0 ./User/main.o
+ .data          0x0000000000000000        0x0 ./User/main.o
+ .bss           0x0000000000000000        0x0 ./User/main.o
+ .bss.debug_breakpoints
+                0x0000000000000000        0x4 ./User/main.o
+ .bss.val       0x0000000000000000        0x1 ./User/main.o
+ .text          0x0000000000000000        0x0 ./User/pinRegisters.o
+ .data          0x0000000000000000        0x0 ./User/pinRegisters.o
+ .bss           0x0000000000000000        0x0 ./User/pinRegisters.o
+ .text.pinRegisterSizeCheck
+                0x0000000000000000        0x2 ./User/pinRegisters.o
+ .text.wrandom  0x0000000000000000      0x170 ./User/pinRegisters.o
+ .text.GetMode  0x0000000000000000       0x22 ./User/pinRegisters.o
+ .text          0x0000000000000000        0x0 ./User/protocol.o
+ .data          0x0000000000000000        0x0 ./User/protocol.o
+ .bss           0x0000000000000000        0x0 ./User/protocol.o
+ .bss.RX_ClockStretching
+                0x0000000000000000        0x1 ./User/protocol.o
+ .bss.ResponseAvailable
+                0x0000000000000000        0x1 ./User/protocol.o
+ .bss.ResponsePending
+                0x0000000000000000        0x1 ./User/protocol.o
+ .bss.SW_I2CAddress
+                0x0000000000000000        0x1 ./User/protocol.o
+ .bss.TX_ClockStretching
+                0x0000000000000000        0x1 ./User/protocol.o
+ .bss.TimingResourceManagerCopyBuffer
+                0x0000000000000000       0x10 ./User/protocol.o
+ .bss.UartRxbufferCounter
+                0x0000000000000000        0x1 ./User/protocol.o
+ .bss.UartTxbufferCounter
+                0x0000000000000000        0x1 ./User/protocol.o
+ .bss.addrRequested
+                0x0000000000000000        0x1 ./User/protocol.o
+ .bss.btfRequested
+                0x0000000000000000        0x1 ./User/protocol.o
+ .bss.crcResultCRCCCITT
+                0x0000000000000000        0x2 ./User/protocol.o
+ .bss.debug_discarded_bytes
+                0x0000000000000000        0x4 ./User/protocol.o
+ .bss.i2c_com_state
+                0x0000000000000000        0x4 ./User/protocol.o
+ .bss.processingCommand
+                0x0000000000000000        0x2 ./User/protocol.o
+ .bss.rxCounter
+                0x0000000000000000        0x1 ./User/protocol.o
+ .bss.rxneRequested
+                0x0000000000000000        0x1 ./User/protocol.o
+ .bss.txRequested
+                0x0000000000000000        0x1 ./User/protocol.o
+ .bss.wombatI2CRxData
+                0x0000000000000000        0x8 ./User/protocol.o
+ .bss.wombatI2CTxData
+                0x0000000000000000        0x8 ./User/protocol.o
+ .data.debugLastInterruptAction
+                0x0000000000000000        0x1 ./User/protocol.o
+ .text          0x0000000000000000        0x0 ./User/queue.o
+ .data          0x0000000000000000        0x0 ./User/queue.o
+ .bss           0x0000000000000000        0x0 ./User/queue.o
+ .text.QueueByteShiftInitialize
+                0x0000000000000000       0x4c ./User/queue.o
+ .text.QueueRead16Word
+                0x0000000000000000       0x90 ./User/queue.o
+ .text          0x0000000000000000        0x0 ./User/swmain.o
+ .data          0x0000000000000000        0x0 ./User/swmain.o
+ .bss           0x0000000000000000        0x0 ./User/swmain.o
+ .data.FrameTimingPin
+                0x0000000000000000        0x1 ./User/swmain.o
+ .text          0x0000000000000000        0x0 ./User/system_ch32v00x.o
+ .data          0x0000000000000000        0x0 ./User/system_ch32v00x.o
+ .bss           0x0000000000000000        0x0 ./User/system_ch32v00x.o
+ .text          0x0000000000000000        0x0 ./User/timingResource.o
+ .data          0x0000000000000000        0x0 ./User/timingResource.o
+ .bss           0x0000000000000000        0x0 ./User/timingResource.o
+ .text.timingResourceBusyWait
+                0x0000000000000000       0x20 ./User/timingResource.o
+ .text          0x0000000000000000        0x0 ./Startup/startup_ch32v00x.o
+ .data          0x0000000000000000        0x0 ./Startup/startup_ch32v00x.o
+ .bss           0x0000000000000000        0x0 ./Startup/startup_ch32v00x.o
+ .text          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_adc.o
+ .data          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_adc.o
+ .bss           0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_StructInit
+                0x0000000000000000       0x1a ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_ITConfig
+                0x0000000000000000       0x18 ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_GetSoftwareStartConvStatus
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_DiscModeChannelCountConfig
+                0x0000000000000000       0x12 ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_DiscModeCmd
+                0x0000000000000000       0x1c ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_ExternalTrigConvCmd
+                0x0000000000000000       0x1a ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_GetConversionValue
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_AutoInjectedConvCmd
+                0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_InjectedDiscModeCmd
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_ExternalTrigInjectedConvConfig
+                0x0000000000000000        0xe ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_ExternalTrigInjectedConvCmd
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_SoftwareStartInjectedConvCmd
+                0x0000000000000000       0x1a ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_GetSoftwareStartInjectedConvCmdStatus
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_InjectedChannelConfig
+                0x0000000000000000       0x78 ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_InjectedSequencerLengthConfig
+                0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_SetInjectedOffset
+                0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_GetInjectedConversionValue
+                0x0000000000000000       0x1c ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_AnalogWatchdogCmd
+                0x0000000000000000       0x12 ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_AnalogWatchdogThresholdsConfig
+                0x0000000000000000        0x6 ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_AnalogWatchdogSingleChannelConfig
+                0x0000000000000000        0xa ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_GetFlagStatus
+                0x0000000000000000        0xa ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_ClearFlag
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_GetITStatus
+                0x0000000000000000       0x1c ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_ClearITPendingBit
+                0x0000000000000000        0xa ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_Calibration_Vol
+                0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_adc.o
+ .text.ADC_ExternalTrig_DLY
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_adc.o
+ .text          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_dbgmcu.o
+ .data          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_dbgmcu.o
+ .bss           0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_dbgmcu.o
+ .text.DBGMCU_GetREVID
+                0x0000000000000000        0xa ./Peripheral/src/ch32v00x_dbgmcu.o
+ .text.DBGMCU_GetDEVID
+                0x0000000000000000        0xa ./Peripheral/src/ch32v00x_dbgmcu.o
+ .text.__get_DEBUG_CR
+                0x0000000000000000        0x6 ./Peripheral/src/ch32v00x_dbgmcu.o
+ .text.__set_DEBUG_CR
+                0x0000000000000000        0x6 ./Peripheral/src/ch32v00x_dbgmcu.o
+ .text.DBGMCU_Config
+                0x0000000000000000       0x12 ./Peripheral/src/ch32v00x_dbgmcu.o
+ .text.DBGMCU_GetCHIPID
+                0x0000000000000000        0xa ./Peripheral/src/ch32v00x_dbgmcu.o
+ .debug_info    0x0000000000000000      0xa94 ./Peripheral/src/ch32v00x_dbgmcu.o
+ .debug_abbrev  0x0000000000000000      0x2f7 ./Peripheral/src/ch32v00x_dbgmcu.o
+ .debug_loc     0x0000000000000000       0x58 ./Peripheral/src/ch32v00x_dbgmcu.o
+ .debug_aranges
+                0x0000000000000000       0x48 ./Peripheral/src/ch32v00x_dbgmcu.o
+ .debug_ranges  0x0000000000000000       0x50 ./Peripheral/src/ch32v00x_dbgmcu.o
+ .debug_line    0x0000000000000000      0x3d7 ./Peripheral/src/ch32v00x_dbgmcu.o
+ .debug_str     0x0000000000000000      0x66f ./Peripheral/src/ch32v00x_dbgmcu.o
+ .comment       0x0000000000000000       0x34 ./Peripheral/src/ch32v00x_dbgmcu.o
+ .debug_frame   0x0000000000000000       0x70 ./Peripheral/src/ch32v00x_dbgmcu.o
+ .text          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_dma.o
+ .data          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_dma.o
+ .bss           0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_dma.o
+ .text.DMA_StructInit
+                0x0000000000000000       0x2e ./Peripheral/src/ch32v00x_dma.o
+ .text.DMA_ITConfig
+                0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_dma.o
+ .text.DMA_SetCurrDataCounter
+                0x0000000000000000        0x4 ./Peripheral/src/ch32v00x_dma.o
+ .text.DMA_GetCurrDataCounter
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_dma.o
+ .text.DMA_GetFlagStatus
+                0x0000000000000000        0xe ./Peripheral/src/ch32v00x_dma.o
+ .text.DMA_ClearFlag
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_dma.o
+ .text.DMA_GetITStatus
+                0x0000000000000000        0xe ./Peripheral/src/ch32v00x_dma.o
+ .text.DMA_ClearITPendingBit
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_dma.o
+ .text          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_exti.o
+ .data          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_exti.o
+ .bss           0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_exti.o
+ .text.EXTI_DeInit
+                0x0000000000000000       0x22 ./Peripheral/src/ch32v00x_exti.o
+ .text.EXTI_Init
+                0x0000000000000000       0x6e ./Peripheral/src/ch32v00x_exti.o
+ .text.EXTI_StructInit
+                0x0000000000000000       0x12 ./Peripheral/src/ch32v00x_exti.o
+ .text.EXTI_GenerateSWInterrupt
+                0x0000000000000000       0x10 ./Peripheral/src/ch32v00x_exti.o
+ .text.EXTI_GetFlagStatus
+                0x0000000000000000       0x12 ./Peripheral/src/ch32v00x_exti.o
+ .text.EXTI_ClearFlag
+                0x0000000000000000        0xa ./Peripheral/src/ch32v00x_exti.o
+ .text.EXTI_GetITStatus
+                0x0000000000000000       0x1e ./Peripheral/src/ch32v00x_exti.o
+ .text.EXTI_ClearITPendingBit
+                0x0000000000000000        0xa ./Peripheral/src/ch32v00x_exti.o
+ .debug_info    0x0000000000000000      0xc05 ./Peripheral/src/ch32v00x_exti.o
+ .debug_abbrev  0x0000000000000000      0x2da ./Peripheral/src/ch32v00x_exti.o
+ .debug_loc     0x0000000000000000      0x16d ./Peripheral/src/ch32v00x_exti.o
+ .debug_aranges
+                0x0000000000000000       0x50 ./Peripheral/src/ch32v00x_exti.o
+ .debug_ranges  0x0000000000000000       0x40 ./Peripheral/src/ch32v00x_exti.o
+ .debug_line    0x0000000000000000      0x647 ./Peripheral/src/ch32v00x_exti.o
+ .debug_str     0x0000000000000000      0x7b6 ./Peripheral/src/ch32v00x_exti.o
+ .comment       0x0000000000000000       0x34 ./Peripheral/src/ch32v00x_exti.o
+ .debug_frame   0x0000000000000000       0x90 ./Peripheral/src/ch32v00x_exti.o
+ .text          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_flash.o
+ .data          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_flash.o
+ .bss           0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_SetLatency
+                0x0000000000000000        0xe ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_Unlock
+                0x0000000000000000       0x1a ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_Lock
+                0x0000000000000000        0xe ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_ErasePage
+                0x0000000000000000       0xa2 ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_EraseAllPages
+                0x0000000000000000       0x9c ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_EraseOptionBytes
+                0x0000000000000000      0x124 ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_ProgramWord
+                0x0000000000000000       0xf8 ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_ProgramHalfWord
+                0x0000000000000000       0x96 ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_ProgramOptionByteData
+                0x0000000000000000       0xae ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_EnableWriteProtection
+                0x0000000000000000      0x12c ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_ReadOutProtection
+                0x0000000000000000      0x12c ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_UserOptionByteConfig
+                0x0000000000000000       0xc0 ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_GetUserOptionByte
+                0x0000000000000000        0xa ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_GetWriteProtectionOptionByte
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_GetReadOutProtectionStatus
+                0x0000000000000000        0xc ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_ITConfig
+                0x0000000000000000       0x1e ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_GetFlagStatus
+                0x0000000000000000       0x1e ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_ClearFlag
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_GetStatus
+                0x0000000000000000       0x18 ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_GetBank1Status
+                0x0000000000000000       0x18 ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_WaitForLastOperation
+                0x0000000000000000       0x4c ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_WaitForLastBank1Operation
+                0x0000000000000000       0x4c ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_Unlock_Fast
+                0x0000000000000000       0x1e ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_Lock_Fast
+                0x0000000000000000        0xe ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_BufReset
+                0x0000000000000000       0x2c ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_BufLoad
+                0x0000000000000000       0x3a ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_ErasePage_Fast
+                0x0000000000000000       0x3a ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_ProgramPage_Fast
+                0x0000000000000000       0x38 ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_ROM_ERASE
+                0x0000000000000000      0x182 ./Peripheral/src/ch32v00x_flash.o
+ .text.FLASH_ROM_WRITE
+                0x0000000000000000       0xfe ./Peripheral/src/ch32v00x_flash.o
+ .text          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_gpio.o
+ .data          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_gpio.o
+ .bss           0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_gpio.o
+ .text.GPIO_DeInit
+                0x0000000000000000       0x8c ./Peripheral/src/ch32v00x_gpio.o
+ .text.GPIO_AFIODeInit
+                0x0000000000000000       0x28 ./Peripheral/src/ch32v00x_gpio.o
+ .text.GPIO_StructInit
+                0x0000000000000000        0xe ./Peripheral/src/ch32v00x_gpio.o
+ .text.GPIO_ReadInputDataBit
+                0x0000000000000000        0xa ./Peripheral/src/ch32v00x_gpio.o
+ .text.GPIO_ReadInputData
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_gpio.o
+ .text.GPIO_ReadOutputDataBit
+                0x0000000000000000        0xa ./Peripheral/src/ch32v00x_gpio.o
+ .text.GPIO_ReadOutputData
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_gpio.o
+ .text.GPIO_SetBits
+                0x0000000000000000        0x4 ./Peripheral/src/ch32v00x_gpio.o
+ .text.GPIO_ResetBits
+                0x0000000000000000        0x4 ./Peripheral/src/ch32v00x_gpio.o
+ .text.GPIO_WriteBit
+                0x0000000000000000        0xa ./Peripheral/src/ch32v00x_gpio.o
+ .text.GPIO_Write
+                0x0000000000000000        0x4 ./Peripheral/src/ch32v00x_gpio.o
+ .text.GPIO_PinLockConfig
+                0x0000000000000000       0x10 ./Peripheral/src/ch32v00x_gpio.o
+ .text.GPIO_PinRemapConfig
+                0x0000000000000000       0xc8 ./Peripheral/src/ch32v00x_gpio.o
+ .text.GPIO_EXTILineConfig
+                0x0000000000000000       0x22 ./Peripheral/src/ch32v00x_gpio.o
+ .text.GPIO_IPD_Unused
+                0x0000000000000000       0xf2 ./Peripheral/src/ch32v00x_gpio.o
+ .text          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_i2c.o
+ .data          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_i2c.o
+ .bss           0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_DeInit
+                0x0000000000000000       0x3a ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_Init
+                0x0000000000000000      0x10c ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_StructInit
+                0x0000000000000000       0x18 ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_Cmd  0x0000000000000000       0x1a ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_DMACmd
+                0x0000000000000000       0x20 ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_DMALastTransferCmd
+                0x0000000000000000       0x18 ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_GenerateSTART
+                0x0000000000000000       0x1c ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_GenerateSTOP
+                0x0000000000000000       0x1c ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_AcknowledgeConfig
+                0x0000000000000000       0x1c ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_OwnAddress2Config
+                0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_DualAddressCmd
+                0x0000000000000000       0x1a ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_GeneralCallCmd
+                0x0000000000000000       0x1c ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_ITConfig
+                0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_SendData
+                0x0000000000000000        0x4 ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_ReceiveData
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_Send7bitAddress
+                0x0000000000000000       0x12 ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_ReadRegister
+                0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_SoftwareResetCmd
+                0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_NACKPositionConfig
+                0x0000000000000000       0x24 ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_TransmitPEC
+                0x0000000000000000       0x18 ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_PECPositionConfig
+                0x0000000000000000       0x24 ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_CalculatePEC
+                0x0000000000000000       0x1c ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_GetPEC
+                0x0000000000000000        0x6 ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_ARPCmd
+                0x0000000000000000       0x1a ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_StretchClockCmd
+                0x0000000000000000       0x1c ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_FastModeDutyCycleConfig
+                0x0000000000000000       0x1c ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_CheckEvent
+                0x0000000000000000       0x18 ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_GetLastEvent
+                0x0000000000000000        0xe ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_GetFlagStatus
+                0x0000000000000000       0x40 ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_ClearFlag
+                0x0000000000000000        0xc ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_GetITStatus
+                0x0000000000000000       0x20 ./Peripheral/src/ch32v00x_i2c.o
+ .text.I2C_ClearITPendingBit
+                0x0000000000000000        0xc ./Peripheral/src/ch32v00x_i2c.o
+ .debug_info    0x0000000000000000     0x142c ./Peripheral/src/ch32v00x_i2c.o
+ .debug_abbrev  0x0000000000000000      0x3a7 ./Peripheral/src/ch32v00x_i2c.o
+ .debug_loc     0x0000000000000000      0x738 ./Peripheral/src/ch32v00x_i2c.o
+ .debug_aranges
+                0x0000000000000000      0x108 ./Peripheral/src/ch32v00x_i2c.o
+ .debug_ranges  0x0000000000000000       0xf8 ./Peripheral/src/ch32v00x_i2c.o
+ .debug_line    0x0000000000000000     0x10dd ./Peripheral/src/ch32v00x_i2c.o
+ .debug_str     0x0000000000000000      0xadb ./Peripheral/src/ch32v00x_i2c.o
+ .comment       0x0000000000000000       0x34 ./Peripheral/src/ch32v00x_i2c.o
+ .debug_frame   0x0000000000000000      0x248 ./Peripheral/src/ch32v00x_i2c.o
+ .text          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_iwdg.o
+ .data          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_iwdg.o
+ .bss           0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_iwdg.o
+ .text.IWDG_WriteAccessCmd
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_iwdg.o
+ .text.IWDG_SetPrescaler
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_iwdg.o
+ .text.IWDG_SetReload
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_iwdg.o
+ .text.IWDG_ReloadCounter
+                0x0000000000000000        0xe ./Peripheral/src/ch32v00x_iwdg.o
+ .text.IWDG_Enable
+                0x0000000000000000       0x18 ./Peripheral/src/ch32v00x_iwdg.o
+ .text.IWDG_GetFlagStatus
+                0x0000000000000000        0xe ./Peripheral/src/ch32v00x_iwdg.o
+ .debug_info    0x0000000000000000      0xb46 ./Peripheral/src/ch32v00x_iwdg.o
+ .debug_abbrev  0x0000000000000000      0x282 ./Peripheral/src/ch32v00x_iwdg.o
+ .debug_loc     0x0000000000000000       0x68 ./Peripheral/src/ch32v00x_iwdg.o
+ .debug_aranges
+                0x0000000000000000       0x48 ./Peripheral/src/ch32v00x_iwdg.o
+ .debug_ranges  0x0000000000000000       0x38 ./Peripheral/src/ch32v00x_iwdg.o
+ .debug_line    0x0000000000000000      0x456 ./Peripheral/src/ch32v00x_iwdg.o
+ .debug_str     0x0000000000000000      0x722 ./Peripheral/src/ch32v00x_iwdg.o
+ .comment       0x0000000000000000       0x34 ./Peripheral/src/ch32v00x_iwdg.o
+ .debug_frame   0x0000000000000000       0x70 ./Peripheral/src/ch32v00x_iwdg.o
+ .text          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_misc.o
+ .data          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_misc.o
+ .bss           0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_misc.o
+ .text          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_opa.o
+ .data          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_opa.o
+ .bss           0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_opa.o
+ .text.OPA_DeInit
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_opa.o
+ .text.OPA_Init
+                0x0000000000000000       0x22 ./Peripheral/src/ch32v00x_opa.o
+ .text.OPA_StructInit
+                0x0000000000000000        0xa ./Peripheral/src/ch32v00x_opa.o
+ .text.OPA_Cmd  0x0000000000000000       0x2c ./Peripheral/src/ch32v00x_opa.o
+ .debug_info    0x0000000000000000      0xaa5 ./Peripheral/src/ch32v00x_opa.o
+ .debug_abbrev  0x0000000000000000      0x230 ./Peripheral/src/ch32v00x_opa.o
+ .debug_loc     0x0000000000000000       0x2a ./Peripheral/src/ch32v00x_opa.o
+ .debug_aranges
+                0x0000000000000000       0x38 ./Peripheral/src/ch32v00x_opa.o
+ .debug_ranges  0x0000000000000000       0x28 ./Peripheral/src/ch32v00x_opa.o
+ .debug_line    0x0000000000000000      0x45c ./Peripheral/src/ch32v00x_opa.o
+ .debug_str     0x0000000000000000      0x696 ./Peripheral/src/ch32v00x_opa.o
+ .comment       0x0000000000000000       0x34 ./Peripheral/src/ch32v00x_opa.o
+ .debug_frame   0x0000000000000000       0x50 ./Peripheral/src/ch32v00x_opa.o
+ .text          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_pwr.o
+ .data          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_pwr.o
+ .bss           0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_pwr.o
+ .text.PWR_DeInit
+                0x0000000000000000       0x2c ./Peripheral/src/ch32v00x_pwr.o
+ .text.PWR_PVDCmd
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_pwr.o
+ .text.PWR_PVDLevelConfig
+                0x0000000000000000       0x10 ./Peripheral/src/ch32v00x_pwr.o
+ .text.PWR_AutoWakeUpCmd
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_pwr.o
+ .text.PWR_AWU_SetPrescaler
+                0x0000000000000000        0xe ./Peripheral/src/ch32v00x_pwr.o
+ .text.PWR_AWU_SetWindowValue
+                0x0000000000000000       0x1e ./Peripheral/src/ch32v00x_pwr.o
+ .text.PWR_EnterSTANDBYMode
+                0x0000000000000000       0x94 ./Peripheral/src/ch32v00x_pwr.o
+ .text.PWR_GetFlagStatus
+                0x0000000000000000        0xe ./Peripheral/src/ch32v00x_pwr.o
+ .debug_info    0x0000000000000000      0xe7f ./Peripheral/src/ch32v00x_pwr.o
+ .debug_abbrev  0x0000000000000000      0x339 ./Peripheral/src/ch32v00x_pwr.o
+ .debug_loc     0x0000000000000000      0x12a ./Peripheral/src/ch32v00x_pwr.o
+ .debug_aranges
+                0x0000000000000000       0x58 ./Peripheral/src/ch32v00x_pwr.o
+ .debug_ranges  0x0000000000000000       0x80 ./Peripheral/src/ch32v00x_pwr.o
+ .debug_line    0x0000000000000000      0x6e7 ./Peripheral/src/ch32v00x_pwr.o
+ .debug_str     0x0000000000000000      0x809 ./Peripheral/src/ch32v00x_pwr.o
+ .comment       0x0000000000000000       0x34 ./Peripheral/src/ch32v00x_pwr.o
+ .debug_frame   0x0000000000000000       0xa4 ./Peripheral/src/ch32v00x_pwr.o
+ .text          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_rcc.o
+ .data          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_rcc.o
+ .bss           0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_rcc.o
+ .text.RCC_DeInit
+                0x0000000000000000       0x4c ./Peripheral/src/ch32v00x_rcc.o
+ .text.RCC_HSEConfig
+                0x0000000000000000       0x3e ./Peripheral/src/ch32v00x_rcc.o
+ .text.RCC_WaitForHSEStartUp
+                0x0000000000000000       0x3c ./Peripheral/src/ch32v00x_rcc.o
+ .text.RCC_HSICmd
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_rcc.o
+ .text.RCC_PLLConfig
+                0x0000000000000000       0x12 ./Peripheral/src/ch32v00x_rcc.o
+ .text.RCC_PLLCmd
+                0x0000000000000000       0x24 ./Peripheral/src/ch32v00x_rcc.o
+ .text.RCC_SYSCLKConfig
+                0x0000000000000000       0x5e ./Peripheral/src/ch32v00x_rcc.o
+ .text.RCC_GetSYSCLKSource
+                0x0000000000000000        0xa ./Peripheral/src/ch32v00x_rcc.o
+ .text.RCC_HCLKConfig
+                0x0000000000000000       0x10 ./Peripheral/src/ch32v00x_rcc.o
+ .text.RCC_ITConfig
+                0x0000000000000000       0x18 ./Peripheral/src/ch32v00x_rcc.o
+ .text.RCC_LSICmd
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_rcc.o
+ .text.RCC_GetClocksFreq
+                0x0000000000000000       0xb4 ./Peripheral/src/ch32v00x_rcc.o
+ .text.RCC_APB1PeriphClockCmd
+                0x0000000000000000       0x1e ./Peripheral/src/ch32v00x_rcc.o
+ .text.RCC_APB1PeriphResetCmd
+                0x0000000000000000       0x1e ./Peripheral/src/ch32v00x_rcc.o
+ .text.RCC_ClockSecuritySystemCmd
+                0x0000000000000000       0x24 ./Peripheral/src/ch32v00x_rcc.o
+ .text.RCC_MCOConfig
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_rcc.o
+ .text.RCC_GetFlagStatus
+                0x0000000000000000       0x26 ./Peripheral/src/ch32v00x_rcc.o
+ .text.RCC_GetITStatus
+                0x0000000000000000        0xe ./Peripheral/src/ch32v00x_rcc.o
+ .text.RCC_ClearITPendingBit
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_rcc.o
+ .data.ADCPrescTable
+                0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_rcc.o
+ .data.APBAHBPrescTable
+                0x0000000000000000       0x10 ./Peripheral/src/ch32v00x_rcc.o
+ .text          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_spi.o
+ .data          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_spi.o
+ .bss           0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_spi.o
+ .text.SPI_I2S_DeInit
+                0x0000000000000000       0x32 ./Peripheral/src/ch32v00x_spi.o
+ .text.SPI_Init
+                0x0000000000000000       0x3a ./Peripheral/src/ch32v00x_spi.o
+ .text.SPI_StructInit
+                0x0000000000000000       0x22 ./Peripheral/src/ch32v00x_spi.o
+ .text.SPI_Cmd  0x0000000000000000       0x1c ./Peripheral/src/ch32v00x_spi.o
+ .text.SPI_I2S_ITConfig
+                0x0000000000000000       0x20 ./Peripheral/src/ch32v00x_spi.o
+ .text.SPI_I2S_DMACmd
+                0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_spi.o
+ .text.SPI_I2S_SendData
+                0x0000000000000000        0x4 ./Peripheral/src/ch32v00x_spi.o
+ .text.SPI_I2S_ReceiveData
+                0x0000000000000000        0x4 ./Peripheral/src/ch32v00x_spi.o
+ .text.SPI_NSSInternalSoftwareConfig
+                0x0000000000000000       0x26 ./Peripheral/src/ch32v00x_spi.o
+ .text.SPI_SSOutputCmd
+                0x0000000000000000       0x1a ./Peripheral/src/ch32v00x_spi.o
+ .text.SPI_DataSizeConfig
+                0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_spi.o
+ .text.SPI_TransmitCRC
+                0x0000000000000000        0xa ./Peripheral/src/ch32v00x_spi.o
+ .text.SPI_CalculateCRC
+                0x0000000000000000       0x18 ./Peripheral/src/ch32v00x_spi.o
+ .text.SPI_GetCRC
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_spi.o
+ .text.SPI_GetCRCPolynomial
+                0x0000000000000000        0x4 ./Peripheral/src/ch32v00x_spi.o
+ .text.SPI_BiDirectionalLineConfig
+                0x0000000000000000       0x1c ./Peripheral/src/ch32v00x_spi.o
+ .text.SPI_I2S_GetFlagStatus
+                0x0000000000000000        0xa ./Peripheral/src/ch32v00x_spi.o
+ .text.SPI_I2S_ClearFlag
+                0x0000000000000000        0xc ./Peripheral/src/ch32v00x_spi.o
+ .text.SPI_I2S_GetITStatus
+                0x0000000000000000       0x28 ./Peripheral/src/ch32v00x_spi.o
+ .text.SPI_I2S_ClearITPendingBit
+                0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_spi.o
+ .debug_info    0x0000000000000000     0x1064 ./Peripheral/src/ch32v00x_spi.o
+ .debug_abbrev  0x0000000000000000      0x303 ./Peripheral/src/ch32v00x_spi.o
+ .debug_loc     0x0000000000000000      0x3f1 ./Peripheral/src/ch32v00x_spi.o
+ .debug_aranges
+                0x0000000000000000       0xb8 ./Peripheral/src/ch32v00x_spi.o
+ .debug_ranges  0x0000000000000000       0xa8 ./Peripheral/src/ch32v00x_spi.o
+ .debug_line    0x0000000000000000      0xa24 ./Peripheral/src/ch32v00x_spi.o
+ .debug_str     0x0000000000000000      0x962 ./Peripheral/src/ch32v00x_spi.o
+ .comment       0x0000000000000000       0x34 ./Peripheral/src/ch32v00x_spi.o
+ .debug_frame   0x0000000000000000      0x15c ./Peripheral/src/ch32v00x_spi.o
+ .text          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_tim.o
+ .data          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_tim.o
+ .bss           0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_DeInit
+                0x0000000000000000       0x6a ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_OC1Init
+                0x0000000000000000       0x86 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_OC2Init
+                0x0000000000000000       0xac ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_OC3Init
+                0x0000000000000000       0xac ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_OC4Init
+                0x0000000000000000       0x7e ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_ICInit
+                0x0000000000000000      0x23a ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_PWMIConfig
+                0x0000000000000000      0x262 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_BDTRConfig
+                0x0000000000000000       0x24 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_TimeBaseStructInit
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_OCStructInit
+                0x0000000000000000       0x22 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_ICStructInit
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_BDTRStructInit
+                0x0000000000000000       0x1e ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_CtrlPWMOutputs
+                0x0000000000000000       0x1a ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_GenerateEvent
+                0x0000000000000000        0x4 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_DMAConfig
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_DMACmd
+                0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_InternalClockConfig
+                0x0000000000000000       0x10 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_ITRxExternalClockConfig
+                0x0000000000000000       0x18 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_TIxExternalClockConfig
+                0x0000000000000000      0x102 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_ETRClockMode1Config
+                0x0000000000000000       0x26 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_ETRClockMode2Config
+                0x0000000000000000       0x1e ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_ETRConfig
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_PrescalerConfig
+                0x0000000000000000        0x6 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_CounterModeConfig
+                0x0000000000000000       0x10 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_SelectInputTrigger
+                0x0000000000000000       0x10 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_EncoderInterfaceConfig
+                0x0000000000000000       0x3c ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_ForcedOC1Config
+                0x0000000000000000       0x10 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_ForcedOC2Config
+                0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_ForcedOC3Config
+                0x0000000000000000       0x10 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_ForcedOC4Config
+                0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_ARRPreloadConfig
+                0x0000000000000000       0x1c ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_SelectCOM
+                0x0000000000000000       0x1a ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_SelectCCDMA
+                0x0000000000000000       0x1a ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_CCPreloadControl
+                0x0000000000000000       0x1a ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_OC1PreloadConfig
+                0x0000000000000000        0xe ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_OC2PreloadConfig
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_OC3PreloadConfig
+                0x0000000000000000        0xe ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_OC4PreloadConfig
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_OC1FastConfig
+                0x0000000000000000        0xe ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_OC2FastConfig
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_OC3FastConfig
+                0x0000000000000000        0xe ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_OC4FastConfig
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_ClearOC1Ref
+                0x0000000000000000       0x10 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_ClearOC2Ref
+                0x0000000000000000       0x12 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_ClearOC3Ref
+                0x0000000000000000       0x10 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_ClearOC4Ref
+                0x0000000000000000       0x12 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_OC1PolarityConfig
+                0x0000000000000000        0xe ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_OC1NPolarityConfig
+                0x0000000000000000        0xe ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_OC2PolarityConfig
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_OC2NPolarityConfig
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_OC3PolarityConfig
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_OC3NPolarityConfig
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_OC4PolarityConfig
+                0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_CCxCmd
+                0x0000000000000000       0x20 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_CCxNCmd
+                0x0000000000000000       0x20 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_SelectOCxM
+                0x0000000000000000       0x4e ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_UpdateDisableConfig
+                0x0000000000000000       0x1a ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_UpdateRequestConfig
+                0x0000000000000000       0x1a ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_SelectHallSensor
+                0x0000000000000000       0x1c ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_SelectOnePulseMode
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_SelectOutputTrigger
+                0x0000000000000000       0x18 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_SelectSlaveMode
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_SelectMasterSlaveMode
+                0x0000000000000000       0x18 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_SetCounter
+                0x0000000000000000        0x4 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_SetAutoreload
+                0x0000000000000000        0x4 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_SetCompare1
+                0x0000000000000000        0x4 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_SetCompare2
+                0x0000000000000000        0x4 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_SetCompare3
+                0x0000000000000000        0x4 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_SetCompare4
+                0x0000000000000000        0x4 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_SetIC1Prescaler
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_SetIC2Prescaler
+                0x0000000000000000       0x1a ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_SetIC3Prescaler
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_SetIC4Prescaler
+                0x0000000000000000       0x1a ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_SetClockDivision
+                0x0000000000000000       0x18 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_GetCapture1
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_GetCapture2
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_GetCapture3
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_GetCapture4
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_GetCounter
+                0x0000000000000000        0x4 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_GetPrescaler
+                0x0000000000000000        0x4 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_GetFlagStatus
+                0x0000000000000000        0xa ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_ClearFlag
+                0x0000000000000000        0xc ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_IndicateCaptureLevelCmd
+                0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_tim.o
+ .text          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_usart.o
+ .data          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_usart.o
+ .bss           0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_DeInit
+                0x0000000000000000       0x36 ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_Init
+                0x0000000000000000      0x10a ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_StructInit
+                0x0000000000000000       0x18 ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_ClockInit
+                0x0000000000000000       0x22 ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_ClockStructInit
+                0x0000000000000000       0x12 ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_Cmd
+                0x0000000000000000       0x18 ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_DMACmd
+                0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_SetAddress
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_WakeUpConfig
+                0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_ReceiverWakeUpCmd
+                0x0000000000000000       0x1a ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_LINBreakDetectLengthConfig
+                0x0000000000000000       0x18 ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_LINCmd
+                0x0000000000000000       0x18 ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_SendData
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_ReceiveData
+                0x0000000000000000        0x8 ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_SendBreak
+                0x0000000000000000        0xa ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_SetGuardTime
+                0x0000000000000000       0x12 ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_SetPrescaler
+                0x0000000000000000       0x18 ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_SmartCardCmd
+                0x0000000000000000       0x1c ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_SmartCardNACKCmd
+                0x0000000000000000       0x1a ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_HalfDuplexCmd
+                0x0000000000000000       0x1a ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_OverSampling8Cmd
+                0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_OneBitMethodCmd
+                0x0000000000000000       0x20 ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_IrDAConfig
+                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_IrDACmd
+                0x0000000000000000       0x1a ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_GetFlagStatus
+                0x0000000000000000        0xa ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_ClearFlag
+                0x0000000000000000        0xc ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_GetITStatus
+                0x0000000000000000       0x40 ./Peripheral/src/ch32v00x_usart.o
+ .text.USART_ClearITPendingBit
+                0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_usart.o
+ .text          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_wwdg.o
+ .data          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_wwdg.o
+ .bss           0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_wwdg.o
+ .text.WWDG_DeInit
+                0x0000000000000000       0x2e ./Peripheral/src/ch32v00x_wwdg.o
+ .text.WWDG_SetPrescaler
+                0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_wwdg.o
+ .text.WWDG_SetWindowValue
+                0x0000000000000000       0x26 ./Peripheral/src/ch32v00x_wwdg.o
+ .text.WWDG_EnableIT
+                0x0000000000000000       0x12 ./Peripheral/src/ch32v00x_wwdg.o
+ .text.WWDG_SetCounter
+                0x0000000000000000        0xe ./Peripheral/src/ch32v00x_wwdg.o
+ .text.WWDG_Enable
+                0x0000000000000000        0xe ./Peripheral/src/ch32v00x_wwdg.o
+ .text.WWDG_GetFlagStatus
+                0x0000000000000000        0xa ./Peripheral/src/ch32v00x_wwdg.o
+ .text.WWDG_ClearFlag
+                0x0000000000000000        0xa ./Peripheral/src/ch32v00x_wwdg.o
+ .debug_info    0x0000000000000000      0xb27 ./Peripheral/src/ch32v00x_wwdg.o
+ .debug_abbrev  0x0000000000000000      0x29d ./Peripheral/src/ch32v00x_wwdg.o
+ .debug_loc     0x0000000000000000       0xae ./Peripheral/src/ch32v00x_wwdg.o
+ .debug_aranges
+                0x0000000000000000       0x58 ./Peripheral/src/ch32v00x_wwdg.o
+ .debug_ranges  0x0000000000000000       0x48 ./Peripheral/src/ch32v00x_wwdg.o
+ .debug_line    0x0000000000000000      0x4fa ./Peripheral/src/ch32v00x_wwdg.o
+ .debug_str     0x0000000000000000      0x6db ./Peripheral/src/ch32v00x_wwdg.o
+ .comment       0x0000000000000000       0x34 ./Peripheral/src/ch32v00x_wwdg.o
+ .debug_frame   0x0000000000000000       0xa4 ./Peripheral/src/ch32v00x_wwdg.o
+ .text          0x0000000000000000        0x0 ./Debug/debug.o
+ .data          0x0000000000000000        0x0 ./Debug/debug.o
+ .bss           0x0000000000000000        0x0 ./Debug/debug.o
+ .text.Delay_Us
+                0x0000000000000000       0x4a ./Debug/debug.o
+ .text.Delay_Ms
+                0x0000000000000000       0x4a ./Debug/debug.o
+ .text.USART_Printf_Init
+                0x0000000000000000       0x74 ./Debug/debug.o
+ .text.SDI_Printf_Enable
+                0x0000000000000000       0x7c ./Debug/debug.o
+ .text._write   0x0000000000000000       0x5c ./Debug/debug.o
+ .text._sbrk    0x0000000000000000       0x30 ./Debug/debug.o
+ .data.curbrk.4084
+                0x0000000000000000        0x4 ./Debug/debug.o
+ .text          0x0000000000000000        0x0 ./Core/core_riscv.o
+ .data          0x0000000000000000        0x0 ./Core/core_riscv.o
+ .bss           0x0000000000000000        0x0 ./Core/core_riscv.o
+ .text.__get_MSTATUS
+                0x0000000000000000        0x6 ./Core/core_riscv.o
+ .text.__set_MSTATUS
+                0x0000000000000000        0x6 ./Core/core_riscv.o
+ .text.__get_MISA
+                0x0000000000000000        0x6 ./Core/core_riscv.o
+ .text.__set_MISA
+                0x0000000000000000        0x6 ./Core/core_riscv.o
+ .text.__get_MTVEC
+                0x0000000000000000        0x6 ./Core/core_riscv.o
+ .text.__set_MTVEC
+                0x0000000000000000        0x6 ./Core/core_riscv.o
+ .text.__get_MSCRATCH
+                0x0000000000000000        0x6 ./Core/core_riscv.o
+ .text.__set_MSCRATCH
+                0x0000000000000000        0x6 ./Core/core_riscv.o
+ .text.__get_MEPC
+                0x0000000000000000        0x6 ./Core/core_riscv.o
+ .text.__set_MEPC
+                0x0000000000000000        0x6 ./Core/core_riscv.o
+ .text.__get_MCAUSE
+                0x0000000000000000        0x6 ./Core/core_riscv.o
+ .text.__set_MCAUSE
+                0x0000000000000000        0x6 ./Core/core_riscv.o
+ .text.__get_MVENDORID
+                0x0000000000000000        0x6 ./Core/core_riscv.o
+ .text.__get_MARCHID
+                0x0000000000000000        0x6 ./Core/core_riscv.o
+ .text.__get_MIMPID
+                0x0000000000000000        0x6 ./Core/core_riscv.o
+ .text.__get_MHARTID
+                0x0000000000000000        0x6 ./Core/core_riscv.o
+ .text.__get_SP
+                0x0000000000000000        0x4 ./Core/core_riscv.o
+ .debug_info    0x0000000000000000      0x324 ./Core/core_riscv.o
+ .debug_abbrev  0x0000000000000000       0xe0 ./Core/core_riscv.o
+ .debug_aranges
+                0x0000000000000000       0xa0 ./Core/core_riscv.o
+ .debug_ranges  0x0000000000000000       0x90 ./Core/core_riscv.o
+ .debug_line    0x0000000000000000      0x3f2 ./Core/core_riscv.o
+ .debug_str     0x0000000000000000      0x2ad ./Core/core_riscv.o
+ .comment       0x0000000000000000       0x34 ./Core/core_riscv.o
+ .debug_frame   0x0000000000000000      0x120 ./Core/core_riscv.o
+ .data          0x0000000000000000        0x0 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32ecxw/ilp32e\libgcc.a(save-restore.o)
+ .bss           0x0000000000000000        0x0 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32ecxw/ilp32e\libgcc.a(save-restore.o)
+ .eh_frame      0x0000000000000000       0x68 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32ecxw/ilp32e\libgcc.a(save-restore.o)
+ .data          0x0000000000000000        0x0 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32ecxw/ilp32e\libgcc.a(muldi3.o)
+ .bss           0x0000000000000000        0x0 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32ecxw/ilp32e\libgcc.a(muldi3.o)
+ .data          0x0000000000000000        0x0 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32ecxw/ilp32e\libgcc.a(div.o)
+ .bss           0x0000000000000000        0x0 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32ecxw/ilp32e\libgcc.a(div.o)
+ .text          0x0000000000000000        0x0 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libg_nano.a(lib_a-memcpy.o)
+ .data          0x0000000000000000        0x0 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libg_nano.a(lib_a-memcpy.o)
+ .bss           0x0000000000000000        0x0 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libg_nano.a(lib_a-memcpy.o)
+ .text          0x0000000000000000        0x0 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libg_nano.a(lib_a-memmove.o)
+ .data          0x0000000000000000        0x0 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libg_nano.a(lib_a-memmove.o)
+ .bss           0x0000000000000000        0x0 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libg_nano.a(lib_a-memmove.o)
+ .data          0x0000000000000000        0x0 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libg_nano.a(lib_a-memset.o)
+ .bss           0x0000000000000000        0x0 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libg_nano.a(lib_a-memset.o)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+FLASH            0x0000000000000000 0x0000000000003ffc xr
+STAYINBOOT       0x0000000020000000 0x0000000000000004 xrw
+RAM              0x0000000020000004 0x00000000000007fc xrw
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD ./User/SerialWombatPinModes/Font5x7.o
+LOAD ./User/SerialWombatPinModes/MAX7219Matrix.o
+LOAD ./User/SerialWombatPinModes/PS2Keyboard.o
+LOAD ./User/SerialWombatPinModes/TM1637.o
+LOAD ./User/SerialWombatPinModes/analogInput.o
+LOAD ./User/SerialWombatPinModes/asciiConversion.o
+LOAD ./User/SerialWombatPinModes/debounce.o
+LOAD ./User/SerialWombatPinModes/digitalIO.o
+LOAD ./User/SerialWombatPinModes/frequencyOutput.o
+LOAD ./User/SerialWombatPinModes/hBridge.o
+LOAD ./User/SerialWombatPinModes/inputProcess.o
+LOAD ./User/SerialWombatPinModes/liquidCrystal.o
+LOAD ./User/SerialWombatPinModes/matrixKeypad.o
+LOAD ./User/SerialWombatPinModes/outputScale.o
+LOAD ./User/SerialWombatPinModes/pinInputProcessor.o
+LOAD ./User/SerialWombatPinModes/protectedOutput.o
+LOAD ./User/SerialWombatPinModes/pulseOnChange.o
+LOAD ./User/SerialWombatPinModes/pulseTimer.o
+LOAD ./User/SerialWombatPinModes/pwm.o
+LOAD ./User/SerialWombatPinModes/quadEnc.o
+LOAD ./User/SerialWombatPinModes/queuedPulseOutput.o
+LOAD ./User/SerialWombatPinModes/servo.o
+LOAD ./User/SerialWombatPinModes/swMath.o
+LOAD ./User/SerialWombatPinModes/throughputConsumer.o
+LOAD ./User/SerialWombatPinModes/uartHw8B.o
+LOAD ./User/SerialWombatPinModes/uartSw.o
+LOAD ./User/SerialWombatPinModes/ultrasonicDistance.o
+LOAD ./User/SerialWombatPinModes/watchdog.o
+LOAD ./User/DMA_IO.o
+LOAD ./User/ch32v00x_it.o
+LOAD ./User/main.o
+LOAD ./User/pinRegisters.o
+LOAD ./User/protocol.o
+LOAD ./User/queue.o
+LOAD ./User/swmain.o
+LOAD ./User/system_ch32v00x.o
+LOAD ./User/timingResource.o
+LOAD ./Startup/startup_ch32v00x.o
+LOAD ./Peripheral/src/ch32v00x_adc.o
+LOAD ./Peripheral/src/ch32v00x_dbgmcu.o
+LOAD ./Peripheral/src/ch32v00x_dma.o
+LOAD ./Peripheral/src/ch32v00x_exti.o
+LOAD ./Peripheral/src/ch32v00x_flash.o
+LOAD ./Peripheral/src/ch32v00x_gpio.o
+LOAD ./Peripheral/src/ch32v00x_i2c.o
+LOAD ./Peripheral/src/ch32v00x_iwdg.o
+LOAD ./Peripheral/src/ch32v00x_misc.o
+LOAD ./Peripheral/src/ch32v00x_opa.o
+LOAD ./Peripheral/src/ch32v00x_pwr.o
+LOAD ./Peripheral/src/ch32v00x_rcc.o
+LOAD ./Peripheral/src/ch32v00x_spi.o
+LOAD ./Peripheral/src/ch32v00x_tim.o
+LOAD ./Peripheral/src/ch32v00x_usart.o
+LOAD ./Peripheral/src/ch32v00x_wwdg.o
+LOAD ./Debug/debug.o
+LOAD ./Core/core_riscv.o
+LOAD c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libprintf.a
+LOAD c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32ecxw/ilp32e\libgcc.a
+LOAD c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libg_nano.a
+LOAD c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libc_nano.a
+LOAD c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32ecxw/ilp32e\libgcc.a
+START GROUP
+LOAD c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32ecxw/ilp32e\libgcc.a
+LOAD c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libc_nano.a
+LOAD c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libnosys.a
+END GROUP
+START GROUP
+LOAD c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32ecxw/ilp32e\libgcc.a
+LOAD c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libc_nano.a
+LOAD c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libnosys.a
+END GROUP
+                0x0000000000000100                __stack_size = 0x100
+                [!provide]                        PROVIDE (_stack_size = __stack_size)
+
+.init           0x0000000000000000       0xa0
+                0x0000000000000000                _sinit = .
+                0x0000000000000000                . = ALIGN (0x4)
+ *(SORT_NONE(.init))
+ .init          0x0000000000000000       0x9e ./Startup/startup_ch32v00x.o
+                0x0000000000000000                _start
+                0x00000000000000a0                . = ALIGN (0x4)
+ *fill*         0x000000000000009e        0x2 
+                0x00000000000000a0                _einit = .
+
+.text           0x00000000000000a0     0x5ff0
+                0x00000000000000a0                . = ALIGN (0x4)
+ *(.text)
+ .text          0x00000000000000a0       0x14 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32ecxw/ilp32e\libgcc.a(save-restore.o)
+                0x00000000000000a0                __riscv_save_1
+                0x00000000000000a0                __riscv_save_2
+                0x00000000000000a0                __riscv_save_0
+                0x00000000000000aa                __riscv_restore_0
+                0x00000000000000aa                __riscv_restore_1
+                0x00000000000000aa                __riscv_restore_2
+ .text          0x00000000000000b4       0x16 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32ecxw/ilp32e\libgcc.a(muldi3.o)
+                0x00000000000000b4                __mulsi3
+ *fill*         0x00000000000000ca        0x2 
+ .text          0x00000000000000cc       0x7e c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32ecxw/ilp32e\libgcc.a(div.o)
+                0x00000000000000cc                __divsi3
+                0x00000000000000d4                __udivsi3
+                0x0000000000000100                __umodsi3
+                0x0000000000000124                __modsi3
+ .text          0x000000000000014a       0xa8 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libg_nano.a(lib_a-memset.o)
+                0x000000000000014a                memset
+ *(.text.*)
+ .text.initAnalogInput
+                0x00000000000001f2       0xf2 ./User/SerialWombatPinModes/analogInput.o
+                0x00000000000001f2                initAnalogInput
+ .text.updateAnalogInput
+                0x00000000000002e4       0x38 ./User/SerialWombatPinModes/analogInput.o
+                0x00000000000002e4                updateAnalogInput
+ .text.uint16ToAscii5
+                0x000000000000031c       0xa6 ./User/SerialWombatPinModes/asciiConversion.o
+                0x000000000000031c                uint16ToAscii5
+ .text.initDigitalIO
+                0x00000000000003c2      0x152 ./User/SerialWombatPinModes/digitalIO.o
+                0x00000000000003c2                initDigitalIO
+ .text.initFrequencyOutput
+                0x0000000000000514      0x104 ./User/SerialWombatPinModes/frequencyOutput.o
+                0x0000000000000514                initFrequencyOutput
+ .text.updateFrequencyOutput
+                0x0000000000000618       0x6a ./User/SerialWombatPinModes/frequencyOutput.o
+                0x0000000000000618                updateFrequencyOutput
+ .text.updatehBridge
+                0x0000000000000682      0x29c ./User/SerialWombatPinModes/hBridge.o
+                0x0000000000000682                updatehBridge
+ .text.inithBridge
+                0x000000000000091e      0x14c ./User/SerialWombatPinModes/hBridge.o
+                0x000000000000091e                inithBridge
+ .text.inputProcessInit
+                0x0000000000000a6a       0x24 ./User/SerialWombatPinModes/inputProcess.o
+                0x0000000000000a6a                inputProcessInit
+ .text.inputProcessProcess
+                0x0000000000000a8e      0x33c ./User/SerialWombatPinModes/inputProcess.o
+                0x0000000000000a8e                inputProcessProcess
+ .text.inputProcessCommProcess
+                0x0000000000000dca      0x12e ./User/SerialWombatPinModes/inputProcess.o
+                0x0000000000000dca                inputProcessCommProcess
+ .text.outputScaleInit
+                0x0000000000000ef8       0x4c ./User/SerialWombatPinModes/outputScale.o
+                0x0000000000000ef8                outputScaleInit
+ .text.outputScaleProcess
+                0x0000000000000f44      0x3c4 ./User/SerialWombatPinModes/outputScale.o
+                0x0000000000000f44                outputScaleProcess
+ .text.outputScaleCommProcess
+                0x0000000000001308      0x312 ./User/SerialWombatPinModes/outputScale.o
+                0x0000000000001308                outputScaleCommProcess
+ .text.initPinInputProcessor
+                0x000000000000161a       0x60 ./User/SerialWombatPinModes/pinInputProcessor.o
+                0x000000000000161a                initPinInputProcessor
+ .text.updatePinInputProcessor
+                0x000000000000167a       0x42 ./User/SerialWombatPinModes/pinInputProcessor.o
+                0x000000000000167a                updatePinInputProcessor
+ .text.initPWM  0x00000000000016bc      0x116 ./User/SerialWombatPinModes/pwm.o
+                0x00000000000016bc                initPWM
+ .text.updatePWM
+                0x00000000000017d2       0x40 ./User/SerialWombatPinModes/pwm.o
+                0x00000000000017d2                updatePWM
+ .text.initQuadEnc
+                0x0000000000001812      0x1f0 ./User/SerialWombatPinModes/quadEnc.o
+                0x0000000000001812                initQuadEnc
+ .text.updateQuadEnc
+                0x0000000000001a02      0x238 ./User/SerialWombatPinModes/quadEnc.o
+                0x0000000000001a02                updateQuadEnc
+ .text.initServoHw
+                0x0000000000001c3a       0xee ./User/SerialWombatPinModes/servo.o
+                0x0000000000001c3a                initServoHw
+ .text.updateServoHw
+                0x0000000000001d28      0x122 ./User/SerialWombatPinModes/servo.o
+                0x0000000000001d28                updateServoHw
+ .text.xyInterpolationU16
+                0x0000000000001e4a       0x40 ./User/SerialWombatPinModes/swMath.o
+                0x0000000000001e4a                xyInterpolationU16
+ .text.initWatchdog
+                0x0000000000001e8a       0x9c ./User/SerialWombatPinModes/watchdog.o
+                0x0000000000001e8a                initWatchdog
+ .text.updateWatchdog
+                0x0000000000001f26       0x50 ./User/SerialWombatPinModes/watchdog.o
+                0x0000000000001f26                updateWatchdog
+ .text.deactivateOutputDMA
+                0x0000000000001f76       0x40 ./User/DMA_IO.o
+                0x0000000000001f76                deactivateOutputDMA
+ .text.SysTick_Handler
+                0x0000000000001fb6       0x76 ./User/DMA_IO.o
+                0x0000000000001fb6                SysTick_Handler
+ .text.systemInitDMAIO
+                0x000000000000202c       0x24 ./User/DMA_IO.o
+                0x000000000000202c                systemInitDMAIO
+ .text.CurrentPinBitmap
+                0x0000000000002050       0x1a ./User/DMA_IO.o
+                0x0000000000002050                CurrentPinBitmap
+ .text.ReadPin  0x000000000000206a       0x1e ./User/DMA_IO.o
+                0x000000000000206a                ReadPin
+ .text.PinInput
+                0x0000000000002088       0x46 ./User/DMA_IO.o
+                0x0000000000002088                PinInput
+ .text.CurrentPinRead
+                0x00000000000020ce       0x24 ./User/DMA_IO.o
+                0x00000000000020ce                CurrentPinRead
+ .text.CurrentPinInput
+                0x00000000000020f2       0x4a ./User/DMA_IO.o
+                0x00000000000020f2                CurrentPinInput
+ .text.CurrentPinAnalog
+                0x000000000000213c       0x6a ./User/DMA_IO.o
+                0x000000000000213c                CurrentPinAnalog
+ .text.SetCurrentPin
+                0x00000000000021a6       0xfa ./User/DMA_IO.o
+                0x00000000000021a6                SetCurrentPin
+ .text.PinLow   0x00000000000022a0       0x54 ./User/DMA_IO.o
+                0x00000000000022a0                PinLow
+ .text.PinHigh  0x00000000000022f4       0x54 ./User/DMA_IO.o
+                0x00000000000022f4                PinHigh
+ .text.PinPullUp
+                0x0000000000002348       0x8a ./User/DMA_IO.o
+                0x0000000000002348                PinPullUp
+ .text.PinNoPullUp
+                0x00000000000023d2       0x50 ./User/DMA_IO.o
+                0x00000000000023d2                PinNoPullUp
+ .text.PinPullDown
+                0x0000000000002422       0x80 ./User/DMA_IO.o
+                0x0000000000002422                PinPullDown
+ .text.PinNoPullDown
+                0x00000000000024a2       0x50 ./User/DMA_IO.o
+                0x00000000000024a2                PinNoPullDown
+ .text.PinOD    0x00000000000024f2       0x50 ./User/DMA_IO.o
+                0x00000000000024f2                PinOD
+ .text.PinNoOD  0x0000000000002542       0x50 ./User/DMA_IO.o
+                0x0000000000002542                PinNoOD
+ .text.CurrentPinHigh
+                0x0000000000002592       0x58 ./User/DMA_IO.o
+                0x0000000000002592                CurrentPinHigh
+ .text.InitializePinLow
+                0x00000000000025ea       0x88 ./User/DMA_IO.o
+                0x00000000000025ea                InitializePinLow
+ .text.InitializePinHigh
+                0x0000000000002672       0x88 ./User/DMA_IO.o
+                0x0000000000002672                InitializePinHigh
+ .text.InitializePinInput
+                0x00000000000026fa       0x7c ./User/DMA_IO.o
+                0x00000000000026fa                InitializePinInput
+ .text.CurrentPinLow
+                0x0000000000002776       0x58 ./User/DMA_IO.o
+                0x0000000000002776                CurrentPinLow
+ .text.updateBitStreamOutput
+                0x00000000000027ce      0x7b6 ./User/DMA_IO.o
+                0x00000000000027ce                updateBitStreamOutput
+ .text.updatePulseOutput
+                0x0000000000002f84      0x7d8 ./User/DMA_IO.o
+                0x0000000000002f84                updatePulseOutput
+ .text.initializeBitStreamOutput
+                0x000000000000375c       0x90 ./User/DMA_IO.o
+                0x000000000000375c                initializeBitStreamOutput
+ .text.PulseInDiscardUntilLow
+                0x00000000000037ec       0xb6 ./User/DMA_IO.o
+                0x00000000000037ec                PulseInDiscardUntilLow
+ .text.PulseInDiscardUntilHigh
+                0x00000000000038a2       0xb4 ./User/DMA_IO.o
+                0x00000000000038a2                PulseInDiscardUntilHigh
+ .text.PulseInGetOldestDMASample
+                0x0000000000003956       0x64 ./User/DMA_IO.o
+                0x0000000000003956                PulseInGetOldestDMASample
+ .text.NMI_Handler
+                0x00000000000039ba        0x2 ./User/ch32v00x_it.o
+                0x00000000000039ba                NMI_Handler
+ .text.HardFault_Handler
+                0x00000000000039bc       0x14 ./User/ch32v00x_it.o
+                0x00000000000039bc                HardFault_Handler
+ .text.TIM1_INT_Init
+                0x00000000000039d0       0x74 ./User/main.o
+                0x00000000000039d0                TIM1_INT_Init
+ .text.startup.main
+                0x0000000000003a44      0x36c ./User/main.o
+                0x0000000000003a44                main
+ .text.GetADCConversion
+                0x0000000000003db0       0x1c ./User/main.o
+                0x0000000000003db0                GetADCConversion
+ .text.GetSourceVoltage_mV
+                0x0000000000003dcc       0x18 ./User/main.o
+                0x0000000000003dcc                GetSourceVoltage_mV
+ .text.SetBuffer
+                0x0000000000003de4       0x1a ./User/pinRegisters.o
+                0x0000000000003de4                SetBuffer
+ .text.GetBuffer
+                0x0000000000003dfe      0x31a ./User/pinRegisters.o
+                0x0000000000003dfe                GetBuffer
+ .text.SetMode  0x0000000000004118       0x1a ./User/pinRegisters.o
+                0x0000000000004118                SetMode
+ .text.error    0x0000000000004132       0x54 ./User/protocol.o
+                0x0000000000004132                error
+ .text.ProcessRxbuffer
+                0x0000000000004186      0x638 ./User/protocol.o
+                0x0000000000004186                ProcessRxbuffer
+ .text.ProcessRx
+                0x00000000000047be      0x1ac ./User/protocol.o
+                0x00000000000047be                ProcessRx
+ .text.protocolInitPinsToDIO_Input
+                0x000000000000496a      0x12c ./User/protocol.o
+                0x000000000000496a                protocolInitPinsToDIO_Input
+ .text.QueueByteInitialize
+                0x0000000000004a96       0x1a ./User/queue.o
+                0x0000000000004a96                QueueByteInitialize
+ .text.QueueGetBytesFilledInQueue
+                0x0000000000004ab0       0x42 ./User/queue.o
+                0x0000000000004ab0                QueueGetBytesFilledInQueue
+ .text.QueueGetBytesFreeInQueue
+                0x0000000000004af2       0x4c ./User/queue.o
+                0x0000000000004af2                QueueGetBytesFreeInQueue
+ .text.QueueAddByte
+                0x0000000000004b3e       0xb2 ./User/queue.o
+                0x0000000000004b3e                QueueAddByte
+ .text.QueueReadByte
+                0x0000000000004bf0       0x5a ./User/queue.o
+                0x0000000000004bf0                QueueReadByte
+ .text.QueuePeekByte
+                0x0000000000004c4a       0x3c ./User/queue.o
+                0x0000000000004c4a                QueuePeekByte
+ .text.reset    0x0000000000004c86       0x10 ./User/swmain.o
+                0x0000000000004c86                reset
+ .text.swSetup  0x0000000000004c96       0x30 ./User/swmain.o
+                0x0000000000004c96                swSetup
+ .text.ProcessPins
+                0x0000000000004cc6       0x8e ./User/swmain.o
+                0x0000000000004cc6                ProcessPins
+ .text.swLoop   0x0000000000004d54       0x7e ./User/swmain.o
+                0x0000000000004d54                swLoop
+ .text.TIM1_UP_IRQHandler
+                0x0000000000004dd2       0x58 ./User/swmain.o
+                0x0000000000004dd2                TIM1_UP_IRQHandler
+ .text.SystemInit
+                0x0000000000004e2a       0xea ./User/system_ch32v00x.o
+                0x0000000000004e2a                SystemInit
+ .text.SystemCoreClockUpdate
+                0x0000000000004f14       0x6a ./User/system_ch32v00x.o
+                0x0000000000004f14                SystemCoreClockUpdate
+ .text.timingResourceHighPulseClaim
+                0x0000000000004f7e       0x30 ./User/timingResource.o
+                0x0000000000004f7e                timingResourceHighPulseClaim
+ .text.timingResourcesHighPulse
+                0x0000000000004fae       0x32 ./User/timingResource.o
+                0x0000000000004fae                timingResourcesHighPulse
+ .text.timingResourcePWM
+                0x0000000000004fe0       0x5a ./User/timingResource.o
+                0x0000000000004fe0                timingResourcePWM
+ .text.timingResourceHighPulseBusy
+                0x000000000000503a       0x20 ./User/timingResource.o
+                0x000000000000503a                timingResourceHighPulseBusy
+ .text.vector_handler
+                0x000000000000505a        0x2 ./Startup/startup_ch32v00x.o
+                0x000000000000505a                TIM1_CC_IRQHandler
+                0x000000000000505a                PVD_IRQHandler
+                0x000000000000505a                SPI1_IRQHandler
+                0x000000000000505a                AWU_IRQHandler
+                0x000000000000505a                EXTI7_0_IRQHandler
+                0x000000000000505a                DMA1_Channel4_IRQHandler
+                0x000000000000505a                ADC1_IRQHandler
+                0x000000000000505a                DMA1_Channel7_IRQHandler
+                0x000000000000505a                I2C1_EV_IRQHandler
+                0x000000000000505a                DMA1_Channel6_IRQHandler
+                0x000000000000505a                RCC_IRQHandler
+                0x000000000000505a                TIM1_TRG_COM_IRQHandler
+                0x000000000000505a                DMA1_Channel1_IRQHandler
+                0x000000000000505a                DMA1_Channel5_IRQHandler
+                0x000000000000505a                DMA1_Channel3_IRQHandler
+                0x000000000000505a                WWDG_IRQHandler
+                0x000000000000505a                TIM2_IRQHandler
+                0x000000000000505a                SW_Handler
+                0x000000000000505a                TIM1_BRK_IRQHandler
+                0x000000000000505a                DMA1_Channel2_IRQHandler
+                0x000000000000505a                FLASH_IRQHandler
+                0x000000000000505a                USART1_IRQHandler
+                0x000000000000505a                I2C1_ER_IRQHandler
+ .text.handle_reset
+                0x000000000000505c       0x88 ./Startup/startup_ch32v00x.o
+                0x000000000000505c                handle_reset
+ .text.ADC_DeInit
+                0x00000000000050e4       0x26 ./Peripheral/src/ch32v00x_adc.o
+                0x00000000000050e4                ADC_DeInit
+ .text.ADC_Init
+                0x000000000000510a       0x4e ./Peripheral/src/ch32v00x_adc.o
+                0x000000000000510a                ADC_Init
+ .text.ADC_Cmd  0x0000000000005158       0x12 ./Peripheral/src/ch32v00x_adc.o
+                0x0000000000005158                ADC_Cmd
+ .text.ADC_DMACmd
+                0x000000000000516a       0x14 ./Peripheral/src/ch32v00x_adc.o
+                0x000000000000516a                ADC_DMACmd
+ .text.ADC_ResetCalibration
+                0x000000000000517e        0xa ./Peripheral/src/ch32v00x_adc.o
+                0x000000000000517e                ADC_ResetCalibration
+ .text.ADC_GetResetCalibrationStatus
+                0x0000000000005188        0x8 ./Peripheral/src/ch32v00x_adc.o
+                0x0000000000005188                ADC_GetResetCalibrationStatus
+ .text.ADC_StartCalibration
+                0x0000000000005190        0xa ./Peripheral/src/ch32v00x_adc.o
+                0x0000000000005190                ADC_StartCalibration
+ .text.ADC_GetCalibrationStatus
+                0x000000000000519a        0x8 ./Peripheral/src/ch32v00x_adc.o
+                0x000000000000519a                ADC_GetCalibrationStatus
+ .text.ADC_SoftwareStartConvCmd
+                0x00000000000051a2       0x1a ./Peripheral/src/ch32v00x_adc.o
+                0x00000000000051a2                ADC_SoftwareStartConvCmd
+ .text.ADC_RegularChannelConfig
+                0x00000000000051bc       0xbc ./Peripheral/src/ch32v00x_adc.o
+                0x00000000000051bc                ADC_RegularChannelConfig
+ .text.DMA_DeInit
+                0x0000000000005278       0xa8 ./Peripheral/src/ch32v00x_dma.o
+                0x0000000000005278                DMA_DeInit
+ .text.DMA_Init
+                0x0000000000005320       0x44 ./Peripheral/src/ch32v00x_dma.o
+                0x0000000000005320                DMA_Init
+ .text.DMA_Cmd  0x0000000000005364       0x16 ./Peripheral/src/ch32v00x_dma.o
+                0x0000000000005364                DMA_Cmd
+ .text.SystemReset_StartMode
+                0x000000000000537a       0x40 ./Peripheral/src/ch32v00x_flash.o
+                0x000000000000537a                SystemReset_StartMode
+ .text.GPIO_Init
+                0x00000000000053ba      0x23a ./Peripheral/src/ch32v00x_gpio.o
+                0x00000000000053ba                GPIO_Init
+ .text.NVIC_PriorityGroupConfig
+                0x00000000000055f4        0x6 ./Peripheral/src/ch32v00x_misc.o
+                0x00000000000055f4                NVIC_PriorityGroupConfig
+ .text.NVIC_Init
+                0x00000000000055fa       0x6e ./Peripheral/src/ch32v00x_misc.o
+                0x00000000000055fa                NVIC_Init
+ .text.RCC_AdjustHSICalibrationValue
+                0x0000000000005668       0x12 ./Peripheral/src/ch32v00x_rcc.o
+                0x0000000000005668                RCC_AdjustHSICalibrationValue
+ .text.RCC_ADCCLKConfig
+                0x000000000000567a       0x14 ./Peripheral/src/ch32v00x_rcc.o
+                0x000000000000567a                RCC_ADCCLKConfig
+ .text.RCC_AHBPeriphClockCmd
+                0x000000000000568e       0x1e ./Peripheral/src/ch32v00x_rcc.o
+                0x000000000000568e                RCC_AHBPeriphClockCmd
+ .text.RCC_APB2PeriphClockCmd
+                0x00000000000056ac       0x1e ./Peripheral/src/ch32v00x_rcc.o
+                0x00000000000056ac                RCC_APB2PeriphClockCmd
+ .text.RCC_APB2PeriphResetCmd
+                0x00000000000056ca       0x1e ./Peripheral/src/ch32v00x_rcc.o
+                0x00000000000056ca                RCC_APB2PeriphResetCmd
+ .text.RCC_ClearFlag
+                0x00000000000056e8       0x10 ./Peripheral/src/ch32v00x_rcc.o
+                0x00000000000056e8                RCC_ClearFlag
+ .text.TIM_TimeBaseInit
+                0x00000000000056f8       0x72 ./Peripheral/src/ch32v00x_tim.o
+                0x00000000000056f8                TIM_TimeBaseInit
+ .text.TIM_Cmd  0x000000000000576a       0x1a ./Peripheral/src/ch32v00x_tim.o
+                0x000000000000576a                TIM_Cmd
+ .text.TIM_ITConfig
+                0x0000000000005784       0x14 ./Peripheral/src/ch32v00x_tim.o
+                0x0000000000005784                TIM_ITConfig
+ .text.TIM_GetITStatus
+                0x0000000000005798       0x18 ./Peripheral/src/ch32v00x_tim.o
+                0x0000000000005798                TIM_GetITStatus
+ .text.TIM_ClearITPendingBit
+                0x00000000000057b0        0xc ./Peripheral/src/ch32v00x_tim.o
+                0x00000000000057b0                TIM_ClearITPendingBit
+ .text.USART_ITConfig
+                0x00000000000057bc       0x3c ./Peripheral/src/ch32v00x_usart.o
+                0x00000000000057bc                USART_ITConfig
+ .text.Delay_Init
+                0x00000000000057f8       0x34 ./Debug/debug.o
+                0x00000000000057f8                Delay_Init
+ .text.memcpy   0x000000000000582c       0xd2 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libg_nano.a(lib_a-memcpy.o)
+                0x000000000000582c                memcpy
+ .text.memmove  0x00000000000058fe       0x46 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libg_nano.a(lib_a-memmove.o)
+                0x00000000000058fe                memmove
+ *(.rodata)
+ *(.rodata*)
+ *fill*         0x0000000000005944        0x0 
+ .rodata.inputProcessCommProcess
+                0x0000000000005944       0x30 ./User/SerialWombatPinModes/inputProcess.o
+ .rodata.inputProcessSamplePeriodMask
+                0x0000000000005974       0x22 ./User/SerialWombatPinModes/inputProcess.o
+                0x0000000000005974                inputProcessSamplePeriodMask
+ *fill*         0x0000000000005996        0x2 
+ .rodata.outputScaleCommProcess
+                0x0000000000005998      0x1c0 ./User/SerialWombatPinModes/outputScale.o
+ .rodata.outputSamplePeriodMask
+                0x0000000000005b58       0x22 ./User/SerialWombatPinModes/outputScale.o
+                0x0000000000005b58                outputSamplePeriodMask
+ *fill*         0x0000000000005b7a        0x2 
+ .rodata.initQuadEnc
+                0x0000000000005b7c       0x2c ./User/SerialWombatPinModes/quadEnc.o
+ .rodata.pinBitmap
+                0x0000000000005ba8       0x10 ./User/DMA_IO.o
+                0x0000000000005ba8                pinBitmap
+ .rodata.pin_CFGLR_Mode_Bitmap
+                0x0000000000005bb8       0x20 ./User/DMA_IO.o
+                0x0000000000005bb8                pin_CFGLR_Mode_Bitmap
+ .rodata.ProcessRxbuffer
+                0x0000000000005bd8      0x390 ./User/protocol.o
+ .rodata.protocolInitPinsToDIO_Input
+                0x0000000000005f68       0x94 ./User/protocol.o
+ .rodata.ProcessPins
+                0x0000000000005ffc       0x94 ./User/swmain.o
+ *(.gnu.linkonce.t.*)
+                0x0000000000006090                . = ALIGN (0x4)
+
+.rela.dyn       0x0000000000006090        0x0
+ .rela.init     0x0000000000006090        0x0 ./User/SerialWombatPinModes/analogInput.o
+ .rela.text.handle_reset
+                0x0000000000006090        0x0 ./User/SerialWombatPinModes/analogInput.o
+
+.fini           0x0000000000006090        0x0
+ *(SORT_NONE(.fini))
+                0x0000000000006090                . = ALIGN (0x4)
+                [!provide]                        PROVIDE (_etext = .)
+                [!provide]                        PROVIDE (_eitcm = .)
+
+.preinit_array  0x0000000000006090        0x0
+                [!provide]                        PROVIDE (__preinit_array_start = .)
+ *(.preinit_array)
+                [!provide]                        PROVIDE (__preinit_array_end = .)
+
+.init_array     0x0000000000006090        0x0
+                [!provide]                        PROVIDE (__init_array_start = .)
+ *(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*))
+ *(.init_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .ctors)
+                [!provide]                        PROVIDE (__init_array_end = .)
+
+.fini_array     0x0000000000006090        0x0
+                [!provide]                        PROVIDE (__fini_array_start = .)
+ *(SORT_BY_INIT_PRIORITY(.fini_array.*) SORT_BY_INIT_PRIORITY(.dtors.*))
+ *(.fini_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .dtors)
+                [!provide]                        PROVIDE (__fini_array_end = .)
+
+.ctors
+ *crtbegin.o(.ctors)
+ *crtbegin?.o(.ctors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .ctors)
+ *(SORT_BY_NAME(.ctors.*))
+ *(.ctors)
+
+.dtors
+ *crtbegin.o(.dtors)
+ *crtbegin?.o(.dtors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .dtors)
+ *(SORT_BY_NAME(.dtors.*))
+ *(.dtors)
+
+.dalign         0x0000000020000004        0x0 load address 0x0000000000006090
+                0x0000000020000004                . = ALIGN (0x4)
+                0x0000000020000004                PROVIDE (_data_vma = .)
+
+.dlalign        0x0000000000006090        0x0
+                0x0000000000006090                . = ALIGN (0x4)
+                0x0000000000006090                PROVIDE (_data_lma = .)
+
+.data           0x0000000020000004       0x24 load address 0x0000000000006090
+                0x0000000020000004                . = ALIGN (0x4)
+ *(.gnu.linkonce.r.*)
+ *(.data .data.*)
+ .data.DMACNT0  0x0000000020000004        0x1 ./User/DMA_IO.o
+                0x0000000020000004                DMACNT0
+ .data.stayInFault
+                0x0000000020000005        0x1 ./User/ch32v00x_it.o
+                0x0000000020000005                stayInFault
+ .data.i2cAddress
+                0x0000000020000006        0x1 ./User/main.o
+                0x0000000020000006                i2cAddress
+ *fill*         0x0000000020000007        0x1 
+ .data.lfsrSeed
+                0x0000000020000008        0x4 ./User/pinRegisters.o
+                0x0000000020000008                lfsrSeed
+ .data.lastQueueAddress
+                0x000000002000000c        0x4 ./User/protocol.o
+                0x000000002000000c                lastQueueAddress
+ .data.lastUserBufferIndex
+                0x0000000020000010        0x2 ./User/protocol.o
+                0x0000000020000010                lastUserBufferIndex
+ .data.SystemUtilizationAverage
+                0x0000000020000012        0x2 ./User/swmain.o
+                0x0000000020000012                SystemUtilizationAverage
+ .data.AHBPrescTable
+                0x0000000020000014       0x10 ./User/system_ch32v00x.o
+                0x0000000020000014                AHBPrescTable
+ .data.SystemCoreClock
+                0x0000000020000024        0x4 ./User/system_ch32v00x.o
+                0x0000000020000024                SystemCoreClock
+ *(.gnu.linkonce.d.*)
+                0x0000000020000028                . = ALIGN (0x8)
+                0x0000000020000828                PROVIDE (__global_pointer$ = (. + 0x800))
+ *(.sdata .sdata.*)
+ *(.sdata2*)
+ *(.gnu.linkonce.s.*)
+                0x0000000020000028                . = ALIGN (0x8)
+ *(.srodata.cst16)
+ *(.srodata.cst8)
+ *(.srodata.cst4)
+ *(.srodata.cst2)
+ *(.srodata .srodata.*)
+                0x0000000020000028                . = ALIGN (0x4)
+                0x0000000020000028                PROVIDE (_edata = .)
+
+.bss            0x0000000020000028      0x5f0 load address 0x00000000000060b4
+                0x0000000020000028                . = ALIGN (0x4)
+                0x0000000020000028                PROVIDE (_sbss = .)
+ *(.sbss*)
+ *(.gnu.linkonce.sb.*)
+ *(.bss*)
+ .bss.debugAnalog
+                0x0000000020000028        0x4 ./User/SerialWombatPinModes/analogInput.o
+                0x0000000020000028                debugAnalog
+ .bss.debughBridge
+                0x000000002000002c        0x4 ./User/SerialWombatPinModes/hBridge.o
+                0x000000002000002c                debughBridge
+ .bss.debughBridge2
+                0x0000000020000030        0x4 ./User/SerialWombatPinModes/hBridge.o
+                0x0000000020000030                debughBridge2
+ .bss.debugInputProcess
+                0x0000000020000034        0x4 ./User/SerialWombatPinModes/inputProcess.o
+                0x0000000020000034                debugInputProcess
+ .bss.debugOutputScale
+                0x0000000020000038        0x4 ./User/SerialWombatPinModes/outputScale.o
+                0x0000000020000038                debugOutputScale
+ .bss.pidLastDerivativeEffort
+                0x000000002000003c        0x4 ./User/SerialWombatPinModes/outputScale.o
+                0x000000002000003c                pidLastDerivativeEffort
+ .bss.pidLastEffort
+                0x0000000020000040        0x4 ./User/SerialWombatPinModes/outputScale.o
+                0x0000000020000040                pidLastEffort
+ .bss.pidLastError
+                0x0000000020000044        0x4 ./User/SerialWombatPinModes/outputScale.o
+                0x0000000020000044                pidLastError
+ .bss.pidLastIntegrator
+                0x0000000020000048        0x4 ./User/SerialWombatPinModes/outputScale.o
+                0x0000000020000048                pidLastIntegrator
+ .bss.pidLastIntegratorEffort
+                0x000000002000004c        0x4 ./User/SerialWombatPinModes/outputScale.o
+                0x000000002000004c                pidLastIntegratorEffort
+ .bss.pidLastProportionalEffort
+                0x0000000020000050        0x4 ./User/SerialWombatPinModes/outputScale.o
+                0x0000000020000050                pidLastProportionalEffort
+ .bss.debugPinInputProcessor
+                0x0000000020000054        0x4 ./User/SerialWombatPinModes/pinInputProcessor.o
+                0x0000000020000054                debugPinInputProcessor
+ .bss.FramesDropped
+                0x0000000020000058        0x2 ./User/DMA_IO.o
+                0x0000000020000058                FramesDropped
+ *fill*         0x000000002000005a        0x2 
+ .bss.InputArrayA
+                0x000000002000005c       0x80 ./User/DMA_IO.o
+                0x000000002000005c                InputArrayA
+ .bss.OutputArrayA
+                0x00000000200000dc      0x100 ./User/DMA_IO.o
+                0x00000000200000dc                OutputArrayA
+ .bss.System1msCount
+                0x00000000200001dc        0x4 ./User/DMA_IO.o
+                0x00000000200001dc                System1msCount
+ .bss.dmaInterrupts
+                0x00000000200001e0        0x4 ./User/DMA_IO.o
+                0x00000000200001e0                dmaInterrupts
+ .bss.ADCBuffer
+                0x00000000200001e4       0x12 ./User/main.o
+                0x00000000200001e4                ADCBuffer
+ *fill*         0x00000000200001f6        0x2 
+ .bss.CurrentPinRegister
+                0x00000000200001f8        0x4 ./User/pinRegisters.o
+                0x00000000200001f8                CurrentPinRegister
+ .bss.PinUpdateRegisters
+                0x00000000200001fc      0x300 ./User/pinRegisters.o
+                0x00000000200001fc                PinUpdateRegisters
+ .bss.incrementingValue
+                0x00000000200004fc        0x2 ./User/pinRegisters.o
+                0x00000000200004fc                incrementingValue
+ .bss.Errors    0x00000000200004fe        0x2 ./User/protocol.o
+                0x00000000200004fe                Errors
+ .bss.PacketsProcessed
+                0x0000000020000500        0x2 ./User/protocol.o
+                0x0000000020000500                PacketsProcessed
+ *fill*         0x0000000020000502        0x2 
+ .bss.Rxbuffer  0x0000000020000504        0x8 ./User/protocol.o
+                0x0000000020000504                Rxbuffer
+ .bss.Txbuffer  0x000000002000050c        0x8 ./User/protocol.o
+                0x000000002000050c                Txbuffer
+ .bss.i2cDebugPtr
+                0x0000000020000514        0x4 ./User/protocol.o
+                0x0000000020000514                i2cDebugPtr
+ .bss.i2cMode   0x0000000020000518        0x2 ./User/protocol.o
+                0x0000000020000518                i2cMode
+ .bss.i2cTxCount
+                0x000000002000051a        0x1 ./User/protocol.o
+                0x000000002000051a                i2cTxCount
+ *fill*         0x000000002000051b        0x1 
+ .bss.lastErrorPacket
+                0x000000002000051c        0x8 ./User/protocol.o
+                0x000000002000051c                lastErrorPacket
+ .bss.star1     0x0000000020000524        0x2 ./User/protocol.o
+                0x0000000020000524                star1
+ *fill*         0x0000000020000526        0x2 
+ .bss.testFailed
+                0x0000000020000528        0x4 ./User/protocol.o
+                0x0000000020000528                testFailed
+ .bss.testPassed
+                0x000000002000052c        0x4 ./User/protocol.o
+                0x000000002000052c                testPassed
+ .bss.testSequenceArmed
+                0x0000000020000530        0x1 ./User/protocol.o
+                0x0000000020000530                testSequenceArmed
+ .bss.testSequenceNumber
+                0x0000000020000531        0x1 ./User/protocol.o
+                0x0000000020000531                testSequenceNumber
+ .bss.wombatI2CRxDataCount
+                0x0000000020000532        0x1 ./User/protocol.o
+                0x0000000020000532                wombatI2CRxDataCount
+ *fill*         0x0000000020000533        0x1 
+ .bss.QueueOverflowCounter
+                0x0000000020000534        0x2 ./User/queue.o
+                0x0000000020000534                QueueOverflowCounter
+ .bss.QueueUnderflowCounter
+                0x0000000020000536        0x2 ./User/queue.o
+                0x0000000020000536                QueueUnderflowCounter
+ .bss.queueAddress
+                0x0000000020000538        0x4 ./User/queue.o
+                0x0000000020000538                queueAddress
+ .bss.CurrentPin
+                0x000000002000053c        0x1 ./User/swmain.o
+                0x000000002000053c                CurrentPin
+ *fill*         0x000000002000053d        0x3 
+ .bss.FramesRun
+                0x0000000020000540        0x4 ./User/swmain.o
+                0x0000000020000540                FramesRun
+ .bss.OverflowFrames
+                0x0000000020000544        0x2 ./User/swmain.o
+                0x0000000020000544                OverflowFrames
+ .bss.RunForeground
+                0x0000000020000546        0x1 ./User/swmain.o
+                0x0000000020000546                RunForeground
+ *fill*         0x0000000020000547        0x1 
+ .bss.SystemUtilizationCount
+                0x0000000020000548        0x2 ./User/swmain.o
+                0x0000000020000548                SystemUtilizationCount
+ *fill*         0x000000002000054a        0x2 
+ .bss.SystemUtilizationSum
+                0x000000002000054c        0x4 ./User/swmain.o
+                0x000000002000054c                SystemUtilizationSum
+ .bss.UserBuffer
+                0x0000000020000550       0xc0 ./User/swmain.o
+                0x0000000020000550                UserBuffer
+ .bss.NVIC_Priority_Group
+                0x0000000020000610        0x4 ./Peripheral/src/ch32v00x_misc.o
+                0x0000000020000610                NVIC_Priority_Group
+ .bss.p_ms      0x0000000020000614        0x2 ./Debug/debug.o
+ .bss.p_us      0x0000000020000616        0x1 ./Debug/debug.o
+ *(.gnu.linkonce.b.*)
+ *(COMMON*)
+                0x0000000020000618                . = ALIGN (0x4)
+ *fill*         0x0000000020000617        0x1 
+                0x0000000020000618                PROVIDE (_ebss = .)
+                0x0000000020000618                PROVIDE (_end = _ebss)
+                [!provide]                        PROVIDE (end = .)
+
+.stack          0x0000000020000700      0x100
+                0x0000000020000700                PROVIDE (_heap_end = .)
+                0x0000000020000700                . = ALIGN (0x4)
+                [!provide]                        PROVIDE (_susrstack = .)
+                0x0000000020000800                . = (. + __stack_size)
+ *fill*         0x0000000020000700      0x100 
+                0x0000000020000800                PROVIDE (_eusrstack = .)
+
+.stayinboot     0x0000000020000000        0x2 load address 0x00000000000060b4
+ *(.stayinboot*)
+ .stayinboot    0x0000000020000000        0x2 ./User/main.o
+                0x0000000020000000                stayInBoot
+OUTPUT(SerialWombat8B.elf elf32-littleriscv)
+
+.debug_info     0x0000000000000000    0x2354d
+ .debug_info    0x0000000000000000      0xbe5 ./User/SerialWombatPinModes/analogInput.o
+ .debug_info    0x0000000000000be5      0x190 ./User/SerialWombatPinModes/asciiConversion.o
+ .debug_info    0x0000000000000d75      0xfa5 ./User/SerialWombatPinModes/digitalIO.o
+ .debug_info    0x0000000000001d1a      0xdb3 ./User/SerialWombatPinModes/frequencyOutput.o
+ .debug_info    0x0000000000002acd     0x1019 ./User/SerialWombatPinModes/hBridge.o
+ .debug_info    0x0000000000003ae6      0xb39 ./User/SerialWombatPinModes/inputProcess.o
+ .debug_info    0x000000000000461f     0x1565 ./User/SerialWombatPinModes/outputScale.o
+ .debug_info    0x0000000000005b84      0xbb5 ./User/SerialWombatPinModes/pinInputProcessor.o
+ .debug_info    0x0000000000006739      0xdac ./User/SerialWombatPinModes/pwm.o
+ .debug_info    0x00000000000074e5      0xf53 ./User/SerialWombatPinModes/quadEnc.o
+ .debug_info    0x0000000000008438      0xe20 ./User/SerialWombatPinModes/servo.o
+ .debug_info    0x0000000000009258      0x12d ./User/SerialWombatPinModes/swMath.o
+ .debug_info    0x0000000000009385      0x896 ./User/SerialWombatPinModes/watchdog.o
+ .debug_info    0x0000000000009c1b     0x32cc ./User/DMA_IO.o
+ .debug_info    0x000000000000cee7      0x991 ./User/ch32v00x_it.o
+ .debug_info    0x000000000000d878     0x20e1 ./User/main.o
+ .debug_info    0x000000000000f959     0x111d ./User/pinRegisters.o
+ .debug_info    0x0000000000010a76     0x23a1 ./User/protocol.o
+ .debug_info    0x0000000000012e17     0x11fc ./User/queue.o
+ .debug_info    0x0000000000014013     0x1563 ./User/swmain.o
+ .debug_info    0x0000000000015576      0xc17 ./User/system_ch32v00x.o
+ .debug_info    0x000000000001618d     0x10d2 ./User/timingResource.o
+ .debug_info    0x000000000001725f       0x22 ./Startup/startup_ch32v00x.o
+ .debug_info    0x0000000000017281     0x1520 ./Peripheral/src/ch32v00x_adc.o
+ .debug_info    0x00000000000187a1      0xd31 ./Peripheral/src/ch32v00x_dma.o
+ .debug_info    0x00000000000194d2     0x1f93 ./Peripheral/src/ch32v00x_flash.o
+ .debug_info    0x000000000001b465     0x11ed ./Peripheral/src/ch32v00x_gpio.o
+ .debug_info    0x000000000001c652      0xdee ./Peripheral/src/ch32v00x_misc.o
+ .debug_info    0x000000000001d440     0x1182 ./Peripheral/src/ch32v00x_rcc.o
+ .debug_info    0x000000000001e5c2     0x2cc9 ./Peripheral/src/ch32v00x_tim.o
+ .debug_info    0x000000000002128b     0x1351 ./Peripheral/src/ch32v00x_usart.o
+ .debug_info    0x00000000000225dc      0xf71 ./Debug/debug.o
+
+.debug_abbrev   0x0000000000000000     0x5bad
+ .debug_abbrev  0x0000000000000000      0x1e9 ./User/SerialWombatPinModes/analogInput.o
+ .debug_abbrev  0x00000000000001e9       0xe3 ./User/SerialWombatPinModes/asciiConversion.o
+ .debug_abbrev  0x00000000000002cc      0x1e8 ./User/SerialWombatPinModes/digitalIO.o
+ .debug_abbrev  0x00000000000004b4      0x239 ./User/SerialWombatPinModes/frequencyOutput.o
+ .debug_abbrev  0x00000000000006ed      0x1f6 ./User/SerialWombatPinModes/hBridge.o
+ .debug_abbrev  0x00000000000008e3      0x28c ./User/SerialWombatPinModes/inputProcess.o
+ .debug_abbrev  0x0000000000000b6f      0x42f ./User/SerialWombatPinModes/outputScale.o
+ .debug_abbrev  0x0000000000000f9e      0x1de ./User/SerialWombatPinModes/pinInputProcessor.o
+ .debug_abbrev  0x000000000000117c      0x215 ./User/SerialWombatPinModes/pwm.o
+ .debug_abbrev  0x0000000000001391      0x2a3 ./User/SerialWombatPinModes/quadEnc.o
+ .debug_abbrev  0x0000000000001634      0x215 ./User/SerialWombatPinModes/servo.o
+ .debug_abbrev  0x0000000000001849       0x88 ./User/SerialWombatPinModes/swMath.o
+ .debug_abbrev  0x00000000000018d1      0x157 ./User/SerialWombatPinModes/watchdog.o
+ .debug_abbrev  0x0000000000001a28      0x561 ./User/DMA_IO.o
+ .debug_abbrev  0x0000000000001f89      0x1e9 ./User/ch32v00x_it.o
+ .debug_abbrev  0x0000000000002172      0x475 ./User/main.o
+ .debug_abbrev  0x00000000000025e7      0x37e ./User/pinRegisters.o
+ .debug_abbrev  0x0000000000002965      0x4dd ./User/protocol.o
+ .debug_abbrev  0x0000000000002e42      0x3fd ./User/queue.o
+ .debug_abbrev  0x000000000000323f      0x37c ./User/swmain.o
+ .debug_abbrev  0x00000000000035bb      0x2d4 ./User/system_ch32v00x.o
+ .debug_abbrev  0x000000000000388f      0x300 ./User/timingResource.o
+ .debug_abbrev  0x0000000000003b8f       0x12 ./Startup/startup_ch32v00x.o
+ .debug_abbrev  0x0000000000003ba1      0x2f6 ./Peripheral/src/ch32v00x_adc.o
+ .debug_abbrev  0x0000000000003e97      0x2fd ./Peripheral/src/ch32v00x_dma.o
+ .debug_abbrev  0x0000000000004194      0x47c ./Peripheral/src/ch32v00x_flash.o
+ .debug_abbrev  0x0000000000004610      0x388 ./Peripheral/src/ch32v00x_gpio.o
+ .debug_abbrev  0x0000000000004998      0x2e3 ./Peripheral/src/ch32v00x_misc.o
+ .debug_abbrev  0x0000000000004c7b      0x473 ./Peripheral/src/ch32v00x_rcc.o
+ .debug_abbrev  0x00000000000050ee      0x404 ./Peripheral/src/ch32v00x_tim.o
+ .debug_abbrev  0x00000000000054f2      0x323 ./Peripheral/src/ch32v00x_usart.o
+ .debug_abbrev  0x0000000000005815      0x398 ./Debug/debug.o
+
+.debug_loc      0x0000000000000000     0xd389
+ .debug_loc     0x0000000000000000       0x1e ./User/SerialWombatPinModes/analogInput.o
+ .debug_loc     0x000000000000001e      0x7c2 ./User/SerialWombatPinModes/asciiConversion.o
+ .debug_loc     0x00000000000007e0       0x37 ./User/SerialWombatPinModes/digitalIO.o
+ .debug_loc     0x0000000000000817       0x86 ./User/SerialWombatPinModes/frequencyOutput.o
+ .debug_loc     0x000000000000089d      0x10a ./User/SerialWombatPinModes/hBridge.o
+ .debug_loc     0x00000000000009a7      0x580 ./User/SerialWombatPinModes/inputProcess.o
+ .debug_loc     0x0000000000000f27      0x482 ./User/SerialWombatPinModes/outputScale.o
+ .debug_loc     0x00000000000013a9       0x47 ./User/SerialWombatPinModes/pinInputProcessor.o
+ .debug_loc     0x00000000000013f0       0x39 ./User/SerialWombatPinModes/pwm.o
+ .debug_loc     0x0000000000001429      0x293 ./User/SerialWombatPinModes/quadEnc.o
+ .debug_loc     0x00000000000016bc       0x86 ./User/SerialWombatPinModes/servo.o
+ .debug_loc     0x0000000000001742      0x1a6 ./User/SerialWombatPinModes/swMath.o
+ .debug_loc     0x00000000000018e8     0x3312 ./User/DMA_IO.o
+ .debug_loc     0x0000000000004bfa      0x18a ./User/main.o
+ .debug_loc     0x0000000000004d84      0x37a ./User/pinRegisters.o
+ .debug_loc     0x00000000000050fe      0x6ad ./User/protocol.o
+ .debug_loc     0x00000000000057ab      0x721 ./User/queue.o
+ .debug_loc     0x0000000000005ecc       0x91 ./User/system_ch32v00x.o
+ .debug_loc     0x0000000000005f5d      0x1c2 ./User/timingResource.o
+ .debug_loc     0x000000000000611f      0xa77 ./Peripheral/src/ch32v00x_adc.o
+ .debug_loc     0x0000000000006b96      0x149 ./Peripheral/src/ch32v00x_dma.o
+ .debug_loc     0x0000000000006cdf     0x1e28 ./Peripheral/src/ch32v00x_flash.o
+ .debug_loc     0x0000000000008b07     0x12fb ./Peripheral/src/ch32v00x_gpio.o
+ .debug_loc     0x0000000000009e02       0x7b ./Peripheral/src/ch32v00x_misc.o
+ .debug_loc     0x0000000000009e7d      0x889 ./Peripheral/src/ch32v00x_rcc.o
+ .debug_loc     0x000000000000a706     0x2355 ./Peripheral/src/ch32v00x_tim.o
+ .debug_loc     0x000000000000ca5b      0x7aa ./Peripheral/src/ch32v00x_usart.o
+ .debug_loc     0x000000000000d205      0x184 ./Debug/debug.o
+
+.debug_aranges  0x0000000000000000      0xe38
+ .debug_aranges
+                0x0000000000000000       0x30 ./User/SerialWombatPinModes/analogInput.o
+ .debug_aranges
+                0x0000000000000030       0x38 ./User/SerialWombatPinModes/asciiConversion.o
+ .debug_aranges
+                0x0000000000000068       0x28 ./User/SerialWombatPinModes/digitalIO.o
+ .debug_aranges
+                0x0000000000000090       0x28 ./User/SerialWombatPinModes/frequencyOutput.o
+ .debug_aranges
+                0x00000000000000b8       0x28 ./User/SerialWombatPinModes/hBridge.o
+ .debug_aranges
+                0x00000000000000e0       0x30 ./User/SerialWombatPinModes/inputProcess.o
+ .debug_aranges
+                0x0000000000000110       0x38 ./User/SerialWombatPinModes/outputScale.o
+ .debug_aranges
+                0x0000000000000148       0x28 ./User/SerialWombatPinModes/pinInputProcessor.o
+ .debug_aranges
+                0x0000000000000170       0x30 ./User/SerialWombatPinModes/pwm.o
+ .debug_aranges
+                0x00000000000001a0       0x28 ./User/SerialWombatPinModes/quadEnc.o
+ .debug_aranges
+                0x00000000000001c8       0x30 ./User/SerialWombatPinModes/servo.o
+ .debug_aranges
+                0x00000000000001f8       0x20 ./User/SerialWombatPinModes/swMath.o
+ .debug_aranges
+                0x0000000000000218       0x28 ./User/SerialWombatPinModes/watchdog.o
+ .debug_aranges
+                0x0000000000000240      0x190 ./User/DMA_IO.o
+ .debug_aranges
+                0x00000000000003d0       0x28 ./User/ch32v00x_it.o
+ .debug_aranges
+                0x00000000000003f8       0x38 ./User/main.o
+ .debug_aranges
+                0x0000000000000430       0x48 ./User/pinRegisters.o
+ .debug_aranges
+                0x0000000000000478       0x38 ./User/protocol.o
+ .debug_aranges
+                0x00000000000004b0       0x58 ./User/queue.o
+ .debug_aranges
+                0x0000000000000508       0x40 ./User/swmain.o
+ .debug_aranges
+                0x0000000000000548       0x28 ./User/system_ch32v00x.o
+ .debug_aranges
+                0x0000000000000570       0x40 ./User/timingResource.o
+ .debug_aranges
+                0x00000000000005b0       0x30 ./Startup/startup_ch32v00x.o
+ .debug_aranges
+                0x00000000000005e0      0x138 ./Peripheral/src/ch32v00x_adc.o
+ .debug_aranges
+                0x0000000000000718       0x60 ./Peripheral/src/ch32v00x_dma.o
+ .debug_aranges
+                0x0000000000000778      0x108 ./Peripheral/src/ch32v00x_flash.o
+ .debug_aranges
+                0x0000000000000880       0x98 ./Peripheral/src/ch32v00x_gpio.o
+ .debug_aranges
+                0x0000000000000918       0x28 ./Peripheral/src/ch32v00x_misc.o
+ .debug_aranges
+                0x0000000000000940       0xe0 ./Peripheral/src/ch32v00x_rcc.o
+ .debug_aranges
+                0x0000000000000a20      0x2c8 ./Peripheral/src/ch32v00x_tim.o
+ .debug_aranges
+                0x0000000000000ce8      0x100 ./Peripheral/src/ch32v00x_usart.o
+ .debug_aranges
+                0x0000000000000de8       0x50 ./Debug/debug.o
+
+.debug_ranges   0x0000000000000000     0x2950
+ .debug_ranges  0x0000000000000000       0x20 ./User/SerialWombatPinModes/analogInput.o
+ .debug_ranges  0x0000000000000020       0x28 ./User/SerialWombatPinModes/asciiConversion.o
+ .debug_ranges  0x0000000000000048       0x30 ./User/SerialWombatPinModes/digitalIO.o
+ .debug_ranges  0x0000000000000078       0x48 ./User/SerialWombatPinModes/frequencyOutput.o
+ .debug_ranges  0x00000000000000c0       0x68 ./User/SerialWombatPinModes/hBridge.o
+ .debug_ranges  0x0000000000000128       0xe8 ./User/SerialWombatPinModes/inputProcess.o
+ .debug_ranges  0x0000000000000210      0x158 ./User/SerialWombatPinModes/outputScale.o
+ .debug_ranges  0x0000000000000368       0x18 ./User/SerialWombatPinModes/pinInputProcessor.o
+ .debug_ranges  0x0000000000000380       0x20 ./User/SerialWombatPinModes/pwm.o
+ .debug_ranges  0x00000000000003a0       0x68 ./User/SerialWombatPinModes/quadEnc.o
+ .debug_ranges  0x0000000000000408       0x50 ./User/SerialWombatPinModes/servo.o
+ .debug_ranges  0x0000000000000458       0x10 ./User/SerialWombatPinModes/swMath.o
+ .debug_ranges  0x0000000000000468       0x18 ./User/SerialWombatPinModes/watchdog.o
+ .debug_ranges  0x0000000000000480      0x9a0 ./User/DMA_IO.o
+ .debug_ranges  0x0000000000000e20       0x18 ./User/ch32v00x_it.o
+ .debug_ranges  0x0000000000000e38       0x70 ./User/main.o
+ .debug_ranges  0x0000000000000ea8       0x38 ./User/pinRegisters.o
+ .debug_ranges  0x0000000000000ee0      0x1f8 ./User/protocol.o
+ .debug_ranges  0x00000000000010d8      0x110 ./User/queue.o
+ .debug_ranges  0x00000000000011e8       0x50 ./User/swmain.o
+ .debug_ranges  0x0000000000001238       0x40 ./User/system_ch32v00x.o
+ .debug_ranges  0x0000000000001278       0x50 ./User/timingResource.o
+ .debug_ranges  0x00000000000012c8       0x28 ./Startup/startup_ch32v00x.o
+ .debug_ranges  0x00000000000012f0      0x128 ./Peripheral/src/ch32v00x_adc.o
+ .debug_ranges  0x0000000000001418       0x50 ./Peripheral/src/ch32v00x_dma.o
+ .debug_ranges  0x0000000000001468      0xd58 ./Peripheral/src/ch32v00x_flash.o
+ .debug_ranges  0x00000000000021c0       0x88 ./Peripheral/src/ch32v00x_gpio.o
+ .debug_ranges  0x0000000000002248       0x48 ./Peripheral/src/ch32v00x_misc.o
+ .debug_ranges  0x0000000000002290      0x120 ./Peripheral/src/ch32v00x_rcc.o
+ .debug_ranges  0x00000000000023b0      0x470 ./Peripheral/src/ch32v00x_tim.o
+ .debug_ranges  0x0000000000002820       0xf0 ./Peripheral/src/ch32v00x_usart.o
+ .debug_ranges  0x0000000000002910       0x40 ./Debug/debug.o
+
+.debug_line     0x0000000000000000    0x1fe57
+ .debug_line    0x0000000000000000      0x576 ./User/SerialWombatPinModes/analogInput.o
+ .debug_line    0x0000000000000576      0xc41 ./User/SerialWombatPinModes/asciiConversion.o
+ .debug_line    0x00000000000011b7      0x5ae ./User/SerialWombatPinModes/digitalIO.o
+ .debug_line    0x0000000000001765      0x563 ./User/SerialWombatPinModes/frequencyOutput.o
+ .debug_line    0x0000000000001cc8      0xac7 ./User/SerialWombatPinModes/hBridge.o
+ .debug_line    0x000000000000278f      0xdeb ./User/SerialWombatPinModes/inputProcess.o
+ .debug_line    0x000000000000357a     0x1802 ./User/SerialWombatPinModes/outputScale.o
+ .debug_line    0x0000000000004d7c      0x414 ./User/SerialWombatPinModes/pinInputProcessor.o
+ .debug_line    0x0000000000005190      0x64d ./User/SerialWombatPinModes/pwm.o
+ .debug_line    0x00000000000057dd      0xcde ./User/SerialWombatPinModes/quadEnc.o
+ .debug_line    0x00000000000064bb      0x7cb ./User/SerialWombatPinModes/servo.o
+ .debug_line    0x0000000000006c86      0x1d4 ./User/SerialWombatPinModes/swMath.o
+ .debug_line    0x0000000000006e5a      0x4aa ./User/SerialWombatPinModes/watchdog.o
+ .debug_line    0x0000000000007304     0x55e5 ./User/DMA_IO.o
+ .debug_line    0x000000000000c8e9      0x279 ./User/ch32v00x_it.o
+ .debug_line    0x000000000000cb62      0xd22 ./User/main.o
+ .debug_line    0x000000000000d884     0x1172 ./User/pinRegisters.o
+ .debug_line    0x000000000000e9f6     0x1b14 ./User/protocol.o
+ .debug_line    0x000000000001050a      0xb2d ./User/queue.o
+ .debug_line    0x0000000000011037      0x77b ./User/swmain.o
+ .debug_line    0x00000000000117b2      0x5fd ./User/system_ch32v00x.o
+ .debug_line    0x0000000000011daf      0x640 ./User/timingResource.o
+ .debug_line    0x00000000000123ef      0x112 ./Startup/startup_ch32v00x.o
+ .debug_line    0x0000000000012501     0x1499 ./Peripheral/src/ch32v00x_adc.o
+ .debug_line    0x000000000001399a      0x81e ./Peripheral/src/ch32v00x_dma.o
+ .debug_line    0x00000000000141b8     0x3585 ./Peripheral/src/ch32v00x_flash.o
+ .debug_line    0x000000000001773d     0x1c97 ./Peripheral/src/ch32v00x_gpio.o
+ .debug_line    0x00000000000193d4      0x468 ./Peripheral/src/ch32v00x_misc.o
+ .debug_line    0x000000000001983c     0x10e8 ./Peripheral/src/ch32v00x_rcc.o
+ .debug_line    0x000000000001a924     0x3cf8 ./Peripheral/src/ch32v00x_tim.o
+ .debug_line    0x000000000001e61c      0xf87 ./Peripheral/src/ch32v00x_usart.o
+ .debug_line    0x000000000001f5a3      0x8b4 ./Debug/debug.o
+
+.debug_str      0x0000000000000000     0x6294
+ .debug_str     0x0000000000000000     0x16ea ./User/SerialWombatPinModes/analogInput.o
+                                       0x176e (size before relaxing)
+ .debug_str     0x00000000000016ea       0x74 ./User/SerialWombatPinModes/asciiConversion.o
+                                        0x23e (size before relaxing)
+ .debug_str     0x000000000000175e      0x2b0 ./User/SerialWombatPinModes/digitalIO.o
+                                       0x1996 (size before relaxing)
+ .debug_str     0x0000000000001a0e      0x2eb ./User/SerialWombatPinModes/frequencyOutput.o
+                                       0x19d6 (size before relaxing)
+ .debug_str     0x0000000000001cf9      0x138 ./User/SerialWombatPinModes/hBridge.o
+                                       0x1ab3 (size before relaxing)
+ .debug_str     0x0000000000001e31      0x1a4 ./User/SerialWombatPinModes/inputProcess.o
+                                        0xe56 (size before relaxing)
+ .debug_str     0x0000000000001fd5      0x682 ./User/SerialWombatPinModes/outputScale.o
+                                       0x1318 (size before relaxing)
+ .debug_str     0x0000000000002657       0xc1 ./User/SerialWombatPinModes/pinInputProcessor.o
+                                       0x1784 (size before relaxing)
+ .debug_str     0x0000000000002718       0x5a ./User/SerialWombatPinModes/pwm.o
+                                       0x19c7 (size before relaxing)
+ .debug_str     0x0000000000002772      0x1b6 ./User/SerialWombatPinModes/quadEnc.o
+                                       0x18cd (size before relaxing)
+ .debug_str     0x0000000000002928      0x12c ./User/SerialWombatPinModes/servo.o
+                                       0x1a7f (size before relaxing)
+ .debug_str     0x0000000000002a54       0x2b ./User/SerialWombatPinModes/swMath.o
+                                        0x201 (size before relaxing)
+ .debug_str     0x0000000000002a7f       0xdf ./User/SerialWombatPinModes/watchdog.o
+                                       0x156a (size before relaxing)
+ .debug_str     0x0000000000002b5e      0x427 ./User/DMA_IO.o
+                                        0xdf5 (size before relaxing)
+ .debug_str     0x0000000000002f85       0x40 ./User/ch32v00x_it.o
+                                        0x5fd (size before relaxing)
+ .debug_str     0x0000000000002fc5      0x918 ./User/main.o
+                                       0x1266 (size before relaxing)
+ .debug_str     0x00000000000038dd      0x5c3 ./User/pinRegisters.o
+                                        0xd93 (size before relaxing)
+ .debug_str     0x0000000000003ea0      0x4a1 ./User/protocol.o
+                                       0x1ff6 (size before relaxing)
+ .debug_str     0x0000000000004341      0x14b ./User/queue.o
+                                        0xa01 (size before relaxing)
+ .debug_str     0x000000000000448c       0x7b ./User/swmain.o
+                                        0xe30 (size before relaxing)
+ .debug_str     0x0000000000004507       0x9a ./User/system_ch32v00x.o
+                                        0x724 (size before relaxing)
+ .debug_str     0x00000000000045a1       0x4f ./User/timingResource.o
+                                        0xbca (size before relaxing)
+ .debug_str     0x00000000000045f0       0x2a ./Startup/startup_ch32v00x.o
+                                         0x8a (size before relaxing)
+ .debug_str     0x000000000000461a      0x3c9 ./Peripheral/src/ch32v00x_adc.o
+                                        0xbb3 (size before relaxing)
+ .debug_str     0x00000000000049e3      0x105 ./Peripheral/src/ch32v00x_dma.o
+                                        0x81c (size before relaxing)
+ .debug_str     0x0000000000004ae8      0x426 ./Peripheral/src/ch32v00x_flash.o
+                                        0xade (size before relaxing)
+ .debug_str     0x0000000000004f0e      0x1c5 ./Peripheral/src/ch32v00x_gpio.o
+                                        0x96c (size before relaxing)
+ .debug_str     0x00000000000050d3       0x83 ./Peripheral/src/ch32v00x_misc.o
+                                        0x934 (size before relaxing)
+ .debug_str     0x0000000000005156      0x2ab ./Peripheral/src/ch32v00x_rcc.o
+                                        0x9da (size before relaxing)
+ .debug_str     0x0000000000005401      0xa0f ./Peripheral/src/ch32v00x_tim.o
+                                       0x1294 (size before relaxing)
+ .debug_str     0x0000000000005e10      0x3e6 ./Peripheral/src/ch32v00x_usart.o
+                                        0xb29 (size before relaxing)
+ .debug_str     0x00000000000061f6       0x9e ./Debug/debug.o
+                                        0x92a (size before relaxing)
+
+.comment        0x0000000000000000       0x33
+ .comment       0x0000000000000000       0x33 ./User/SerialWombatPinModes/analogInput.o
+                                         0x34 (size before relaxing)
+ .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/asciiConversion.o
+ .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/digitalIO.o
+ .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/frequencyOutput.o
+ .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/hBridge.o
+ .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/inputProcess.o
+ .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/outputScale.o
+ .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/pinInputProcessor.o
+ .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/pwm.o
+ .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/quadEnc.o
+ .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/servo.o
+ .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/swMath.o
+ .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/watchdog.o
+ .comment       0x0000000000000033       0x34 ./User/DMA_IO.o
+ .comment       0x0000000000000033       0x34 ./User/ch32v00x_it.o
+ .comment       0x0000000000000033       0x34 ./User/main.o
+ .comment       0x0000000000000033       0x34 ./User/pinRegisters.o
+ .comment       0x0000000000000033       0x34 ./User/protocol.o
+ .comment       0x0000000000000033       0x34 ./User/queue.o
+ .comment       0x0000000000000033       0x34 ./User/swmain.o
+ .comment       0x0000000000000033       0x34 ./User/system_ch32v00x.o
+ .comment       0x0000000000000033       0x34 ./User/timingResource.o
+ .comment       0x0000000000000033       0x34 ./Peripheral/src/ch32v00x_adc.o
+ .comment       0x0000000000000033       0x34 ./Peripheral/src/ch32v00x_dma.o
+ .comment       0x0000000000000033       0x34 ./Peripheral/src/ch32v00x_flash.o
+ .comment       0x0000000000000033       0x34 ./Peripheral/src/ch32v00x_gpio.o
+ .comment       0x0000000000000033       0x34 ./Peripheral/src/ch32v00x_misc.o
+ .comment       0x0000000000000033       0x34 ./Peripheral/src/ch32v00x_rcc.o
+ .comment       0x0000000000000033       0x34 ./Peripheral/src/ch32v00x_tim.o
+ .comment       0x0000000000000033       0x34 ./Peripheral/src/ch32v00x_usart.o
+ .comment       0x0000000000000033       0x34 ./Debug/debug.o
+
+.debug_frame    0x0000000000000000     0x22f4
+ .debug_frame   0x0000000000000000       0x98 ./User/SerialWombatPinModes/analogInput.o
+ .debug_frame   0x0000000000000098       0x60 ./User/SerialWombatPinModes/asciiConversion.o
+ .debug_frame   0x00000000000000f8       0xa8 ./User/SerialWombatPinModes/digitalIO.o
+ .debug_frame   0x00000000000001a0       0x8c ./User/SerialWombatPinModes/frequencyOutput.o
+ .debug_frame   0x000000000000022c       0xa4 ./User/SerialWombatPinModes/hBridge.o
+ .debug_frame   0x00000000000002d0       0x64 ./User/SerialWombatPinModes/inputProcess.o
+ .debug_frame   0x0000000000000334       0x9c ./User/SerialWombatPinModes/outputScale.o
+ .debug_frame   0x00000000000003d0       0x64 ./User/SerialWombatPinModes/pinInputProcessor.o
+ .debug_frame   0x0000000000000434       0x94 ./User/SerialWombatPinModes/pwm.o
+ .debug_frame   0x00000000000004c8       0x70 ./User/SerialWombatPinModes/quadEnc.o
+ .debug_frame   0x0000000000000538       0xac ./User/SerialWombatPinModes/servo.o
+ .debug_frame   0x00000000000005e4       0x38 ./User/SerialWombatPinModes/swMath.o
+ .debug_frame   0x000000000000061c       0x80 ./User/SerialWombatPinModes/watchdog.o
+ .debug_frame   0x000000000000069c      0x688 ./User/DMA_IO.o
+ .debug_frame   0x0000000000000d24       0x30 ./User/ch32v00x_it.o
+ .debug_frame   0x0000000000000d54       0x80 ./User/main.o
+ .debug_frame   0x0000000000000dd4       0x94 ./User/pinRegisters.o
+ .debug_frame   0x0000000000000e68       0xa4 ./User/protocol.o
+ .debug_frame   0x0000000000000f0c       0xcc ./User/queue.o
+ .debug_frame   0x0000000000000fd8       0x98 ./User/swmain.o
+ .debug_frame   0x0000000000001070       0x4c ./User/system_ch32v00x.o
+ .debug_frame   0x00000000000010bc       0x90 ./User/timingResource.o
+ .debug_frame   0x000000000000114c      0x26c ./Peripheral/src/ch32v00x_adc.o
+ .debug_frame   0x00000000000013b8       0xc0 ./Peripheral/src/ch32v00x_dma.o
+ .debug_frame   0x0000000000001478      0x228 ./Peripheral/src/ch32v00x_flash.o
+ .debug_frame   0x00000000000016a0      0x14c ./Peripheral/src/ch32v00x_gpio.o
+ .debug_frame   0x00000000000017ec       0x30 ./Peripheral/src/ch32v00x_misc.o
+ .debug_frame   0x000000000000181c      0x1bc ./Peripheral/src/ch32v00x_rcc.o
+ .debug_frame   0x00000000000019d8      0x5cc ./Peripheral/src/ch32v00x_tim.o
+ .debug_frame   0x0000000000001fa4      0x210 ./Peripheral/src/ch32v00x_usart.o
+ .debug_frame   0x00000000000021b4       0xe8 ./Debug/debug.o
+ .debug_frame   0x000000000000229c       0x38 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libg_nano.a(lib_a-memcpy.o)
+ .debug_frame   0x00000000000022d4       0x20 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libg_nano.a(lib_a-memmove.o)

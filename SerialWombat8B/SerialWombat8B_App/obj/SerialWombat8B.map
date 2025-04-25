@@ -121,8 +121,24 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/analogInput.o
  .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/analogInput.o
  .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/analogInput.o
+ .text.initAnalogInput
+                0x0000000000000000      0x11a ./User/SerialWombatPinModes/analogInput.o
+ .text.updateAnalogInput
+                0x0000000000000000       0x52 ./User/SerialWombatPinModes/analogInput.o
  .text.initAnalogSimple
                 0x0000000000000000       0x36 ./User/SerialWombatPinModes/analogInput.o
+ .bss.debugAnalog
+                0x0000000000000000        0x4 ./User/SerialWombatPinModes/analogInput.o
+ .debug_info    0x0000000000000000      0xbc8 ./User/SerialWombatPinModes/analogInput.o
+ .debug_abbrev  0x0000000000000000      0x1dc ./User/SerialWombatPinModes/analogInput.o
+ .debug_loc     0x0000000000000000       0x1e ./User/SerialWombatPinModes/analogInput.o
+ .debug_aranges
+                0x0000000000000000       0x30 ./User/SerialWombatPinModes/analogInput.o
+ .debug_ranges  0x0000000000000000       0x20 ./User/SerialWombatPinModes/analogInput.o
+ .debug_line    0x0000000000000000      0x4e3 ./User/SerialWombatPinModes/analogInput.o
+ .debug_str     0x0000000000000000     0x1764 ./User/SerialWombatPinModes/analogInput.o
+ .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/analogInput.o
+ .debug_frame   0x0000000000000000       0x70 ./User/SerialWombatPinModes/analogInput.o
  .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/asciiConversion.o
  .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/asciiConversion.o
  .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/asciiConversion.o
@@ -174,6 +190,24 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/hBridge.o
  .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/hBridge.o
  .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/hBridge.o
+ .text.updatehBridge
+                0x0000000000000000      0x274 ./User/SerialWombatPinModes/hBridge.o
+ .text.inithBridge
+                0x0000000000000000      0x190 ./User/SerialWombatPinModes/hBridge.o
+ .bss.debughBridge
+                0x0000000000000000        0x4 ./User/SerialWombatPinModes/hBridge.o
+ .bss.debughBridge2
+                0x0000000000000000        0x4 ./User/SerialWombatPinModes/hBridge.o
+ .debug_info    0x0000000000000000      0xfb4 ./User/SerialWombatPinModes/hBridge.o
+ .debug_abbrev  0x0000000000000000      0x207 ./User/SerialWombatPinModes/hBridge.o
+ .debug_loc     0x0000000000000000       0x90 ./User/SerialWombatPinModes/hBridge.o
+ .debug_aranges
+                0x0000000000000000       0x28 ./User/SerialWombatPinModes/hBridge.o
+ .debug_ranges  0x0000000000000000       0x48 ./User/SerialWombatPinModes/hBridge.o
+ .debug_line    0x0000000000000000      0x99b ./User/SerialWombatPinModes/hBridge.o
+ .debug_str     0x0000000000000000     0x1aa9 ./User/SerialWombatPinModes/hBridge.o
+ .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/hBridge.o
+ .debug_frame   0x0000000000000000       0x5c ./User/SerialWombatPinModes/hBridge.o
  .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/inputProcess.o
  .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/inputProcess.o
  .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/inputProcess.o
@@ -238,11 +272,33 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/outputScale.o
  .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/outputScale.o
  .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/outputScale.o
+ .text.outputScaleProcess
+                0x0000000000000000      0x342 ./User/SerialWombatPinModes/outputScale.o
  .text.outputScaleResetTimeout
                 0x0000000000000000        0x6 ./User/SerialWombatPinModes/outputScale.o
+ .bss.debugOutputScale
+                0x0000000000000000        0x4 ./User/SerialWombatPinModes/outputScale.o
+ .rodata.outputSamplePeriodMask
+                0x0000000000000000       0x22 ./User/SerialWombatPinModes/outputScale.o
  .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/pinInputProcessor.o
  .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/pinInputProcessor.o
  .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/pinInputProcessor.o
+ .text.initPinInputProcessor
+                0x0000000000000000       0x72 ./User/SerialWombatPinModes/pinInputProcessor.o
+ .text.updatePinInputProcessor
+                0x0000000000000000       0x4e ./User/SerialWombatPinModes/pinInputProcessor.o
+ .bss.debugPinInputProcessor
+                0x0000000000000000        0x4 ./User/SerialWombatPinModes/pinInputProcessor.o
+ .debug_info    0x0000000000000000      0xba5 ./User/SerialWombatPinModes/pinInputProcessor.o
+ .debug_abbrev  0x0000000000000000      0x1d3 ./User/SerialWombatPinModes/pinInputProcessor.o
+ .debug_loc     0x0000000000000000       0x47 ./User/SerialWombatPinModes/pinInputProcessor.o
+ .debug_aranges
+                0x0000000000000000       0x28 ./User/SerialWombatPinModes/pinInputProcessor.o
+ .debug_ranges  0x0000000000000000       0x18 ./User/SerialWombatPinModes/pinInputProcessor.o
+ .debug_line    0x0000000000000000      0x3b1 ./User/SerialWombatPinModes/pinInputProcessor.o
+ .debug_str     0x0000000000000000     0x177a ./User/SerialWombatPinModes/pinInputProcessor.o
+ .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/pinInputProcessor.o
+ .debug_frame   0x0000000000000000       0x50 ./User/SerialWombatPinModes/pinInputProcessor.o
  .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/protectedOutput.o
  .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/protectedOutput.o
  .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/protectedOutput.o
@@ -284,34 +340,45 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/pulseTimer.o
  .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/pulseTimer.o
  .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/pulseTimer.o
- .text.initPulseTimer
-                0x0000000000000000      0x190 ./User/SerialWombatPinModes/pulseTimer.o
- .rodata.initPulseTimer
-                0x0000000000000000       0x2c ./User/SerialWombatPinModes/pulseTimer.o
- .text.updatePulseTimer
-                0x0000000000000000      0x296 ./User/SerialWombatPinModes/pulseTimer.o
- .rodata.updatePulseTimer
-                0x0000000000000000       0x4c ./User/SerialWombatPinModes/pulseTimer.o
- .bss.debugPulseTimer
-                0x0000000000000000        0x4 ./User/SerialWombatPinModes/pulseTimer.o
- .debug_info    0x0000000000000000      0xe30 ./User/SerialWombatPinModes/pulseTimer.o
- .debug_abbrev  0x0000000000000000      0x214 ./User/SerialWombatPinModes/pulseTimer.o
- .debug_loc     0x0000000000000000      0x1c4 ./User/SerialWombatPinModes/pulseTimer.o
- .debug_aranges
-                0x0000000000000000       0x28 ./User/SerialWombatPinModes/pulseTimer.o
- .debug_ranges  0x0000000000000000       0x80 ./User/SerialWombatPinModes/pulseTimer.o
- .debug_line    0x0000000000000000      0xafa ./User/SerialWombatPinModes/pulseTimer.o
- .debug_str     0x0000000000000000     0x1946 ./User/SerialWombatPinModes/pulseTimer.o
- .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/pulseTimer.o
- .debug_frame   0x0000000000000000       0x60 ./User/SerialWombatPinModes/pulseTimer.o
  .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/pwm.o
  .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/pwm.o
  .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/pwm.o
+ .text.updatePWM
+                0x0000000000000000       0x5e ./User/SerialWombatPinModes/pwm.o
+ .text.initPWM  0x0000000000000000       0xf8 ./User/SerialWombatPinModes/pwm.o
  .text.initPWMSimple
                 0x0000000000000000       0x62 ./User/SerialWombatPinModes/pwm.o
+ .debug_info    0x0000000000000000      0xd0b ./User/SerialWombatPinModes/pwm.o
+ .debug_abbrev  0x0000000000000000      0x1b2 ./User/SerialWombatPinModes/pwm.o
+ .debug_loc     0x0000000000000000       0x13 ./User/SerialWombatPinModes/pwm.o
+ .debug_aranges
+                0x0000000000000000       0x30 ./User/SerialWombatPinModes/pwm.o
+ .debug_ranges  0x0000000000000000       0x20 ./User/SerialWombatPinModes/pwm.o
+ .debug_line    0x0000000000000000      0x4f0 ./User/SerialWombatPinModes/pwm.o
+ .debug_str     0x0000000000000000     0x19bd ./User/SerialWombatPinModes/pwm.o
+ .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/pwm.o
+ .debug_frame   0x0000000000000000       0x70 ./User/SerialWombatPinModes/pwm.o
  .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/quadEnc.o
  .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/quadEnc.o
  .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/quadEnc.o
+ .text.increment
+                0x0000000000000000       0x38 ./User/SerialWombatPinModes/quadEnc.o
+ .text.initQuadEnc
+                0x0000000000000000      0x236 ./User/SerialWombatPinModes/quadEnc.o
+ .rodata.initQuadEnc
+                0x0000000000000000       0x2c ./User/SerialWombatPinModes/quadEnc.o
+ .text.updateQuadEnc
+                0x0000000000000000      0x1fe ./User/SerialWombatPinModes/quadEnc.o
+ .debug_info    0x0000000000000000      0xe7c ./User/SerialWombatPinModes/quadEnc.o
+ .debug_abbrev  0x0000000000000000      0x252 ./User/SerialWombatPinModes/quadEnc.o
+ .debug_loc     0x0000000000000000      0x19e ./User/SerialWombatPinModes/quadEnc.o
+ .debug_aranges
+                0x0000000000000000       0x30 ./User/SerialWombatPinModes/quadEnc.o
+ .debug_ranges  0x0000000000000000       0x20 ./User/SerialWombatPinModes/quadEnc.o
+ .debug_line    0x0000000000000000      0xbc8 ./User/SerialWombatPinModes/quadEnc.o
+ .debug_str     0x0000000000000000     0x18c3 ./User/SerialWombatPinModes/quadEnc.o
+ .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/quadEnc.o
+ .debug_frame   0x0000000000000000       0x78 ./User/SerialWombatPinModes/quadEnc.o
  .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/queuedPulseOutput.o
  .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/queuedPulseOutput.o
  .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/queuedPulseOutput.o
@@ -338,9 +405,37 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/servo.o
  .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/servo.o
  .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/servo.o
+ .text.initServoHwSimple
+                0x0000000000000000       0x40 ./User/SerialWombatPinModes/servo.o
+ .text.initServoHw
+                0x0000000000000000       0xec ./User/SerialWombatPinModes/servo.o
+ .text.updateServoHw
+                0x0000000000000000      0x162 ./User/SerialWombatPinModes/servo.o
+ .debug_info    0x0000000000000000      0xdd6 ./User/SerialWombatPinModes/servo.o
+ .debug_abbrev  0x0000000000000000      0x1fb ./User/SerialWombatPinModes/servo.o
+ .debug_loc     0x0000000000000000       0x88 ./User/SerialWombatPinModes/servo.o
+ .debug_aranges
+                0x0000000000000000       0x30 ./User/SerialWombatPinModes/servo.o
+ .debug_ranges  0x0000000000000000       0x20 ./User/SerialWombatPinModes/servo.o
+ .debug_line    0x0000000000000000      0x704 ./User/SerialWombatPinModes/servo.o
+ .debug_str     0x0000000000000000     0x1a75 ./User/SerialWombatPinModes/servo.o
+ .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/servo.o
+ .debug_frame   0x0000000000000000       0x78 ./User/SerialWombatPinModes/servo.o
  .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/swMath.o
  .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/swMath.o
  .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/swMath.o
+ .text.xyInterpolationU16
+                0x0000000000000000       0x7c ./User/SerialWombatPinModes/swMath.o
+ .debug_info    0x0000000000000000      0x12f ./User/SerialWombatPinModes/swMath.o
+ .debug_abbrev  0x0000000000000000       0x8f ./User/SerialWombatPinModes/swMath.o
+ .debug_loc     0x0000000000000000       0xf8 ./User/SerialWombatPinModes/swMath.o
+ .debug_aranges
+                0x0000000000000000       0x20 ./User/SerialWombatPinModes/swMath.o
+ .debug_ranges  0x0000000000000000       0x10 ./User/SerialWombatPinModes/swMath.o
+ .debug_line    0x0000000000000000      0x286 ./User/SerialWombatPinModes/swMath.o
+ .debug_str     0x0000000000000000      0x1f7 ./User/SerialWombatPinModes/swMath.o
+ .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/swMath.o
+ .debug_frame   0x0000000000000000       0x34 ./User/SerialWombatPinModes/swMath.o
  .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/throughputConsumer.o
  .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/throughputConsumer.o
  .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/throughputConsumer.o
@@ -436,31 +531,58 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./User/SerialWombatPinModes/watchdog.o
  .data          0x0000000000000000        0x0 ./User/SerialWombatPinModes/watchdog.o
  .bss           0x0000000000000000        0x0 ./User/SerialWombatPinModes/watchdog.o
+ .text.initWatchdog
+                0x0000000000000000       0xac ./User/SerialWombatPinModes/watchdog.o
+ .text.updateWatchdog
+                0x0000000000000000       0x5a ./User/SerialWombatPinModes/watchdog.o
+ .debug_info    0x0000000000000000      0x870 ./User/SerialWombatPinModes/watchdog.o
+ .debug_abbrev  0x0000000000000000      0x13e ./User/SerialWombatPinModes/watchdog.o
+ .debug_aranges
+                0x0000000000000000       0x28 ./User/SerialWombatPinModes/watchdog.o
+ .debug_ranges  0x0000000000000000       0x18 ./User/SerialWombatPinModes/watchdog.o
+ .debug_line    0x0000000000000000      0x458 ./User/SerialWombatPinModes/watchdog.o
+ .debug_str     0x0000000000000000     0x1560 ./User/SerialWombatPinModes/watchdog.o
+ .comment       0x0000000000000000       0x34 ./User/SerialWombatPinModes/watchdog.o
+ .debug_frame   0x0000000000000000       0x50 ./User/SerialWombatPinModes/watchdog.o
  .text          0x0000000000000000        0x0 ./User/DMA_IO.o
  .data          0x0000000000000000        0x0 ./User/DMA_IO.o
  .bss           0x0000000000000000        0x0 ./User/DMA_IO.o
+ .text.orCount  0x0000000000000000       0x2e ./User/DMA_IO.o
+ .text.andCount
+                0x0000000000000000       0x36 ./User/DMA_IO.o
+ .text.CurrentPinBitmap
+                0x0000000000000000       0x22 ./User/DMA_IO.o
  .text.PinIsAnalogCapable
                 0x0000000000000000        0x4 ./User/DMA_IO.o
+ .text.ConfigurePinAnalog
+                0x0000000000000000       0x54 ./User/DMA_IO.o
+ .text.CurrentPinAnalog
+                0x0000000000000000       0x22 ./User/DMA_IO.o
+ .text.SetPin   0x0000000000000000       0x3a ./User/DMA_IO.o
  .text.SetPinQuick
                 0x0000000000000000       0x18 ./User/DMA_IO.o
- .text.CurrentPinPullUp
-                0x0000000000000000       0x20 ./User/DMA_IO.o
- .text.CurrentPinNoPullUp
+ .text.SetCurrentPin
                 0x0000000000000000       0x22 ./User/DMA_IO.o
+ .text.CurrentPinHigh
+                0x0000000000000000       0x20 ./User/DMA_IO.o
+ .text.CurrentPinLow
+                0x0000000000000000       0x20 ./User/DMA_IO.o
  .text.CurrentPinPullDown
                 0x0000000000000000       0x20 ./User/DMA_IO.o
  .text.CurrentPinNoPullDown
                 0x0000000000000000       0x22 ./User/DMA_IO.o
+ .text.updateBitStreamOutput
+                0x0000000000000000      0x174 ./User/DMA_IO.o
+ .text.updatePulseOutput
+                0x0000000000000000       0x8e ./User/DMA_IO.o
+ .text.initializeBitStreamOutput
+                0x0000000000000000       0x4e ./User/DMA_IO.o
  .text.removeBitStreamOutput
-                0x0000000000000000       0x68 ./User/DMA_IO.o
- .text.PulseInGetOldestDMABit
-                0x0000000000000000       0x6e ./User/DMA_IO.o
+                0x0000000000000000       0x74 ./User/DMA_IO.o
  .text.PulseInSkipDMABits
-                0x0000000000000000       0x68 ./User/DMA_IO.o
- .bss.highCount
-                0x0000000000000000        0x1 ./User/DMA_IO.o
- .bss.lastValue
-                0x0000000000000000        0x1 ./User/DMA_IO.o
+                0x0000000000000000       0x66 ./User/DMA_IO.o
+ .text.PulseInGetOldestDMASample
+                0x0000000000000000       0x62 ./User/DMA_IO.o
  .rodata.WombatPinToADCChannel
                 0x0000000000000000        0x8 ./User/DMA_IO.o
  .text          0x0000000000000000        0x0 ./User/ch32v00x_it.o
@@ -469,6 +591,8 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./User/main.o
  .data          0x0000000000000000        0x0 ./User/main.o
  .bss           0x0000000000000000        0x0 ./User/main.o
+ .text.GetADCConversion
+                0x0000000000000000       0x1e ./User/main.o
  .bss.debug_breakpoints
                 0x0000000000000000        0x4 ./User/main.o
  .bss.val       0x0000000000000000        0x1 ./User/main.o
@@ -477,6 +601,7 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 ./User/pinRegisters.o
  .text.pinRegisterSizeCheck
                 0x0000000000000000        0x2 ./User/pinRegisters.o
+ .text.SetMode  0x0000000000000000       0x1e ./User/pinRegisters.o
  .text.GetMode  0x0000000000000000       0x22 ./User/pinRegisters.o
  .text          0x0000000000000000        0x0 ./User/protocol.o
  .data          0x0000000000000000        0x0 ./User/protocol.o
@@ -539,8 +664,26 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ./User/timingResource.o
  .data          0x0000000000000000        0x0 ./User/timingResource.o
  .bss           0x0000000000000000        0x0 ./User/timingResource.o
+ .text.timingResourceHighPulseClaim
+                0x0000000000000000       0x40 ./User/timingResource.o
+ .text.timingResourcesHighPulse
+                0x0000000000000000       0x3c ./User/timingResource.o
+ .text.timingResourcePWM
+                0x0000000000000000       0x62 ./User/timingResource.o
+ .text.timingResourceHighPulseBusy
+                0x0000000000000000       0x20 ./User/timingResource.o
  .text.timingResourceBusyWait
                 0x0000000000000000       0x20 ./User/timingResource.o
+ .debug_info    0x0000000000000000     0x10d2 ./User/timingResource.o
+ .debug_abbrev  0x0000000000000000      0x300 ./User/timingResource.o
+ .debug_loc     0x0000000000000000      0x1a1 ./User/timingResource.o
+ .debug_aranges
+                0x0000000000000000       0x40 ./User/timingResource.o
+ .debug_ranges  0x0000000000000000       0x48 ./User/timingResource.o
+ .debug_line    0x0000000000000000      0x638 ./User/timingResource.o
+ .debug_str     0x0000000000000000      0xbc0 ./User/timingResource.o
+ .comment       0x0000000000000000       0x34 ./User/timingResource.o
+ .debug_frame   0x0000000000000000       0x88 ./User/timingResource.o
  .text          0x0000000000000000        0x0 ./Startup/startup_ch32v00x.o
  .data          0x0000000000000000        0x0 ./Startup/startup_ch32v00x.o
  .bss           0x0000000000000000        0x0 ./Startup/startup_ch32v00x.o
@@ -944,8 +1087,6 @@ Discarded input sections
                 0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_rcc.o
  .text.RCC_GetClocksFreq
                 0x0000000000000000       0xb2 ./Peripheral/src/ch32v00x_rcc.o
- .text.RCC_APB1PeriphClockCmd
-                0x0000000000000000       0x1e ./Peripheral/src/ch32v00x_rcc.o
  .text.RCC_APB1PeriphResetCmd
                 0x0000000000000000       0x1e ./Peripheral/src/ch32v00x_rcc.o
  .text.RCC_ClockSecuritySystemCmd
@@ -1025,8 +1166,6 @@ Discarded input sections
                 0x0000000000000000       0x70 ./Peripheral/src/ch32v00x_tim.o
  .text.TIM_DeInit
                 0x0000000000000000       0x5c ./Peripheral/src/ch32v00x_tim.o
- .text.TIM_OC1Init
-                0x0000000000000000       0x6a ./Peripheral/src/ch32v00x_tim.o
  .text.TIM_OC2Init
                 0x0000000000000000       0x96 ./Peripheral/src/ch32v00x_tim.o
  .text.TIM_OC3Init
@@ -1043,8 +1182,8 @@ Discarded input sections
                 0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_tim.o
  .text.TIM_BDTRStructInit
                 0x0000000000000000       0x1e ./Peripheral/src/ch32v00x_tim.o
- .text.TIM_CtrlPWMOutputs
-                0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_ITConfig
+                0x0000000000000000       0x12 ./Peripheral/src/ch32v00x_tim.o
  .text.TIM_GenerateEvent
                 0x0000000000000000        0x4 ./Peripheral/src/ch32v00x_tim.o
  .text.TIM_DMAConfig
@@ -1079,16 +1218,12 @@ Discarded input sections
                 0x0000000000000000       0x10 ./Peripheral/src/ch32v00x_tim.o
  .text.TIM_ForcedOC4Config
                 0x0000000000000000       0x14 ./Peripheral/src/ch32v00x_tim.o
- .text.TIM_ARRPreloadConfig
-                0x0000000000000000       0x1a ./Peripheral/src/ch32v00x_tim.o
  .text.TIM_SelectCOM
                 0x0000000000000000       0x18 ./Peripheral/src/ch32v00x_tim.o
  .text.TIM_SelectCCDMA
                 0x0000000000000000       0x18 ./Peripheral/src/ch32v00x_tim.o
  .text.TIM_CCPreloadControl
                 0x0000000000000000       0x18 ./Peripheral/src/ch32v00x_tim.o
- .text.TIM_OC1PreloadConfig
-                0x0000000000000000        0xe ./Peripheral/src/ch32v00x_tim.o
  .text.TIM_OC2PreloadConfig
                 0x0000000000000000       0x16 ./Peripheral/src/ch32v00x_tim.o
  .text.TIM_OC3PreloadConfig
@@ -1187,6 +1322,8 @@ Discarded input sections
                 0x0000000000000000        0xa ./Peripheral/src/ch32v00x_tim.o
  .text.TIM_ClearFlag
                 0x0000000000000000        0xc ./Peripheral/src/ch32v00x_tim.o
+ .text.TIM_GetITStatus
+                0x0000000000000000       0x18 ./Peripheral/src/ch32v00x_tim.o
  .text.TIM_IndicateCaptureLevelCmd
                 0x0000000000000000       0x12 ./Peripheral/src/ch32v00x_tim.o
  .text          0x0000000000000000        0x0 ./Peripheral/src/ch32v00x_usart.o
@@ -1445,7 +1582,7 @@ END GROUP
  *fill*         0x000000000000009e        0x2 
                 0x00000000000000a0                _einit = .
 
-.text           0x00000000000000a0     0x3d34
+.text           0x00000000000000a0     0x2d08
                 0x00000000000000a0                . = ALIGN (0x4)
  *(.text)
  .text          0x00000000000000a0       0x14 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/rv32ecxw/ilp32e\libgcc.a(save-restore.o)
@@ -1466,450 +1603,360 @@ END GROUP
  .text          0x000000000000014a       0xa8 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libg_nano.a(lib_a-memset.o)
                 0x000000000000014a                memset
  *(.text.*)
- .text.initAnalogInput
-                0x00000000000001f2       0xe2 ./User/SerialWombatPinModes/analogInput.o
-                0x00000000000001f2                initAnalogInput
- .text.updateAnalogInput
-                0x00000000000002d4       0x36 ./User/SerialWombatPinModes/analogInput.o
-                0x00000000000002d4                updateAnalogInput
  .text.uint16ToAscii5
-                0x000000000000030a       0xa8 ./User/SerialWombatPinModes/asciiConversion.o
-                0x000000000000030a                uint16ToAscii5
+                0x00000000000001f2       0xa8 ./User/SerialWombatPinModes/asciiConversion.o
+                0x00000000000001f2                uint16ToAscii5
  .text.initDigitalIO
-                0x00000000000003b2      0x114 ./User/SerialWombatPinModes/digitalIO.o
-                0x00000000000003b2                initDigitalIO
- .text.updatehBridge
-                0x00000000000004c6      0x1fe ./User/SerialWombatPinModes/hBridge.o
-                0x00000000000004c6                updatehBridge
- .text.inithBridge
-                0x00000000000006c4      0x13c ./User/SerialWombatPinModes/hBridge.o
-                0x00000000000006c4                inithBridge
+                0x000000000000029a      0x10e ./User/SerialWombatPinModes/digitalIO.o
+                0x000000000000029a                initDigitalIO
  .text.inputProcessInit
-                0x0000000000000800       0x24 ./User/SerialWombatPinModes/inputProcess.o
-                0x0000000000000800                inputProcessInit
+                0x00000000000003a8       0x24 ./User/SerialWombatPinModes/inputProcess.o
+                0x00000000000003a8                inputProcessInit
  .text.inputProcessProcess
-                0x0000000000000824      0x2b6 ./User/SerialWombatPinModes/inputProcess.o
-                0x0000000000000824                inputProcessProcess
+                0x00000000000003cc      0x2a0 ./User/SerialWombatPinModes/inputProcess.o
+                0x00000000000003cc                inputProcessProcess
  .text.inputProcessCommProcess
-                0x0000000000000ada      0x120 ./User/SerialWombatPinModes/inputProcess.o
-                0x0000000000000ada                inputProcessCommProcess
+                0x000000000000066c      0x11e ./User/SerialWombatPinModes/inputProcess.o
+                0x000000000000066c                inputProcessCommProcess
  .text.outputScaleInit
-                0x0000000000000bfa       0x4c ./User/SerialWombatPinModes/outputScale.o
-                0x0000000000000bfa                outputScaleInit
- .text.outputScaleProcess
-                0x0000000000000c46      0x2e2 ./User/SerialWombatPinModes/outputScale.o
-                0x0000000000000c46                outputScaleProcess
+                0x000000000000078a       0x4c ./User/SerialWombatPinModes/outputScale.o
+                0x000000000000078a                outputScaleInit
  .text.outputScaleCommProcess
-                0x0000000000000f28      0x31e ./User/SerialWombatPinModes/outputScale.o
-                0x0000000000000f28                outputScaleCommProcess
- .text.initPinInputProcessor
-                0x0000000000001246       0x56 ./User/SerialWombatPinModes/pinInputProcessor.o
-                0x0000000000001246                initPinInputProcessor
- .text.updatePinInputProcessor
-                0x000000000000129c       0x36 ./User/SerialWombatPinModes/pinInputProcessor.o
-                0x000000000000129c                updatePinInputProcessor
- .text.updatePWM
-                0x00000000000012d2       0x42 ./User/SerialWombatPinModes/pwm.o
-                0x00000000000012d2                updatePWM
- .text.initPWM  0x0000000000001314       0xc4 ./User/SerialWombatPinModes/pwm.o
-                0x0000000000001314                initPWM
- .text.increment
-                0x00000000000013d8       0x34 ./User/SerialWombatPinModes/quadEnc.o
- .text.initQuadEnc
-                0x000000000000140c      0x1e8 ./User/SerialWombatPinModes/quadEnc.o
-                0x000000000000140c                initQuadEnc
- .text.updateQuadEnc
-                0x00000000000015f4      0x19e ./User/SerialWombatPinModes/quadEnc.o
-                0x00000000000015f4                updateQuadEnc
- .text.initServoHwSimple
-                0x0000000000001792       0x2c ./User/SerialWombatPinModes/servo.o
-                0x0000000000001792                initServoHwSimple
- .text.initServoHw
-                0x00000000000017be       0xbc ./User/SerialWombatPinModes/servo.o
-                0x00000000000017be                initServoHw
- .text.updateServoHw
-                0x000000000000187a      0x122 ./User/SerialWombatPinModes/servo.o
-                0x000000000000187a                updateServoHw
- .text.xyInterpolationU16
-                0x000000000000199c       0x42 ./User/SerialWombatPinModes/swMath.o
-                0x000000000000199c                xyInterpolationU16
- .text.initWatchdog
-                0x00000000000019de       0x92 ./User/SerialWombatPinModes/watchdog.o
-                0x00000000000019de                initWatchdog
- .text.updateWatchdog
-                0x0000000000001a70       0x44 ./User/SerialWombatPinModes/watchdog.o
-                0x0000000000001a70                updateWatchdog
- .text.orCount  0x0000000000001ab4       0x32 ./User/DMA_IO.o
-                0x0000000000001ab4                orCount
- .text.andCount
-                0x0000000000001ae6       0x36 ./User/DMA_IO.o
-                0x0000000000001ae6                andCount
+                0x00000000000007d6      0x322 ./User/SerialWombatPinModes/outputScale.o
+                0x00000000000007d6                outputScaleCommProcess
+ .text.initPulseTimer
+                0x0000000000000af8      0x14a ./User/SerialWombatPinModes/pulseTimer.o
+                0x0000000000000af8                initPulseTimer
+ .text.updatePulseTimer
+                0x0000000000000c42      0x230 ./User/SerialWombatPinModes/pulseTimer.o
+                0x0000000000000c42                updatePulseTimer
  .text.deactivateOutputDMA
-                0x0000000000001b1c       0x3c ./User/DMA_IO.o
-                0x0000000000001b1c                deactivateOutputDMA
- .text.SysTick_Handler
-                0x0000000000001b58       0x6e ./User/DMA_IO.o
-                0x0000000000001b58                SysTick_Handler
+                0x0000000000000e72       0x2e ./User/DMA_IO.o
+                0x0000000000000e72                deactivateOutputDMA
+ .text.systemInitDMAIO
+                0x0000000000000ea0       0x24 ./User/DMA_IO.o
+                0x0000000000000ea0                systemInitDMAIO
  .text.pinIsHWOutput
-                0x0000000000001bc6       0x1c ./User/DMA_IO.o
-                0x0000000000001bc6                pinIsHWOutput
- .text.CurrentPinBitmap
-                0x0000000000001be2       0x1c ./User/DMA_IO.o
-                0x0000000000001be2                CurrentPinBitmap
- .text.ReadPin  0x0000000000001bfe       0x1c ./User/DMA_IO.o
-                0x0000000000001bfe                ReadPin
+                0x0000000000000ec4       0x1c ./User/DMA_IO.o
+                0x0000000000000ec4                pinIsHWOutput
+ .text.ReadPin  0x0000000000000ee0       0x1c ./User/DMA_IO.o
+                0x0000000000000ee0                ReadPin
  .text.PinOutput
-                0x0000000000001c1a       0x46 ./User/DMA_IO.o
-                0x0000000000001c1a                PinOutput
+                0x0000000000000efc       0x46 ./User/DMA_IO.o
+                0x0000000000000efc                PinOutput
  .text.PinInput
-                0x0000000000001c60       0x46 ./User/DMA_IO.o
-                0x0000000000001c60                PinInput
- .text.ConfigurePinAnalog
-                0x0000000000001ca6       0x40 ./User/DMA_IO.o
-                0x0000000000001ca6                ConfigurePinAnalog
+                0x0000000000000f42       0x46 ./User/DMA_IO.o
+                0x0000000000000f42                PinInput
  .text.CurrentPinRead
-                0x0000000000001ce6        0xe ./User/DMA_IO.o
-                0x0000000000001ce6                CurrentPinRead
+                0x0000000000000f88        0xe ./User/DMA_IO.o
+                0x0000000000000f88                CurrentPinRead
  .text.CurrentPinInput
-                0x0000000000001cf4        0xe ./User/DMA_IO.o
-                0x0000000000001cf4                CurrentPinInput
- .text.CurrentPinAnalog
-                0x0000000000001d02       0x10 ./User/DMA_IO.o
-                0x0000000000001d02                CurrentPinAnalog
- .text.PinLow   0x0000000000001d12       0x24 ./User/DMA_IO.o
-                0x0000000000001d12                PinLow
- .text.PinHigh  0x0000000000001d36       0x24 ./User/DMA_IO.o
-                0x0000000000001d36                PinHigh
- .text.SetPin   0x0000000000001d5a       0x20 ./User/DMA_IO.o
-                0x0000000000001d5a                SetPin
- .text.SetCurrentPin
-                0x0000000000001d7a       0x10 ./User/DMA_IO.o
-                0x0000000000001d7a                SetCurrentPin
+                0x0000000000000f96        0xe ./User/DMA_IO.o
+                0x0000000000000f96                CurrentPinInput
+ .text.PinLow   0x0000000000000fa4       0x24 ./User/DMA_IO.o
+                0x0000000000000fa4                PinLow
+ .text.PinHigh  0x0000000000000fc8       0x24 ./User/DMA_IO.o
+                0x0000000000000fc8                PinHigh
  .text.SetPinPullUp
-                0x0000000000001d8a       0x4e ./User/DMA_IO.o
-                0x0000000000001d8a                SetPinPullUp
+                0x0000000000000fec       0x4e ./User/DMA_IO.o
+                0x0000000000000fec                SetPinPullUp
  .text.SetPinPullDown
-                0x0000000000001dd8       0x44 ./User/DMA_IO.o
-                0x0000000000001dd8                SetPinPullDown
+                0x000000000000103a       0x44 ./User/DMA_IO.o
+                0x000000000000103a                SetPinPullDown
  .text.SetPinOpenDrain
-                0x0000000000001e1c       0x44 ./User/DMA_IO.o
-                0x0000000000001e1c                SetPinOpenDrain
+                0x000000000000107e       0x42 ./User/DMA_IO.o
+                0x000000000000107e                SetPinOpenDrain
  .text.PinPullUp
-                0x0000000000001e60       0x14 ./User/DMA_IO.o
-                0x0000000000001e60                PinPullUp
+                0x00000000000010c0       0x14 ./User/DMA_IO.o
+                0x00000000000010c0                PinPullUp
  .text.PinNoPullUp
-                0x0000000000001e74        0xc ./User/DMA_IO.o
-                0x0000000000001e74                PinNoPullUp
+                0x00000000000010d4        0xc ./User/DMA_IO.o
+                0x00000000000010d4                PinNoPullUp
  .text.PinPullDown
-                0x0000000000001e80       0x14 ./User/DMA_IO.o
-                0x0000000000001e80                PinPullDown
+                0x00000000000010e0       0x14 ./User/DMA_IO.o
+                0x00000000000010e0                PinPullDown
  .text.PinNoPullDown
-                0x0000000000001e94        0xc ./User/DMA_IO.o
-                0x0000000000001e94                PinNoPullDown
- .text.PinOD    0x0000000000001ea0        0xc ./User/DMA_IO.o
-                0x0000000000001ea0                PinOD
- .text.PinNoOD  0x0000000000001eac        0xc ./User/DMA_IO.o
-                0x0000000000001eac                PinNoOD
- .text.CurrentPinHigh
-                0x0000000000001eb8        0xe ./User/DMA_IO.o
-                0x0000000000001eb8                CurrentPinHigh
+                0x00000000000010f4        0xc ./User/DMA_IO.o
+                0x00000000000010f4                PinNoPullDown
+ .text.PinOD    0x0000000000001100        0xc ./User/DMA_IO.o
+                0x0000000000001100                PinOD
+ .text.PinNoOD  0x000000000000110c        0xc ./User/DMA_IO.o
+                0x000000000000110c                PinNoOD
  .text.InitializePinLow
-                0x0000000000001ec6       0x14 ./User/DMA_IO.o
-                0x0000000000001ec6                InitializePinLow
+                0x0000000000001118       0x10 ./User/DMA_IO.o
+                0x0000000000001118                InitializePinLow
  .text.InitializePinHigh
-                0x0000000000001eda       0x14 ./User/DMA_IO.o
-                0x0000000000001eda                InitializePinHigh
+                0x0000000000001128       0x10 ./User/DMA_IO.o
+                0x0000000000001128                InitializePinHigh
  .text.InitializePinInput
-                0x0000000000001eee       0x14 ./User/DMA_IO.o
-                0x0000000000001eee                InitializePinInput
- .text.CurrentPinLow
-                0x0000000000001f02       0x10 ./User/DMA_IO.o
-                0x0000000000001f02                CurrentPinLow
- .text.updateBitStreamOutput
-                0x0000000000001f12      0x146 ./User/DMA_IO.o
-                0x0000000000001f12                updateBitStreamOutput
- .text.updatePulseOutput
-                0x0000000000002058       0x42 ./User/DMA_IO.o
-                0x0000000000002058                updatePulseOutput
- .text.initializeBitStreamOutput
-                0x000000000000209a       0x3c ./User/DMA_IO.o
-                0x000000000000209a                initializeBitStreamOutput
+                0x0000000000001138       0x10 ./User/DMA_IO.o
+                0x0000000000001138                InitializePinInput
+ .text.CurrentPinPullUp
+                0x0000000000001148        0xe ./User/DMA_IO.o
+                0x0000000000001148                CurrentPinPullUp
+ .text.CurrentPinNoPullUp
+                0x0000000000001156       0x10 ./User/DMA_IO.o
+                0x0000000000001156                CurrentPinNoPullUp
+ .text.PulseInGetOldestDMABit
+                0x0000000000001166       0x60 ./User/DMA_IO.o
+                0x0000000000001166                PulseInGetOldestDMABit
  .text.PulseInDiscardUntilLow
-                0x00000000000020d6       0x76 ./User/DMA_IO.o
-                0x00000000000020d6                PulseInDiscardUntilLow
+                0x00000000000011c6       0x6e ./User/DMA_IO.o
+                0x00000000000011c6                PulseInDiscardUntilLow
  .text.PulseInDiscardUntilHigh
-                0x000000000000214c       0x76 ./User/DMA_IO.o
-                0x000000000000214c                PulseInDiscardUntilHigh
- .text.PulseInGetOldestDMASample
-                0x00000000000021c2       0x64 ./User/DMA_IO.o
-                0x00000000000021c2                PulseInGetOldestDMASample
+                0x0000000000001234       0x6e ./User/DMA_IO.o
+                0x0000000000001234                PulseInDiscardUntilHigh
  .text.NMI_Handler
-                0x0000000000002226        0x2 ./User/ch32v00x_it.o
-                0x0000000000002226                NMI_Handler
+                0x00000000000012a2        0x2 ./User/ch32v00x_it.o
+                0x00000000000012a2                NMI_Handler
  .text.HardFault_Handler
-                0x0000000000002228       0x14 ./User/ch32v00x_it.o
-                0x0000000000002228                HardFault_Handler
- .text.TIM1_INT_Init
-                0x000000000000223c       0x70 ./User/main.o
-                0x000000000000223c                TIM1_INT_Init
+                0x00000000000012a4       0x14 ./User/ch32v00x_it.o
+                0x00000000000012a4                HardFault_Handler
  .text.startup.main
-                0x00000000000022ac      0x35c ./User/main.o
-                0x00000000000022ac                main
- .text.GetADCConversion
-                0x0000000000002608       0x1a ./User/main.o
-                0x0000000000002608                GetADCConversion
+                0x00000000000012b8      0x4a8 ./User/main.o
+                0x00000000000012b8                main
  .text.GetSourceVoltage_mV
-                0x0000000000002622       0x18 ./User/main.o
-                0x0000000000002622                GetSourceVoltage_mV
+                0x0000000000001760       0x18 ./User/main.o
+                0x0000000000001760                GetSourceVoltage_mV
  .text.SetBuffer
-                0x000000000000263a       0x1a ./User/pinRegisters.o
-                0x000000000000263a                SetBuffer
- .text.wrandom  0x0000000000002654       0x32 ./User/pinRegisters.o
-                0x0000000000002654                wrandom
+                0x0000000000001778       0x1a ./User/pinRegisters.o
+                0x0000000000001778                SetBuffer
+ .text.wrandom  0x0000000000001792       0x32 ./User/pinRegisters.o
+                0x0000000000001792                wrandom
  .text.GetBuffer
-                0x0000000000002686      0x194 ./User/pinRegisters.o
-                0x0000000000002686                GetBuffer
- .text.SetMode  0x000000000000281a       0x1a ./User/pinRegisters.o
-                0x000000000000281a                SetMode
- .text.error    0x0000000000002834       0x60 ./User/protocol.o
-                0x0000000000002834                error
+                0x00000000000017c4      0x18e ./User/pinRegisters.o
+                0x00000000000017c4                GetBuffer
+ .text.error    0x0000000000001952       0x60 ./User/protocol.o
+                0x0000000000001952                error
  .text.ProcessSetPin
-                0x0000000000002894       0x7c ./User/protocol.o
+                0x00000000000019b2       0x4a ./User/protocol.o
  .text.ProcessRxbuffer
-                0x0000000000002910      0x59a ./User/protocol.o
-                0x0000000000002910                ProcessRxbuffer
+                0x00000000000019fc      0x598 ./User/protocol.o
+                0x00000000000019fc                ProcessRxbuffer
  .text.ProcessRx
-                0x0000000000002eaa      0x172 ./User/protocol.o
-                0x0000000000002eaa                ProcessRx
+                0x0000000000001f94      0x172 ./User/protocol.o
+                0x0000000000001f94                ProcessRx
  .text.protocolInitPinsToDIO_Input
-                0x000000000000301c       0x36 ./User/protocol.o
-                0x000000000000301c                protocolInitPinsToDIO_Input
+                0x0000000000002106       0x36 ./User/protocol.o
+                0x0000000000002106                protocolInitPinsToDIO_Input
  .text.QueueGetBytesFilledInByteQueue
-                0x0000000000003052       0x2e ./User/queue.o
+                0x000000000000213c       0x2e ./User/queue.o
  .text.QueueByteReadByte
-                0x0000000000003080       0x46 ./User/queue.o
+                0x000000000000216a       0x46 ./User/queue.o
  .text.QueueByteInitialize
-                0x00000000000030c6       0x1a ./User/queue.o
-                0x00000000000030c6                QueueByteInitialize
+                0x00000000000021b0       0x1a ./User/queue.o
+                0x00000000000021b0                QueueByteInitialize
  .text.QueueGetBytesFilledInQueue
-                0x00000000000030e0       0x26 ./User/queue.o
-                0x00000000000030e0                QueueGetBytesFilledInQueue
+                0x00000000000021ca       0x24 ./User/queue.o
+                0x00000000000021ca                QueueGetBytesFilledInQueue
  .text.QueueGetBytesFreeInQueue
-                0x0000000000003106       0x2c ./User/queue.o
-                0x0000000000003106                QueueGetBytesFreeInQueue
+                0x00000000000021ee       0x2a ./User/queue.o
+                0x00000000000021ee                QueueGetBytesFreeInQueue
  .text.QueueAddByte
-                0x0000000000003132       0x90 ./User/queue.o
-                0x0000000000003132                QueueAddByte
+                0x0000000000002218       0x90 ./User/queue.o
+                0x0000000000002218                QueueAddByte
  .text.QueueReadByte
-                0x00000000000031c2       0x20 ./User/queue.o
-                0x00000000000031c2                QueueReadByte
+                0x00000000000022a8       0x20 ./User/queue.o
+                0x00000000000022a8                QueueReadByte
  .text.QueuePeekByte
-                0x00000000000031e2       0x38 ./User/queue.o
-                0x00000000000031e2                QueuePeekByte
- .text.reset    0x000000000000321a       0x10 ./User/swmain.o
-                0x000000000000321a                reset
- .text.swSetup  0x000000000000322a       0x2c ./User/swmain.o
-                0x000000000000322a                swSetup
+                0x00000000000022c8       0x38 ./User/queue.o
+                0x00000000000022c8                QueuePeekByte
+ .text.reset    0x0000000000002300       0x10 ./User/swmain.o
+                0x0000000000002300                reset
+ .text.swSetup  0x0000000000002310       0x30 ./User/swmain.o
+                0x0000000000002310                swSetup
  .text.ProcessPins
-                0x0000000000003256       0x7c ./User/swmain.o
-                0x0000000000003256                ProcessPins
- .text.swLoop   0x00000000000032d2       0x7a ./User/swmain.o
-                0x00000000000032d2                swLoop
- .text.TIM1_UP_IRQHandler
-                0x000000000000334c       0x48 ./User/swmain.o
-                0x000000000000334c                TIM1_UP_IRQHandler
+                0x0000000000002340       0x44 ./User/swmain.o
+                0x0000000000002340                ProcessPins
+ .text.swLoop   0x0000000000002384       0x72 ./User/swmain.o
+                0x0000000000002384                swLoop
+ .text.SysTick_Handler
+                0x00000000000023f6       0x2e ./User/swmain.o
+                0x00000000000023f6                SysTick_Handler
  .text.SystemInit
-                0x0000000000003394       0xe2 ./User/system_ch32v00x.o
-                0x0000000000003394                SystemInit
+                0x0000000000002424       0xe2 ./User/system_ch32v00x.o
+                0x0000000000002424                SystemInit
  .text.SystemCoreClockUpdate
-                0x0000000000003476       0x6c ./User/system_ch32v00x.o
-                0x0000000000003476                SystemCoreClockUpdate
- .text.timingResourceHighPulseClaim
-                0x00000000000034e2       0x30 ./User/timingResource.o
-                0x00000000000034e2                timingResourceHighPulseClaim
- .text.timingResourcesHighPulse
-                0x0000000000003512       0x30 ./User/timingResource.o
-                0x0000000000003512                timingResourcesHighPulse
- .text.timingResourcePWM
-                0x0000000000003542       0x7c ./User/timingResource.o
-                0x0000000000003542                timingResourcePWM
- .text.timingResourceHighPulseBusy
-                0x00000000000035be       0x20 ./User/timingResource.o
-                0x00000000000035be                timingResourceHighPulseBusy
+                0x0000000000002506       0x6c ./User/system_ch32v00x.o
+                0x0000000000002506                SystemCoreClockUpdate
  .text.vector_handler
-                0x00000000000035de        0x2 ./Startup/startup_ch32v00x.o
-                0x00000000000035de                TIM1_CC_IRQHandler
-                0x00000000000035de                PVD_IRQHandler
-                0x00000000000035de                SPI1_IRQHandler
-                0x00000000000035de                AWU_IRQHandler
-                0x00000000000035de                EXTI7_0_IRQHandler
-                0x00000000000035de                DMA1_Channel4_IRQHandler
-                0x00000000000035de                ADC1_IRQHandler
-                0x00000000000035de                DMA1_Channel7_IRQHandler
-                0x00000000000035de                I2C1_EV_IRQHandler
-                0x00000000000035de                DMA1_Channel6_IRQHandler
-                0x00000000000035de                RCC_IRQHandler
-                0x00000000000035de                TIM1_TRG_COM_IRQHandler
-                0x00000000000035de                DMA1_Channel1_IRQHandler
-                0x00000000000035de                DMA1_Channel5_IRQHandler
-                0x00000000000035de                DMA1_Channel3_IRQHandler
-                0x00000000000035de                WWDG_IRQHandler
-                0x00000000000035de                TIM2_IRQHandler
-                0x00000000000035de                SW_Handler
-                0x00000000000035de                TIM1_BRK_IRQHandler
-                0x00000000000035de                DMA1_Channel2_IRQHandler
-                0x00000000000035de                FLASH_IRQHandler
-                0x00000000000035de                USART1_IRQHandler
-                0x00000000000035de                I2C1_ER_IRQHandler
+                0x0000000000002572        0x2 ./Startup/startup_ch32v00x.o
+                0x0000000000002572                TIM1_CC_IRQHandler
+                0x0000000000002572                PVD_IRQHandler
+                0x0000000000002572                SPI1_IRQHandler
+                0x0000000000002572                AWU_IRQHandler
+                0x0000000000002572                EXTI7_0_IRQHandler
+                0x0000000000002572                DMA1_Channel4_IRQHandler
+                0x0000000000002572                ADC1_IRQHandler
+                0x0000000000002572                DMA1_Channel7_IRQHandler
+                0x0000000000002572                I2C1_EV_IRQHandler
+                0x0000000000002572                DMA1_Channel6_IRQHandler
+                0x0000000000002572                RCC_IRQHandler
+                0x0000000000002572                TIM1_TRG_COM_IRQHandler
+                0x0000000000002572                DMA1_Channel1_IRQHandler
+                0x0000000000002572                DMA1_Channel5_IRQHandler
+                0x0000000000002572                DMA1_Channel3_IRQHandler
+                0x0000000000002572                TIM1_UP_IRQHandler
+                0x0000000000002572                WWDG_IRQHandler
+                0x0000000000002572                TIM2_IRQHandler
+                0x0000000000002572                SW_Handler
+                0x0000000000002572                TIM1_BRK_IRQHandler
+                0x0000000000002572                DMA1_Channel2_IRQHandler
+                0x0000000000002572                FLASH_IRQHandler
+                0x0000000000002572                USART1_IRQHandler
+                0x0000000000002572                I2C1_ER_IRQHandler
  .text.handle_reset
-                0x00000000000035e0       0x88 ./Startup/startup_ch32v00x.o
-                0x00000000000035e0                handle_reset
+                0x0000000000002574       0x88 ./Startup/startup_ch32v00x.o
+                0x0000000000002574                handle_reset
  .text.ADC_DeInit
-                0x0000000000003668       0x26 ./Peripheral/src/ch32v00x_adc.o
-                0x0000000000003668                ADC_DeInit
+                0x00000000000025fc       0x26 ./Peripheral/src/ch32v00x_adc.o
+                0x00000000000025fc                ADC_DeInit
  .text.ADC_Init
-                0x000000000000368e       0x4e ./Peripheral/src/ch32v00x_adc.o
-                0x000000000000368e                ADC_Init
- .text.ADC_Cmd  0x00000000000036dc       0x10 ./Peripheral/src/ch32v00x_adc.o
-                0x00000000000036dc                ADC_Cmd
+                0x0000000000002622       0x4e ./Peripheral/src/ch32v00x_adc.o
+                0x0000000000002622                ADC_Init
+ .text.ADC_Cmd  0x0000000000002670       0x10 ./Peripheral/src/ch32v00x_adc.o
+                0x0000000000002670                ADC_Cmd
  .text.ADC_DMACmd
-                0x00000000000036ec       0x12 ./Peripheral/src/ch32v00x_adc.o
-                0x00000000000036ec                ADC_DMACmd
+                0x0000000000002680       0x12 ./Peripheral/src/ch32v00x_adc.o
+                0x0000000000002680                ADC_DMACmd
  .text.ADC_ResetCalibration
-                0x00000000000036fe        0xa ./Peripheral/src/ch32v00x_adc.o
-                0x00000000000036fe                ADC_ResetCalibration
+                0x0000000000002692        0xa ./Peripheral/src/ch32v00x_adc.o
+                0x0000000000002692                ADC_ResetCalibration
  .text.ADC_GetResetCalibrationStatus
-                0x0000000000003708        0x8 ./Peripheral/src/ch32v00x_adc.o
-                0x0000000000003708                ADC_GetResetCalibrationStatus
+                0x000000000000269c        0x8 ./Peripheral/src/ch32v00x_adc.o
+                0x000000000000269c                ADC_GetResetCalibrationStatus
  .text.ADC_StartCalibration
-                0x0000000000003710        0xa ./Peripheral/src/ch32v00x_adc.o
-                0x0000000000003710                ADC_StartCalibration
+                0x00000000000026a4        0xa ./Peripheral/src/ch32v00x_adc.o
+                0x00000000000026a4                ADC_StartCalibration
  .text.ADC_GetCalibrationStatus
-                0x000000000000371a        0x8 ./Peripheral/src/ch32v00x_adc.o
-                0x000000000000371a                ADC_GetCalibrationStatus
+                0x00000000000026ae        0x8 ./Peripheral/src/ch32v00x_adc.o
+                0x00000000000026ae                ADC_GetCalibrationStatus
  .text.ADC_SoftwareStartConvCmd
-                0x0000000000003722       0x18 ./Peripheral/src/ch32v00x_adc.o
-                0x0000000000003722                ADC_SoftwareStartConvCmd
+                0x00000000000026b6       0x18 ./Peripheral/src/ch32v00x_adc.o
+                0x00000000000026b6                ADC_SoftwareStartConvCmd
  .text.ADC_RegularChannelConfig
-                0x000000000000373a       0xba ./Peripheral/src/ch32v00x_adc.o
-                0x000000000000373a                ADC_RegularChannelConfig
+                0x00000000000026ce       0xba ./Peripheral/src/ch32v00x_adc.o
+                0x00000000000026ce                ADC_RegularChannelConfig
  .text.DMA_DeInit
-                0x00000000000037f4       0x92 ./Peripheral/src/ch32v00x_dma.o
-                0x00000000000037f4                DMA_DeInit
+                0x0000000000002788       0x92 ./Peripheral/src/ch32v00x_dma.o
+                0x0000000000002788                DMA_DeInit
  .text.DMA_Init
-                0x0000000000003886       0x38 ./Peripheral/src/ch32v00x_dma.o
-                0x0000000000003886                DMA_Init
- .text.DMA_Cmd  0x00000000000038be       0x14 ./Peripheral/src/ch32v00x_dma.o
-                0x00000000000038be                DMA_Cmd
+                0x000000000000281a       0x38 ./Peripheral/src/ch32v00x_dma.o
+                0x000000000000281a                DMA_Init
+ .text.DMA_Cmd  0x0000000000002852       0x14 ./Peripheral/src/ch32v00x_dma.o
+                0x0000000000002852                DMA_Cmd
  .text.FLASH_Unlock
-                0x00000000000038d2       0x1a ./Peripheral/src/ch32v00x_flash.o
-                0x00000000000038d2                FLASH_Unlock
+                0x0000000000002866       0x1a ./Peripheral/src/ch32v00x_flash.o
+                0x0000000000002866                FLASH_Unlock
  .text.FLASH_Lock
-                0x00000000000038ec        0xe ./Peripheral/src/ch32v00x_flash.o
-                0x00000000000038ec                FLASH_Lock
+                0x0000000000002880        0xe ./Peripheral/src/ch32v00x_flash.o
+                0x0000000000002880                FLASH_Lock
  .text.SystemReset_StartMode
-                0x00000000000038fa       0x46 ./Peripheral/src/ch32v00x_flash.o
-                0x00000000000038fa                SystemReset_StartMode
+                0x000000000000288e       0x42 ./Peripheral/src/ch32v00x_flash.o
+                0x000000000000288e                SystemReset_StartMode
  .text.GPIO_Init
-                0x0000000000003940       0x7c ./Peripheral/src/ch32v00x_gpio.o
-                0x0000000000003940                GPIO_Init
+                0x00000000000028d0       0x7c ./Peripheral/src/ch32v00x_gpio.o
+                0x00000000000028d0                GPIO_Init
  .text.NVIC_PriorityGroupConfig
-                0x00000000000039bc        0x6 ./Peripheral/src/ch32v00x_misc.o
-                0x00000000000039bc                NVIC_PriorityGroupConfig
+                0x000000000000294c        0x6 ./Peripheral/src/ch32v00x_misc.o
+                0x000000000000294c                NVIC_PriorityGroupConfig
  .text.NVIC_Init
-                0x00000000000039c2       0x54 ./Peripheral/src/ch32v00x_misc.o
-                0x00000000000039c2                NVIC_Init
+                0x0000000000002952       0x54 ./Peripheral/src/ch32v00x_misc.o
+                0x0000000000002952                NVIC_Init
  .text.RCC_AdjustHSICalibrationValue
-                0x0000000000003a16       0x12 ./Peripheral/src/ch32v00x_rcc.o
-                0x0000000000003a16                RCC_AdjustHSICalibrationValue
+                0x00000000000029a6       0x12 ./Peripheral/src/ch32v00x_rcc.o
+                0x00000000000029a6                RCC_AdjustHSICalibrationValue
  .text.RCC_ADCCLKConfig
-                0x0000000000003a28       0x14 ./Peripheral/src/ch32v00x_rcc.o
-                0x0000000000003a28                RCC_ADCCLKConfig
+                0x00000000000029b8       0x14 ./Peripheral/src/ch32v00x_rcc.o
+                0x00000000000029b8                RCC_ADCCLKConfig
  .text.RCC_AHBPeriphClockCmd
-                0x0000000000003a3c       0x1e ./Peripheral/src/ch32v00x_rcc.o
-                0x0000000000003a3c                RCC_AHBPeriphClockCmd
+                0x00000000000029cc       0x1e ./Peripheral/src/ch32v00x_rcc.o
+                0x00000000000029cc                RCC_AHBPeriphClockCmd
  .text.RCC_APB2PeriphClockCmd
-                0x0000000000003a5a       0x1e ./Peripheral/src/ch32v00x_rcc.o
-                0x0000000000003a5a                RCC_APB2PeriphClockCmd
+                0x00000000000029ea       0x1e ./Peripheral/src/ch32v00x_rcc.o
+                0x00000000000029ea                RCC_APB2PeriphClockCmd
+ .text.RCC_APB1PeriphClockCmd
+                0x0000000000002a08       0x1e ./Peripheral/src/ch32v00x_rcc.o
+                0x0000000000002a08                RCC_APB1PeriphClockCmd
  .text.RCC_APB2PeriphResetCmd
-                0x0000000000003a78       0x1e ./Peripheral/src/ch32v00x_rcc.o
-                0x0000000000003a78                RCC_APB2PeriphResetCmd
+                0x0000000000002a26       0x1e ./Peripheral/src/ch32v00x_rcc.o
+                0x0000000000002a26                RCC_APB2PeriphResetCmd
  .text.RCC_ClearFlag
-                0x0000000000003a96       0x10 ./Peripheral/src/ch32v00x_rcc.o
-                0x0000000000003a96                RCC_ClearFlag
+                0x0000000000002a44       0x10 ./Peripheral/src/ch32v00x_rcc.o
+                0x0000000000002a44                RCC_ClearFlag
  .text.TIM_TimeBaseInit
-                0x0000000000003aa6       0x4e ./Peripheral/src/ch32v00x_tim.o
-                0x0000000000003aa6                TIM_TimeBaseInit
- .text.TIM_Cmd  0x0000000000003af4       0x18 ./Peripheral/src/ch32v00x_tim.o
-                0x0000000000003af4                TIM_Cmd
- .text.TIM_ITConfig
-                0x0000000000003b0c       0x12 ./Peripheral/src/ch32v00x_tim.o
-                0x0000000000003b0c                TIM_ITConfig
- .text.TIM_GetITStatus
-                0x0000000000003b1e       0x18 ./Peripheral/src/ch32v00x_tim.o
-                0x0000000000003b1e                TIM_GetITStatus
+                0x0000000000002a54       0x4e ./Peripheral/src/ch32v00x_tim.o
+                0x0000000000002a54                TIM_TimeBaseInit
+ .text.TIM_OC1Init
+                0x0000000000002aa2       0x6a ./Peripheral/src/ch32v00x_tim.o
+                0x0000000000002aa2                TIM_OC1Init
+ .text.TIM_Cmd  0x0000000000002b0c       0x18 ./Peripheral/src/ch32v00x_tim.o
+                0x0000000000002b0c                TIM_Cmd
+ .text.TIM_CtrlPWMOutputs
+                0x0000000000002b24       0x16 ./Peripheral/src/ch32v00x_tim.o
+                0x0000000000002b24                TIM_CtrlPWMOutputs
+ .text.TIM_ARRPreloadConfig
+                0x0000000000002b3a       0x1a ./Peripheral/src/ch32v00x_tim.o
+                0x0000000000002b3a                TIM_ARRPreloadConfig
+ .text.TIM_OC1PreloadConfig
+                0x0000000000002b54        0xe ./Peripheral/src/ch32v00x_tim.o
+                0x0000000000002b54                TIM_OC1PreloadConfig
  .text.TIM_ClearITPendingBit
-                0x0000000000003b36        0xc ./Peripheral/src/ch32v00x_tim.o
-                0x0000000000003b36                TIM_ClearITPendingBit
+                0x0000000000002b62        0xc ./Peripheral/src/ch32v00x_tim.o
+                0x0000000000002b62                TIM_ClearITPendingBit
  .text.USART_ITConfig
-                0x0000000000003b42       0x36 ./Peripheral/src/ch32v00x_usart.o
-                0x0000000000003b42                USART_ITConfig
+                0x0000000000002b6e       0x36 ./Peripheral/src/ch32v00x_usart.o
+                0x0000000000002b6e                USART_ITConfig
  .text.Delay_Init
-                0x0000000000003b78       0x34 ./Debug/debug.o
-                0x0000000000003b78                Delay_Init
- .text.memcpy   0x0000000000003bac       0xd2 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libg_nano.a(lib_a-memcpy.o)
-                0x0000000000003bac                memcpy
+                0x0000000000002ba4       0x34 ./Debug/debug.o
+                0x0000000000002ba4                Delay_Init
+ .text.memcpy   0x0000000000002bd8       0xd2 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libg_nano.a(lib_a-memcpy.o)
+                0x0000000000002bd8                memcpy
  *(.rodata)
  *(.rodata*)
- *fill*         0x0000000000003c7e        0x2 
+ *fill*         0x0000000000002caa        0x2 
  .rodata.inputProcessCommProcess
-                0x0000000000003c80       0x30 ./User/SerialWombatPinModes/inputProcess.o
+                0x0000000000002cac       0x30 ./User/SerialWombatPinModes/inputProcess.o
  .rodata.inputProcessSamplePeriodMask
-                0x0000000000003cb0       0x22 ./User/SerialWombatPinModes/inputProcess.o
-                0x0000000000003cb0                inputProcessSamplePeriodMask
- *fill*         0x0000000000003cd2        0x2 
- .rodata.outputSamplePeriodMask
-                0x0000000000003cd4       0x22 ./User/SerialWombatPinModes/outputScale.o
-                0x0000000000003cd4                outputSamplePeriodMask
- *fill*         0x0000000000003cf6        0x2 
- .rodata.initQuadEnc
-                0x0000000000003cf8       0x2c ./User/SerialWombatPinModes/quadEnc.o
+                0x0000000000002cdc       0x22 ./User/SerialWombatPinModes/inputProcess.o
+                0x0000000000002cdc                inputProcessSamplePeriodMask
+ *fill*         0x0000000000002cfe        0x2 
+ .rodata.initPulseTimer
+                0x0000000000002d00       0x2c ./User/SerialWombatPinModes/pulseTimer.o
+ .rodata.updatePulseTimer
+                0x0000000000002d2c       0x4c ./User/SerialWombatPinModes/pulseTimer.o
  .rodata.pinBitmap
-                0x0000000000003d24       0x10 ./User/DMA_IO.o
-                0x0000000000003d24                pinBitmap
+                0x0000000000002d78       0x10 ./User/DMA_IO.o
+                0x0000000000002d78                pinBitmap
  .rodata.pin_CFGLR_Mode_Bitmap
-                0x0000000000003d34       0x20 ./User/DMA_IO.o
-                0x0000000000003d34                pin_CFGLR_Mode_Bitmap
- .rodata.ProcessSetPin
-                0x0000000000003d54       0x44 ./User/protocol.o
- .rodata.ProcessPins
-                0x0000000000003d98       0x3c ./User/swmain.o
+                0x0000000000002d88       0x20 ./User/DMA_IO.o
+                0x0000000000002d88                pin_CFGLR_Mode_Bitmap
  *(.gnu.linkonce.t.*)
-                0x0000000000003dd4                . = ALIGN (0x4)
+                0x0000000000002da8                . = ALIGN (0x4)
 
-.rela.dyn       0x0000000000003dd4        0x0
- .rela.init     0x0000000000003dd4        0x0 ./User/SerialWombatPinModes/analogInput.o
+.rela.dyn       0x0000000000002da8        0x0
+ .rela.init     0x0000000000002da8        0x0 ./User/SerialWombatPinModes/asciiConversion.o
  .rela.text.handle_reset
-                0x0000000000003dd4        0x0 ./User/SerialWombatPinModes/analogInput.o
+                0x0000000000002da8        0x0 ./User/SerialWombatPinModes/asciiConversion.o
 
-.fini           0x0000000000003dd4        0x0
+.fini           0x0000000000002da8        0x0
  *(SORT_NONE(.fini))
-                0x0000000000003dd4                . = ALIGN (0x4)
+                0x0000000000002da8                . = ALIGN (0x4)
                 [!provide]                        PROVIDE (_etext = .)
                 [!provide]                        PROVIDE (_eitcm = .)
 
-.preinit_array  0x0000000000003dd4        0x0
+.preinit_array  0x0000000000002da8        0x0
                 [!provide]                        PROVIDE (__preinit_array_start = .)
  *(.preinit_array)
                 [!provide]                        PROVIDE (__preinit_array_end = .)
 
-.init_array     0x0000000000003dd4        0x0
+.init_array     0x0000000000002da8        0x0
                 [!provide]                        PROVIDE (__init_array_start = .)
  *(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*))
  *(.init_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .ctors)
                 [!provide]                        PROVIDE (__init_array_end = .)
 
-.fini_array     0x0000000000003dd4        0x0
+.fini_array     0x0000000000002da8        0x0
                 [!provide]                        PROVIDE (__fini_array_start = .)
  *(SORT_BY_INIT_PRIORITY(.fini_array.*) SORT_BY_INIT_PRIORITY(.dtors.*))
  *(.fini_array EXCLUDE_FILE(*crtend?.o *crtend.o *crtbegin?.o *crtbegin.o) .dtors)
@@ -1929,27 +1976,25 @@ END GROUP
  *(SORT_BY_NAME(.dtors.*))
  *(.dtors)
 
-.dalign         0x0000000020000004        0x0 load address 0x0000000000003dd4
+.dalign         0x0000000020000004        0x0 load address 0x0000000000002da8
                 0x0000000020000004                . = ALIGN (0x4)
                 0x0000000020000004                PROVIDE (_data_vma = .)
 
-.dlalign        0x0000000000003dd4        0x0
-                0x0000000000003dd4                . = ALIGN (0x4)
-                0x0000000000003dd4                PROVIDE (_data_lma = .)
+.dlalign        0x0000000000002da8        0x0
+                0x0000000000002da8                . = ALIGN (0x4)
+                0x0000000000002da8                PROVIDE (_data_lma = .)
 
-.data           0x0000000020000004       0x24 load address 0x0000000000003dd4
+.data           0x0000000020000004       0x24 load address 0x0000000000002da8
                 0x0000000020000004                . = ALIGN (0x4)
  *(.gnu.linkonce.r.*)
  *(.data .data.*)
- .data.DMACNT0  0x0000000020000004        0x1 ./User/DMA_IO.o
-                0x0000000020000004                DMACNT0
  .data.stayInFault
-                0x0000000020000005        0x1 ./User/ch32v00x_it.o
-                0x0000000020000005                stayInFault
+                0x0000000020000004        0x1 ./User/ch32v00x_it.o
+                0x0000000020000004                stayInFault
  .data.i2cAddress
-                0x0000000020000006        0x1 ./User/main.o
-                0x0000000020000006                i2cAddress
- *fill*         0x0000000020000007        0x1 
+                0x0000000020000005        0x1 ./User/main.o
+                0x0000000020000005                i2cAddress
+ *fill*         0x0000000020000006        0x2 
  .data.lfsrSeed
                 0x0000000020000008        0x4 ./User/pinRegisters.o
                 0x0000000020000008                lfsrSeed
@@ -1983,162 +2028,147 @@ END GROUP
                 0x0000000020000028                . = ALIGN (0x4)
                 0x0000000020000028                PROVIDE (_edata = .)
 
-.bss            0x0000000020000028      0x5f0 load address 0x0000000000003df8
+.bss            0x0000000020000028      0x69c load address 0x0000000000002dcc
                 0x0000000020000028                . = ALIGN (0x4)
                 0x0000000020000028                PROVIDE (_sbss = .)
  *(.sbss*)
  *(.gnu.linkonce.sb.*)
  *(.bss*)
- .bss.debugAnalog
-                0x0000000020000028        0x4 ./User/SerialWombatPinModes/analogInput.o
-                0x0000000020000028                debugAnalog
- .bss.debughBridge
-                0x000000002000002c        0x4 ./User/SerialWombatPinModes/hBridge.o
-                0x000000002000002c                debughBridge
- .bss.debughBridge2
-                0x0000000020000030        0x4 ./User/SerialWombatPinModes/hBridge.o
-                0x0000000020000030                debughBridge2
  .bss.debugInputProcess
-                0x0000000020000034        0x4 ./User/SerialWombatPinModes/inputProcess.o
-                0x0000000020000034                debugInputProcess
- .bss.debugOutputScale
-                0x0000000020000038        0x4 ./User/SerialWombatPinModes/outputScale.o
-                0x0000000020000038                debugOutputScale
+                0x0000000020000028        0x4 ./User/SerialWombatPinModes/inputProcess.o
+                0x0000000020000028                debugInputProcess
  .bss.pidLastDerivativeEffort
-                0x000000002000003c        0x4 ./User/SerialWombatPinModes/outputScale.o
-                0x000000002000003c                pidLastDerivativeEffort
+                0x000000002000002c        0x4 ./User/SerialWombatPinModes/outputScale.o
+                0x000000002000002c                pidLastDerivativeEffort
  .bss.pidLastEffort
-                0x0000000020000040        0x4 ./User/SerialWombatPinModes/outputScale.o
-                0x0000000020000040                pidLastEffort
+                0x0000000020000030        0x4 ./User/SerialWombatPinModes/outputScale.o
+                0x0000000020000030                pidLastEffort
  .bss.pidLastError
-                0x0000000020000044        0x4 ./User/SerialWombatPinModes/outputScale.o
-                0x0000000020000044                pidLastError
+                0x0000000020000034        0x4 ./User/SerialWombatPinModes/outputScale.o
+                0x0000000020000034                pidLastError
  .bss.pidLastIntegrator
-                0x0000000020000048        0x4 ./User/SerialWombatPinModes/outputScale.o
-                0x0000000020000048                pidLastIntegrator
+                0x0000000020000038        0x4 ./User/SerialWombatPinModes/outputScale.o
+                0x0000000020000038                pidLastIntegrator
  .bss.pidLastIntegratorEffort
-                0x000000002000004c        0x4 ./User/SerialWombatPinModes/outputScale.o
-                0x000000002000004c                pidLastIntegratorEffort
+                0x000000002000003c        0x4 ./User/SerialWombatPinModes/outputScale.o
+                0x000000002000003c                pidLastIntegratorEffort
  .bss.pidLastProportionalEffort
-                0x0000000020000050        0x4 ./User/SerialWombatPinModes/outputScale.o
-                0x0000000020000050                pidLastProportionalEffort
- .bss.debugPinInputProcessor
-                0x0000000020000054        0x4 ./User/SerialWombatPinModes/pinInputProcessor.o
-                0x0000000020000054                debugPinInputProcessor
+                0x0000000020000040        0x4 ./User/SerialWombatPinModes/outputScale.o
+                0x0000000020000040                pidLastProportionalEffort
+ .bss.debugPulseTimer
+                0x0000000020000044        0x4 ./User/SerialWombatPinModes/pulseTimer.o
+                0x0000000020000044                debugPulseTimer
  .bss.FramesDropped
-                0x0000000020000058        0x2 ./User/DMA_IO.o
-                0x0000000020000058                FramesDropped
- *fill*         0x000000002000005a        0x2 
+                0x0000000020000048        0x2 ./User/DMA_IO.o
+                0x0000000020000048                FramesDropped
+ *fill*         0x000000002000004a        0x2 
  .bss.InputArrayA
-                0x000000002000005c       0x80 ./User/DMA_IO.o
-                0x000000002000005c                InputArrayA
- .bss.OutputArrayA
-                0x00000000200000dc      0x100 ./User/DMA_IO.o
-                0x00000000200000dc                OutputArrayA
+                0x000000002000004c       0x80 ./User/DMA_IO.o
+                0x000000002000004c                InputArrayA
+ .bss.OutputArrayAHigh
+                0x00000000200000cc      0x200 ./User/DMA_IO.o
+                0x00000000200000cc                OutputArrayAHigh
  .bss.System1msCount
-                0x00000000200001dc        0x4 ./User/DMA_IO.o
-                0x00000000200001dc                System1msCount
- .bss.dmaInterrupts
-                0x00000000200001e0        0x4 ./User/DMA_IO.o
-                0x00000000200001e0                dmaInterrupts
+                0x00000000200002cc        0x4 ./User/DMA_IO.o
+                0x00000000200002cc                System1msCount
  .bss.ADCBuffer
-                0x00000000200001e4       0x12 ./User/main.o
-                0x00000000200001e4                ADCBuffer
- *fill*         0x00000000200001f6        0x2 
+                0x00000000200002d0       0x12 ./User/main.o
+                0x00000000200002d0                ADCBuffer
+ *fill*         0x00000000200002e2        0x2 
  .bss.CurrentPinRegister
-                0x00000000200001f8        0x4 ./User/pinRegisters.o
-                0x00000000200001f8                CurrentPinRegister
+                0x00000000200002e4        0x4 ./User/pinRegisters.o
+                0x00000000200002e4                CurrentPinRegister
  .bss.PinUpdateRegisters
-                0x00000000200001fc      0x300 ./User/pinRegisters.o
-                0x00000000200001fc                PinUpdateRegisters
+                0x00000000200002e8      0x300 ./User/pinRegisters.o
+                0x00000000200002e8                PinUpdateRegisters
  .bss.incrementingValue
-                0x00000000200004fc        0x2 ./User/pinRegisters.o
-                0x00000000200004fc                incrementingValue
- .bss.Errors    0x00000000200004fe        0x2 ./User/protocol.o
-                0x00000000200004fe                Errors
+                0x00000000200005e8        0x2 ./User/pinRegisters.o
+                0x00000000200005e8                incrementingValue
+ .bss.Errors    0x00000000200005ea        0x2 ./User/protocol.o
+                0x00000000200005ea                Errors
  .bss.PacketsProcessed
-                0x0000000020000500        0x2 ./User/protocol.o
-                0x0000000020000500                PacketsProcessed
- *fill*         0x0000000020000502        0x2 
- .bss.Rxbuffer  0x0000000020000504        0x8 ./User/protocol.o
-                0x0000000020000504                Rxbuffer
- .bss.Txbuffer  0x000000002000050c        0x8 ./User/protocol.o
-                0x000000002000050c                Txbuffer
+                0x00000000200005ec        0x2 ./User/protocol.o
+                0x00000000200005ec                PacketsProcessed
+ *fill*         0x00000000200005ee        0x2 
+ .bss.Rxbuffer  0x00000000200005f0        0x8 ./User/protocol.o
+                0x00000000200005f0                Rxbuffer
+ .bss.Txbuffer  0x00000000200005f8        0x8 ./User/protocol.o
+                0x00000000200005f8                Txbuffer
  .bss.i2cDebugPtr
-                0x0000000020000514        0x4 ./User/protocol.o
-                0x0000000020000514                i2cDebugPtr
- .bss.i2cMode   0x0000000020000518        0x2 ./User/protocol.o
-                0x0000000020000518                i2cMode
+                0x0000000020000600        0x4 ./User/protocol.o
+                0x0000000020000600                i2cDebugPtr
+ .bss.i2cMode   0x0000000020000604        0x2 ./User/protocol.o
+                0x0000000020000604                i2cMode
  .bss.i2cTxCount
-                0x000000002000051a        0x1 ./User/protocol.o
-                0x000000002000051a                i2cTxCount
- *fill*         0x000000002000051b        0x1 
+                0x0000000020000606        0x1 ./User/protocol.o
+                0x0000000020000606                i2cTxCount
+ *fill*         0x0000000020000607        0x1 
  .bss.lastErrorPacket
-                0x000000002000051c        0x8 ./User/protocol.o
-                0x000000002000051c                lastErrorPacket
- .bss.star1     0x0000000020000524        0x2 ./User/protocol.o
-                0x0000000020000524                star1
- *fill*         0x0000000020000526        0x2 
+                0x0000000020000608        0x8 ./User/protocol.o
+                0x0000000020000608                lastErrorPacket
+ .bss.star1     0x0000000020000610        0x2 ./User/protocol.o
+                0x0000000020000610                star1
+ *fill*         0x0000000020000612        0x2 
  .bss.testFailed
-                0x0000000020000528        0x4 ./User/protocol.o
-                0x0000000020000528                testFailed
+                0x0000000020000614        0x4 ./User/protocol.o
+                0x0000000020000614                testFailed
  .bss.testPassed
-                0x000000002000052c        0x4 ./User/protocol.o
-                0x000000002000052c                testPassed
+                0x0000000020000618        0x4 ./User/protocol.o
+                0x0000000020000618                testPassed
  .bss.testSequenceArmed
-                0x0000000020000530        0x1 ./User/protocol.o
-                0x0000000020000530                testSequenceArmed
+                0x000000002000061c        0x1 ./User/protocol.o
+                0x000000002000061c                testSequenceArmed
  .bss.testSequenceNumber
-                0x0000000020000531        0x1 ./User/protocol.o
-                0x0000000020000531                testSequenceNumber
+                0x000000002000061d        0x1 ./User/protocol.o
+                0x000000002000061d                testSequenceNumber
  .bss.wombatI2CRxDataCount
-                0x0000000020000532        0x1 ./User/protocol.o
-                0x0000000020000532                wombatI2CRxDataCount
- *fill*         0x0000000020000533        0x1 
+                0x000000002000061e        0x1 ./User/protocol.o
+                0x000000002000061e                wombatI2CRxDataCount
+ *fill*         0x000000002000061f        0x1 
  .bss.QueueOverflowCounter
-                0x0000000020000534        0x2 ./User/queue.o
-                0x0000000020000534                QueueOverflowCounter
+                0x0000000020000620        0x2 ./User/queue.o
+                0x0000000020000620                QueueOverflowCounter
  .bss.QueueUnderflowCounter
-                0x0000000020000536        0x2 ./User/queue.o
-                0x0000000020000536                QueueUnderflowCounter
+                0x0000000020000622        0x2 ./User/queue.o
+                0x0000000020000622                QueueUnderflowCounter
  .bss.queueAddress
-                0x0000000020000538        0x4 ./User/queue.o
-                0x0000000020000538                queueAddress
+                0x0000000020000624        0x4 ./User/queue.o
+                0x0000000020000624                queueAddress
  .bss.CurrentPin
-                0x000000002000053c        0x1 ./User/swmain.o
-                0x000000002000053c                CurrentPin
- *fill*         0x000000002000053d        0x3 
+                0x0000000020000628        0x1 ./User/swmain.o
+                0x0000000020000628                CurrentPin
+ *fill*         0x0000000020000629        0x3 
  .bss.FramesRun
-                0x0000000020000540        0x4 ./User/swmain.o
-                0x0000000020000540                FramesRun
+                0x000000002000062c        0x4 ./User/swmain.o
+                0x000000002000062c                FramesRun
  .bss.OverflowFrames
-                0x0000000020000544        0x2 ./User/swmain.o
-                0x0000000020000544                OverflowFrames
+                0x0000000020000630        0x2 ./User/swmain.o
+                0x0000000020000630                OverflowFrames
  .bss.RunForeground
-                0x0000000020000546        0x1 ./User/swmain.o
-                0x0000000020000546                RunForeground
- *fill*         0x0000000020000547        0x1 
+                0x0000000020000632        0x1 ./User/swmain.o
+                0x0000000020000632                RunForeground
+ *fill*         0x0000000020000633        0x1 
  .bss.SystemUtilizationCount
-                0x0000000020000548        0x2 ./User/swmain.o
-                0x0000000020000548                SystemUtilizationCount
- *fill*         0x000000002000054a        0x2 
+                0x0000000020000634        0x2 ./User/swmain.o
+                0x0000000020000634                SystemUtilizationCount
+ *fill*         0x0000000020000636        0x2 
  .bss.SystemUtilizationSum
-                0x000000002000054c        0x4 ./User/swmain.o
-                0x000000002000054c                SystemUtilizationSum
+                0x0000000020000638        0x4 ./User/swmain.o
+                0x0000000020000638                SystemUtilizationSum
  .bss.UserBuffer
-                0x0000000020000550       0xc0 ./User/swmain.o
-                0x0000000020000550                UserBuffer
+                0x000000002000063c       0x80 ./User/swmain.o
+                0x000000002000063c                UserBuffer
  .bss.NVIC_Priority_Group
-                0x0000000020000610        0x4 ./Peripheral/src/ch32v00x_misc.o
-                0x0000000020000610                NVIC_Priority_Group
- .bss.p_ms      0x0000000020000614        0x2 ./Debug/debug.o
- .bss.p_us      0x0000000020000616        0x1 ./Debug/debug.o
+                0x00000000200006bc        0x4 ./Peripheral/src/ch32v00x_misc.o
+                0x00000000200006bc                NVIC_Priority_Group
+ .bss.p_ms      0x00000000200006c0        0x2 ./Debug/debug.o
+ .bss.p_us      0x00000000200006c2        0x1 ./Debug/debug.o
  *(.gnu.linkonce.b.*)
  *(COMMON*)
-                0x0000000020000618                . = ALIGN (0x4)
- *fill*         0x0000000020000617        0x1 
-                0x0000000020000618                PROVIDE (_ebss = .)
-                0x0000000020000618                PROVIDE (_end = _ebss)
+                0x00000000200006c4                . = ALIGN (0x4)
+ *fill*         0x00000000200006c3        0x1 
+                0x00000000200006c4                PROVIDE (_ebss = .)
+                0x00000000200006c4                PROVIDE (_end = _ebss)
                 [!provide]                        PROVIDE (end = .)
 
 .stack          0x0000000020000700      0x100
@@ -2149,316 +2179,238 @@ END GROUP
  *fill*         0x0000000020000700      0x100 
                 0x0000000020000800                PROVIDE (_eusrstack = .)
 
-.stayinboot     0x0000000020000000        0x2 load address 0x0000000000003df8
+.stayinboot     0x0000000020000000        0x2 load address 0x0000000000002dcc
  *(.stayinboot*)
  .stayinboot    0x0000000020000000        0x2 ./User/main.o
                 0x0000000020000000                stayInBoot
 OUTPUT(SerialWombat8B.elf elf32-littleriscv)
 
-.debug_info     0x0000000000000000    0x1fb96
- .debug_info    0x0000000000000000      0xbc8 ./User/SerialWombatPinModes/analogInput.o
- .debug_info    0x0000000000000bc8      0x190 ./User/SerialWombatPinModes/asciiConversion.o
- .debug_info    0x0000000000000d58      0xf4d ./User/SerialWombatPinModes/digitalIO.o
- .debug_info    0x0000000000001ca5      0xfb4 ./User/SerialWombatPinModes/hBridge.o
- .debug_info    0x0000000000002c59      0xb48 ./User/SerialWombatPinModes/inputProcess.o
- .debug_info    0x00000000000037a1     0x1525 ./User/SerialWombatPinModes/outputScale.o
- .debug_info    0x0000000000004cc6      0xba5 ./User/SerialWombatPinModes/pinInputProcessor.o
- .debug_info    0x000000000000586b      0xd0b ./User/SerialWombatPinModes/pwm.o
- .debug_info    0x0000000000006576      0xe7c ./User/SerialWombatPinModes/quadEnc.o
- .debug_info    0x00000000000073f2      0xdd6 ./User/SerialWombatPinModes/servo.o
- .debug_info    0x00000000000081c8      0x12d ./User/SerialWombatPinModes/swMath.o
- .debug_info    0x00000000000082f5      0x870 ./User/SerialWombatPinModes/watchdog.o
- .debug_info    0x0000000000008b65     0x1fe6 ./User/DMA_IO.o
- .debug_info    0x000000000000ab4b      0x991 ./User/ch32v00x_it.o
- .debug_info    0x000000000000b4dc     0x210a ./User/main.o
- .debug_info    0x000000000000d5e6     0x10e0 ./User/pinRegisters.o
- .debug_info    0x000000000000e6c6     0x1fe3 ./User/protocol.o
- .debug_info    0x00000000000106a9     0x113e ./User/queue.o
- .debug_info    0x00000000000117e7     0x1501 ./User/swmain.o
- .debug_info    0x0000000000012ce8      0xc1b ./User/system_ch32v00x.o
- .debug_info    0x0000000000013903     0x1122 ./User/timingResource.o
- .debug_info    0x0000000000014a25       0x22 ./Startup/startup_ch32v00x.o
- .debug_info    0x0000000000014a47     0x1526 ./Peripheral/src/ch32v00x_adc.o
- .debug_info    0x0000000000015f6d      0xd17 ./Peripheral/src/ch32v00x_dma.o
- .debug_info    0x0000000000016c84     0x1481 ./Peripheral/src/ch32v00x_flash.o
- .debug_info    0x0000000000018105     0x1034 ./Peripheral/src/ch32v00x_gpio.o
- .debug_info    0x0000000000019139      0xdca ./Peripheral/src/ch32v00x_misc.o
- .debug_info    0x0000000000019f03     0x108c ./Peripheral/src/ch32v00x_rcc.o
- .debug_info    0x000000000001af8f     0x297f ./Peripheral/src/ch32v00x_tim.o
- .debug_info    0x000000000001d90e     0x1351 ./Peripheral/src/ch32v00x_usart.o
- .debug_info    0x000000000001ec5f      0xf37 ./Debug/debug.o
+.debug_info     0x0000000000000000    0x19ddb
+ .debug_info    0x0000000000000000      0x190 ./User/SerialWombatPinModes/asciiConversion.o
+ .debug_info    0x0000000000000190      0xf4d ./User/SerialWombatPinModes/digitalIO.o
+ .debug_info    0x00000000000010dd      0xb48 ./User/SerialWombatPinModes/inputProcess.o
+ .debug_info    0x0000000000001c25     0x1525 ./User/SerialWombatPinModes/outputScale.o
+ .debug_info    0x000000000000314a      0xe30 ./User/SerialWombatPinModes/pulseTimer.o
+ .debug_info    0x0000000000003f7a     0x1fe5 ./User/DMA_IO.o
+ .debug_info    0x0000000000005f5f      0x991 ./User/ch32v00x_it.o
+ .debug_info    0x00000000000068f0     0x246f ./User/main.o
+ .debug_info    0x0000000000008d5f     0x10e0 ./User/pinRegisters.o
+ .debug_info    0x0000000000009e3f     0x1ed5 ./User/protocol.o
+ .debug_info    0x000000000000bd14     0x113e ./User/queue.o
+ .debug_info    0x000000000000ce52     0x11fd ./User/swmain.o
+ .debug_info    0x000000000000e04f      0xc1b ./User/system_ch32v00x.o
+ .debug_info    0x000000000000ec6a       0x22 ./Startup/startup_ch32v00x.o
+ .debug_info    0x000000000000ec8c     0x1526 ./Peripheral/src/ch32v00x_adc.o
+ .debug_info    0x00000000000101b2      0xd17 ./Peripheral/src/ch32v00x_dma.o
+ .debug_info    0x0000000000010ec9     0x1481 ./Peripheral/src/ch32v00x_flash.o
+ .debug_info    0x000000000001234a     0x1034 ./Peripheral/src/ch32v00x_gpio.o
+ .debug_info    0x000000000001337e      0xdca ./Peripheral/src/ch32v00x_misc.o
+ .debug_info    0x0000000000014148     0x108c ./Peripheral/src/ch32v00x_rcc.o
+ .debug_info    0x00000000000151d4     0x297f ./Peripheral/src/ch32v00x_tim.o
+ .debug_info    0x0000000000017b53     0x1351 ./Peripheral/src/ch32v00x_usart.o
+ .debug_info    0x0000000000018ea4      0xf37 ./Debug/debug.o
 
-.debug_abbrev   0x0000000000000000     0x5467
- .debug_abbrev  0x0000000000000000      0x1dc ./User/SerialWombatPinModes/analogInput.o
- .debug_abbrev  0x00000000000001dc       0xe3 ./User/SerialWombatPinModes/asciiConversion.o
- .debug_abbrev  0x00000000000002bf      0x1db ./User/SerialWombatPinModes/digitalIO.o
- .debug_abbrev  0x000000000000049a      0x207 ./User/SerialWombatPinModes/hBridge.o
- .debug_abbrev  0x00000000000006a1      0x299 ./User/SerialWombatPinModes/inputProcess.o
- .debug_abbrev  0x000000000000093a      0x415 ./User/SerialWombatPinModes/outputScale.o
- .debug_abbrev  0x0000000000000d4f      0x1d3 ./User/SerialWombatPinModes/pinInputProcessor.o
- .debug_abbrev  0x0000000000000f22      0x1b2 ./User/SerialWombatPinModes/pwm.o
- .debug_abbrev  0x00000000000010d4      0x252 ./User/SerialWombatPinModes/quadEnc.o
- .debug_abbrev  0x0000000000001326      0x1fb ./User/SerialWombatPinModes/servo.o
- .debug_abbrev  0x0000000000001521       0x88 ./User/SerialWombatPinModes/swMath.o
- .debug_abbrev  0x00000000000015a9      0x13e ./User/SerialWombatPinModes/watchdog.o
- .debug_abbrev  0x00000000000016e7      0x48d ./User/DMA_IO.o
- .debug_abbrev  0x0000000000001b74      0x1e9 ./User/ch32v00x_it.o
- .debug_abbrev  0x0000000000001d5d      0x48d ./User/main.o
- .debug_abbrev  0x00000000000021ea      0x32e ./User/pinRegisters.o
- .debug_abbrev  0x0000000000002518      0x429 ./User/protocol.o
- .debug_abbrev  0x0000000000002941      0x401 ./User/queue.o
- .debug_abbrev  0x0000000000002d42      0x375 ./User/swmain.o
- .debug_abbrev  0x00000000000030b7      0x2d6 ./User/system_ch32v00x.o
- .debug_abbrev  0x000000000000338d      0x30f ./User/timingResource.o
- .debug_abbrev  0x000000000000369c       0x12 ./Startup/startup_ch32v00x.o
- .debug_abbrev  0x00000000000036ae      0x307 ./Peripheral/src/ch32v00x_adc.o
- .debug_abbrev  0x00000000000039b5      0x302 ./Peripheral/src/ch32v00x_dma.o
- .debug_abbrev  0x0000000000003cb7      0x3fa ./Peripheral/src/ch32v00x_flash.o
- .debug_abbrev  0x00000000000040b1      0x309 ./Peripheral/src/ch32v00x_gpio.o
- .debug_abbrev  0x00000000000043ba      0x2ea ./Peripheral/src/ch32v00x_misc.o
- .debug_abbrev  0x00000000000046a4      0x389 ./Peripheral/src/ch32v00x_rcc.o
- .debug_abbrev  0x0000000000004a2d      0x408 ./Peripheral/src/ch32v00x_tim.o
- .debug_abbrev  0x0000000000004e35      0x323 ./Peripheral/src/ch32v00x_usart.o
- .debug_abbrev  0x0000000000005158      0x30f ./Debug/debug.o
+.debug_abbrev   0x0000000000000000     0x45ef
+ .debug_abbrev  0x0000000000000000       0xe3 ./User/SerialWombatPinModes/asciiConversion.o
+ .debug_abbrev  0x00000000000000e3      0x1db ./User/SerialWombatPinModes/digitalIO.o
+ .debug_abbrev  0x00000000000002be      0x299 ./User/SerialWombatPinModes/inputProcess.o
+ .debug_abbrev  0x0000000000000557      0x415 ./User/SerialWombatPinModes/outputScale.o
+ .debug_abbrev  0x000000000000096c      0x214 ./User/SerialWombatPinModes/pulseTimer.o
+ .debug_abbrev  0x0000000000000b80      0x496 ./User/DMA_IO.o
+ .debug_abbrev  0x0000000000001016      0x1e9 ./User/ch32v00x_it.o
+ .debug_abbrev  0x00000000000011ff      0x4a7 ./User/main.o
+ .debug_abbrev  0x00000000000016a6      0x32e ./User/pinRegisters.o
+ .debug_abbrev  0x00000000000019d4      0x429 ./User/protocol.o
+ .debug_abbrev  0x0000000000001dfd      0x401 ./User/queue.o
+ .debug_abbrev  0x00000000000021fe      0x350 ./User/swmain.o
+ .debug_abbrev  0x000000000000254e      0x2d6 ./User/system_ch32v00x.o
+ .debug_abbrev  0x0000000000002824       0x12 ./Startup/startup_ch32v00x.o
+ .debug_abbrev  0x0000000000002836      0x307 ./Peripheral/src/ch32v00x_adc.o
+ .debug_abbrev  0x0000000000002b3d      0x302 ./Peripheral/src/ch32v00x_dma.o
+ .debug_abbrev  0x0000000000002e3f      0x3fa ./Peripheral/src/ch32v00x_flash.o
+ .debug_abbrev  0x0000000000003239      0x309 ./Peripheral/src/ch32v00x_gpio.o
+ .debug_abbrev  0x0000000000003542      0x2ea ./Peripheral/src/ch32v00x_misc.o
+ .debug_abbrev  0x000000000000382c      0x389 ./Peripheral/src/ch32v00x_rcc.o
+ .debug_abbrev  0x0000000000003bb5      0x408 ./Peripheral/src/ch32v00x_tim.o
+ .debug_abbrev  0x0000000000003fbd      0x323 ./Peripheral/src/ch32v00x_usart.o
+ .debug_abbrev  0x00000000000042e0      0x30f ./Debug/debug.o
 
-.debug_loc      0x0000000000000000     0x7138
- .debug_loc     0x0000000000000000       0x1e ./User/SerialWombatPinModes/analogInput.o
- .debug_loc     0x000000000000001e      0x253 ./User/SerialWombatPinModes/asciiConversion.o
- .debug_loc     0x0000000000000271       0x37 ./User/SerialWombatPinModes/digitalIO.o
- .debug_loc     0x00000000000002a8       0x90 ./User/SerialWombatPinModes/hBridge.o
- .debug_loc     0x0000000000000338      0x549 ./User/SerialWombatPinModes/inputProcess.o
- .debug_loc     0x0000000000000881      0x294 ./User/SerialWombatPinModes/outputScale.o
- .debug_loc     0x0000000000000b15       0x47 ./User/SerialWombatPinModes/pinInputProcessor.o
- .debug_loc     0x0000000000000b5c       0x13 ./User/SerialWombatPinModes/pwm.o
- .debug_loc     0x0000000000000b6f      0x19e ./User/SerialWombatPinModes/quadEnc.o
- .debug_loc     0x0000000000000d0d       0x88 ./User/SerialWombatPinModes/servo.o
- .debug_loc     0x0000000000000d95      0x1ae ./User/SerialWombatPinModes/swMath.o
- .debug_loc     0x0000000000000f43      0xc7d ./User/DMA_IO.o
- .debug_loc     0x0000000000001bc0      0x199 ./User/main.o
- .debug_loc     0x0000000000001d59      0x337 ./User/pinRegisters.o
- .debug_loc     0x0000000000002090      0x473 ./User/protocol.o
- .debug_loc     0x0000000000002503      0x547 ./User/queue.o
- .debug_loc     0x0000000000002a4a       0x19 ./User/swmain.o
- .debug_loc     0x0000000000002a63       0x83 ./User/system_ch32v00x.o
- .debug_loc     0x0000000000002ae6      0x245 ./User/timingResource.o
- .debug_loc     0x0000000000002d2b      0x9fa ./Peripheral/src/ch32v00x_adc.o
- .debug_loc     0x0000000000003725      0x14a ./Peripheral/src/ch32v00x_dma.o
- .debug_loc     0x000000000000386f      0xad0 ./Peripheral/src/ch32v00x_flash.o
- .debug_loc     0x000000000000433f      0x5e2 ./Peripheral/src/ch32v00x_gpio.o
- .debug_loc     0x0000000000004921       0x2d ./Peripheral/src/ch32v00x_misc.o
- .debug_loc     0x000000000000494e      0x5e3 ./Peripheral/src/ch32v00x_rcc.o
- .debug_loc     0x0000000000004f31     0x1936 ./Peripheral/src/ch32v00x_tim.o
- .debug_loc     0x0000000000006867      0x735 ./Peripheral/src/ch32v00x_usart.o
- .debug_loc     0x0000000000006f9c      0x19c ./Debug/debug.o
+.debug_loc      0x0000000000000000     0x6d69
+ .debug_loc     0x0000000000000000      0x253 ./User/SerialWombatPinModes/asciiConversion.o
+ .debug_loc     0x0000000000000253       0x37 ./User/SerialWombatPinModes/digitalIO.o
+ .debug_loc     0x000000000000028a      0x549 ./User/SerialWombatPinModes/inputProcess.o
+ .debug_loc     0x00000000000007d3      0x294 ./User/SerialWombatPinModes/outputScale.o
+ .debug_loc     0x0000000000000a67      0x1c4 ./User/SerialWombatPinModes/pulseTimer.o
+ .debug_loc     0x0000000000000c2b      0xd9f ./User/DMA_IO.o
+ .debug_loc     0x00000000000019ca      0x20b ./User/main.o
+ .debug_loc     0x0000000000001bd5      0x337 ./User/pinRegisters.o
+ .debug_loc     0x0000000000001f0c      0x473 ./User/protocol.o
+ .debug_loc     0x000000000000237f      0x547 ./User/queue.o
+ .debug_loc     0x00000000000028c6       0x13 ./User/swmain.o
+ .debug_loc     0x00000000000028d9       0x83 ./User/system_ch32v00x.o
+ .debug_loc     0x000000000000295c      0x9fa ./Peripheral/src/ch32v00x_adc.o
+ .debug_loc     0x0000000000003356      0x14a ./Peripheral/src/ch32v00x_dma.o
+ .debug_loc     0x00000000000034a0      0xad0 ./Peripheral/src/ch32v00x_flash.o
+ .debug_loc     0x0000000000003f70      0x5e2 ./Peripheral/src/ch32v00x_gpio.o
+ .debug_loc     0x0000000000004552       0x2d ./Peripheral/src/ch32v00x_misc.o
+ .debug_loc     0x000000000000457f      0x5e3 ./Peripheral/src/ch32v00x_rcc.o
+ .debug_loc     0x0000000000004b62     0x1936 ./Peripheral/src/ch32v00x_tim.o
+ .debug_loc     0x0000000000006498      0x735 ./Peripheral/src/ch32v00x_usart.o
+ .debug_loc     0x0000000000006bcd      0x19c ./Debug/debug.o
 
-.debug_aranges  0x0000000000000000      0xe40
+.debug_aranges  0x0000000000000000      0xcc8
  .debug_aranges
-                0x0000000000000000       0x30 ./User/SerialWombatPinModes/analogInput.o
+                0x0000000000000000       0x38 ./User/SerialWombatPinModes/asciiConversion.o
  .debug_aranges
-                0x0000000000000030       0x38 ./User/SerialWombatPinModes/asciiConversion.o
+                0x0000000000000038       0x28 ./User/SerialWombatPinModes/digitalIO.o
  .debug_aranges
-                0x0000000000000068       0x28 ./User/SerialWombatPinModes/digitalIO.o
+                0x0000000000000060       0x30 ./User/SerialWombatPinModes/inputProcess.o
  .debug_aranges
-                0x0000000000000090       0x28 ./User/SerialWombatPinModes/hBridge.o
+                0x0000000000000090       0x38 ./User/SerialWombatPinModes/outputScale.o
  .debug_aranges
-                0x00000000000000b8       0x30 ./User/SerialWombatPinModes/inputProcess.o
+                0x00000000000000c8       0x28 ./User/SerialWombatPinModes/pulseTimer.o
  .debug_aranges
-                0x00000000000000e8       0x38 ./User/SerialWombatPinModes/outputScale.o
+                0x00000000000000f0      0x188 ./User/DMA_IO.o
  .debug_aranges
-                0x0000000000000120       0x28 ./User/SerialWombatPinModes/pinInputProcessor.o
+                0x0000000000000278       0x28 ./User/ch32v00x_it.o
  .debug_aranges
-                0x0000000000000148       0x30 ./User/SerialWombatPinModes/pwm.o
+                0x00000000000002a0       0x30 ./User/main.o
  .debug_aranges
-                0x0000000000000178       0x30 ./User/SerialWombatPinModes/quadEnc.o
+                0x00000000000002d0       0x48 ./User/pinRegisters.o
  .debug_aranges
-                0x00000000000001a8       0x30 ./User/SerialWombatPinModes/servo.o
+                0x0000000000000318       0x40 ./User/protocol.o
  .debug_aranges
-                0x00000000000001d8       0x20 ./User/SerialWombatPinModes/swMath.o
+                0x0000000000000358       0x68 ./User/queue.o
  .debug_aranges
-                0x00000000000001f8       0x28 ./User/SerialWombatPinModes/watchdog.o
+                0x00000000000003c0       0x40 ./User/swmain.o
  .debug_aranges
-                0x0000000000000220      0x188 ./User/DMA_IO.o
+                0x0000000000000400       0x28 ./User/system_ch32v00x.o
  .debug_aranges
-                0x00000000000003a8       0x28 ./User/ch32v00x_it.o
+                0x0000000000000428       0x30 ./Startup/startup_ch32v00x.o
  .debug_aranges
-                0x00000000000003d0       0x38 ./User/main.o
+                0x0000000000000458      0x138 ./Peripheral/src/ch32v00x_adc.o
  .debug_aranges
-                0x0000000000000408       0x48 ./User/pinRegisters.o
+                0x0000000000000590       0x60 ./Peripheral/src/ch32v00x_dma.o
  .debug_aranges
-                0x0000000000000450       0x40 ./User/protocol.o
+                0x00000000000005f0      0x110 ./Peripheral/src/ch32v00x_flash.o
  .debug_aranges
-                0x0000000000000490       0x68 ./User/queue.o
+                0x0000000000000700       0x98 ./Peripheral/src/ch32v00x_gpio.o
  .debug_aranges
-                0x00000000000004f8       0x40 ./User/swmain.o
+                0x0000000000000798       0x28 ./Peripheral/src/ch32v00x_misc.o
  .debug_aranges
-                0x0000000000000538       0x28 ./User/system_ch32v00x.o
+                0x00000000000007c0       0xe0 ./Peripheral/src/ch32v00x_rcc.o
  .debug_aranges
-                0x0000000000000560       0x40 ./User/timingResource.o
+                0x00000000000008a0      0x2d8 ./Peripheral/src/ch32v00x_tim.o
  .debug_aranges
-                0x00000000000005a0       0x30 ./Startup/startup_ch32v00x.o
+                0x0000000000000b78      0x100 ./Peripheral/src/ch32v00x_usart.o
  .debug_aranges
-                0x00000000000005d0      0x138 ./Peripheral/src/ch32v00x_adc.o
- .debug_aranges
-                0x0000000000000708       0x60 ./Peripheral/src/ch32v00x_dma.o
- .debug_aranges
-                0x0000000000000768      0x110 ./Peripheral/src/ch32v00x_flash.o
- .debug_aranges
-                0x0000000000000878       0x98 ./Peripheral/src/ch32v00x_gpio.o
- .debug_aranges
-                0x0000000000000910       0x28 ./Peripheral/src/ch32v00x_misc.o
- .debug_aranges
-                0x0000000000000938       0xe0 ./Peripheral/src/ch32v00x_rcc.o
- .debug_aranges
-                0x0000000000000a18      0x2d8 ./Peripheral/src/ch32v00x_tim.o
- .debug_aranges
-                0x0000000000000cf0      0x100 ./Peripheral/src/ch32v00x_usart.o
- .debug_aranges
-                0x0000000000000df0       0x50 ./Debug/debug.o
+                0x0000000000000c78       0x50 ./Debug/debug.o
 
-.debug_ranges   0x0000000000000000      0xfc0
- .debug_ranges  0x0000000000000000       0x20 ./User/SerialWombatPinModes/analogInput.o
- .debug_ranges  0x0000000000000020       0x28 ./User/SerialWombatPinModes/asciiConversion.o
- .debug_ranges  0x0000000000000048       0x30 ./User/SerialWombatPinModes/digitalIO.o
- .debug_ranges  0x0000000000000078       0x48 ./User/SerialWombatPinModes/hBridge.o
- .debug_ranges  0x00000000000000c0       0x80 ./User/SerialWombatPinModes/inputProcess.o
- .debug_ranges  0x0000000000000140       0xc0 ./User/SerialWombatPinModes/outputScale.o
- .debug_ranges  0x0000000000000200       0x18 ./User/SerialWombatPinModes/pinInputProcessor.o
- .debug_ranges  0x0000000000000218       0x20 ./User/SerialWombatPinModes/pwm.o
- .debug_ranges  0x0000000000000238       0x20 ./User/SerialWombatPinModes/quadEnc.o
- .debug_ranges  0x0000000000000258       0x20 ./User/SerialWombatPinModes/servo.o
- .debug_ranges  0x0000000000000278       0x10 ./User/SerialWombatPinModes/swMath.o
- .debug_ranges  0x0000000000000288       0x18 ./User/SerialWombatPinModes/watchdog.o
- .debug_ranges  0x00000000000002a0      0x200 ./User/DMA_IO.o
- .debug_ranges  0x00000000000004a0       0x18 ./User/ch32v00x_it.o
- .debug_ranges  0x00000000000004b8       0x70 ./User/main.o
- .debug_ranges  0x0000000000000528       0x70 ./User/pinRegisters.o
- .debug_ranges  0x0000000000000598       0xd8 ./User/protocol.o
- .debug_ranges  0x0000000000000670       0x70 ./User/queue.o
- .debug_ranges  0x00000000000006e0       0x30 ./User/swmain.o
- .debug_ranges  0x0000000000000710       0x18 ./User/system_ch32v00x.o
- .debug_ranges  0x0000000000000728       0x30 ./User/timingResource.o
- .debug_ranges  0x0000000000000758       0x28 ./Startup/startup_ch32v00x.o
- .debug_ranges  0x0000000000000780      0x128 ./Peripheral/src/ch32v00x_adc.o
- .debug_ranges  0x00000000000008a8       0x50 ./Peripheral/src/ch32v00x_dma.o
- .debug_ranges  0x00000000000008f8      0x100 ./Peripheral/src/ch32v00x_flash.o
- .debug_ranges  0x00000000000009f8       0x88 ./Peripheral/src/ch32v00x_gpio.o
- .debug_ranges  0x0000000000000a80       0x48 ./Peripheral/src/ch32v00x_misc.o
- .debug_ranges  0x0000000000000ac8       0xd0 ./Peripheral/src/ch32v00x_rcc.o
- .debug_ranges  0x0000000000000b98      0x2f8 ./Peripheral/src/ch32v00x_tim.o
- .debug_ranges  0x0000000000000e90       0xf0 ./Peripheral/src/ch32v00x_usart.o
- .debug_ranges  0x0000000000000f80       0x40 ./Debug/debug.o
+.debug_ranges   0x0000000000000000      0xf28
+ .debug_ranges  0x0000000000000000       0x28 ./User/SerialWombatPinModes/asciiConversion.o
+ .debug_ranges  0x0000000000000028       0x30 ./User/SerialWombatPinModes/digitalIO.o
+ .debug_ranges  0x0000000000000058       0x80 ./User/SerialWombatPinModes/inputProcess.o
+ .debug_ranges  0x00000000000000d8       0xc0 ./User/SerialWombatPinModes/outputScale.o
+ .debug_ranges  0x0000000000000198       0x80 ./User/SerialWombatPinModes/pulseTimer.o
+ .debug_ranges  0x0000000000000218      0x1f8 ./User/DMA_IO.o
+ .debug_ranges  0x0000000000000410       0x18 ./User/ch32v00x_it.o
+ .debug_ranges  0x0000000000000428       0x98 ./User/main.o
+ .debug_ranges  0x00000000000004c0       0x70 ./User/pinRegisters.o
+ .debug_ranges  0x0000000000000530       0xd8 ./User/protocol.o
+ .debug_ranges  0x0000000000000608       0x70 ./User/queue.o
+ .debug_ranges  0x0000000000000678       0x30 ./User/swmain.o
+ .debug_ranges  0x00000000000006a8       0x18 ./User/system_ch32v00x.o
+ .debug_ranges  0x00000000000006c0       0x28 ./Startup/startup_ch32v00x.o
+ .debug_ranges  0x00000000000006e8      0x128 ./Peripheral/src/ch32v00x_adc.o
+ .debug_ranges  0x0000000000000810       0x50 ./Peripheral/src/ch32v00x_dma.o
+ .debug_ranges  0x0000000000000860      0x100 ./Peripheral/src/ch32v00x_flash.o
+ .debug_ranges  0x0000000000000960       0x88 ./Peripheral/src/ch32v00x_gpio.o
+ .debug_ranges  0x00000000000009e8       0x48 ./Peripheral/src/ch32v00x_misc.o
+ .debug_ranges  0x0000000000000a30       0xd0 ./Peripheral/src/ch32v00x_rcc.o
+ .debug_ranges  0x0000000000000b00      0x2f8 ./Peripheral/src/ch32v00x_tim.o
+ .debug_ranges  0x0000000000000df8       0xf0 ./Peripheral/src/ch32v00x_usart.o
+ .debug_ranges  0x0000000000000ee8       0x40 ./Debug/debug.o
 
-.debug_line     0x0000000000000000    0x16548
- .debug_line    0x0000000000000000      0x4e3 ./User/SerialWombatPinModes/analogInput.o
- .debug_line    0x00000000000004e3      0x5c2 ./User/SerialWombatPinModes/asciiConversion.o
- .debug_line    0x0000000000000aa5      0x51b ./User/SerialWombatPinModes/digitalIO.o
- .debug_line    0x0000000000000fc0      0x99b ./User/SerialWombatPinModes/hBridge.o
- .debug_line    0x000000000000195b      0xd7b ./User/SerialWombatPinModes/inputProcess.o
- .debug_line    0x00000000000026d6     0x130d ./User/SerialWombatPinModes/outputScale.o
- .debug_line    0x00000000000039e3      0x3b1 ./User/SerialWombatPinModes/pinInputProcessor.o
- .debug_line    0x0000000000003d94      0x4f0 ./User/SerialWombatPinModes/pwm.o
- .debug_line    0x0000000000004284      0xbc8 ./User/SerialWombatPinModes/quadEnc.o
- .debug_line    0x0000000000004e4c      0x704 ./User/SerialWombatPinModes/servo.o
- .debug_line    0x0000000000005550      0x1d0 ./User/SerialWombatPinModes/swMath.o
- .debug_line    0x0000000000005720      0x458 ./User/SerialWombatPinModes/watchdog.o
- .debug_line    0x0000000000005b78     0x1cd8 ./User/DMA_IO.o
- .debug_line    0x0000000000007850      0x285 ./User/ch32v00x_it.o
- .debug_line    0x0000000000007ad5      0xd0a ./User/main.o
- .debug_line    0x00000000000087df      0x818 ./User/pinRegisters.o
- .debug_line    0x0000000000008ff7     0x16ce ./User/protocol.o
- .debug_line    0x000000000000a6c5      0x9e2 ./User/queue.o
- .debug_line    0x000000000000b0a7      0x724 ./User/swmain.o
- .debug_line    0x000000000000b7cb      0x5c0 ./User/system_ch32v00x.o
- .debug_line    0x000000000000bd8b      0x672 ./User/timingResource.o
- .debug_line    0x000000000000c3fd      0x112 ./Startup/startup_ch32v00x.o
- .debug_line    0x000000000000c50f     0x14a3 ./Peripheral/src/ch32v00x_adc.o
- .debug_line    0x000000000000d9b2      0x7fe ./Peripheral/src/ch32v00x_dma.o
- .debug_line    0x000000000000e1b0     0x1c90 ./Peripheral/src/ch32v00x_flash.o
- .debug_line    0x000000000000fe40      0xc5e ./Peripheral/src/ch32v00x_gpio.o
- .debug_line    0x0000000000010a9e      0x43e ./Peripheral/src/ch32v00x_misc.o
- .debug_line    0x0000000000010edc      0xe65 ./Peripheral/src/ch32v00x_rcc.o
- .debug_line    0x0000000000011d41     0x30c0 ./Peripheral/src/ch32v00x_tim.o
- .debug_line    0x0000000000014e01      0xf6f ./Peripheral/src/ch32v00x_usart.o
- .debug_line    0x0000000000015d70      0x7d8 ./Debug/debug.o
+.debug_line     0x0000000000000000    0x13a51
+ .debug_line    0x0000000000000000      0x5c2 ./User/SerialWombatPinModes/asciiConversion.o
+ .debug_line    0x00000000000005c2      0x51b ./User/SerialWombatPinModes/digitalIO.o
+ .debug_line    0x0000000000000add      0xd7b ./User/SerialWombatPinModes/inputProcess.o
+ .debug_line    0x0000000000001858     0x130d ./User/SerialWombatPinModes/outputScale.o
+ .debug_line    0x0000000000002b65      0xafa ./User/SerialWombatPinModes/pulseTimer.o
+ .debug_line    0x000000000000365f     0x1c40 ./User/DMA_IO.o
+ .debug_line    0x000000000000529f      0x285 ./User/ch32v00x_it.o
+ .debug_line    0x0000000000005524      0xfc6 ./User/main.o
+ .debug_line    0x00000000000064ea      0x818 ./User/pinRegisters.o
+ .debug_line    0x0000000000006d02     0x1657 ./User/protocol.o
+ .debug_line    0x0000000000008359      0x9e2 ./User/queue.o
+ .debug_line    0x0000000000008d3b      0x60b ./User/swmain.o
+ .debug_line    0x0000000000009346      0x5c0 ./User/system_ch32v00x.o
+ .debug_line    0x0000000000009906      0x112 ./Startup/startup_ch32v00x.o
+ .debug_line    0x0000000000009a18     0x14a3 ./Peripheral/src/ch32v00x_adc.o
+ .debug_line    0x000000000000aebb      0x7fe ./Peripheral/src/ch32v00x_dma.o
+ .debug_line    0x000000000000b6b9     0x1c90 ./Peripheral/src/ch32v00x_flash.o
+ .debug_line    0x000000000000d349      0xc5e ./Peripheral/src/ch32v00x_gpio.o
+ .debug_line    0x000000000000dfa7      0x43e ./Peripheral/src/ch32v00x_misc.o
+ .debug_line    0x000000000000e3e5      0xe65 ./Peripheral/src/ch32v00x_rcc.o
+ .debug_line    0x000000000000f24a     0x30c0 ./Peripheral/src/ch32v00x_tim.o
+ .debug_line    0x000000000001230a      0xf6f ./Peripheral/src/ch32v00x_usart.o
+ .debug_line    0x0000000000013279      0x7d8 ./Debug/debug.o
 
-.debug_str      0x0000000000000000     0x61eb
- .debug_str     0x0000000000000000     0x16e0 ./User/SerialWombatPinModes/analogInput.o
-                                       0x1764 (size before relaxing)
- .debug_str     0x00000000000016e0       0x74 ./User/SerialWombatPinModes/asciiConversion.o
+.debug_str      0x0000000000000000     0x5be4
+ .debug_str     0x0000000000000000      0x1e8 ./User/SerialWombatPinModes/asciiConversion.o
                                         0x234 (size before relaxing)
- .debug_str     0x0000000000001754      0x2b0 ./User/SerialWombatPinModes/digitalIO.o
+ .debug_str     0x00000000000001e8     0x1764 ./User/SerialWombatPinModes/digitalIO.o
                                        0x198c (size before relaxing)
- .debug_str     0x0000000000001a04      0x39c ./User/SerialWombatPinModes/hBridge.o
-                                       0x1aa9 (size before relaxing)
- .debug_str     0x0000000000001da0      0x1a4 ./User/SerialWombatPinModes/inputProcess.o
+ .debug_str     0x000000000000194c      0x1a9 ./User/SerialWombatPinModes/inputProcess.o
                                         0xe4c (size before relaxing)
- .debug_str     0x0000000000001f44      0x693 ./User/SerialWombatPinModes/outputScale.o
+ .debug_str     0x0000000000001af5      0x69f ./User/SerialWombatPinModes/outputScale.o
                                        0x1326 (size before relaxing)
- .debug_str     0x00000000000025d7       0xc1 ./User/SerialWombatPinModes/pinInputProcessor.o
-                                       0x177a (size before relaxing)
- .debug_str     0x0000000000002698       0x5a ./User/SerialWombatPinModes/pwm.o
-                                       0x19bd (size before relaxing)
- .debug_str     0x00000000000026f2      0x1b6 ./User/SerialWombatPinModes/quadEnc.o
-                                       0x18c3 (size before relaxing)
- .debug_str     0x00000000000028a8      0x12c ./User/SerialWombatPinModes/servo.o
-                                       0x1a75 (size before relaxing)
- .debug_str     0x00000000000029d4       0x2b ./User/SerialWombatPinModes/swMath.o
-                                        0x1f7 (size before relaxing)
- .debug_str     0x00000000000029ff       0xdf ./User/SerialWombatPinModes/watchdog.o
-                                       0x1560 (size before relaxing)
- .debug_str     0x0000000000002ade      0x417 ./User/DMA_IO.o
-                                        0xddb (size before relaxing)
- .debug_str     0x0000000000002ef5       0x40 ./User/ch32v00x_it.o
+ .debug_str     0x0000000000002194      0x27b ./User/SerialWombatPinModes/pulseTimer.o
+                                       0x1946 (size before relaxing)
+ .debug_str     0x000000000000240f      0x4d7 ./User/DMA_IO.o
+                                        0xdb6 (size before relaxing)
+ .debug_str     0x00000000000028e6       0x40 ./User/ch32v00x_it.o
                                         0x5f3 (size before relaxing)
- .debug_str     0x0000000000002f35      0x929 ./User/main.o
-                                       0x1274 (size before relaxing)
- .debug_str     0x000000000000385e      0x5c3 ./User/pinRegisters.o
+ .debug_str     0x0000000000002926      0xa46 ./User/main.o
+                                       0x13a8 (size before relaxing)
+ .debug_str     0x000000000000336c      0x5d5 ./User/pinRegisters.o
                                         0xd89 (size before relaxing)
- .debug_str     0x0000000000003e21      0x490 ./User/protocol.o
-                                       0x1fd8 (size before relaxing)
- .debug_str     0x00000000000042b1      0x128 ./User/queue.o
+ .debug_str     0x0000000000003941      0x4a0 ./User/protocol.o
+                                       0x1f88 (size before relaxing)
+ .debug_str     0x0000000000003de1      0x128 ./User/queue.o
                                         0x9c5 (size before relaxing)
- .debug_str     0x00000000000043d9       0x7b ./User/swmain.o
-                                        0xe00 (size before relaxing)
- .debug_str     0x0000000000004454       0x9a ./User/system_ch32v00x.o
+ .debug_str     0x0000000000003f09       0x68 ./User/swmain.o
+                                        0xcba (size before relaxing)
+ .debug_str     0x0000000000003f71       0x9a ./User/system_ch32v00x.o
                                         0x71a (size before relaxing)
- .debug_str     0x00000000000044ee       0x59 ./User/timingResource.o
-                                        0xbf1 (size before relaxing)
- .debug_str     0x0000000000004547       0x2a ./Startup/startup_ch32v00x.o
+ .debug_str     0x000000000000400b       0x2a ./Startup/startup_ch32v00x.o
                                          0x83 (size before relaxing)
- .debug_str     0x0000000000004571      0x3c9 ./Peripheral/src/ch32v00x_adc.o
+ .debug_str     0x0000000000004035      0x3c9 ./Peripheral/src/ch32v00x_adc.o
                                         0xba9 (size before relaxing)
- .debug_str     0x000000000000493a      0x105 ./Peripheral/src/ch32v00x_dma.o
+ .debug_str     0x00000000000043fe      0x105 ./Peripheral/src/ch32v00x_dma.o
                                         0x812 (size before relaxing)
- .debug_str     0x0000000000004a3f      0x426 ./Peripheral/src/ch32v00x_flash.o
+ .debug_str     0x0000000000004503      0x426 ./Peripheral/src/ch32v00x_flash.o
                                         0xad4 (size before relaxing)
- .debug_str     0x0000000000004e65      0x1c5 ./Peripheral/src/ch32v00x_gpio.o
+ .debug_str     0x0000000000004929      0x1c5 ./Peripheral/src/ch32v00x_gpio.o
                                         0x962 (size before relaxing)
- .debug_str     0x000000000000502a       0x83 ./Peripheral/src/ch32v00x_misc.o
+ .debug_str     0x0000000000004aee       0x83 ./Peripheral/src/ch32v00x_misc.o
                                         0x92a (size before relaxing)
- .debug_str     0x00000000000050ad      0x2ab ./Peripheral/src/ch32v00x_rcc.o
+ .debug_str     0x0000000000004b71      0x294 ./Peripheral/src/ch32v00x_rcc.o
                                         0x9d0 (size before relaxing)
- .debug_str     0x0000000000005358      0xa0f ./Peripheral/src/ch32v00x_tim.o
+ .debug_str     0x0000000000004e05      0x95b ./Peripheral/src/ch32v00x_tim.o
                                        0x128a (size before relaxing)
- .debug_str     0x0000000000005d67      0x3e6 ./Peripheral/src/ch32v00x_usart.o
+ .debug_str     0x0000000000005760      0x3e6 ./Peripheral/src/ch32v00x_usart.o
                                         0xb1f (size before relaxing)
- .debug_str     0x000000000000614d       0x9e ./Debug/debug.o
+ .debug_str     0x0000000000005b46       0x9e ./Debug/debug.o
                                         0x920 (size before relaxing)
 
 .comment        0x0000000000000000       0x33
- .comment       0x0000000000000000       0x33 ./User/SerialWombatPinModes/analogInput.o
+ .comment       0x0000000000000000       0x33 ./User/SerialWombatPinModes/asciiConversion.o
                                          0x34 (size before relaxing)
- .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/asciiConversion.o
  .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/digitalIO.o
- .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/hBridge.o
  .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/inputProcess.o
  .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/outputScale.o
- .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/pinInputProcessor.o
- .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/pwm.o
- .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/quadEnc.o
- .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/servo.o
- .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/swMath.o
- .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/watchdog.o
+ .comment       0x0000000000000033       0x34 ./User/SerialWombatPinModes/pulseTimer.o
  .comment       0x0000000000000033       0x34 ./User/DMA_IO.o
  .comment       0x0000000000000033       0x34 ./User/ch32v00x_it.o
  .comment       0x0000000000000033       0x34 ./User/main.o
@@ -2467,7 +2419,6 @@ OUTPUT(SerialWombat8B.elf elf32-littleriscv)
  .comment       0x0000000000000033       0x34 ./User/queue.o
  .comment       0x0000000000000033       0x34 ./User/swmain.o
  .comment       0x0000000000000033       0x34 ./User/system_ch32v00x.o
- .comment       0x0000000000000033       0x34 ./User/timingResource.o
  .comment       0x0000000000000033       0x34 ./Peripheral/src/ch32v00x_adc.o
  .comment       0x0000000000000033       0x34 ./Peripheral/src/ch32v00x_dma.o
  .comment       0x0000000000000033       0x34 ./Peripheral/src/ch32v00x_flash.o
@@ -2478,35 +2429,27 @@ OUTPUT(SerialWombat8B.elf elf32-littleriscv)
  .comment       0x0000000000000033       0x34 ./Peripheral/src/ch32v00x_usart.o
  .comment       0x0000000000000033       0x34 ./Debug/debug.o
 
-.debug_frame    0x0000000000000000     0x20d0
- .debug_frame   0x0000000000000000       0x70 ./User/SerialWombatPinModes/analogInput.o
- .debug_frame   0x0000000000000070       0x68 ./User/SerialWombatPinModes/asciiConversion.o
- .debug_frame   0x00000000000000d8       0x54 ./User/SerialWombatPinModes/digitalIO.o
- .debug_frame   0x000000000000012c       0x5c ./User/SerialWombatPinModes/hBridge.o
- .debug_frame   0x0000000000000188       0x68 ./User/SerialWombatPinModes/inputProcess.o
- .debug_frame   0x00000000000001f0       0x94 ./User/SerialWombatPinModes/outputScale.o
- .debug_frame   0x0000000000000284       0x50 ./User/SerialWombatPinModes/pinInputProcessor.o
- .debug_frame   0x00000000000002d4       0x70 ./User/SerialWombatPinModes/pwm.o
- .debug_frame   0x0000000000000344       0x78 ./User/SerialWombatPinModes/quadEnc.o
- .debug_frame   0x00000000000003bc       0x78 ./User/SerialWombatPinModes/servo.o
- .debug_frame   0x0000000000000434       0x3c ./User/SerialWombatPinModes/swMath.o
- .debug_frame   0x0000000000000470       0x50 ./User/SerialWombatPinModes/watchdog.o
- .debug_frame   0x00000000000004c0      0x4bc ./User/DMA_IO.o
- .debug_frame   0x000000000000097c       0x30 ./User/ch32v00x_it.o
- .debug_frame   0x00000000000009ac       0x80 ./User/main.o
- .debug_frame   0x0000000000000a2c       0x84 ./User/pinRegisters.o
- .debug_frame   0x0000000000000ab0       0xc0 ./User/protocol.o
- .debug_frame   0x0000000000000b70       0xf0 ./User/queue.o
- .debug_frame   0x0000000000000c60       0x94 ./User/swmain.o
- .debug_frame   0x0000000000000cf4       0x50 ./User/system_ch32v00x.o
- .debug_frame   0x0000000000000d44       0x8c ./User/timingResource.o
- .debug_frame   0x0000000000000dd0      0x26c ./Peripheral/src/ch32v00x_adc.o
- .debug_frame   0x000000000000103c       0xcc ./Peripheral/src/ch32v00x_dma.o
- .debug_frame   0x0000000000001108      0x324 ./Peripheral/src/ch32v00x_flash.o
- .debug_frame   0x000000000000142c      0x154 ./Peripheral/src/ch32v00x_gpio.o
- .debug_frame   0x0000000000001580       0x30 ./Peripheral/src/ch32v00x_misc.o
- .debug_frame   0x00000000000015b0      0x1dc ./Peripheral/src/ch32v00x_rcc.o
- .debug_frame   0x000000000000178c      0x624 ./Peripheral/src/ch32v00x_tim.o
- .debug_frame   0x0000000000001db0      0x204 ./Peripheral/src/ch32v00x_usart.o
- .debug_frame   0x0000000000001fb4       0xe4 ./Debug/debug.o
- .debug_frame   0x0000000000002098       0x38 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libg_nano.a(lib_a-memcpy.o)
+.debug_frame    0x0000000000000000     0x1d88
+ .debug_frame   0x0000000000000000       0x68 ./User/SerialWombatPinModes/asciiConversion.o
+ .debug_frame   0x0000000000000068       0x54 ./User/SerialWombatPinModes/digitalIO.o
+ .debug_frame   0x00000000000000bc       0x68 ./User/SerialWombatPinModes/inputProcess.o
+ .debug_frame   0x0000000000000124       0x94 ./User/SerialWombatPinModes/outputScale.o
+ .debug_frame   0x00000000000001b8       0x60 ./User/SerialWombatPinModes/pulseTimer.o
+ .debug_frame   0x0000000000000218      0x4d0 ./User/DMA_IO.o
+ .debug_frame   0x00000000000006e8       0x30 ./User/ch32v00x_it.o
+ .debug_frame   0x0000000000000718       0x58 ./User/main.o
+ .debug_frame   0x0000000000000770       0x84 ./User/pinRegisters.o
+ .debug_frame   0x00000000000007f4       0xc0 ./User/protocol.o
+ .debug_frame   0x00000000000008b4       0xf0 ./User/queue.o
+ .debug_frame   0x00000000000009a4       0x94 ./User/swmain.o
+ .debug_frame   0x0000000000000a38       0x50 ./User/system_ch32v00x.o
+ .debug_frame   0x0000000000000a88      0x26c ./Peripheral/src/ch32v00x_adc.o
+ .debug_frame   0x0000000000000cf4       0xcc ./Peripheral/src/ch32v00x_dma.o
+ .debug_frame   0x0000000000000dc0      0x324 ./Peripheral/src/ch32v00x_flash.o
+ .debug_frame   0x00000000000010e4      0x154 ./Peripheral/src/ch32v00x_gpio.o
+ .debug_frame   0x0000000000001238       0x30 ./Peripheral/src/ch32v00x_misc.o
+ .debug_frame   0x0000000000001268      0x1dc ./Peripheral/src/ch32v00x_rcc.o
+ .debug_frame   0x0000000000001444      0x624 ./Peripheral/src/ch32v00x_tim.o
+ .debug_frame   0x0000000000001a68      0x204 ./Peripheral/src/ch32v00x_usart.o
+ .debug_frame   0x0000000000001c6c       0xe4 ./Debug/debug.o
+ .debug_frame   0x0000000000001d50       0x38 c:/mounriver/mounriver_studio/toolchain/risc-v embedded gcc/bin/../lib/gcc/riscv-none-embed/8.2.0/../../../../riscv-none-embed/lib/rv32ecxw/ilp32e\libg_nano.a(lib_a-memcpy.o)
