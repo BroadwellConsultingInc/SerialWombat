@@ -28,6 +28,19 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 
 #ifdef NOTDMAONLY
 timingResourceManager_t timingResources[TIMING_RESOURCE_NUMBER_OF_RESOURCES];
+uint32_t timingResourceForceDMAbitfield = 0; // Bitfield of bits
+
+void timingResourceForceDMA(uint8_t pin, bool forceDMA)
+{
+    if (forceDMA)
+    {
+        timingResourceForceDMAbitfield |= ((uint32_t)0x01)<<pin;
+    }
+    else
+    {
+        timingResourceForceDMAbitfield &= ~(((uint32_t)0x01)<<pin);
+    }
+}
 
 void timingResourceDefault(TIMING_RESOURCE_t resource)
 {
@@ -150,6 +163,10 @@ void timingResourceManagerInit()
 
 TIMING_RESOURCE_t timingResourceHighPulseClaim(TIMING_RESOURCE_t resource, pulse_output_t* pulse)
 {
+    if (timingResourceForceDMAbitfield & (((uint32_t)0x01)<<CurrentPin))
+    {
+        return (TIMING_RESOURCE_PORT_DMA);
+    }
 	if (!pinIsPPSCapable(CurrentPin))
 	{
 		if (resource < TIMING_RESOURCE_PORT_DMA || resource == TIMING_RESOURCE_ANY_HARDWARE_OC)
@@ -1448,7 +1465,7 @@ TIMING_RESOURCE_t timingResourceCounterClaim(TIMING_RESOURCE_t resource)
 		return (TIMING_RESOURCE_NONE);
 	}
 
-	if ((resource == TIMING_RESOURCE_MCCP1 || resource == TIMING_RESOURCE_ALL || resource == TIMING_RESOURCE_ANY_HARDWARE_OC) && (timingResources[TIMING_RESOURCE_MCCP1].resourceHolder == 0xFF || timingResources[TIMING_RESOURCE_MCCP1].resourceHolder == CurrentPin))
+	if ((resource == TIMING_RESOURCE_MCCP1 || resource == TIMING_RESOURCE_ANY_COUNTER) && (timingResources[TIMING_RESOURCE_MCCP1].resourceHolder == 0xFF || timingResources[TIMING_RESOURCE_MCCP1].resourceHolder == CurrentPin))
 	{
 		timingResources[TIMING_RESOURCE_MCCP1].resourceHolder = CurrentPin;
 		RPINR12bits.TCKIAR = pinPPSInputMap[CurrentPin];
@@ -1456,7 +1473,7 @@ TIMING_RESOURCE_t timingResourceCounterClaim(TIMING_RESOURCE_t resource)
 		CCP1CON1Lbits.CCPON = 1;
 		return (TIMING_RESOURCE_MCCP1);
 	}
-	if ((resource == TIMING_RESOURCE_MCCP2 || resource == TIMING_RESOURCE_ALL || resource == TIMING_RESOURCE_ANY_HARDWARE_OC) && (timingResources[TIMING_RESOURCE_MCCP2].resourceHolder == 0xFF || timingResources[TIMING_RESOURCE_MCCP2].resourceHolder == CurrentPin))
+	if ((resource == TIMING_RESOURCE_MCCP2 || resource == TIMING_RESOURCE_ANY_COUNTER) && (timingResources[TIMING_RESOURCE_MCCP2].resourceHolder == 0xFF || timingResources[TIMING_RESOURCE_MCCP2].resourceHolder == CurrentPin))
 	{
 		timingResources[TIMING_RESOURCE_MCCP2].resourceHolder = CurrentPin;
 		RPINR12bits.TCKIBR = pinPPSInputMap[CurrentPin];

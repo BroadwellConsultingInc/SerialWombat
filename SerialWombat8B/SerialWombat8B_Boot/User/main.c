@@ -22,7 +22,7 @@
  *
  */
 
-#include "debug.h"
+#include <ch32v00x.h>
 #include "serialWombat.h"
 #include <string.h>
 /* Global define */
@@ -52,15 +52,19 @@ vu8 val;
 #define CR_MER_Set                 ((uint32_t)0x00000004)
 #define CR_MER_Reset               ((uint32_t)0xFFFFFFFB)
 
+static void flashWait()
+{
+    while(FLASH->STATR & SR_BSY)
+                ;
+            FLASH->CTLR &= ~CR_PAGE_PG;
+}
 static void FProgram(u32 adr, u32* buf)
 {
 	adr &= 0xFFFFFFC0;
 	{// FLASH_BufReset_Small();
 		FLASH->CTLR |= CR_PAGE_PG;
 		FLASH->CTLR |= CR_BUF_RST;
-		while(FLASH->STATR & SR_BSY)
-			;
-		FLASH->CTLR &= ~CR_PAGE_PG;
+		flashWait();
 	}
 	for(int j=0;j<16;j++)
 	{
@@ -68,9 +72,7 @@ static void FProgram(u32 adr, u32* buf)
 		FLASH->CTLR |= CR_PAGE_PG;
 		*(__IO uint32_t *)(adr+4*j) = buf[j];
 		FLASH->CTLR |= CR_BUF_LOAD;
-		while(FLASH->STATR & SR_BSY)
-			;
-		FLASH->CTLR &= ~CR_PAGE_PG;
+		flashWait();
 	}
 
 	{//FLASH_ProgramPage_Fast(adr);
@@ -78,14 +80,11 @@ static void FProgram(u32 adr, u32* buf)
 		FLASH->CTLR |= CR_PAGE_PG;
 		FLASH->ADDR = adr;
 		FLASH->CTLR |= CR_STRT_Set;
-		while(FLASH->STATR & SR_BSY)
-			;
-		FLASH->CTLR &= ~CR_PAGE_PG;
+		flashWait();
 	}
 }
 
-uint16_t i2cAddress = (uint8_t)(0x60 *2);
-
+uint16_t i2cAddress;
 static void GPIO_Init_Small( GPIO_InitTypeDef *GPIO_InitStruct)
 {
 	uint32_t currentmode = 0x00, currentpin = 0x00, pinpos = 0x00, pos = 0x00;
@@ -135,6 +134,7 @@ static void determineAddress()
 	//GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0|GPIO_Pin_5|GPIO_Pin_6|GPIO_Pin_7;
 
 	//GPIO_Init_Small(&GPIO_InitStructure);
+    i2cAddress = (uint8_t)(0x60 *2);
 
 	if ((GPIOC->INDR & GPIO_Pin_0) == 0)
 	{
@@ -200,7 +200,7 @@ static void I2C_InitSmall()
 		I2C1->CTLR1 = tmpreg;
 	}
 
-	I2C1->OADDR1 = (I2C_AcknowledgedAddress_7bit | i2cAddress);
+	I2C1->OADDR1 = (I2C_AcknowledgedAddress_7bit | (i2cAddress * 2));
 
 	I2C1->CTLR1 |=CTLR1_PE_Set;// I2C_Cmd( I2C1, ENABLE );
 }
@@ -376,6 +376,15 @@ static void delayX()
  */
 int main(void)
 {
+    //Copied from SysInit
+ //Already set by reset   RCC->CTLR |= (uint32_t)0x00000001;
+    //  RCC->CFGR0 &= (uint32_t)0xF8FF0000;
+    //  RCC->CTLR &= (uint32_t)0xFEF6FFFF;
+    //  RCC->CTLR &= (uint32_t)0xFFFBFFFF;
+    //  RCC->CFGR0 &= (uint32_t)0xFFFEFFFF;
+    //  RCC->INTR = 0x009F0000;
+
+
     //RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOC | RCC_APB2Periph_AFIO, ENABLE );
             RCC->APB2PCENR |=RCC_APB2Periph_GPIOC | RCC_APB2Periph_AFIO;
             delayX();
@@ -390,8 +399,11 @@ int main(void)
 		NVIC_SystemReset();
 	}
 
-
+	i2cAddress = *(uint8_t*)0x1FFFF804;
+	if (i2cAddress == 0xFF)
+	{
 	determineAddress();
+	}
 	I2C_InitSmall();
 	while (1)
 	{

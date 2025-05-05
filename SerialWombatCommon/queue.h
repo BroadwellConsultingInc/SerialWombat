@@ -24,7 +24,7 @@ SW_QUEUE_RESULT_t QueueRead16Word( uint16_t* data);
 SW_QUEUE_RESULT_t QueuePeekByte( uint8_t* data);
 SW_QUEUE_RESULT_t QueueGetBytesFilledInQueue( uint16_t* bytesFilledInQueue);
 SW_QUEUE_RESULT_t QueueGetBytesFreeInQueue( uint16_t* bytesFreeInQueue);
-SW_QUEUE_RESULT_t QueueCopy(void* dstAddress, uint16_t sourceAddress);
+SW_QUEUE_RESULT_t QueueCopy(uint16_t dstAddress, uint16_t sourceAddress);
 
 void queueCONFIGURE_CHANNEL_MODE_1_transmit(void* rxQueue, void* txQueue);
 void queueCONFIGURE_CHANNEL_MODE_2_receive(void* rxQueue);

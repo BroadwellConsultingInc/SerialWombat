@@ -1,5 +1,5 @@
 /*
-Copyright 2024 Broadwell Consulting Inc.
+Copyright 2024-2025 Broadwell Consulting Inc.
 
 Serial Wombat is a registered trademark of Broadwell Consulting Inc.
 in the United States 
@@ -29,14 +29,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #include "deviceSpecific.h"
 #include "debug.h"
  uint32_t OutputArrayAHigh[SIZE_OF_DMA_ARRAY];  // High bytes are Set bits, low bytes are clear bits
- //uint8_t OutputArrayALow[SIZE_OF_DMA_ARRAY];  // High bytes are Set bits, low bytes are clear bits
-
-//void or128(uint16_t* array, uint16_t value);
-//void and128(uint16_t* array, uint16_t value);
-
 
  volatile uint8_t InputArrayA[SIZE_OF_DMA_ARRAY];
-
 
   void __attribute__((optimize("O3"))) orCount(uint8_t buffer, uint16_t bitmap, uint16_t count)
  {
@@ -50,6 +44,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
          OutputArrayAHigh[i+ buffer] &= bi;
      }
  }
+
  void __attribute__((optimize("O3"))) andCount(uint8_t buffer, uint16_t bitmap, uint16_t count)
  {
      int i;
@@ -63,10 +58,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
             OutputArrayAHigh[i+ buffer] &= bi;
         }
  }
-// PWM Failure test:
- // 0xC8 0x07 0x10 0x07 0 0 0 0x55
- // 0xDC 0x07 0x10 0x34 0x21 0 0 0x55
- // 0x82 0x07 0x4A 0xF6 0xFF 0x55 0x55 0x55
+
 
  void deactivateOutputDMA(uint8_t pin)
  {
@@ -78,37 +70,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
      for (i = 0; i < SIZE_OF_DMA_ARRAY; ++i){
          OutputArrayAHigh[i] &= bi;
      }
-
  }
 
- volatile uint16_t FramesDropped = 0;
- volatile uint32_t System1msCount = 0;
- /*
 
-
-
-uint8_t highCount = 0;
-uint8_t lastValue = 0;
- void SysTick_Handler(void)
- {
-
-        uint8_t currentEntry = SIZE_OF_DMA_ARRAY-DMACNT0;
-        volatile uint8_t* writeAddress =&InputArrayA[currentEntry];
-        *writeAddress = (uint8_t)GPIOD->INDR;
-        GPIOD->BSHR = (uint16_t)(OutputArrayA[currentEntry] >>8);
-               GPIOD->BCR = (uint16_t)(OutputArrayA[currentEntry] & 0xFF );
-
-               -- DMACNT0;
-               if (DMACNT0 == 0)
-               {
-                   DMACNT0 = SIZE_OF_DMA_ARRAY;
-               }
-               ++ dmaInterrupts;
-
-
-     SysTick->SR = 0;
- }
-*/
 
 void systemInitDMAIO()
 {
@@ -119,8 +83,6 @@ void systemInitDMAIO()
         InputArrayA[i]=0;
     }
 }
-
-
 
 
 #define PIN_QUICK_SET_DMA_COUNTS 15  //How many DMA counts into the future to set the current state.   This has to last until the pin gets set again. 
@@ -182,25 +144,7 @@ void ConfigurePinAnalog(uint8_t pin, bool makeAnalog)
 bool PinIsAnalogCapable(uint8_t pin)
 {
 	return true;
-	/*
-	switch (pin)
-	{
-		case 0:
-		case 1:
-		case 2:
-		case 3:
-		case 4:
-		case 5:
-		case 17:
-		case 18:
-		case 19:
-		case 20:
-			return true;
 
-	}
-
-	return false;
-	*/
 }
 
 
@@ -210,6 +154,7 @@ bool ReadPin(uint8_t pin)
 {
 	return ((GPIOD->INDR & pinBitmap[pin]) > 0);
 }
+
 void PinOutput(uint8_t pin)
 {
     if (pin == 0)
@@ -453,17 +398,6 @@ void CurrentPinNoPullDown()
         SetPinPullDown(CurrentPin,false);
 }
 
-const uint8_t WombatPinToADCChannel[NUMBER_OF_PHYSICAL_PINS] =
-{
-    0, 
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-};
 
 
 void __attribute__((optimize("O3"))) updatePulseOutput(uint8_t pin, pulse_output_t* pulse)
@@ -723,10 +657,7 @@ uint16_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint16_t count, DMABi
 
 		}
 	}
-
-	
 	bitStream->nextLocationToQueue = nextLocationToQueue ;
-    //USART_SendData(USART1,count );while(USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET);
 
 	return (count);
 }
@@ -734,8 +665,6 @@ void initializeBitStreamOutput(uint8_t pin, uint8_t level, DMABitStream_t* bitSt
 {
 	uint16_t bitmap = pinBitmap[pin];
 	uint16_t invbitmap = ~bitmap;
-	//uint16_t* baseAddress;
-
 
     if (level)
     {
@@ -746,22 +675,15 @@ void initializeBitStreamOutput(uint8_t pin, uint8_t level, DMABitStream_t* bitSt
         andCount(0,invbitmap,SIZE_OF_DMA_ARRAY);
     }
     bitStream->initialize = 1;
-
 }
 
 
 uint16_t removeBitStreamOutput(uint8_t pin, uint16_t count, uint16_t margin, DMABitStream_t* bitStream )
 {
-	
-    
-    
-
 	int nextDMAHWTransfer ; // The next DMA location that will be transferred by Hardware.  Don't overwrite this one.  We need to catch up to this.
-
 
 		nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMA1_Channel5->CNTR ;
 
-    
     int16_t available;
     if (nextDMAHWTransfer >  bitStream->nextLocationToQueue)
     {
@@ -814,48 +736,7 @@ uint16_t removeBitStreamOutput(uint8_t pin, uint16_t count, uint16_t margin, DMA
         return (removed);
     }
     
-/*
-	if (bitStream->nextLocationToQueue > nextDMAHWTransfer)
-	{
-		uint16_t available = bitStream->nextLocationToQueue - nextDMAHWTransfer;
-		if (available > margin)
-		{
-			removed = available - margin;
-			if (removed > count)
-			{
-				removed = count;
-			}
-			if (bitStream->nextLocationToQueue > removed)
-            {
-                bitStream->nextLocationToQueue -= removed;
-            }
-            PinHigh(12);
-            PinLow(12);
-            return (removed);
 
-		}
-		else
-		{
-			return 0 ;
-		}
-	}
- */
-    /*
-        if (bitStream->nextLocationToQueue < nextDMAHWTransfer)
-	{
-		uint16_t available = bitStream->nextLocationToQueue;
-        
-        if (count > bitStream->nextLocationToQueue)
-        {
-            bitStream->nextLocationToQueue = 0;
-        }
-        else if (((int)(bitStream->nextLocationToQueue)) - count > margin)
-        {
-            bitStream->nextLocationToQueue -= count;
-        }
-    
-    }
-     */
     return (removed);
 }
 

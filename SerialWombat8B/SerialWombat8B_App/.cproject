@@ -421,15 +421,5 @@
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
-	<storageModule moduleId="refreshScope" versionNumber="2">
-		<configuration configurationName="OptForPerf">
-			<resource resourceType="PROJECT" workspacePath="/SerialWombat8B"/>
-		</configuration>
-		<configuration configurationName="obj">
-			<resource resourceType="PROJECT" workspacePath="/SerialWombat8B"/>
-		</configuration>
-		<configuration configurationName="NoOpt">
-			<resource resourceType="PROJECT" workspacePath="/SerialWombat8B"/>
-		</configuration>
-	</storageModule>
+	
 </cproject>

@@ -29,6 +29,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>
+#include "swFeatureEnable.h"
 #include "pinModes.h"
 #include "deviceSpecific.h"
 #include "pinRegisters.h"
@@ -40,7 +41,7 @@ extern  uint8_t CurrentPin;
 
 extern pinRegister_t PinUpdateRegisters[NUMBER_OF_TOTAL_PINS];
 
-extern bool RunForeground;
+extern volatile bool RunForeground;
 
 #define RXBUFFER_LENGTH 8
 extern uint8_t Rxbuffer[RXBUFFER_LENGTH];
@@ -174,9 +175,9 @@ typedef enum {
             SW_DATA_SOURCE_PIN_2_MV = 102, ///< The public data of Pin 2 expressed as mV.  Only applicable to Analog Input mode
             SW_DATA_SOURCE_PIN_3_MV = 103, ///< The public data of Pin 3 expressed as mV.  Only applicable to Analog Input mode
             SW_DATA_SOURCE_PIN_4_MV = 104, ///< The public data of Pin 4 expressed as mV.  Only applicable to Analog Input mode
-//NOT ANALOG            SW_DATA_SOURCE_PIN_5_MV = 105,
-//NOT ANALOG            SW_DATA_SOURCE_PIN_6_MV = 106,
-//NOT ANALOG            SW_DATA_SOURCE_PIN_7_MV = 107,
+           SW_DATA_SOURCE_PIN_5_MV = 105,
+           SW_DATA_SOURCE_PIN_6_MV = 106,
+           SW_DATA_SOURCE_PIN_7_MV = 107,
 //NOT ANALOG            SW_DATA_SOURCE_PIN_8_MV = 108,
 //NOT ANALOG            SW_DATA_SOURCE_PIN_9_MV = 109,
 //NOT ANALOG            SW_DATA_SOURCE_PIN_10_MV = 110,

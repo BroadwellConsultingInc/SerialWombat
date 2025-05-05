@@ -1,5 +1,5 @@
 /*
-Copyright 2024 Broadwell Consulting Inc.
+Copyright 2024-2025 Broadwell Consulting Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
@@ -84,22 +84,36 @@ void inithBridge (void)
 				hBridge->secondPin = Rxbuffer[3];
 				hBridge->driver = Rxbuffer[4];
                 debughBridge2 = hBridge2;
-				
+				SetMode(hBridge->secondPin, PIN_MODE_CONTROLLED);
 				hBridge2->outputScale.sourcePin = CurrentPin;
 
+               
+             
+                hBridge->pulseOutput.resource = hBridge->trmResource =  timingResourcePWMClaim(TIMING_RESOURCE_ANY,1000); 
+                
+                   if (hBridge->trmResource == TIMING_RESOURCE_PORT_DMA)
+                {
+                     initializeBitStreamOutput(CurrentPin,  0, &hBridge->pulseOutput.bitStream );
+                }
+                
+                {
+                        uint8_t temp = CurrentPin;
+                    CurrentPin = hBridge->secondPin;
+                       hBridge2->pulseOutput.resource = timingResourcePWMClaim(TIMING_RESOURCE_PORT_DMA,1000); 
+                       
+                        initializeBitStreamOutput(CurrentPin,  0, &hBridge2->pulseOutput.bitStream );
+                    CurrentPin = temp;
+                }
+                   if (hBridge->driver == HBRIDGE_OFF_BOTH_LOW)
+                {
                 InitializePinLow(CurrentPin);
                 InitializePinLow(hBridge->secondPin);
-                if (hBridge->driver == HBRIDGE_OFF_BOTH_LOW)
-                {
-                CurrentPinLow();
-                	PinLow(hBridge->secondPin);
                 }
                 else
                 {
-                CurrentPinHigh();
-                    PinHigh(hBridge->secondPin);
+                 InitializePinHigh(CurrentPin);
+                InitializePinHigh(hBridge->secondPin);
                 }
-                hBridge->trmResource =  timingResourcePWMClaim(TIMING_RESOURCE_ANY,1000); 
                 hBridge->lastValue = 0;
                 hBridge->period_uS = 1000;
                 outputScaleInit(&hBridge2->outputScale);
@@ -114,6 +128,10 @@ void inithBridge (void)
 					hBridge->period_uS = RXBUFFER32(3);
                     timingResourceRelease(hBridge->trmResource);
                     hBridge->trmResource = timingResourcePWMClaim(TIMING_RESOURCE_ANY,hBridge->period_uS); 
+                     if (hBridge->trmResource == TIMING_RESOURCE_PORT_DMA)
+                {
+                     initializeBitStreamOutput(CurrentPin,  0, &hBridge->pulseOutput.bitStream );
+                }
 				
 			}
 			break;
@@ -137,145 +155,130 @@ outputScaleCommProcess(&hBridge2->outputScale);
 
 void updatehBridge(void)
 {
-
+    
 	uint16_t outputValue;
 	debughBridge = hBridge;
 	debughBridge2 = hBridge2;
 	outputValue = outputScaleProcess(&hBridge2->outputScale);
 	CurrentPinRegister->generic.buffer = outputValue; 
+    uint16_t mainPinPWM = 0;
+    uint16_t secondPinPWM = 0;
 
+   
 	if (outputValue == 0)
 	{
 		//Main pin low
 		//Secondary pin high
 		//Secondary pin controls resouce
-
-	    timingResourceRelease(hBridge->trmResource);
-        uint8_t temp = CurrentPin;
-        CurrentPin = hBridge->secondPin;
-          timingResourceRelease(hBridge->trmResource);
-          CurrentPin = temp;
-          if (hBridge->driver == HBRIDGE_OFF_BOTH_LOW)
-                                  {
-              PinHigh(hBridge->secondPin);
-              CurrentPinLow();
-                                  }
-
-		
-
+      	if (hBridge->driver == HBRIDGE_OFF_BOTH_LOW)
+      {
+            mainPinPWM = 0;
+        secondPinPWM = 65535;
+        }
+         else if (hBridge->driver == HBRIDGE_OFF_BOTH_HIGH)
+         {
+              mainPinPWM = 65535;
+                secondPinPWM = 0;
+         }
 	}
 	else if (outputValue == 0xFFFF)
 	{
 		//Main pin high
 		//Secondary pin low
-		//Main pin controls resouce
-	    //Main pin low
-	            //Secondary pin high
-	            //Secondary pin controls resouce
-
-	            timingResourceRelease(hBridge->trmResource);
-	            uint8_t temp = CurrentPin;
-	            CurrentPin = hBridge->secondPin;
-	            timingResourceRelease(hBridge->trmResource);
-	              CurrentPin = temp;
-	              if (hBridge->driver == HBRIDGE_OFF_BOTH_LOW)
-	                                      {
-	                  PinLow(hBridge->secondPin);
-	                  CurrentPinHigh();
-
-		}
-        if (outputValue!= hBridge->lastValue)
-        {    
-
-            timingResourcePWM(&hBridge->pulseOutput, hBridge->period_uS, 65535);
-            	PinLow(hBridge->secondPin);
-
+		if (hBridge->driver == HBRIDGE_OFF_BOTH_LOW)
+      {
+            mainPinPWM = 65535;
+        secondPinPWM = 0;
         }
-		timingResourceService(&hBridge->pulseOutput);
-		
+         else if (hBridge->driver == HBRIDGE_OFF_BOTH_HIGH)
+         {
+              mainPinPWM = 0;
+                secondPinPWM = 65535;
+         }
 	}
 	else if (outputValue == 32768)
 	{
-	    timingResourceRelease(hBridge->trmResource);
-	                 uint8_t temp = CurrentPin;
-	                 CurrentPin = hBridge->secondPin;
-	                 timingResourceRelease(hBridge->trmResource);
-	                   CurrentPin = temp;
-	                   if (hBridge->driver == HBRIDGE_OFF_BOTH_LOW)
-	                                           {
-	                       PinLow(hBridge->secondPin);
-	                       CurrentPinLow();
-	                                           }
-
-		
-
+	     	if (hBridge->driver == HBRIDGE_OFF_BOTH_LOW)
+      {
+            mainPinPWM = 0;
+        secondPinPWM = 0;
+        }
+         else if (hBridge->driver == HBRIDGE_OFF_BOTH_HIGH)
+         {
+              mainPinPWM = 65535;
+                secondPinPWM = 65535;
+         }
 	}
 	else if (outputValue > 0x8000 )
 	{
 		//Main pin high
 		//Secondary pin low
 		//Main pin controls resouce
-		if (hBridge->lastValue <= 0x8000)
-		{
-			//Claim PWM for main  pin
-         
-			uint8_t temp = CurrentPin;
-			CurrentPin = hBridge->secondPin;
-			   timingResourceRelease(hBridge->trmResource);
-			CurrentPin = temp;
-            hBridge->trmResource =  timingResourcePWMClaim(hBridge->trmResource,hBridge->period_uS); 
-
-		}
-		if (outputValue!= hBridge->lastValue)
-        { 
-	        if (hBridge->driver == HBRIDGE_OFF_BOTH_LOW)
-	        {
-	            timingResourcePWM(&hBridge->pulseOutput, hBridge->period_uS, (outputValue - 0x8000) * 2);
-	            PinLow(hBridge->secondPin);
-	        }
-	        else {
-	            timingResourcePWM(&hBridge->pulseOutput, hBridge->period_uS,65535 - ( (outputValue - 0x8000) * 2));
-	                          PinHigh(hBridge->secondPin);
-            }
-         }
-        timingResourceService(&hBridge->pulseOutput);
+		if (hBridge->driver == HBRIDGE_OFF_BOTH_LOW)
+      {
+         mainPinPWM =  (outputValue - 0x8000) * 2;
+	           secondPinPWM = 0;
+      }
+        else if (hBridge->driver == HBRIDGE_OFF_BOTH_HIGH)
+        {
+             mainPinPWM = 65535 - (outputValue - 0x8000) * 2;
+	           secondPinPWM = 65535;
+        }
+	           
 	}
 	else if (outputValue <= 32768 )
 	{
 		//Main pin low
 		//Secondary pin high
 		//Secondary pin controls resouce
-		if (hBridge->lastValue >= 32768)
-		{
-			timingResourceRelease(hBridge->trmResource);
-			uint8_t temp = CurrentPin;
-			CurrentPin = hBridge->secondPin;
-			hBridge->trmResource = timingResourcePWMClaim(hBridge->pulseOutput.resource,hBridge->period_uS);
-			CurrentPin = temp;
+		 	if (hBridge->driver == HBRIDGE_OFF_BOTH_LOW)
+      {
+                  secondPinPWM = (  0x8000 - outputValue) * 2;
+                  mainPinPWM = 0;
+      }
+        else if (hBridge->driver == HBRIDGE_OFF_BOTH_HIGH)
+        {
+              secondPinPWM = 65535 - (  0x8000 - outputValue) * 2;
+                  mainPinPWM = 65535;
+        }
+     }
 
-		}
-		if (outputValue!= hBridge->lastValue)
-        { 
-            uint8_t temp = CurrentPin;
-            CurrentPin = hBridge->secondPin;
-            if (hBridge->driver == HBRIDGE_OFF_BOTH_LOW)
-                      {
-                        timingResourcePWM(&hBridge->pulseOutput, hBridge->period_uS, (  32768 - outputValue) * 2);
-                        CurrentPin = temp;
-                        CurrentPinLow();
-                      }
-            else {
-                timingResourcePWM(&hBridge->pulseOutput, hBridge->period_uS, (65535-(  32768 - outputValue) * 2));
-                                       CurrentPin = temp;
-                                       CurrentPinHigh();
-            }
-
-         }
+    if (pinIsPPSCapable(CurrentPin)  && pinIsPPSCapable(hBridge->secondPin))
+    {
+    if (hBridge->lastValue < 0x8000 && outputValue > 0x8000)
+    {
+        timingResourceRelease(hBridge->trmResource);
+         hBridge->pulseOutput.resource = hBridge->trmResource =  timingResourcePWMClaim(hBridge->trmResource,1000); 
+                {
+                        uint8_t temp = CurrentPin;
+                    CurrentPin = hBridge->secondPin;
+                       hBridge2->pulseOutput.resource = timingResourcePWMClaim(TIMING_RESOURCE_PORT_DMA,1000); 
+                    CurrentPin = temp;
+                }
+    }
+    else if (hBridge->lastValue > 0x8000 && outputValue < 0x8000)
+    {
+        timingResourceRelease(hBridge->trmResource);
+         hBridge->pulseOutput.resource = hBridge->trmResource =  timingResourcePWMClaim(TIMING_RESOURCE_PORT_DMA,1000); 
+                {
+                        uint8_t temp = CurrentPin;
+                    CurrentPin = hBridge->secondPin;
+                   hBridge2->pulseOutput.resource =     timingResourcePWMClaim(hBridge->trmResource,1000); 
+                    CurrentPin = temp;
+                }
+    }
+    }
+     timingResourcePWM(&hBridge->pulseOutput, hBridge->period_uS, mainPinPWM);
+     timingResourceService(&hBridge->pulseOutput);
+     
+      
+     
         uint8_t temp = CurrentPin;
         CurrentPin = hBridge->secondPin;
-		timingResourceService(&hBridge->pulseOutput);
-        CurrentPin = temp;
-	}
+    timingResourcePWM(&hBridge2->pulseOutput, hBridge->period_uS, secondPinPWM);
+     timingResourceService(&hBridge2->pulseOutput);
+         CurrentPin = temp;
+	
     hBridge->lastValue = outputValue;
 
 

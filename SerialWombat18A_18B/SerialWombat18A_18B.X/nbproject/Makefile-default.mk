@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=pic24fj256ga702/mcc_generated_files/clock.c pic24fj256ga702/mcc_generated_files/crc.c pic24fj256ga702/mcc_generated_files/cvr.c pic24fj256ga702/mcc_generated_files/dma.c pic24fj256ga702/mcc_generated_files/i2c1.c pic24fj256ga702/mcc_generated_files/i2c2.c pic24fj256ga702/mcc_generated_files/interrupt_manager.c pic24fj256ga702/mcc_generated_files/mcc.c pic24fj256ga702/mcc_generated_files/pin_manager.c pic24fj256ga702/mcc_generated_files/system.c pic24fj256ga702/mcc_generated_files/tmr1.c pic24fj256ga702/mcc_generated_files/tmr2.c pic24fj256ga702/mcc_generated_files/tmr3.c pic24fj256ga702/mcc_generated_files/traps.c pic24fj256ga702/mcc_generated_files/uart1.c pic24fj256ga702/mcc_generated_files/uart2.c pic24fj256ga702/mcc_generated_files/adc1.c pic24fj256ga702/mcc_generated_files/memory/flash.s pic24fj256ga702/mcc_generated_files/i2c2Controller.c pic24fj256ga702/wombatasm.s pic24fj256ga702/pinDigitalHwSpecific.c pic24fj256ga702/updatePulse.c timingResource.c quadEnc.c analogInput.c pulseTimer.c debounce.c protectedOutput.c watchdog.c TM1637.c ws2812.c touch.c uartHw.c servo.c pwm.c outputScale.c resistanceInput.c uartSw.c throughputConsumer.c matrixKeypad.c inputProcess.c pinInputProcessor.c pulseOnChange.c hfServo.c ultrasonicDistance.c liquidCrystal.c HSClock.c HSCounter.c PS2Keyboard.c i2cController.c vga.c hBridge.c queuedPulseOutput.c MAX7219Matrix.c swI2cRoutines.c frequencyOutput.c Font5x7.c main.c protocol.c asciiConversion.c pinRegisters.c queue.c swMath.c
+SOURCEFILES_QUOTED_IF_SPACED=pic24fj256ga702/mcc_generated_files/clock.c pic24fj256ga702/mcc_generated_files/crc.c pic24fj256ga702/mcc_generated_files/cvr.c pic24fj256ga702/mcc_generated_files/dma.c pic24fj256ga702/mcc_generated_files/i2c1.c pic24fj256ga702/mcc_generated_files/i2c2.c pic24fj256ga702/mcc_generated_files/interrupt_manager.c pic24fj256ga702/mcc_generated_files/mcc.c pic24fj256ga702/mcc_generated_files/pin_manager.c pic24fj256ga702/mcc_generated_files/system.c pic24fj256ga702/mcc_generated_files/tmr1.c pic24fj256ga702/mcc_generated_files/tmr2.c pic24fj256ga702/mcc_generated_files/tmr3.c pic24fj256ga702/mcc_generated_files/traps.c pic24fj256ga702/mcc_generated_files/uart1.c pic24fj256ga702/mcc_generated_files/uart2.c pic24fj256ga702/mcc_generated_files/adc1.c pic24fj256ga702/mcc_generated_files/memory/flash.s pic24fj256ga702/mcc_generated_files/i2c2Controller.c pic24fj256ga702/wombatasm.s pic24fj256ga702/pinDigitalHwSpecific.c pic24fj256ga702/updatePulse.c timingResource.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/touch.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/uartHw.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/vga.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/ws2812.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/HSClock.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/HSCounter.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/hfServo.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/resistanceInput.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/uartSw.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/analogInput.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/digitalIO.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/hBridge.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/PS2Keyboard.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/inputProcess.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/outputScale.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pinInputProcessor.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/protectedOutput.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pulseOnChange.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pulseTimer.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/ultrasonicDistance.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/watchdog.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/Font5x7.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/TM1637.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/debounce.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/frequencyOutput.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/liquidCrystal.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/matrixKeypad.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/quadEnc.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/queuedPulseOutput.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/servo.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/throughputConsumer.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pwm.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/MAX7219Matrix.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/i2cController.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/swI2cRoutines.c main.c protocol.c asciiConversion.c pinRegisters.c queue.c ../../SerialWombatPinModes/swMath.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/clock.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/crc.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/cvr.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/dma.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c1.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/interrupt_manager.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/mcc.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/pin_manager.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/system.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr1.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr2.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr3.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/traps.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart1.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart2.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/adc1.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory/flash.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2Controller.o ${OBJECTDIR}/pic24fj256ga702/wombatasm.o ${OBJECTDIR}/pic24fj256ga702/pinDigitalHwSpecific.o ${OBJECTDIR}/pic24fj256ga702/updatePulse.o ${OBJECTDIR}/timingResource.o ${OBJECTDIR}/quadEnc.o ${OBJECTDIR}/analogInput.o ${OBJECTDIR}/pulseTimer.o ${OBJECTDIR}/debounce.o ${OBJECTDIR}/protectedOutput.o ${OBJECTDIR}/watchdog.o ${OBJECTDIR}/TM1637.o ${OBJECTDIR}/ws2812.o ${OBJECTDIR}/touch.o ${OBJECTDIR}/uartHw.o ${OBJECTDIR}/servo.o ${OBJECTDIR}/pwm.o ${OBJECTDIR}/outputScale.o ${OBJECTDIR}/resistanceInput.o ${OBJECTDIR}/uartSw.o ${OBJECTDIR}/throughputConsumer.o ${OBJECTDIR}/matrixKeypad.o ${OBJECTDIR}/inputProcess.o ${OBJECTDIR}/pinInputProcessor.o ${OBJECTDIR}/pulseOnChange.o ${OBJECTDIR}/hfServo.o ${OBJECTDIR}/ultrasonicDistance.o ${OBJECTDIR}/liquidCrystal.o ${OBJECTDIR}/HSClock.o ${OBJECTDIR}/HSCounter.o ${OBJECTDIR}/PS2Keyboard.o ${OBJECTDIR}/i2cController.o ${OBJECTDIR}/vga.o ${OBJECTDIR}/hBridge.o ${OBJECTDIR}/queuedPulseOutput.o ${OBJECTDIR}/MAX7219Matrix.o ${OBJECTDIR}/swI2cRoutines.o ${OBJECTDIR}/frequencyOutput.o ${OBJECTDIR}/Font5x7.o ${OBJECTDIR}/main.o ${OBJECTDIR}/protocol.o ${OBJECTDIR}/asciiConversion.o ${OBJECTDIR}/pinRegisters.o ${OBJECTDIR}/queue.o ${OBJECTDIR}/swMath.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/clock.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/crc.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/cvr.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/dma.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c1.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/interrupt_manager.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/mcc.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/pin_manager.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/system.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr1.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr2.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr3.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/traps.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart1.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart2.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/adc1.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory/flash.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2Controller.o.d ${OBJECTDIR}/pic24fj256ga702/wombatasm.o.d ${OBJECTDIR}/pic24fj256ga702/pinDigitalHwSpecific.o.d ${OBJECTDIR}/pic24fj256ga702/updatePulse.o.d ${OBJECTDIR}/timingResource.o.d ${OBJECTDIR}/quadEnc.o.d ${OBJECTDIR}/analogInput.o.d ${OBJECTDIR}/pulseTimer.o.d ${OBJECTDIR}/debounce.o.d ${OBJECTDIR}/protectedOutput.o.d ${OBJECTDIR}/watchdog.o.d ${OBJECTDIR}/TM1637.o.d ${OBJECTDIR}/ws2812.o.d ${OBJECTDIR}/touch.o.d ${OBJECTDIR}/uartHw.o.d ${OBJECTDIR}/servo.o.d ${OBJECTDIR}/pwm.o.d ${OBJECTDIR}/outputScale.o.d ${OBJECTDIR}/resistanceInput.o.d ${OBJECTDIR}/uartSw.o.d ${OBJECTDIR}/throughputConsumer.o.d ${OBJECTDIR}/matrixKeypad.o.d ${OBJECTDIR}/inputProcess.o.d ${OBJECTDIR}/pinInputProcessor.o.d ${OBJECTDIR}/pulseOnChange.o.d ${OBJECTDIR}/hfServo.o.d ${OBJECTDIR}/ultrasonicDistance.o.d ${OBJECTDIR}/liquidCrystal.o.d ${OBJECTDIR}/HSClock.o.d ${OBJECTDIR}/HSCounter.o.d ${OBJECTDIR}/PS2Keyboard.o.d ${OBJECTDIR}/i2cController.o.d ${OBJECTDIR}/vga.o.d ${OBJECTDIR}/hBridge.o.d ${OBJECTDIR}/queuedPulseOutput.o.d ${OBJECTDIR}/MAX7219Matrix.o.d ${OBJECTDIR}/swI2cRoutines.o.d ${OBJECTDIR}/frequencyOutput.o.d ${OBJECTDIR}/Font5x7.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/protocol.o.d ${OBJECTDIR}/asciiConversion.o.d ${OBJECTDIR}/pinRegisters.o.d ${OBJECTDIR}/queue.o.d ${OBJECTDIR}/swMath.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/clock.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/crc.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/cvr.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/dma.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c1.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/interrupt_manager.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/mcc.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/pin_manager.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/system.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr1.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr2.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr3.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/traps.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart1.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart2.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/adc1.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory/flash.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2Controller.o ${OBJECTDIR}/pic24fj256ga702/wombatasm.o ${OBJECTDIR}/pic24fj256ga702/pinDigitalHwSpecific.o ${OBJECTDIR}/pic24fj256ga702/updatePulse.o ${OBJECTDIR}/timingResource.o ${OBJECTDIR}/_ext/1921908958/touch.o ${OBJECTDIR}/_ext/1921908958/uartHw.o ${OBJECTDIR}/_ext/1921908958/vga.o ${OBJECTDIR}/_ext/1921908958/ws2812.o ${OBJECTDIR}/_ext/1138356336/HSClock.o ${OBJECTDIR}/_ext/1138356336/HSCounter.o ${OBJECTDIR}/_ext/1138356336/hfServo.o ${OBJECTDIR}/_ext/1138356336/resistanceInput.o ${OBJECTDIR}/_ext/1138356336/uartSw.o ${OBJECTDIR}/_ext/1138356336/analogInput.o ${OBJECTDIR}/_ext/1138356336/digitalIO.o ${OBJECTDIR}/_ext/1138356336/hBridge.o ${OBJECTDIR}/_ext/1138356336/PS2Keyboard.o ${OBJECTDIR}/_ext/1138356336/inputProcess.o ${OBJECTDIR}/_ext/1138356336/outputScale.o ${OBJECTDIR}/_ext/1138356336/pinInputProcessor.o ${OBJECTDIR}/_ext/1138356336/protectedOutput.o ${OBJECTDIR}/_ext/1138356336/pulseOnChange.o ${OBJECTDIR}/_ext/1138356336/pulseTimer.o ${OBJECTDIR}/_ext/1138356336/ultrasonicDistance.o ${OBJECTDIR}/_ext/1138356336/watchdog.o ${OBJECTDIR}/_ext/1138356336/Font5x7.o ${OBJECTDIR}/_ext/1138356336/TM1637.o ${OBJECTDIR}/_ext/1138356336/debounce.o ${OBJECTDIR}/_ext/1138356336/frequencyOutput.o ${OBJECTDIR}/_ext/1138356336/liquidCrystal.o ${OBJECTDIR}/_ext/1138356336/matrixKeypad.o ${OBJECTDIR}/_ext/1138356336/quadEnc.o ${OBJECTDIR}/_ext/1138356336/queuedPulseOutput.o ${OBJECTDIR}/_ext/1138356336/servo.o ${OBJECTDIR}/_ext/1138356336/throughputConsumer.o ${OBJECTDIR}/_ext/1138356336/pwm.o ${OBJECTDIR}/_ext/1138356336/MAX7219Matrix.o ${OBJECTDIR}/_ext/1138356336/i2cController.o ${OBJECTDIR}/_ext/1138356336/swI2cRoutines.o ${OBJECTDIR}/main.o ${OBJECTDIR}/protocol.o ${OBJECTDIR}/asciiConversion.o ${OBJECTDIR}/pinRegisters.o ${OBJECTDIR}/queue.o ${OBJECTDIR}/_ext/2091145489/swMath.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/clock.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/crc.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/cvr.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/dma.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c1.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/interrupt_manager.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/mcc.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/pin_manager.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/system.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr1.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr2.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr3.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/traps.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart1.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart2.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/adc1.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory/flash.o.d ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2Controller.o.d ${OBJECTDIR}/pic24fj256ga702/wombatasm.o.d ${OBJECTDIR}/pic24fj256ga702/pinDigitalHwSpecific.o.d ${OBJECTDIR}/pic24fj256ga702/updatePulse.o.d ${OBJECTDIR}/timingResource.o.d ${OBJECTDIR}/_ext/1921908958/touch.o.d ${OBJECTDIR}/_ext/1921908958/uartHw.o.d ${OBJECTDIR}/_ext/1921908958/vga.o.d ${OBJECTDIR}/_ext/1921908958/ws2812.o.d ${OBJECTDIR}/_ext/1138356336/HSClock.o.d ${OBJECTDIR}/_ext/1138356336/HSCounter.o.d ${OBJECTDIR}/_ext/1138356336/hfServo.o.d ${OBJECTDIR}/_ext/1138356336/resistanceInput.o.d ${OBJECTDIR}/_ext/1138356336/uartSw.o.d ${OBJECTDIR}/_ext/1138356336/analogInput.o.d ${OBJECTDIR}/_ext/1138356336/digitalIO.o.d ${OBJECTDIR}/_ext/1138356336/hBridge.o.d ${OBJECTDIR}/_ext/1138356336/PS2Keyboard.o.d ${OBJECTDIR}/_ext/1138356336/inputProcess.o.d ${OBJECTDIR}/_ext/1138356336/outputScale.o.d ${OBJECTDIR}/_ext/1138356336/pinInputProcessor.o.d ${OBJECTDIR}/_ext/1138356336/protectedOutput.o.d ${OBJECTDIR}/_ext/1138356336/pulseOnChange.o.d ${OBJECTDIR}/_ext/1138356336/pulseTimer.o.d ${OBJECTDIR}/_ext/1138356336/ultrasonicDistance.o.d ${OBJECTDIR}/_ext/1138356336/watchdog.o.d ${OBJECTDIR}/_ext/1138356336/Font5x7.o.d ${OBJECTDIR}/_ext/1138356336/TM1637.o.d ${OBJECTDIR}/_ext/1138356336/debounce.o.d ${OBJECTDIR}/_ext/1138356336/frequencyOutput.o.d ${OBJECTDIR}/_ext/1138356336/liquidCrystal.o.d ${OBJECTDIR}/_ext/1138356336/matrixKeypad.o.d ${OBJECTDIR}/_ext/1138356336/quadEnc.o.d ${OBJECTDIR}/_ext/1138356336/queuedPulseOutput.o.d ${OBJECTDIR}/_ext/1138356336/servo.o.d ${OBJECTDIR}/_ext/1138356336/throughputConsumer.o.d ${OBJECTDIR}/_ext/1138356336/pwm.o.d ${OBJECTDIR}/_ext/1138356336/MAX7219Matrix.o.d ${OBJECTDIR}/_ext/1138356336/i2cController.o.d ${OBJECTDIR}/_ext/1138356336/swI2cRoutines.o.d ${OBJECTDIR}/main.o.d ${OBJECTDIR}/protocol.o.d ${OBJECTDIR}/asciiConversion.o.d ${OBJECTDIR}/pinRegisters.o.d ${OBJECTDIR}/queue.o.d ${OBJECTDIR}/_ext/2091145489/swMath.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/clock.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/crc.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/cvr.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/dma.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c1.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/interrupt_manager.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/mcc.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/pin_manager.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/system.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr1.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr2.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr3.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/traps.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart1.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart2.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/adc1.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory/flash.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2Controller.o ${OBJECTDIR}/pic24fj256ga702/wombatasm.o ${OBJECTDIR}/pic24fj256ga702/pinDigitalHwSpecific.o ${OBJECTDIR}/pic24fj256ga702/updatePulse.o ${OBJECTDIR}/timingResource.o ${OBJECTDIR}/quadEnc.o ${OBJECTDIR}/analogInput.o ${OBJECTDIR}/pulseTimer.o ${OBJECTDIR}/debounce.o ${OBJECTDIR}/protectedOutput.o ${OBJECTDIR}/watchdog.o ${OBJECTDIR}/TM1637.o ${OBJECTDIR}/ws2812.o ${OBJECTDIR}/touch.o ${OBJECTDIR}/uartHw.o ${OBJECTDIR}/servo.o ${OBJECTDIR}/pwm.o ${OBJECTDIR}/outputScale.o ${OBJECTDIR}/resistanceInput.o ${OBJECTDIR}/uartSw.o ${OBJECTDIR}/throughputConsumer.o ${OBJECTDIR}/matrixKeypad.o ${OBJECTDIR}/inputProcess.o ${OBJECTDIR}/pinInputProcessor.o ${OBJECTDIR}/pulseOnChange.o ${OBJECTDIR}/hfServo.o ${OBJECTDIR}/ultrasonicDistance.o ${OBJECTDIR}/liquidCrystal.o ${OBJECTDIR}/HSClock.o ${OBJECTDIR}/HSCounter.o ${OBJECTDIR}/PS2Keyboard.o ${OBJECTDIR}/i2cController.o ${OBJECTDIR}/vga.o ${OBJECTDIR}/hBridge.o ${OBJECTDIR}/queuedPulseOutput.o ${OBJECTDIR}/MAX7219Matrix.o ${OBJECTDIR}/swI2cRoutines.o ${OBJECTDIR}/frequencyOutput.o ${OBJECTDIR}/Font5x7.o ${OBJECTDIR}/main.o ${OBJECTDIR}/protocol.o ${OBJECTDIR}/asciiConversion.o ${OBJECTDIR}/pinRegisters.o ${OBJECTDIR}/queue.o ${OBJECTDIR}/swMath.o
+OBJECTFILES=${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/clock.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/crc.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/cvr.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/dma.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c1.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/interrupt_manager.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/mcc.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/pin_manager.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/system.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr1.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr2.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr3.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/traps.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart1.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart2.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/adc1.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory/flash.o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2Controller.o ${OBJECTDIR}/pic24fj256ga702/wombatasm.o ${OBJECTDIR}/pic24fj256ga702/pinDigitalHwSpecific.o ${OBJECTDIR}/pic24fj256ga702/updatePulse.o ${OBJECTDIR}/timingResource.o ${OBJECTDIR}/_ext/1921908958/touch.o ${OBJECTDIR}/_ext/1921908958/uartHw.o ${OBJECTDIR}/_ext/1921908958/vga.o ${OBJECTDIR}/_ext/1921908958/ws2812.o ${OBJECTDIR}/_ext/1138356336/HSClock.o ${OBJECTDIR}/_ext/1138356336/HSCounter.o ${OBJECTDIR}/_ext/1138356336/hfServo.o ${OBJECTDIR}/_ext/1138356336/resistanceInput.o ${OBJECTDIR}/_ext/1138356336/uartSw.o ${OBJECTDIR}/_ext/1138356336/analogInput.o ${OBJECTDIR}/_ext/1138356336/digitalIO.o ${OBJECTDIR}/_ext/1138356336/hBridge.o ${OBJECTDIR}/_ext/1138356336/PS2Keyboard.o ${OBJECTDIR}/_ext/1138356336/inputProcess.o ${OBJECTDIR}/_ext/1138356336/outputScale.o ${OBJECTDIR}/_ext/1138356336/pinInputProcessor.o ${OBJECTDIR}/_ext/1138356336/protectedOutput.o ${OBJECTDIR}/_ext/1138356336/pulseOnChange.o ${OBJECTDIR}/_ext/1138356336/pulseTimer.o ${OBJECTDIR}/_ext/1138356336/ultrasonicDistance.o ${OBJECTDIR}/_ext/1138356336/watchdog.o ${OBJECTDIR}/_ext/1138356336/Font5x7.o ${OBJECTDIR}/_ext/1138356336/TM1637.o ${OBJECTDIR}/_ext/1138356336/debounce.o ${OBJECTDIR}/_ext/1138356336/frequencyOutput.o ${OBJECTDIR}/_ext/1138356336/liquidCrystal.o ${OBJECTDIR}/_ext/1138356336/matrixKeypad.o ${OBJECTDIR}/_ext/1138356336/quadEnc.o ${OBJECTDIR}/_ext/1138356336/queuedPulseOutput.o ${OBJECTDIR}/_ext/1138356336/servo.o ${OBJECTDIR}/_ext/1138356336/throughputConsumer.o ${OBJECTDIR}/_ext/1138356336/pwm.o ${OBJECTDIR}/_ext/1138356336/MAX7219Matrix.o ${OBJECTDIR}/_ext/1138356336/i2cController.o ${OBJECTDIR}/_ext/1138356336/swI2cRoutines.o ${OBJECTDIR}/main.o ${OBJECTDIR}/protocol.o ${OBJECTDIR}/asciiConversion.o ${OBJECTDIR}/pinRegisters.o ${OBJECTDIR}/queue.o ${OBJECTDIR}/_ext/2091145489/swMath.o
 
 # Source Files
-SOURCEFILES=pic24fj256ga702/mcc_generated_files/clock.c pic24fj256ga702/mcc_generated_files/crc.c pic24fj256ga702/mcc_generated_files/cvr.c pic24fj256ga702/mcc_generated_files/dma.c pic24fj256ga702/mcc_generated_files/i2c1.c pic24fj256ga702/mcc_generated_files/i2c2.c pic24fj256ga702/mcc_generated_files/interrupt_manager.c pic24fj256ga702/mcc_generated_files/mcc.c pic24fj256ga702/mcc_generated_files/pin_manager.c pic24fj256ga702/mcc_generated_files/system.c pic24fj256ga702/mcc_generated_files/tmr1.c pic24fj256ga702/mcc_generated_files/tmr2.c pic24fj256ga702/mcc_generated_files/tmr3.c pic24fj256ga702/mcc_generated_files/traps.c pic24fj256ga702/mcc_generated_files/uart1.c pic24fj256ga702/mcc_generated_files/uart2.c pic24fj256ga702/mcc_generated_files/adc1.c pic24fj256ga702/mcc_generated_files/memory/flash.s pic24fj256ga702/mcc_generated_files/i2c2Controller.c pic24fj256ga702/wombatasm.s pic24fj256ga702/pinDigitalHwSpecific.c pic24fj256ga702/updatePulse.c timingResource.c quadEnc.c analogInput.c pulseTimer.c debounce.c protectedOutput.c watchdog.c TM1637.c ws2812.c touch.c uartHw.c servo.c pwm.c outputScale.c resistanceInput.c uartSw.c throughputConsumer.c matrixKeypad.c inputProcess.c pinInputProcessor.c pulseOnChange.c hfServo.c ultrasonicDistance.c liquidCrystal.c HSClock.c HSCounter.c PS2Keyboard.c i2cController.c vga.c hBridge.c queuedPulseOutput.c MAX7219Matrix.c swI2cRoutines.c frequencyOutput.c Font5x7.c main.c protocol.c asciiConversion.c pinRegisters.c queue.c swMath.c
+SOURCEFILES=pic24fj256ga702/mcc_generated_files/clock.c pic24fj256ga702/mcc_generated_files/crc.c pic24fj256ga702/mcc_generated_files/cvr.c pic24fj256ga702/mcc_generated_files/dma.c pic24fj256ga702/mcc_generated_files/i2c1.c pic24fj256ga702/mcc_generated_files/i2c2.c pic24fj256ga702/mcc_generated_files/interrupt_manager.c pic24fj256ga702/mcc_generated_files/mcc.c pic24fj256ga702/mcc_generated_files/pin_manager.c pic24fj256ga702/mcc_generated_files/system.c pic24fj256ga702/mcc_generated_files/tmr1.c pic24fj256ga702/mcc_generated_files/tmr2.c pic24fj256ga702/mcc_generated_files/tmr3.c pic24fj256ga702/mcc_generated_files/traps.c pic24fj256ga702/mcc_generated_files/uart1.c pic24fj256ga702/mcc_generated_files/uart2.c pic24fj256ga702/mcc_generated_files/adc1.c pic24fj256ga702/mcc_generated_files/memory/flash.s pic24fj256ga702/mcc_generated_files/i2c2Controller.c pic24fj256ga702/wombatasm.s pic24fj256ga702/pinDigitalHwSpecific.c pic24fj256ga702/updatePulse.c timingResource.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/touch.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/uartHw.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/vga.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/ws2812.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/HSClock.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/HSCounter.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/hfServo.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/resistanceInput.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/uartSw.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/analogInput.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/digitalIO.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/hBridge.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/PS2Keyboard.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/inputProcess.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/outputScale.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pinInputProcessor.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/protectedOutput.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pulseOnChange.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pulseTimer.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/ultrasonicDistance.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/watchdog.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/Font5x7.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/TM1637.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/debounce.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/frequencyOutput.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/liquidCrystal.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/matrixKeypad.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/quadEnc.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/queuedPulseOutput.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/servo.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/throughputConsumer.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pwm.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/MAX7219Matrix.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/i2cController.c ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/swI2cRoutines.c main.c protocol.c asciiConversion.c pinRegisters.c queue.c ../../SerialWombatPinModes/swMath.c
 
 
 
@@ -89,768 +89,780 @@ MP_LINKER_FILE_OPTION=,--script="p24FJ256GA702_app.gld"
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/clock.o: pic24fj256ga702/mcc_generated_files/clock.c  .generated_files/flags/default/34ddf2b9f66dbd8cfa13b1943bfbcf2586ffaf43 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/clock.o: pic24fj256ga702/mcc_generated_files/clock.c  .generated_files/flags/default/8008fbbced1b502f6741f565045468f25734707 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/clock.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/clock.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/clock.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/clock.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/clock.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/crc.o: pic24fj256ga702/mcc_generated_files/crc.c  .generated_files/flags/default/ff0c3a8221deb59084eb86abe6be57829c1d5f14 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/crc.o: pic24fj256ga702/mcc_generated_files/crc.c  .generated_files/flags/default/9d8b1e8b950e9adb2f9b5b267a30117e90304906 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/crc.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/crc.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/crc.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/crc.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/crc.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/cvr.o: pic24fj256ga702/mcc_generated_files/cvr.c  .generated_files/flags/default/efa9aa0abfdf4b39cc6ce9f572b26309de5391f5 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/cvr.o: pic24fj256ga702/mcc_generated_files/cvr.c  .generated_files/flags/default/c18421560ea4391f4ff735e45577b6dd19c68073 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/cvr.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/cvr.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/cvr.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/cvr.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/cvr.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/dma.o: pic24fj256ga702/mcc_generated_files/dma.c  .generated_files/flags/default/5268b5afb68bf8e3d2613f7dc670b8fd714621ee .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/dma.o: pic24fj256ga702/mcc_generated_files/dma.c  .generated_files/flags/default/ee66afc1d4b8a37f16b730bce7798ed27d586c39 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/dma.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/dma.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/dma.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/dma.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/dma.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c1.o: pic24fj256ga702/mcc_generated_files/i2c1.c  .generated_files/flags/default/9bed762ea44e9cd9365c0bf9dcb5633e89de6248 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c1.o: pic24fj256ga702/mcc_generated_files/i2c1.c  .generated_files/flags/default/c5f73d57a2285075e3bed6737ed5ff49d417f88 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c1.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c1.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/i2c1.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c1.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2.o: pic24fj256ga702/mcc_generated_files/i2c2.c  .generated_files/flags/default/8e2e421c7e3ee91c5eef8bcb1441adb857e68c2 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2.o: pic24fj256ga702/mcc_generated_files/i2c2.c  .generated_files/flags/default/eaceb5ba108644677d2a34e73075b3f47f0fc1e9 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/i2c2.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/interrupt_manager.o: pic24fj256ga702/mcc_generated_files/interrupt_manager.c  .generated_files/flags/default/1a85fdad410c9342bd5b3c2341e76427e9d238f8 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/interrupt_manager.o: pic24fj256ga702/mcc_generated_files/interrupt_manager.c  .generated_files/flags/default/38edfebbb7f2cc8a9bafa72a6b3ff735fb37db1a .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/interrupt_manager.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/interrupt_manager.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/interrupt_manager.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/interrupt_manager.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/interrupt_manager.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/mcc.o: pic24fj256ga702/mcc_generated_files/mcc.c  .generated_files/flags/default/6d650b88f633cf192ae1d557eb83035830542da5 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/mcc.o: pic24fj256ga702/mcc_generated_files/mcc.c  .generated_files/flags/default/f8d9166a9d6c76e34a07a974775eb1c76383c066 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/mcc.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/mcc.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/mcc.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/mcc.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/mcc.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/pin_manager.o: pic24fj256ga702/mcc_generated_files/pin_manager.c  .generated_files/flags/default/78bc202ce70501a7a47e07b784d5cb194482a9d3 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/pin_manager.o: pic24fj256ga702/mcc_generated_files/pin_manager.c  .generated_files/flags/default/6e51be9dba0a31f3b01aa4cb5850eede272a24a1 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/pin_manager.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/pin_manager.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/pin_manager.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/pin_manager.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/pin_manager.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/system.o: pic24fj256ga702/mcc_generated_files/system.c  .generated_files/flags/default/a5e2142760cf204f44afd4a6ed505d0d71f6f0f4 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/system.o: pic24fj256ga702/mcc_generated_files/system.c  .generated_files/flags/default/ca951aedc7bcb8fd9c37e60f47e2f3ad6967391b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/system.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/system.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/system.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/system.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/system.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr1.o: pic24fj256ga702/mcc_generated_files/tmr1.c  .generated_files/flags/default/9ba283ff4c03e25e67e26b74557640cf68880ab9 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr1.o: pic24fj256ga702/mcc_generated_files/tmr1.c  .generated_files/flags/default/c0d6b194f7aa0737995f791ad45097c6eb630c89 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr1.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr1.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/tmr1.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr1.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr2.o: pic24fj256ga702/mcc_generated_files/tmr2.c  .generated_files/flags/default/fdfd8551e33a77c940cd43f115c40c400fb72269 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr2.o: pic24fj256ga702/mcc_generated_files/tmr2.c  .generated_files/flags/default/e3a9b8dd5972a03f081b0603d3b83932a46f6c91 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr2.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr2.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/tmr2.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr2.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr2.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr3.o: pic24fj256ga702/mcc_generated_files/tmr3.c  .generated_files/flags/default/a5a855b2963b87685cfca825a2918d1d9b1f1d90 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr3.o: pic24fj256ga702/mcc_generated_files/tmr3.c  .generated_files/flags/default/3f59d987e33cadcce8e07807d2164b7db8521139 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr3.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr3.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/tmr3.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr3.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr3.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/traps.o: pic24fj256ga702/mcc_generated_files/traps.c  .generated_files/flags/default/f8ced2671457aeabfbb8be5e0061de369f0ad850 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/traps.o: pic24fj256ga702/mcc_generated_files/traps.c  .generated_files/flags/default/ddceb306213e4885a91627ea6edfada8fbced0a2 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/traps.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/traps.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/traps.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/traps.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/traps.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart1.o: pic24fj256ga702/mcc_generated_files/uart1.c  .generated_files/flags/default/e2690757d92ab1dbf5fe4f917a80af4c66e923f0 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart1.o: pic24fj256ga702/mcc_generated_files/uart1.c  .generated_files/flags/default/baf7ef80eac53ef7fc947cc15d5731bbaface8f6 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart1.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart1.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/uart1.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart1.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart2.o: pic24fj256ga702/mcc_generated_files/uart2.c  .generated_files/flags/default/a239502c06a4552466c39de3c57a020ff66e5ae .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart2.o: pic24fj256ga702/mcc_generated_files/uart2.c  .generated_files/flags/default/599350c448fd9a0a209dcb823765dc7513e338cb .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart2.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart2.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/uart2.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart2.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart2.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/adc1.o: pic24fj256ga702/mcc_generated_files/adc1.c  .generated_files/flags/default/789befa72540866794e3dc211ddf3f932d5ac8a0 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/adc1.o: pic24fj256ga702/mcc_generated_files/adc1.c  .generated_files/flags/default/469622ea110b33981f78d9955246ed95750ad51f .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/adc1.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/adc1.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/adc1.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/adc1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/adc1.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2Controller.o: pic24fj256ga702/mcc_generated_files/i2c2Controller.c  .generated_files/flags/default/1be76e0dc970829ece67b78454cff0fa90d9c97e .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2Controller.o: pic24fj256ga702/mcc_generated_files/i2c2Controller.c  .generated_files/flags/default/4880fee674eb27c608cdc5e01fd027016acff7f .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2Controller.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2Controller.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/i2c2Controller.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2Controller.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2Controller.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/pinDigitalHwSpecific.o: pic24fj256ga702/pinDigitalHwSpecific.c  .generated_files/flags/default/96d1108f238313457c70dfa359016e7d9419ec20 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/pinDigitalHwSpecific.o: pic24fj256ga702/pinDigitalHwSpecific.c  .generated_files/flags/default/9685b5f6dd91c5f6a1e115ab6103188ffc9236ab .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/pinDigitalHwSpecific.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/pinDigitalHwSpecific.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/pinDigitalHwSpecific.c  -o ${OBJECTDIR}/pic24fj256ga702/pinDigitalHwSpecific.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/pinDigitalHwSpecific.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/updatePulse.o: pic24fj256ga702/updatePulse.c  .generated_files/flags/default/7abd4c82f3969aef3edb19904925234667c63cce .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/updatePulse.o: pic24fj256ga702/updatePulse.c  .generated_files/flags/default/242590ff702e53a889834833faf0cecc952a49bc .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/updatePulse.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/updatePulse.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/updatePulse.c  -o ${OBJECTDIR}/pic24fj256ga702/updatePulse.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/updatePulse.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/timingResource.o: timingResource.c  .generated_files/flags/default/856ed7d368233c496defd732b812c7a82008a76 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/timingResource.o: timingResource.c  .generated_files/flags/default/6e0fbcb294d24a5f3867632efcf6bfd8bdef5cd .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/timingResource.o.d 
 	@${RM} ${OBJECTDIR}/timingResource.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  timingResource.c  -o ${OBJECTDIR}/timingResource.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/timingResource.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/quadEnc.o: quadEnc.c  .generated_files/flags/default/f5393d460aaa1a3ab7d3f60f60122f6f468916a7 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/quadEnc.o.d 
-	@${RM} ${OBJECTDIR}/quadEnc.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  quadEnc.c  -o ${OBJECTDIR}/quadEnc.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/quadEnc.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1921908958/touch.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/touch.c  .generated_files/flags/default/37be34e5b9853ae9581909072196d01564ff4523 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1921908958" 
+	@${RM} ${OBJECTDIR}/_ext/1921908958/touch.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1921908958/touch.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/touch.c  -o ${OBJECTDIR}/_ext/1921908958/touch.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1921908958/touch.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/analogInput.o: analogInput.c  .generated_files/flags/default/d4bb320618849b9d11f22f57b8095f5f7e18c325 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/analogInput.o.d 
-	@${RM} ${OBJECTDIR}/analogInput.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  analogInput.c  -o ${OBJECTDIR}/analogInput.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/analogInput.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1921908958/uartHw.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/uartHw.c  .generated_files/flags/default/510fa2d6294b837d1c15a4296f0495bf166fb5d8 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1921908958" 
+	@${RM} ${OBJECTDIR}/_ext/1921908958/uartHw.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1921908958/uartHw.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/uartHw.c  -o ${OBJECTDIR}/_ext/1921908958/uartHw.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1921908958/uartHw.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pulseTimer.o: pulseTimer.c  .generated_files/flags/default/d4e54cca17012f57c54a4518edb6362a83c781f6 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/pulseTimer.o.d 
-	@${RM} ${OBJECTDIR}/pulseTimer.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  pulseTimer.c  -o ${OBJECTDIR}/pulseTimer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pulseTimer.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1921908958/vga.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/vga.c  .generated_files/flags/default/cf421a5205cd8e42619d8e41beb0c3fdf04a3649 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1921908958" 
+	@${RM} ${OBJECTDIR}/_ext/1921908958/vga.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1921908958/vga.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/vga.c  -o ${OBJECTDIR}/_ext/1921908958/vga.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1921908958/vga.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/debounce.o: debounce.c  .generated_files/flags/default/e975017d0bdca83261b17a951836fe292b9a370a .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/debounce.o.d 
-	@${RM} ${OBJECTDIR}/debounce.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  debounce.c  -o ${OBJECTDIR}/debounce.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/debounce.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1921908958/ws2812.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/ws2812.c  .generated_files/flags/default/fbaa64f8bb8cea0b318e6d1ba28f065278679ef5 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1921908958" 
+	@${RM} ${OBJECTDIR}/_ext/1921908958/ws2812.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1921908958/ws2812.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/ws2812.c  -o ${OBJECTDIR}/_ext/1921908958/ws2812.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1921908958/ws2812.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/protectedOutput.o: protectedOutput.c  .generated_files/flags/default/3003cc82fa1c73bab984e7707969bc52f7f559f0 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/protectedOutput.o.d 
-	@${RM} ${OBJECTDIR}/protectedOutput.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  protectedOutput.c  -o ${OBJECTDIR}/protectedOutput.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/protectedOutput.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/HSClock.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/HSClock.c  .generated_files/flags/default/97084a696ee7311fec86d4e3e7531535265399da .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/HSClock.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/HSClock.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/HSClock.c  -o ${OBJECTDIR}/_ext/1138356336/HSClock.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/HSClock.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/watchdog.o: watchdog.c  .generated_files/flags/default/a22739ec4143c1c782cc4b4e4d199c8cd260b2e0 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/watchdog.o.d 
-	@${RM} ${OBJECTDIR}/watchdog.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  watchdog.c  -o ${OBJECTDIR}/watchdog.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/watchdog.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/HSCounter.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/HSCounter.c  .generated_files/flags/default/5fce1f709e9adb8e5de39516a4ea42556d925216 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/HSCounter.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/HSCounter.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/HSCounter.c  -o ${OBJECTDIR}/_ext/1138356336/HSCounter.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/HSCounter.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/TM1637.o: TM1637.c  .generated_files/flags/default/6ca9a4fbafeedb15b1ef779b7f29615c3ced7385 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/TM1637.o.d 
-	@${RM} ${OBJECTDIR}/TM1637.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  TM1637.c  -o ${OBJECTDIR}/TM1637.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/TM1637.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/hfServo.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/hfServo.c  .generated_files/flags/default/f09d604102d9188db5da6ecf67dfb00f25b836bd .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/hfServo.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/hfServo.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/hfServo.c  -o ${OBJECTDIR}/_ext/1138356336/hfServo.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/hfServo.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/ws2812.o: ws2812.c  .generated_files/flags/default/c87622eea30c8fe089796ab2582815d9407a996b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/ws2812.o.d 
-	@${RM} ${OBJECTDIR}/ws2812.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  ws2812.c  -o ${OBJECTDIR}/ws2812.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/ws2812.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/resistanceInput.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/resistanceInput.c  .generated_files/flags/default/6df355126663a48e9feb72238bd66086357cd743 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/resistanceInput.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/resistanceInput.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/resistanceInput.c  -o ${OBJECTDIR}/_ext/1138356336/resistanceInput.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/resistanceInput.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/touch.o: touch.c  .generated_files/flags/default/5c6977cbc4ebf0633e3411a31d11fd7d97f54f3a .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/touch.o.d 
-	@${RM} ${OBJECTDIR}/touch.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  touch.c  -o ${OBJECTDIR}/touch.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/touch.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/uartSw.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/uartSw.c  .generated_files/flags/default/1233f7ac322098b916808c6cdc5b236109d7b35e .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/uartSw.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/uartSw.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/uartSw.c  -o ${OBJECTDIR}/_ext/1138356336/uartSw.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/uartSw.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/uartHw.o: uartHw.c  .generated_files/flags/default/ff86a945ab83e5802171b9520ea608014055e9a1 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/uartHw.o.d 
-	@${RM} ${OBJECTDIR}/uartHw.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  uartHw.c  -o ${OBJECTDIR}/uartHw.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/uartHw.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/analogInput.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/analogInput.c  .generated_files/flags/default/3a0dcc3d5ec0667eaea8ac83461d0ceefa00c12e .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/analogInput.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/analogInput.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/analogInput.c  -o ${OBJECTDIR}/_ext/1138356336/analogInput.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/analogInput.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/servo.o: servo.c  .generated_files/flags/default/b0429ab92d9b5f77353d7fce239bd65cc51539f1 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/servo.o.d 
-	@${RM} ${OBJECTDIR}/servo.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  servo.c  -o ${OBJECTDIR}/servo.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/servo.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/digitalIO.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/digitalIO.c  .generated_files/flags/default/58c238d316b5db992cfac21a335b9d0511dc6186 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/digitalIO.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/digitalIO.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/digitalIO.c  -o ${OBJECTDIR}/_ext/1138356336/digitalIO.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/digitalIO.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pwm.o: pwm.c  .generated_files/flags/default/22a61b0d8f6b6214d664afc5c32a1445085c6e94 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/pwm.o.d 
-	@${RM} ${OBJECTDIR}/pwm.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  pwm.c  -o ${OBJECTDIR}/pwm.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pwm.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/hBridge.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/hBridge.c  .generated_files/flags/default/cf37bd3559294b1e9745e39ad1c02a3ff62b3f13 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/hBridge.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/hBridge.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/hBridge.c  -o ${OBJECTDIR}/_ext/1138356336/hBridge.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/hBridge.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/outputScale.o: outputScale.c  .generated_files/flags/default/57278b00fdd1cd01c94519cf7b2e18b90fa6c0e2 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/outputScale.o.d 
-	@${RM} ${OBJECTDIR}/outputScale.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  outputScale.c  -o ${OBJECTDIR}/outputScale.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/outputScale.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/PS2Keyboard.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/PS2Keyboard.c  .generated_files/flags/default/4e178aa0ffeb38ca3c5b0fada7c439c96cb295ad .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/PS2Keyboard.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/PS2Keyboard.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/PS2Keyboard.c  -o ${OBJECTDIR}/_ext/1138356336/PS2Keyboard.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/PS2Keyboard.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/resistanceInput.o: resistanceInput.c  .generated_files/flags/default/1ce5b4f83fe0fa43ce41efd5dc84d2c28228c6f4 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/resistanceInput.o.d 
-	@${RM} ${OBJECTDIR}/resistanceInput.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  resistanceInput.c  -o ${OBJECTDIR}/resistanceInput.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/resistanceInput.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/inputProcess.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/inputProcess.c  .generated_files/flags/default/d0ba5bee4f7f6f8f132120c9b831cb7b14853ea5 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/inputProcess.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/inputProcess.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/inputProcess.c  -o ${OBJECTDIR}/_ext/1138356336/inputProcess.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/inputProcess.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/uartSw.o: uartSw.c  .generated_files/flags/default/d86b5960ec37440b21244d1b9fd0461ad00b80cd .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/uartSw.o.d 
-	@${RM} ${OBJECTDIR}/uartSw.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  uartSw.c  -o ${OBJECTDIR}/uartSw.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/uartSw.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/outputScale.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/outputScale.c  .generated_files/flags/default/43261e3b57b82c5d82eeaf7d1656a6e7a2756bd5 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/outputScale.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/outputScale.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/outputScale.c  -o ${OBJECTDIR}/_ext/1138356336/outputScale.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/outputScale.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/throughputConsumer.o: throughputConsumer.c  .generated_files/flags/default/b1b9b31f5d01d1d8ed4bff7ec8e4e1f389b17de4 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/throughputConsumer.o.d 
-	@${RM} ${OBJECTDIR}/throughputConsumer.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  throughputConsumer.c  -o ${OBJECTDIR}/throughputConsumer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/throughputConsumer.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/pinInputProcessor.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pinInputProcessor.c  .generated_files/flags/default/e39b06f1dfe69eb93c618246ef018e87bbf98fda .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/pinInputProcessor.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/pinInputProcessor.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pinInputProcessor.c  -o ${OBJECTDIR}/_ext/1138356336/pinInputProcessor.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/pinInputProcessor.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/matrixKeypad.o: matrixKeypad.c  .generated_files/flags/default/9af6eb44d4066eaa38b0fc86c7d2a8c9ca2e6857 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/matrixKeypad.o.d 
-	@${RM} ${OBJECTDIR}/matrixKeypad.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  matrixKeypad.c  -o ${OBJECTDIR}/matrixKeypad.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/matrixKeypad.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/protectedOutput.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/protectedOutput.c  .generated_files/flags/default/94b1e877a6bb79ad865369ca822d491de431ae1e .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/protectedOutput.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/protectedOutput.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/protectedOutput.c  -o ${OBJECTDIR}/_ext/1138356336/protectedOutput.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/protectedOutput.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/inputProcess.o: inputProcess.c  .generated_files/flags/default/1e4bb2ddd25d3887a180776cf389112411450ac0 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/inputProcess.o.d 
-	@${RM} ${OBJECTDIR}/inputProcess.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  inputProcess.c  -o ${OBJECTDIR}/inputProcess.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/inputProcess.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/pulseOnChange.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pulseOnChange.c  .generated_files/flags/default/4aefa86b905035fb69b1d408b7362aa94c478f4d .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/pulseOnChange.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/pulseOnChange.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pulseOnChange.c  -o ${OBJECTDIR}/_ext/1138356336/pulseOnChange.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/pulseOnChange.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pinInputProcessor.o: pinInputProcessor.c  .generated_files/flags/default/104ae5fb7b46067c6a05a56f19b6f86a798dd91e .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/pinInputProcessor.o.d 
-	@${RM} ${OBJECTDIR}/pinInputProcessor.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  pinInputProcessor.c  -o ${OBJECTDIR}/pinInputProcessor.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pinInputProcessor.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/pulseTimer.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pulseTimer.c  .generated_files/flags/default/65402884ba427c37125ef7e6579fbbe3bde5ec3b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/pulseTimer.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/pulseTimer.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pulseTimer.c  -o ${OBJECTDIR}/_ext/1138356336/pulseTimer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/pulseTimer.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pulseOnChange.o: pulseOnChange.c  .generated_files/flags/default/f647101625727d470d23efea729c273fc1d52a6d .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/pulseOnChange.o.d 
-	@${RM} ${OBJECTDIR}/pulseOnChange.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  pulseOnChange.c  -o ${OBJECTDIR}/pulseOnChange.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pulseOnChange.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/ultrasonicDistance.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/ultrasonicDistance.c  .generated_files/flags/default/3c5a69957035ede3ef4eb98fa312775ece58bae9 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/ultrasonicDistance.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/ultrasonicDistance.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/ultrasonicDistance.c  -o ${OBJECTDIR}/_ext/1138356336/ultrasonicDistance.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/ultrasonicDistance.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/hfServo.o: hfServo.c  .generated_files/flags/default/2c737199d98751f033fdd7b2c81dd5bdddf1f564 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/hfServo.o.d 
-	@${RM} ${OBJECTDIR}/hfServo.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  hfServo.c  -o ${OBJECTDIR}/hfServo.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/hfServo.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/watchdog.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/watchdog.c  .generated_files/flags/default/4a6e7ac629461a456e2ebbb1727e3ce33725ecf1 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/watchdog.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/watchdog.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/watchdog.c  -o ${OBJECTDIR}/_ext/1138356336/watchdog.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/watchdog.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/ultrasonicDistance.o: ultrasonicDistance.c  .generated_files/flags/default/cd8f988640d9e4f4734cb8005b4a45de672ec86c .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/ultrasonicDistance.o.d 
-	@${RM} ${OBJECTDIR}/ultrasonicDistance.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  ultrasonicDistance.c  -o ${OBJECTDIR}/ultrasonicDistance.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/ultrasonicDistance.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/Font5x7.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/Font5x7.c  .generated_files/flags/default/715e687e6aa53aeeae247b1db88dad6f6263cff9 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/Font5x7.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/Font5x7.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/Font5x7.c  -o ${OBJECTDIR}/_ext/1138356336/Font5x7.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/Font5x7.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/liquidCrystal.o: liquidCrystal.c  .generated_files/flags/default/5b82c1f9694d3c7fa33b56f891f9f503b65c57c9 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/liquidCrystal.o.d 
-	@${RM} ${OBJECTDIR}/liquidCrystal.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  liquidCrystal.c  -o ${OBJECTDIR}/liquidCrystal.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/liquidCrystal.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/TM1637.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/TM1637.c  .generated_files/flags/default/b5c99bc730dd3dc8d111bd4d9268ea567c9be31a .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/TM1637.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/TM1637.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/TM1637.c  -o ${OBJECTDIR}/_ext/1138356336/TM1637.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/TM1637.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/HSClock.o: HSClock.c  .generated_files/flags/default/7ad176121f23f516efde3dcb122cc074fb707b97 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/HSClock.o.d 
-	@${RM} ${OBJECTDIR}/HSClock.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  HSClock.c  -o ${OBJECTDIR}/HSClock.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/HSClock.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/debounce.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/debounce.c  .generated_files/flags/default/3f304f6ed1f7b58f10c66e73c9a2569ed0d145a0 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/debounce.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/debounce.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/debounce.c  -o ${OBJECTDIR}/_ext/1138356336/debounce.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/debounce.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/HSCounter.o: HSCounter.c  .generated_files/flags/default/1173429215393f1f02226cc75de47fb6d3ef0a41 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/HSCounter.o.d 
-	@${RM} ${OBJECTDIR}/HSCounter.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  HSCounter.c  -o ${OBJECTDIR}/HSCounter.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/HSCounter.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/frequencyOutput.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/frequencyOutput.c  .generated_files/flags/default/116a50141f1ae5035acb9ba0e266acfd4028cba7 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/frequencyOutput.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/frequencyOutput.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/frequencyOutput.c  -o ${OBJECTDIR}/_ext/1138356336/frequencyOutput.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/frequencyOutput.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/PS2Keyboard.o: PS2Keyboard.c  .generated_files/flags/default/77e15d9c4a57d9c12180f7bb7d93ee04e22d00a3 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/PS2Keyboard.o.d 
-	@${RM} ${OBJECTDIR}/PS2Keyboard.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  PS2Keyboard.c  -o ${OBJECTDIR}/PS2Keyboard.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/PS2Keyboard.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/liquidCrystal.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/liquidCrystal.c  .generated_files/flags/default/4ff6e28c949983c639ac35b1c94e18e28e1ee398 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/liquidCrystal.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/liquidCrystal.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/liquidCrystal.c  -o ${OBJECTDIR}/_ext/1138356336/liquidCrystal.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/liquidCrystal.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/i2cController.o: i2cController.c  .generated_files/flags/default/e1e3eb252c7f0c6352688562541a2019f469f699 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/i2cController.o.d 
-	@${RM} ${OBJECTDIR}/i2cController.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  i2cController.c  -o ${OBJECTDIR}/i2cController.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/i2cController.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O0 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/matrixKeypad.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/matrixKeypad.c  .generated_files/flags/default/9267d71abd2bac5d19d732fdf9125eed58565e9b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/matrixKeypad.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/matrixKeypad.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/matrixKeypad.c  -o ${OBJECTDIR}/_ext/1138356336/matrixKeypad.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/matrixKeypad.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/vga.o: vga.c  .generated_files/flags/default/55d55ae0379a12434d82e2f0a335280e757a502c .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/vga.o.d 
-	@${RM} ${OBJECTDIR}/vga.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  vga.c  -o ${OBJECTDIR}/vga.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/vga.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/quadEnc.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/quadEnc.c  .generated_files/flags/default/b0697fb2a4c93472640e3b231cb74d59b199bb13 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/quadEnc.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/quadEnc.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/quadEnc.c  -o ${OBJECTDIR}/_ext/1138356336/quadEnc.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/quadEnc.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/hBridge.o: hBridge.c  .generated_files/flags/default/2d1992fbd0cdbff2fc77c2bae358092156198e7b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/hBridge.o.d 
-	@${RM} ${OBJECTDIR}/hBridge.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  hBridge.c  -o ${OBJECTDIR}/hBridge.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/hBridge.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/queuedPulseOutput.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/queuedPulseOutput.c  .generated_files/flags/default/27df3cd1be84ee72980eb169a39d5f3facc06ff8 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/queuedPulseOutput.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/queuedPulseOutput.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/queuedPulseOutput.c  -o ${OBJECTDIR}/_ext/1138356336/queuedPulseOutput.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/queuedPulseOutput.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/queuedPulseOutput.o: queuedPulseOutput.c  .generated_files/flags/default/5a76626f45025bf05357f1eaadd3d2ce03d7f1b9 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/queuedPulseOutput.o.d 
-	@${RM} ${OBJECTDIR}/queuedPulseOutput.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  queuedPulseOutput.c  -o ${OBJECTDIR}/queuedPulseOutput.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/queuedPulseOutput.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/servo.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/servo.c  .generated_files/flags/default/a3f72657bab38d4b0814b6d5261786e56be0359b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/servo.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/servo.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/servo.c  -o ${OBJECTDIR}/_ext/1138356336/servo.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/servo.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/MAX7219Matrix.o: MAX7219Matrix.c  .generated_files/flags/default/7502916f20e871eade30cc3039916ffeb424e4f1 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/MAX7219Matrix.o.d 
-	@${RM} ${OBJECTDIR}/MAX7219Matrix.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  MAX7219Matrix.c  -o ${OBJECTDIR}/MAX7219Matrix.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MAX7219Matrix.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/throughputConsumer.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/throughputConsumer.c  .generated_files/flags/default/926145ed148271985f72365b84b66f5db31b4900 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/throughputConsumer.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/throughputConsumer.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/throughputConsumer.c  -o ${OBJECTDIR}/_ext/1138356336/throughputConsumer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/throughputConsumer.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/swI2cRoutines.o: swI2cRoutines.c  .generated_files/flags/default/57d0577b0d4e7794631eb08fce70c5eb6307b208 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/swI2cRoutines.o.d 
-	@${RM} ${OBJECTDIR}/swI2cRoutines.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  swI2cRoutines.c  -o ${OBJECTDIR}/swI2cRoutines.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/swI2cRoutines.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O0 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/pwm.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pwm.c  .generated_files/flags/default/83d86a5f6b99f274aaa14fe2a6c2bf875a106751 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/pwm.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/pwm.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pwm.c  -o ${OBJECTDIR}/_ext/1138356336/pwm.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/pwm.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/frequencyOutput.o: frequencyOutput.c  .generated_files/flags/default/624ab9dd53705ba92913b057390552098e1f74ed .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/frequencyOutput.o.d 
-	@${RM} ${OBJECTDIR}/frequencyOutput.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  frequencyOutput.c  -o ${OBJECTDIR}/frequencyOutput.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/frequencyOutput.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/MAX7219Matrix.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/MAX7219Matrix.c  .generated_files/flags/default/f8e5e48f1081da3c37939e81dfe5e7da1661c65b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/MAX7219Matrix.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/MAX7219Matrix.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/MAX7219Matrix.c  -o ${OBJECTDIR}/_ext/1138356336/MAX7219Matrix.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/MAX7219Matrix.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/Font5x7.o: Font5x7.c  .generated_files/flags/default/bcff292ad423e9b747f5da79191282fb26e4bb99 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/Font5x7.o.d 
-	@${RM} ${OBJECTDIR}/Font5x7.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  Font5x7.c  -o ${OBJECTDIR}/Font5x7.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/Font5x7.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/i2cController.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/i2cController.c  .generated_files/flags/default/39674ac92f734d5f4f81e4b196dfc9d7d8cc07d4 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/i2cController.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/i2cController.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/i2cController.c  -o ${OBJECTDIR}/_ext/1138356336/i2cController.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/i2cController.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/b7c0c267d956b4aa75c063ef04ddec8f418d92e0 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/_ext/1138356336/swI2cRoutines.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/swI2cRoutines.c  .generated_files/flags/default/559947c5d073bc8e98c604624133a3f5fea63dc9 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/swI2cRoutines.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/swI2cRoutines.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/swI2cRoutines.c  -o ${OBJECTDIR}/_ext/1138356336/swI2cRoutines.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/swI2cRoutines.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/eef227742ff2c2ea8f8f63e83894e6d9363dc2d2 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.o.d 
 	@${RM} ${OBJECTDIR}/main.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  main.c  -o ${OBJECTDIR}/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/main.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/protocol.o: protocol.c  .generated_files/flags/default/d41c495dedd094bf8138c1a39fe7ae9609e35ae9 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/protocol.o: protocol.c  .generated_files/flags/default/d28f37d0af82a0823aa0302a111c067952b57ee6 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/protocol.o.d 
 	@${RM} ${OBJECTDIR}/protocol.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  protocol.c  -o ${OBJECTDIR}/protocol.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/protocol.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/asciiConversion.o: asciiConversion.c  .generated_files/flags/default/a4cf37d7ffe35a5a593837083201e03946bc1d25 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/asciiConversion.o: asciiConversion.c  .generated_files/flags/default/4f0da22c17fb39e5b7686aa5af693a4c29287a96 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/asciiConversion.o.d 
 	@${RM} ${OBJECTDIR}/asciiConversion.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  asciiConversion.c  -o ${OBJECTDIR}/asciiConversion.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/asciiConversion.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pinRegisters.o: pinRegisters.c  .generated_files/flags/default/38a13fbf441433547bba838642e48f370fb4239a .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pinRegisters.o: pinRegisters.c  .generated_files/flags/default/cd494e453f9498f7e8d181a899aa04a1170557c .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/pinRegisters.o.d 
 	@${RM} ${OBJECTDIR}/pinRegisters.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pinRegisters.c  -o ${OBJECTDIR}/pinRegisters.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pinRegisters.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/queue.o: queue.c  .generated_files/flags/default/f77dda9e729abca3591240f8213d2d7e037ce444 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/queue.o: queue.c  .generated_files/flags/default/df864b2d61cf2ee678652ec756a493f054630d3d .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/queue.o.d 
 	@${RM} ${OBJECTDIR}/queue.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  queue.c  -o ${OBJECTDIR}/queue.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/queue.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/swMath.o: swMath.c  .generated_files/flags/default/79d2c26e5b2fb7e821e090e4053032c04bb684a4 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/swMath.o.d 
-	@${RM} ${OBJECTDIR}/swMath.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  swMath.c  -o ${OBJECTDIR}/swMath.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/swMath.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/2091145489/swMath.o: ../../SerialWombatPinModes/swMath.c  .generated_files/flags/default/9838552309e4344dca63549333c2ad0c3b6d91f .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/2091145489" 
+	@${RM} ${OBJECTDIR}/_ext/2091145489/swMath.o.d 
+	@${RM} ${OBJECTDIR}/_ext/2091145489/swMath.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../SerialWombatPinModes/swMath.c  -o ${OBJECTDIR}/_ext/2091145489/swMath.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/2091145489/swMath.o.d"      -g -D__DEBUG   -mno-eds-warn  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
 else
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/clock.o: pic24fj256ga702/mcc_generated_files/clock.c  .generated_files/flags/default/234dfd2eb4d2e2ac2216bc109c716c42d37695b7 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/clock.o: pic24fj256ga702/mcc_generated_files/clock.c  .generated_files/flags/default/fb73d58d9c5be2b248efc3feef20c97e81c745a4 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/clock.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/clock.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/clock.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/clock.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/clock.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/crc.o: pic24fj256ga702/mcc_generated_files/crc.c  .generated_files/flags/default/592f881a9cb45af34f7778e1c35aa42160c83f0c .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/crc.o: pic24fj256ga702/mcc_generated_files/crc.c  .generated_files/flags/default/efcbad39d1685f6453370934e8a2ef871b09850b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/crc.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/crc.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/crc.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/crc.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/crc.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/cvr.o: pic24fj256ga702/mcc_generated_files/cvr.c  .generated_files/flags/default/7233197d3d27ed7efbfea672fd97c2bbc94ce92d .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/cvr.o: pic24fj256ga702/mcc_generated_files/cvr.c  .generated_files/flags/default/b3869a67d0c01a355019e4cd26cd75ab412d7cc4 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/cvr.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/cvr.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/cvr.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/cvr.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/cvr.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/dma.o: pic24fj256ga702/mcc_generated_files/dma.c  .generated_files/flags/default/20bf165d04b5b4697ef2a91b9a03b098d6623969 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/dma.o: pic24fj256ga702/mcc_generated_files/dma.c  .generated_files/flags/default/78611c86382ea87f5b5340d2c37637762aacfb48 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/dma.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/dma.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/dma.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/dma.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/dma.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c1.o: pic24fj256ga702/mcc_generated_files/i2c1.c  .generated_files/flags/default/4bc1568abbc9e9e732b79eae450bb5a193514f46 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c1.o: pic24fj256ga702/mcc_generated_files/i2c1.c  .generated_files/flags/default/ddb51ed488c029907e455a56fb0bc392e1847e34 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c1.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c1.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/i2c1.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c1.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2.o: pic24fj256ga702/mcc_generated_files/i2c2.c  .generated_files/flags/default/ad7568ea623614430ae0e4a613c9036926c6cd7b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2.o: pic24fj256ga702/mcc_generated_files/i2c2.c  .generated_files/flags/default/d34e92accc67edf28940906d8f8beac698ba1d9a .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/i2c2.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/interrupt_manager.o: pic24fj256ga702/mcc_generated_files/interrupt_manager.c  .generated_files/flags/default/25f69bcfc046c453804213bce50c221ca2aeeef8 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/interrupt_manager.o: pic24fj256ga702/mcc_generated_files/interrupt_manager.c  .generated_files/flags/default/e5d740f7cbc37c1d191a470e10884d231d66918b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/interrupt_manager.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/interrupt_manager.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/interrupt_manager.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/interrupt_manager.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/interrupt_manager.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/mcc.o: pic24fj256ga702/mcc_generated_files/mcc.c  .generated_files/flags/default/9b9430dc74011b7cd1b6ddaef3493e6dfd28d4ce .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/mcc.o: pic24fj256ga702/mcc_generated_files/mcc.c  .generated_files/flags/default/968e4066deb373df024c8923a10c30191dacfdb8 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/mcc.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/mcc.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/mcc.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/mcc.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/mcc.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/pin_manager.o: pic24fj256ga702/mcc_generated_files/pin_manager.c  .generated_files/flags/default/b08fbb5455a3e4bec5a809e57270803daa11ccb9 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/pin_manager.o: pic24fj256ga702/mcc_generated_files/pin_manager.c  .generated_files/flags/default/80a6758f04746c493d9b7c6730bc2039ef4f1d62 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/pin_manager.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/pin_manager.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/pin_manager.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/pin_manager.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/pin_manager.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/system.o: pic24fj256ga702/mcc_generated_files/system.c  .generated_files/flags/default/6a660bebac85c6134c2ac64edac045d246396831 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/system.o: pic24fj256ga702/mcc_generated_files/system.c  .generated_files/flags/default/1497e102d7e5a14a474630ded7553b989a40e75 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/system.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/system.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/system.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/system.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/system.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr1.o: pic24fj256ga702/mcc_generated_files/tmr1.c  .generated_files/flags/default/4b650c3b303b9bdfb4ca5e4ee3ea5bc70b017f4d .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr1.o: pic24fj256ga702/mcc_generated_files/tmr1.c  .generated_files/flags/default/9840df6cf861728d98b95de3ef132e0e84003593 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr1.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr1.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/tmr1.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr1.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr2.o: pic24fj256ga702/mcc_generated_files/tmr2.c  .generated_files/flags/default/b7a333c0cf704d3b576b711d728828c0c07bc161 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr2.o: pic24fj256ga702/mcc_generated_files/tmr2.c  .generated_files/flags/default/11e6c5571d47e7135363cb500b9f5787af684c3 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr2.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr2.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/tmr2.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr2.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr2.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr3.o: pic24fj256ga702/mcc_generated_files/tmr3.c  .generated_files/flags/default/1d88029b52412c45cda1e992ad049f8e364d53fc .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr3.o: pic24fj256ga702/mcc_generated_files/tmr3.c  .generated_files/flags/default/52e03fd501fbc2c4535e46f4aab7198d6635c029 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr3.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr3.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/tmr3.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr3.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/tmr3.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/traps.o: pic24fj256ga702/mcc_generated_files/traps.c  .generated_files/flags/default/7ecee72a8e23d951d2e173e1449a832c5668842a .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/traps.o: pic24fj256ga702/mcc_generated_files/traps.c  .generated_files/flags/default/ae7731e216e565832dc7af4b32a77d775967e033 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/traps.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/traps.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/traps.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/traps.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/traps.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart1.o: pic24fj256ga702/mcc_generated_files/uart1.c  .generated_files/flags/default/771d69d983d8c7993515ad3cc48131f5d31bcbff .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart1.o: pic24fj256ga702/mcc_generated_files/uart1.c  .generated_files/flags/default/94a0ede6a3654a3af736c9697cd3a084326d93f5 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart1.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart1.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/uart1.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart1.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart2.o: pic24fj256ga702/mcc_generated_files/uart2.c  .generated_files/flags/default/1ab256841407c6437a36f98ad41169f11edae76b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart2.o: pic24fj256ga702/mcc_generated_files/uart2.c  .generated_files/flags/default/5ffe40802b78ccfed1f071e8196f01aeebdf9a42 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart2.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart2.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/uart2.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart2.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/uart2.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/adc1.o: pic24fj256ga702/mcc_generated_files/adc1.c  .generated_files/flags/default/b0d72f4257bd77dfd757da9154208274a9052072 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/adc1.o: pic24fj256ga702/mcc_generated_files/adc1.c  .generated_files/flags/default/5b621b795a3dff80ee85b2a9e4e8f75cd0a2480f .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/adc1.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/adc1.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/adc1.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/adc1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/adc1.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2Controller.o: pic24fj256ga702/mcc_generated_files/i2c2Controller.c  .generated_files/flags/default/1f613e549ba371eb021c0277a9b27203b4f164e1 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2Controller.o: pic24fj256ga702/mcc_generated_files/i2c2Controller.c  .generated_files/flags/default/6ac33e2c7906cfd590d0dbb70bd5c298bcf728ac .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2Controller.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2Controller.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/mcc_generated_files/i2c2Controller.c  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2Controller.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/i2c2Controller.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/pinDigitalHwSpecific.o: pic24fj256ga702/pinDigitalHwSpecific.c  .generated_files/flags/default/46a872e856e1248ccc0d5898ab4da31887b96f2f .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/pinDigitalHwSpecific.o: pic24fj256ga702/pinDigitalHwSpecific.c  .generated_files/flags/default/59c9824e661262523d301b7aafe684caf272039f .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/pinDigitalHwSpecific.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/pinDigitalHwSpecific.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/pinDigitalHwSpecific.c  -o ${OBJECTDIR}/pic24fj256ga702/pinDigitalHwSpecific.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/pinDigitalHwSpecific.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/updatePulse.o: pic24fj256ga702/updatePulse.c  .generated_files/flags/default/267ca78b39a02d085d6999993e872404ac10a2f8 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/updatePulse.o: pic24fj256ga702/updatePulse.c  .generated_files/flags/default/98a125cd23adb575bd070fa787ecc49ff2dfdfaa .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/updatePulse.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/updatePulse.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pic24fj256ga702/updatePulse.c  -o ${OBJECTDIR}/pic24fj256ga702/updatePulse.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pic24fj256ga702/updatePulse.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/timingResource.o: timingResource.c  .generated_files/flags/default/eb278d2693ed87fd4f1d921f751700612ba007bc .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/timingResource.o: timingResource.c  .generated_files/flags/default/b93eded422542b648ad796a86f58fdea2626f92e .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/timingResource.o.d 
 	@${RM} ${OBJECTDIR}/timingResource.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  timingResource.c  -o ${OBJECTDIR}/timingResource.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/timingResource.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/quadEnc.o: quadEnc.c  .generated_files/flags/default/fb1b19ae828cc33213e11f2b1d6c246e78fbb5a0 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/quadEnc.o.d 
-	@${RM} ${OBJECTDIR}/quadEnc.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  quadEnc.c  -o ${OBJECTDIR}/quadEnc.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/quadEnc.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1921908958/touch.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/touch.c  .generated_files/flags/default/40dcc5ec120d64ba1bd6cd8bffeda71af2ce4869 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1921908958" 
+	@${RM} ${OBJECTDIR}/_ext/1921908958/touch.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1921908958/touch.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/touch.c  -o ${OBJECTDIR}/_ext/1921908958/touch.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1921908958/touch.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/analogInput.o: analogInput.c  .generated_files/flags/default/754201736ef18ec1eebc7cb789890b6eb5b4dc59 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/analogInput.o.d 
-	@${RM} ${OBJECTDIR}/analogInput.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  analogInput.c  -o ${OBJECTDIR}/analogInput.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/analogInput.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1921908958/uartHw.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/uartHw.c  .generated_files/flags/default/f1699a1aa2d5c304daa872eaee61bc0729620f56 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1921908958" 
+	@${RM} ${OBJECTDIR}/_ext/1921908958/uartHw.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1921908958/uartHw.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/uartHw.c  -o ${OBJECTDIR}/_ext/1921908958/uartHw.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1921908958/uartHw.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pulseTimer.o: pulseTimer.c  .generated_files/flags/default/aa98a4c5165f4c5e4bbc48e19e2e85d0b7789355 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/pulseTimer.o.d 
-	@${RM} ${OBJECTDIR}/pulseTimer.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  pulseTimer.c  -o ${OBJECTDIR}/pulseTimer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pulseTimer.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1921908958/vga.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/vga.c  .generated_files/flags/default/c2fd92da9365597f37f499a5c2662057b8dc0eae .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1921908958" 
+	@${RM} ${OBJECTDIR}/_ext/1921908958/vga.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1921908958/vga.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/vga.c  -o ${OBJECTDIR}/_ext/1921908958/vga.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1921908958/vga.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/debounce.o: debounce.c  .generated_files/flags/default/9a310bad04281554e84c5e3a6c18ad514a9e546c .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/debounce.o.d 
-	@${RM} ${OBJECTDIR}/debounce.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  debounce.c  -o ${OBJECTDIR}/debounce.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/debounce.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1921908958/ws2812.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/ws2812.c  .generated_files/flags/default/a20b09e45ee4b2ac27bbdede60afeaf5afbd1e6f .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1921908958" 
+	@${RM} ${OBJECTDIR}/_ext/1921908958/ws2812.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1921908958/ws2812.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/ws2812.c  -o ${OBJECTDIR}/_ext/1921908958/ws2812.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1921908958/ws2812.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/protectedOutput.o: protectedOutput.c  .generated_files/flags/default/c90419b55c26f40ed4a6ec77278e4bfe467ce9de .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/protectedOutput.o.d 
-	@${RM} ${OBJECTDIR}/protectedOutput.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  protectedOutput.c  -o ${OBJECTDIR}/protectedOutput.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/protectedOutput.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/HSClock.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/HSClock.c  .generated_files/flags/default/1034194bb7ba81d59dc0c367c232c0d02e1f3ce4 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/HSClock.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/HSClock.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/HSClock.c  -o ${OBJECTDIR}/_ext/1138356336/HSClock.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/HSClock.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/watchdog.o: watchdog.c  .generated_files/flags/default/6c9e7abe0068337750aa0c80a70a6cd15220ea5b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/watchdog.o.d 
-	@${RM} ${OBJECTDIR}/watchdog.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  watchdog.c  -o ${OBJECTDIR}/watchdog.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/watchdog.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/HSCounter.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/HSCounter.c  .generated_files/flags/default/97af23f7c503e605cb14e93aba45262f54ef8607 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/HSCounter.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/HSCounter.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/HSCounter.c  -o ${OBJECTDIR}/_ext/1138356336/HSCounter.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/HSCounter.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/TM1637.o: TM1637.c  .generated_files/flags/default/77e3c3aed632058db4449761d83fb99ae5a48334 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/TM1637.o.d 
-	@${RM} ${OBJECTDIR}/TM1637.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  TM1637.c  -o ${OBJECTDIR}/TM1637.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/TM1637.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/hfServo.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/hfServo.c  .generated_files/flags/default/8492760a1bd3ab01cc7cd7cbbe8fb657840b4a2c .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/hfServo.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/hfServo.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/hfServo.c  -o ${OBJECTDIR}/_ext/1138356336/hfServo.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/hfServo.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/ws2812.o: ws2812.c  .generated_files/flags/default/bc495fde3d138c71a383dd1170f9aa08f113d3b9 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/ws2812.o.d 
-	@${RM} ${OBJECTDIR}/ws2812.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  ws2812.c  -o ${OBJECTDIR}/ws2812.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/ws2812.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/resistanceInput.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/resistanceInput.c  .generated_files/flags/default/9a01ea258570c81ab4c8f9081006140e4a882bcf .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/resistanceInput.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/resistanceInput.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/resistanceInput.c  -o ${OBJECTDIR}/_ext/1138356336/resistanceInput.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/resistanceInput.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/touch.o: touch.c  .generated_files/flags/default/22fd29644ef74667e663bfe6bbd8705e2d640873 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/touch.o.d 
-	@${RM} ${OBJECTDIR}/touch.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  touch.c  -o ${OBJECTDIR}/touch.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/touch.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/uartSw.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/uartSw.c  .generated_files/flags/default/a08b7ffbfe15763a52ff423ac3467d3687d20e46 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/uartSw.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/uartSw.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/uartSw.c  -o ${OBJECTDIR}/_ext/1138356336/uartSw.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/uartSw.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/uartHw.o: uartHw.c  .generated_files/flags/default/8ca70cc96cf9ef4917f17f826eb7e9ac4e4422f7 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/uartHw.o.d 
-	@${RM} ${OBJECTDIR}/uartHw.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  uartHw.c  -o ${OBJECTDIR}/uartHw.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/uartHw.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/analogInput.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/analogInput.c  .generated_files/flags/default/d58ce5fbd5cd440e6faa9c18920cea575efd1e71 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/analogInput.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/analogInput.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/analogInput.c  -o ${OBJECTDIR}/_ext/1138356336/analogInput.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/analogInput.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/servo.o: servo.c  .generated_files/flags/default/bbaf10f39f6a251dfbbfc02c6c6485b815e3a19e .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/servo.o.d 
-	@${RM} ${OBJECTDIR}/servo.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  servo.c  -o ${OBJECTDIR}/servo.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/servo.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/digitalIO.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/digitalIO.c  .generated_files/flags/default/40eae8c3f90983a2fc0182b7c9d5a4f4275b4ff3 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/digitalIO.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/digitalIO.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/digitalIO.c  -o ${OBJECTDIR}/_ext/1138356336/digitalIO.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/digitalIO.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pwm.o: pwm.c  .generated_files/flags/default/5201914be2f83f075982a3940933d4bbf284aa49 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/pwm.o.d 
-	@${RM} ${OBJECTDIR}/pwm.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  pwm.c  -o ${OBJECTDIR}/pwm.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pwm.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/hBridge.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/hBridge.c  .generated_files/flags/default/a7b62dec298160d4aa00dda046b2866e2685c8e3 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/hBridge.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/hBridge.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/hBridge.c  -o ${OBJECTDIR}/_ext/1138356336/hBridge.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/hBridge.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/outputScale.o: outputScale.c  .generated_files/flags/default/7b06f5b30028ec9eb38b5d1de51d9e6938397104 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/outputScale.o.d 
-	@${RM} ${OBJECTDIR}/outputScale.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  outputScale.c  -o ${OBJECTDIR}/outputScale.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/outputScale.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/PS2Keyboard.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/PS2Keyboard.c  .generated_files/flags/default/a2cc7225e52eb7658a2765ad6b6603b2d825e0ae .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/PS2Keyboard.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/PS2Keyboard.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/PS2Keyboard.c  -o ${OBJECTDIR}/_ext/1138356336/PS2Keyboard.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/PS2Keyboard.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/resistanceInput.o: resistanceInput.c  .generated_files/flags/default/5823cd2a344638ea731f7f58b6c99f8f26f3d1b8 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/resistanceInput.o.d 
-	@${RM} ${OBJECTDIR}/resistanceInput.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  resistanceInput.c  -o ${OBJECTDIR}/resistanceInput.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/resistanceInput.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/inputProcess.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/inputProcess.c  .generated_files/flags/default/7e6d4c3dcc4692398f99dd785a096f34baa8e495 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/inputProcess.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/inputProcess.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/inputProcess.c  -o ${OBJECTDIR}/_ext/1138356336/inputProcess.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/inputProcess.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/uartSw.o: uartSw.c  .generated_files/flags/default/54bd96d9071d23c5bf798cc80bc7389f83cd1782 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/uartSw.o.d 
-	@${RM} ${OBJECTDIR}/uartSw.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  uartSw.c  -o ${OBJECTDIR}/uartSw.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/uartSw.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/outputScale.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/outputScale.c  .generated_files/flags/default/14c6fa5f69077e566baf5a655f2fdc5a4b3dae7d .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/outputScale.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/outputScale.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/outputScale.c  -o ${OBJECTDIR}/_ext/1138356336/outputScale.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/outputScale.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/throughputConsumer.o: throughputConsumer.c  .generated_files/flags/default/8663fcee5fbfd4a31ab6e8383a2673d139dffb33 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/throughputConsumer.o.d 
-	@${RM} ${OBJECTDIR}/throughputConsumer.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  throughputConsumer.c  -o ${OBJECTDIR}/throughputConsumer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/throughputConsumer.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/pinInputProcessor.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pinInputProcessor.c  .generated_files/flags/default/4e05c7fcfa5f8b50a288bbe91ccd3a91ec844014 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/pinInputProcessor.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/pinInputProcessor.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pinInputProcessor.c  -o ${OBJECTDIR}/_ext/1138356336/pinInputProcessor.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/pinInputProcessor.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/matrixKeypad.o: matrixKeypad.c  .generated_files/flags/default/39b47af0221db0a305455c53c70b38cc2c98c1de .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/matrixKeypad.o.d 
-	@${RM} ${OBJECTDIR}/matrixKeypad.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  matrixKeypad.c  -o ${OBJECTDIR}/matrixKeypad.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/matrixKeypad.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/protectedOutput.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/protectedOutput.c  .generated_files/flags/default/281bf98f130fbb41dc0d88e761dabd423fc3ab5c .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/protectedOutput.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/protectedOutput.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/protectedOutput.c  -o ${OBJECTDIR}/_ext/1138356336/protectedOutput.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/protectedOutput.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/inputProcess.o: inputProcess.c  .generated_files/flags/default/d3714177288528a206121c6f0a80acdb57eb4e49 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/inputProcess.o.d 
-	@${RM} ${OBJECTDIR}/inputProcess.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  inputProcess.c  -o ${OBJECTDIR}/inputProcess.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/inputProcess.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/pulseOnChange.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pulseOnChange.c  .generated_files/flags/default/155753941124bcb72531cb8458bef835fcfb2fc .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/pulseOnChange.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/pulseOnChange.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pulseOnChange.c  -o ${OBJECTDIR}/_ext/1138356336/pulseOnChange.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/pulseOnChange.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pinInputProcessor.o: pinInputProcessor.c  .generated_files/flags/default/c88a959acf8b35ef29b81ac5f3f6152ffa6bf643 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/pinInputProcessor.o.d 
-	@${RM} ${OBJECTDIR}/pinInputProcessor.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  pinInputProcessor.c  -o ${OBJECTDIR}/pinInputProcessor.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pinInputProcessor.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/pulseTimer.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pulseTimer.c  .generated_files/flags/default/c3a66f37cbb0969eb20d19a47564180de6d66f93 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/pulseTimer.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/pulseTimer.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pulseTimer.c  -o ${OBJECTDIR}/_ext/1138356336/pulseTimer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/pulseTimer.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pulseOnChange.o: pulseOnChange.c  .generated_files/flags/default/186a1f5bd6af705b59d7944a2326ef5293819ebc .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/pulseOnChange.o.d 
-	@${RM} ${OBJECTDIR}/pulseOnChange.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  pulseOnChange.c  -o ${OBJECTDIR}/pulseOnChange.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pulseOnChange.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/ultrasonicDistance.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/ultrasonicDistance.c  .generated_files/flags/default/c06928b5df0e13536505bcf21c81b9e53ede4b73 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/ultrasonicDistance.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/ultrasonicDistance.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/ultrasonicDistance.c  -o ${OBJECTDIR}/_ext/1138356336/ultrasonicDistance.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/ultrasonicDistance.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/hfServo.o: hfServo.c  .generated_files/flags/default/d7df8f584638b2cbf4fd762551a451a4e933e1cc .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/hfServo.o.d 
-	@${RM} ${OBJECTDIR}/hfServo.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  hfServo.c  -o ${OBJECTDIR}/hfServo.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/hfServo.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/watchdog.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/watchdog.c  .generated_files/flags/default/75986edf8b838488c426b6adf86c972e09354f9d .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/watchdog.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/watchdog.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/watchdog.c  -o ${OBJECTDIR}/_ext/1138356336/watchdog.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/watchdog.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/ultrasonicDistance.o: ultrasonicDistance.c  .generated_files/flags/default/749ad23f58f3b78fcd1066761a1f8956c073f1e9 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/ultrasonicDistance.o.d 
-	@${RM} ${OBJECTDIR}/ultrasonicDistance.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  ultrasonicDistance.c  -o ${OBJECTDIR}/ultrasonicDistance.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/ultrasonicDistance.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/Font5x7.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/Font5x7.c  .generated_files/flags/default/9f051f34ddd39e77bf5d61207cb0dfc87c2bd655 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/Font5x7.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/Font5x7.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/Font5x7.c  -o ${OBJECTDIR}/_ext/1138356336/Font5x7.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/Font5x7.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/liquidCrystal.o: liquidCrystal.c  .generated_files/flags/default/b4a8b1693d726c7993fb3cad04cba5b91085803b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/liquidCrystal.o.d 
-	@${RM} ${OBJECTDIR}/liquidCrystal.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  liquidCrystal.c  -o ${OBJECTDIR}/liquidCrystal.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/liquidCrystal.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/TM1637.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/TM1637.c  .generated_files/flags/default/794e1dd5bc35379c3f1905d49a47c72b8690d87d .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/TM1637.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/TM1637.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/TM1637.c  -o ${OBJECTDIR}/_ext/1138356336/TM1637.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/TM1637.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/HSClock.o: HSClock.c  .generated_files/flags/default/5e0eb0bc53e6f9fbad3a4ea2e8a305d4ea2044b7 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/HSClock.o.d 
-	@${RM} ${OBJECTDIR}/HSClock.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  HSClock.c  -o ${OBJECTDIR}/HSClock.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/HSClock.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/debounce.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/debounce.c  .generated_files/flags/default/854112c8054f7786f51422c5652ec7fffa11c31a .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/debounce.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/debounce.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/debounce.c  -o ${OBJECTDIR}/_ext/1138356336/debounce.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/debounce.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/HSCounter.o: HSCounter.c  .generated_files/flags/default/afb7ef406f0d58f860b81a01b6dba86811480738 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/HSCounter.o.d 
-	@${RM} ${OBJECTDIR}/HSCounter.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  HSCounter.c  -o ${OBJECTDIR}/HSCounter.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/HSCounter.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/frequencyOutput.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/frequencyOutput.c  .generated_files/flags/default/624bc20049e355c1bb013cdfb663f5073de315f4 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/frequencyOutput.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/frequencyOutput.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/frequencyOutput.c  -o ${OBJECTDIR}/_ext/1138356336/frequencyOutput.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/frequencyOutput.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/PS2Keyboard.o: PS2Keyboard.c  .generated_files/flags/default/89a4725c1dd7d6c04b1106119eb68abb4b5414b9 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/PS2Keyboard.o.d 
-	@${RM} ${OBJECTDIR}/PS2Keyboard.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  PS2Keyboard.c  -o ${OBJECTDIR}/PS2Keyboard.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/PS2Keyboard.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/liquidCrystal.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/liquidCrystal.c  .generated_files/flags/default/f51a3d4bc762ac1a7232da21d6fb9a2bc438b8b0 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/liquidCrystal.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/liquidCrystal.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/liquidCrystal.c  -o ${OBJECTDIR}/_ext/1138356336/liquidCrystal.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/liquidCrystal.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/i2cController.o: i2cController.c  .generated_files/flags/default/2e1a8415ee5b04cdd3f250567e5720cfc0aa5845 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/i2cController.o.d 
-	@${RM} ${OBJECTDIR}/i2cController.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  i2cController.c  -o ${OBJECTDIR}/i2cController.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/i2cController.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O0 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/matrixKeypad.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/matrixKeypad.c  .generated_files/flags/default/900e165402c7a478afaae442b71a486da6522628 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/matrixKeypad.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/matrixKeypad.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/matrixKeypad.c  -o ${OBJECTDIR}/_ext/1138356336/matrixKeypad.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/matrixKeypad.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/vga.o: vga.c  .generated_files/flags/default/7de0add5f8f62e9bbe52ad22a55a679bb8a5e7f3 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/vga.o.d 
-	@${RM} ${OBJECTDIR}/vga.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  vga.c  -o ${OBJECTDIR}/vga.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/vga.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/quadEnc.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/quadEnc.c  .generated_files/flags/default/267de2afa74d9c0925e6420d24f4e18abaf3276c .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/quadEnc.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/quadEnc.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/quadEnc.c  -o ${OBJECTDIR}/_ext/1138356336/quadEnc.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/quadEnc.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/hBridge.o: hBridge.c  .generated_files/flags/default/c3853ba71c38d2dc42d676350d1e88cccd43ae9d .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/hBridge.o.d 
-	@${RM} ${OBJECTDIR}/hBridge.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  hBridge.c  -o ${OBJECTDIR}/hBridge.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/hBridge.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/queuedPulseOutput.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/queuedPulseOutput.c  .generated_files/flags/default/55846177c3377bc6ea007f7399c8ee469d2e5551 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/queuedPulseOutput.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/queuedPulseOutput.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/queuedPulseOutput.c  -o ${OBJECTDIR}/_ext/1138356336/queuedPulseOutput.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/queuedPulseOutput.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/queuedPulseOutput.o: queuedPulseOutput.c  .generated_files/flags/default/ddc4da1933fa0d0a58237c8cae2766420e126b7b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/queuedPulseOutput.o.d 
-	@${RM} ${OBJECTDIR}/queuedPulseOutput.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  queuedPulseOutput.c  -o ${OBJECTDIR}/queuedPulseOutput.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/queuedPulseOutput.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/servo.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/servo.c  .generated_files/flags/default/8a7d97d4cdcdf37d6726de21d2bc51f8ba069743 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/servo.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/servo.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/servo.c  -o ${OBJECTDIR}/_ext/1138356336/servo.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/servo.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/MAX7219Matrix.o: MAX7219Matrix.c  .generated_files/flags/default/ae8eeb812e0b62f633606154fe77ff4a0e5c588c .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/MAX7219Matrix.o.d 
-	@${RM} ${OBJECTDIR}/MAX7219Matrix.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  MAX7219Matrix.c  -o ${OBJECTDIR}/MAX7219Matrix.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MAX7219Matrix.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/throughputConsumer.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/throughputConsumer.c  .generated_files/flags/default/99e04906960741ba52a5383f2228f634540d2bf1 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/throughputConsumer.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/throughputConsumer.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/throughputConsumer.c  -o ${OBJECTDIR}/_ext/1138356336/throughputConsumer.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/throughputConsumer.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/swI2cRoutines.o: swI2cRoutines.c  .generated_files/flags/default/b49aa9e5cf14dba84804c97b37d8b0f57eed644f .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/swI2cRoutines.o.d 
-	@${RM} ${OBJECTDIR}/swI2cRoutines.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  swI2cRoutines.c  -o ${OBJECTDIR}/swI2cRoutines.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/swI2cRoutines.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O0 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/pwm.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pwm.c  .generated_files/flags/default/e6aa13b9f98173a94b34fb7d5915c8908817ff72 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/pwm.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/pwm.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/pwm.c  -o ${OBJECTDIR}/_ext/1138356336/pwm.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/pwm.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/frequencyOutput.o: frequencyOutput.c  .generated_files/flags/default/441131d1bc6ad35c79104732b158b9cc05baeddb .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/frequencyOutput.o.d 
-	@${RM} ${OBJECTDIR}/frequencyOutput.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  frequencyOutput.c  -o ${OBJECTDIR}/frequencyOutput.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/frequencyOutput.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/MAX7219Matrix.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/MAX7219Matrix.c  .generated_files/flags/default/d0921e5a6c4c3463ed0e7e7f22601380d89a5add .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/MAX7219Matrix.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/MAX7219Matrix.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/MAX7219Matrix.c  -o ${OBJECTDIR}/_ext/1138356336/MAX7219Matrix.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/MAX7219Matrix.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/Font5x7.o: Font5x7.c  .generated_files/flags/default/e545c46818e715626d299456a01fa6333df733df .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/Font5x7.o.d 
-	@${RM} ${OBJECTDIR}/Font5x7.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  Font5x7.c  -o ${OBJECTDIR}/Font5x7.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/Font5x7.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/1138356336/i2cController.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/i2cController.c  .generated_files/flags/default/97d51b49b74494de0da42b7e4f1d59c367ed5527 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/i2cController.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/i2cController.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/i2cController.c  -o ${OBJECTDIR}/_ext/1138356336/i2cController.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/i2cController.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/9cc9704b2d4cff2a0e2147984365ffddb8178f41 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/_ext/1138356336/swI2cRoutines.o: ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/swI2cRoutines.c  .generated_files/flags/default/2e203d9ff8ec5eee9d905b3d63fe1bef976a3f88 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/1138356336" 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/swI2cRoutines.o.d 
+	@${RM} ${OBJECTDIR}/_ext/1138356336/swI2cRoutines.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes/swI2cRoutines.c  -o ${OBJECTDIR}/_ext/1138356336/swI2cRoutines.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/1138356336/swI2cRoutines.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
+${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/2e10748d4f387149f0a3be18a512585e296a9a34 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/main.o.d 
 	@${RM} ${OBJECTDIR}/main.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  main.c  -o ${OBJECTDIR}/main.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/main.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/protocol.o: protocol.c  .generated_files/flags/default/a12cfa6e3254bca5af4a826429dd83d022af947a .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/protocol.o: protocol.c  .generated_files/flags/default/4bd24d78541760bde21312bdbb312904486f8677 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/protocol.o.d 
 	@${RM} ${OBJECTDIR}/protocol.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  protocol.c  -o ${OBJECTDIR}/protocol.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/protocol.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/asciiConversion.o: asciiConversion.c  .generated_files/flags/default/722846813b8998469a0b64aa1383353a8896d14e .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/asciiConversion.o: asciiConversion.c  .generated_files/flags/default/9df0e701d6f74ee4409c5ab20685d974308cb29a .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/asciiConversion.o.d 
 	@${RM} ${OBJECTDIR}/asciiConversion.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  asciiConversion.c  -o ${OBJECTDIR}/asciiConversion.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/asciiConversion.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pinRegisters.o: pinRegisters.c  .generated_files/flags/default/f7ba7adabd29d8983c4a01f803d3b15210e36af6 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pinRegisters.o: pinRegisters.c  .generated_files/flags/default/2458c12ee315a520d404ee497dbfc660efbc24a0 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/pinRegisters.o.d 
 	@${RM} ${OBJECTDIR}/pinRegisters.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  pinRegisters.c  -o ${OBJECTDIR}/pinRegisters.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/pinRegisters.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/queue.o: queue.c  .generated_files/flags/default/f706d4bdb845b4965959898b6d90e177ed186390 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/queue.o: queue.c  .generated_files/flags/default/60ba083be1d67360093112347827ba828673ec7 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/queue.o.d 
 	@${RM} ${OBJECTDIR}/queue.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  queue.c  -o ${OBJECTDIR}/queue.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/queue.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/swMath.o: swMath.c  .generated_files/flags/default/4750a168745bf6903bba4f0aa45284691cab2b0b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/swMath.o.d 
-	@${RM} ${OBJECTDIR}/swMath.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  swMath.c  -o ${OBJECTDIR}/swMath.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/swMath.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+${OBJECTDIR}/_ext/2091145489/swMath.o: ../../SerialWombatPinModes/swMath.c  .generated_files/flags/default/b3f603fa0849e94e32572907704461a43d36e64a .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}/_ext/2091145489" 
+	@${RM} ${OBJECTDIR}/_ext/2091145489/swMath.o.d 
+	@${RM} ${OBJECTDIR}/_ext/2091145489/swMath.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  ../../SerialWombatPinModes/swMath.c  -o ${OBJECTDIR}/_ext/2091145489/swMath.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/_ext/2091145489/swMath.o.d"      -mno-eds-warn  -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -I"../../SerialWombatCommon" -mlarge-code -O2 -I"pic24fj256ga702" -I"pic24fj256ga702/mcc_generated_files" -I"." -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
 endif
 
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: assemble
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory/flash.o: pic24fj256ga702/mcc_generated_files/memory/flash.s  .generated_files/flags/default/4011a13541fe5e7a3408a33ac2631afc86e4bb7 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory/flash.o: pic24fj256ga702/mcc_generated_files/memory/flash.s  .generated_files/flags/default/76118c560fb23db7f072b05e80f2413547f51f .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory/flash.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory/flash.o 
-	${MP_CC} $(MP_EXTRA_AS_PRE)  pic24fj256ga702/mcc_generated_files/memory/flash.s  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory/flash.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -D__DEBUG   -omf=elf -DXPRJ_default=$(CND_CONF)    -I"../../SerialWombatCommon" -Wa,-MD,"${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory/flash.o.d",--defsym=__MPLAB_BUILD=1,--defsym=__ICD2RAM=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,,-g,--no-relax$(MP_EXTRA_AS_POST)  -mdfp="${DFP_DIR}/xc16"
+	${MP_CC} $(MP_EXTRA_AS_PRE)  pic24fj256ga702/mcc_generated_files/memory/flash.s  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory/flash.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -D__DEBUG   -omf=elf -DXPRJ_default=$(CND_CONF)    -I"../../SerialWombatCommon" -Wa,-MD,"${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory/flash.o.d",--defsym=__MPLAB_BUILD=1,--defsym=__ICD2RAM=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,,-g$(MP_EXTRA_AS_POST)  -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/wombatasm.o: pic24fj256ga702/wombatasm.s  .generated_files/flags/default/aa0ec67292ef1ffa0ee39d44bf153db001320a1c .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/wombatasm.o: pic24fj256ga702/wombatasm.s  .generated_files/flags/default/c4141ee417e202e41663307656ac72e90b1b54c .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/wombatasm.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/wombatasm.o 
-	${MP_CC} $(MP_EXTRA_AS_PRE)  pic24fj256ga702/wombatasm.s  -o ${OBJECTDIR}/pic24fj256ga702/wombatasm.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -D__DEBUG   -omf=elf -DXPRJ_default=$(CND_CONF)    -I"../../SerialWombatCommon" -Wa,-MD,"${OBJECTDIR}/pic24fj256ga702/wombatasm.o.d",--defsym=__MPLAB_BUILD=1,--defsym=__ICD2RAM=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,,-g,--no-relax$(MP_EXTRA_AS_POST)  -mdfp="${DFP_DIR}/xc16"
+	${MP_CC} $(MP_EXTRA_AS_PRE)  pic24fj256ga702/wombatasm.s  -o ${OBJECTDIR}/pic24fj256ga702/wombatasm.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -D__DEBUG   -omf=elf -DXPRJ_default=$(CND_CONF)    -I"../../SerialWombatCommon" -Wa,-MD,"${OBJECTDIR}/pic24fj256ga702/wombatasm.o.d",--defsym=__MPLAB_BUILD=1,--defsym=__ICD2RAM=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,,-g$(MP_EXTRA_AS_POST)  -mdfp="${DFP_DIR}/xc16"
 	
 else
-${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory/flash.o: pic24fj256ga702/mcc_generated_files/memory/flash.s  .generated_files/flags/default/a7a175440f4b50e99f44b057ec4708760f869114 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory/flash.o: pic24fj256ga702/mcc_generated_files/memory/flash.s  .generated_files/flags/default/40e3e4b67e99a2705d83b204cef7af577cd00d9a .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory/flash.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory/flash.o 
-	${MP_CC} $(MP_EXTRA_AS_PRE)  pic24fj256ga702/mcc_generated_files/memory/flash.s  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory/flash.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -omf=elf -DXPRJ_default=$(CND_CONF)    -I"../../SerialWombatCommon" -Wa,-MD,"${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory/flash.o.d",--defsym=__MPLAB_BUILD=1,-g,--no-relax$(MP_EXTRA_AS_POST)  -mdfp="${DFP_DIR}/xc16"
+	${MP_CC} $(MP_EXTRA_AS_PRE)  pic24fj256ga702/mcc_generated_files/memory/flash.s  -o ${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory/flash.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -omf=elf -DXPRJ_default=$(CND_CONF)    -I"../../SerialWombatCommon" -Wa,-MD,"${OBJECTDIR}/pic24fj256ga702/mcc_generated_files/memory/flash.o.d",--defsym=__MPLAB_BUILD=1,-g$(MP_EXTRA_AS_POST)  -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/pic24fj256ga702/wombatasm.o: pic24fj256ga702/wombatasm.s  .generated_files/flags/default/bb716a82db5e8b2e660284a94bacfaca27a1e21b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/pic24fj256ga702/wombatasm.o: pic24fj256ga702/wombatasm.s  .generated_files/flags/default/4261003b056028e219f33008c811d8603e5e7f20 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}/pic24fj256ga702" 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/wombatasm.o.d 
 	@${RM} ${OBJECTDIR}/pic24fj256ga702/wombatasm.o 
-	${MP_CC} $(MP_EXTRA_AS_PRE)  pic24fj256ga702/wombatasm.s  -o ${OBJECTDIR}/pic24fj256ga702/wombatasm.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -omf=elf -DXPRJ_default=$(CND_CONF)    -I"../../SerialWombatCommon" -Wa,-MD,"${OBJECTDIR}/pic24fj256ga702/wombatasm.o.d",--defsym=__MPLAB_BUILD=1,-g,--no-relax$(MP_EXTRA_AS_POST)  -mdfp="${DFP_DIR}/xc16"
+	${MP_CC} $(MP_EXTRA_AS_PRE)  pic24fj256ga702/wombatasm.s  -o ${OBJECTDIR}/pic24fj256ga702/wombatasm.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -omf=elf -DXPRJ_default=$(CND_CONF)    -I"../../SerialWombatCommon" -Wa,-MD,"${OBJECTDIR}/pic24fj256ga702/wombatasm.o.d",--defsym=__MPLAB_BUILD=1,-g$(MP_EXTRA_AS_POST)  -mdfp="${DFP_DIR}/xc16"
 	
 endif
 

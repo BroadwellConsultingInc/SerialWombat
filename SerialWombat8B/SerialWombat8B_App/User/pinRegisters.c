@@ -26,21 +26,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 
 pinRegister_t PinUpdateRegisters[NUMBER_OF_TOTAL_PINS];
 
-#ifdef USE_BUFFERED_PIN_REGISTER
 
-void CopyFromArrayToPinBuffer()
-{
-     memcpy(&pinRegisterBuffer,&PinUpdateRegisters[CurrentPin], sizeof(pinRegister_t));
-    
-}
-void CopyFromPinBufferToArray()
-{
-   memcpy(&PinUpdateRegisters[CurrentPin],&pinRegisterBuffer, sizeof(pinRegister_t));
-}
-
-#else
 pinRegister_t* CurrentPinRegister;
-#endif
 
 
 void pinRegisterSizeCheck()
@@ -92,16 +79,7 @@ uint16_t GetBuffer(uint8_t pin)
     {
         return(incrementingValue++);
     }
-#ifdef TODO
-    else if (pin == SW_DATA_SOURCE_1024mvCounts)
-    {
-uint32_t result = GetSourceVoltageADC();
-        result *= 1024;  //Convert to 1.2  V reference to 1.024 v reference for compatibility with SW4B
-        result /=1200;
-        return ((uint16_t) result); 
 
-    }
-#endif
     else if (pin == SW_DATA_SOURCE_FRAMES_RUN_LSW)
     {
        extern uint32_t FramesRun;

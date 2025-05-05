@@ -3,7 +3,6 @@
 //#include "mcc_generated_files/mcc.h"
 
 
-//TODO default to queue in pin memory
 
 #define UART_QUEUE_LENGTH 32
 
@@ -84,7 +83,7 @@ if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode 
 				{
                     
                     initializeBitStreamOutput(uartSw->txPin,  1, &uartSw->bitStream );
-					InitializePinHigh(uartSw->txPin);
+					
 					if (uartSw->txPin != CurrentPin)
 					{
 						SetMode(uartSw->txPin, PIN_MODE_CONTROLLED);
@@ -149,7 +148,7 @@ if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode 
 				queueAddress = uartSw->rxQueue = &UserBuffer[ RXBUFFER16(3)];
 				
                 uint16_t resultSize;
-                queueAddress = uartSw->rxQueue;  //TODO should this be rxQueue?
+                queueAddress = uartSw->rxQueue;
 				if (QueueGetBytesFreeInQueue( &resultSize) != QUEUE_RESULT_SUCCESS)
 				{
 					error(SW_ERROR_UNNUMBERED_ERROR); // TODO future improvement: make errors based on result

@@ -5,7 +5,17 @@
 
 void updatePulseOutput(uint8_t pin, pulse_output_t* pulse)
 {
-    bool recycle = true;
+     bool recycle = true;
+    if (pulse->highReload == 0)
+    {
+        updateBitStreamOutput(pin, 0, SIZE_OF_DMA_ARRAY,&pulse->bitStream);
+        return;
+    }
+    else if (pulse->lowReload == 0) {
+        updateBitStreamOutput(pin, 1, SIZE_OF_DMA_ARRAY,&pulse->bitStream);
+                return;
+    }
+
     while (recycle)
     {
         recycle = false;
@@ -20,12 +30,14 @@ void updatePulseOutput(uint8_t pin, pulse_output_t* pulse)
         if (pulse->lowRemaining == 0)
         {
             pulse->highRemaining = pulse->highReload;
-            if (pulse->lowRemaining)
+            pulse->lowRemaining = pulse->lowReload;
+            if (pulse->highReload > 0 || pulse->lowReload > 0)
             {
-            recycle = true;
+                recycle = true;
             }
         }
     }
+
     }
 
 }
@@ -201,13 +213,14 @@ void updatePulseOutput(uint8_t pin)
 	pinPtr->pulse_output.lastDMA = nextLocationToQueue;
 }
 #endif
+
 uint16_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint16_t count, DMABitStream_t* bitStream )
 {
 	uint16_t bitmap = pinBitmap[pin];
 	uint16_t invbitmap = ~bitmap;
 	uint8_t nextLocationToQueue = bitStream->nextLocationToQueue;
 	uint16_t* baseAddress;
-
+   
 	int nextDMAHWTransfer ; // The next DMA location that will be transferred by Hardware.  Don't overwrite this one.  We need to catch up to this.
 
 	if (pinPort[pin] == 0)
@@ -220,7 +233,11 @@ uint16_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint16_t count, DMABi
 		baseAddress = OutputArrayB;
 		nextDMAHWTransfer = SIZE_OF_DMA_ARRAY - DMACNT1 ;
 	}
-
+ if (bitStream->initialize)
+    {
+        bitStream->initialize = 0;
+        nextLocationToQueue = (nextDMAHWTransfer + 10) & 0x7F;
+    }
 	// This can go a few ways:
 	
 	//1: The DMA pointer is at a lower address than the last byte we queued.  If this is the case, go to case 2.  Otherwise, skip to case 6
@@ -235,9 +252,9 @@ uint16_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint16_t count, DMABi
 
 	uint8_t state = 1;
 
-
 	while (state < 8)
 	{
+
 		switch (state)
 		{
 			case 1:
@@ -263,10 +280,12 @@ uint16_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint16_t count, DMABi
 					count -= AvailableDMASpace;
 					if (level)
 					{
+                       
 						orCount(&baseAddress[nextLocationToQueue],bitmap,AvailableDMASpace);
 					}
 					else
 					{
+
 						andCount(&baseAddress[nextLocationToQueue],invbitmap,AvailableDMASpace);
 					}
 					nextLocationToQueue = 0;
@@ -285,13 +304,15 @@ uint16_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint16_t count, DMABi
 			{
 					if (level)
 					{
-						orCount(&baseAddress[nextLocationToQueue],bitmap,count);
+                          
+					orCount(&baseAddress[nextLocationToQueue],bitmap,count);
 					}
 					else
 					{
-						andCount(&baseAddress[nextLocationToQueue],invbitmap,count);
+					andCount(&baseAddress[nextLocationToQueue],invbitmap,count);
 					}
 					nextLocationToQueue+= count;
+                    nextLocationToQueue &= 127;
 					count = 0;
 					state = 4;
 
@@ -340,6 +361,7 @@ uint16_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint16_t count, DMABi
 					count -= AvailableDMASpace;
 					if (level)
 					{
+                          
 					orCount(&baseAddress[nextLocationToQueue],bitmap,AvailableDMASpace);
 					}
 					else
@@ -347,12 +369,14 @@ uint16_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint16_t count, DMABi
 						andCount(&baseAddress[nextLocationToQueue],invbitmap,AvailableDMASpace);
 					}
 					nextLocationToQueue  += AvailableDMASpace;
+                    nextLocationToQueue &= 127;
 					state = 8;
 				}
 				else
 				{
 					if (level)
 					{
+                          
 					orCount(&baseAddress[nextLocationToQueue],bitmap,count);
 					}
 					else
@@ -361,6 +385,7 @@ uint16_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint16_t count, DMABi
 					}
 
 					nextLocationToQueue+= count;
+                    nextLocationToQueue &= 127;
 					count = 0;
 					state = 7;
 				}
@@ -434,11 +459,8 @@ void initializeBitStreamOutput(uint8_t pin, uint8_t level, DMABitStream_t* bitSt
     {
         andCount(baseAddress,invbitmap,SIZE_OF_DMA_ARRAY);
     }
-    bitStream->nextLocationToQueue = nextDMAHWTransfer + 10;
-    if (nextDMAHWTransfer >= SIZE_OF_DMA_ARRAY )
-    {
-        nextDMAHWTransfer -= SIZE_OF_DMA_ARRAY;
-    }
+   PinOutput(pin);
+    bitStream->initialize = 1;
 }
 
 

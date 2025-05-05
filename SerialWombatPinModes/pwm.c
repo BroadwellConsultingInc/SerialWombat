@@ -56,9 +56,13 @@ void initPWM (void)
 				CurrentPinRegister->generic.buffer = RXBUFFER16(4);
 				pwm->invert = Rxbuffer[6];
                 pwm->outputScale.sourcePin = CurrentPin;
-
+                timingResourceRelease(TIMING_RESOURCE_ALL);
                 InitializePinLow(CurrentPin);
                 pwm->pulseOutput.resource = timingResourcePWMClaim(TIMING_RESOURCE_ANY,1000);
+                if (pwm->pulseOutput.resource == TIMING_RESOURCE_PORT_DMA)
+                {
+                     initializeBitStreamOutput(CurrentPin,  0, &pwm->pulseOutput.bitStream );
+                }
                 pwm->lastValue = CurrentPinRegister->generic.buffer + 1;
                 pwm->period_uS = 1000;
                 outputScaleInit(&pwm->outputScale);

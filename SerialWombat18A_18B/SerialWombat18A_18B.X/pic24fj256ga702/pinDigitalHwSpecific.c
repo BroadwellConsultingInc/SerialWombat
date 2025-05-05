@@ -109,6 +109,10 @@ const uint8_t pinPort[NUMBER_OF_PHYSICAL_PINS] =
 	0x01 , // 19 RB15
 };
 
+bool PINS_ON_DIFFERENT_PORTS (uint8_t p1, uint8_t p2)
+{
+    return(pinPort[p1] != pinPort[p2]);
+}
 const uint16_t pinBitmap[NUMBER_OF_PHYSICAL_PINS] =
 {
     //Skip RA1, it's address pin, not WP.
@@ -792,9 +796,7 @@ void InitializePinLow(uint8_t pin)
 			SetPPSOutput(pin,0);
 		
 		}
-	
-		
-	
+        PinOutput(pin);	
 }
 
 void InitializePinHigh(uint8_t pin)
@@ -813,18 +815,19 @@ void InitializePinHigh(uint8_t pin)
 		inB = pinPort[pin];
 
 	
-		pinMask = ~pinMask;
+		
         {
 
 			if (inB)
 			{
-				and128(OutputArrayB,pinMask);
+				or128(OutputArrayB,pinMask);
 			}
 			else
 			{
-				and128(OutputArrayA,pinMask);
+				or128(OutputArrayA,pinMask);
 			}
 		}
+        PinOutput(pin);	
 }
 
 void CurrentPinLow()

@@ -118,9 +118,16 @@ if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode 
 		case CONFIGURE_CHANNEL_MODE_0:
 			{
 				CurrentPinInput();
-				CurrentPinRegister->generic.mode = PIN_MODE_HS_COUNTER;
-#warning "Fix HSCounter"
-//TODO What value here?				hscounter->resource = timingResourceCounterClaim(TIMING_RESOURCE_ANY_HARDWARE);
+				
+
+                hscounter->resource = timingResourceCounterClaim(TIMING_RESOURCE_ANY_COUNTER);
+                
+                if (hscounter->resource == TIMING_RESOURCE_NONE)
+                {
+                    error(SW_ERROR_HW_RESOURCE_IN_USE);
+                    return;
+                }
+                CurrentPinRegister->generic.mode = PIN_MODE_HS_COUNTER;
 				timingResourceResetCounter(hscounter->resource);
 				hscounter->lastCount = 0;
 				hscounter->sampleFrames = RXBUFFER16(3);

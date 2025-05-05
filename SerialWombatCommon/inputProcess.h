@@ -1,5 +1,5 @@
 /*
-Copyright 2020-2024 Broadwell Consulting Inc.
+Copyright 2020-2025 Broadwell Consulting Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
@@ -30,21 +30,19 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 
 typedef enum
 {
-    INPUT_FILTER_MODE_NONE = 0,  ///< No input filtering
-                INPUT_FILTER_MODE_FIRST_ORDER = 1,  ///< First order IIR filtering
-    INPUT_FILTER_MODE_AVERAGE = 2, ///< Average a specified number of samples
-         
-         
+	INPUT_FILTER_MODE_NONE = 0,  ///< No input filtering
+	INPUT_FILTER_MODE_FIRST_ORDER = 1,  ///< First order IIR filtering
+	INPUT_FILTER_MODE_AVERAGE = 2, ///< Average a specified number of samples
 }INPUT_FILTER_MODE_t;
 
 typedef enum
 {
-    INPUT_TRANSFORM_MODE_NONE = 0, ///< No input transform
-            INPUT_TRANSFORM_MODE_SCALE_RANGE = 1, ///< Scale input to 0-65535
-            INPUT_TRANSFORM_MODE_LINEAR_MXB = 2, ///< Transform input with mx + b
-//#ifdef INPUTPROCESSINTEGRATORPRESENT
-            INPUT_TRANSFORM_MODE_INTEGRATOR = 3, ///< Integrate input based on range multipliers
-//#endif
+	INPUT_TRANSFORM_MODE_NONE = 0, ///< No input transform
+	INPUT_TRANSFORM_MODE_SCALE_RANGE = 1, ///< Scale input to 0-65535
+	INPUT_TRANSFORM_MODE_LINEAR_MXB = 2, ///< Transform input with mx + b
+	//#ifdef INPUTPROCESSINTEGRATORPRESENT
+	INPUT_TRANSFORM_MODE_INTEGRATOR = 3, ///< Integrate input based on range multipliers
+	//#endif
 }INPUT_TRANSFORM_MODE_t;
 
 typedef struct inputProcess_n
@@ -68,7 +66,7 @@ typedef struct inputProcess_n
 			int32_t m;  ///< m value, in 256ths 
 			int32_t b;  ///<  b value in 1's
 		}mxb;
-//#ifdef INPUTPROCESSINTEGRATORPRESENT
+		//#ifdef INPUTPROCESSINTEGRATORPRESENT
 		struct {
 			uint16_t maxInc; ///<  Max increment amount
 			uint16_t midInc; ///<  Mid increment amount
@@ -81,32 +79,32 @@ typedef struct inputProcess_n
 			uint16_t currentValue; ///<  Current integrated value
 			uint8_t updateFrequencyMask; ///<  Update rate - ms * 2 ^ value
 		}integrator;
-//#endif
+		//#endif
 		struct{
 			uint16_t low;  ///<  Range scale low
 			uint16_t high;  ///<  Range scale high
 		}scaleRange;
 	};
 	uint16_t lastInput;  ///< Last non-excluded value, used if current value is excluded
-//#ifdef INPUTPROCESSEXCLUDEPRESENT
+	//#ifdef INPUTPROCESSEXCLUDEPRESENT
 	uint16_t excludeBelow; ///< exclude values below this threshold and substitue lastInput
 	uint16_t excludeAbove; ///< exclude values above this threshold and substitue lastInput
-//#endif
+	//#endif
 	uint16_t min;  ///< Minimum observed final value
 	uint16_t max; ///< Maximum observed final value
-//#ifdef INPUTPROCESSQUEUEPRESENT
+	//#ifdef INPUTPROCESSQUEUEPRESENT
 	uint16_t queue; ///< Index of Queue to store final values in
-//#endif
+	//#endif
 	uint8_t filterMode; ///< Enumerated filter type
 	uint8_t transformMode; ///< Enumerated transform type
 	uint8_t invert:1; ///< Invert input 
 	uint8_t active:1; ///< Input processing is active
 	uint8_t initialized:1; ///< Input processing has been initialized
-//#ifdef INPUTPROCESSQUEUEPRESENT
+	//#ifdef INPUTPROCESSQUEUEPRESENT
 	uint8_t queueHighByte:1; ///< Whether to queue the high byte of input
 	uint8_t queueLowByte:1; ///< Whether to queue the low byte of input
 	uint8_t queueFrequency:4; ///< how often to queue input (1ms * 2^value)
-//#endif
+	//#endif
 }inputProcess_t;
 
 void inputProcessInit(inputProcess_t* inputProcess);

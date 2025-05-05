@@ -286,6 +286,8 @@
         <property key="memories.programmemory.ranges" value="0-2aeff"/>
         <property key="memories.rww" value="true"/>
         <property key="poweroptions.powerenable" value="false"/>
+        <property key="programmerToGoFilePath"
+                  value="F:/keep/GitHub/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B_JumpToApp.X/debug/default/SerialWombat18A_18B_Bootloader_ptg"/>
         <property key="programmerToGoImageName"
                   value="SerialWombat18A_18B_Bootloader_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>

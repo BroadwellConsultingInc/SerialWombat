@@ -27,6 +27,7 @@ C_SRCS += \
 ../User/SerialWombatPinModes/quadEnc.c \
 ../User/SerialWombatPinModes/queuedPulseOutput.c \
 ../User/SerialWombatPinModes/servo.c \
+../User/SerialWombatPinModes/swI2cRoutines.c \
 ../User/SerialWombatPinModes/swMath.c \
 ../User/SerialWombatPinModes/throughputConsumer.c \
 ../User/SerialWombatPinModes/uartHw8B.c \
@@ -57,6 +58,7 @@ OBJS += \
 ./User/SerialWombatPinModes/quadEnc.o \
 ./User/SerialWombatPinModes/queuedPulseOutput.o \
 ./User/SerialWombatPinModes/servo.o \
+./User/SerialWombatPinModes/swI2cRoutines.o \
 ./User/SerialWombatPinModes/swMath.o \
 ./User/SerialWombatPinModes/throughputConsumer.o \
 ./User/SerialWombatPinModes/uartHw8B.o \
@@ -87,6 +89,7 @@ C_DEPS += \
 ./User/SerialWombatPinModes/quadEnc.d \
 ./User/SerialWombatPinModes/queuedPulseOutput.d \
 ./User/SerialWombatPinModes/servo.d \
+./User/SerialWombatPinModes/swI2cRoutines.d \
 ./User/SerialWombatPinModes/swMath.d \
 ./User/SerialWombatPinModes/throughputConsumer.d \
 ./User/SerialWombatPinModes/uartHw8B.d \

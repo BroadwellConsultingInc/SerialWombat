@@ -30,7 +30,7 @@ uint8_t CurrentPin;
 
 uint8_t FrameTimingPin = 0xFF;
 
- bool RunForeground = false;
+volatile bool RunForeground = false;
 
 
 uint8_t UserBuffer[SIZE_OF_USER_BUFFER];

@@ -1,6 +1,10 @@
 /*
 Copyright 2021-2025 Broadwell Consulting Inc.
 
+
+"Serial Wombat" is a registered trademark in the United States of Broadwell
+Consulting Inc.
+
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
  * to deal in the Software without restriction, including without limitation 
@@ -27,69 +31,36 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #include "debug.h"
 
 extern uint16_t stayInBoot;
-uint32_t debug_discarded_bytes = 0;
 
-uint8_t SW_I2CAddress = 0;//0x6B;
-//bool UART2ndInterface = false;
-uint8_t UartRxbufferCounter = 0;
-uint8_t UartTxbufferCounter = 0;
+
+uint8_t i2cRxCount = 0;
+uint8_t i2cTxCount = 0;
 uint8_t Rxbuffer[RXBUFFER_LENGTH];
 uint8_t Txbuffer[TXBUFFER_LENGTH];
-//bool LineBreaksAndEcho = false;
-uint32_t testPassed = 0;
-uint32_t testFailed = 0;
-volatile bool ResponsePending = false;
-volatile bool ResponseAvailable = false;
-volatile uint8_t TX_ClockStretching = 0;
-volatile uint8_t RX_ClockStretching = 0;
 
-uint16_t lastUserBufferIndex = 0xFFFF;
-void* lastQueueAddress = &UserBuffer[0];
+// These are used for unit testing
+uint32_t diagnosticTestPassed = 0;
+uint32_t diagnosticTestFailed = 0;
 uint8_t testSequenceNumber = 0;
 bool testSequenceArmed = 0;
+
+
+
+uint16_t lastUserBufferIndex = 0xFFFF; //Last buffer index accessed  Used for 7 Byte transfers COMMAND_BINARY_WRITE_USER_BUFFER_CONTINUE
+void* lastQueueAddress = &UserBuffer[0];
+
+
+
 static void ProcessSetPin(void);
 
-#define PROTOCOL_MAX_CAPTURED_PACKETS 256
-//bool protocolCapturingPackets = false;
-//uint16_t protocolCapturedPackets = 0;
+
+//Storage of Error packet on Protocol error 
 uint8_t lastErrorPacket[8];
-
-volatile uint8_t btfRequested = 0;
-volatile uint8_t rxneRequested = 0;
-volatile uint8_t addrRequested =0;
-volatile uint8_t txRequested = 0;
-
-
-volatile uint8_t wombatI2CRxData[8];
-         volatile uint8_t wombatI2CTxData[8];
-         volatile uint8_t wombatI2CRxDataCount = 0;
-         volatile uint8_t i2cTxCount = 0;
-
-//pinRegister_t PinRegisterCopyBuffer;
-timingResourceManager_t TimingResourceManagerCopyBuffer;
-volatile unsigned short crcResultCRCCCITT = 0;
-//#define I2C_DEBUG_OUTPUT
-#ifdef I2C_DEBUG_OUTPUT
-#define OUTPUT_I2C_DEBUG(_value) {LATB = (_value <<7);  LATBbits.LATB6= 1;Nop();Nop();Nop();Nop(); LATBbits.LATB6 = 0;}
-#warning I2C_DEBUG_OUTPUT ENABLED!   PORT B DMA Disabled!
-#else
-#define OUTPUT_I2C_DEBUG(_value){}
-#endif
-
-
-typedef enum COMM_STATE
-{
-    COM_STATE_IDLE = 0,
-    COM_STATE_RECEIVING_COMMAND = 1,
-    COM_STATE_COMMAND_READY_TO_PROCESS,
-    COM_STATE_RESPONSE_READY_TO_SEND,
-    COM_STATE_RESPONSE_IN_PROGRESS,
-}COM_STATE_t;
-
-COM_STATE_t i2c_com_state = COM_STATE_IDLE;
-
-
 uint16_t Errors = 0;
+
+
+
+
 void error(SW_ERROR_t errorCode)
 {
     Txbuffer[0] = 'E';
@@ -124,19 +95,20 @@ void ProcessRxbuffer( void )
 
 	switch (Rxbuffer[0])
 	{
-	case COMMAND_DIAGNOSTIC_MESSAGE:
-	{
-	    if (Rxbuffer[1])
-	    {
-	        ++testPassed;
-	    }
-	    else {
-	        ++testFailed;
-        }
+		case COMMAND_DIAGNOSTIC_MESSAGE:
+			{
+				if (Rxbuffer[1])
+				{
+					++diagnosticTestPassed;
+				}
+				else 
+				{
+					++diagnosticTestFailed;
+				}
 
-	}
-	break;
-	    case COMMAND_ASCII_ECHO:
+			}
+			break;
+		case COMMAND_ASCII_ECHO:
 
 			/** \addtogroup ProtocolAsciiCommands
 			  \{
@@ -160,26 +132,24 @@ Will respond `!1234567`
 			 **/
 
 			break;
-        case COMMAND_BOOTLOAD:
-        {
-            if (((uint32_t*)Rxbuffer)[0] == 0x744F6F42 &&  // BoOt
-                    ((uint32_t*)Rxbuffer)[1] == 0x64416F4C) //LoAd
-            {
-            stayInBoot = 0xB00A;
+		case COMMAND_BOOTLOAD:
+			{
+				if (((uint32_t*)Rxbuffer)[0] == 0x744F6F42 &&  // BoOt
+						((uint32_t*)Rxbuffer)[1] == 0x64416F4C) //LoAd
+				{
+					stayInBoot = 0xB00A;
+					RCC_ClearFlag();
+					SystemReset_StartMode(Start_Mode_BOOT);
+					NVIC_SystemReset();
+				}
+				else 
+				{
+					error(SW_ERROR_BOOT_STRING_INCORRECT);
+				}
+			}
+			break;
 
 
-            RCC_ClearFlag();
-            SystemReset_StartMode(Start_Mode_BOOT);
-            NVIC_SystemReset();
-            }
-            else {
-                error(SW_ERROR_BOOT_STRING_INCORRECT);
-            }
-        }
-
-        break;
-
-       
 		case COMMAND_ASCII_RESET: // 'R'
 			/** \addtogroup ProtocolAsciiCommands
 			  \{
@@ -206,7 +176,7 @@ Example:
 						Rxbuffer[4] == 'T' && Rxbuffer[5] == '!' &&
 						Rxbuffer[6] == '#' &&  Rxbuffer[7] == '*')
 				{
-				 	reset();
+					reset();
 				}
 				else
 				{
@@ -238,11 +208,11 @@ Or similar
 
 \}
 			 **/
-		    //OPTIMIZE with 32 bit constants
+			//OPTIMIZE with 32 bit constants
 			Txbuffer[1] = 'S';   //Serial Wombat
 			Txbuffer[2] = '0';//(uint8_t)((NUMBER_OF_PHYSICAL_PINS / 10) + '0');
 			Txbuffer[3] = '8';//(uint8_t)((NUMBER_OF_PHYSICAL_PINS % 10) + '0');
-               Txbuffer[4] = 'B';//SERIAL_WOMBAT_HARDWARE_IDENTIFIER;
+			Txbuffer[4] = 'B';//SERIAL_WOMBAT_HARDWARE_IDENTIFIER;
 			Txbuffer[5] = '2';
 			Txbuffer[6] = '2';
 			Txbuffer[7] = '0';
@@ -250,19 +220,19 @@ Or similar
 			break;
 		case COMMAND_BINARY_READ_PIN_BUFFFER:
 			{
-/** \addtogroup ProtocolBinaryCommands
-\{
+				/** \addtogroup ProtocolBinaryCommands
+				  \{
 
-----
+				  ----
 
-Binary Read Pin Public Data Buffer Command
----------------------
+				  Binary Read Pin Public Data Buffer Command
+				  ---------------------
 
-Reads the public data from three consecutive pins starting with a specified pin
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0x81|Pin Number|0x55*|'U'*|'U'*|'U'*|'U'*|'U'*|
- *0x55 is recommended, but any byte is acceptable
+				  Reads the public data from three consecutive pins starting with a specified pin
+				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+				  |0x81|Pin Number|0x55*|'U'*|'U'*|'U'*|'U'*|'U'*|
+				 *0x55 is recommended, but any byte is acceptable
 
 Response:
 
@@ -281,31 +251,31 @@ Response:
 > `0x81 0x1 0x1B 0x48 0xFC 0x38 0x14 0x03`
 
 \}
-**/
+				 **/
 				uint16_t temp = GetBuffer(Rxbuffer[1]);
 				TXBUFFER16(2,temp);		
 
 			}
 			break;
 		case COMMAND_BINARY_SET_PIN_BUFFFER:
-		{
-/** \addtogroup ProtocolBinaryCommands
-\{
+			{
+				/** \addtogroup ProtocolBinaryCommands
+				  \{
 
-----
+				  ----
 
-Binary Set Pin Public Data Buffer Command
----------------------
+				  Binary Set Pin Public Data Buffer Command
+				  ---------------------
 
-Sets the public data  for 2 pins.  (Pin number can be set to 255 to not set a pin).
+				  Sets the public data  for 2 pins.  (Pin number can be set to 255 to not set a pin).
 
-The values returned are the values for the public data before it was changed.  This can be useful when 
-reading an input's public data value.  For instance, when reading the position of a pin set to Rotary encoder mode,
-the value before being set could be read, then the value set back to 32768 for center.  
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0x82|Pin Number to set|Value Low Byte|Value High Byte|Second Pin to set|Second Value Low Byte|Second Value High Byte|'U'*|
- *0x55 is recommended, but any byte is acceptable
+				  The values returned are the values for the public data before it was changed.  This can be useful when 
+				  reading an input's public data value.  For instance, when reading the position of a pin set to Rotary encoder mode,
+				  the value before being set could be read, then the value set back to 32768 for center.  
+				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+				  |0x82|Pin Number to set|Value Low Byte|Value High Byte|Second Pin to set|Second Value Low Byte|Second Value High Byte|'U'*|
+				 *0x55 is recommended, but any byte is acceptable
 
 Response:
 
@@ -324,30 +294,30 @@ Response:
 > `0x81 0x1 0x1B 0x48 0x07 0xFC 0x38 0x55`
 
 \}
-**/
-            uint16_t temp = GetBuffer(Rxbuffer[1]);
-			TXBUFFER16(2,temp);		
-			temp = GetBuffer(Rxbuffer[4] );
-			TXBUFFER16(5,temp);		
+				 **/
+				uint16_t temp = GetBuffer(Rxbuffer[1]);
+				TXBUFFER16(2,temp);		
+				temp = GetBuffer(Rxbuffer[4] );
+				TXBUFFER16(5,temp);		
 				SetBuffer(Rxbuffer[1],RXBUFFER16(2));
 				SetBuffer(Rxbuffer[4],RXBUFFER16(5));
 			}
 			break;
 
-/** \addtogroup ProtocolBinaryCommands
-\{
+			/** \addtogroup ProtocolBinaryCommands
+			  \{
 
-----
+			  ----
 
-Binary Read User Buffer
----------------------
+			  Binary Read User Buffer
+			  ---------------------
 
-Reads up to 7 bytes from the User Buffer User RAM area starting at an index specified.  Values past the end of User Buffer if an index less than 7 bytes from
-the end of the User Buffer may return random data.
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0x83|Index Low Byte|Index High Byte|'U'*|'U'*|'U'*|'U'*|'U'*|
- *0x55 is recommended, but any byte is acceptable
+			  Reads up to 7 bytes from the User Buffer User RAM area starting at an index specified.  Values past the end of User Buffer if an index less than 7 bytes from
+			  the end of the User Buffer may return random data.
+			  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+			  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+			  |0x83|Index Low Byte|Index High Byte|'U'*|'U'*|'U'*|'U'*|'U'*|
+			 *0x55 is recommended, but any byte is acceptable
 
 Response:
 
@@ -366,7 +336,7 @@ Sample Response,  last 7 bytes will vary:
 > `0x83 0x43 0x1F 0x48 0x07 0xFC 0x38 0x22`
 
 \}
-**/
+			 **/
 		case COMMAND_BINARY_READ_USER_BUFFER:
 			{
 				uint16_t address = RXBUFFER16(1);
@@ -380,28 +350,28 @@ Sample Response,  last 7 bytes will vary:
 					memcpy(&Txbuffer[1],&UserBuffer[address],count);
 				}
 				else
-                {
-                    error(SW_ERROR_RUB_INVALID_ADDRESS);
-                }
+				{
+					error(SW_ERROR_RUB_INVALID_ADDRESS);
+				}
 			}
 			break;
 
-/** \addtogroup ProtocolBinaryCommands
-\{
+			/** \addtogroup ProtocolBinaryCommands
+			  \{
 
-----
+			  ----
 
-Binary Write User Buffer
----------------------
+			  Binary Write User Buffer
+			  ---------------------
 
-Writes up to 4 bytes to the User Buffer User RAM area starting at an index specified.  Commands which attempt to write past the end of the User Buffer will return an error message and have no effect .
+			  Writes up to 4 bytes to the User Buffer User RAM area starting at an index specified.  Commands which attempt to write past the end of the User Buffer will return an error message and have no effect .
 
-This command also stores the index of the next byte in user buffer not written
-for use by the COMMAND_BINARY_WRITE_USER_BUFFER_CONTINUE command.
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0x84|Index Low Byte|Index High Byte|Number of Bytes to Write|byte to write|byte to write|byte to write|byte to write|
- 0x55 is recommended for unused bytes, but any byte is acceptable
+			  This command also stores the index of the next byte in user buffer not written
+			  for use by the COMMAND_BINARY_WRITE_USER_BUFFER_CONTINUE command.
+			  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+			  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+			  |0x84|Index Low Byte|Index High Byte|Number of Bytes to Write|byte to write|byte to write|byte to write|byte to write|
+			  0x55 is recommended for unused bytes, but any byte is acceptable
 
 Response:
 
@@ -415,7 +385,7 @@ Write 3 bytes (0x17,0x18,0x19) to User buffer starting at index 100 (0x0064)
 
 
 \}
-**/
+			 **/
 		case COMMAND_BINARY_WRITE_USER_BUFFER:
 			{
 				lastUserBufferIndex = RXBUFFER16(1);
@@ -426,8 +396,6 @@ Write 3 bytes (0x17,0x18,0x19) to User buffer starting at index 100 (0x0064)
 				}
 				else
 				{
-
-
 					if (lastUserBufferIndex + count < SIZE_OF_USER_BUFFER)
 					{
 						memcpy(&UserBuffer[lastUserBufferIndex],&Rxbuffer[4],count);
@@ -438,25 +406,24 @@ Write 3 bytes (0x17,0x18,0x19) to User buffer starting at index 100 (0x0064)
 						error(SW_ERROR_WUB_INVALID_ADDRESS);
 					}
 				}
-
 			}
 			break;
 
-/** \addtogroup ProtocolBinaryCommands
-\{
+			/** \addtogroup ProtocolBinaryCommands
+			  \{
 
-----
+			  ----
 
-Binary Write User Buffer Continue
----------------------
+			  Binary Write User Buffer Continue
+			  ---------------------
 
-Writes 7 bytes to the User Buffer User RAM area at the next index after the last index written by the COMMAND_BINARY_WRITE_USER_BUFFER command.  Commands which attempt to write past the end of the User Buffer will return an error message and have no effect .
+			  Writes 7 bytes to the User Buffer User RAM area at the next index after the last index written by the COMMAND_BINARY_WRITE_USER_BUFFER command.  Commands which attempt to write past the end of the User Buffer will return an error message and have no effect .
 
-This command also stores the index of the next byte in user buffer not written
-for use by subsequent COMMAND_BINARY_WRITE_USER_BUFFER_CONTINUE commands.
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0x85|byte to write |byte to write |byte to write |byte to write |byte to write|byte to write|byte to write|
+			  This command also stores the index of the next byte in user buffer not written
+			  for use by subsequent COMMAND_BINARY_WRITE_USER_BUFFER_CONTINUE commands.
+			  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+			  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+			  |0x85|byte to write |byte to write |byte to write |byte to write |byte to write|byte to write|byte to write|
 
 Response:
 
@@ -470,7 +437,7 @@ Write 7 bytes (0x27, 0x00, 0x03,0x17,0x18,0x19, 0x1A) to User buffer starting at
 
 
 \}
-**/
+			 **/
 		case COMMAND_BINARY_WRITE_USER_BUFFER_CONTINUE:
 			{
 				if (lastUserBufferIndex < SIZE_OF_USER_BUFFER)
@@ -479,36 +446,35 @@ Write 7 bytes (0x27, 0x00, 0x03,0x17,0x18,0x19, 0x1A) to User buffer starting at
 					if (count >= 7)
 					{
 						count = 7;
-				memcpy(&UserBuffer[lastUserBufferIndex],&Rxbuffer[1],count);
+						memcpy(&UserBuffer[lastUserBufferIndex],&Rxbuffer[1],count);
 						lastUserBufferIndex += count;
 					}
 					else
 					{
 						error(SW_ERROR_WUB_CONTINUE_OUTOFBOUNDS);
 					}
-
 				}
 			}
 			break;
-/** \addtogroup ProtocolBinaryCommands
-\{
+			/** \addtogroup ProtocolBinaryCommands
+			  \{
 
-----
+			  ----
 
-Binary Read All Pins Greater than Zero 
----------------------
+			  Binary Read All Pins Greater than Zero 
+			  ---------------------
 
-Allows a single command to poll all pins' public data to determine if
-they are zero or greater than zero.  This command allows efficient polling
-of Serial Wombat chips configured with a large number of inputs such
-as GPIO input or debounced buttons.  Returns bits where 0 means the
-pin's public data is 0, and 1 means greater than 0.  The lower pin 
-numbers are in less significant bits.  Unimplemented pins return 0
+			  Allows a single command to poll all pins' public data to determine if
+			  they are zero or greater than zero.  This command allows efficient polling
+			  of Serial Wombat chips configured with a large number of inputs such
+			  as GPIO input or debounced buttons.  Returns bits where 0 means the
+			  pin's public data is 0, and 1 means greater than 0.  The lower pin 
+			  numbers are in less significant bits.  Unimplemented pins return 0
 
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0x8F|'U'*|'U'*|'U'*|'U'*|'U'*|'U'*|'U'*|
- *0x55 is recommended, but any byte is acceptable
+			  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+			  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+			  |0x8F|'U'*|'U'*|'U'*|'U'*|'U'*|'U'*|'U'*|
+			 *0x55 is recommended, but any byte is acceptable
 
 Response:
 
@@ -528,7 +494,7 @@ Response assuming all pins except 1, 14 and 19 are zero:
 
 
 \}
-**/
+			 **/
 		case COMMAND_BINARY_READ_ALL_PINS_GT_0:
 			{
 				Txbuffer[1] = Txbuffer[2] = Txbuffer[3] = Txbuffer[4] =
@@ -546,11 +512,10 @@ Response assuming all pins except 1, 14 and 19 are zero:
 						*ptr |= (1 << (i & 0x07));
 					}
 				}
-
 			}
 			break;
 #ifdef QUEUE_ENABLE
-	case COMMAND_BINARY_QUEUE_INITIALIZE:
+		case COMMAND_BINARY_QUEUE_INITIALIZE:
 			{
 				/** \addtogroup ProtocolBinaryCommands
 				  \{
@@ -560,17 +525,17 @@ Response assuming all pins except 1, 14 and 19 are zero:
 				  Initialize a queue in user memory 
 				  Queue types are as follows:  
 				  0 - Byte data queue in RAM
-                  1 - Byte data using shifted QUEUE in RAM (Write only, no read, used for Displays and similar)
+				  1 - Byte data using shifted QUEUE in RAM (Write only, no read, used for Displays and similar)
 
 				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
 				  |0x90 |Queue Address LSB |Queue Address MSB |Size LSB|Size MSB|Queue Type|Varies|Varies|
-                 
-                  Response: 
-                 |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-				  |0x90 |Queue Address LSB |Queue Address MSB |Used Size LSB|Used Size MSB|Queue Type|Varies|Varies| 
-             
+
+Response: 
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0x90 |Queue Address LSB |Queue Address MSB |Used Size LSB|Used Size MSB|Queue Type|Varies|Varies| 
+
 
 Examples:
 
@@ -580,35 +545,35 @@ Initializes a ram queue of 32 bytes at address 0x0010 in user memory.
 
 \}
 				 **/
-                 SW_QUEUE_RESULT_t result;
+				SW_QUEUE_RESULT_t result;
 				switch (Rxbuffer[5])
-                {
-                    case 0:
-                    case 1:
-                    {
-                        lastQueueAddress = queueAddress = &UserBuffer[RXBUFFER16(1)];
-               result = QueueByteInitialize(RXBUFFER16(3));
-                    }
-                break;
+				{
+					case 0:
+					case 1:
+						{
+							lastQueueAddress = queueAddress = &UserBuffer[RXBUFFER16(1)];
+							result = QueueByteInitialize(RXBUFFER16(3));
+						}
+						break;
 
-                    default:
-                    {
-                        error(SW_ERROR_UNKNOWN_QUEUE_TYPE);
-                        return;
-                    }
-                    break;
-                }
-                
-                if (result == QUEUE_RESULT_SUCCESS)
-                {
-                    uint16_t length = RXBUFFER16(3) + 8;
-                    TXBUFFER16(3,length);
-                }
-                else
-                {
-                    TXBUFFER16(3,0);
-                    Txbuffer[5] = (uint8_t)result;
-                }
+					default:
+						{
+							error(SW_ERROR_UNKNOWN_QUEUE_TYPE);
+							return;
+						}
+						break;
+				}
+
+				if (result == QUEUE_RESULT_SUCCESS)
+				{
+					uint16_t length = RXBUFFER16(3) + 8;
+					TXBUFFER16(3,length);
+				}
+				else
+				{
+					TXBUFFER16(3,0);
+					Txbuffer[5] = (uint8_t)result;
+				}
 			}
 			break;
 		case COMMAND_BINARY_QUEUE_ADD_BYTES:
@@ -623,12 +588,12 @@ Initializes a ram queue of 32 bytes at address 0x0010 in user memory.
 				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
 				  |0x90 |Queue Address LSB |Queue Address MSB |Count of bytes to add (0-4)| Byte to Add| Byte to Add| Byte to Add| Byte to Add|
-                 
-                 Response:
 
-                 				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-				  |0x90 |Queue Address LSB |Queue Address MSB |Number added| Queue Result Code | Free bytes after add LSB | Free Bytes after add MSB| 0x55|
+Response:
+
+|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+|0x90 |Queue Address LSB |Queue Address MSB |Number added| Queue Result Code | Free bytes after add LSB | Free Bytes after add MSB| 0x55|
 
 Examples:
 
@@ -639,25 +604,25 @@ Add bytes 0x31, 0x32, 0x33, and 0x34 to queue located at 0x0010.
 \}
 				 **/
 				uint8_t i;
-                bool success = true;
+				bool success = true;
 
-                uint8_t successCount = 0;
-                SW_QUEUE_RESULT_t result = 0;
-                lastQueueAddress =  queueAddress = &UserBuffer[RXBUFFER16(1)];
+				uint8_t successCount = 0;
+				SW_QUEUE_RESULT_t result = 0;
+				lastQueueAddress =  queueAddress = &UserBuffer[RXBUFFER16(1)];
 				for (i = 0; i < Rxbuffer[3] && success ; ++i)
 				{
 					result =QueueAddByte(Rxbuffer[4 + i]);
-                    success = result == QUEUE_RESULT_SUCCESS;
-                    if (success)
-                    {
-                        ++successCount;
-                    }
+					success = result == QUEUE_RESULT_SUCCESS;
+					if (success)
+					{
+						++successCount;
+					}
 				}
 				Txbuffer[3] = successCount;
-                Txbuffer[4] = result;
-                uint16_t freeBytes;
-                QueueGetBytesFreeInQueue(&freeBytes);
-                TXBUFFER16(5,freeBytes);
+				Txbuffer[4] = result;
+				uint16_t freeBytes;
+				QueueGetBytesFreeInQueue(&freeBytes);
+				TXBUFFER16(5,freeBytes);
 			}
 			break;
 		case COMMAND_BINARY_QUEUE_ADD_7BYTES:
@@ -672,12 +637,12 @@ Add bytes 0x31, 0x32, 0x33, and 0x34 to queue located at 0x0010.
 				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
 				  |0x92 |Byte to Add|Byte to Add|Byte to Add|  Byte to Add| Byte to Add| Byte to Add| Byte to Add|
-                 * 
-                 *  Response:
+				 * 
+				 *  Response:
 
-                 				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-				  |0x91 |Queue Address LSB |Queue Address MSB |Number added| Queue Result Code | Free bytes after add LSB | Free Bytes after add MSB| 0x55|
+				 |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+				 |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+				 |0x91 |Queue Address LSB |Queue Address MSB |Number added| Queue Result Code | Free bytes after add LSB | Free Bytes after add MSB| 0x55|
 
 Examples:
 
@@ -688,24 +653,24 @@ Add bytes 0x35, 0x36, 0x37, 0x38, 0x39, 0x3A and 0x3B to queue last added to.
 \}
 				 **/
 				uint8_t i;
-                bool success = true;
-                uint8_t successCount = 0;
-                SW_QUEUE_RESULT_t result = 0;
-                queueAddress = lastQueueAddress;
+				bool success = true;
+				uint8_t successCount = 0;
+				SW_QUEUE_RESULT_t result = 0;
+				queueAddress = lastQueueAddress;
 				for (i = 0; i < 7 && success ; ++i)
 				{
 					result =QueueAddByte(Rxbuffer[1 + i]);
-                    success = result == QUEUE_RESULT_SUCCESS;
-                    if (success)
-                    {
-                        ++successCount;
-                    }
+					success = result == QUEUE_RESULT_SUCCESS;
+					if (success)
+					{
+						++successCount;
+					}
 				}
 				Txbuffer[3] = successCount;
-                Txbuffer[4] = result;
-                uint16_t freeBytes;
-                QueueGetBytesFreeInQueue(&freeBytes);
-                TXBUFFER16(5,freeBytes);
+				Txbuffer[4] = result;
+				uint16_t freeBytes;
+				QueueGetBytesFreeInQueue(&freeBytes);
+				TXBUFFER16(5,freeBytes);
 
 			}
 			break;
@@ -727,10 +692,10 @@ Response :
 |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
 |0x93 |Number of Bytes read from Queue|Data Byte|Data Byte|Data Byte|Data Byte|Data Byte|Data Byte|
-                 
-                 Note:  If Byte 1 is 5 or less, then byte 7 will contain the last queue result.
+
+Note:  If Byte 1 is 5 or less, then byte 7 will contain the last queue result.
 Examples:
-         
+
 
 `0x93 0x0170 0x04 0x20 0x20 0x20 0x20`
 
@@ -740,40 +705,39 @@ Sample Response:
 `0x93 0x02 0x34 0x35 0x20 0x20 0x20 0x20` 
 
 Two bytes were available in the queue.  0x34, and 0x35
-                 
-                 * TODO:  Make rx[1] equal to total bytes avaialble or 255
 
-\}
+				 * TODO:  Make rx[1] equal to total bytes avaialble or 255
+
+				 \}
 				 **/
 				SW_QUEUE_RESULT_t result = QUEUE_RESULT_SUCCESS;
 				uint8_t i;
-                Txbuffer[1] = 0;
-                lastQueueAddress = queueAddress = &UserBuffer[RXBUFFER16(1)];
+				Txbuffer[1] = 0;
+				lastQueueAddress = queueAddress = &UserBuffer[RXBUFFER16(1)];
 				for (i = 0; i < Rxbuffer[3] && result == QUEUE_RESULT_SUCCESS; ++i)
 				{
 					result = (SW_QUEUE_RESULT_t) QueueReadByte(&Txbuffer[2 + i]);
-                    if (result == QUEUE_RESULT_SUCCESS)
-                    {
-                        ++Txbuffer[1];
-                    }
+					if (result == QUEUE_RESULT_SUCCESS)
+					{
+						++Txbuffer[1];
+					}
 				}
-			
-                if (i <= 5)
-                {
-                    Txbuffer[7] = (uint8_t) result;
-                }
 
+				if (i <= 5)
+				{
+					Txbuffer[7] = (uint8_t) result;
+				}
 			}
 			break;
-            
-            case COMMAND_BINARY_QUEUE_GET_INFO:
+
+		case COMMAND_BINARY_QUEUE_GET_INFO:
 			{
 				/** \addtogroup ProtocolBinaryCommands
 				  \{
 
-                 Peek the first byte from the queue without removing it.  Get the number of available bytes to read and free space.
+				  Peek the first byte from the queue without removing it.  Get the number of available bytes to read and free space.
 				  ---------------------
-				
+
 				  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 				  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
 				  |0x94 |Queue Address LSB|Queue Address MSB|Unused|Unused|Unused|Unused|Unused|
@@ -783,10 +747,10 @@ Response :
 |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
 |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
 |0x94 |Queue Address LSB|Queue Address MSB|Peeked Byte| Bytes Available to Read LSB |Bytes Available to Read MSB |Free Bytes LSB | Free Bytes MSB|
-                 
-               
-                 Note:  Ignore peeked value if Bytes Available == 0.
-       Example:  
+
+
+Note:  Ignore peeked value if Bytes Available == 0.
+Example:  
 
 `0x94 0x70 0x01 0x55 0x55 0x55 0x55 0x55`
 
@@ -794,32 +758,31 @@ Peek byte from queue at address 0x0170
 
 Sample Response:
 
-         
+
 `0x94 0x70 0x01 0x37 0x80 0x01 0xF4 0x01` 
 
-        Next byte is 0x37 .  384 bytes available to read, 500 bytes Free
+Next byte is 0x37 .  384 bytes available to read, 500 bytes Free
 
 \}
 				 **/
-                 uint16_t bytesFree = 0;
-                    uint16_t bytesAvailable = 0;
+				uint16_t bytesFree = 0;
+				uint16_t bytesAvailable = 0;
 				SW_QUEUE_RESULT_t result = QUEUE_RESULT_SUCCESS;
-				lastQueueAddress = queueAddress = &UserBuffer[RXBUFFER16(1)];	{
-					result = (SW_QUEUE_RESULT_t) QueuePeekByte(&Txbuffer[3]);
+				lastQueueAddress = queueAddress = &UserBuffer[RXBUFFER16(1)];	
+				result = (SW_QUEUE_RESULT_t) QueuePeekByte(&Txbuffer[3]);
+
+				if (result == QUEUE_RESULT_SUCCESS)
+				{
+
+					QueueGetBytesFilledInQueue( &bytesAvailable);
+					QueueGetBytesFreeInQueue( &bytesFree);
 				}
-                
-                if (result == QUEUE_RESULT_SUCCESS)
-                {
-                   
-                    QueueGetBytesFilledInQueue( &bytesAvailable);
-                    QueueGetBytesFreeInQueue( &bytesFree);
-                }
-                else if (result == QUEUE_RESULT_EMPTY)
-                {
-                     QueueGetBytesFreeInQueue( &bytesFree);
-                }
-                TXBUFFER16(4,bytesAvailable);
-                TXBUFFER16(6,bytesFree);
+				else if (result == QUEUE_RESULT_EMPTY)
+				{
+					QueueGetBytesFreeInQueue( &bytesFree);
+				}
+				TXBUFFER16(4,bytesAvailable);
+				TXBUFFER16(6,bytesFree);
 
 			}
 			break;
@@ -866,7 +829,6 @@ Response:
 				 **/
 				uint32_t addr = RXBUFFER32(1);
 				Txbuffer[3] = *(uint8_t*)addr;
-
 			}
 			break;
 
@@ -928,81 +890,83 @@ Write 0x32 the byte at RAM address 0x0247.
 					uint8_t i;
 					for (i = 1; i < 8 ; ++ i )
 					{
+#ifdef __DEBUG
 						if (Txbuffer[i] != testSequenceNumber && testSequenceArmed)
 						{
-#ifdef __DEBUG    
+
 							__builtin_software_breakpoint();
 							testSequenceArmed = 0;
 							/* If we are in debug mode, cause a software breakpoint in the debugger */
-#endif
-						}
-						++testSequenceNumber;
 
+						}
+#endif
+						++testSequenceNumber;
 					}
 				}
-
 			}
 			break;
 #endif
 #ifdef TODO
-	case COMMAND_SET_PIN_HW:
-	{
-
-		if (Rxbuffer[2] == 1)
-		{
-			PinPullUp(Rxbuffer[1]);
-		}
-		else if (Rxbuffer[2] == 0)
-		{
-			PinNoPullUp(Rxbuffer[1]);
-		}
-		if (Rxbuffer[3] == 1)
-		{
-			PinPullDown(Rxbuffer[1]);
-		}
-		else if (Rxbuffer[3] == 0)
-		{
-			PinNoPullDown(Rxbuffer[1]);
-		}
-		if (Rxbuffer[4] == 1)
-		{
-			PinOD(Rxbuffer[1]);
-		}
-		else if (Rxbuffer[4] == 0)
-		{
-			PinNoOD(Rxbuffer[1]);
-		}
-
-	}
+		case COMMAND_SET_PIN_HW:
+			{
+				if (Rxbuffer[2] == 1)
+				{
+					PinPullUp(Rxbuffer[1]);
+				}
+				else if (Rxbuffer[2] == 0)
+				{
+					PinNoPullUp(Rxbuffer[1]);
+				}
+				if (Rxbuffer[3] == 1)
+				{
+					PinPullDown(Rxbuffer[1]);
+				}
+				else if (Rxbuffer[3] == 0)
+				{
+					PinNoPullDown(Rxbuffer[1]);
+				}
+				if (Rxbuffer[4] == 1)
+				{
+					PinOD(Rxbuffer[1]);
+				}
+				else if (Rxbuffer[4] == 0)
+				{
+					PinNoOD(Rxbuffer[1]);
+				}
+			}
+			break;
 #endif
 
-        
-        case COMMAND_READ_LAST_ERROR_PACKET:
-        {
-            Txbuffer[1] = lastErrorPacket[0];
-            Txbuffer[2] = lastErrorPacket[1];
-            Txbuffer[3] = lastErrorPacket[2];
-            Txbuffer[4] = lastErrorPacket[3];
-            Txbuffer[5] = lastErrorPacket[4];
-            Txbuffer[6] = lastErrorPacket[5];
-            Txbuffer[7] = lastErrorPacket[6];
-        }
-        break;
-/** \addtogroup ProtocolBinaryCommands
-\{
 
-----
-
-Binary Send 7 bytes out first UART 
----------------------
-
-Queues 7 bytes to be sent out of the first avaialble Hardware UART.  Assumes a UART pin mode has already been set up.  The host should
-query avaialble space before using this command.
+		case COMMAND_READ_LAST_ERROR_PACKET:
+			{
+				Txbuffer[1] = lastErrorPacket[0];
+				Txbuffer[2] = lastErrorPacket[1];
+				Txbuffer[3] = lastErrorPacket[2];
+				Txbuffer[4] = lastErrorPacket[3];
+				Txbuffer[5] = lastErrorPacket[4];
+				Txbuffer[6] = lastErrorPacket[5];
+				Txbuffer[7] = lastErrorPacket[6];
+			}
+			break;
 
 
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xB0|1st Byte to Send |2nd Byte To send |3rd Byte To send | 4th Byte To send | 5th Byte To send |  6th Byte To send | 7th Byte To send |
+#ifdef PIN_MODE_UART0_TXRX_ENABLE
+			/** \addtogroup ProtocolBinaryCommands
+			  \{
+
+			  ----
+
+			  Binary Send 7 bytes out first UART 
+			  ---------------------
+
+			  Queues 7 bytes to be sent out of the first avaialble Hardware UART.  Assumes a UART pin mode has already been set up.  The host should
+			  query avaialble space before using this command.
+
+
+			  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+			  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+			  |0xB0|1st Byte to Send |2nd Byte To send |3rd Byte To send | 4th Byte To send | 5th Byte To send |  6th Byte To send | 7th Byte To send |
 
 Response:
 
@@ -1015,49 +979,42 @@ Send *WOMBAT!* out of the UART
 > `0xB0 0x57 0x4F 0x4D 0x42 0x41 0x54 0x21`
 
 \}
-**/
+			 **/
 
-        case COMMAND_UART0_TX_7BYTES:
-        {
-            /* TODO
-            if (!IEC0bits.U1RXIE ) 
-            {
-               error(SW_ERROR_UART_NOT_INITIALIZED);
-               return;
-            }
-            */
-            queueAddress =  &PinUpdateRegisters[4];   //Hard Coded to TX pin
+		case COMMAND_UART0_TX_7BYTES:
+			{
+				queueAddress =  &PinUpdateRegisters[4];   //Hard Coded to TX pin
 
-            USART_ITConfig(USART1, USART_IT_TXE, DISABLE);
-            {
-                int16_t i;
-                for (i = 1; i <= 7; ++i)
-                {
-                    QueueAddByte(Rxbuffer[i]);
-                }
-            }
-            USART_ITConfig(USART1, USART_IT_TXE, ENABLE);
-        }
-        break;
-
-        
-/** \addtogroup ProtocolBinaryCommands
-\{
-
-----
-
-Binary Read 7 bytes from first UART 
----------------------
-
-Read 7 bytes from the queue of the  first avaialble Hardware UART.  Assumes a UART pin mode has already been set up.  The host should
-query avaialble bytes to determine the nubmer of bytes avaiable before using this command.  This command should only be called if at
-least 7 bytes are available.
+				USART_ITConfig(USART1, USART_IT_TXE, DISABLE);
+				{
+					int16_t i;
+					for (i = 1; i <= 7; ++i)
+					{
+						QueueAddByte(Rxbuffer[i]);
+					}
+				}
+				USART_ITConfig(USART1, USART_IT_TXE, ENABLE);
+			}
+			break;
 
 
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xB1| 0x55* | 0x55* | 0x55* | 0x55* | 0x55* | 0x55* | 0x55* |
- *0x55 is recommended, but any byte is acceptable
+			/** \addtogroup ProtocolBinaryCommands
+			  \{
+
+			  ----
+
+			  Binary Read 7 bytes from first UART 
+			  ---------------------
+
+			  Read 7 bytes from the queue of the  first avaialble Hardware UART.  Assumes a UART pin mode has already been set up.  The host should
+			  query avaialble bytes to determine the nubmer of bytes avaiable before using this command.  This command should only be called if at
+			  least 7 bytes are available.
+
+
+			  |BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+			  |:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+			  |0xB1| 0x55* | 0x55* | 0x55* | 0x55* | 0x55* | 0x55* | 0x55* |
+			 *0x55 is recommended, but any byte is acceptable
 
 Response:
 
@@ -1078,128 +1035,42 @@ Received:
 > `0xB1 0x47 0x48 0x49 0x4A 0x4B 0x4C 0x4D`
 
 \}
-**/
+			 **/
 
-        case COMMAND_UART0_RX_7BYTES:
-        {
-            /*TODO
-            if (!IEC0bits.U1RXIE ) 
-            {
-               error(SW_ERROR_UART_NOT_INITIALIZED);
-               return;
-            }
-            */
-            USART_ITConfig(USART1, USART_IT_RXNE, DISABLE);
-            queueAddress =  &PinUpdateRegisters[5];   //Hard Coded to RX pin
-            {
-                int16_t i;
-                for (i = 1; i <=7; ++i)
-                {
-                    QueueReadByte(&Txbuffer[i]);
-                }
-            }
+		case COMMAND_UART0_RX_7BYTES:
+			{
+				USART_ITConfig(USART1, USART_IT_RXNE, DISABLE);
+				queueAddress =  &PinUpdateRegisters[5];   //Hard Coded to RX pin
+				{
+					int16_t i;
+					for (i = 1; i <=7; ++i)
+					{
+						QueueReadByte(&Txbuffer[i]);
+					}
+				}
 
-            USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
-        }
-        break;
-
-/** \addtogroup ProtocolBinaryCommands
-\{
-
-----
-
-Binary Send 7 bytes out first UART 
----------------------
-
-Queues 7 bytes to be sent out of the first avaialble Hardware UART.  Assumes a UART pin mode has already been set up.  The host should
-query avaialble space before using this command.
-
-
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xB2|1st Byte to Send |2nd Byte To send |3rd Byte To send | 4th Byte To send | 5th Byte To send |  6th Byte To send | 7th Byte To send |
-
-Response:
-
-Packet is echoed back to the host.
-
-Examples:
-
-Send *WOMBAT!* out of the UART 
-
-> `0xB2 0x57 0x4F 0x4D 0x42 0x41 0x54 0x21`
-
-\}
-**/
-#ifdef TODO
-        case COMMAND_UART1_TX_7BYTES:
-        {
-
-            void UART2_Write(uint8_t txData);
-            UART2_Write(Rxbuffer[1]);
-            UART2_Write(Rxbuffer[2]);
-            UART2_Write(Rxbuffer[3]);
-            UART2_Write(Rxbuffer[4]);
-            UART2_Write(Rxbuffer[5]);
-            UART2_Write(Rxbuffer[6]);
-            UART2_Write(Rxbuffer[7]);
-        }
-        break;
-#endif
-/** \addtogroup ProtocolBinaryCommands
-\{
-
-----
-
-Binary Read 7 bytes from first UART 
----------------------
-
-Read 7 bytes from the queue of the  first avaialble Hardware UART.  Assumes a UART pin mode has already been set up.  The host should
-query avaialble bytes to determine the nubmer of bytes avaiable before using this command.  This command should only be called if at
-least 7 bytes are available.
-
-
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xB3| 0x55* | 0x55* | 0x55* | 0x55* | 0x55* | 0x55* | 0x55* |
- *0x55 is recommended, but any byte is acceptable
-
-Response:
-
-|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
-|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
-|0xB1|  1st byte read from UART queue |2nd byte read from UART queue |3rd byte read from UART queue |4th byte read from UART queue |5th byte read from UART queue |6th byte read from UART queue |7th byte read from UART queue |
-
-
-Examples:
-
-Assuming *GHIJKLM* are the first 7 bytes in the UART RX QUEUE:
-
-Sent:
-> `0xB3 0x55 0x55 0x55 0x55 0x55 0x55 0x55`
-
-Received:
-
-> `0xB3 0x47 0x48 0x49 0x4A 0x4B 0x4C 0x4D`
-
-\}
-**/
-#ifdef TODO
-        case COMMAND_UART1_RX_7BYTES:
-        {
-            uint8_t UART2_Read(void);
-            Txbuffer[1] = UART2_Read();
-            Txbuffer[2] = UART2_Read();
-            Txbuffer[3] = UART2_Read();
-            Txbuffer[4] = UART2_Read();
-            Txbuffer[5] = UART2_Read();
-            Txbuffer[6] = UART2_Read();
-            Txbuffer[7] = UART2_Read();
-        }
-        break;
+				USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
+			}
+			break;
 #endif
 
-	
+		case COMMAND_BINARY_SET_COMMUNICATION_ADDRESS:
+			{
+				uint32_t tempUB[4];
+				memcpy(tempUB,(void*)0x1FFFF800,16);
+				FLASH_EraseOptionBytes();
+				tempUB[1] &= 0xFFFFFF00;
+				tempUB[1] |= Rxbuffer[1];
+				FLASH_ProgramOptionByteData(0x1FFFF800,(tempUB[0] & 0xFF));
+				FLASH_ProgramOptionByteData(0x1FFFF802,((tempUB[0] >>16) & 0xFF));
+				FLASH_ProgramOptionByteData(0x1FFFF804,(tempUB[1] & 0xFF));
+				FLASH_ProgramOptionByteData(0x1FFFF806,((tempUB[1] >>16) & 0xFF));
+				FLASH_ProgramOptionByteData(0x1FFFF808,(tempUB[2] & 0xFF));
+				FLASH_ProgramOptionByteData(0x1FFFF80A,((tempUB[2] >>16) & 0xFF));
+				FLASH_ProgramOptionByteData(0x1FFFF80C,(tempUB[3] & 0xFF));
+				FLASH_ProgramOptionByteData(0x1FFFF80E,((tempUB[3] >>16) & 0xFF));
+			}
+			break;
 
 		case CONFIGURE_CHANNEL_MODE_0:
 		case CONFIGURE_CHANNEL_MODE_1:
@@ -1248,108 +1119,76 @@ Received:
 
 volatile uint8_t debugLastInterruptAction = 2;
 
-uint8_t rxCounter = 0;
-#ifndef INTERRUPT_I2C
-uint16_t i2cMode = 0;
-uint16_t processingCommand = 0;
+#define I2C_MODE_INIT 0
+#define I2C_MODE_RECEIVING 1
+#define I2C_MODE_TRANSMITTING 2
+uint16_t i2cMode = 0; // 0 = INIT, 1 = Receiving, 2 = Transmitting
 
-
-
-
-#endif
 volatile I2C_TypeDef *i2cDebugPtr;
 uint16_t star1;
 void ProcessRx(void)
 {
-        i2cDebugPtr = I2C1;
-		//if (SW_I2CAddress != 0)  // Use I2C
+	i2cDebugPtr = I2C1;
+	volatile uint16_t x; // Used for delay
+
+
+	uint8_t loop = 1;
+	while (loop)
+	{
+		//  for (x = 0; x < 500; ++x); //Debug
+		star1 = I2C1->STAR1;
+		while (i2cMode == I2C_MODE_RECEIVING && (star1 & 0x040)) // RxNE
 		{
-			extern volatile uint8_t wombatI2CRxDataCount;
-
-			volatile uint16_t x;
-
-
-			uint8_t loop = 1;
-			while (loop)
+			if (i2cRxCount > 5)
 			{
-			  //  for (x = 0; x < 500; ++x); //Debug
-			    star1 = I2C1->STAR1;
-			  while (i2cMode == 1 && (star1 & 0x040)) // RxNE
-			                     {
-			      if (wombatI2CRxDataCount > 5)
-			      {
-			      for (x = 0; x < 1000; ++x); //  This delay seems to help prevent bus lockups due to missed last byte before stop
-			      }
-			                         Rxbuffer[wombatI2CRxDataCount] = I2C1->DATAR;
-
-			                         ++wombatI2CRxDataCount;
-			                         if (wombatI2CRxDataCount == 8)
-			                         {
-			                             ProcessRxbuffer();
-			                             wombatI2CRxDataCount = 0;
-			                             i2cTxCount = 0;
-			                         }
-			                        star1 = I2C1->STAR1;
-			                     }
-
-			  if (i2cMode == 2 && (star1 & 0x80)) //TxE
-			         {
-			             I2C1->DATAR = Txbuffer[i2cTxCount];
-			                         ++i2cTxCount;
-			                         {// Debug Code
-			             if (i2cTxCount == 8)
-			                 {
-			                     Txbuffer[0] = 'E';
-			                     Txbuffer[1] = '1';
-			                     Txbuffer[2] = '2';
-			                     Txbuffer[3] = '3';
-			                     Txbuffer[4] = '4';
-			                     Txbuffer[5] = '5';
-			                 }
-
-			                         }
-			         }
-		              else if ((star1 & 0x02) && !(star1 & 0x040))  //Address bit set  and RXNE not
-		                     {
-		                          if (wombatI2CRxDataCount == 7)
-		                          {
-		                              for (x = 0; x < 500; ++x); //Debug
-		                          }
-		                         if ( wombatI2CRxDataCount == 0)
-		                         {
-		                         uint16_t tra  = I2C1->STAR2 & 0x04;  //Reading STAR1 and STAR 2 clears bit.
-		                         wombatI2CRxDataCount = 0;
-		                         i2cTxCount = 0;
-
-		                         if (tra == 0)
-		                         {
-
-		                           i2cMode = 1;
-		                           Txbuffer[2] = '7';
-		                         }
-		                         else {
-
-		                             i2cMode = 2;
-		                             I2C1->DATAR = Txbuffer[i2cTxCount];
-		                             ++i2cTxCount;
-		                         }
-		                         }
-
-
-
-
-
-		                     }
-		              else {
-		                  loop = 0;
-		              }
-
+				for (x = 0; x < 1000; ++x); //  This delay seems to help prevent bus lockups due to missed last byte before stop
 			}
+			Rxbuffer[i2cRxCount] = I2C1->DATAR;
 
+			++i2cRxCount;
+			if (i2cRxCount == 8)
+			{
+				ProcessRxbuffer();
+				i2cRxCount = 0;
+				i2cTxCount = 0;
+			}
+			star1 = I2C1->STAR1;
 		}
 
+		if (i2cMode == I2C_MODE_TRANSMITTING && (star1 & 0x80)) //TxE
+		{
+			I2C1->DATAR = Txbuffer[i2cTxCount];
+			++i2cTxCount;
+		}
+		else if ((star1 & 0x02) && !(star1 & 0x040))  //Address bit set  and RXNE not
+		{
+			if (i2cRxCount == 7)
+			{
+				for (x = 0; x < 500; ++x); //Debug
+			}
+			if ( i2cRxCount == 0)
+			{
+				uint16_t tra  = I2C1->STAR2 & 0x04;  //Reading STAR1 and STAR 2 clears bit.
+				i2cRxCount = 0;
+				i2cTxCount = 0;
 
+				if (tra == 0)
+				{
+					i2cMode = I2C_MODE_RECEIVING;
+				}
+				else 
+				{
+					i2cMode = I2C_MODE_TRANSMITTING;
+					I2C1->DATAR = Txbuffer[i2cTxCount];
+					++i2cTxCount;
+				}
+			}
+		}
+		else {
+			loop = 0;
+		}
 	}
+}
 
 
 
@@ -1364,18 +1203,7 @@ static void ProcessSetPin()
 		return;
 	}
     CurrentPinRegister = &PinUpdateRegisters[CurrentPin];
-   /* TODO
-    if ((CurrentPin == 3 || CurrentPin == 4 ) && SW_I2CAddress != 0  )
-    {
-        error(SW_ERROR_PIN_IS_COMM_INTERFACE);
-        return;
-    }
-    if (SW_I2CAddress == 0  && (CurrentPin == 7 || CurrentPin == 9 ))
-    {
-        error(SW_ERROR_PIN_IS_COMM_INTERFACE);
-        return;
-    }
-*/
+
 	switch (Rxbuffer[2])  // Pin mode service
 	{
         case PIN_MODE_DIGITAL_IO:
@@ -1728,111 +1556,3 @@ Rxbuffer[0] = CONFIGURE_CHANNEL_MODE_0;
        ProcessSetPin();
    }
 }
-
-#ifdef INTERRUPT_I2C
-void static i2cInterruptDisable()
-        {
-    NVIC_InitTypeDef NVIC_InitStructure = {0};
-                        NVIC_InitStructure.NVIC_IRQChannel = I2C1_EV_IRQn;
-                        NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 1;
-                        NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
-                        NVIC_InitStructure.NVIC_IRQChannelCmd = DISABLE;
-                        NVIC_Init( &NVIC_InitStructure );
-                        debugLastInterruptAction = 0;
-        }
-
-uint32_t i2cIntereruptCount = 0;
-volatile I2C_TypeDef *i2cDebugPtr;
-
-void I2C1_EV_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
-void I2C1_EV_IRQHandler(void )
-{
-    i2cDebugPtr = I2C1;
-
-	if( I2C_GetITStatus( I2C1, I2C_IT_ADDR ) != RESET )
-	{
-	        //Address received.
-	    addrRequested = 1;
-
-
-	    i2cInterruptDisable();
-
-
-
-
-	}
-	else if( I2C_GetITStatusSmall(I2C_IT_RXNE ) != RESET )
-	{
-		rxneRequested = 1;
-		i2cInterruptDisable();
-	}
-	else if( I2C_GetITStatusSmall( I2C_IT_STOPF ) != RESET )
-	{
-		I2C1->CTLR1 &= I2C1->CTLR1;
-		((void)(I2C1->STAR1));
-
-		if (i2c_com_state == COM_STATE_IDLE || i2c_com_state == COM_STATE_RESPONSE_IN_PROGRESS)
-		{
-			i2cTxCount = 0;
-			i2c_com_state = COM_STATE_IDLE;
-		}
-		if (i2c_com_state == COM_STATE_RECEIVING_COMMAND &&  wombatI2CRxDataCount <8)
-		{
-			wombatI2CRxDataCount = 0;
-			i2cTxCount = 0;
-			i2c_com_state = COM_STATE_IDLE;
-
-		}
-	}
-
-	else if( I2C_GetITStatusSmall( I2C_IT_BTF ) != RESET )
-	{
-		btfRequested = 1;
-		i2cInterruptDisable();
-	}
-	else if( I2C_GetITStatusSmall( I2C_IT_SB ) != RESET )
-	{
-		((void)I2C_ReadRegister( I2C1, I2C_Register_STAR1));
-		((void)I2C_ReceiveData(I2C1));
-	}
-	else if( I2C_GetITStatusSmall( I2C_IT_TXE ) != RESET )
-	{
-	    if (i2c_com_state == COM_STATE_RESPONSE_IN_PROGRESS || i2c_com_state == COM_STATE_RESPONSE_READY_TO_SEND)
-	    {
-		txRequested = 3;
-i2cInterruptDisable();
-	    }
-	    else if (i2cTxCount)
-	                   {
-	                   I2C_SendData(I2C1,  wombatI2CTxData[8 - i2cTxCount]);
-
-	                           i2cTxCount--;
-	                   }
-	                   else {
-	                       I2C_SendData(I2C1,  0x55); // Clear the interrupt flag
-	                   }
-	}
-	else{
-
-	}
-	i2cIntereruptCount++;
-}
-
-void I2C1_ER_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
-void I2C1_ER_IRQHandler(void)
-{
-//err
-
-    if( I2C_GetITStatusSmall( I2C_IT_AF ) )
-    {
-        I2C_ClearITPendingBit(I2C1, I2C_IT_AF);
-
-    }else{
-        //err
-        if (I2C1->STAR1 & I2C_FLAG_BERR)
-        {
-            I2C1->STAR1 &= ~I2C_FLAG_BERR;
-        }
-    }
-}
-#endif

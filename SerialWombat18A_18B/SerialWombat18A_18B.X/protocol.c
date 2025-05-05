@@ -50,7 +50,7 @@ bool protocolCapturingPackets = false;
 uint16_t protocolCapturedPackets = 0;
 uint8_t lastErrorPacket[8];
 static void storeCapturedPackets(void);
-
+void* lastQueueAddress;
 pinRegister_t PinRegisterCopyBuffer;
 timingResourceManager_t TimingResourceManagerCopyBuffer;
 volatile unsigned short crcResultCRCCCITT = 0;
@@ -576,9 +576,9 @@ Or similar
             {
                Txbuffer[4] = 'A';//SERIAL_WOMBAT_HARDWARE_IDENTIFIER;	 
             }
-			Txbuffer[5] = '9';	     
-			Txbuffer[6] = '1';	     
-			Txbuffer[7] = '5';	     
+			Txbuffer[5] = '2';	     
+			Txbuffer[6] = '2';	     
+			Txbuffer[7] = '0';	     
 
 			break;
 		case COMMAND_BINARY_READ_PIN_BUFFFER:
@@ -1143,19 +1143,20 @@ Sample Response:
                  uint16_t bytesFree = 0;
                     uint16_t bytesAvailable = 0;
 				SW_QUEUE_RESULT_t result = QUEUE_RESULT_SUCCESS;
+                queueAddress = &UserBuffer[RXBUFFER16(1)];
 								{
-					result = (SW_QUEUE_RESULT_t) QueuePeekByte(RXBUFFER16(1),&Txbuffer[3]); 
+					result = (SW_QUEUE_RESULT_t) QueuePeekByte(&Txbuffer[3]); 
 				}
                 
                 if (result == QUEUE_RESULT_SUCCESS)
                 {
                    
-                    QueueGetBytesFilledInQueue(RXBUFFER16(1), &bytesAvailable);
-                    QueueGetBytesFreeInQueue(RXBUFFER16(1), &bytesFree);                    
+                    QueueGetBytesFilledInQueue( &bytesAvailable);
+                    QueueGetBytesFreeInQueue( &bytesFree);                    
                 }
                 else if (result == QUEUE_RESULT_EMPTY)
                 {
-                     QueueGetBytesFreeInQueue(RXBUFFER16(1), &bytesFree);  
+                     QueueGetBytesFreeInQueue( &bytesFree);  
                 }
                 TXBUFFER16(4,bytesAvailable);
                 TXBUFFER16(6,bytesFree);
@@ -1205,20 +1206,21 @@ Sample Response:
             SW_QUEUE_RESULT_t result = QUEUE_RESULT_SUCCESS;
             result = QueueCopy(dstQueue,srcQueue);
             Txbuffer[1] = result;
+                queueAddress = &UserBuffer[srcQueue];
             if (result == QUEUE_RESULT_SUCCESS)
             	{
-					result = (SW_QUEUE_RESULT_t) QueuePeekByte(RXBUFFER16(3),&Txbuffer[3]); 
+					result = (SW_QUEUE_RESULT_t) QueuePeekByte(&Txbuffer[3]); 
 				}
                 
                 if (result == QUEUE_RESULT_SUCCESS)
                 {
                    
-                    QueueGetBytesFilledInQueue(RXBUFFER16(3), &bytesAvailable);
-                    QueueGetBytesFreeInQueue(RXBUFFER16(3), &bytesFree);                    
+                    QueueGetBytesFilledInQueue( &bytesAvailable);
+                    QueueGetBytesFreeInQueue( &bytesFree);                    
                 }
                 else if (result == QUEUE_RESULT_EMPTY)
                 {
-                     QueueGetBytesFreeInQueue(RXBUFFER16(3), &bytesFree);  
+                     QueueGetBytesFreeInQueue( &bytesFree);  
                 }
                 TXBUFFER16(4,bytesAvailable);
                 TXBUFFER16(6,bytesFree);

@@ -132,7 +132,7 @@ if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode 
             servo->state = SERVO_STATE_WAITING;
             timingResourceRelease(TIMING_RESOURCE_ALL);
             servo->pulseOutput.resource = TIMING_RESOURCE_NONE;
-            CurrentPinLow();
+            InitializePinLow(CurrentPin);
               servo->waitingCount = 0;
        outputScaleInit(&servo->outputScale);
 
@@ -189,13 +189,16 @@ pulsetime = fixed time + variableTime * buffer / 65536.
 
 void updateServoHw()
 {   
+
+
     uint16_t driveValue;
+      
     driveValue = outputScaleProcess(&servo->outputScale);
     if (servo->outputScale.sourcePin != CurrentPin)
     {
         CurrentPinRegister->generic.buffer = driveValue;
     }
-
+  
 	switch (servo->state)
 	{
 		case SERVO_STATE_WAITING:
@@ -241,6 +244,8 @@ void updateServoHw()
 						servo->state = SERVO_STATE_GENERATING_PULSE;
                         servo->waitingCount = 0;						
 					}
+#if 0
+#ifdef PIC24  //PIC24 only.  CH32 doesn't wait on pulse resources
                     else if (servo->inactiveCount > 22)  //TODO make PIC24 specific
                     {
                         // We've been waiting a long time for
@@ -253,7 +258,11 @@ void updateServoHw()
 						servo->state = SERVO_STATE_GENERATING_PULSE;
                         servo->waitingCount = 0;
                     }
+#endif
+#endif
+                  
 				    timingResourceService(&servo->pulseOutput);
+                   
 				}
 			}
 
@@ -261,7 +270,7 @@ void updateServoHw()
 
 		case SERVO_STATE_GENERATING_PULSE:
 			{
-    
+                
                 timingResourceService(&servo->pulseOutput);
 				if (!timingResourceHighPulseBusy(&servo->pulseOutput))
 				{
@@ -280,7 +289,7 @@ void updateServoHw()
                     if (servo->waitingCount > 5)
                     {
 
-			timingResourceRelease(servo->pulseOutput.resource);
+            			timingResourceRelease(servo->pulseOutput.resource);
                          servo->pulseOutput.resource = TIMING_RESOURCE_NONE;
 					servo->waitingCount = 0;
                     servo->inactiveCount = 0;

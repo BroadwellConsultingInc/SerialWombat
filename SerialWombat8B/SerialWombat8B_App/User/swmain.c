@@ -25,14 +25,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #include <string.h>
 #include "serialWombat.h"
 #include "debug.h"
-//#include "pic24fj256ga702/mcc_generated_files/mcc.h"
-//#define    FCY    16000000UL
-//#include <libpic30.h>
+
 uint8_t CurrentPin;
 
 uint8_t FrameTimingPin = 0xFF;
 
- bool RunForeground = false;
+ volatile bool RunForeground = false;
 
 
 uint8_t UserBuffer[SIZE_OF_USER_BUFFER];
@@ -75,36 +73,11 @@ void swSetup(void)
     void systemInitDMAIO(void);
     systemInitDMAIO();
 
-//	SYSTEM_Initialize();
-
-//    while (!HLVDCONbits.BGVST); // Wait for Band Gap to stabilize.
-
-//    SPI3CON1L = 0x8020;  // Make SPI3 Leader, CS enabled as high data source for PPS  //TODO Is this debug code?
-//        SPI3CON1H = 0x0010;
-
 
     {void protocolInitPinsToDIO_Input(void);
    protocolInitPinsToDIO_Input();
     }
 
-#ifdef TODO
-        timingResourceManagerInit();
-#endif
-    
-//    INTERRUPT_GlobalEnable();
-
-#ifdef SW_INITCOUNT
-        {
-            int i;
-            for (i = 0; i < SW_INITCOUNT; ++i)
-            {
-                memcpy(Rxbuffer,&initializationArray[i][0],8);
-                void ProcessRxbuffer(void);
-                ProcessRxbuffer();
-            }
-        }
-
-#endif
 }
 
 
@@ -112,7 +85,6 @@ void swSetup(void)
 void swLoop()
     
  	{
-		//SET_THROUGHPUT_ANALOG(30);
 		ProcessRx();
 
 		if (RunForeground)
@@ -130,46 +102,25 @@ void swLoop()
             else
             {
                 uint32_t t = SysTick->CNT;
-
                 SystemUtilizationSum += t;
-
                 ++SystemUtilizationCount;
                 if (SystemUtilizationCount == 1024)
                 {
                     SystemUtilizationSum <<= 6;
-                    SystemUtilizationSum/= SysTick->CMP;//SysTick->CMP;
+                    SystemUtilizationSum/= SysTick->CMP;
                     SystemUtilizationAverage = SystemUtilizationSum;
                     SystemUtilizationCount = 0;
                     SystemUtilizationSum = 0;
                 }
-
-
             }
-          //  extern uint32_t ADCBuffer[8];
-            /*
-            DMA_Cmd(DMA1_Channel1, DISABLE);
-            void DMA_Tx_Init(DMA_Channel_TypeDef *DMA_CHx, uint32_t peripheralAddress, uint32_t memoryAddress, uint16_t bufferSize);
-            DMA_Tx_Init(DMA1_Channel1, (u32)&ADC1->RDATAR, (u32)ADCBuffer, 3);
-            DMA_Cmd(DMA1_Channel1, ENABLE);
-            */
-            //ADC_SoftwareStartConvCmd(ADC1, ENABLE);
-          //  PinLow(FrameTimingPin);
 		}
-        {
-         
-//TODO        i2cHealthMonitor();
-        }
-        
 	}
 
 
 void ProcessPins()
 {
-	//IO Processing
-
 	for (CurrentPin = 0; CurrentPin <  NUMBER_OF_TOTAL_PINS; ++CurrentPin)
 	{
-
 		CurrentPinRegister = &PinUpdateRegisters[CurrentPin];
 
 		switch (CurrentPinRegister->generic.mode)
@@ -177,17 +128,7 @@ void ProcessPins()
 			case PIN_MODE_DIGITAL_IO:
 				{
 					void updateDigitalIO(void);
-					//TODO	updateDigitalIO();
-					/*
-					   if (CurrentPinRead())
-					   {
-					   CurrentPinRegister->generic.buffer = 65535;
-					   }
-					   else
-					   {
-					   CurrentPinRegister->generic.buffer = 0;
-					   }
-					   */
+				 //TODO needs tested   updateDigitalIO();
 				}
 				break;
 #ifdef PIN_MODE_SERVO_ENABLE
@@ -470,34 +411,22 @@ void ProcessPins()
 				break;
 #endif
 		}
-
-
 	}
 
 }
 
+volatile uint16_t FramesDropped = 0;
+volatile uint32_t System1msCount = 0;
 
-
-
-//void TIM1_UP_IRQHandler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
-//void TIM1_UP_IRQHandler(void)
 void SysTick_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 void SysTick_Handler(void)
 {
-    //if(TIM_GetITStatus(TIM1, TIM_IT_Update)==SET)
-       {
-        extern bool RunForeground;
-        extern uint16_t FramesDropped;
-        extern volatile uint32_t System1msCount;
                ++System1msCount;
                if (RunForeground)
                {
                    FramesDropped++;
                }
                 RunForeground = true;
-
-       }
-     //  TIM_ClearITPendingBit( TIM1, TIM_IT_Update );
     SysTick->SR = 0;
 }
 

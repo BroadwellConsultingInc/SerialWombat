@@ -157,6 +157,7 @@ typedef enum
 	TIMING_RESOURCE_ALL,
 	TIMING_RESOURCE_ANY_HARDWARE_OC,
 	TIMING_RESOURCE_ANY_HARDWARE_IC,
+            TIMING_RESOURCE_ANY_COUNTER,
 	TIMING_RESOURCE_NONE = 0xFF,
 } TIMING_RESOURCE_t;
 
@@ -205,5 +206,7 @@ int32_t timingResourceInputCaptureRead(TIMING_RESOURCE_t resource);
 void initializeBitStreamOutput(uint8_t pin, uint8_t level,  DMABitStream_t* bitStream );
 uint16_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint16_t count, DMABitStream_t* bitStream );
 uint16_t removeBitStreamOutput(uint8_t pin, uint16_t count, uint16_t margin, DMABitStream_t* bitStream );
+
+bool PINS_ON_DIFFERENT_PORTS (uint8_t p1, uint8_t p2);
 
 #endif

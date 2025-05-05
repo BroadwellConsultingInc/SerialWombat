@@ -19,6 +19,7 @@
                 <sourceRootElem>.</sourceRootElem>
                 <sourceRootElem>../SerialWombatCommon</sourceRootElem>
                 <sourceRootElem>../../SerialWombatCommon</sourceRootElem>
+                <sourceRootElem>../../../../../Github/broadwellconsultinginc/SerialWombat/SerialWombatPinModes</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>

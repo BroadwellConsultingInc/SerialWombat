@@ -437,7 +437,7 @@ SW_QUEUE_RESULT_t QueuePeekByte(uint8_t* data)
 	return (QUEUE_RESULT_INVALID_QUEUE);
 }
 
-#ifdef TODO
+#ifdef PIC24
 SW_QUEUE_RESULT_t QueueCopy(uint16_t dstAddress, uint16_t srcAddress)
 {
 #ifdef QUEUESIMPLE

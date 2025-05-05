@@ -25,6 +25,7 @@ void NMI_Handler(void)
 {
   while (1)
   {
+      //TODO - Make reset?
   }
 }
 
@@ -40,6 +41,7 @@ void HardFault_Handler(void)
 {
   while (stayInFault)
   {
+      //TODO - Make reset?
   }
 }
 
