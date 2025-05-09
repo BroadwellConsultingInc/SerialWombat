@@ -49,12 +49,8 @@ void reset ()
         //TODO  future internal debugging feature: shut down peripherals, shut off interrupts, jump to reset vector ?
 #else
     NVIC_SystemReset();
-    return;
-	while (1)
-	{           
-//TODO		{ __asm__ volatile (" reset");  }
-	}
 #endif
+
 }
 uint16_t OverflowFrames = 0;
 uint32_t FramesRun = 0;
@@ -128,7 +124,7 @@ void ProcessPins()
 			case PIN_MODE_DIGITAL_IO:
 				{
 					void updateDigitalIO(void);
-				 //TODO needs tested   updateDigitalIO();
+				    updateDigitalIO();
 				}
 				break;
 #ifdef PIN_MODE_SERVO_ENABLE

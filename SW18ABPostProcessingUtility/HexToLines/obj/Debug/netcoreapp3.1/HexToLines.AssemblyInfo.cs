@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HexToLines")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+44f0e143ae327039f2324f795cf85eb0fd6cb28f")]
 [assembly: System.Reflection.AssemblyProductAttribute("HexToLines")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HexToLines")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

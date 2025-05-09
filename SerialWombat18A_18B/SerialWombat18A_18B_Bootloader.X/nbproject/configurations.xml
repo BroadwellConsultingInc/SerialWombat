@@ -33,6 +33,7 @@
         <itemPath>../SerialWombat18A_18B.X/pic24fj256ga702/deviceSpecific.h</itemPath>
         <itemPath>../SerialWombat18A_18B.X/pic24fj256ga702/pinDigitalHwSpecific.h</itemPath>
       </logicalFolder>
+      <itemPath>swFeatureEnable.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -389,7 +390,7 @@
       <C30Global>
         <property key="combine-sourcefiles" value="false"/>
         <property key="common-include-directories"
-                  value="..\SerialWombat18A_18B.X\pic24fj256ga702\mcc_generated_files;..\..\SerialWombatCommon;..\SerialWombat18A_18B.X\pic24fj256ga702"/>
+                  value="..\SerialWombat18A_18B.X\pic24fj256ga702\mcc_generated_files;..\..\SerialWombatCommon;..\SerialWombat18A_18B.X\pic24fj256ga702;."/>
         <property key="dual-boot-partition" value="0"/>
         <property key="fast-math" value="false"/>
         <property key="generic-16-bit" value="false"/>

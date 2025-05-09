@@ -272,8 +272,7 @@ static void TIM2_DMA_InitP2M(DMA_Channel_TypeDef *DMA_CHx, u32 ppadr, u32 memadr
 int main(void)
 {
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_1);
-	//SystemCoreClockUpdate();  //TODO  Maybe don't need this.
-	//Delay_Init();   //TODO Comment out and retest
+
 	TIM2_INT_Init( 833-1, 1-1);
 
      //TODO make SystemCoreClock a #define

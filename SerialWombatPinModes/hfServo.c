@@ -1,5 +1,5 @@
 /*
-Copyright 2021 Broadwell Consulting Inc.
+Copyright 2021-2025 Broadwell Consulting Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
@@ -34,7 +34,7 @@ typedef struct hfServo_n{
 	uint16_t variablePeriod; ///< The difference between the shortest possible pulse and the longest possible pulse in uS
 	uint8_t reverse; ///< 0:  Normal  1:  Subtract commanded value from 65535.
 	uint16_t period;
-	uint8_t resource;
+	
 }hfServo_t;
 #define  servo ((hfServo_t*) CurrentPinRegister)
 
@@ -95,8 +95,10 @@ Fixed period is 750 = 0x02EE, variable period is (1750 - 750) = 1000 = 0x03E8
 
 
 */
+hfServo_t* debugHfServo;
 void initHfServo (void)
 {
+    debugHfServo = servo;
 	BUILD_BUG_ON( sizeof(hfServo_t) >  BYTES_PER_PIN_REGISTER );
 	if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode != PIN_MODE_HF_SERVO)
 	{
@@ -114,7 +116,7 @@ void initHfServo (void)
 					error (SW_ERROR_HW_RESOURCE_IN_USE );
 					return;
 				}
-				servo->resource = resource;
+				servo->pulse_output.resource = resource;
 				CurrentPinRegister->generic.mode = PIN_MODE_HF_SERVO;
 				CurrentPinRegister->generic.buffer = 0;
 				servo->fixedPeriod = 500 ;
@@ -126,7 +128,6 @@ void initHfServo (void)
 				CurrentPinRegister->generic.buffer = RXBUFFER16(4);
 				servo->reverse = Rxbuffer[6];
 
-				servo->pulse_output.resource = TIMING_RESOURCE_NONE;
 				CurrentPinLow();
 				outputScaleInit(&servo->outputScale);
 			}
@@ -166,13 +167,11 @@ void initHfServo (void)
 
 
 void updateHfServo()
-{   
-
+{   debugHfServo = servo;
     CurrentPinRegister->generic.buffer = outputScaleProcess(&servo->outputScale);
     if (servo->period > 0)
     {
 	timingResourcePWM(&servo->pulse_output,servo->period, DUTY_CYCLE);
     }
-
 }
 

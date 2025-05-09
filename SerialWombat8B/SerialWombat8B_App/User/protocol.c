@@ -906,7 +906,7 @@ Write 0x32 the byte at RAM address 0x0247.
 			}
 			break;
 #endif
-#ifdef TODO
+
 		case COMMAND_SET_PIN_HW:
 			{
 				if (Rxbuffer[2] == 1)
@@ -935,7 +935,7 @@ Write 0x32 the byte at RAM address 0x0247.
 				}
 			}
 			break;
-#endif
+
 
 
 		case COMMAND_READ_LAST_ERROR_PACKET:

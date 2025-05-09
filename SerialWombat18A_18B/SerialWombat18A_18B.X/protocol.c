@@ -1784,8 +1784,16 @@ Write 0x32 the byte at RAM address 0x0247.
 		{
 			PinNoOD(Rxbuffer[1]);
 		}
-
+        if (Rxbuffer[5] == 1)
+        {
+            timingResourceForceDMA(Rxbuffer[1],1);
+        }
+        else if (Rxbuffer[5] == 0)
+        {
+            timingResourceForceDMA(Rxbuffer[1],0);
+        }
 	}
+    break;
         case COMMAND_CALIBRATE_ANALOG:
         {
             
@@ -2468,35 +2476,7 @@ void ProcessSetPin()
         {
 		void initDigitalIO(void);
 		initDigitalIO();
-		/*
-            uint8_t pin = Rxbuffer[1];
-            CurrentPinRegister->generic.mode = PIN_MODE_DIGITAL_IO;
-            SetPin(pin,Rxbuffer[3]);
-            if (Rxbuffer[4] == 1)
-            {
-                PinPullUp(pin);
-            }
-            else
-            {
-                PinNoPullUp(pin);
-            }
-            if (Rxbuffer[5] == 1)
-            {
-                PinPullDown(pin);
-            }
-            else
-            {
-                PinNoPullDown(pin);
-            }
-           if (Rxbuffer[6] == 1)
-            {
-                PinOD(pin);
-            }
-            else
-            {
-                PinNoOD(pin);
-            }
-                 */   
+		
         }
         break;
         

@@ -801,7 +801,7 @@ void InitializePinLow(uint8_t pin)
 
 void InitializePinHigh(uint8_t pin)
 {
-    PinHigh(pin);
+
 	uint16_t pinMask = 0;
 	bool inB ;
 
@@ -821,11 +821,18 @@ void InitializePinHigh(uint8_t pin)
 			if (inB)
 			{
 				or128(OutputArrayB,pinMask);
+                LATB |= pinMask;
 			}
 			else
 			{
 				or128(OutputArrayA,pinMask);
+                LATA |= pinMask;
 			}
+		}
+        if (pinIsPPSCapable(pin))
+		{
+			SetPPSOutput(pin,0);
+		
 		}
         PinOutput(pin);	
 }

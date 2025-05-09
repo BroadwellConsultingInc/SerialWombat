@@ -1,5 +1,5 @@
 /*
-Copyright 2020-2021 Broadwell Consulting Inc.
+Copyright 2020-2025 Broadwell Consulting Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
@@ -244,7 +244,7 @@ void updateServoHw()
 						servo->state = SERVO_STATE_GENERATING_PULSE;
                         servo->waitingCount = 0;						
 					}
-#if 0
+
 #ifdef PIC24  //PIC24 only.  CH32 doesn't wait on pulse resources
                     else if (servo->inactiveCount > 22)  //TODO make PIC24 specific
                     {
@@ -259,7 +259,7 @@ void updateServoHw()
                         servo->waitingCount = 0;
                     }
 #endif
-#endif
+
                   
 				    timingResourceService(&servo->pulseOutput);
                    

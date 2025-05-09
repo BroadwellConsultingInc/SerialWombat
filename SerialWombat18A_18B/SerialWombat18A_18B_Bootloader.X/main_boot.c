@@ -6,7 +6,7 @@
 #include <libpic30.h> 
 uint8_t CurrentPin;
 
- bool RunForeground = false;
+volatile bool RunForeground = false;
 
 
 uint32_t UserBufferBoot[SIZE_OF_USER_BUFFER / 4]; // Force alignment by making uint32_t

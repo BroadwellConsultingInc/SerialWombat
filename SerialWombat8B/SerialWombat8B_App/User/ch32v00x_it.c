@@ -13,7 +13,7 @@
 
 void NMI_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
 void HardFault_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
-
+volatile uint8_t stayInFault = 0;
 /*********************************************************************
  * @fn      NMI_Handler
  *
@@ -23,13 +23,14 @@ void HardFault_Handler(void) __attribute__((interrupt("WCH-Interrupt-fast")));
  */
 void NMI_Handler(void)
 {
-  while (1)
+  while (stayInFault == 0x47)
   {
-      //TODO - Make reset?
+
   }
+  NVIC_SystemReset();
 }
 
-volatile uint8_t stayInFault = 1;
+
 /*********************************************************************
  * @fn      HardFault_Handler
  *
@@ -39,10 +40,11 @@ volatile uint8_t stayInFault = 1;
  */
 void HardFault_Handler(void)
 {
-  while (stayInFault)
+  while (stayInFault == 0x47)
   {
-      //TODO - Make reset?
+
   }
+  NVIC_SystemReset();
 }
 
 

@@ -1,5 +1,5 @@
 /*
-Copyright 2024 Broadwell Consulting Inc.
+Copyright 2024-2025 Broadwell Consulting Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
@@ -32,9 +32,9 @@ uint16_t xyInterpolationU16(uint16_t x, uint16_t xl,uint16_t yl, uint16_t xh, ui
 	{
 		return (yh);
 	}
-	volatile int32_t rise = ((int32_t)yh)- yl;
-	volatile int32_t run = ((int32_t)xh)-xl;
-	volatile int32_t val = ((int32_t)x)-xl;
+	 int32_t rise = ((int32_t)yh)- yl;
+	 int32_t run = ((int32_t)xh)-xl;
+	 int32_t val = ((int32_t)x)-xl;
 	if ((val & 0x8000) && (rise & 0x8000))
 	{
 	    rise >>= 1; // Prevent multiplication overflow

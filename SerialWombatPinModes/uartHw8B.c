@@ -77,7 +77,7 @@ static void USARTx_CFG(uint32_t baudRate)  //TODO optimize without API calls
 
 	NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;
 	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;  //TODO probably need to be lower priority
+	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
 	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
 	NVIC_Init(&NVIC_InitStructure);
 
@@ -211,7 +211,7 @@ void initUARTHw()
 			}
 			break;
 
-			//TODO why does serial support  5 and 6? -  Answer define queues
+			//why does serial support  5 and 6? -  Answer define queues
 
 		default:
 			{

@@ -208,7 +208,11 @@ TIMING_RESOURCE_t timingResourcePWMClaim(TIMING_RESOURCE_t resource, uint32_t pe
         //If they specifically want the DMA, give it to them.
 		return(TIMING_RESOURCE_PORT_DMA);
 	}
-
+    if (timingResourceForceDMAbitfield & (((uint32_t)0x01)<<CurrentPin))
+    {
+        return (TIMING_RESOURCE_PORT_DMA);
+    }
+    
     if (!pinIsPPSCapable(CurrentPin))
 	{
         // If we can't connect a timing resource to the current pin, give em a DMA port unless they
@@ -877,15 +881,27 @@ void timingResourcePWM(pulse_output_t *pulse , uint32_t period_uS, uint16_t duty
 #endif
 				if (dutyCycle == 0xFFFF)
 				{
+#ifdef PIC24
+                    pulse->lowReload = 0;
+                    pulse->highReload = 255;
+#else                            
 				    deactivateOutputDMA(CurrentPin);
 					CurrentPinHigh();
+#endif
 					return;
 				}
 				else if (dutyCycle == 0)
 				{
 
-				                        deactivateOutputDMA(CurrentPin);
-				                        CurrentPinLow();
+#ifdef PIC24
+                    pulse->lowReload = 255;
+                    pulse->highReload = 0;
+#else                            
+				    deactivateOutputDMA(CurrentPin);
+					 CurrentPinLow();
+#endif
+				                        
+				                       
 				                        return;
 
 				}
