@@ -437,13 +437,17 @@ void queueCONFIGURE_CHANNEL_MODE_1_transmit(void* rxQueue, void* txQueue)
 void queueCONFIGURE_CHANNEL_MODE_2_receive(void* rxQueue)
 {
                 Txbuffer[3] = 0;
-                Rxbuffer[3] += 4;
+
                 uint8_t i;
                 uint8_t data;
-                queueAddress = rxQueue;
-                for (i = 4; i < Rxbuffer[3] && (QueueReadByte(&data)== QUEUE_RESULT_SUCCESS) ; ++i)
+                if (Rxbuffer[3] > 4)
                 {
-                    Txbuffer[i] = data;
+                    Rxbuffer[3] = 4;
+                }
+                queueAddress = rxQueue;
+                for (i = 0; i < Rxbuffer[3] && (QueueReadByte(&data)== QUEUE_RESULT_SUCCESS) ; ++i)
+                {
+                    Txbuffer[i+4] = data;
                     ++Txbuffer[3];
                 }
 }

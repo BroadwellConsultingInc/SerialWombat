@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project>
+  <executable name="dist/default/production/SerialWombat18A_18B_Bootloader.X.production.elf">
+    <memory name="data">
+      <units>bytes</units>
+      <length>16384</length>
+      <used>9858</used>
+      <free>6526</free>
+    </memory>
+    <memory name="program">
+      <units>bytes</units>
+      <length>392832</length>
+      <used>18366</used>
+      <free>374466</free>
+    </memory>
+  </executable>
+</project>

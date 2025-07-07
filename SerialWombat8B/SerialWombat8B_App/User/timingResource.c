@@ -67,8 +67,17 @@ void timingResourcePWM(pulse_output_t *pulse , uint32_t period_uS, uint16_t duty
 
 	uint32_t high = period_uS * dutyCycle;
 	high >>= 16;
-
-	if (pulse->highReload != high ||
+	if (dutyCycle == 0)
+	{
+	    pulse->lowReload = period_uS;
+	    pulse->highReload = 0;
+	}
+	else if (dutyCycle == 65535)
+    {
+        pulse->lowReload = 0;
+        pulse->highReload = period_uS;
+    }
+	else if (pulse->highReload != high ||
 			pulse->lowReload != (period_uS - high) )
 	{
 		//    CurrentPinLow();  TODO commenting this out may break SW18AB

@@ -36,6 +36,7 @@ encoding//User/SerialWombatPinModes/matrixKeypad.c=GBK
 encoding//User/SerialWombatPinModes/outputScale.c=GBK
 encoding//User/SerialWombatPinModes/pinInputProcessor.c=GBK
 encoding//User/SerialWombatPinModes/pulseOnChange.c=GBK
+encoding//User/SerialWombatPinModes/pulseTimer.c=GBK
 encoding//User/SerialWombatPinModes/pwm.c=GBK
 encoding//User/SerialWombatPinModes/quadEnc.c=GBK
 encoding//User/SerialWombatPinModes/queuedPulseOutput.c=GBK

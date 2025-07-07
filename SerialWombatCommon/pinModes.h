@@ -64,7 +64,7 @@ typedef enum
 	PIN_MODE_FREQUENCY_OUTPUT = 36,
 	PIN_MODE_IR_RX = 37,
 	PIN_MODE_IR_TX = 38,
-	PIN_MODE_RC_PPM = 38,
+	PIN_MODE_RC_PPM = 39,
 }
 pinMode_t;
 

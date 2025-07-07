@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "U8xhKYgvSF+7OQG1L4AF9ddHpc8mwJ3WZA2EA/Ta2eQDn0/9S4+9za7xvNdIrftjAZi9TlLDx54qZvtVNaZd2Q==",
+  "dgSpecHash": "1H8zS18650Y=",
   "success": true,
-  "projectFilePath": "F:\\keep\\GitHub\\broadwellconsultinginc\\SerialWombat\\SW18ABPostProcessingUtility\\HexToLines\\HexToLines.csproj",
+  "projectFilePath": "F:\\keep\\github\\broadwellconsultinginc\\SerialWombat\\SW18ABPostProcessingUtility\\HexToLines\\HexToLines.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

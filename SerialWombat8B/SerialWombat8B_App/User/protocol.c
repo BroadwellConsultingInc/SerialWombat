@@ -215,7 +215,7 @@ Or similar
 			Txbuffer[4] = 'B';//SERIAL_WOMBAT_HARDWARE_IDENTIFIER;
 			Txbuffer[5] = '2';
 			Txbuffer[6] = '2';
-			Txbuffer[7] = '0';
+			Txbuffer[7] = '1';
 
 			break;
 		case COMMAND_BINARY_READ_PIN_BUFFFER:
@@ -456,6 +456,17 @@ Write 7 bytes (0x27, 0x00, 0x03,0x17,0x18,0x19, 0x1A) to User buffer starting at
 				}
 			}
 			break;
+
+		    case COMMAND_BINARY_READ_PUBLIC_DATA_8BIT:
+			{
+			                    for (uint8_t i = 0; i < 7; ++i)
+			                    {
+			                        Txbuffer[i + 1] = (GetBuffer(i + Rxbuffer[1]) >> 8);
+			                    }
+			}
+			break;
+
+
 			/** \addtogroup ProtocolBinaryCommands
 			  \{
 

@@ -122,11 +122,8 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="ilg.gnumcueclipse.managedbuild.cross.riscv.config.elf.release.1008047074.623006493" name="DMA_IO.c" rcbsApplicability="disable" resourcePath="User/DMA_IO.c" toolsToInvoke="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.c.compiler.1731377187.1015902701">
-						<tool id="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.c.compiler.1731377187.1015902701" name="GNU RISC-V Cross C Compiler" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.c.compiler.1731377187"/>
-					</fileInfo>
 					<sourceEntries>
-						<entry excluding="User/SerialWombatPinModes/uartHw18AB.c|User/SerialWombatPinModes/uartHw.c|User/SerialWombatPinModes/counter.c|User/SerialWombatPinModes/i2cController.c|User/SerialWombatPinModes/ws2812.c|User/SerialWombatPinModes/touch.c|User/SerialWombatPinModes/vga.c|User/SerialWombatPinModes/resistanceInput.c|User/SerialWombatPinModes/hfServo.c|User/SerialWombatPinModes/HSCounter.c|User/SerialWombatPinModes/HSClock.c|Startup|Peripheral|Ld|Debug|Core" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="User/SerialWombatPinModes/ir_rx.c|User/SerialWombatPinModes/uartHw18AB.c|User/SerialWombatPinModes/uartHw.c|User/SerialWombatPinModes/counter.c|User/SerialWombatPinModes/i2cController.c|User/SerialWombatPinModes/ws2812.c|User/SerialWombatPinModes/touch.c|User/SerialWombatPinModes/vga.c|User/SerialWombatPinModes/resistanceInput.c|User/SerialWombatPinModes/hfServo.c|User/SerialWombatPinModes/HSCounter.c|User/SerialWombatPinModes/HSClock.c|Startup|Peripheral|Ld|Debug|Core" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Debug"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Ld"/>
@@ -390,9 +387,6 @@
 							</tool>
 						</toolChain>
 					</folderInfo>
-					<fileInfo id="ilg.gnumcueclipse.managedbuild.cross.riscv.config.elf.release.1008047074.1094794038.1736454556" name="DMA_IO.c" rcbsApplicability="disable" resourcePath="User/DMA_IO.c" toolsToInvoke="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.c.compiler.995603954.19758766">
-						<tool id="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.c.compiler.995603954.19758766" name="GNU RISC-V Cross C Compiler" superClass="ilg.gnumcueclipse.managedbuild.cross.riscv.tool.c.compiler.995603954"/>
-					</fileInfo>
 					<sourceEntries>
 						<entry excluding="User/SerialWombatPinModes/uartHw18AB.c|User/SerialWombatPinModes/uartHw.c|User/SerialWombatPinModes/counter.c|User/SerialWombatPinModes/i2cController.c|User/SerialWombatPinModes/ws2812.c|User/SerialWombatPinModes/touch.c|User/SerialWombatPinModes/vga.c|User/SerialWombatPinModes/resistanceInput.c|User/SerialWombatPinModes/hfServo.c|User/SerialWombatPinModes/HSCounter.c|User/SerialWombatPinModes/HSClock.c|Startup|Peripheral|Ld|Debug|Core" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>

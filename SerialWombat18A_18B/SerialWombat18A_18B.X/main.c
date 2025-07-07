@@ -436,6 +436,13 @@ void ProcessPins()
                 updateMax7219Matrix();
             }
             break;
+            
+            case PIN_MODE_IR_RX:
+            {
+                extern void update_IRRx(void);
+                updateIRRx();
+            }
+            break;
 		}
 	}
 }
