@@ -1,5 +1,40 @@
 <h1>Serial Wombat 8B V2.2.1 Release Builds</h1>
 
+The following table shows which pin modes are available in which images:
+
+|Pin Mode/Build|Default Build|Front Panel Build|TM1637 Build|Keypad Build|Comm. Build|US Distance Build|Brushed Motor Build|Available in Custom Builds|Available on SW18AB|
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|Digital I/O|X|X|X|X|X|X|X|X|X|
+|Analog Input|X|X| | | |X|X|X|X|
+|Servo Output|X| | | | |X| |X|X|
+|Quadrature Encoder Input|X|X|X| | | |X|X|X|
+|H Bridge Output|X| | | | | |X|X|X|
+|Watchdog | | | | | | | |X|X|
+|Protected Output | | | | | | | |X|X|
+|Counter | | | | | | | |X|X|
+|Debounced Input | |X| | | | |X|X|X|
+|TM1637 Driver | | |X| | | | |X|X|
+|WS2812 Driver | | |X| | | | | |X|
+|Software UART | | | | |X| | |X|X|
+|Matrix Keypad | | | |X| | | |X|X|
+|PWM Output |X|X| | | |X|X|X|X|
+|Hardware UART | | | | |X| | |X|X|
+|Pulse Timer | | | | | |X|X|X|X|
+|Capactive Touch | | | | | | | | |X|
+|Resistance Input | | | | | | | | |X|
+|Pulse On Change | |X|X| | | | |X|X|
+|High Frequency Servo | | | | | | | | |X|
+|Ultrasonic Distance Sensing | | | | | |X| |X|X|
+|Character LCD Driver | | | | | | | |X|X|
+|Character LCD Driver | | | | | | | |X|X|
+|High Speed Clock | | | | | | | | |X|
+|High Speed Counter | | | | | | | | |X|
+|VGA Output | | | | | | | | |X|
+|PS2 Keyboard Input | | | | | | | |X|X|
+|Queued Pulse Output | | | | |X| | |X|X|
+
+
+
 <h2>Default Build</h2>
 
 * [Analog Input Pin Mode](https://broadwellconsultinginc.github.io/SerialWombatArdLib/class_serial_wombat_analog_input__18_a_b.html)
