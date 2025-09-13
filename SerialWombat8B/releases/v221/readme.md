@@ -14,7 +14,7 @@ The following table shows which pin modes are available in which images:
 |Counter | | | | | | | |X|X|
 |Debounced Input | |X| | | | |X|X|X|
 |TM1637 Driver | | |X| | | | |X|X|
-|WS2812 Driver | | |X| | | | | |X|
+|WS2812 Driver | | | | | | | | |X|
 |Software UART | | | | |X| | |X|X|
 |Matrix Keypad | | | |X| | | |X|X|
 |PWM Output |X|X| | | |X|X|X|X|
