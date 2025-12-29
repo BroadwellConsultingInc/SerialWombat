@@ -50,11 +50,11 @@ void reset ()
 #endif
 }
 /*
- Serial Wombat Memory Map :
+ Serial Wombat Memory Map (Word  / Byte Address :
  0 - 0x4000  Bootloader
  0x4000 - 0x4100 Alternate IVT
  * 0x4100 - 0x1F800 Program memory
- * 0x1F800   Magic number 0xCD23
+ * 0x1F800 / 0x3F000   Magic number 0xCD23
  * 0x1F804 - 16 bit CRC
  * 0x20000 - 0x27000 -  User Space
  * 0x27000 - 0x27800 - Initialization sequence space
@@ -439,10 +439,16 @@ void ProcessPins()
             
             case PIN_MODE_IR_RX:
             {
-                extern void update_IRRx(void);
+                extern void updateIRRx(void);
                 updateIRRx();
             }
             break;
+            
+            case PIN_MODE_BLINK:
+            {
+                extern void updateBlink(void);
+                updateBlink();
+            }
 		}
 	}
 }

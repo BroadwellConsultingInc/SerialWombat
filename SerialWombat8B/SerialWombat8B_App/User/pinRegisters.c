@@ -90,11 +90,7 @@ uint16_t GetBuffer(uint8_t pin)
         extern uint32_t FramesRun;
         return (FramesRun>>16);
     }
-    else if (pin == SW_DATA_SOURCE_OVERRUN_FRAMES)
-    {
-     extern uint16_t OverflowFrames;
-     return (OverflowFrames);
-    }
+
 #ifdef TODO
     else if (pin == SW_DATA_SOURCE_TEMPERATURE)
     {
@@ -112,6 +108,13 @@ uint16_t GetBuffer(uint8_t pin)
          extern uint16_t Errors;
          return(Errors);
      }
+#ifdef UTILIZATION_TRACKING_ENABLE
+     else if (pin == SW_DATA_SOURCE_OVERRUN_FRAMES)
+     {
+      extern uint16_t OverflowFrames;
+      return (OverflowFrames);
+     }
+
      else if (pin == SW_DATA_SOURCE_FRAMES_DROPPED)
      {
          extern volatile uint16_t FramesDropped;
@@ -122,6 +125,7 @@ uint16_t GetBuffer(uint8_t pin)
          extern uint16_t SystemUtilizationAverage;
          return (SystemUtilizationAverage);
      }
+#endif
 
      else if (pin == SW_DATA_SOURCE_VCC_mVOLTS)
      {
@@ -190,6 +194,11 @@ uint16_t GetBuffer(uint8_t pin)
      else if (pin == SW_DATA_SOURCE_LFSR)
      {
          return (wrandom(&lfsrSeed));
+     }
+     else if (pin == SW_DATA_COM_ADDRESS_LOW)
+     {
+         extern uint8_t i2cAddress;
+         return (i2cAddress);
      }
     else if (pin == 85) //0x55
     {

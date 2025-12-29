@@ -513,7 +513,7 @@ Or similar
             }
 			Txbuffer[5] = '2';	     
 			Txbuffer[6] = '2';	     
-			Txbuffer[7] = '1';	     
+			Txbuffer[7] = '2';	     
 
 			break;
 		case COMMAND_BINARY_READ_PIN_BUFFFER:
@@ -2595,6 +2595,11 @@ void ProcessSetPin()
         }
         break;
         
+        case PIN_MODE_BLINK:
+        {
+            extern void initBlink(void);
+            initBlink();
+        }
        
         default:
         {

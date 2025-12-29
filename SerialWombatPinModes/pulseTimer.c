@@ -53,7 +53,18 @@ typedef struct pulseTimer_n{
 
 }pulseTimer_t;
 
-#define COUNTS_TO_uS(_a) ((uint32_t)( _a * (uint32_t) (65536.0 * 1000000 / DMA_FREQUENCY + .5)) >> 16)
+static uint16_t  COUNTS_TO_uS(uint32_t _a)
+{
+	uint32_t result = _a;
+	result *= (uint32_t) (8889);
+	result >>= 9;
+	if (result > 65535)
+	{
+		return 65535;
+	}
+	return result;
+
+}
 #define COUNTS_TO_Hz(_a) (((uint32_t)DMA_FREQUENCY * 2) / ( _a  ) + 1) >> 1;
 
 void initPulseTimer()
@@ -262,7 +273,7 @@ void updatePulseTimer()
 					case PERIOD_ON_LTH_TRANSITION:
 						{
 							uint32_t period = pulseTimer->PulseHighTime + pulseTimer->PulseLowTime;
-                            if (pulseTimer->PulseLowTime)
+                            if (pulseTimer->units == 0)
                             {
 							period = COUNTS_TO_uS( period);
                             }

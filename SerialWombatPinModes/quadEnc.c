@@ -62,15 +62,13 @@ void initQuadEnc(void)
 
 			{
 
-#ifdef TODO //Generalize with function, make only applicable to interrupt
-				if (pinPort[Rxbuffer[5]] != CurrentPinPort() && Rxbuffer[6] < 4) 
+				if (PINS_ON_DIFFERENT_PORTS(Rxbuffer[5],CurrentPin) && Rxbuffer[6] < 4)
 				{
 					//Pins must be on same port to be interrupt driven
 					CurrentPinRegister->generic.mode = PIN_MODE_CONTROLLED;
 					error(SW_ERROR_PINS_MUST_BE_ON_SAME_PORT);
 					return;
 				}
-#endif
 				CurrentPinRegister->generic.mode =PIN_MODE_QUADRATURE_ENC;
 
 				CurrentPinRegister->generic.buffer = 0; 
@@ -100,36 +98,18 @@ void initQuadEnc(void)
 				{
 					case 0:
 						{
-						    /* TODO
-							switch(CurrentPinPort())
-							{
-
-								case 0:  // Port A
-									{
-										IOCPDA &=~CurrentPinBitmap();
-										IOCPDA &= ~pinBitmap[quadEnc->secondPin];
-										IOCPUA &=~CurrentPinBitmap();
-										IOCPUA &= ~pinBitmap[quadEnc->secondPin];
-
-									}
-									break;
-
-								case 1:  // PORT B
-									{
-										IOCPDB &=~CurrentPinBitmap();
-										IOCPDB &= ~pinBitmap[quadEnc->secondPin];
-										IOCPUB &=~CurrentPinBitmap();
-										IOCPUB &= ~pinBitmap[quadEnc->secondPin];
-									}
-									break;
-
-							}
-							*/
+                            SetPinPullUp(CurrentPin,0);
+                            SetPinPullUp(quadEnc->secondPin,0);
+						    
 						}
 						break;
 
 					case 1:
 						{
+                            SetPinPullUp(CurrentPin,1);
+                            SetPinPullUp(quadEnc->secondPin,1);
+                                                        SetPinPullDown(CurrentPin,0);
+                            SetPinPullDown(quadEnc->secondPin,0);
 						    /*
 							switch(CurrentPinPort())
 							{

@@ -135,7 +135,7 @@ if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode 
 			break;
 		case CONFIGURE_CHANNEL_MODE_2:
 			{
-				queueCONFIGURE_CHANNEL_MODE_2_receive(&uartSw->rxQueue);
+				queueCONFIGURE_CHANNEL_MODE_2_receive(uartSw->rxQueue);
 			}
 			break;
 
@@ -433,7 +433,6 @@ void queueCONFIGURE_CHANNEL_MODE_1_transmit(void* rxQueue, void* txQueue)
 
 }
 
-//TODO add address validation system to queue functions
 void queueCONFIGURE_CHANNEL_MODE_2_receive(void* rxQueue)
 {
                 Txbuffer[3] = 0;
@@ -457,10 +456,24 @@ void queueCONFIGURE_CHANNEL_MODE_3_peekRX(void* rxQueue, void* txQueue)
                 queueAddress = txQueue;
                 uint16_t bytesFree;
                                  QueueGetBytesFreeInQueue(&bytesFree);
+				 if (bytesFree > 255)
+				 {
+					 bytesFree = 255;
+				 }
                 Txbuffer[3] = (uint8_t)bytesFree ;
-                queueAddress = rxQueue;
-                uint16_t bytesFilled;
+		uint16_t bytesFilled;
                 QueueGetBytesFilledInQueue(&bytesFilled);
+		if (bytesFilled > 255)
+		{
+			bytesFilled = 255;
+		}
+		Txbuffer[6] = (uint8_t) bytesFilled;
+                queueAddress = rxQueue;
+                QueueGetBytesFilledInQueue(&bytesFilled);
+		if (bytesFilled > 255)
+		{
+			bytesFilled = 255;
+		}
                Txbuffer[4] = (uint8_t) bytesFilled;
                uint8_t data;
                QueuePeekByte(&data);

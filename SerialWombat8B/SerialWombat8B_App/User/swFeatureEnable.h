@@ -65,9 +65,42 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 //	#define	PIN_MODE_MAX7219MATRIX_ENABLE
 //	#define	PIN_MODE_FREQUENCY_OUTPUT_ENABLE
 
+/*
+|Pin Mode/Build|Default Build|Front Panel Build|TM1637 Build|Keypad Build|Comm. Build|US Distance Build|Brushed Motor Build|Available in Custom Builds|Available on SW18AB|
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|Digital I/O|X|X|X|X|X|X|X|X|X|
+|Blink|X|X|X|X|X|X|X|X|X|
+|Analog Input|X|X| | | |X|X|X|X|
+|Servo Output|X| | | | |X| |X|X|
+|Quadrature Encoder Input|X|X|X| | | |X|X|X|
+|H Bridge Output|X| | | | | |X|X|X|
+|Watchdog | | | | | | | |X|X|
+|Protected Output | | | | | | | |X|X|
+|Counter | | | | | | | |X|X|
+|Debounced Input | |X| | | | |X|X|X|
+|TM1637 Driver | | |X| | | | |X|X|
+|WS2812 Driver | | |X| | | | | |X|
+|Software UART | | | | |X| | |X|X|
+|Matrix Keypad | | | |X| | | |X|X|
+|PWM Output |X|X| | | |X|X|X|X|
+|Hardware UART | | | | |X| | |X|X|
+|Pulse Timer | | | | | |X|X|X|X|
+|Capactive Touch | | | | | | | | |X|
+|Resistance Input | | | | | | | | |X|
+|Pulse On Change | |X|X| | | | |X|X|
+|High Frequency Servo | | | | | | | | |X|
+|Ultrasonic Distance Sensing | | | | | |X| |X|X|
+|Character LCD Driver | | | | | | | |X|X|
+|Character LCD Driver | | | | | | | |X|X|
+|High Speed Clock | | | | | | | | |X|
+|High Speed Counter | | | | | | | | |X|
+|VGA Output | | | | | | | | |X|
+|PS2 Keyboard Input | | | | | | | |X|X|
+|Queued Pulse Output | | | | |X| | |X|X|
+*/
 
 
-//#define DEFAULT_BUILD
+#define DEFAULT_BUILD
 #ifdef DEFAULT_BUILD
 #define PIN_MODE_ANALOGINPUT_ENABLE
 #define PIN_MODE_SERVO_ENABLE // 672 bytes
@@ -76,6 +109,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #define PIN_MODE_PWM_ENABLE  //456 bytes
 #define PIN_MODE_INPUT_PROCESSOR_ENABLE
 #define PIN_MODE_FREQUENCY_OUTPUT_ENABLE
+#define PIN_MODE_BLINK_ENABLE
 #endif
 
 //#define FRONT_PANEL_BUILD
@@ -87,6 +121,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #define PIN_MODE_INPUT_PROCESSOR_ENABLE
 #define PIN_MODE_PWM_ENABLE
 #define PIN_MODE_FREQUENCY_OUTPUT_ENABLE
+#define PIN_MODE_BLINK_ENABLE
 #endif
 
 
@@ -97,11 +132,13 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #define PIN_MODE_QUADRATURE_ENC_ENABLE
 #define PIN_MODE_DEBOUNCE_ENABLE
 #define PIN_MODE_PULSE_ON_CHANGE_ENABLE
+#define PIN_MODE_BLINK_ENABLE
 #endif
 
 //#define KEYPAD_BUILD
 #ifdef KEYPAD_BUILD
 #define PIN_MODE_MATRIX_KEYPAD_ENABLE
+#define PIN_MODE_BLINK_ENABLE
 #endif
 
 //#define COMMUNICATIONS_BUILD
@@ -110,6 +147,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #define PIN_MODE_UART0_TXRX_ENABLE
 #define PIN_MODE_QUEUED_PULSE_OUTPUT_ENABLE
 #define QUEUE_ENABLE
+#define PIN_MODE_BLINK_ENABLE
 #endif
 
 //#define ULTRASONIC_BUILD
@@ -120,9 +158,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #define PIN_MODE_INPUT_PROCESSOR_ENABLE
 #define PIN_MODE_ANALOGINPUT_ENABLE
 #define PIN_MODE_PWM_ENABLE
+#define PIN_MODE_BLINK_ENABLE
 #endif
 
-#define BRUSHED_MOTOR_BUILD
+//#define BRUSHED_MOTOR_BUILD
 #ifdef BRUSHED_MOTOR_BUILD
 #define PIN_MODE_ANALOGINPUT_ENABLE
 #define PIN_MODE_QUADRATURE_ENC_ENABLE  //634 bytes
@@ -131,6 +170,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #define PIN_MODE_INPUT_PROCESSOR_ENABLE
 #define PIN_MODE_PULSE_TIMER_ENABLE
 #define PIN_MODE_DEBOUNCE_ENABLE
+#define PIN_MODE_BLINK_ENABLE
 #endif
 
 

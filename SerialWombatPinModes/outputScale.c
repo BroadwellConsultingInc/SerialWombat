@@ -153,7 +153,7 @@ static uint16_t pid(uint32_t processVariable,outputScale_t* outputScale)
 	pidLastProportionalEffort = error * outputScale->pid.kp / 256;
 	pidLastEffort = pidLastProportionalEffort + pidLastIntegratorEffort + pidLastDerivativeEffort;
 
-	if (outputScale->pid.add32768)
+	if (outputScale->add32768)
 	{
 		pidLastEffort += 32768; // If bidirectional
 	}
@@ -714,18 +714,16 @@ uint16_t outputScaleCommProcess(outputScale_t* outputScale)
         case 108: // Sets a PID offset to make neutral 32768 instead of 0
         {
             int32_t output = pidLastEffort;
-            if (outputScale->pid.add32768)
+            if (outputScale->add32768)
             {
                 output -= 32768;
             }
             memcpy(&Txbuffer[4], &output, 4); 
         }
         break;
-        case 109: // Set the target pin for PID control
+        case 109: // Set the target pin 
         {
-            outputScale->transformMode = OUTPUT_TRANSFORM_MODE_PID_CONTROL;
             outputScale->targetPin = Rxbuffer[4];
-            outputScale->pid.add32768 = Rxbuffer[5] > 0;
         }
         break;
          case 110:  // Simultaneously change the target value and reset the integrator

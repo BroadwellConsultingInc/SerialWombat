@@ -9,6 +9,7 @@ typedef enum
 	QUEUE_RESULT_INVALID_QUEUE = 3,
 	QUEUE_RESULT_FULL = 4,
 	QUEUE_RESULT_EMPTY = 5,
+	QUEUE_RESULT_INVALID_ADDRESS = 6,
 }SW_QUEUE_RESULT_t;
 
 
@@ -29,6 +30,5 @@ SW_QUEUE_RESULT_t QueueCopy(uint16_t dstAddress, uint16_t sourceAddress);
 void queueCONFIGURE_CHANNEL_MODE_1_transmit(void* rxQueue, void* txQueue);
 void queueCONFIGURE_CHANNEL_MODE_2_receive(void* rxQueue);
 void queueCONFIGURE_CHANNEL_MODE_3_peekRX(void* rxQueue, void* txQueue);
-
-
+SW_QUEUE_RESULT_t queueAddressValid(void );
 #endif

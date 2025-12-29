@@ -27,10 +27,14 @@ void initUARTHw()
 	}
 
 
-
+if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && !(CurrentPinRegister->generic.mode == PIN_MODE_UART0_TXRX || CurrentPinRegister->generic.mode == PIN_MODE_UART1_TXRX ))
+	{
+		error(SW_ERROR_PIN_CONFIG_WRONG_ORDER);
+		return;
+	}
 	switch (Rxbuffer[0])
 	{
-        //TODO add pin mode check for _1 and up
+        
 		case CONFIGURE_CHANNEL_MODE_0:
 			{
 

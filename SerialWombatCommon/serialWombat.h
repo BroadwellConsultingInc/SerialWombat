@@ -170,6 +170,8 @@ typedef enum {
             SW_DATA_SOURCE_VBG_COUNTS_VS_VREF = 76, ///< A/D conversion of VBG against VRef .  Used for mfg calibration
             SW_DATA_SOURCE_RESET_REGISTER = 77, ///< Hardware dependent reset reason register contents
             SW_DATA_SOURCE_LFSR = 78, ///< A Linear FeedBack Shift register (32,7,5,3,2,1) based pseudo-random number generator
+            SW_DATA_COM_ADDRESS_LOW = 79, ///< The Communications Address of the Device (Lower 16 bits) 
+            SW_DATA_COM_ADDRESS_HIGH = 80, ///< The Communications Address of the Device (HIGHER 16 bits) Anticipated for CAN ID
             SW_DATA_SOURCE_PIN_0_MV = 100, ///< The public data of Pin 0 expressed as mV.  Only applicable to Analog Input mode
             SW_DATA_SOURCE_PIN_1_MV = 101, ///< The public data of Pin 1 expressed as mV.  Only applicable to Analog Input mode
             SW_DATA_SOURCE_PIN_2_MV = 102, ///< The public data of Pin 2 expressed as mV.  Only applicable to Analog Input mode

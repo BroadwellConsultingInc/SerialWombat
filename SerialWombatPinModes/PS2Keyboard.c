@@ -440,15 +440,15 @@ void initPS2Keyboard()
 		case CONFIGURE_CHANNEL_MODE_0:
 
 			{
-			    /* TODO make a function for this
-				if (pinPort[Rxbuffer[3]] != CurrentPinPort())
+			    
+				if (PINS_ON_DIFFERENT_PORTS(Rxbuffer[3],CurrentPin))
 				{
 					//Pins must be on same port
 					CurrentPinRegister->generic.mode = PIN_MODE_CONTROLLED;
 					error(SW_ERROR_PINS_MUST_BE_ON_SAME_PORT);
 					return;
 				}
-				*/
+				
 				CurrentPinRegister->generic.mode =PIN_MODE_PS2_KEYBOARD;
 				PS2Keyboard->dataPin = Rxbuffer[3] ;
 				PS2Keyboard->queueDataMode = Rxbuffer[4];

@@ -246,7 +246,7 @@ void updateServoHw()
 					}
 
 #ifdef PIC24  //PIC24 only.  CH32 doesn't wait on pulse resources
-                    else if (servo->inactiveCount > 22)  //TODO make PIC24 specific
+                    else if (servo->inactiveCount > 22)  
                     {
                         // We've been waiting a long time for
                         // a hardware resource.  Settle for 

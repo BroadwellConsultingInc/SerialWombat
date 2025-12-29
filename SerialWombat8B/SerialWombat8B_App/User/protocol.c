@@ -215,7 +215,7 @@ Or similar
 			Txbuffer[4] = 'B';//SERIAL_WOMBAT_HARDWARE_IDENTIFIER;
 			Txbuffer[5] = '2';
 			Txbuffer[6] = '2';
-			Txbuffer[7] = '1';
+			Txbuffer[7] = '2';
 
 			break;
 		case COMMAND_BINARY_READ_PIN_BUFFFER:
@@ -1543,7 +1543,15 @@ static void ProcessSetPin()
 	break;
 #endif
         
-       
+#ifdef PIN_MODE_BLINK_ENABLE
+
+    case PIN_MODE_BLINK:
+    {
+        extern void initBlink(void);
+        initBlink();
+    }
+    break;
+#endif
         default:
         {
             error(SW_ERROR_UNKNOWN_PIN_MODE);

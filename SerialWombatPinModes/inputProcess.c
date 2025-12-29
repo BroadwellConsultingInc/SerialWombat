@@ -263,7 +263,7 @@ uint16_t inputProcessProcess(inputProcess_t* inputProcess, uint16_t inputValue)
         inputProcess->max = inputValue;
     }
 
-
+#ifdef QUEUE_ENABLE
     if (inputProcess->queue != 0xFFFF )
     {
         extern uint32_t FramesRun;
@@ -288,6 +288,7 @@ uint16_t inputProcessProcess(inputProcess_t* inputProcess, uint16_t inputValue)
             }
         }
     }
+#endif
 
 #endif
     return (inputValue);
@@ -333,7 +334,7 @@ void inputProcessCommProcess(inputProcess_t* inputProcess)
             inputProcess->filterMode = Rxbuffer[4];
         }
         break;
-#ifdef INPUTPROCESSQUEUEPRESENT
+#ifdef QUEUE_ENABLE
         case 5:
         {
             inputProcess->queue = RXBUFFER16(4);

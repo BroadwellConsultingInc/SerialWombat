@@ -82,7 +82,6 @@ typedef struct outputScale_n
 			uint16_t kp;
 			uint16_t ki;
 			uint16_t kd;
-			uint8_t add32768:1;   ///< Used to add an offset to output for center zero outputs like H Bridge
 		}pid;
 		//#endif
 
@@ -122,6 +121,7 @@ typedef struct outputScale_n
 	uint8_t active:1;   ///< Output scaling is enabled or disabled
 	uint8_t sampleRate:4;  ///< Rate at which to run control and filtering algorithms.  Two to the Power of This number, in mS
 	uint8_t outputScaleMode:1; ///< Enumerated type, but stored this way to minimize storage space
+	uint8_t add32768:1;   ///< Used to add an offset to output for center zero outputs like H Bridge
 
 }outputScale_t;
 

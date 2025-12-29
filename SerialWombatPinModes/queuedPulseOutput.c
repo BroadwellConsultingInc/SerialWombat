@@ -132,6 +132,13 @@ void initQueuedPulseOutput (void)
 		case CONFIGURE_CHANNEL_MODE_1:  // Add items to queue
 			{
 				uint8_t result = 0;
+                if (Rxbuffer[7] == 1)
+                {
+                    queuedPulseOutput->remainingCounts = 0;
+                    queuedPulseOutput->itemsInQueue = 0;
+				    queuedPulseOutput->queueHead = 0;
+                    
+                }
 				if (RXBUFFER16(3) > 0)
 				{
 					result += PushQueue(RXBUFFER16(3));

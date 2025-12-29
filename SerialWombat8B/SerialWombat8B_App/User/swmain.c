@@ -52,11 +52,14 @@ void reset ()
 #endif
 
 }
-uint16_t OverflowFrames = 0;
+
 uint32_t FramesRun = 0;
+#ifdef UTILIZATION_TRACKING_ENABLE
+uint16_t OverflowFrames = 0;
 uint16_t SystemUtilizationAverage = 0x8000;
 uint16_t SystemUtilizationCount = 0;
 uint32_t SystemUtilizationSum = 0;
+#endif
 
 
 void swSetup(void)
@@ -90,7 +93,7 @@ void swLoop()
 			RunForeground = false;
             ++FramesRun;
 			ProcessPins();
-
+#ifdef UTILIZATION_TRACKING_ENABLE
             if (RunForeground)
 			{
 					++OverflowFrames;
@@ -109,6 +112,7 @@ void swLoop()
                     SystemUtilizationSum = 0;
                 }
             }
+#endif
 		}
 	}
 
@@ -405,6 +409,15 @@ void ProcessPins()
 					updateMax7219Matrix();
 				}
 				break;
+#endif
+
+#ifdef PIN_MODE_BLINK_ENABLE
+            case PIN_MODE_BLINK:
+                {
+                    extern void updateBlink(void);
+                    updateBlink();
+                }
+                break;
 #endif
 		}
 	}

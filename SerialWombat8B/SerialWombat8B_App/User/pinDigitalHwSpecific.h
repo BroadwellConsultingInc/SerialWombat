@@ -43,6 +43,7 @@ extern uint16_t InputArrayB[SIZE_OF_DMA_ARRAY];
 #else
 extern uint16_t OutputArrayA[SIZE_OF_DMA_ARRAY];
 extern volatile uint8_t InputArrayA[SIZE_OF_DMA_ARRAY];
+
 #endif
 
 extern const uint8_t WombatPinToADCChannel[NUMBER_OF_PHYSICAL_PINS];
@@ -213,6 +214,7 @@ uint16_t updateBitStreamOutput(uint8_t pin, uint8_t level, uint16_t count, DMABi
 uint16_t removeBitStreamOutput(uint8_t pin, uint16_t count, uint16_t margin, DMABitStream_t* bitStream );
 
 #ifdef PIC24
+uint8_t PINS_ON_DIFFERENT_PORTS(uint8_t pinA, uint8_t pinB);
 #else
 #define PINS_ON_DIFFERENT_PORTS(_a,_b) (0 == 1)
 #endif
