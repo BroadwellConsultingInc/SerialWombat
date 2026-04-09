@@ -66,37 +66,41 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 //	#define	PIN_MODE_FREQUENCY_OUTPUT_ENABLE
 
 /*
-|Pin Mode/Build|Default Build|Front Panel Build|TM1637 Build|Keypad Build|Comm. Build|US Distance Build|Brushed Motor Build|Available in Custom Builds|Available on SW18AB|
+|Pin Mode/Build|Default Build|Front Panel Build|TM1637 Build|Keypad Build|Comm. Build|US Distance Build|Brushed Motor Build|IR Build|Available in Custom Builds|Available on SW18AB|
 |:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-|Digital I/O|X|X|X|X|X|X|X|X|X|
-|Blink|X|X|X|X|X|X|X|X|X|
-|Analog Input|X|X| | | |X|X|X|X|
-|Servo Output|X| | | | |X| |X|X|
-|Quadrature Encoder Input|X|X|X| | | |X|X|X|
-|H Bridge Output|X| | | | | |X|X|X|
-|Watchdog | | | | | | | |X|X|
-|Protected Output | | | | | | | |X|X|
-|Counter | | | | | | | |X|X|
-|Debounced Input | |X| | | | |X|X|X|
-|TM1637 Driver | | |X| | | | |X|X|
-|WS2812 Driver | | |X| | | | | |X|
-|Software UART | | | | |X| | |X|X|
-|Matrix Keypad | | | |X| | | |X|X|
-|PWM Output |X|X| | | |X|X|X|X|
-|Hardware UART | | | | |X| | |X|X|
-|Pulse Timer | | | | | |X|X|X|X|
-|Capactive Touch | | | | | | | | |X|
-|Resistance Input | | | | | | | | |X|
-|Pulse On Change | |X|X| | | | |X|X|
-|High Frequency Servo | | | | | | | | |X|
-|Ultrasonic Distance Sensing | | | | | |X| |X|X|
-|Character LCD Driver | | | | | | | |X|X|
-|Character LCD Driver | | | | | | | |X|X|
-|High Speed Clock | | | | | | | | |X|
-|High Speed Counter | | | | | | | | |X|
-|VGA Output | | | | | | | | |X|
-|PS2 Keyboard Input | | | | | | | |X|X|
-|Queued Pulse Output | | | | |X| | |X|X|
+|Digital I/O|X|X|X|X|X|X|X||X|X|
+|Blink|X|X|X|X|X|X|X||X|X|
+|Analog Input|X|X| | | |X|X|X|X|X|
+|Servo Output|X| | | | |X| |X|X|X|
+|Quadrature Encoder Input|X|X|X| | | |X||X|X|
+|H Bridge Output|X| | | | | |X||X|X|
+|Watchdog | | | | | | | ||X|X|
+|Protected Output | | | | | | | ||X|X|
+|Counter | | | | | | | ||X|X|
+|Debounced Input | |X| | | | |X||X|X|
+|TM1637 Driver | | |X| | | | ||X|X|
+|WS2812 Driver | | |X| | | | | ||X|
+|Software UART | | | | |X| | ||X|X|
+|Matrix Keypad | | | |X| | | ||X|X|
+|PWM Output |X|X| | | |X|X|X|X|X|
+|Hardware UART | | | | |X| | ||X|X|
+|Pulse Timer | | | | | |X|X||X|X|
+|Capactive Touch | | | | | | | | ||X|
+|Resistance Input | | | | | | | | ||X|
+|Pulse On Change | |X|X| | | | ||X|X|
+|High Frequency Servo | | | | | | | || |X|
+|Ultrasonic Distance Sensing | | | | | |X| ||X|X|
+|Character LCD Driver | | | | | | | ||X|X|
+|Character LCD Driver | | | | | | | ||X|X|
+|High Speed Clock | | | | | | | | | |X|
+|High Speed Counter | | | | | | | | | |X|
+|VGA Output | | | | | | | | | |X|
+|PS2 Keyboard Input | | | | | | | | |X|X|
+|Queued Pulse Output | | | | |X| | | |X|X|
+|Blink |X|X|X|X|X|X|X|X|X|X|
+|IR RX| | | | | | | |X|X|X|
+|IR TX| | | | | | | |X|X|X|
+|SPI| | | | |X| | | |X|X|
 */
 
 
@@ -110,6 +114,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #define PIN_MODE_INPUT_PROCESSOR_ENABLE
 #define PIN_MODE_FREQUENCY_OUTPUT_ENABLE
 #define PIN_MODE_BLINK_ENABLE
+#define OUTPUT_SCALE_ENABLE
+#define OUTPUT_SCALE_ENABLE_CONTROL
 #endif
 
 //#define FRONT_PANEL_BUILD
@@ -122,17 +128,21 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #define PIN_MODE_PWM_ENABLE
 #define PIN_MODE_FREQUENCY_OUTPUT_ENABLE
 #define PIN_MODE_BLINK_ENABLE
+#define OUTPUT_SCALE_ENABLE
+#define OUTPUT_SCALE_ENABLE_CONTROL
 #endif
 
 
 
 //#define TM1637_BUILD
 #ifdef TM1637_BUILD
+#define PIN_MODE_ANALOGINPUT_ENABLE
 #define PIN_MODE_TM1637_ENABLE
 #define PIN_MODE_QUADRATURE_ENC_ENABLE
 #define PIN_MODE_DEBOUNCE_ENABLE
 #define PIN_MODE_PULSE_ON_CHANGE_ENABLE
 #define PIN_MODE_BLINK_ENABLE
+#define OUTPUT_SCALE_ENABLE
 #endif
 
 //#define KEYPAD_BUILD
@@ -148,6 +158,19 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #define PIN_MODE_QUEUED_PULSE_OUTPUT_ENABLE
 #define QUEUE_ENABLE
 #define PIN_MODE_BLINK_ENABLE
+#define PIN_MODE_SPI_ENABLE
+#endif
+
+//#define IR_BUILD
+#ifdef IR_BUILD
+#define PIN_MODE_ANALOGINPUT_ENABLE
+#define PIN_MODE_SERVO_ENABLE // 672 bytes
+#define PIN_MODE_PWM_ENABLE
+#define QUEUE_ENABLE
+#define PIN_MODE_BLINK_ENABLE
+#define PIN_MODE_IRRX_ENABLE
+#define PIN_MODE_IRTX_ENABLE
+#define OUTPUT_SCALE_ENABLE
 #endif
 
 //#define ULTRASONIC_BUILD
@@ -159,6 +182,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #define PIN_MODE_ANALOGINPUT_ENABLE
 #define PIN_MODE_PWM_ENABLE
 #define PIN_MODE_BLINK_ENABLE
+#define OUTPUT_SCALE_ENABLE
+#define OUTPUT_SCALE_ENABLE_CONTROL
 #endif
 
 //#define BRUSHED_MOTOR_BUILD
@@ -171,6 +196,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #define PIN_MODE_PULSE_TIMER_ENABLE
 #define PIN_MODE_DEBOUNCE_ENABLE
 #define PIN_MODE_BLINK_ENABLE
+#define OUTPUT_SCALE_ENABLE
+#define OUTPUT_SCALE_ENABLE_CONTROL
 #endif
 
 
@@ -187,6 +214,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #define PIN_MODE_INPUT_PROCESSOR_ENABLE
 #define PIN_MODE_PWM_ENABLE
 #define PIN_MODE_FREQUENCY_OUTPUT_ENABLE
+#define OUTPUT_SCALE_ENABLE
+#define OUTPUT_SCALE_ENABLE_CONTROL
 #endif
 
 //#define SW8B_MANUFACTURING_63_BUILD
@@ -202,15 +231,18 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #define PIN_MODE_PWM_ENABLE
 #define PIN_MODE_FREQUENCY_OUTPUT_ENABLE
 #define PIN_MODE_PULSE_TIMER_ENABLE
+#define OUTPUT_SCALE_ENABLE
+#define OUTPUT_SCALE_ENABLE_CONTROL
 #endif
 
-#define OUTPUT_SCALE_ENABLE
+
+#ifdef OUTPUT_SCALE_ENABLE_CONTROL
 #define OUTPUT_SCALE_HYSTERESIS_ENABLE
 #define OUTPUT_SCALE_PID_ENABLE
 #define OUTPUT_SCALE_RAMP_ENABLE
 #define OUTPUT_SCALE_OUTPUT_FILTER_CHANGE_LIMIT_ENABLE
 #define OUTPUT_SCALE_OUTPUT_FILTER_MODE_FIRST_ORDER_ENABLE
-
+#endif
 
 
 #define INPUT_PROCESS_ENABLE
@@ -219,5 +251,9 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 
 
 #define PROTOCOL_BINARY_TEST_SEQUENCE_ENABLE
+
+
+
+
 #endif
 

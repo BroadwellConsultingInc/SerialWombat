@@ -294,13 +294,22 @@ if (sample >= ADC_MAX_COUNTS)
  CurrentPinRegister->generic.buffer = inputProcessProcess(&analogInput->inputProcess,sample);
 }
 
-void initAnalogSimple()
+ /// analogInputBegin(2,64,0xFF80,INPUT_FILTER_MODE_AVERAGE);
+void analogInputBegin(uint8_t pin, uint16_t averageSamples , uint16_t filterConstant  , uint8_t publicDataOutput )
 {
-    CurrentPinInput();
-				CurrentPinAnalog();
-				CurrentPinRegister->generic.mode = PIN_MODE_ANALOGINPUT;
-                inputProcessInit(&analogInput->inputProcess);
+    void ProcessRxbuffer();
+    Rxbuffer[0] = 200;
+    Rxbuffer[1] = pin;
+    Rxbuffer[2] = PIN_MODE_ANALOGINPUT;
+    ProcessRxbuffer();
 
+    Rxbuffer[1] = 201;
+    Rxbuffer[3] = (uint8_t)(averageSamples & 0xFF);
+    Rxbuffer[4] = (uint8_t)(averageSamples >>8);
+    Rxbuffer[5] = (uint8_t)(filterConstant & 0xFF);
+    Rxbuffer[6] = (uint8_t)(filterConstant >>8);
+    Rxbuffer[7] = publicDataOutput;
+    ProcessRxbuffer();
 }
         
 

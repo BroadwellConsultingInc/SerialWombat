@@ -123,7 +123,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="User/SerialWombatPinModes/ir_rx.c|User/SerialWombatPinModes/uartHw18AB.c|User/SerialWombatPinModes/uartHw.c|User/SerialWombatPinModes/counter.c|User/SerialWombatPinModes/i2cController.c|User/SerialWombatPinModes/ws2812.c|User/SerialWombatPinModes/touch.c|User/SerialWombatPinModes/vga.c|User/SerialWombatPinModes/resistanceInput.c|User/SerialWombatPinModes/hfServo.c|User/SerialWombatPinModes/HSCounter.c|User/SerialWombatPinModes/HSClock.c|Startup|Peripheral|Ld|Debug|Core" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="User/SerialWombatPinModes/uartHw18AB.c|User/SerialWombatPinModes/uartHw.c|User/SerialWombatPinModes/counter.c|User/SerialWombatPinModes/i2cController.c|User/SerialWombatPinModes/ws2812.c|User/SerialWombatPinModes/touch.c|User/SerialWombatPinModes/vga.c|User/SerialWombatPinModes/resistanceInput.c|User/SerialWombatPinModes/hfServo.c|User/SerialWombatPinModes/HSCounter.c|User/SerialWombatPinModes/HSClock.c|Startup|Peripheral|Ld|Debug|Core" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Core"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Debug"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="Ld"/>
@@ -415,5 +415,4 @@
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
-	
 </cproject>

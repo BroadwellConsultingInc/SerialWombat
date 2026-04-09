@@ -24,6 +24,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #include <string.h>
 #include "serialWombat.h"
 #include "asciiConversion.h"
+#include "inputProcess.h"
 uint32_t debug_discarded_bytes = 0;
 
 uint8_t SW_I2CAddress = 0x6B;
@@ -419,11 +420,11 @@ Sets pin 9 High, pin 10 Low, doesn't change pin 11, and sets pins 12 and 13 to i
                             
                             case 'a':
                                 {
-                                    void initAnalogSimple(void);
+                                    void analogInputBegin(uint8_t pin, uint16_t averageSamples , uint16_t filterConstant  , uint8_t publicDataOutput );
  								    SetPinPullUp(pinToSet,0);
                                     SetPinPullDown(pinToSet,0);
-                                   initAnalogSimple();
-                                }
+                                    analogInputBegin(CurrentPin,64,0xFF80,INPUT_FILTER_MODE_NONE);
+                               }
                                 break;
                                 
 							case 'x':
@@ -513,7 +514,7 @@ Or similar
             }
 			Txbuffer[5] = '2';	     
 			Txbuffer[6] = '2';	     
-			Txbuffer[7] = '2';	     
+			Txbuffer[7] = '3';	     
 
 			break;
 		case COMMAND_BINARY_READ_PIN_BUFFFER:
@@ -2595,12 +2596,27 @@ void ProcessSetPin()
         }
         break;
         
+         case PIN_MODE_IR_TX:
+        {
+            extern void initIRTx(void);
+            initIRTx();
+        }
+        break;
+        
         case PIN_MODE_BLINK:
         {
             extern void initBlink(void);
             initBlink();
         }
-       
+        break;
+          case PIN_MODE_SPI:
+        {
+            extern void initSPI(void);
+            initSPI();
+        }
+          
+          break;
+          
         default:
         {
             error(SW_ERROR_UNKNOWN_PIN_MODE);

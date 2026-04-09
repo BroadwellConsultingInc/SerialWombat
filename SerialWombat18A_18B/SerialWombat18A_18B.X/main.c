@@ -444,11 +444,26 @@ void ProcessPins()
             }
             break;
             
+            case PIN_MODE_IR_TX:
+            {
+                extern void updateIRTx(void);
+                updateIRTx();
+            }
+            break;
+            
             case PIN_MODE_BLINK:
             {
                 extern void updateBlink(void);
                 updateBlink();
             }
+            break;
+            
+            case PIN_MODE_SPI:
+            {
+                extern void updateSPI(void);
+                updateSPI();
+            }
+            break;
 		}
 	}
 }

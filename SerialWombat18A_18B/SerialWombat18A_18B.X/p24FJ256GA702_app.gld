@@ -67,7 +67,7 @@ MEMORY
  /* ivtjon            : ORIGIN = 0x7804,           LENGTH = 0xFC */
   ivtjon            : ORIGIN = 0x4004,           LENGTH = 0xFC 
   /*program (xr)   : ORIGIN = 0x7900,         LENGTH = 0x23500 */
-  program (xr)   : ORIGIN = 0x4100,         LENGTH = 0x1FC00 - 0x4100 
+  program (xr)   : ORIGIN = 0x4100,         LENGTH = 0x1F800 - 0x4100 
   userSpace(xr)  : ORIGIN = 0x20000,       LENGTH = 0xA000
   FSEC           : ORIGIN = 0x2AF00,       LENGTH = 0x2
   FBSLIM         : ORIGIN = 0x2AF10,       LENGTH = 0x2

@@ -30,6 +30,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #include "debug.h"
  uint32_t OutputArrayAHigh[SIZE_OF_DMA_ARRAY];  // High bytes are Set bits, low bytes are clear bits
 
+
+
  volatile uint8_t InputArrayA[SIZE_OF_DMA_ARRAY];
 
   void __attribute__((optimize("O3"))) orCount(uint8_t buffer, uint16_t bitmap, uint16_t count)
@@ -113,6 +115,18 @@ const uint32_t pin_CFGLR_Mode_Bitmap[NUMBER_OF_PHYSICAL_PINS] =
         0x3  // << (0 * 4),
 };
 
+const uint32_t pin_CFGLR_CNF_BitmapInv[NUMBER_OF_PHYSICAL_PINS] =
+{
+        ~(0x3 << (1 * 4 + 2)),
+        ~(0x3 << (2 * 4 + 2)),
+        ~(0x3 << (3 * 4 + 2)),
+        ~(0x3 << (4 * 4 + 2)),
+        ~(0x3 << (5 * 4 + 2)),
+        ~(0x3 << (6 * 4 + 2)),
+        ~(0x3 << (7 * 4 + 2)),
+        ~(0x3   << (0 * 4 + 2)),
+};
+
 bool pinIsHWOutput(uint8_t pin)
  {
      return ((GPIOD->CFGLR & pin_CFGLR_Mode_Bitmap[pin]) != 0);
@@ -134,6 +148,11 @@ uint16_t CurrentPinBitmap(void)
 bool PinIsAnalogCapable(uint8_t pin);
 void ConfigurePinAnalog(uint8_t pin, bool makeAnalog)
 {
+    if (pin > NUMBER_OF_TOTAL_PINS)
+    {
+        return;
+    }
+
 	PinInput(pin);
 	 GPIO_InitTypeDef GPIO_InitStructure = {0};
 	GPIO_InitStructure.GPIO_Pin = pinBitmap[pin];
@@ -155,25 +174,54 @@ bool ReadPin(uint8_t pin)
 	return ((GPIOD->INDR & pinBitmap[pin]) > 0);
 }
 
-void PinOutput(uint8_t pin)
+void PinOutput(uint8_t pin)  //TODO - maybe optimize this with another constant array for bm2 or the final bm
 {
-    if (pin == 0)
+    if (pin > NUMBER_OF_TOTAL_PINS)
     {
-       AFIO->PCFR1 |= AFIO_PCFR1_SWJ_CFG_2;   // Disable debug
+        return;
     }
+    uint32_t bm =  pin_CFGLR_Mode_Bitmap[pin];
+    uint32_t temp = GPIOD->CFGLR;
+    if ((temp & bm) > 0)
+    {
+        //Already in output mode.  Clear the high bit of CNFy
+        // to shut off special function mode
+        /*
+        uint32_t bm2;
+        bm2 = bm;
+        bm2 <<= 1;
+        bm2 = bm2 & bm;
+        bm2 <<= 2;
+        bm2 = ~bm2;
+        temp &= bm2;
+        GPIOD->CFGLR = temp;
+*/
+        return;
+    }
+
+
+
+    temp |= bm;
+    bm <<= 2;
+    bm = ~bm;
+    temp &= bm;
+    GPIOD->CFGLR = temp;
+/*
 	GPIO_InitTypeDef GPIO_InitStructure = {0};
     GPIO_InitStructure.GPIO_Pin = pinBitmap[pin];
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_30MHz;
     GPIO_Init(GPIOD, &GPIO_InitStructure);
+    */
 }
 
 void PinInput(uint8_t pin)
 {
-    if (pin == 0)
-       {
-          AFIO->PCFR1 |= AFIO_PCFR1_SWJ_CFG_2;   // Disable debug
-       }
+    if (pin > NUMBER_OF_TOTAL_PINS)
+    {
+        return;
+    }
+
 	GPIO_InitTypeDef GPIO_InitStructure = {0};
     GPIO_InitStructure.GPIO_Pin = pinBitmap[pin];
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
@@ -235,21 +283,95 @@ void SetCurrentPin(uint8_t pinState)
 }
 void PinLow(uint8_t pin)
 {
+    if (pin > NUMBER_OF_TOTAL_PINS)
+    {
+        return;
+    }
+
 	GPIOD->BCR = pinBitmap[pin];
-	PinOutput(pin);
+	//PinOutput(pin);
+	{
+	    uint32_t bm =  pin_CFGLR_Mode_Bitmap[pin];
+	       uint32_t temp = GPIOD->CFGLR;
+	       if ((temp & bm) > 0)
+	       {
+	           //Already in output mode.  Clear the high bit of CNFy
+	           // to shut off special function mode
+	           /*
+	           uint32_t bm2;
+	           bm2 = bm;
+	           bm2 <<= 1;
+	           bm2 = bm2 & bm;
+	           bm2 <<= 2;
+	           bm2 = ~bm2;
+	           temp &= bm2;
+	           GPIOD->CFGLR = temp;
+	           */
+
+	       }
+	       else {
+	           temp |= bm;
+	           bm <<= 2;
+	           bm = ~bm;
+	           temp &= bm;
+	           GPIOD->CFGLR = temp;
+        }
+
+
+
+	}
     GPIOD->BCR = pinBitmap[pin];
 }
 
 void PinHigh(uint8_t pin)
 {
+    if (pin > NUMBER_OF_TOTAL_PINS)
+    {
+        return;
+    }
+
 	GPIOD->BSHR = pinBitmap[pin];
-	PinOutput(pin);
+	// PinOutput(pin);
+	{
+	        uint32_t bm =  pin_CFGLR_Mode_Bitmap[pin];
+	           uint32_t temp = GPIOD->CFGLR;
+	           if ((temp & bm) > 0)
+	           {
+	               //Already in output mode.  Clear the high bit of CNFy
+	               // to shut off special function mode
+	               /*
+	               uint32_t bm2;
+	               bm2 = bm;
+	               bm2 <<= 1;
+	               bm2 = bm2 & bm;
+	               bm2 <<= 2;
+	               bm2 = ~bm2;
+	               temp &= bm2;
+	               GPIOD->CFGLR = temp;
+	               */
+
+	           }
+	           else {
+	               temp |= bm;
+	               temp &= pin_CFGLR_CNF_BitmapInv[pin];
+	               GPIOD->CFGLR = temp;
+	        }
+
+
+
+	    }
 	GPIOD->BSHR = pinBitmap[pin];
 }
 
 
+
 void SetPinPullUp(uint8_t pin, bool isPulledUp)
 {
+    if (pin > NUMBER_OF_TOTAL_PINS)
+    {
+        return;
+    }
+
     if(pinIsHWOutput(pin))
     {
         // Don't mess with pull ups on pins configured to output
@@ -276,6 +398,11 @@ void SetPinPullUp(uint8_t pin, bool isPulledUp)
 
 void SetPinPullDown(uint8_t pin, bool isPulledDown)
 {
+    if (pin > NUMBER_OF_TOTAL_PINS)
+    {
+        return;
+    }
+
     if(pinIsHWOutput(pin))
     {
         // Don't mess with pull downs on pins configured to output
@@ -298,6 +425,11 @@ void SetPinPullDown(uint8_t pin, bool isPulledDown)
 
 void SetPinOpenDrain(uint8_t pin, bool isOpenDrain)
 {
+    if (pin > NUMBER_OF_TOTAL_PINS)
+    {
+        return;
+    }
+
     if (!pinIsHWOutput(pin))
     {
         return;
@@ -349,34 +481,50 @@ void PinNoOD(uint8_t pin)
     SetPinOpenDrain(pin,false);
 }
 
-
+/*
 void CurrentPinHigh()
 {
     PinHigh(CurrentPin);
 }
+*/
 
 void InitializePinLow(uint8_t pin)
 {
+    if (pin == 0)
+      {
+         AFIO->PCFR1 |= AFIO_PCFR1_SWJ_CFG_2;   // Disable debug
+      }
     deactivateOutputDMA(pin);
 	PinLow(pin);
 }
 
 void InitializePinHigh(uint8_t pin)
 {
+
+    if (pin == 0)
+      {
+         AFIO->PCFR1 |= AFIO_PCFR1_SWJ_CFG_2;   // Disable debug
+      }
     deactivateOutputDMA(pin);
     PinHigh(pin);
 }
 
 void InitializePinInput(uint8_t pin)
 {
+    if (pin == 0)
+      {
+         AFIO->PCFR1 |= AFIO_PCFR1_SWJ_CFG_2;   // Disable debug
+      }
     deactivateOutputDMA(pin);
     PinInput(pin);
 }
 
+/*
 void CurrentPinLow()
 {
     PinLow(CurrentPin);
 }
+*/
 void CurrentPinPullUp()
 {
     PinPullUp(CurrentPin);

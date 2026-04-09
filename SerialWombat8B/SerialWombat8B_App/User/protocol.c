@@ -184,6 +184,51 @@ Example:
 				} 
 			}
 			break;
+
+	       case COMMAND_ASCII_SLEEP:
+	        {
+	/** \addtogroup ProtocolAsciiCommands
+	\{
+
+	----
+
+	ASCII Sleep Command
+	---------------------
+
+	This command causes the Serial Wombat to go in a low power mode.  Most Serial Wombat functions and pin modes stop.
+	The host should ensure all pins are in a desired state before sleep.
+
+
+	Transition of the SCL line will wake up the Serial Wombat chip.
+
+	|BYTE 0          |BYTE 1          |BYTE 2          |BYTE 3          |BYTE 4          |BYTE 5          |BYTE 6          |BYTE 7          |
+	|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|:---------------|
+	|'S'|'l'|'E'|'e'|'P'|'!'|delay LSB|delay MSB|
+
+
+	Example:
+
+	> `SlEeP!#*`
+
+	Command is echoed back before sleeping.
+
+
+	\}
+	**/
+	            if (Rxbuffer[1] == 'l' &&
+	                        Rxbuffer[2] == 'E' && Rxbuffer[3] == 'e' &&
+	                        Rxbuffer[4] == 'P' && Rxbuffer[5] == '!' )
+	            {
+	                extern uint16_t shutdownTimer_mS;
+	                shutdownTimer_mS = RXBUFFER16(6);
+
+	            }
+	            else
+	                {
+	                    error(SW_ERROR_SLEEP_STRING_INCORRECT);
+	                }
+	        }
+	        break;
 		case COMMAND_ASCII_VERSION: //Ascii 'V'  Version String
 			/** \addtogroup ProtocolAsciiCommands
 			  \{
@@ -215,7 +260,7 @@ Or similar
 			Txbuffer[4] = 'B';//SERIAL_WOMBAT_HARDWARE_IDENTIFIER;
 			Txbuffer[5] = '2';
 			Txbuffer[6] = '2';
-			Txbuffer[7] = '2';
+			Txbuffer[7] = '3';
 
 			break;
 		case COMMAND_BINARY_READ_PIN_BUFFFER:
@@ -1542,13 +1587,42 @@ static void ProcessSetPin()
 	}
 	break;
 #endif
-        
+
+#ifdef PIN_MODE_IRRX_ENABLE
+	  case PIN_MODE_IR_RX:
+	        {
+	            extern void initIRRx(void);
+	            initIRRx();
+	        }
+	        break;
+#endif
+
+#ifdef PIN_MODE_IRTX_ENABLE
+      case PIN_MODE_IR_TX:
+            {
+                extern void initIRTx(void);
+                initIRTx();
+            }
+            break;
+#endif
+
+
 #ifdef PIN_MODE_BLINK_ENABLE
 
     case PIN_MODE_BLINK:
     {
         extern void initBlink(void);
         initBlink();
+    }
+    break;
+#endif
+
+#ifdef PIN_MODE_SPI_ENABLE
+
+    case PIN_MODE_SPI:
+    {
+        extern void initSPI(void);
+        initSPI();
     }
     break;
 #endif

@@ -1,5 +1,5 @@
 /*
-Copyright 2021-2023 Broadwell Consulting Inc.
+Copyright 2021-2026 Broadwell Consulting Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
@@ -34,16 +34,17 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 #define INPUT_ARRAY_A_DMA_INDEX (SIZE_OF_DMA_ARRAY - DMACNT2) 
 #define INPUT_ARRAY_B_DMA_INDEX (SIZE_OF_DMA_ARRAY - DMACNT3) 
 
-
 #ifdef PIC24
 extern uint16_t OutputArrayA[SIZE_OF_DMA_ARRAY];
 extern uint16_t OutputArrayB[SIZE_OF_DMA_ARRAY];
 extern uint16_t InputArrayA[SIZE_OF_DMA_ARRAY];
 extern uint16_t InputArrayB[SIZE_OF_DMA_ARRAY];
+
 #else
 extern uint16_t OutputArrayA[SIZE_OF_DMA_ARRAY];
 extern volatile uint8_t InputArrayA[SIZE_OF_DMA_ARRAY];
-
+#define CurrentPinHigh() {PinHigh(CurrentPin);}
+#define CurrentPinLow() {PinLow(CurrentPin);}
 #endif
 
 extern const uint8_t WombatPinToADCChannel[NUMBER_OF_PHYSICAL_PINS];
@@ -91,6 +92,7 @@ void SetPin(uint8_t pin, uint8_t pinState);
 void InitializePinLow(uint8_t pin);
 void InitializePinHigh(uint8_t pin);
 void InitializePinInput(uint8_t pin);
+#define InitializePinHighPPSLow(_p) InitializePinHigh(_p)
 
 void SetPinPullUp(uint8_t pin, bool isPulledUp);
 void SetPinPullDown(uint8_t pin, bool isPulledDown);

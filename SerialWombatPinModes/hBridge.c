@@ -284,4 +284,23 @@ void updatehBridge(void)
 
 }
 
+// example:
+//  extern void hBridgeBegin(uint8_t pin, uint8_t secondPin, uint16_t PWMPeriod_uS ,uint8_t driverMode );
+//  hBridgeBegin(4,5,1000, 0);
+void hBridgeBegin(uint8_t pin, uint8_t secondPin, uint16_t PWMPeriod_uS ,uint8_t driverMode)
+{
+        void ProcessRxbuffer();
+    Rxbuffer[0] = 200;
+       Rxbuffer[1] = pin;
+       Rxbuffer[2] = PIN_MODE_HBRIDGE;
+       Rxbuffer[3] = secondPin;
+       Rxbuffer[4] = driverMode;
+       ProcessRxbuffer();
 
+       Rxbuffer[1] = 220;
+       Rxbuffer[3] = (uint8_t)(PWMPeriod_uS & 0xFF);
+       Rxbuffer[4] = (uint8_t)(PWMPeriod_uS >>8);
+
+       ProcessRxbuffer();
+
+}

@@ -403,12 +403,14 @@ void updateUARTSw()
 void queueCONFIGURE_CHANNEL_MODE_1_transmit(void* rxQueue, void* txQueue)
 {
                 uint8_t i;
+                uint16_t count;
+                    if (txQueue != NULL)
+                    {
                     queueAddress = txQueue;
                     for (i = 0; i < Rxbuffer[3]; ++i)
                     {
                         QueueAddByte(Rxbuffer[4 + i]);
                     }
-                    uint16_t count;
                     QueueGetBytesFreeInQueue(&count) ;
                     if (count < 255)
                     {
@@ -418,7 +420,13 @@ void queueCONFIGURE_CHANNEL_MODE_1_transmit(void* rxQueue, void* txQueue)
                     {
                         Txbuffer[3] = 255;
                     }
+                    }
+                    else {
+                        Txbuffer[3] = 0;
+                    }
 
+                    if (rxQueue != NULL)
+                    {
                     queueAddress = rxQueue;
                     QueueGetBytesFilledInQueue(&count);
 
@@ -429,6 +437,10 @@ void queueCONFIGURE_CHANNEL_MODE_1_transmit(void* rxQueue, void* txQueue)
                     else
                     {
                         Txbuffer[4] = 255;
+                    }
+                    }
+                    else {
+                        Txbuffer[4] = 0;
                     }
 
 }
@@ -453,21 +465,31 @@ void queueCONFIGURE_CHANNEL_MODE_2_receive(void* rxQueue)
 
 void queueCONFIGURE_CHANNEL_MODE_3_peekRX(void* rxQueue, void* txQueue)
 {
+    uint16_t bytesFree;
+    uint16_t bytesFilled;
+
+        if (txQueue != NULL)
+        {
                 queueAddress = txQueue;
-                uint16_t bytesFree;
                                  QueueGetBytesFreeInQueue(&bytesFree);
 				 if (bytesFree > 255)
 				 {
 					 bytesFree = 255;
 				 }
                 Txbuffer[3] = (uint8_t)bytesFree ;
-		uint16_t bytesFilled;
+
                 QueueGetBytesFilledInQueue(&bytesFilled);
 		if (bytesFilled > 255)
 		{
 			bytesFilled = 255;
 		}
 		Txbuffer[6] = (uint8_t) bytesFilled;
+        }
+        else {
+            Txbuffer[3] = Txbuffer[6] = 0;
+        }
+        if (rxQueue != NULL)
+        {
                 queueAddress = rxQueue;
                 QueueGetBytesFilledInQueue(&bytesFilled);
 		if (bytesFilled > 255)
@@ -478,4 +500,9 @@ void queueCONFIGURE_CHANNEL_MODE_3_peekRX(void* rxQueue, void* txQueue)
                uint8_t data;
                QueuePeekByte(&data);
                 Txbuffer[5] = data;
+        }
+        else {
+
+            Txbuffer[4] = 0;
+        }
 }

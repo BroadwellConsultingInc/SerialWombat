@@ -1,5 +1,5 @@
 /*
-Copyright 2020-2025 Broadwell Consulting Inc.
+Copyright 2020-2026 Broadwell Consulting Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
@@ -66,6 +66,7 @@ typedef enum
 	PIN_MODE_IR_TX = 38,
 	PIN_MODE_RC_PPM = 39,
 	PIN_MODE_BLINK = 40,
+	PIN_MODE_SPI = 41,
 }
 pinMode_t;
 

@@ -837,6 +837,60 @@ void InitializePinHigh(uint8_t pin)
         PinOutput(pin);	
 }
 
+void InitializePinHighPPSLow(uint8_t pin)
+{
+
+	uint16_t pinMask = 0;
+	bool inB ;
+
+	if (pin >= NUMBER_OF_PHYSICAL_PINS)
+	{
+		return;
+	}
+
+	pinMask = pinBitmap[pin];
+	
+		inB = pinPort[pin];
+
+	  if (pinIsPPSCapable(pin))
+		{
+			SetPPSOutput(pin,25);
+            pinMask = ~pinMask;
+        {
+
+			if (inB)
+			{
+				and128(OutputArrayB,pinMask);
+				LATB &= pinMask;
+				TRISB &= pinMask;
+			}
+			else
+			{
+				and128(OutputArrayA,pinMask);
+				LATA &= pinMask;
+				TRISA &= pinMask;
+			}
+		}
+		
+		}
+    else
+        {
+
+			if (inB)
+			{
+				or128(OutputArrayB,pinMask);
+                LATB |= pinMask;
+			}
+			else
+			{
+				or128(OutputArrayA,pinMask);
+                LATA |= pinMask;
+			}
+		}
+      
+        PinOutput(pin);	
+}
+
 void CurrentPinLow()
 {
     PinLow(CurrentPin);

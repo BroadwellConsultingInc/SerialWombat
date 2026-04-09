@@ -124,8 +124,25 @@ void initQueuedPulseOutput (void)
 				if (queuedPulseOutput->units == 0)
 				{
 					initializeBitStreamOutput(CurrentPin,  Rxbuffer[3], &queuedPulseOutput->bitStream );
-					PinLow(CurrentPin);
+					InitializePinLow(CurrentPin);
 				}
+				else {
+				    switch (queuedPulseOutput->idleState)
+				                   {
+				                   case 0:
+				                   default:
+				                   {
+				                       InitializePinLow(CurrentPin);
+				                   }
+				                   break;
+				                   case 1:
+				                   {
+				                       InitializePinHighPPSLow(CurrentPin);
+				                   }
+				                   break;
+				                   }
+
+                }
 
 			}
 			break;

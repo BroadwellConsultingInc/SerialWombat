@@ -89,6 +89,7 @@ void PinLow(uint8_t pin);
 void SetPin(uint8_t pin, uint8_t pinState); 
 void InitializePinLow(uint8_t pin);
 void InitializePinHigh(uint8_t pin);
+void InitializePinHighPPSLow(uint8_t pin);
 void InitializePinInput(uint8_t pin);
 
 void SetPinPullUp(uint8_t pin, bool isPulledUp);

@@ -74,8 +74,10 @@ void PinLow(uint8_t pin);
 void SetPin(uint8_t pin, uint8_t pinState); 
 void CurrentPinInput(void);
 void CurrentPinOutput(void);
+#ifdef PIC24
 void CurrentPinHigh(void);
 void CurrentPinLow(void);
+#endif
 void SetCurrentPin(uint8_t pinState);
 void CurrentPinPullup(void);
 void CurrentPinNoPullup(void);

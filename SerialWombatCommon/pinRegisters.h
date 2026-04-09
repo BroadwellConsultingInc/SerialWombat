@@ -100,4 +100,5 @@ void SetBuffer(uint8_t pin, uint16_t value);
 uint16_t GetBuffer(uint8_t pin);
 void SetMode(uint8_t pin, uint8_t mode);
 uint8_t GetMode(uint8_t pin);
+#define SetPinMode( pin,  pinMode) {if (pin < NUMBER_OF_TOTAL_PINS){PinUpdateRegisters[pin].generic.mode = pinMode;}}
 #endif

@@ -1,5 +1,32 @@
 <h1>Serial Wombat Revision History</h1>
 
+<h2>2.2.3</h2>
+<h3>Firmware</h3>
+* Updated Version to 2.2.3
+* Added Sleep Command to SW8B
+* Added SPI Pin Mode
+* Added IR TX Pin Mode
+* Added IR RX Pin Mode
+* Added internal initializer functions for some pin modes for future custom builds
+* Fixed boot loader address selection in SW8B
+* Fixed issue with High / Low digital pin output from PPS selection on SW18AB
+* Fixed possible pin initialization issue on SW8B Pin 0 on pulseOnChange pin mode
+* Fixed possible pin initialization issue on SW8B Pin 0 on queuedPulseOutput pin mode
+* Removed unused variables in uartSW.c
+
+
+<h3>Arduino Code</h3>
+* Added SPI Pin mode class and examples
+* Added IR TX Pin mode class and examples
+* Added IR RX Pin mode class and examples
+* Added support for SW8B sleep method, changed old sleep method to be SW4B specific
+
+<h3>Arduino Examples</h3>
+* Added SPI Pin mode class and examples
+* Added IR TX Pin mode class and examples
+* Added IR RX Pin mode class and examples
+ 
+
 <h2>2.2.2</h2>
 <h3>Firmware</h3>
 * Updated Version to 2.2.2

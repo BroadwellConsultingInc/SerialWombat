@@ -134,23 +134,23 @@ static void determineAddress()
 	//GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0|GPIO_Pin_5|GPIO_Pin_6|GPIO_Pin_7;
 
 	//GPIO_Init_Small(&GPIO_InitStructure);
-    i2cAddress = (uint8_t)(0x60 *2);
+    i2cAddress = (uint8_t)(0x60 );
 
 	if ((GPIOC->INDR & GPIO_Pin_0) == 0)
 	{
-		i2cAddress += 1 * 2;
+		i2cAddress += 1 ;
 	}
 	if ((GPIOC->INDR & GPIO_Pin_5) == 0)
 	{
-		i2cAddress += 2 * 2;
+		i2cAddress += 2 ;
 	}
 	if ((GPIOC->INDR & GPIO_Pin_6) == 0)
 	{
-		i2cAddress += 4 * 2;
+		i2cAddress += 4 ;
 	}
 	if ((GPIOC->INDR & GPIO_Pin_7) == 0)
 	{
-		i2cAddress += 8 * 2;
+		i2cAddress += 8;
 	}
 }
 
@@ -268,7 +268,7 @@ static void processRx()
 		case 'V':
 			{
 				((uint32_t*) Txbuffer)[0] = 0x38304256; //VB08
-				((uint32_t*) Txbuffer)[1] = 0x33303242; //B203
+				((uint32_t*) Txbuffer)[1] = 0x34303242; //B204
 			}
 			break;
 

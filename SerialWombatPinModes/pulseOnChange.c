@@ -292,6 +292,24 @@ void initPulseOnChange (void)
 				pulseOnChange->counter = 0;
                 pulseOnChange->state =  STATE_WAITING_FOR_PULSE;
                 CurrentPinRegister->generic.mode = PIN_MODE_PULSE_ON_CHANGE;
+                switch (pulseOnChange->inactiveMode)
+                {
+                case 0:
+                {
+                    InitializePinLow(CurrentPin);
+                }
+                break;
+                case 1:
+                {
+                    InitializePinHighPPSLow(CurrentPin);
+                }
+                break;
+                default:
+                {
+                    InitializePinInput(CurrentPin);
+                }
+                break;
+                }
                 timingResourceRelease(TIMING_RESOURCE_ALL);
 
 			}

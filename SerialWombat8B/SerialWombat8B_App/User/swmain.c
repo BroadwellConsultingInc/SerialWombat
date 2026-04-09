@@ -1,5 +1,5 @@
 /*
-Copyright 2025 Broadwell Consulting Inc.
+Copyright 2025-2026 Broadwell Consulting Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a 
  * copy of this software and associated documentation files (the "Software"), 
@@ -31,7 +31,7 @@ uint8_t CurrentPin;
 uint8_t FrameTimingPin = 0xFF;
 
  volatile bool RunForeground = false;
-
+ uint16_t shutdownTimer_mS = 0 ;   // If greater than 1, decrements.  At 0, goes into shutdown
 
 uint8_t UserBuffer[SIZE_OF_USER_BUFFER];
 
@@ -62,6 +62,55 @@ uint32_t SystemUtilizationSum = 0;
 #endif
 
 
+static void SLEEP_INT_INIT(void)
+{
+
+    /*
+    GPIO_InitTypeDef GPIO_InitStructure = {0};
+    EXTI_InitTypeDef EXTI_InitStructure = {0};
+    NVIC_InitTypeDef NVIC_InitStructure = {0};
+*/
+
+   //RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO | RCC_APB2Periph_GPIOC, ENABLE);  //Added to startup
+
+/*
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2| GPIO_Pin_1 | GPIO_Pin_0;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_30MHz;
+    GPIO_Init(GPIOC, &GPIO_InitStructure);
+
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_7| GPIO_Pin_6 | GPIO_Pin_5 | GPIO_Pin_4 | GPIO_Pin_3 ;
+       GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD;
+       GPIO_InitStructure.GPIO_Speed = GPIO_Speed_30MHz;
+       GPIO_Init(GPIOC, &GPIO_InitStructure);
+*/
+    GPIOC->CFGLR = 0x88888444;  // Make all ports inputs.  Pull up/down on all but I2C and WP 0 pins
+    GPIOC->INDR  = 0x0016; // set pull down on all ports (overridden by CFGLR mode)
+    /* GPIOA.0 ----> EXTI_Line0 */
+
+    /*
+    GPIO_EXTILineConfig(GPIO_PortSourceGPIOC, GPIO_PinSource2);
+    EXTI_InitStructure.EXTI_Line = EXTI_Line2;
+    EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Event;
+    EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;
+    EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+    EXTI_Init(&EXTI_InitStructure);
+*/
+    AFIO->EXTICR = 0x20;
+    EXTI->EVENR = 0x0000004;
+    EXTI->FTENR = 0x0000004;
+/*
+    NVIC_InitStructure.NVIC_IRQChannel = EXTI7_0_IRQn;
+    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
+    NVIC_InitStructure.NVIC_IRQChannelSubPriority = 1;
+    NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+    NVIC_Init(&NVIC_InitStructure);
+  */
+    NVIC->IPRIOR[(uint32_t)(EXTI7_0_IRQn)] = (0 << 7) | (1 << 6);
+    NVIC_EnableIRQ(EXTI7_0_IRQn);
+}
+
+
 void swSetup(void)
 {
 
@@ -77,44 +126,82 @@ void swSetup(void)
    protocolInitPinsToDIO_Input();
     }
 
+
+
+}
+
+#define CTLR_DS_MASK     ((uint32_t)0xFFFFFFFD)
+#define CTLR_PLS_MASK    ((uint32_t)0xFFFFFF1F)
+#define AWUPSC_MASK      ((uint32_t)0xFFFFFFF0)
+#define AWUWR_MASK       ((uint32_t)0xFFFFFFC0)
+
+static void  localPWR_EnterSTANDBYMode(uint8_t PWR_STANDBYEntry)  // Making this static allows the compiler to make it the same size as inline code with no decisions.
+{
+    PWR->CTLR &= CTLR_DS_MASK;
+    PWR->CTLR |= PWR_CTLR_PDDS;
+
+    NVIC->SCTLR |= (1 << 2);
+
+    if(PWR_STANDBYEntry == PWR_STANDBYEntry_WFI)
+    {
+        __WFI();
+    }
+    else
+    {
+        __WFE();
+    }
+
+    NVIC->SCTLR &= ~(1 << 2);
 }
 
 
-
 void swLoop()
-    
- 	{
-		ProcessRx();
+{
+	ProcessRx();
 
+	if (RunForeground)
+	{
+		// PinHigh(FrameTimingPin);
+
+		RunForeground = false;
+		++FramesRun;
+		ProcessPins();
+
+		if (shutdownTimer_mS)
+		{
+		    -- shutdownTimer_mS;
+		    if (shutdownTimer_mS == 0)
+		    {
+		        I2C1->CTLR1 = 0; //Shut down I2C
+		        TIM2->CTLR1 = 0; // Shut down Timer 2
+		        ADC1->CTLR2 = 0; // Shut down ADC
+		        SLEEP_INT_INIT();
+		        localPWR_EnterSTANDBYMode(PWR_STANDBYEntry_WFE);
+		        reset();
+		    }
+		}
+#ifdef UTILIZATION_TRACKING_ENABLE
 		if (RunForeground)
 		{
-           // PinHigh(FrameTimingPin);
-
-			RunForeground = false;
-            ++FramesRun;
-			ProcessPins();
-#ifdef UTILIZATION_TRACKING_ENABLE
-            if (RunForeground)
-			{
-					++OverflowFrames;
-			}
-            else
-            {
-                uint32_t t = SysTick->CNT;
-                SystemUtilizationSum += t;
-                ++SystemUtilizationCount;
-                if (SystemUtilizationCount == 1024)
-                {
-                    SystemUtilizationSum <<= 6;
-                    SystemUtilizationSum/= SysTick->CMP;
-                    SystemUtilizationAverage = SystemUtilizationSum;
-                    SystemUtilizationCount = 0;
-                    SystemUtilizationSum = 0;
-                }
-            }
-#endif
+			++OverflowFrames;
 		}
+		else
+		{
+			uint32_t t = SysTick->CNT;
+			SystemUtilizationSum += t;
+			++SystemUtilizationCount;
+			if (SystemUtilizationCount == 1024)
+			{
+				SystemUtilizationSum <<= 6;
+				SystemUtilizationSum/= SysTick->CMP;
+				SystemUtilizationAverage = SystemUtilizationSum;
+				SystemUtilizationCount = 0;
+				SystemUtilizationSum = 0;
+			}
+		}
+#endif
 	}
+}
 
 
 void ProcessPins()
@@ -419,7 +506,36 @@ void ProcessPins()
                 }
                 break;
 #endif
+
+#ifdef PIN_MODE_IRRX_ENABLE
+            case PIN_MODE_IR_RX:
+                      {
+                          extern void updateIRRx(void);
+                          updateIRRx();
+                      }
+                      break;
+#endif
+
+#ifdef PIN_MODE_IRTX_ENABLE
+            case PIN_MODE_IR_TX:
+                      {
+                          extern void updateIRTx(void);
+                          updateIRTx();
+                      }
+                      break;
+#endif
+
+#ifdef PIN_MODE_SPI_ENABLE
+            case PIN_MODE_SPI:
+            {
+                extern void updateSPI(void);
+                updateSPI();
+            }
+            break;
+
+#endif
 		}
+
 	}
 
 }
