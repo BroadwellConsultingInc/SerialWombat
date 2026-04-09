@@ -83,8 +83,8 @@
 
 |Pin Mode/Build|Default Build|Front Panel Build|TM1637 Build|Keypad Build|Comm. Build|US Distance Build|Brushed Motor Build|IR Build|Available in Custom Builds|Available on SW18AB|
 |:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-|Digital I/O|X|X|X|X|X|X|X| |X|X|
-|Blink|X|X|X|X|X|X|X| |X|X|
+|Digital I/O|X|X|X|X|X|X|X|X|X|X|
+|Blink|X|X|X|X|X|X|X|X|X|X|
 |Analog Input|X|X| | | |X|X|X|X|X|
 |Servo Output|X| | | | |X| |X|X|X|
 |Quadrature Encoder Input|X|X|X| | | |X| |X|X|
