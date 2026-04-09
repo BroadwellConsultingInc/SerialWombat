@@ -69,6 +69,7 @@
 
 
 <h2>Brushed Motor Build</h2>
+
 * [Analog Input Pin Mode](https://broadwellconsultinginc.github.io/SerialWombatArdLib/class_serial_wombat_analog_input__18_a_b.html)
 
 * [Quadrature Encoder Pin Mode](https://broadwellconsultinginc.github.io/SerialWombatArdLib/class_serial_wombat_quad_enc__18_a_b.html)
@@ -81,6 +82,17 @@
 
 * [Debounced Input Pin Mode](https://broadwellconsultinginc.github.io/SerialWombatArdLib/class_serial_wombat_debounced_input.html)
 
+<h2>IR Build</h2>
+
+* [Analog Input Pin Mode](https://broadwellconsultinginc.github.io/SerialWombatArdLib/class_serial_wombat_analog_input__18_a_b.html)
+
+* [Servo Pin Mode](https://broadwellconsultinginc.github.io/SerialWombatArdLib/class_serial_wombat_servo__18_a_b.html)
+
+* [IR RX Mode](https://broadwellconsultinginc.github.io/SerialWombatArdLib/class_serial_wombat_i_r_rx.html)
+
+* [IR TX Mode](https://broadwellconsultinginc.github.io/SerialWombatArdLib/class_serial_wombat_i_r_tx.html)
+
+* [PWM Pin Mode](https://broadwellconsultinginc.github.io/SerialWombatArdLib/class_serial_wombat_p_w_m__18_a_b.html)
 |Pin Mode/Build|Default Build|Front Panel Build|TM1637 Build|Keypad Build|Comm. Build|US Distance Build|Brushed Motor Build|IR Build|Available in Custom Builds|Available on SW18AB|
 |:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |Digital I/O|X|X|X|X|X|X|X|X|X|X|
