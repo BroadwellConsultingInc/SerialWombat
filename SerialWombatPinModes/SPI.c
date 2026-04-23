@@ -247,7 +247,12 @@ if (Rxbuffer[0] != CONFIGURE_CHANNEL_MODE_0 && CurrentPinRegister->generic.mode 
 					spiTransfer(40, &Rxbuffer[3], &Txbuffer[3]);
 			}
 			break;
-        
+        case CONFIGURE_CHANNEL_MODE_5:
+        {
+            // Set CS high
+            PinHigh(spi->chipSelectPin);
+        }
+        break;
 
 		default:
 			{
