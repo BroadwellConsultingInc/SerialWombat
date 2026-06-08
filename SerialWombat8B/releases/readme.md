@@ -1,6 +1,28 @@
 <h1>Serial Wombat Revision History</h1>
 
+<h2>2.2.4</h2>
+<h3>Firmware</h3>
+* Updated Version to 2.2.4
+* Updated IR RX Pin mode to support both Samsung and NEC remotes
+* Fixed an issue where Pin 0 on Serial Wombat 8B chips may not function correctly for all pin modes.
+
+
+<h3>Arduino Code</h3>
+* Added SPI Pin mode class and examples
+* Added IR TX Pin mode class and examples
+* Added IR RX Pin mode class and examples
+* Added support for SW8B sleep method, changed old sleep method to be SW4B specific
+
+<h3>Arduino Examples</h3>
+* Added SPI Pin mode class and examples
+* Added IR TX Pin mode class and examples
+* Added IR RX Pin mode class and examples
+ 
+
 <h2>2.2.3</h2>
+<h3>Known bugs</h3>
+Some pin modes, including Matrix keypad may not function correctly on SW8B chip pin 0.  Corrected in V2.2.4
+
 <h3>Firmware</h3>
 * Updated Version to 2.2.3
 * Added Sleep Command to SW8B

@@ -490,31 +490,37 @@ void CurrentPinHigh()
 
 void InitializePinLow(uint8_t pin)
 {
+    /* Moved to the top of process pin command
     if (pin == 0)
       {
          AFIO->PCFR1 |= AFIO_PCFR1_SWJ_CFG_2;   // Disable debug
       }
+      */
     deactivateOutputDMA(pin);
 	PinLow(pin);
 }
 
 void InitializePinHigh(uint8_t pin)
 {
-
+    /* Moved to the top of process pin command
     if (pin == 0)
       {
          AFIO->PCFR1 |= AFIO_PCFR1_SWJ_CFG_2;   // Disable debug
       }
+      */
     deactivateOutputDMA(pin);
     PinHigh(pin);
 }
 
 void InitializePinInput(uint8_t pin)
 {
+    /* Moved to the top of process pin command
+
     if (pin == 0)
       {
          AFIO->PCFR1 |= AFIO_PCFR1_SWJ_CFG_2;   // Disable debug
       }
+      */
     deactivateOutputDMA(pin);
     PinInput(pin);
 }

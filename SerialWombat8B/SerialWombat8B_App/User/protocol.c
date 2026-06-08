@@ -260,7 +260,7 @@ Or similar
 			Txbuffer[4] = 'B';//SERIAL_WOMBAT_HARDWARE_IDENTIFIER;
 			Txbuffer[5] = '2';
 			Txbuffer[6] = '2';
-			Txbuffer[7] = '3';
+			Txbuffer[7] = '4';
 
 			break;
 		case COMMAND_BINARY_READ_PIN_BUFFFER:
@@ -1253,6 +1253,10 @@ static void ProcessSetPin()
 {
 	CurrentPin = Rxbuffer[1];
 
+	if (CurrentPin == 0)
+	      {
+	         AFIO->PCFR1 |= AFIO_PCFR1_SWJ_CFG_2;   // Disable debug
+	      }
 	if (CurrentPin >= NUMBER_OF_TOTAL_PINS)
 	{
 		error(SW_ERROR_PIN_NUMBER_TOO_HIGH);
