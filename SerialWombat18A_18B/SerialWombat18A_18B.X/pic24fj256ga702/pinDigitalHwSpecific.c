@@ -458,6 +458,10 @@ void PinInput(uint8_t pin)
 		ANSELB &= ~bitmap;
 	}
 
+     if (pinIsPPSCapable(pin))
+		{
+			SetPPSOutput(pin,0);
+        }
 }
 
 bool CurrentPinRead()
@@ -512,6 +516,10 @@ void SetPin(uint8_t pin, uint8_t pinState)
 		{
 			TRISA |= pinMask;
 		}
+        if (pinIsPPSCapable(pin))
+		{
+			SetPPSOutput(pin,0);
+        }
 	}
 	else 
 
@@ -942,7 +950,7 @@ const uint8_t WombatPinToADCChannel[NUMBER_OF_PHYSICAL_PINS] =
 
 void InitializePinInput(uint8_t pin)
 {
-    // TODO anything to do here for SW18AB?
+    PinInput(pin);
 }
 
 void deactivateOutputDMA(uint8_t pin)

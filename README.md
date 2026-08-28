@@ -198,4 +198,6 @@ When synchronization is lost, it can be regained by sending eight or more 0x55 (
 
 Serial Wombat chips based on a UART interface allow both binary and ASCII communication.  This allows a user to experiment by manually typing commands into a serial terminal connected to the Serial Wombat chip.  A simplified subset of the binary commands available can be accessed through ASCII commands.  These commands are still 8 byte packets.  The Serial Wombat chip can optionally be configured to echo back incoming bytes and add newlines between packets.  Enabling echos and newlines will break compatability with binary operations until they are turned off or the Serial Wombat chip is reset.
 
-
+Revision History
+-----------------------
+2.2.5:   Added Randomblink mode to 8B (FrontPanel build) and 18AB,  and Charlieplex mode to 8B (not assigned to any build) and 18AB.  Added 24 packets of self configuration to 8B.  Added ability to get address from public data on 8B and 18AB.  Updated version number to 2.2.5 for 18AB and 8B.  Fixed a few potential commuination errors in 8B, including handling of I2C packets shorter than 8.  Optimized some WCH functions for space as statics in 8B.    

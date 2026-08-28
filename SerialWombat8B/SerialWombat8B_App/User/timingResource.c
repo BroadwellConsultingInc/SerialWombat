@@ -112,12 +112,12 @@ bool timingResourceHighPulseBusy(pulse_output_t* pulse)
 void timingResourceBusyWait(uint16_t uS)
 {
 
-	//TODO
-	/*
-	   uint32_t end = TIM1->CNT + 12 * uS;
+    uint32_t start = SysTick->CNT;
+        uint32_t ticks = uS * 48;
 
-	   while (TIM1->CNT < end);
-	   */
+        while ((uint32_t)(SysTick->CNT - start) < ticks)
+        {
+        }
 
 }
 

@@ -148,7 +148,7 @@ uint16_t CurrentPinBitmap(void)
 bool PinIsAnalogCapable(uint8_t pin);
 void ConfigurePinAnalog(uint8_t pin, bool makeAnalog)
 {
-    if (pin > NUMBER_OF_TOTAL_PINS)
+    if (pin >= NUMBER_OF_TOTAL_PINS)
     {
         return;
     }
@@ -176,7 +176,7 @@ bool ReadPin(uint8_t pin)
 
 void PinOutput(uint8_t pin)  //TODO - maybe optimize this with another constant array for bm2 or the final bm
 {
-    if (pin > NUMBER_OF_TOTAL_PINS)
+    if (pin >= NUMBER_OF_TOTAL_PINS)
     {
         return;
     }
@@ -217,7 +217,7 @@ void PinOutput(uint8_t pin)  //TODO - maybe optimize this with another constant 
 
 void PinInput(uint8_t pin)
 {
-    if (pin > NUMBER_OF_TOTAL_PINS)
+    if (pin >= NUMBER_OF_TOTAL_PINS)
     {
         return;
     }
@@ -283,7 +283,7 @@ void SetCurrentPin(uint8_t pinState)
 }
 void PinLow(uint8_t pin)
 {
-    if (pin > NUMBER_OF_TOTAL_PINS)
+    if (pin >= NUMBER_OF_TOTAL_PINS)
     {
         return;
     }
@@ -325,7 +325,7 @@ void PinLow(uint8_t pin)
 
 void PinHigh(uint8_t pin)
 {
-    if (pin > NUMBER_OF_TOTAL_PINS)
+    if (pin >= NUMBER_OF_TOTAL_PINS)
     {
         return;
     }
@@ -367,7 +367,7 @@ void PinHigh(uint8_t pin)
 
 void SetPinPullUp(uint8_t pin, bool isPulledUp)
 {
-    if (pin > NUMBER_OF_TOTAL_PINS)
+    if (pin >= NUMBER_OF_TOTAL_PINS)
     {
         return;
     }
@@ -398,7 +398,7 @@ void SetPinPullUp(uint8_t pin, bool isPulledUp)
 
 void SetPinPullDown(uint8_t pin, bool isPulledDown)
 {
-    if (pin > NUMBER_OF_TOTAL_PINS)
+    if (pin >= NUMBER_OF_TOTAL_PINS)
     {
         return;
     }
@@ -425,7 +425,7 @@ void SetPinPullDown(uint8_t pin, bool isPulledDown)
 
 void SetPinOpenDrain(uint8_t pin, bool isOpenDrain)
 {
-    if (pin > NUMBER_OF_TOTAL_PINS)
+    if (pin >= NUMBER_OF_TOTAL_PINS)
     {
         return;
     }

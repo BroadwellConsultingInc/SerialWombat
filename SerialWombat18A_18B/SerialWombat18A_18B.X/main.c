@@ -464,6 +464,19 @@ void ProcessPins()
                 updateSPI();
             }
             break;
+            
+   			case PIN_MODE_RANDOMBLINK:
+            {
+                extern void updateRandomBlink(void);
+                updateRandomBlink();
+            }
+            break;
+            case PIN_MODE_CHARLIEPLEX:
+            {
+                extern void updateCharlieplex(void);
+                updateCharlieplex();
+            }
+            break;
 		}
 	}
 }

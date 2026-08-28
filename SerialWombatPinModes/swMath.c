@@ -20,6 +20,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * OTHER DEALINGS IN THE SOFTWARE.
 */
 #include "swMath.h"
+#include "serialWombat.h"
 #include <stdint.h>
 
 uint16_t xyInterpolationU16(uint16_t x, uint16_t xl,uint16_t yl, uint16_t xh, uint16_t yh)
@@ -46,5 +47,14 @@ uint16_t xyInterpolationU16(uint16_t x, uint16_t xl,uint16_t yl, uint16_t xh, ui
 	return val;
 		
 
+}
+
+uint16_t randomRange(uint16_t min, uint16_t max)
+{
+    uint32_t random = max-min;
+    random *= GetBuffer(SW_DATA_SOURCE_LFSR);
+	random >>= 16;
+	random += min;
+	return (uint16_t)random;
 }
 

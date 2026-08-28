@@ -13,6 +13,7 @@ C_SRCS += \
 ../User/SerialWombatPinModes/analogInput.c \
 ../User/SerialWombatPinModes/asciiConversion.c \
 ../User/SerialWombatPinModes/blink.c \
+../User/SerialWombatPinModes/charlieplex.c \
 ../User/SerialWombatPinModes/debounce.c \
 ../User/SerialWombatPinModes/digitalIO.c \
 ../User/SerialWombatPinModes/frequencyOutput.c \
@@ -22,6 +23,7 @@ C_SRCS += \
 ../User/SerialWombatPinModes/ir_tx.c \
 ../User/SerialWombatPinModes/liquidCrystal.c \
 ../User/SerialWombatPinModes/matrixKeypad.c \
+../User/SerialWombatPinModes/matrixKeypadSimulator.c \
 ../User/SerialWombatPinModes/outputScale.c \
 ../User/SerialWombatPinModes/pinInputProcessor.c \
 ../User/SerialWombatPinModes/protectedOutput.c \
@@ -31,6 +33,7 @@ C_SRCS += \
 ../User/SerialWombatPinModes/quadEnc.c \
 ../User/SerialWombatPinModes/queue.c \
 ../User/SerialWombatPinModes/queuedPulseOutput.c \
+../User/SerialWombatPinModes/randomBlink.c \
 ../User/SerialWombatPinModes/servo.c \
 ../User/SerialWombatPinModes/swI2cRoutines.c \
 ../User/SerialWombatPinModes/swMath.c \
@@ -49,6 +52,7 @@ OBJS += \
 ./User/SerialWombatPinModes/analogInput.o \
 ./User/SerialWombatPinModes/asciiConversion.o \
 ./User/SerialWombatPinModes/blink.o \
+./User/SerialWombatPinModes/charlieplex.o \
 ./User/SerialWombatPinModes/debounce.o \
 ./User/SerialWombatPinModes/digitalIO.o \
 ./User/SerialWombatPinModes/frequencyOutput.o \
@@ -58,6 +62,7 @@ OBJS += \
 ./User/SerialWombatPinModes/ir_tx.o \
 ./User/SerialWombatPinModes/liquidCrystal.o \
 ./User/SerialWombatPinModes/matrixKeypad.o \
+./User/SerialWombatPinModes/matrixKeypadSimulator.o \
 ./User/SerialWombatPinModes/outputScale.o \
 ./User/SerialWombatPinModes/pinInputProcessor.o \
 ./User/SerialWombatPinModes/protectedOutput.o \
@@ -67,6 +72,7 @@ OBJS += \
 ./User/SerialWombatPinModes/quadEnc.o \
 ./User/SerialWombatPinModes/queue.o \
 ./User/SerialWombatPinModes/queuedPulseOutput.o \
+./User/SerialWombatPinModes/randomBlink.o \
 ./User/SerialWombatPinModes/servo.o \
 ./User/SerialWombatPinModes/swI2cRoutines.o \
 ./User/SerialWombatPinModes/swMath.o \
@@ -85,6 +91,7 @@ C_DEPS += \
 ./User/SerialWombatPinModes/analogInput.d \
 ./User/SerialWombatPinModes/asciiConversion.d \
 ./User/SerialWombatPinModes/blink.d \
+./User/SerialWombatPinModes/charlieplex.d \
 ./User/SerialWombatPinModes/debounce.d \
 ./User/SerialWombatPinModes/digitalIO.d \
 ./User/SerialWombatPinModes/frequencyOutput.d \
@@ -94,6 +101,7 @@ C_DEPS += \
 ./User/SerialWombatPinModes/ir_tx.d \
 ./User/SerialWombatPinModes/liquidCrystal.d \
 ./User/SerialWombatPinModes/matrixKeypad.d \
+./User/SerialWombatPinModes/matrixKeypadSimulator.d \
 ./User/SerialWombatPinModes/outputScale.d \
 ./User/SerialWombatPinModes/pinInputProcessor.d \
 ./User/SerialWombatPinModes/protectedOutput.d \
@@ -103,6 +111,7 @@ C_DEPS += \
 ./User/SerialWombatPinModes/quadEnc.d \
 ./User/SerialWombatPinModes/queue.d \
 ./User/SerialWombatPinModes/queuedPulseOutput.d \
+./User/SerialWombatPinModes/randomBlink.d \
 ./User/SerialWombatPinModes/servo.d \
 ./User/SerialWombatPinModes/swI2cRoutines.d \
 ./User/SerialWombatPinModes/swMath.d \

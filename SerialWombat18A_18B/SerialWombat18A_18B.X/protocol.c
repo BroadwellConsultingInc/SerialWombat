@@ -514,7 +514,7 @@ Or similar
             }
 			Txbuffer[5] = '2';	     
 			Txbuffer[6] = '2';	     
-			Txbuffer[7] = '4';	     
+			Txbuffer[7] = '5';	     
 
 			break;
 		case COMMAND_BINARY_READ_PIN_BUFFFER:
@@ -2616,6 +2616,19 @@ void ProcessSetPin()
         }
           
           break;
+          
+        case PIN_MODE_RANDOMBLINK:
+        {
+            extern void initRandomBlink(void);
+            initRandomBlink();
+        }
+        break;
+        case PIN_MODE_CHARLIEPLEX:
+        {
+            extern void initCharliePlex(void);
+            initCharliePlex();
+        }
+        break;
           
         default:
         {

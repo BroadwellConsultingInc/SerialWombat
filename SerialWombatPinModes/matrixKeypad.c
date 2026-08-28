@@ -268,6 +268,11 @@ void initMatrixKeypad (void)
 		case CONFIGURE_CHANNEL_MODE_2:
 			{
 				Txbuffer[3] = 0;
+                if (Rxbuffer[3] > 4)
+                {
+                    error(SW_ERROR_INVALID_PARAMETER_3);
+                    return;
+                }
 				Rxbuffer[3] += 4;
 				uint8_t i;
 

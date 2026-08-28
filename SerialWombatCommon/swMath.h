@@ -25,4 +25,5 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 
 
 uint16_t xyInterpolationU16(uint16_t x, uint16_t xl,uint16_t yl, uint16_t xh, uint16_t yh);
+uint16_t randomRange(uint16_t min, uint16_t max);
 #endif

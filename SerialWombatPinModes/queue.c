@@ -318,10 +318,7 @@ static SW_QUEUE_RESULT_t QueueBytePeekByte(uint8_t* data)
 		*data = 0;
 		return (QUEUE_RESULT_EMPTY);
 	}
-	if (queue->tailIndex == QUEUE_FULL_INDEX)
-	{
-		queue->tailIndex = queue->headIndex;
-	}
+
 	*data = queue->buffer[queue->headIndex ];
 
 	return (QUEUE_RESULT_SUCCESS);

@@ -205,6 +205,11 @@ uint32_t result = GetSourceVoltageADC();
      {
          return (wrandom(&lfsrSeed));
      }
+    else if (pin == SW_DATA_COM_ADDRESS_LOW)
+     {
+         extern uint8_t SW_I2CAddress;
+         return (SW_I2CAddress);
+     }
     else if (pin == 85) //0x55
     {
         return (0x5555);

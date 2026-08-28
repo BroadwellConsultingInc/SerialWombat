@@ -60,6 +60,55 @@ uint16_t Errors = 0;
 
 
 
+#define CTLR2_FREQ_Reset         ((uint16_t)0xFFC0)
+#define CTLR1_PE_Reset           ((uint16_t)0xFFFE)
+#define CKCFGR_CCR_Set           ((uint16_t)0x0FFF)
+#define CKCFGR_FS_Set            ((uint16_t)0x8000)
+#define CTLR1_CLEAR_Mask         ((uint16_t)0xFBF5)
+#define CTLR1_PE_Set             ((uint16_t)0x0001)
+
+#define CR_PAGE_PG                 ((uint32_t)0x00010000)
+#define CR_PAGE_ER                 ((uint32_t)0x00020000)
+#define CR_BUF_LOAD                ((uint32_t)0x00040000)
+#define CR_BUF_RST                 ((uint32_t)0x00080000)
+#define CR_STRT_Set                ((uint32_t)0x00000040)
+#define SR_BSY                     ((uint32_t)0x00000001)
+#define EraseTimeout               ((uint32_t)0x000B0000)
+#define CR_MER_Set                 ((uint32_t)0x00000004)
+#define CR_MER_Reset               ((uint32_t)0xFFFFFFFB)
+
+static void flashWait()
+{
+    while(FLASH->STATR & SR_BSY)
+                ;
+            FLASH->CTLR &= ~CR_PAGE_PG;
+}
+static void FProgram(u32 adr, u32* buf)
+{
+    adr &= 0xFFFFFFC0;
+    {// FLASH_BufReset_Small();
+        FLASH->CTLR |= CR_PAGE_PG;
+        FLASH->CTLR |= CR_BUF_RST;
+        flashWait();
+    }
+    for(int j=0;j<16;j++)
+    {
+        // FLASH_BufLoad(adr+4*j, buf[j]);
+        FLASH->CTLR |= CR_PAGE_PG;
+        *(__IO uint32_t *)(adr+4*j) = buf[j];
+        FLASH->CTLR |= CR_BUF_LOAD;
+        flashWait();
+    }
+
+    {//FLASH_ProgramPage_Fast(adr);
+
+        FLASH->CTLR |= CR_PAGE_PG;
+        FLASH->ADDR = adr;
+        FLASH->CTLR |= CR_STRT_Set;
+        flashWait();
+    }
+}
+
 
 void error(SW_ERROR_t errorCode)
 {
@@ -260,7 +309,7 @@ Or similar
 			Txbuffer[4] = 'B';//SERIAL_WOMBAT_HARDWARE_IDENTIFIER;
 			Txbuffer[5] = '2';
 			Txbuffer[6] = '2';
-			Txbuffer[7] = '4';
+			Txbuffer[7] = '5';
 
 			break;
 		case COMMAND_BINARY_READ_PIN_BUFFFER:
@@ -665,6 +714,11 @@ Add bytes 0x31, 0x32, 0x33, and 0x34 to queue located at 0x0010.
 				uint8_t successCount = 0;
 				SW_QUEUE_RESULT_t result = 0;
 				lastQueueAddress =  queueAddress = &UserBuffer[RXBUFFER16(1)];
+				if (Rxbuffer[3] > 4)
+				{
+				    error(SW_ERROR_INVALID_PARAMETER_3);
+				    break;
+				}
 				for (i = 0; i < Rxbuffer[3] && success ; ++i)
 				{
 					result =QueueAddByte(Rxbuffer[4 + i]);
@@ -769,6 +823,11 @@ Two bytes were available in the queue.  0x34, and 0x35
 				SW_QUEUE_RESULT_t result = QUEUE_RESULT_SUCCESS;
 				uint8_t i;
 				Txbuffer[1] = 0;
+				if (Rxbuffer[3] > 6)
+				{
+				    error(SW_ERROR_INVALID_PARAMETER_3);
+				    break;
+				}
 				lastQueueAddress = queueAddress = &UserBuffer[RXBUFFER16(1)];
 				for (i = 0; i < Rxbuffer[3] && result == QUEUE_RESULT_SUCCESS; ++i)
 				{
@@ -1109,7 +1168,7 @@ Received:
 			}
 			break;
 #endif
-
+/*
 		case COMMAND_BINARY_SET_COMMUNICATION_ADDRESS:
 			{
 				uint32_t tempUB[4];
@@ -1127,6 +1186,37 @@ Received:
 				FLASH_ProgramOptionByteData(0x1FFFF80E,((tempUB[3] >>16) & 0xFF));
 			}
 			break;
+*/
+	    case COMMAND_BINARY_WRITE_FLASH:
+	            {
+	                switch (Rxbuffer[1])
+	                {
+	                        case 0:
+	                        {
+uint32_t FLASH_KEY1_     =              ((uint32_t)0x45670123);
+uint32_t FLASH_KEY2_     =            ((uint32_t)0xCDEF89AB);
+
+	                                FLASH->KEYR = FLASH_KEY1_;
+	                                FLASH->KEYR = FLASH_KEY2_;
+
+
+	                                FLASH->MODEKEYR = FLASH_KEY1_;
+	                                FLASH->MODEKEYR = FLASH_KEY2_;
+
+	                        }
+	                        break;
+
+	                    case 1:
+	                        {
+	                            uint32_t address;
+	                            memcpy( &address, &Rxbuffer[2],4);
+	                            FProgram(address, (u32*) UserBuffer);
+	                        }
+	                        break;
+
+	                }
+	            }
+	    break;
 
 		case CONFIGURE_CHANNEL_MODE_0:
 		case CONFIGURE_CHANNEL_MODE_1:
@@ -1182,6 +1272,7 @@ uint16_t i2cMode = 0; // 0 = INIT, 1 = Receiving, 2 = Transmitting
 
 volatile I2C_TypeDef *i2cDebugPtr;
 uint16_t star1;
+#define SW_I2C_STAR1_AF       0x0400
 void ProcessRx(void)
 {
 	i2cDebugPtr = I2C1;
@@ -1193,8 +1284,18 @@ void ProcessRx(void)
 	{
 		//  for (x = 0; x < 500; ++x); //Debug
 		star1 = I2C1->STAR1;
+		 if (star1 & I2C_STAR1_STOPF  )
+		                                        {
+
+		                        debugLastInterruptAction = 0;
+		                        I2C1->CTLR1 = I2C1->CTLR1;
+		                                        }
+
+
+
 		while (i2cMode == I2C_MODE_RECEIVING && (star1 & 0x040)) // RxNE
 		{
+
 			if (i2cRxCount > 5)
 			{
 				for (x = 0; x < 1000; ++x); //  This delay seems to help prevent bus lockups due to missed last byte before stop
@@ -1208,13 +1309,26 @@ void ProcessRx(void)
 				i2cRxCount = 0;
 				i2cTxCount = 0;
 			}
+
+
 			star1 = I2C1->STAR1;
 		}
 
+
 		if (i2cMode == I2C_MODE_TRANSMITTING && (star1 & 0x80)) //TxE
 		{
-			I2C1->DATAR = Txbuffer[i2cTxCount];
-			++i2cTxCount;
+		    if (i2cTxCount < TXBUFFER_LENGTH)
+		    {
+		        I2C1->DATAR = Txbuffer[i2cTxCount++];
+		    }
+		    else
+		    {
+		        I2C1->DATAR = 0x55;
+		    }
+		    if (i2cTxCount == TXBUFFER_LENGTH)
+		    {
+		        Txbuffer[0] = 'E';
+		    }
 		}
 		else if ((star1 & 0x02) && !(star1 & 0x040))  //Address bit set  and RXNE not
 		{
@@ -1235,15 +1349,30 @@ void ProcessRx(void)
 				else 
 				{
 					i2cMode = I2C_MODE_TRANSMITTING;
-					I2C1->DATAR = Txbuffer[i2cTxCount];
-					++i2cTxCount;
+					if (i2cTxCount < TXBUFFER_LENGTH)
+					{
+					    I2C1->DATAR = Txbuffer[i2cTxCount++];
+					}
+					else
+					{
+					    I2C1->DATAR = 0x55;
+					}
 				}
 			}
 		}
 		else {
 			loop = 0;
 		}
+
+		 if (star1 & I2C_STAR1_STOPF  )
+		                                                {
+
+		                                i2cRxCount = 0;  // CLear out any small packets.
+
+		                                                }
+
 	}
+
 }
 
 
@@ -1630,6 +1759,24 @@ static void ProcessSetPin()
     }
     break;
 #endif
+
+#ifdef PIN_MODE_RANDOMBLINK_ENABLE
+        case PIN_MODE_RANDOMBLINK:
+        {
+            extern void initRandomBlink(void);
+            initRandomBlink();
+        }
+        break;
+#endif
+
+#ifdef PIN_MODE_CHARLIEPLEX_ENABLE
+        case PIN_MODE_CHARLIEPLEX:
+        {
+            extern void initCharliePlex(void);
+            initCharliePlex();
+        }
+        break;
+#endif
         default:
         {
             error(SW_ERROR_UNKNOWN_PIN_MODE);
@@ -1640,7 +1787,7 @@ static void ProcessSetPin()
 
 void protocolInitPinsToDIO_Input()
 {
-Rxbuffer[0] = CONFIGURE_CHANNEL_MODE_0;
+Rxbuffer[0] = CONFIGURE_CHANNEL_MODE_0;  //TODO:  Make UINT32's for efficiency?
    Rxbuffer[2] = PIN_MODE_DIGITAL_IO;
    Rxbuffer[3] = 2; //Input
    Rxbuffer[4] = 0; // No Pull up

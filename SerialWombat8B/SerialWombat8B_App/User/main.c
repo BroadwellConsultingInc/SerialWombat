@@ -142,6 +142,65 @@ static void TIM2_INT_Init( u16 arr, u16 psc)
     NVIC_InitStructure.NVIC_IRQChannelCmd =ENABLE;
     NVIC_Init(&NVIC_InitStructure);
 }
+
+#define SAMPTR1_SMP_Set                  ((uint32_t)0x00000007)
+#define SAMPTR2_SMP_Set                  ((uint32_t)0x00000007)
+#define RSQR3_SQ_Set                     ((uint32_t)0x0000001F)
+#define RSQR2_SQ_Set                     ((uint32_t)0x0000001F)
+#define RSQR1_SQ_Set                     ((uint32_t)0x0000001F)
+
+static void ADC_RegularChannelConfig_static( uint8_t ADC_Channel, uint8_t Rank, uint8_t ADC_SampleTime)
+{
+    uint32_t tmpreg1 = 0, tmpreg2 = 0;
+
+    if(ADC_Channel > ADC_Channel_9)
+    {
+        tmpreg1 = ADC1->SAMPTR1;
+        tmpreg2 = SAMPTR1_SMP_Set << (3 * (ADC_Channel - 10));
+        tmpreg1 &= ~tmpreg2;
+        tmpreg2 = (uint32_t)ADC_SampleTime << (3 * (ADC_Channel - 10));
+        tmpreg1 |= tmpreg2;
+        ADC1->SAMPTR1 = tmpreg1;
+    }
+    else
+    {
+        tmpreg1 = ADC1->SAMPTR2;
+        tmpreg2 = SAMPTR2_SMP_Set << (3 * ADC_Channel);
+        tmpreg1 &= ~tmpreg2;
+        tmpreg2 = (uint32_t)ADC_SampleTime << (3 * ADC_Channel);
+        tmpreg1 |= tmpreg2;
+        ADC1->SAMPTR2 = tmpreg1;
+    }
+
+    if(Rank < 7)
+    {
+        tmpreg1 = ADC1->RSQR3;
+        tmpreg2 = RSQR3_SQ_Set << (5 * (Rank - 1));
+        tmpreg1 &= ~tmpreg2;
+        tmpreg2 = (uint32_t)ADC_Channel << (5 * (Rank - 1));
+        tmpreg1 |= tmpreg2;
+        ADC1->RSQR3 = tmpreg1;
+    }
+    else if(Rank < 13)
+    {
+        tmpreg1 = ADC1->RSQR2;
+        tmpreg2 = RSQR2_SQ_Set << (5 * (Rank - 7));
+        tmpreg1 &= ~tmpreg2;
+        tmpreg2 = (uint32_t)ADC_Channel << (5 * (Rank - 7));
+        tmpreg1 |= tmpreg2;
+        ADC1->RSQR2 = tmpreg1;
+    }
+
+}
+
+
+#define CTLR2_DMA_Set                    ((uint32_t)0x00000100)
+#define CTLR2_ADON_Set                   ((uint32_t)0x00000001)
+
+#define CTLR2_RSTCAL_Set                 ((uint32_t)0x00000008)
+#define CTLR2_CAL_Set                    ((uint32_t)0x00000004)
+
+
 static void ADC_MultiChannel_Init(void) //TODO optimize
 {
 	ADC_InitTypeDef ADC_InitStructure;
@@ -161,31 +220,28 @@ static void ADC_MultiChannel_Init(void) //TODO optimize
 	ADC_InitStructure.ADC_NbrOfChannel = 9;
 	ADC_Init(ADC1, &ADC_InitStructure);
 
-	ADC_RegularChannelConfig(ADC1, ADC_Channel_2, 1, ADC_SampleTime_241Cycles); //WP0, PD1, PC4
-	ADC_RegularChannelConfig(ADC1, ADC_Channel_3, 2, ADC_SampleTime_241Cycles); //WP1, PD2, A3
-	ADC_RegularChannelConfig(ADC1, ADC_Channel_4, 3, ADC_SampleTime_241Cycles); //WP2, PD3, A4
-	ADC_RegularChannelConfig(ADC1, ADC_Channel_7, 4, ADC_SampleTime_241Cycles); //WP3, PD4, A7
-	ADC_RegularChannelConfig(ADC1, ADC_Channel_5, 5, ADC_SampleTime_241Cycles); //WP4, PD5, A5
-	ADC_RegularChannelConfig(ADC1, ADC_Channel_6, 6, ADC_SampleTime_241Cycles); //WP5, PD6, A6
-	ADC_RegularChannelConfig(ADC1, ADC_Channel_1, 7, ADC_SampleTime_241Cycles);// WP6, PD7,PA1
-	ADC_RegularChannelConfig(ADC1, ADC_Channel_0, 8, ADC_SampleTime_241Cycles); // WP7, PD0, PA2
-	ADC_RegularChannelConfig(ADC1, ADC_Channel_Vrefint, 9, ADC_SampleTime_241Cycles);
+	ADC_RegularChannelConfig_static(ADC_Channel_2, 1, ADC_SampleTime_241Cycles); //WP0, PD1, PC4
+	ADC_RegularChannelConfig_static( ADC_Channel_3, 2, ADC_SampleTime_241Cycles); //WP1, PD2, A3
+	ADC_RegularChannelConfig_static( ADC_Channel_4, 3, ADC_SampleTime_241Cycles); //WP2, PD3, A4
+	ADC_RegularChannelConfig_static( ADC_Channel_7, 4, ADC_SampleTime_241Cycles); //WP3, PD4, A7
+	ADC_RegularChannelConfig_static( ADC_Channel_5, 5, ADC_SampleTime_241Cycles); //WP4, PD5, A5
+	ADC_RegularChannelConfig_static( ADC_Channel_6, 6, ADC_SampleTime_241Cycles); //WP5, PD6, A6
+	ADC_RegularChannelConfig_static( ADC_Channel_1, 7, ADC_SampleTime_241Cycles);// WP6, PD7,PA1
+	ADC_RegularChannelConfig_static( ADC_Channel_0, 8, ADC_SampleTime_241Cycles); // WP7, PD0, PA2
+	ADC_RegularChannelConfig_static( ADC_Channel_Vrefint, 9, ADC_SampleTime_241Cycles);
 
-	ADC_DMACmd(ADC1, ENABLE);
-	ADC_Cmd(ADC1, ENABLE);
+	ADC1->CTLR2 |= CTLR2_DMA_Set; //ADC_DMACmd(ADC1, ENABLE);
+	ADC1->CTLR2 |= CTLR2_ADON_Set;//ADC_Cmd(ADC1, ENABLE);
 
-	ADC_ResetCalibration(ADC1);
+	ADC1->CTLR2 |= CTLR2_RSTCAL_Set; //ADC_ResetCalibration(ADC1);
 	while (ADC_GetResetCalibrationStatus(ADC1));
-	ADC_StartCalibration(ADC1);
+	ADC1->CTLR2 |= CTLR2_CAL_Set;  //ADC_StartCalibration(ADC1);
 	while (ADC_GetCalibrationStatus(ADC1));
 
 	// Enable ADCs on matching pins
 
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;  //PA1
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1 | GPIO_Pin_2;  //PA1, PA 2
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AIN;
-	GPIO_Init(GPIOA, &GPIO_InitStructure);
-
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_2;  //PA2
 	GPIO_Init(GPIOA, &GPIO_InitStructure);
 
 	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4;  //PC4
@@ -261,6 +317,53 @@ static void TIM2_DMA_InitP2M(DMA_Channel_TypeDef *DMA_CHx, u32 ppadr, u32 memadr
     DMA_Cmd(DMA_CHx, ENABLE);
 }
 
+/*********************************************************************
+ * @fn      TIM_OC1Init
+ *
+ * @brief   Initializes the TIMx Channel1 according to the specified
+ *        parameters in the TIM_OCInitStruct.
+ *
+ * @param   TIMx - where x can be 1 to 2 to select the TIM peripheral.
+ *          TIM_OCInitStruct - pointer to a TIM_OCInitTypeDef structure.
+ *
+ * @return  none
+ */
+static void TIM_OC1Initstaic(TIM_TypeDef *TIMx, TIM_OCInitTypeDef *TIM_OCInitStruct)
+{
+    uint16_t tmpccmrx = 0, tmpccer = 0, tmpcr2 = 0;
+
+    TIMx->CCER &= (uint16_t)(~(uint16_t)TIM_CC1E);
+    tmpccer = TIMx->CCER;
+    tmpcr2 = TIMx->CTLR2;
+    tmpccmrx = TIMx->CHCTLR1;
+    tmpccmrx &= (uint16_t)(~((uint16_t)TIM_OC1M));
+    tmpccmrx &= (uint16_t)(~((uint16_t)TIM_CC1S));
+    tmpccmrx |= TIM_OCInitStruct->TIM_OCMode;
+    tmpccer &= (uint16_t)(~((uint16_t)TIM_CC1P));
+    tmpccer |= TIM_OCInitStruct->TIM_OCPolarity;
+    tmpccer |= TIM_OCInitStruct->TIM_OutputState;
+
+    if(TIMx == TIM1)
+    {
+        tmpccer &= (uint16_t)(~((uint16_t)TIM_CC1NP));
+        tmpccer |= TIM_OCInitStruct->TIM_OCNPolarity;
+
+        tmpccer &= (uint16_t)(~((uint16_t)TIM_CC1NE));
+        tmpccer |= TIM_OCInitStruct->TIM_OutputNState;
+
+        tmpcr2 &= (uint16_t)(~((uint16_t)TIM_OIS1));
+        tmpcr2 &= (uint16_t)(~((uint16_t)TIM_OIS1N));
+
+        tmpcr2 |= TIM_OCInitStruct->TIM_OCIdleState;
+        tmpcr2 |= TIM_OCInitStruct->TIM_OCNIdleState;
+    }
+
+    TIMx->CTLR2 = tmpcr2;
+    TIMx->CHCTLR1 = tmpccmrx;
+    TIMx->CH1CVR = TIM_OCInitStruct->TIM_Pulse;
+    TIMx->CCER = tmpccer;
+}
+
 
 /*********************************************************************
  * @fn      main
@@ -283,7 +386,7 @@ int main(void)
 	TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
 	TIM_OCInitStructure.TIM_Pulse = 400;
 	TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
-	TIM_OC1Init( TIM2, &TIM_OCInitStructure );
+	TIM_OC1Initstaic( TIM2, &TIM_OCInitStructure );
 
 	TIM_CtrlPWMOutputs(TIM2, ENABLE );
 	TIM_OC1PreloadConfig( TIM2, TIM_OCPreload_Disable );

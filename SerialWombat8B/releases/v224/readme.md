@@ -1,4 +1,4 @@
-<h1>Serial Wombat 8B V2.2.3 Release Builds</h1>
+<h1>Serial Wombat 8B V2.2.4 Release Builds</h1>
 
 <h2>Default Build</h2>
 

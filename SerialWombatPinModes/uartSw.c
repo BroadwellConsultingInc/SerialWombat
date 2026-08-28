@@ -407,6 +407,11 @@ void queueCONFIGURE_CHANNEL_MODE_1_transmit(void* rxQueue, void* txQueue)
                     if (txQueue != NULL)
                     {
                     queueAddress = txQueue;
+                    if (Rxbuffer[3] > 4)
+                    {
+                        error(SW_ERROR_INVALID_PARAMETER_3);
+                        return;
+                    }
                     for (i = 0; i < Rxbuffer[3]; ++i)
                     {
                         QueueAddByte(Rxbuffer[4 + i]);

@@ -37,11 +37,6 @@ uint8_t UserBuffer[SIZE_OF_USER_BUFFER];
 
 
 
-// PASTE INITIALIZATION ARRAY BELOW HERE
-
-
-
-// PASTE INITIALZIATION ARRAY ABOVE HERE
 
 void reset ()
 {
@@ -124,6 +119,14 @@ void swSetup(void)
 
     {void protocolInitPinsToDIO_Input(void);
    protocolInitPinsToDIO_Input();
+
+   uint8_t* dataPtr;
+   for (dataPtr =  (uint8_t*)0x08003F00; dataPtr < (uint8_t*)0x08003FC0; dataPtr += 8)
+   {
+       memcpy(Rxbuffer,dataPtr,8);
+       void ProcessRxbuffer(void);
+       ProcessRxbuffer();
+   }
     }
 
 
@@ -533,6 +536,22 @@ void ProcessPins()
             }
             break;
 
+#endif
+#ifdef PIN_MODE_RANDOMBLINK_ENABLE
+           case PIN_MODE_RANDOMBLINK:
+            {
+                extern void updateRandomBlink(void);
+                updateRandomBlink();
+            }
+            break;
+#endif
+#ifdef PIN_MODE_CHARLIEPLEX_ENABLE
+           case PIN_MODE_CHARLIEPLEX:
+            {
+                extern void updateCharlieplex(void);
+                updateCharlieplex();
+            }
+            break;
 #endif
 		}
 
