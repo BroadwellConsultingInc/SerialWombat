@@ -1,5 +1,20 @@
 # Serial Wombat
 
+Revision History
+-----------------------
+2.2.6:  
+    -Refactored code and introduced first prototype build of SW8C for CH32V006. Commonized protocol commands into one file for non-hardware dependent commands. 
+    -Created WS2812 pin driver for SW8C.  
+    -Added End Stop functionality to scaled output.
+    -Fixed leading zero bug in TM1637 Driver
+    -Added ability to compile out frequency measurement or target pin capability from Quad Enc driver by build to save flash.  Motor focused SW8B builds leave out target pin.  UI focused builds leave out frequency
+    -Added ability to compile out PID control for non-motor or servo control builds to save flash
+    -Added ability to compile out Input Integrator for non UI builds to save flash
+    -Added double click detection and toggle switch simulation to Debounced input.  Added ability to change a target pin's public data to a specific value on inactive to active transition.
+    -Added flash read to all applications to support startup configuration checking
+
+2.2.5:   Added Randomblink mode to 8B (FrontPanel build) and 18AB,  and Charlieplex mode to 8B (not assigned to any build) and 18AB.  Added 24 packets of self configuration to 8B.  Added ability to get address from public data on 8B and 18AB.  Updated version number to 2.2.5 for 18AB and 8B.  Fixed a few potential commuination errors in 8B, including handling of I2C packets shorter than 8.  Optimized some WCH functions for space as statics in 8B.    
+
 What is a Serial Wombat chip?  What is the Serial Wombat firmware?
 ------------------------
 
@@ -200,4 +215,14 @@ Serial Wombat chips based on a UART interface allow both binary and ASCII commun
 
 Revision History
 -----------------------
+2.2.6:  
+    -Refactored code and introduced first prototype build of SW8C for CH32V006. Commonized protocol commands into one file for non-hardware dependent commands. 
+    -Created WS2812 pin driver for SW8C.  
+    -Added End Stop functionality to scaled output.
+    -Fixed leading zero bug in TM1637 Driver
+    -Added ability to compile out frequency measurement or target pin capability from Quad Enc driver by build to save flash.  Motor focused SW8B builds leave out target pin.  UI focused builds leave out frequency
+    -Added ability to compile out PID control for non-motor or servo control builds to save flash
+    -Added ability to compile out Input Integrator for non UI builds to save flash
+    -Added double click detection and toggle switch simulation to Debounced input.  Added ability to change a target pin's public data to a specific value on inactive to active transition.
+
 2.2.5:   Added Randomblink mode to 8B (FrontPanel build) and 18AB,  and Charlieplex mode to 8B (not assigned to any build) and 18AB.  Added 24 packets of self configuration to 8B.  Added ability to get address from public data on 8B and 18AB.  Updated version number to 2.2.5 for 18AB and 8B.  Fixed a few potential commuination errors in 8B, including handling of I2C packets shorter than 8.  Optimized some WCH functions for space as statics in 8B.    

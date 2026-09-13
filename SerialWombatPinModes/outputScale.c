@@ -47,6 +47,16 @@ void outputScaleInit(outputScale_t* outputScale)
     outputScale->invert = 0;
     outputScale->commTimeout = 0;
     outputScale->commTimeoutCounter = 0;
+#ifndef OUTPUT_SCALE_ENDSTOP_DISABLE
+    outputScale->endstopPin[0] = 255;
+    outputScale->endstopPin[1] = 255;
+    outputScale->endstopTriggerValue[0] = 0x0000;
+    outputScale->endstopTriggerValue[1] = 0x0000;
+    outputScale->endstopOutputValue[0] = 0x0000;
+    outputScale->endstopOutputValue[1] = 0x0000;
+    outputScale->endstop0GreaterThanOrEqual = 0;
+    outputScale->endstop1GreaterThanOrEqual = 0;
+#endif
     outputScale->active = 0;
     outputScale->sampleRate = 0;
     outputScale->lastValue = GetBuffer(outputScale->sourcePin);
@@ -116,7 +126,7 @@ static uint16_t hystersis(uint32_t outputValue,outputScale_t* outputScale)
 	}
 	return (outputScale->hystersis.lastValue);
 }
-
+#ifndef OUTPUT_SCALE_PID_DISABLE
 int32_t pidLastError = 0;  ///< Used for communication link.  Global Shared by all PIDs
 int32_t pidLastIntegrator = 0; ///< Used for communication link.  Global Shared by all PIDs
 int32_t pidLastIntegratorEffort = 0; ///< Used for communication link.  Global Shared by all PIDs
@@ -163,7 +173,7 @@ static uint16_t pid(uint32_t processVariable,outputScale_t* outputScale)
 
 	return ((uint16_t) pidLastEffort);
 }
-
+#endif
 
 /*! 
 \brief returns an output based on a 2 speed ramp control algorthim
@@ -290,14 +300,14 @@ uint16_t outputScaleProcess(outputScale_t* outputScale)
 #endif
 					}
 					break;
+#ifndef OUTPUT_SCALE_PID_DISABLE
 
 				case OUTPUT_TRANSFORM_MODE_PID_CONTROL:
 					{
-#ifdef OUTPUT_SCALE_PID_ENABLE
 						outputValue = pid(outputValue,outputScale);
-#endif
 					}
 					break;
+#endif
 				case OUTPUT_TRANSFORM_MODE_RAMP:
 					{
 #ifdef OUTPUT_SCALE_RAMP_ENABLE
@@ -328,7 +338,34 @@ uint16_t outputScaleProcess(outputScale_t* outputScale)
 			outputValue = outputScale->commTimeoutValue;
 		}
 	}
+#ifndef OUTPUT_SCALE_ENDSTOP_DISABLE
+	// Check endstops after communications timeout and before filtering.  This allows an
+	// endstop to override the normal scaled/feedback output and the communications timeout
+	// value, while still allowing the configured output filter to control how quickly the
+	// output changes to the endstop value.  Endstop 0 has priority if both are active.
+	uint8_t endstop0Active = 0;
+	if (outputScale->endstopPin[0] != 255)
+	{
+		uint16_t endstopValue = GetBuffer(outputScale->endstopPin[0]);
+		endstop0Active =
+			(outputScale->endstop0GreaterThanOrEqual && endstopValue >= outputScale->endstopTriggerValue[0]) ||
+			(!outputScale->endstop0GreaterThanOrEqual && endstopValue <= outputScale->endstopTriggerValue[0]);
+		if (endstop0Active)
+		{
+			outputValue = outputScale->endstopOutputValue[0];
+		}
+	}
 
+	if (!endstop0Active && outputScale->endstopPin[1] != 255)
+	{
+		uint16_t endstopValue = GetBuffer(outputScale->endstopPin[1]);
+		if ((outputScale->endstop1GreaterThanOrEqual && endstopValue >= outputScale->endstopTriggerValue[1]) ||
+			(!outputScale->endstop1GreaterThanOrEqual && endstopValue <= outputScale->endstopTriggerValue[1]))
+		{
+			outputValue = outputScale->endstopOutputValue[1];
+		}
+	}
+#endif
 	//  Next step is filtering.  This allows control of how fast an output can change.
 	//  Output change can be controlled either by a limit of number of counts per period,
 	//  or by a 1st order filter. 
@@ -612,7 +649,35 @@ uint16_t outputScaleCommProcess(outputScale_t* outputScale)
             
         }
         break;
+#ifndef OUTPUT_SCALE_ENDSTOP_DISABLE
+        case 11: // Set endstop pins and comparison modes
+                 // [4] endstop 0 pin, [5] endstop 0 mode, [6] endstop 1 pin, [7] endstop 1 mode
+                 // mode 0: active when public data <= trigger value
+                 // mode 1: active when public data >= trigger value
+        {
+            outputScale->endstopPin[0] = Rxbuffer[4];
+            outputScale->endstop0GreaterThanOrEqual = Rxbuffer[5] ? 1 : 0;
+            outputScale->endstopPin[1] = Rxbuffer[6];
+            outputScale->endstop1GreaterThanOrEqual = Rxbuffer[7] ? 1 : 0;
+        }
+        break;
 
+        case 12: // Set endstop 0 trigger and output values
+                 // [4:5] trigger value, [6:7] output value
+        {
+            outputScale->endstopTriggerValue[0] = RXBUFFER16(4);
+            outputScale->endstopOutputValue[0] = RXBUFFER16(6);
+        }
+        break;
+
+        case 13: // Set endstop 1 trigger and output values
+                 // [4:5] trigger value, [6:7] output value
+        {
+            outputScale->endstopTriggerValue[1] = RXBUFFER16(4);
+            outputScale->endstopOutputValue[1] = RXBUFFER16(6);
+        }
+        break;
+#endif
         case 49: // Disable Transform / Feedback
         {
             outputScale->transformMode = OUTPUT_TRANSFORM_MODE_NONE;
@@ -665,7 +730,7 @@ uint16_t outputScaleCommProcess(outputScale_t* outputScale)
         }
         break;
 #endif
-#ifdef OUTPUT_SCALE_PID_ENABLE
+#ifndef OUTPUT_SCALE_PID_DISABLE
 	case 100:  // Set PID kp and ki
 	{
 		outputScale->pid.kp = RXBUFFER16(4);

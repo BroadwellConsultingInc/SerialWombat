@@ -30,10 +30,19 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 typedef struct debounce_n{
 	uint16_t  currentStableTime;
     uint16_t transitions;
+    uint16_t doubleClickPeriod;
+    uint16_t doubleClickCount;
+    uint16_t doubleClickCounter;
+    uint16_t pushOutputValue;
+    uint8_t pushOutputPin;
+    uint16_t doubleClickOutputValue;
    	uint8_t currentDifferenceCount;
 	uint8_t debouncePeriod;	
 	uint8_t currentReportedLevel:1;
+	        uint8_t doubleClickPending;  // 0 = no timer, 1 = first release timer, 2 = third press timer; Double click increments after timeout of third press timer
 	uint8_t invertPolarity:1;
+    uint8_t toggleSimulation:1;
+
         uint8_t lastReading;
          inputProcess_t inputProcess;
 }debounce_t;
@@ -68,6 +77,19 @@ void initDebounce (void)
 	    debounce->currentStableTime = 0;
 	    debounce->currentDifferenceCount = 0;
         debounce->transitions = 0;
+        #ifndef ENABLE_DEBOUNCE_DOUBLECLICK_AND_TOGGLE_DISABLE
+        debounce->doubleClickPeriod = 150;
+        debounce->doubleClickCount = 0;
+        debounce->doubleClickCounter = 0;
+        debounce->doubleClickPending = 0;
+        debounce->toggleSimulation = 0;
+        #endif
+        #ifndef ENABLE_DEBOUNCE_SETPIN_DISABLE
+        debounce->pushOutputPin = 255;
+        #endif
+       
+
+
 	    inputProcessInit(&debounce->inputProcess);
 	}
 	break;
@@ -83,6 +105,46 @@ void initDebounce (void)
             }
         }
         break;
+#ifndef ENABLE_DEBOUNCE_DOUBLECLICK_AND_TOGGLE_DISABLE
+        case CONFIGURE_CHANNEL_MODE_2:
+        {
+            debounce->doubleClickPeriod = RXBUFFER16(3);
+            debounce->doubleClickCounter = 0;
+            debounce->doubleClickPending = 0;
+
+        }
+        break;  
+
+#endif
+#ifndef ENABLE_DEBOUNCE_SETPIN_DISABLE
+        case CONFIGURE_CHANNEL_MODE_3:
+        {
+            debounce->pushOutputPin = Rxbuffer[3];
+            debounce->pushOutputValue = RXBUFFER16(4);
+            debounce ->doubleClickOutputValue = RXBUFFER16(6);
+        }
+break;
+        #endif  
+#ifndef ENABLE_DEBOUNCE_DOUBLECLICK_AND_TOGGLE_DISABLE
+        case CONFIGURE_CHANNEL_MODE_4:
+        {
+            TXBUFFER16(3, debounce->doubleClickCount);
+            if (Rxbuffer[3] != 0)
+            {
+                debounce->doubleClickCount = 0;
+            }
+        }
+        break;  
+        #endif
+#ifndef ENABLE_DEBOUNCE_DOUBLECLICK_AND_TOGGLE_DISABLE
+        case CONFIGURE_CHANNEL_MODE_5:
+        {
+            debounce->toggleSimulation = Rxbuffer[3];
+            debounce->transitions = RXBUFFER16(4);
+        }
+        break;
+
+#endif
 	        default:
         {
             error(SW_ERROR_INVALID_COMMAND);      
@@ -105,6 +167,35 @@ void updateDebounce()
     {
         ++debounce->currentStableTime;
     }
+
+#ifndef ENABLE_DEBOUNCE_DOUBLECLICK_AND_TOGGLE_DISABLE
+    if (debounce->doubleClickPending)
+    {
+        if (debounce->doubleClickCounter < 65535)
+        {
+            ++debounce->doubleClickCounter;
+        }
+        if (debounce->doubleClickPending == 2 &&
+            debounce->doubleClickCounter >= debounce->doubleClickPeriod)
+        {
+            ++debounce->doubleClickCount;
+            if (debounce->transitions >= 4)
+            {
+                debounce->transitions -= 4;
+            }
+            else
+            {
+                debounce->transitions = 0;
+            }
+#ifndef ENABLE_DEBOUNCE_SETPIN_DISABLE
+            SetBuffer(debounce->pushOutputPin, debounce->doubleClickOutputValue);
+#endif
+            debounce->doubleClickCounter = 0;
+            debounce->doubleClickPending = 0;
+        }
+    }
+    #endif
+
     debounce->lastReading = CurrentPinRead();
     if (debounce->invertPolarity )
     {
@@ -121,7 +212,48 @@ void updateDebounce()
             debounce->currentReportedLevel = debounce->lastReading;
             debounce->currentDifferenceCount = 0;
             debounce->currentStableTime = 0;        
-            debounce->transitions++;        
+            debounce->transitions++;     
+#ifndef ENABLE_DEBOUNCE_DOUBLECLICK_AND_TOGGLE_DISABLE
+                if (debounce->doubleClickPeriod)
+                {
+                    if (debounce->currentReportedLevel)
+                    {
+                        // A press during the third timer makes this a sequence
+                        // of three presses rather than a double click and a
+                        // press.  Its release can start a new first timer.
+                        if (debounce->doubleClickPending == 2)
+                        {
+                            debounce->doubleClickCounter = 0;
+                            debounce->doubleClickPending = 0;
+                        }
+                    }
+                    else
+                    {
+                        if (debounce->doubleClickPending == 0)
+                        {
+                            // Start the first timer on the first release.
+                            debounce->doubleClickPending = 1;
+                            debounce->doubleClickCounter = 0;
+                        }
+                        else if (debounce->doubleClickPending == 1)
+                        {
+                            if (debounce->doubleClickCounter < debounce->doubleClickPeriod)
+                            {
+                                // The second release occurred within the
+                                // period.  Start the third timer and wait to
+                                // make sure that there is no third press.
+                                debounce->doubleClickPending = 2;
+                            }
+                            // If the second release was too late, it becomes
+                            // the first release of a new potential double click.
+                            debounce->doubleClickCounter = 0;
+                        }
+                    }
+                }
+            #endif
+#ifndef ENABLE_DEBOUNCE_SETPIN_DISABLE
+                SetBuffer(debounce->pushOutputPin, debounce->pushOutputValue);
+            #endif
         }
     }
     else
@@ -130,6 +262,13 @@ void updateDebounce()
     }
     
     uint16_t outputValue = debounce->currentReportedLevel?65535:0;
+
+#ifndef ENABLE_DEBOUNCE_DOUBLECLICK_AND_TOGGLE_DISABLE
+       if (debounce->toggleSimulation)
+        {
+            outputValue = (debounce->transitions &0x02)? 65535:0;
+        }
+    #endif
 
             CurrentPinRegister->generic.buffer = inputProcessProcess(&debounce->inputProcess,outputValue);
 	

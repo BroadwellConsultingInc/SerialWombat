@@ -699,32 +699,32 @@ tm1637_t* debugTM1637;
 void tm1637UpdateRender()
 {
     uint8_t renderArray[6];
-    bool noDigitsFound = true;
 	
 	if (tm1637->mode == TM1637_MODE_BUFFER_DEC)
 	{
 		renderArray[0] = '0';
 		uint16ToAscii5(GetBuffer(tm1637->outputBuffer[0]) ,&renderArray[1]);  
         uint8_t i;
+        if (tm1637->suppressLeadingZeros && tm1637->blinkBitmap == 0)
+        {
+        for (i = 0; i < 5; ++i)
+        {
+            if (renderArray[i] == '0' )
+            {
+                renderArray[i] = ' ';
+
+            }
+            else
+                {
+                   break;
+                }
+
+
+        }
+        }
          for (i = 0; i < 6; ++i)
          {
-             bool render = true;
-             if (renderArray[i] == '0')
-             {
-                if (tm1637->suppressLeadingZeros && //Don't suppress if suppression turned off
-                        noDigitsFound &&            //Don't suppress if we've already found a non-zero
-                        i != tm1637->lastDigit  &&  //Don't suppress if last displayed digit
-                        tm1637->blinkBitmap == 0)   //Don't suppress if we're blinking digits
-                {
-                    renderArray[i] = seven_seg_table[' '];
-                    render = false;
-                }
-             }
-             else
-             {
-                 noDigitsFound = false;
-             }
-             if (render)
+
              {
                 renderArray[i] =seven_seg_table[renderArray[i]];
              }

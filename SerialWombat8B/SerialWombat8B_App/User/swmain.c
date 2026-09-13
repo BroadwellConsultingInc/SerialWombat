@@ -207,6 +207,7 @@ void swLoop()
 }
 
 
+
 void ProcessPins()
 {
 	for (CurrentPin = 0; CurrentPin <  NUMBER_OF_TOTAL_PINS; ++CurrentPin)

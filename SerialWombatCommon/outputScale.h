@@ -101,6 +101,9 @@ typedef struct outputScale_n
 		uint16_t outputMin;   ///< Output minimum for Min Max Scaling
 		uint16_t linearTableIndex; ///< 2D Lookup table Index in User Buffer
 	};
+	uint16_t endstopTriggerValue[2]; ///< Public data value at which each endstop becomes active
+	uint16_t endstopOutputValue[2]; ///< Output value to use when each endstop is active
+	uint8_t endstopPin[2]; ///< Pins whose public data are monitored for endstop activation. 255 disables an endstop
 	uint16_t outputMax;  ///< Output max
 	uint16_t filterConstant;  ///< Output Filter Constant 1.  Meaning varies by mode
 	uint16_t filterConstant2;  ///< Output Filter Constant 2.  Meaning varies by mode
@@ -110,6 +113,7 @@ typedef struct outputScale_n
 	uint16_t commTimeoutCounter; ///< Upwards Counter of timeout counter towards commTimeout
 	uint16_t commTimeoutValue;  ///< Value to set output to if communication timeout expires
 	//#endif
+
 
 	uint16_t targetValue;  ///< Target value for control algorithms
 	uint16_t lastValue; ///< prior filter output.  Used for output filtering
@@ -122,6 +126,8 @@ typedef struct outputScale_n
 	uint8_t sampleRate:4;  ///< Rate at which to run control and filtering algorithms.  Two to the Power of This number, in mS
 	uint8_t outputScaleMode:1; ///< Enumerated type, but stored this way to minimize storage space
 	uint8_t add32768:1;   ///< Used to add an offset to output for center zero outputs like H Bridge
+	uint8_t endstop0GreaterThanOrEqual:1; ///< 1: endstop 0 active when input >= trigger. 0: active when input <= trigger
+	uint8_t endstop1GreaterThanOrEqual:1; ///< 1: endstop 1 active when input >= trigger. 0: active when input <= trigger
 
 }outputScale_t;
 

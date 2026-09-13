@@ -125,7 +125,7 @@ uint16_t inputProcessProcess(inputProcess_t* inputProcess, uint16_t inputValue)
                     inputValue = (uint16_t) temp;
                 }
                 break;
-
+#ifndef                INPUT_PROCESS_INTEGRATOR_DISABLE
 		case INPUT_TRANSFORM_MODE_INTEGRATOR:
 		{
             int32_t sum = inputProcess->integrator.currentValue;
@@ -186,6 +186,9 @@ uint16_t inputProcessProcess(inputProcess_t* inputProcess, uint16_t inputValue)
             inputValue = inputProcess->integrator.currentValue;
 		}
 		break;
+#else
+#warning INPUT INTEGRATOR REMOVED FROM THIS BUILD
+#endif
 
                 case INPUT_TRANSFORM_MODE_NONE:
                 default:
@@ -394,7 +397,7 @@ void inputProcessCommProcess(inputProcess_t* inputProcess)
             TXBUFFER16(6,inputProcess->firstOrder.filteredValue);    
         }
         break;
-#ifdef INPUTPROCESSINTEGRATORPRESENT
+#ifndef                INPUT_PROCESS_INTEGRATOR_DISABLE
 	case 12:
 	{
 		inputProcess->integrator.maxInc = 0;

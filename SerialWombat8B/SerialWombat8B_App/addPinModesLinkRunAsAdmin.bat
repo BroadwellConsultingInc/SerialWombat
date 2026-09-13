@@ -1,2 +1,2 @@
-mklink /d %~dp0\User\SerialWombatPinModes %~dp0\..\..\SerialWombatPinModes
+mklink /j %~dp0\User\SerialWombatPinModes %~dp0\..\..\SerialWombatPinModes
 pause

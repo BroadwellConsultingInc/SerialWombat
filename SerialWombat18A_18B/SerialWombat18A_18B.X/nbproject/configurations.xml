@@ -140,6 +140,7 @@
       <itemPath>asciiConversion.c</itemPath>
       <itemPath>pinRegisters.c</itemPath>
       <itemPath>gotoReset.s</itemPath>
+      <itemPath>../../SerialWombatPinModes/protocolCommon.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
@@ -156,7 +157,7 @@
         <targetDevice>PIC24FJ256GA702</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>pk4hybrid</platformTool>
+        <platformTool>noID</platformTool>
         <languageToolchain>XC16</languageToolchain>
         <languageToolchainVersion>2.10</languageToolchainVersion>
         <platform>3</platform>
@@ -497,7 +498,7 @@
         <property key="optimization-level" value="2"/>
         <property key="post-instruction-scheduling" value="default"/>
         <property key="pre-instruction-scheduling" value="default"/>
-        <property key="preprocessor-macros" value=""/>
+        <property key="preprocessor-macros" value="SW18AB"/>
         <property key="scalar-model" value="default"/>
         <property key="use-cci" value="false"/>
         <property key="use-iar" value="false"/>
@@ -853,8 +854,6 @@
         <property key="memories.programmemory" value="true"/>
         <property key="memories.programmemory.ranges" value="0-2aeff"/>
         <property key="poweroptions.powerenable" value="false"/>
-        <property key="programmerToGoFilePath"
-                  value="F:/keep/github/broadwellconsultinginc/SerialWombat/SerialWombat18A_18B/SerialWombat18A_18B.X/debug/default/SerialWombat2_ptg"/>
         <property key="programmerToGoImageName" value="SerialWombat2_ptg"/>
         <property key="programoptions.donoteraseauxmem" value="false"/>
         <property key="programoptions.eraseb4program" value="true"/>

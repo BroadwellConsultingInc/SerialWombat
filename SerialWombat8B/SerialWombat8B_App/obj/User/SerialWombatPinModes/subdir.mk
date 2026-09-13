@@ -27,6 +27,7 @@ C_SRCS += \
 ../User/SerialWombatPinModes/outputScale.c \
 ../User/SerialWombatPinModes/pinInputProcessor.c \
 ../User/SerialWombatPinModes/protectedOutput.c \
+../User/SerialWombatPinModes/protocolCommon.c \
 ../User/SerialWombatPinModes/pulseOnChange.c \
 ../User/SerialWombatPinModes/pulseTimer.c \
 ../User/SerialWombatPinModes/pwm.c \
@@ -66,6 +67,7 @@ OBJS += \
 ./User/SerialWombatPinModes/outputScale.o \
 ./User/SerialWombatPinModes/pinInputProcessor.o \
 ./User/SerialWombatPinModes/protectedOutput.o \
+./User/SerialWombatPinModes/protocolCommon.o \
 ./User/SerialWombatPinModes/pulseOnChange.o \
 ./User/SerialWombatPinModes/pulseTimer.o \
 ./User/SerialWombatPinModes/pwm.o \
@@ -105,6 +107,7 @@ C_DEPS += \
 ./User/SerialWombatPinModes/outputScale.d \
 ./User/SerialWombatPinModes/pinInputProcessor.d \
 ./User/SerialWombatPinModes/protectedOutput.d \
+./User/SerialWombatPinModes/protocolCommon.d \
 ./User/SerialWombatPinModes/pulseOnChange.d \
 ./User/SerialWombatPinModes/pulseTimer.d \
 ./User/SerialWombatPinModes/pwm.d \

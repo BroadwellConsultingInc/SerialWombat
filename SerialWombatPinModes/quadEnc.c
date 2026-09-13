@@ -77,13 +77,15 @@ void initQuadEnc(void)
 				quadEnc->secondPin = Rxbuffer[5] ;
 				quadEnc->readState = Rxbuffer[6] & 0x03;
 				quadEnc->interruptDriven = Rxbuffer[6] < 4;
+
 				quadEnc->targetPin = CurrentPin;
 
+#ifndef QUAD_ENC_FREQUENCY_DISABLE
 				quadEnc->frequencySamplePeriod = 1000;
 				quadEnc->lastFrequency = 0;
 				quadEnc->frequencyCounter = 0;
 				quadEnc->frequencyElapsedTime = 0;
-
+#endif
 				SetMode(quadEnc->secondPin, PIN_MODE_CONTROLLED);
 				inputProcessInit(&quadEnc->inputProcess);
 				CurrentPinInput();
@@ -138,32 +140,6 @@ void initQuadEnc(void)
 						    PinPullUp(quadEnc->secondPin);
 						}
 						break;
-#ifdef TODO
-					case 2:
-						{
-							switch(CurrentPinPort())
-							{
-								case 0:  // Port A
-									{
-										IOCPUA &=~CurrentPinBitmap();
-										IOCPUA &= ~pinBitmap[quadEnc->secondPin];
-										IOCPDA |= CurrentPinBitmap();
-										IOCPDA |= pinBitmap[quadEnc->secondPin];   
-									}
-									break;
-
-								case 1:  // PORT B
-									{
-										IOCPUB &=~CurrentPinBitmap();
-										IOCPUB &= ~pinBitmap[quadEnc->secondPin];
-										IOCPDB |= CurrentPinBitmap();
-										IOCPDB |= pinBitmap[quadEnc->secondPin];
-									}
-									break;
-							}
-						}
-						break;
-#endif
 
 
 				}
@@ -212,7 +188,7 @@ void initQuadEnc(void)
 
 			}
 			break;
-
+#ifndef QUAD_ENC_TARGET_PIN_DISABLE
 		case CONFIGURE_CHANNEL_MODE_3:
 			{
 				quadEnc->targetPin = Rxbuffer[3]; 
@@ -222,7 +198,9 @@ void initQuadEnc(void)
 				}
 			}
 			break;
+#endif
 
+#ifndef QUAD_ENC_FREQUENCY_DISABLE
 		case CONFIGURE_CHANNEL_MODE_4:
 			{
 				quadEnc->frequencySamplePeriod = RXBUFFER16(3);
@@ -232,11 +210,13 @@ void initQuadEnc(void)
 			}
 			break;
 
+
 		case CONFIGURE_CHANNEL_MODE_5:
 			{
 				TXBUFFER16(3,quadEnc->lastFrequency);
 			}
 			break;
+#endif
 
 		case CONFIGURE_CHANNEL_MODE_6:
 			{
@@ -291,12 +271,14 @@ void updateQuadEnc(void)
     
     bool processSamples = true;
    
+
     if (!quadEnc->inputProcess.active)
     {
 	    // Allow the user  to overwrite wtih public data write if inactive
 	    quadEnc->rawValue = GetBuffer(quadEnc->targetPin) ;
 
     } 
+
     if (quadEnc->interruptDriven)
         {
         if (currentState)
@@ -334,8 +316,9 @@ void updateQuadEnc(void)
                     }
 					if (quadEnc->debouncecounter >= quadEnc->debouncesamples)
 					{    
-
+#ifndef QUAD_ENC_FREQUENCY_DISABLE
                         ++quadEnc->frequencyCounter;
+#endif
 
 						currentState = 1;
 
@@ -454,7 +437,7 @@ void updateQuadEnc(void)
 		}
 	
 	quadEnc->currentState = currentState;
-
+#ifndef QUAD_ENC_FREQUENCY_DISABLE
     if (quadEnc->frequencySamplePeriod > 0)
     {
         ++ quadEnc->frequencyElapsedTime;
@@ -467,14 +450,17 @@ void updateQuadEnc(void)
             SetBuffer(quadEnc->secondPin,quadEnc->lastFrequency);
         }
     }
+#endif
 
     if (quadEnc->inputProcess.active)
     {
 	CurrentPinRegister->generic.buffer = inputProcessProcess(&quadEnc->inputProcess,quadEnc->rawValue);
     }
+
     else
     {
         SetBuffer(quadEnc->targetPin,quadEnc->rawValue);
     }
+
         
 }

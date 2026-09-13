@@ -1,0 +1,234 @@
+/*
+Copyright 2024 Broadwell Consulting Inc.
+
+Permission is hereby granted, free of charge, to any person obtaining a 
+ * copy of this software and associated documentation files (the "Software"), 
+ * to deal in the Software without restriction, including without limitation 
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense, 
+ * and/or sell copies of the Software, and to permit persons to whom the 
+ * Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in 
+ * all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL 
+ * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR 
+ * OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, 
+ * ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
+ * OTHER DEALINGS IN THE SOFTWARE.
+*/
+
+#ifndef SW_FEATURE_ENABLE_H
+#define SW_FEATURE_ENABLE_H
+
+// Note that byte sizes are approximate.  Functions that call in new
+// other modules such as queue or timing resources may vary depending on
+// if other pin modes are already using those modules or if they need
+// to be added
+
+	#define	PIN_MODE_DIGITAL_IO_ENABLE
+//	#define	PIN_MODE_ANALOGINPUT_ENABLE
+//	#define	PIN_MODE_SERVO_ENABLE // 672 bytes
+//	#define	PIN_MODE_THROUGHPUT_CONSUMER_ENABLE
+// 	#define	PIN_MODE_QUADRATURE_ENC_ENABLE  //634 bytes
+// 	#define	PIN_MODE_HBRIDGE_ENABLE   //956 bytes
+//	#define	PIN_MODE_WATCHDOG_ENABLE
+//	#define	PIN_MODE_PROTECTEDOUTPUT_ENABLE
+//	#define	PIN_MODE_COUNTER_ENABLE
+//	#define	PIN_MODE_DEBOUNCE_ENABLE  //320 bytes
+//     #define	PIN_MODE_TM1637_ENABLE  //1804 bytes
+//	#define	PIN_MODE_WS2812_ENABLE
+//  	#define	PIN_MODE_SW_UART_ENABLE  //1572 bytes
+//	#define	PIN_MODE_INPUT_PROCESSOR_ENABLE
+//	#define	PIN_MODE_MATRIX_KEYPAD_ENABLE
+//	#define	PIN_MODE_PWM_ENABLE  //456 bytes
+//#define	PIN_MODE_UART0_TXRX_ENABLE  //1440
+//	#define	PIN_MODE_PULSE_TIMER_ENABLE  //1252 bytes
+//	#define	PIN_MODE_DMA_PULSE_OUTPUT_ENABLE
+//	#define	PIN_MODE_ANALOG_THROUGHPUT_ENABLE
+//	#define	PIN_MODE_FRAME_TIMER_ENABLE
+//	#define	PIN_MODE_TOUCH_ENABLE
+//	#define	PIN_MODE_UART1_TXRX_ENABLE
+//	#define	PIN_MODE_RESISTANCE_INPUT_ENABLE
+//	#define	PIN_MODE_PULSE_ON_CHANGE_ENABLE  //800 Bytes
+//	#define	PIN_MODE_HF_SERVO_ENABLE
+//	#define	PIN_MODE_ULTRASONIC_DISTANCE_ENABLE //1048 bytes
+//	#define	PIN_MODE_LIQUID_CRYSTAL_ENABLE  //1384 bytes
+//	#define	PIN_MODE_HS_CLOCK_ENABLE
+//	#define	PIN_MODE_HS_COUNTER_ENABLE
+//	#define	PIN_MODE_VGA_ENABLE
+//	#define	PIN_MODE_PS2_KEYBOARD_ENABLE  //2016 Bytes
+//	#define	PIN_MODE_I2C_CONTROLLER_ENABLE
+//	#define	PIN_MODE_QUEUED_PULSE_OUTPUT_ENABLE  //748 bytes
+//	#define	PIN_MODE_MAX7219MATRIX_ENABLE
+//	#define	PIN_MODE_FREQUENCY_OUTPUT_ENABLE
+
+/*
+|Pin Mode/Build|Default Build|Front Panel Build|TM1637 Build|Keypad Build|Comm. Build|US Distance Build|Brushed Motor Build|IR Build|Available in Custom Builds|Available on SW18AB|
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|Digital I/O|X|X|X|X|X|X|X||X|X|
+|Blink|X|X|X|X|X|X|X||X|X|
+|Analog Input|X|X| | | |X|X|X|X|X|
+|Servo Output|X| | | | |X| |X|X|X|
+|Quadrature Encoder Input|X|X|X| | | |X||X|X|
+|H Bridge Output|X| | | | | |X||X|X|
+|Watchdog | | | | | | | ||X|X|
+|Protected Output | | | | | | | ||X|X|
+|Counter | | | | | | | ||X|X|
+|Debounced Input | |X| | | | |X||X|X|
+|TM1637 Driver | | |X| | | | ||X|X|
+|WS2812 Driver | | |X| | | | | ||X|
+|Software UART | | | | |X| | ||X|X|
+|Matrix Keypad | | | |X| | | ||X|X|
+|PWM Output |X|X| | | |X|X|X|X|X|
+|Hardware UART | | | | |X| | ||X|X|
+|Pulse Timer | | | | | |X|X||X|X|
+|Capactive Touch | | | | | | | | ||X|
+|Resistance Input | | | | | | | | ||X|
+|Pulse On Change | |X|X| | | | ||X|X|
+|High Frequency Servo | | | | | | | || |X|
+|Ultrasonic Distance Sensing | | | | | |X| ||X|X|
+|Character LCD Driver | | | | | | | ||X|X|
+|Character LCD Driver | | | | | | | ||X|X|
+|High Speed Clock | | | | | | | | | |X|
+|High Speed Counter | | | | | | | | | |X|
+|VGA Output | | | | | | | | | |X|
+|PS2 Keyboard Input | | | | | | | | |X|X|
+|Queued Pulse Output | | | | |X| | | |X|X|
+|Blink |X|X|X|X|X|X|X|X|X|X|
+|IR RX| | | | | | | |X|X|X|
+|IR TX| | | | | | | |X|X|X|
+|RandomBlink | |X| | | | | ||X|X|
+|Charlieplex | | | | | | | ||X|X|
+|SPI| | | | |X| | | |X|X|
+*/
+
+
+#define DEFAULT_BUILD
+#ifdef DEFAULT_BUILD
+#define PIN_MODE_ANALOGINPUT_ENABLE
+#define PIN_MODE_SERVO_ENABLE // 672 bytes
+#define PIN_MODE_QUADRATURE_ENC_ENABLE  //634 bytes
+#define PIN_MODE_HBRIDGE_ENABLE   //956 bytes
+#define PIN_MODE_PWM_ENABLE  //456 bytes
+#define PIN_MODE_INPUT_PROCESSOR_ENABLE
+#define PIN_MODE_FREQUENCY_OUTPUT_ENABLE
+#define PIN_MODE_BLINK_ENABLE
+#define OUTPUT_SCALE_ENABLE
+#define OUTPUT_SCALE_ENABLE_CONTROL
+#endif
+
+#define FRONT_PANEL_BUILD
+#ifdef FRONT_PANEL_BUILD
+#define PIN_MODE_ANALOGINPUT_ENABLE
+#define PIN_MODE_QUADRATURE_ENC_ENABLE
+#define PIN_MODE_DEBOUNCE_ENABLE
+    #define ENABLE_DEBOUNCE_DOUBLECLICK_AND_TOGGLE
+    #define ENABLE_DEBOUNCE_SETPIN
+#define PIN_MODE_PULSE_ON_CHANGE_ENABLE
+#define PIN_MODE_INPUT_PROCESSOR_ENABLE
+#define PIN_MODE_PWM_ENABLE
+#define PIN_MODE_FREQUENCY_OUTPUT_ENABLE
+#define PIN_MODE_RANDOMBLINK_ENABLE
+#define PIN_MODE_BLINK_ENABLE
+#define OUTPUT_SCALE_ENABLE
+#define OUTPUT_SCALE_ENABLE_CONTROL
+#endif
+
+
+
+#define TM1637_BUILD
+#ifdef TM1637_BUILD
+#define PIN_MODE_ANALOGINPUT_ENABLE
+#define PIN_MODE_TM1637_ENABLE
+#define PIN_MODE_QUADRATURE_ENC_ENABLE
+#define PIN_MODE_DEBOUNCE_ENABLE
+    #define ENABLE_DEBOUNCE_DOUBLECLICK_AND_TOGGLE
+    #define ENABLE_DEBOUNCE_SETPIN
+#define PIN_MODE_PULSE_ON_CHANGE_ENABLE
+#define PIN_MODE_BLINK_ENABLE
+#define OUTPUT_SCALE_ENABLE
+#endif
+
+#define KEYPAD_BUILD
+#ifdef KEYPAD_BUILD
+#define PIN_MODE_MATRIX_KEYPAD_ENABLE
+#define PIN_MODE_BLINK_ENABLE
+#define PIN_MODE_DEBOUNCE_ENABLE
+#endif
+
+#define COMMUNICATIONS_BUILD
+#ifdef COMMUNICATIONS_BUILD
+#define PIN_MODE_SW_UART_ENABLE
+#define PIN_MODE_UART0_TXRX_ENABLE
+#define PIN_MODE_QUEUED_PULSE_OUTPUT_ENABLE
+#define QUEUE_ENABLE
+#define PIN_MODE_BLINK_ENABLE
+#define PIN_MODE_SPI_ENABLE
+#define PIN_MODE_THROUGHPUT_CONSUMER_ENABLE
+#endif
+
+#define IR_BUILD
+#ifdef IR_BUILD
+#define PIN_MODE_ANALOGINPUT_ENABLE
+#define PIN_MODE_SERVO_ENABLE // 672 bytes
+#define PIN_MODE_PWM_ENABLE
+#define QUEUE_ENABLE
+#define PIN_MODE_BLINK_ENABLE
+#define PIN_MODE_IRRX_ENABLE
+#define PIN_MODE_IRTX_ENABLE
+#define OUTPUT_SCALE_ENABLE
+#endif
+
+#define ULTRASONIC_BUILD
+#ifdef ULTRASONIC_BUILD
+#define PIN_MODE_SERVO_ENABLE // 672 bytes
+#define PIN_MODE_PULSE_TIMER_ENABLE  //1252 bytes
+#define PIN_MODE_ULTRASONIC_DISTANCE_ENABLE //1048 bytes
+#define PIN_MODE_INPUT_PROCESSOR_ENABLE
+#define PIN_MODE_ANALOGINPUT_ENABLE
+#define PIN_MODE_PWM_ENABLE
+#define PIN_MODE_BLINK_ENABLE
+#define OUTPUT_SCALE_ENABLE
+#define OUTPUT_SCALE_ENABLE_CONTROL
+#endif
+
+#define BRUSHED_MOTOR_BUILD
+#ifdef BRUSHED_MOTOR_BUILD
+#define PIN_MODE_ANALOGINPUT_ENABLE
+#define PIN_MODE_QUADRATURE_ENC_ENABLE  //634 bytes
+
+#define PIN_MODE_HBRIDGE_ENABLE   //956 bytes
+#define PIN_MODE_PWM_ENABLE  //456 bytes
+#define PIN_MODE_INPUT_PROCESSOR_ENABLE
+#define PIN_MODE_PULSE_TIMER_ENABLE
+#define PIN_MODE_DEBOUNCE_ENABLE
+#define PIN_MODE_BLINK_ENABLE
+#define OUTPUT_SCALE_ENABLE
+#define OUTPUT_SCALE_ENABLE_CONTROL
+#endif
+
+
+
+
+#ifdef OUTPUT_SCALE_ENABLE_CONTROL
+#define OUTPUT_SCALE_HYSTERESIS_ENABLE
+#define OUTPUT_SCALE_PID_ENABLE
+#define OUTPUT_SCALE_RAMP_ENABLE
+#define OUTPUT_SCALE_OUTPUT_FILTER_CHANGE_LIMIT_ENABLE
+#define OUTPUT_SCALE_OUTPUT_FILTER_MODE_FIRST_ORDER_ENABLE
+#endif
+
+
+#define INPUT_PROCESS_ENABLE
+
+
+
+#define PROTOCOL_BINARY_TEST_SEQUENCE_ENABLE
+
+#define PIN_MODE_UART1_TXRX_ENABLE
+#define PIN_MODE_WS2812_ENABLE
+#endif
+
